@@ -14,12 +14,11 @@ public class Grid : MonoBehaviour
     [Header("Grid Procedural Settings")]
     public int numberOfMine;
     public List<Cell> cellMineList = new List<Cell>(); //Liste de mines de la grid
-    private Transform gridParent; // GameObjectParent de la grid
+    
     // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    void Awake()
     {
-        gridParent = transform;
-        GenerateGrid();
+        //GenerateGrid();
     }
 
     [Button(enabledMode: EButtonEnableMode.Playmode)]
@@ -53,16 +52,17 @@ public class Grid : MonoBehaviour
                 cellList.Add(newCell);
 
                 // Optionnel : Attacher la cellule à un parent dans la hiérarchie
-                if (gridParent != null)
-                {
-                    newCell.transform.SetParent(gridParent);
-                }
+                newCell.transform.SetParent(transform);
 
                 // Renommer la cellule pour faciliter le débogage
                 newCell.name = $"Cell_{row}_{col}";
 
                 newCell.Initialize(this, new Vector2Int(row, col));
             }
+        }
+        foreach (Cell cell in cellList)
+        {
+            cell.InitializeType(this);
         }
 
         SetCellsType(numberOfMine);
@@ -99,7 +99,7 @@ public class Grid : MonoBehaviour
         foreach (Cell cell in cellList)
         {
             Cell cellToDefine = cell.GetComponent<Cell>();
-            cellToDefine.ChangeType(Cell.Celltype.Empty);
+            cellToDefine.ChangeType(CellType.Empty);
         }
 
         // S'assurer que le nombre d'objets à changer ne dépasse pas la taille de la liste
@@ -122,9 +122,14 @@ public class Grid : MonoBehaviour
             Cell cell = randomCell.GetComponent<Cell>();
             if (cell != null)
             {
-                cell.ChangeType(Cell.Celltype.Mine);
+                cell.ChangeType(CellType.Mine);
                 cellMineList.Add(randomCell);
             }
+        }
+
+        foreach (Cell cell in cellList)
+        {
+            cell.InitalizeVisual();
         }
     }
 
