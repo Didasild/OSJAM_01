@@ -331,7 +331,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0d6cd6c08b6c39442b40e168963430cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cellPrefab: {fileID: 4634166477021220514, guid: 58d5dd58eb3d9ef43b9b9d0bf076832c, type: 3}
+  cellPrefab: {fileID: 364980339709739537, guid: 58d5dd58eb3d9ef43b9b9d0bf076832c, type: 3}
   rows: 16
   columns: 16
   cellSize: 0.16

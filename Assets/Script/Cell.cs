@@ -1,12 +1,26 @@
+using NUnit.Framework;
+using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class Cell : MonoBehaviour
 {
+    [Header("CELL SETTINGS")]
+
+    [Header("CELL INFORMATIONS")]
     public Cellstate currentState;
     public Celltype currentType;
+    public List<Cell> neighborsCellList = new List<Cell>(); //Liste des voisins de la cellule
+    [NaughtyAttributes.ReadOnly]
+    public Vector2Int _cellPosition;
+
+    [Header("CELL VISUALS")]
     public GameObject cellCover;
     public GameObject cellEmpty;
     public GameObject cellMine;
+    public TextMeshProUGUI number;
+
+
 
     public enum Cellstate
     {
@@ -24,7 +38,14 @@ public class Cell : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        currentState = Cellstate.Cover;
+
+    }
+
+    public void Initialize(Grid grid, Vector2Int cellPosition)
+    {
+        _cellPosition = cellPosition;
+        ChangeState(currentState);
+        neighborsCellList = grid.GetNeighbors(cellPosition);
     }
 
     public void ChangeState(Cellstate newState)
