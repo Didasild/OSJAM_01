@@ -7,11 +7,9 @@ public class Player : MonoBehaviour
     public int initialHealthPoints = 3;
     private int healthPoints;
     public TMP_Text healthPointText;
+
+    public int clicCounter;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
 
     // Update is called once per frame
     void Update()
@@ -44,18 +42,29 @@ public class Player : MonoBehaviour
         {
             if (cellOver.currentState == CellState.Cover)
             {
-                if (cellOver.currentState == CellState.Cover)
+                if (clicCounter == 0)
+                {
+                    cellOver.ChangeType(CellType.Empty);
+                    cellOver.RemoveNeighborsMine();
+                    GameManager.Instance.grid.SetStairType();
+                    IncreaseClickCount();
+                }
+                else if (cellOver.currentState == CellState.Cover)
                 {
                     ChangeCellState(CellState.Reveal);
+                    IncreaseClickCount();
                 }
-                if (cellOver.currentType == CellType.Mine)
-                {
-                    DecreaseHealth(1);
-                }
+            }
+            else if (cellOver.currentType == CellType.Stair)
+            {
+                GameManager.Instance.grid.GenerateGrid();
+                GameManager.Instance.IncrementFloorLevel();
+                ResetClickCounter();
             }
         }
 
-        if (Input.GetMouseButtonUp(1))
+        // Clique sur le bouton droit
+        if (Input.GetMouseButtonDown(1))
         {
             if (cellOver.currentState == CellState.Cover)
             {
@@ -64,6 +73,15 @@ public class Player : MonoBehaviour
             else if (cellOver.currentState == CellState.Flag)
             {
                 ChangeCellState(CellState.Cover);
+            }
+        }
+
+        // Clique du milieu
+        if (Input.GetMouseButtonDown(2))
+        {
+            if (cellOver.currentType == CellType.Hint && cellOver.currentState == CellState.Reveal)
+            {
+                cellOver.ChangeNeighborStates();
             }
         }
     }
@@ -103,6 +121,16 @@ public class Player : MonoBehaviour
     public void IncreaseHealth(int heal)
     {
         healthPoints += heal;
+    }
+
+    public void ResetClickCounter()
+    {
+        clicCounter = 0;
+    }
+
+    public void IncreaseClickCount()
+    {
+        clicCounter += 1;
     }
 
 }

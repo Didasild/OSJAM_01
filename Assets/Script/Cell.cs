@@ -16,6 +16,7 @@ public enum CellType
     ToDefine,
     Empty,
     Hint,
+    Stair,
     Mine
 }
 
@@ -35,15 +36,11 @@ public class Cell : MonoBehaviour
     public GameObject cellEmpty;
     public GameObject cellMine;
     public GameObject cellFlag;
-    public TMP_Text number;
+    public GameObject cellStair;
+    public int numberOfMine;
+    public TMP_Text numberText;
 
-
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-
-    }
-
+    #region INIT
     public void Initialize(Grid grid, Vector2Int cellPosition)
     {
         _cellPosition = cellPosition;
@@ -58,7 +55,7 @@ public class Cell : MonoBehaviour
     //Initialise le visuel de la case
     public void InitalizeVisual()
     {
-        int numberOfMine = 0;
+        numberOfMine = 0;
         foreach (Cell cell in neighborsCellList)
         {
             if (cell.currentType == CellType.Mine)
@@ -69,20 +66,23 @@ public class Cell : MonoBehaviour
 
         if (currentType == CellType.Mine)
         {
-            number.text = "";
+            numberText.text = "";
         }
         else if (numberOfMine >= 1)
         {
-            number.text = numberOfMine.ToString();
+            numberText.text = numberOfMine.ToString();
             ChangeType(CellType.Hint);
         }
         else
         {
-            number.text = "";
+            numberText.text = "";
             ChangeType(CellType.Empty);
         }
     }
 
+    #endregion
+
+    #region CELL STATE
     public void ChangeState(CellState newState)
     {
         currentState = newState;
@@ -90,48 +90,23 @@ public class Cell : MonoBehaviour
         switch (currentState)
         {
             case CellState.Cover:
-            CoverState(); 
-            break;
+                CoverState();
+                break;
 
             case CellState.Flag:
-            FlagState();
-            break;
+                FlagState();
+                break;
 
             case CellState.Cliked:
-            ClickedState(); 
-            break;
+                ClickedState();
+                break;
 
             case CellState.Reveal:
-            RevealState();
-            break;
+                RevealState();
+                break;
         }
     }
 
-    public void ChangeType(CellType newType)
-    {
-
-        currentType = newType;
-
-        switch (currentType)
-        {
-            case CellType.ToDefine:
-            ToDefineType(); 
-            break;
-
-            case CellType.Empty:
-            EmptyType(); 
-            break;
-
-            case CellType.Hint:
-            HintType();
-            break;
-
-            case CellType.Mine:
-            MineType();
-            break;
-        }
-
-    }
     private void CoverState()
     {
         Debug.Log("switch to Cover State");
@@ -162,7 +137,16 @@ public class Cell : MonoBehaviour
                 {
                     cell.ChangeState(CellState.Reveal);
                 }
+                if (cell.currentType == CellType.Stair && cell.currentState == CellState.Cover)
+                {
+                    cell.ChangeState(CellState.Reveal);
+                }
             }
+        }
+
+        if (currentType == CellType.Mine)
+        {
+            GameManager.Instance.player.DecreaseHealth(1);
         }
     }
 
@@ -170,7 +154,38 @@ public class Cell : MonoBehaviour
     {
         Debug.Log("switch to Clicked State");
     }
+    #endregion
 
+    #region CELL TYPE
+    public void ChangeType(CellType newType)
+    {
+
+        currentType = newType;
+
+        switch (currentType)
+        {
+            case CellType.ToDefine:
+                ToDefineType();
+                break;
+
+            case CellType.Empty:
+                EmptyType();
+                break;
+
+            case CellType.Hint:
+                HintType();
+                break;
+
+            case CellType.Stair:
+                StairType();
+                break;
+
+            case CellType.Mine:
+                MineType();
+                break;
+        }
+
+    }
     private void ToDefineType()
     {
 
@@ -180,22 +195,70 @@ public class Cell : MonoBehaviour
     {
         cellEmpty.SetActive(true);
         cellMine.SetActive(false);
+        cellStair.SetActive(false);
     }
     private void HintType()
     {
         cellEmpty.SetActive(true);
         cellMine.SetActive(false);
+        cellStair.SetActive(false);
+    }
+
+    private void StairType()
+    {
+        cellEmpty.SetActive(false);
+        cellMine.SetActive(false);
+        cellStair.SetActive(true);       
     }
 
     private void MineType()
     {
         cellEmpty.SetActive(false);
         cellMine.SetActive(true);
+        cellStair.SetActive(false);
+    }
+    #endregion
+
+    #region NEIGHBORS MANAGEMENT
+    public void ChangeNeighborStates()
+    {
+        int numberOfFlagNeighbors = 0;
+        foreach (Cell neighborsCell in neighborsCellList)
+        {
+            if (neighborsCell.currentState == CellState.Flag)
+            {
+                numberOfFlagNeighbors += 1;
+            }
+            else if (neighborsCell.currentType == CellType.Mine && neighborsCell.currentState == CellState.Reveal)
+            {
+                numberOfFlagNeighbors += 1;
+            }
+        }
+
+        if (numberOfFlagNeighbors == numberOfMine)
+        {
+            foreach (Cell neighbor in neighborsCellList)
+            {
+                if (neighbor.currentState == CellState.Cover)
+                {
+                    neighbor.ChangeState(CellState.Reveal);
+                }
+            }
+        }
     }
 
-    // Update is called once per frame
-    void Update()
+    public void RemoveNeighborsMine()
     {
-        
+        foreach (Cell neighbor in neighborsCellList)
+        {
+            if (neighbor.currentType == CellType.Mine)
+            {
+                neighbor.ChangeType(CellType.Empty);
+            }
+        }
+        GameManager.Instance.grid.SetCellsVisuals();
+        ChangeState(CellState.Reveal);
     }
+    #endregion
+
 }

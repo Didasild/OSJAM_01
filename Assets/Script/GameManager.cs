@@ -1,4 +1,6 @@
+using System.Collections;
 using UnityEngine;
+using TMPro;
 
 public enum GameState
 {
@@ -14,6 +16,8 @@ public class GameManager : MonoBehaviour
     public GameObject endScreen;
     public Grid grid;
     public Player player;
+    public int floorLevel;
+    public TMP_Text floorLevelText;
     
 
     private void Awake()
@@ -46,27 +50,36 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public void StartState()
-    {
-
-    }
-
     public void LooseState() 
     {
-        endScreen.SetActive (true);
-    
+        endScreen.SetActive (true);    
     }
 
     public void InGameState()
     {
         grid.GenerateGrid();
         player.ResetHealtPoint();
+        player.ResetClickCounter();
+    }
+
+    public void IncrementFloorLevel()
+    {
+        floorLevel += 1;
+        floorLevelText.text = floorLevel.ToString();
     }
 
     public void RestartGame()
     {
-        ChangeGameState (GameState.InGame);
-        endScreen.SetActive (false);
+        StartCoroutine(CO_RestartGame());
+        IEnumerator CO_RestartGame()
+        {
+            yield return new WaitForEndOfFrame();
+
+            ChangeGameState(GameState.InGame);
+            floorLevel = 0;
+            floorLevelText.text = floorLevel.ToString();
+            endScreen.SetActive(false);
+        }
     }
 
 }

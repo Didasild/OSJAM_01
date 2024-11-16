@@ -1,5 +1,6 @@
 using NaughtyAttributes;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class Grid : MonoBehaviour
@@ -10,16 +11,12 @@ public class Grid : MonoBehaviour
     public int columns = 5;       // Nombre de colonnes
     public float cellSize = 16f;   // Taille des cellules (espacement)
     public List<Cell> cellList = new List<Cell>(); //Liste des cellules de la grid
+    public List<Cell> testList = new List<Cell>();
 
     [Header("Grid Procedural Settings")]
     public int numberOfMine;
     public List<Cell> cellMineList = new List<Cell>(); //Liste de mines de la grid
     
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Awake()
-    {
-        //GenerateGrid();
-    }
 
     [Button(enabledMode: EButtonEnableMode.Playmode)]
     public void GenerateGrid()
@@ -65,7 +62,7 @@ public class Grid : MonoBehaviour
             cell.InitializeType(this);
         }
 
-        SetCellsType(numberOfMine);
+        SetMineType(numberOfMine);
     }
     // Méthode pour effacer l'ancienne grille
     public void ClearGrid()
@@ -81,7 +78,7 @@ public class Grid : MonoBehaviour
         cellMineList = new List<Cell> ();
     }
     //
-    public void SetCellsType(int numberOfMine)
+    public void SetMineType(int numberOfMine)
     {
         if (cellList.Count == 0)
         {
@@ -126,8 +123,56 @@ public class Grid : MonoBehaviour
                 cellMineList.Add(randomCell);
             }
         }
+    }
 
+    public void SetStairType(int clickCount = 0) 
+    { 
+        List<Cell> emptyCoverCellsList = GetEmptyCoverCells();
+        if (emptyCoverCellsList.Count == 0)
+        {
+            List<Cell> emptyCellsList = GetEmptyCells();
+            int randomIndex = Random.Range(0, emptyCellsList.Count);
+            Cell selectedCell = emptyCellsList[randomIndex];
+            selectedCell.ChangeType(CellType.Stair);
+        }
+        else 
+        {
+            int randomIndex = Random.Range(0, emptyCoverCellsList.Count);
+            Cell selectedCell = emptyCoverCellsList[randomIndex];
+            selectedCell.ChangeType(CellType.Stair);
+        }
+    }
+
+    public List<Cell> GetEmptyCoverCells()
+    {
+        List<Cell> emptyCells = new List<Cell>();
         foreach (Cell cell in cellList)
+        {
+            if (cell.currentType == CellType.Empty && cell.currentState == CellState.Cover)
+            {
+                emptyCells.Add(cell);
+            }
+        }
+        return emptyCells;
+    }
+    public List<Cell> GetEmptyCells()
+    {
+        List<Cell> emptyCells = new List<Cell>();
+        foreach (Cell cell in cellList)
+        {
+            if (cell.currentType == CellType.Empty)
+            {
+                emptyCells.Add(cell);
+            }
+        }
+        return emptyCells;
+    }
+
+    public void SetCellsVisuals(Cell cellIgnore = null)
+    {
+        List<Cell> cellsWithExcluded = new List<Cell>(cellList);
+        cellsWithExcluded.Remove(cellIgnore);
+        foreach (Cell cell in cellsWithExcluded)
         {
             cell.InitalizeVisual();
         }
