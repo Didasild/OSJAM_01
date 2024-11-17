@@ -1,25 +1,23 @@
 using NaughtyAttributes;
 using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
 
 public class Grid : MonoBehaviour
 {
     [Header("Grid General Settings")]
     public Cell cellPrefab; // Le prefab de la cellule
-    public int rows = 5;          // Nombre de lignes
-    public int columns = 5;       // Nombre de colonnes
+    public Vector2Int gridSize;
     public float cellSize = 16f;   // Taille des cellules (espacement)
     public List<Cell> cellList = new List<Cell>(); //Liste des cellules de la grid
     public List<Cell> testList = new List<Cell>();
 
     [Header("Grid Procedural Settings")]
-    public int numberOfMine;
+    //public int numberOfMine;
     public List<Cell> cellMineList = new List<Cell>(); //Liste de mines de la grid
     
 
     [Button(enabledMode: EButtonEnableMode.Playmode)]
-    public void GenerateGrid()
+    public void GenerateGrid(Vector2Int gridSize, int pourcentageOfMine)
     {
         if (cellPrefab == null)
         {
@@ -31,15 +29,15 @@ public class Grid : MonoBehaviour
         ClearGrid();
 
         // Calcul de l'offset pour centrer la grille
-        float gridWidth = columns * cellSize; // Largeur totale de la grille
-        float gridHeight = rows * cellSize;   // Hauteur totale de la grille
+        float gridWidth = gridSize.x * cellSize; // Largeur totale de la grille
+        float gridHeight = gridSize.y * cellSize;   // Hauteur totale de la grille
 
         Vector2 gridOffset = new Vector2(-gridWidth / 2 + cellSize / 2, gridHeight / 2 - cellSize / 2);
 
         // Parcourir les lignes et colonnes pour générer la grille
-        for (int row = 0; row < rows; row++)
+        for (int row = 0; row < gridSize.y; row++)
         {
-            for (int col = 0; col < columns; col++)
+            for (int col = 0; col < gridSize.x; col++)
             {
                 // Calculer la position de chaque cellule (ajustée par l'offset)
                 Vector2 cellPosition = new Vector2(col * cellSize, -row * cellSize) + gridOffset;
@@ -59,10 +57,16 @@ public class Grid : MonoBehaviour
         }
         foreach (Cell cell in cellList)
         {
-            cell.InitializeType(this);
+            cell.GenerateNeighborsList(this);
+        }
+        //Transforme tout les enfants en Empty
+        foreach (Cell cell in cellList)
+        {
+            Cell cellToDefine = cell.GetComponent<Cell>();
+            cellToDefine.ChangeType(CellType.Empty);
         }
 
-        SetMineType(numberOfMine);
+        SetMineType(pourcentageOfMine);
     }
     // Méthode pour effacer l'ancienne grille
     public void ClearGrid()
@@ -78,7 +82,7 @@ public class Grid : MonoBehaviour
         cellMineList = new List<Cell> ();
     }
     //
-    public void SetMineType(int numberOfMine)
+    public void SetMineType(int pourcentageOfMine)
     {
         if (cellList.Count == 0)
         {
@@ -86,21 +90,8 @@ public class Grid : MonoBehaviour
             return;
         }
 
-        if (cellList.Count < numberOfMine)
-        {
-            Debug.LogWarning("Pas assez de cellule vide");
-            return;
-        }
-
-        //Transforme tout les enfants en Empty
-        foreach (Cell cell in cellList)
-        {
-            Cell cellToDefine = cell.GetComponent<Cell>();
-            cellToDefine.ChangeType(CellType.Empty);
-        }
-
         // S'assurer que le nombre d'objets à changer ne dépasse pas la taille de la liste
-        int countToChange = Mathf.Min(numberOfMine, cellList.Count);
+        int countToChange = Mathf.RoundToInt(cellList.Count * (pourcentageOfMine / 100f));
 
         // Liste temporaire pour suivre les objets déjà modifiés
         List<Cell> alreadyChanged = new List<Cell>();
@@ -125,21 +116,39 @@ public class Grid : MonoBehaviour
         }
     }
 
-    public void SetStairType(int clickCount = 0) 
-    { 
-        List<Cell> emptyCoverCellsList = GetEmptyCoverCells();
-        if (emptyCoverCellsList.Count == 0)
+    public void SetItemsType(CellType cellType, int numberOfItem)
+    {
+        List<Cell> emptyCellsList = GetEmptyCoverCells();
+
+        // Si aucune cellule dans la liste des "cover cells", utiliser la liste générale
+        if (emptyCellsList.Count == 0)
         {
-            List<Cell> emptyCellsList = GetEmptyCells();
-            int randomIndex = Random.Range(0, emptyCellsList.Count);
-            Cell selectedCell = emptyCellsList[randomIndex];
-            selectedCell.ChangeType(CellType.Stair);
+            emptyCellsList = GetEmptyCells();
         }
-        else 
+
+        // S'assurer de ne pas essayer de sélectionner plus de cellules que disponibles
+        numberOfItem = Mathf.Min(numberOfItem, emptyCellsList.Count);
+
+        // Liste temporaire pour éviter les doublons
+        List<Cell> selectedCells = new List<Cell>();
+
+        for (int i = 0; i < numberOfItem; i++)
         {
-            int randomIndex = Random.Range(0, emptyCoverCellsList.Count);
-            Cell selectedCell = emptyCoverCellsList[randomIndex];
-            selectedCell.ChangeType(CellType.Stair);
+            // Génère un index aléatoire parmi les cellules restantes
+            int randomIndex = Random.Range(0, emptyCellsList.Count);
+
+            // Sélectionne une cellule et la retire de la liste temporaire
+            Cell selectedCell = emptyCellsList[randomIndex];
+            emptyCellsList.RemoveAt(randomIndex);
+
+            // Ajoute la cellule à la liste des cellules sélectionnées
+            selectedCells.Add(selectedCell);
+        }
+
+        // Change le type de chaque cellule sélectionnée
+        foreach (Cell cell in selectedCells)
+        {
+            cell.ChangeType(cellType);
         }
     }
 

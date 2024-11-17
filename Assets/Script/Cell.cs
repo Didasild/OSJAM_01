@@ -1,4 +1,3 @@
-using NUnit.Framework;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
@@ -7,6 +6,7 @@ public enum CellState
 {
     Cover,
     Flag,
+    Sword,
     Cliked,
     Reveal
 }
@@ -15,30 +15,41 @@ public enum CellType
 {
     ToDefine,
     Empty,
+    Mine,
     Hint,
     Stair,
-    Mine
+    Potion,
+    Sword
 }
 
 public class Cell : MonoBehaviour
 {
-    [Header("CELL SETTINGS")]
-
     [Header("CELL INFORMATIONS")]
     public CellState currentState;
     public CellType currentType;
-    public List<Cell> neighborsCellList = new List<Cell>(); //Liste des voisins de la cellule
     [NaughtyAttributes.ReadOnly]
     public Vector2Int _cellPosition;
+    public List<Cell> neighborsCellList = new List<Cell>(); //Liste des voisins de la cellule
+    [NaughtyAttributes.ReadOnly]
+    public int numberOfNeighborsMine;
+    public TMP_Text numberText;
 
-    [Header("CELL VISUALS")]
+
+
+    [Header("CELL VISUALS STATE")]
     public GameObject cellCover;
+    public GameObject cellFlag;
+    public GameObject cellSword;
+    [Header("CELL VISUALS TYPE")]
     public GameObject cellEmpty;
     public GameObject cellMine;
-    public GameObject cellFlag;
     public GameObject cellStair;
-    public int numberOfMine;
-    public TMP_Text numberText;
+    public GameObject cellItemPotion;
+    public GameObject cellItemSword;
+    [Header("CELL VISUALS MINE")]
+    public GameObject mineAnim;
+
+
 
     #region INIT
     public void Initialize(Grid grid, Vector2Int cellPosition)
@@ -47,7 +58,7 @@ public class Cell : MonoBehaviour
         ChangeState(currentState);
     }
 
-    public void InitializeType(Grid grid)
+    public void GenerateNeighborsList(Grid grid)
     {
         neighborsCellList = grid.GetNeighbors(_cellPosition);
     }
@@ -55,12 +66,12 @@ public class Cell : MonoBehaviour
     //Initialise le visuel de la case
     public void InitalizeVisual()
     {
-        numberOfMine = 0;
+        numberOfNeighborsMine = 0;
         foreach (Cell cell in neighborsCellList)
         {
             if (cell.currentType == CellType.Mine)
             {
-                numberOfMine += 1;
+                numberOfNeighborsMine += 1;
             }
         }
 
@@ -68,9 +79,9 @@ public class Cell : MonoBehaviour
         {
             numberText.text = "";
         }
-        else if (numberOfMine >= 1)
+        else if (numberOfNeighborsMine >= 1)
         {
-            numberText.text = numberOfMine.ToString();
+            numberText.text = numberOfNeighborsMine.ToString();
             ChangeType(CellType.Hint);
         }
         else
@@ -97,6 +108,10 @@ public class Cell : MonoBehaviour
                 FlagState();
                 break;
 
+            case CellState.Sword:
+                SwordState();
+                break;
+
             case CellState.Cliked:
                 ClickedState();
                 break;
@@ -112,6 +127,7 @@ public class Cell : MonoBehaviour
         Debug.Log("switch to Cover State");
         cellCover.SetActive(true);
         cellFlag.SetActive(false);
+        cellSword.SetActive(false);
     }
 
     private void FlagState()
@@ -119,13 +135,22 @@ public class Cell : MonoBehaviour
         Debug.Log("switch to Flag State");
         cellFlag.SetActive(true);
         cellCover.SetActive(false);
+        cellSword.SetActive(false);
+    }
+
+    private void SwordState()
+    {
+        Debug.Log("switch to Sword State");
+        cellFlag.SetActive(false);
+        cellCover.SetActive(false);
+        cellSword.SetActive(true);
     }
 
     private void RevealState()
     {
         Debug.Log("switch to Reveal State");
         cellCover.SetActive(false);
-        if (currentType == CellType.Empty)
+        if (currentType == CellType.Empty || currentType == CellType.Stair || currentType == CellType.Sword || currentType == CellType.Potion)
         {
             foreach (Cell cell in neighborsCellList)
             {
@@ -141,6 +166,14 @@ public class Cell : MonoBehaviour
                 {
                     cell.ChangeState(CellState.Reveal);
                 }
+                if (cell.currentType == CellType.Sword && cell.currentState == CellState.Cover)
+                {
+                    cell.ChangeState(CellState.Reveal);
+                }
+                if (cell.currentType == CellType.Potion && cell.currentState == CellState.Cover)
+                {
+                    cell.ChangeState(CellState.Reveal);
+                }
             }
         }
 
@@ -148,6 +181,10 @@ public class Cell : MonoBehaviour
         {
             GameManager.Instance.player.DecreaseHealth(1);
         }
+        Debug.Log("switch to Sword State");
+        cellFlag.SetActive(false);
+        cellCover.SetActive(false);
+        cellSword.SetActive(false);
     }
 
     private void ClickedState()
@@ -172,6 +209,10 @@ public class Cell : MonoBehaviour
                 EmptyType();
                 break;
 
+            case CellType.Mine:
+                MineType();
+                break;
+
             case CellType.Hint:
                 HintType();
                 break;
@@ -180,9 +221,14 @@ public class Cell : MonoBehaviour
                 StairType();
                 break;
 
-            case CellType.Mine:
-                MineType();
+            case CellType.Potion:
+                PotionType();
                 break;
+
+            case CellType.Sword:
+                SwordType();
+                break;
+
         }
 
     }
@@ -196,27 +242,52 @@ public class Cell : MonoBehaviour
         cellEmpty.SetActive(true);
         cellMine.SetActive(false);
         cellStair.SetActive(false);
+        cellItemPotion.SetActive(false);
+        cellItemSword.SetActive(false);
+    }
+    private void MineType()
+    {
+        cellEmpty.SetActive(false);
+        cellMine.SetActive(true);
+        cellStair.SetActive(false);
+        cellItemPotion.SetActive(false);
+        cellItemSword.SetActive(false);
     }
     private void HintType()
     {
         cellEmpty.SetActive(true);
         cellMine.SetActive(false);
         cellStair.SetActive(false);
+        cellItemPotion.SetActive(false);
+        cellItemSword.SetActive(false);
     }
 
     private void StairType()
     {
         cellEmpty.SetActive(false);
         cellMine.SetActive(false);
-        cellStair.SetActive(true);       
+        cellStair.SetActive(true);
+        cellItemPotion.SetActive(false);
+        cellItemSword.SetActive(false);
     }
 
-    private void MineType()
+    private void PotionType()
     {
         cellEmpty.SetActive(false);
-        cellMine.SetActive(true);
+        cellMine.SetActive(false);
         cellStair.SetActive(false);
+        cellItemPotion.SetActive(true);
+        cellItemSword.SetActive(false);
     }
+    private void SwordType()
+    {
+        cellEmpty.SetActive(false);
+        cellMine.SetActive(false);
+        cellStair.SetActive(false);
+        cellItemPotion.SetActive(false);
+        cellItemSword.SetActive(true);
+    }
+
     #endregion
 
     #region NEIGHBORS MANAGEMENT
@@ -235,7 +306,7 @@ public class Cell : MonoBehaviour
             }
         }
 
-        if (numberOfFlagNeighbors == numberOfMine)
+        if (numberOfFlagNeighbors == numberOfNeighborsMine)
         {
             foreach (Cell neighbor in neighborsCellList)
             {

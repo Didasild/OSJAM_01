@@ -18,7 +18,9 @@ public class GameManager : MonoBehaviour
     public Player player;
     public int floorLevel;
     public TMP_Text floorLevelText;
-    
+    public FloorSettings[] floorSettingsList;
+    [NaughtyAttributes.ReadOnly]
+    public FloorSettings currentFloorSettings;
 
     private void Awake()
     {
@@ -30,7 +32,8 @@ public class GameManager : MonoBehaviour
         ChangeGameState(GameState.InGame);
     }
 
-    public void ChangeGameState (GameState gameState)
+    #region GAME STATE
+    public void ChangeGameState(GameState gameState)
     {
         currentGameState = gameState;
 
@@ -50,24 +53,29 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public void LooseState() 
+    public void LooseState()
     {
-        endScreen.SetActive (true);    
+        endScreen.SetActive(true);
     }
 
     public void InGameState()
     {
-        grid.GenerateGrid();
+        currentFloorSettings = floorSettingsList[floorLevel % floorSettingsList.Length];
+        grid.GenerateGrid(currentFloorSettings.GetGridSize(),currentFloorSettings.floorPourcentageOfMine);
         player.ResetHealtPoint();
         player.ResetClickCounter();
     }
+    #endregion
 
-    public void IncrementFloorLevel()
+    #region FLOOR GENERATION
+    public void ChangeFloorLevel()
     {
         floorLevel += 1;
+                currentFloorSettings = floorSettingsList[floorLevel % floorSettingsList.Length];
+        grid.GenerateGrid(currentFloorSettings.GetGridSize(),currentFloorSettings.floorPourcentageOfMine);
         floorLevelText.text = floorLevel.ToString();
     }
-
+    #endregion
     public void RestartGame()
     {
         StartCoroutine(CO_RestartGame());
