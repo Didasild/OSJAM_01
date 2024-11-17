@@ -15,7 +15,7 @@ MonoBehaviour:
   minGridSize: {x: 15, y: 25}
   maxGridSize: {x: 15, y: 25}
   floorPourcentageOfMine: 35
-  minPotion: 2
+  minPotion: 1
   maxPotion: 2
-  minSword: 2
-  maxSword: 2
+  minSword: 1
+  maxSword: 3

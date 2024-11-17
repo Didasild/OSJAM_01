@@ -65,7 +65,7 @@ public class Player : MonoBehaviour
                 if (cellOver.currentType == CellType.Mine)
                 {
                     cellOver.ChangeState(CellState.Cover);
-                    StartCoroutine(CO_MineAnimation());
+                    StartCoroutine(CO_MineAnimation(cellOver));
                 }
                 else
                 {
@@ -123,12 +123,18 @@ public class Player : MonoBehaviour
             }
         }
     }
-    private IEnumerator CO_MineAnimation()
+    private IEnumerator CO_MineAnimation(Cell cell)
     {
-        cellOver.mineAnim.SetActive(true);
+        cell.mineAnim.SetActive(true);
+        cell.ChangeType(CellType.Empty);
         yield return new WaitForSeconds(2f);
-        cellOver.mineAnim.SetActive(false);
-        //cellOver.ChangeState(CellState.Reveal);
+        cell.mineAnim.SetActive(false);
+        cell.InitalizeVisual();
+        foreach (Cell cellInList in cell.neighborsCellList)
+        {
+            cellInList.InitalizeVisual();
+        }
+        cell.ChangeState(CellState.Reveal);
     }
     #region HEALTH
     public void ResetHealtPoint()
