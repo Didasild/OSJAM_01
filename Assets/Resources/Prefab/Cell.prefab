@@ -486,7 +486,7 @@ MonoBehaviour:
   cellStair: {fileID: 5682002849432912345}
   cellItemPotion: {fileID: 4537452559267562735}
   cellItemSword: {fileID: 7176199552972395059}
-  mineAnim: {fileID: 1520226006619263936}
+  mineSwordAnim: {fileID: 1520226006619263936}
 --- !u!1 &5073111335782266271
 GameObject:
   m_ObjectHideFlags: 0

@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
@@ -47,7 +48,7 @@ public class Cell : MonoBehaviour
     public GameObject cellItemPotion;
     public GameObject cellItemSword;
     [Header("CELL VISUALS MINE")]
-    public GameObject mineAnim;
+    public GameObject mineSwordAnim;
 
 
 
@@ -56,11 +57,6 @@ public class Cell : MonoBehaviour
     {
         _cellPosition = cellPosition;
         ChangeState(currentState);
-    }
-
-    public void GenerateNeighborsList(Grid grid)
-    {
-        neighborsCellList = grid.GetNeighbors(_cellPosition);
     }
 
     //Initialise le visuel de la case
@@ -92,6 +88,37 @@ public class Cell : MonoBehaviour
     }
 
     #endregion
+    public void GenerateNeighborsList(Grid grid)
+    {
+        neighborsCellList = grid.GetNeighbors(_cellPosition);
+    }
+
+    public void DestroyCellType()
+    {
+        ChangeState(CellState.Cover);
+        StartCoroutine(CO_MineAnimation());
+    }
+    private IEnumerator CO_MineAnimation()
+    {
+        mineSwordAnim.SetActive(true);
+        ChangeType(CellType.Empty);
+        yield return new WaitForSeconds(2f);
+        mineSwordAnim.SetActive(false);
+        InitalizeVisual();
+        foreach (Cell cellInList in neighborsCellList)
+        {
+            cellInList.InitalizeVisual();
+        }
+        foreach (Cell cellInList in neighborsCellList)
+        {
+            if (cellInList.currentType == CellType.Empty)
+            {
+                cellInList.ChangeState(CellState.Reveal);
+            }
+        }
+        ChangeState(CellState.Reveal);
+    }
+
 
     #region CELL STATE
     public void ChangeState(CellState newState)

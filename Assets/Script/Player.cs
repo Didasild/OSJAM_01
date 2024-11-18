@@ -64,8 +64,7 @@ public class Player : MonoBehaviour
             {
                 if (cellOver.currentType == CellType.Mine)
                 {
-                    cellOver.ChangeState(CellState.Cover);
-                    StartCoroutine(CO_MineAnimation(cellOver));
+                    cellOver.DestroyCellType();
                 }
                 else
                 {
@@ -123,19 +122,7 @@ public class Player : MonoBehaviour
             }
         }
     }
-    private IEnumerator CO_MineAnimation(Cell cell)
-    {
-        cell.mineAnim.SetActive(true);
-        cell.ChangeType(CellType.Empty);
-        yield return new WaitForSeconds(2f);
-        cell.mineAnim.SetActive(false);
-        cell.InitalizeVisual();
-        foreach (Cell cellInList in cell.neighborsCellList)
-        {
-            cellInList.InitalizeVisual();
-        }
-        cell.ChangeState(CellState.Reveal);
-    }
+
     #region HEALTH
     public void ResetHealtPoint()
     {

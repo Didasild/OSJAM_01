@@ -71,7 +71,7 @@ public class GameManager : MonoBehaviour
     public void ChangeFloorLevel()
     {
         floorLevel += 1;
-                currentFloorSettings = floorSettingsList[floorLevel % floorSettingsList.Length];
+        currentFloorSettings = floorSettingsList[floorLevel % floorSettingsList.Length];
         grid.GenerateGrid(currentFloorSettings.GetGridSize(),currentFloorSettings.floorPourcentageOfMine);
         floorLevelText.text = floorLevel.ToString();
     }
