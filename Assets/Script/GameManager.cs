@@ -10,17 +10,24 @@ public enum GameState
 
 public class GameManager : MonoBehaviour
 {
+    //Singleton
     private static GameManager _instance;
     public static GameManager Instance => _instance;
+    [Header("INFORMATIONS STATE")]
     public GameState currentGameState;
-    public GameObject endScreen;
-    public Grid grid;
-    public Player player;
-    public int floorLevel;
+    [Header("FLOOR ELEMENTS")]
+    public int currentFloorLevel;
     public TMP_Text floorLevelText;
     public FloorSettings[] floorSettingsList;
     [NaughtyAttributes.ReadOnly]
     public FloorSettings currentFloorSettings;
+    [Header("REFERENCES")]
+    public GameObject endScreenUI;
+    public Grid grid;
+    public Player player;
+    public GameObject mainCamera;
+
+
 
     private void Awake()
     {
@@ -55,12 +62,13 @@ public class GameManager : MonoBehaviour
 
     public void LooseState()
     {
-        endScreen.SetActive(true);
+        endScreenUI.SetActive(true);
+        currentFloorLevel = 0;
     }
 
     public void InGameState()
     {
-        currentFloorSettings = floorSettingsList[floorLevel % floorSettingsList.Length];
+        currentFloorSettings = floorSettingsList[currentFloorLevel % floorSettingsList.Length];
         grid.GenerateGrid(currentFloorSettings.GetGridSize(),currentFloorSettings.floorPourcentageOfMine);
         player.ResetHealtPoint();
         player.ResetClickCounter();
@@ -70,10 +78,10 @@ public class GameManager : MonoBehaviour
     #region FLOOR GENERATION
     public void ChangeFloorLevel()
     {
-        floorLevel += 1;
-        currentFloorSettings = floorSettingsList[floorLevel % floorSettingsList.Length];
+        currentFloorLevel += 1;
+        currentFloorSettings = floorSettingsList[currentFloorLevel % floorSettingsList.Length];
         grid.GenerateGrid(currentFloorSettings.GetGridSize(),currentFloorSettings.floorPourcentageOfMine);
-        floorLevelText.text = floorLevel.ToString();
+        floorLevelText.text = currentFloorLevel.ToString();
     }
     #endregion
     public void RestartGame()
@@ -84,9 +92,9 @@ public class GameManager : MonoBehaviour
             yield return new WaitForEndOfFrame();
 
             ChangeGameState(GameState.InGame);
-            floorLevel = 0;
-            floorLevelText.text = floorLevel.ToString();
-            endScreen.SetActive(false);
+            currentFloorLevel = 0;
+            floorLevelText.text = currentFloorLevel.ToString();
+            endScreenUI.SetActive(false);
         }
     }
 

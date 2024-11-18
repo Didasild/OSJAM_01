@@ -35,21 +35,20 @@ public class Cell : MonoBehaviour
     public int numberOfNeighborsMine;
     public TMP_Text numberText;
 
-
-
     [Header("CELL VISUALS STATE")]
     public GameObject cellCover;
     public GameObject cellFlag;
     public GameObject cellSword;
+
     [Header("CELL VISUALS TYPE")]
     public GameObject cellEmpty;
     public GameObject cellMine;
     public GameObject cellStair;
     public GameObject cellItemPotion;
     public GameObject cellItemSword;
+
     [Header("CELL VISUALS MINE")]
     public GameObject mineSwordAnim;
-
 
 
     #region INIT
@@ -60,7 +59,7 @@ public class Cell : MonoBehaviour
     }
 
     //Initialise le visuel de la case
-    public void InitalizeVisual()
+    public void UpdateRegardingNeighbors()
     {
         numberOfNeighborsMine = 0;
         foreach (Cell cell in neighborsCellList)
@@ -88,10 +87,6 @@ public class Cell : MonoBehaviour
     }
 
     #endregion
-    public void GenerateNeighborsList(Grid grid)
-    {
-        neighborsCellList = grid.GetNeighbors(_cellPosition);
-    }
 
     public void DestroyCellType()
     {
@@ -104,10 +99,10 @@ public class Cell : MonoBehaviour
         ChangeType(CellType.Empty);
         yield return new WaitForSeconds(2f);
         mineSwordAnim.SetActive(false);
-        InitalizeVisual();
+        UpdateRegardingNeighbors();
         foreach (Cell cellInList in neighborsCellList)
         {
-            cellInList.InitalizeVisual();
+            cellInList.UpdateRegardingNeighbors();
         }
         foreach (Cell cellInList in neighborsCellList)
         {
@@ -118,7 +113,6 @@ public class Cell : MonoBehaviour
         }
         ChangeState(CellState.Reveal);
     }
-
 
     #region CELL STATE
     public void ChangeState(CellState newState)
@@ -177,38 +171,30 @@ public class Cell : MonoBehaviour
     {
         Debug.Log("switch to Reveal State");
         cellCover.SetActive(false);
-        if (currentType == CellType.Empty || currentType == CellType.Stair || currentType == CellType.Sword || currentType == CellType.Potion)
+        if (currentType == CellType.Mine)
+        {
+            GameManager.Instance.player.DecreaseHealth(1);
+            ChangeType(CellType.Empty, false);
+            foreach (Cell cell in neighborsCellList)
+            {
+                if (cell.currentType != CellType.Mine)
+                {
+                    cell.UpdateRegardingNeighbors();
+                }
+            }
+        }
+        if (currentType != CellType.Hint)
         {
             foreach (Cell cell in neighborsCellList)
             {
-                if (cell.currentType == CellType.Empty && cell.currentState == CellState.Cover)
-                {
-                    cell.ChangeState(CellState.Reveal);
-                }
-                if (cell.currentType == CellType.Hint && cell.currentState == CellState.Cover)
-                {
-                    cell.ChangeState(CellState.Reveal);
-                }
-                if (cell.currentType == CellType.Stair && cell.currentState == CellState.Cover)
-                {
-                    cell.ChangeState(CellState.Reveal);
-                }
-                if (cell.currentType == CellType.Sword && cell.currentState == CellState.Cover)
-                {
-                    cell.ChangeState(CellState.Reveal);
-                }
-                if (cell.currentType == CellType.Potion && cell.currentState == CellState.Cover)
+                if (cell.currentState == CellState.Cover && cell.currentType != CellType.Mine)
                 {
                     cell.ChangeState(CellState.Reveal);
                 }
             }
         }
 
-        if (currentType == CellType.Mine)
-        {
-            GameManager.Instance.player.DecreaseHealth(1);
-        }
-        Debug.Log("switch to Sword State");
+
         cellFlag.SetActive(false);
         cellCover.SetActive(false);
         cellSword.SetActive(false);
@@ -221,7 +207,7 @@ public class Cell : MonoBehaviour
     #endregion
 
     #region CELL TYPE
-    public void ChangeType(CellType newType)
+    public void ChangeType(CellType newType, bool updateVisual = true)
     {
 
         currentType = newType;
@@ -233,7 +219,7 @@ public class Cell : MonoBehaviour
                 break;
 
             case CellType.Empty:
-                EmptyType();
+                EmptyType(updateVisual);
                 break;
 
             case CellType.Mine:
@@ -264,13 +250,20 @@ public class Cell : MonoBehaviour
 
     }
 
-    private void EmptyType()
+    private void EmptyType(bool updateVisual = true)
     {
-        cellEmpty.SetActive(true);
-        cellMine.SetActive(false);
-        cellStair.SetActive(false);
-        cellItemPotion.SetActive(false);
-        cellItemSword.SetActive(false);
+        if (updateVisual == true)
+        {
+            cellEmpty.SetActive(true);
+            cellMine.SetActive(false);
+            cellStair.SetActive(false);
+            cellItemPotion.SetActive(false);
+            cellItemSword.SetActive(false);
+        }
+        else
+        {
+            return;
+        }
     }
     private void MineType()
     {
@@ -318,6 +311,11 @@ public class Cell : MonoBehaviour
     #endregion
 
     #region NEIGHBORS MANAGEMENT
+    public void GenerateNeighborsList(Grid grid)
+    {
+        neighborsCellList = grid.GetNeighbors(_cellPosition);
+    }
+
     public void ChangeNeighborStates()
     {
         int numberOfFlagNeighbors = 0;
@@ -356,6 +354,31 @@ public class Cell : MonoBehaviour
         }
         GameManager.Instance.grid.SetCellsVisuals();
         ChangeState(CellState.Reveal);
+    }
+
+    public int GetNeighborsType(CellType typeToGet)
+    {
+        int numberOfType = 0;
+        foreach (Cell neighborsCell in neighborsCellList)
+        {
+            if (neighborsCell.currentType == typeToGet)
+            {
+                numberOfType += 1;
+            }
+        }
+        return numberOfType;
+    }
+    public int GetNeighborsState(CellState stateToGet)
+    {
+        int numberOfState = 0;
+        foreach (Cell neighborsCell in neighborsCellList)
+        {
+            if (neighborsCell.currentState == stateToGet)
+            {
+                numberOfState += 1;
+            }
+        }
+        return numberOfState;
     }
     #endregion
 

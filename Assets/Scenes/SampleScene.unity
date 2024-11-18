@@ -372,10 +372,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentGameState: 0
-  endScreen: {fileID: 1289361010}
-  grid: {fileID: 712061424}
-  player: {fileID: 1365082114}
-  floorLevel: 0
+  currentFloorLevel: 0
   floorLevelText: {fileID: 789845775}
   floorSettingsList:
   - {fileID: 11400000, guid: ec82750b335c2b04ba160f72b9409164, type: 2}
@@ -389,6 +386,10 @@ MonoBehaviour:
   - {fileID: 11400000, guid: b975f834d651b8f45bd0752b5cc26aec, type: 2}
   - {fileID: 11400000, guid: 9442c315d405eaf47976a444576e8d94, type: 2}
   currentFloorSettings: {fileID: 0}
+  endScreenUI: {fileID: 1289361010}
+  grid: {fileID: 712061424}
+  player: {fileID: 1365082114}
+  mainCamera: {fileID: 519420028}
 --- !u!1 &398473297
 GameObject:
   m_ObjectHideFlags: 0

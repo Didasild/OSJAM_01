@@ -183,7 +183,7 @@ public class Grid : MonoBehaviour
         cellsWithExcluded.Remove(cellIgnore);
         foreach (Cell cell in cellsWithExcluded)
         {
-            cell.InitalizeVisual();
+            cell.UpdateRegardingNeighbors();
         }
     }
 

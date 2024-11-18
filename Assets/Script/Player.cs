@@ -40,6 +40,7 @@ public class Player : MonoBehaviour
         {
             return;
         }
+        #region CLIC GAUCHE
         // Clique sur le bouton gauche
         if (Input.GetMouseButtonUp(0))
         {
@@ -80,16 +81,18 @@ public class Player : MonoBehaviour
             {
                 IncreaseHealth(1);
                 cellOver.ChangeType(CellType.Empty);
-                cellOver.InitalizeVisual();
+                cellOver.UpdateRegardingNeighbors();
             }
             else if (cellOver.currentType == CellType.Sword)
             {
                 IncreaseSwordCounter();
                 cellOver.ChangeType(CellType.Empty);
-                cellOver.InitalizeVisual();
+                cellOver.UpdateRegardingNeighbors();
             }
         }
+        #endregion
 
+        #region CLIC DROIT
         // Clique sur le bouton droit
         if (Input.GetMouseButtonDown(1))
         {
@@ -113,14 +116,51 @@ public class Player : MonoBehaviour
             }
         }
 
+        #endregion
+
+        #region CLIC MILIEU
         // Clique du milieu
         if (Input.GetMouseButtonDown(2))
         {
             if (cellOver.currentType == CellType.Hint && cellOver.currentState == CellState.Reveal)
             {
-                cellOver.ChangeNeighborStates();
+                int neighborsFlagged = 0;
+                int neighborsMine = 0;
+                int mineExploded = 0;
+
+                //Récupère le nombre de drapeaux et de mines autour
+                neighborsFlagged = cellOver.GetNeighborsState(CellState.Flag);
+                neighborsMine = cellOver.GetNeighborsType(CellType.Mine);
+
+                //Reveal les case couverte autour
+                if (cellOver.currentType == CellType.Hint && neighborsFlagged == neighborsMine)
+                {
+                    foreach (Cell neighborsCell in cellOver.neighborsCellList)
+                    {
+                        if (neighborsCell.currentState == CellState.Cover && neighborsCell.currentType == CellType.Mine)
+                        {
+                            mineExploded += 1;
+                        }
+                        if (neighborsCell.currentState == CellState.Cover)
+                        {
+                            neighborsCell.ChangeState(CellState.Reveal);
+                        }
+                    }
+                    if (mineExploded >= 1)
+                    {
+                        foreach (Cell neighborsCell in cellOver.neighborsCellList)
+                        {
+                            if (neighborsCell.currentState == CellState.Flag && neighborsCell.currentType != CellType.Mine)
+                            {
+                                neighborsCell.ChangeState(CellState.Reveal);
+                            }
+                        }
+                    }
+                }
             }
+
         }
+        #endregion
     }
 
     #region HEALTH
