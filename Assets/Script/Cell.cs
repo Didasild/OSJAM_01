@@ -14,13 +14,20 @@ public enum CellState
 
 public enum CellType
 {
-    ToDefine,
     Empty,
     Mine,
     Hint,
-    Stair,
+    Gate,
+    NPC,
     Potion,
     Sword
+}
+
+public enum ItemType
+{
+    Potion,
+    Sword,
+    Coin
 }
 
 public class Cell : MonoBehaviour
@@ -214,10 +221,6 @@ public class Cell : MonoBehaviour
 
         switch (currentType)
         {
-            case CellType.ToDefine:
-                ToDefineType();
-                break;
-
             case CellType.Empty:
                 EmptyType(updateVisual);
                 break;
@@ -230,8 +233,8 @@ public class Cell : MonoBehaviour
                 HintType();
                 break;
 
-            case CellType.Stair:
-                StairType();
+            case CellType.Gate:
+                GateType();
                 break;
 
             case CellType.Potion:
@@ -243,10 +246,6 @@ public class Cell : MonoBehaviour
                 break;
 
         }
-
-    }
-    private void ToDefineType()
-    {
 
     }
 
@@ -282,7 +281,7 @@ public class Cell : MonoBehaviour
         cellItemSword.SetActive(false);
     }
 
-    private void StairType()
+    private void GateType()
     {
         cellEmpty.SetActive(false);
         cellMine.SetActive(false);

@@ -12,10 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e1fa203da9941e14e9ac5c76d2db6dfb, type: 3}
   m_Name: Floor_03
   m_EditorClassIdentifier: 
-  minGridSize: {x: 12, y: 20}
-  maxGridSize: {x: 12, y: 20}
-  floorPourcentageOfMine: 15
-  minPotion: 0
-  maxPotion: 0
+  proceduralGrid: 1
+  minGridSize: {x: 12, y: 12}
+  maxGridSize: {x: 15, y: 15}
+  floorPourcentageOfMine: 10
+  minPotion: 1
+  maxPotion: 1
   minSword: 0
-  maxSword: 0
+  maxSword: 1

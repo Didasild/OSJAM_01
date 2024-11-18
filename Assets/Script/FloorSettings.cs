@@ -3,6 +3,9 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "FloorSettings", menuName = "Balancing /FloorSettings")]
 public class FloorSettings : ScriptableObject
 {
+    [Header("GENERAL")]
+    public bool proceduralGrid = true;
+    [Header("GRID")]
     [SerializeField] private Vector2Int minGridSize = new Vector2Int(5,5);
     [SerializeField] private Vector2Int maxGridSize = new Vector2Int(10, 10);
     public int floorPourcentageOfMine = 5;

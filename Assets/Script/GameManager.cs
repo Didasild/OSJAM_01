@@ -78,10 +78,19 @@ public class GameManager : MonoBehaviour
     #region FLOOR GENERATION
     public void ChangeFloorLevel()
     {
+        //Update le numéro du floor
         currentFloorLevel += 1;
-        currentFloorSettings = floorSettingsList[currentFloorLevel % floorSettingsList.Length];
-        grid.GenerateGrid(currentFloorSettings.GetGridSize(),currentFloorSettings.floorPourcentageOfMine);
         floorLevelText.text = currentFloorLevel.ToString();
+
+        //Récupère le floor suivant dans la liste
+        currentFloorSettings = floorSettingsList[currentFloorLevel % floorSettingsList.Length];
+
+        //Check si c'est une grille procédurale ou généré
+        if (currentFloorSettings.proceduralGrid == true)
+        {
+            //Génère une grille aléatoire avec les Settings récupérés
+            grid.GenerateGrid(currentFloorSettings.GetGridSize(), currentFloorSettings.floorPourcentageOfMine);
+        }
     }
     #endregion
     public void RestartGame()

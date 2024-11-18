@@ -50,7 +50,7 @@ public class Player : MonoBehaviour
                 {
                     cellOver.ChangeType(CellType.Empty);
                     cellOver.RemoveNeighborsMine();
-                    GameManager.Instance.grid.SetItemsType(CellType.Stair, 1);
+                    GameManager.Instance.grid.SetItemsType(CellType.Gate, 1);
                     GameManager.Instance.grid.SetItemsType(CellType.Potion, GameManager.Instance.currentFloorSettings.GetNumberOfPotion());
                     GameManager.Instance.grid.SetItemsType(CellType.Sword, GameManager.Instance.currentFloorSettings.GetNumberOfSword());
                     IncreaseClickCount();
@@ -72,7 +72,7 @@ public class Player : MonoBehaviour
                     cellOver.ChangeState(CellState.Reveal);
                 }
             }
-            else if (cellOver.currentType == CellType.Stair)
+            else if (cellOver.currentType == CellType.Gate)
             {
                 GameManager.Instance.ChangeFloorLevel();
                 ResetClickCounter();
