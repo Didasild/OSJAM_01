@@ -77,7 +77,7 @@ public class Cell : MonoBehaviour
             }
         }
 
-        if (currentType == CellType.Mine)
+        if (currentType == CellType.Mine || currentType == CellType.Potion || currentType == CellType.Sword || currentType == CellType.Gate)
         {
             numberText.text = "";
         }
