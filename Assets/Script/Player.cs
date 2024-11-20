@@ -40,55 +40,108 @@ public class Player : MonoBehaviour
         {
             return;
         }
-        #region CLIC GAUCHE
+        #region CLIC GAUCHE UP
         // Clique sur le bouton gauche
         if (Input.GetMouseButtonUp(0))
         {
-            if (cellOver.currentState == CellState.Cover)
+            Cell cellClicked = cellOver;
+            if (cellClicked.currentState == CellState.Cover)
             {
-                if (clicCounter == 0)
+                //Génére les items et assure que le premier clic est vide
+                if (clicCounter == 0)//remplacer par la condition que la grid soit totalement couverte
                 {
-                    cellOver.ChangeType(CellType.Empty);
-                    cellOver.RemoveNeighborsMine();
+                    cellClicked.ChangeType(CellType.Empty);
+                    cellClicked.RemoveNeighborsMine();
                     GameManager.Instance.grid.SetItemsType(CellType.Gate, 1);
                     GameManager.Instance.grid.SetItemsType(CellType.Potion, GameManager.Instance.currentFloorSettings.GetNumberOfPotion());
                     GameManager.Instance.grid.SetItemsType(CellType.Sword, GameManager.Instance.currentFloorSettings.GetNumberOfSword());
-                    IncreaseClickCount();
+
                 }
+                //Explose la mine si sans est une
+                if (cellClicked.currentType == CellType.Mine)
+                {
+                    cellClicked.ChangeState(CellState.Reveal);
+                }
+                //Augmente le compteur de clic et révèle la case
                 else
                 {
-                    cellOver.ChangeState(CellState.Reveal);
-                    IncreaseClickCount();
+                    cellClicked.ChangeState(CellState.Reveal);
                 }
+                IncreaseClickCount();
             }
-            else if (cellOver.currentState == CellState.Sword)
+            else if (cellClicked.currentState == CellState.Sword)
             {
-                if (cellOver.currentType == CellType.Mine)
+                if (cellClicked.currentType == CellType.Mine)
                 {
-                    cellOver.DestroyCellType();
+                    cellClicked.DestroyCellType(cellClicked.mineSwordAnim);
                 }
                 else
                 {
-                    cellOver.ChangeState(CellState.Reveal);
+                    cellClicked.ChangeState(CellState.Reveal);
                 }
             }
-            else if (cellOver.currentType == CellType.Gate)
+            else if (cellClicked.currentType == CellType.Gate)
             {
                 GameManager.Instance.ChangeFloorLevel();
                 ResetClickCounter();
             }
-            else if (cellOver.currentType == CellType.Potion)
+            else if (cellClicked.currentType == CellType.Potion)
             {
                 IncreaseHealth(1);
-                cellOver.ChangeType(CellType.Empty);
-                cellOver.UpdateRegardingNeighbors();
+                cellClicked.ChangeType(CellType.Empty);
+                cellClicked.UpdateRegardingNeighbors();
             }
-            else if (cellOver.currentType == CellType.Sword)
+            else if (cellClicked.currentType == CellType.Sword)
             {
                 IncreaseSwordCounter();
-                cellOver.ChangeType(CellType.Empty);
-                cellOver.UpdateRegardingNeighbors();
+                cellClicked.ChangeType(CellType.Empty);
+                cellClicked.UpdateRegardingNeighbors();
             }
+
+            //Reveal les cases non flag
+            if (cellClicked.currentState == CellState.Reveal && cellClicked.currentType == CellType.Hint)
+            {
+                int neighborsFlagged = 0;
+                int neighborsMine = 0;
+                int neighborsCover = 0;
+                int mineExploded = 0;
+
+                //Récupère le nombre de drapeaux et de mines autour
+                neighborsFlagged = cellClicked.GetNeighborsState(CellState.Flag);
+                neighborsMine = cellClicked.GetNeighborsType(CellType.Mine);
+                neighborsCover = cellClicked.GetNeighborsState(CellState.Cover);
+
+                //Reveal les case couverte autour
+                if (cellClicked.currentType == CellType.Hint && neighborsFlagged == neighborsMine)
+                {
+                    foreach (Cell neighborsCell in cellClicked.neighborsCellList)
+                    {
+                        if (neighborsCell.currentState == CellState.Cover && neighborsCell.currentType == CellType.Mine)
+                        {
+                            mineExploded += 1;
+                        }
+                        if (neighborsCell.currentState == CellState.Cover)
+                        {
+                            neighborsCell.ChangeState(CellState.Reveal);
+                        }
+                    }
+                    if (mineExploded >= 1)
+                    {
+                        foreach (Cell neighborsCell in cellClicked.neighborsCellList)
+                        {
+                            if (neighborsCell.currentState == CellState.Flag && neighborsCell.currentType != CellType.Mine)
+                            {
+                                neighborsCell.ChangeState(CellState.Reveal);
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        //Clic gauche Down
+        if (Input.GetMouseButton(0))
+        {
+            
         }
         #endregion
 
@@ -114,6 +167,7 @@ public class Player : MonoBehaviour
                 cellOver.ChangeState(CellState.Cover);
                 IncreaseSwordCounter();
             }
+
         }
 
         #endregion
@@ -122,42 +176,7 @@ public class Player : MonoBehaviour
         // Clique du milieu
         if (Input.GetMouseButtonDown(2))
         {
-            if (cellOver.currentType == CellType.Hint && cellOver.currentState == CellState.Reveal)
-            {
-                int neighborsFlagged = 0;
-                int neighborsMine = 0;
-                int mineExploded = 0;
 
-                //Récupère le nombre de drapeaux et de mines autour
-                neighborsFlagged = cellOver.GetNeighborsState(CellState.Flag);
-                neighborsMine = cellOver.GetNeighborsType(CellType.Mine);
-
-                //Reveal les case couverte autour
-                if (cellOver.currentType == CellType.Hint && neighborsFlagged == neighborsMine)
-                {
-                    foreach (Cell neighborsCell in cellOver.neighborsCellList)
-                    {
-                        if (neighborsCell.currentState == CellState.Cover && neighborsCell.currentType == CellType.Mine)
-                        {
-                            mineExploded += 1;
-                        }
-                        if (neighborsCell.currentState == CellState.Cover)
-                        {
-                            neighborsCell.ChangeState(CellState.Reveal);
-                        }
-                    }
-                    if (mineExploded >= 1)
-                    {
-                        foreach (Cell neighborsCell in cellOver.neighborsCellList)
-                        {
-                            if (neighborsCell.currentState == CellState.Flag && neighborsCell.currentType != CellType.Mine)
-                            {
-                                neighborsCell.ChangeState(CellState.Reveal);
-                            }
-                        }
-                    }
-                }
-            }
 
         }
         #endregion

@@ -15,7 +15,7 @@ MonoBehaviour:
   proceduralGrid: 1
   minGridSize: {x: 12, y: 12}
   maxGridSize: {x: 20, y: 20}
-  floorPourcentageOfMine: 30
+  floorPourcentageOfMine: 25
   minPotion: 1
   maxPotion: 2
   minSword: 1

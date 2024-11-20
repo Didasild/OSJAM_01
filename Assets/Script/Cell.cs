@@ -55,6 +55,7 @@ public class Cell : MonoBehaviour
     public GameObject cellItemSword;
 
     [Header("CELL VISUALS MINE")]
+    public GameObject mineExplosionAnim;
     public GameObject mineSwordAnim;
 
 
@@ -95,17 +96,17 @@ public class Cell : MonoBehaviour
 
     #endregion
 
-    public void DestroyCellType()
+    public void DestroyCellType(GameObject mineAnimType)
     {
         ChangeState(CellState.Cover);
-        StartCoroutine(CO_MineAnimation());
+        StartCoroutine(CO_MineDestruction(mineAnimType));
     }
-    private IEnumerator CO_MineAnimation()
+    private IEnumerator CO_MineDestruction(GameObject mineAnimType)
     {
-        mineSwordAnim.SetActive(true);
+        mineAnimType.SetActive(true);
         ChangeType(CellType.Empty);
         yield return new WaitForSeconds(2f);
-        mineSwordAnim.SetActive(false);
+        mineAnimType.SetActive(false);
         UpdateRegardingNeighbors();
         foreach (Cell cellInList in neighborsCellList)
         {
@@ -182,13 +183,7 @@ public class Cell : MonoBehaviour
         {
             GameManager.Instance.player.DecreaseHealth(1);
             ChangeType(CellType.Empty, false);
-            foreach (Cell cell in neighborsCellList)
-            {
-                if (cell.currentType != CellType.Mine)
-                {
-                    cell.UpdateRegardingNeighbors();
-                }
-            }
+            StartCoroutine(CO_MineExplosion());
         }
         if (currentType != CellType.Hint)
         {
@@ -200,13 +195,23 @@ public class Cell : MonoBehaviour
                 }
             }
         }
-
-
         cellFlag.SetActive(false);
         cellCover.SetActive(false);
         cellSword.SetActive(false);
     }
-
+    private IEnumerator CO_MineExplosion()
+    {
+        mineExplosionAnim.SetActive(true);
+        yield return new WaitForSeconds(2f);
+        mineExplosionAnim.SetActive(false);
+        foreach (Cell cell in neighborsCellList)
+        {
+            if (cell.currentType != CellType.Mine)
+            {
+                cell.UpdateRegardingNeighbors();
+            }
+        }
+    }
     private void ClickedState()
     {
         Debug.Log("switch to Clicked State");
