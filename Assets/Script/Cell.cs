@@ -1,13 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public enum CellState
 {
     Cover,
     Flag,
-    Sword,
+    PlantedSword,
     Cliked,
     Reveal
 }
@@ -141,7 +142,7 @@ public class Cell : MonoBehaviour
                 FlagState();
                 break;
 
-            case CellState.Sword:
+            case CellState.PlantedSword:
                 SwordState();
                 break;
 
@@ -181,8 +182,9 @@ public class Cell : MonoBehaviour
 
     private void RevealState()
     {
+        int nbOfNeighborsMine = GetNeighborsType(CellType.Mine);
         //Debug.Log("switch to Reveal State");
-        if (currentType != CellType.Hint)
+        if (nbOfNeighborsMine == 0)
         {
             foreach (Cell cell in neighborsCellList)
             {

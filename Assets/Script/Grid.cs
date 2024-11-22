@@ -4,18 +4,20 @@ using UnityEngine;
 
 public class Grid : MonoBehaviour
 {
-    [Header("Grid General Settings")]
+    [Header("GRID GENERAL SETTINGS")]
     public Cell cellPrefab; // Le prefab de la cellule
-    public Vector2Int gridSize;
     public float cellSize = 16f;   // Taille des cellules (espacement)
-    public List<Cell> cellList = new List<Cell>(); //Liste des cellules de la grid
-    public List<Cell> testList = new List<Cell>();
 
-    [Header("Grid Procedural Settings")]
+
+    [Header("GRID INFORMATIONS")]
+    [NaughtyAttributes.ReadOnly]
+    public List<Cell> cellList = new List<Cell>(); //Liste des cellules de la grid
+    [NaughtyAttributes.ReadOnly]
+    public int numberOfMineLeft;
+
+    [Header("GRID PROCEDURAL SETTINGS")]
     //public int numberOfMine;
     public List<Cell> cellMineList = new List<Cell>(); //Liste de mines de la grid
-    
-
     [Button(enabledMode: EButtonEnableMode.Playmode)]
 
     public void ClearGrid()
@@ -120,19 +122,19 @@ public class Grid : MonoBehaviour
 
     public void SetItemsType(CellType cellType, int numberOfItem)
     {
-        List<Cell> emptyCellsList = GetTypeCoverCells(CellType.Empty);
+        List<Cell> emptyCellsList = GetCoverCellsByType(CellType.Empty);
         if (cellType != CellType.Gate)
         {
-            emptyCellsList.AddRange(GetTypeCoverCells(CellType.Hint));
+            emptyCellsList.AddRange(GetCoverCellsByType(CellType.Hint));
         }
 
         // Si aucune cellule dans la liste des "cover cells", utiliser la liste générale
         if (emptyCellsList.Count == 0)
         {
-            emptyCellsList = GetTypeCells(CellType.Empty);
+            emptyCellsList = GetCellsByType(CellType.Empty);
             if (cellType != CellType.Gate)
             {
-                emptyCellsList.AddRange(GetTypeCells(CellType.Hint));
+                emptyCellsList.AddRange(GetCellsByType(CellType.Hint));
             }
         }
 
@@ -175,7 +177,7 @@ public class Grid : MonoBehaviour
     #endregion
 
     #region GET GRID INFORMATIONS
-    public List<Cell> GetTypeCells(CellType typeOfCellWanted)
+    public List<Cell> GetCellsByType(CellType typeOfCellWanted)
     {
         List<Cell> emptyCells = new List<Cell>();
         foreach (Cell cell in cellList)
@@ -187,7 +189,19 @@ public class Grid : MonoBehaviour
         }
         return emptyCells;
     }
-    public List<Cell> GetTypeCoverCells(CellType typeOfCellWanted)
+    public List<Cell> GetCellsByState(CellState stateOfCellWanted)
+    {
+        List<Cell> emptyCells = new List<Cell>();
+        foreach (Cell cell in cellList)
+        {
+            if (cell.currentState == stateOfCellWanted)
+            {
+                emptyCells.Add(cell);
+            }
+        }
+        return emptyCells;
+    }
+    public List<Cell> GetCoverCellsByType(CellType typeOfCellWanted)
     {
         List<Cell> emptyCoverCells = new List<Cell>();
         foreach (Cell cell in cellList)
@@ -198,6 +212,14 @@ public class Grid : MonoBehaviour
             }
         }
         return emptyCoverCells;
+    }
+
+    public int GetTheoricalMineLeft()
+    {
+        int nbRealOfMine = GetCellsByType(CellType.Mine).Count;
+        int nbOfFlagged = GetCellsByState(CellState.Flag).Count;
+        numberOfMineLeft = nbRealOfMine - nbOfFlagged;
+        return numberOfMineLeft;
     }
     public List<Cell> GetNeighbors(Vector2Int cellPosition)
     {
