@@ -96,10 +96,16 @@ public class Cell : MonoBehaviour
 
     #endregion
 
+    #region CELL MODIFICATIONS METHODS
     public void DestroyCellType(GameObject mineAnimType)
     {
         ChangeState(CellState.Cover);
         StartCoroutine(CO_MineDestruction(mineAnimType));
+    }
+    public void MineExplosion()
+    {
+        GameManager.Instance.player.DecreaseHealth(1);
+        StartCoroutine(CO_MineDestruction(mineExplosionAnim));
     }
     private IEnumerator CO_MineDestruction(GameObject mineAnimType)
     {
@@ -111,9 +117,6 @@ public class Cell : MonoBehaviour
         foreach (Cell cellInList in neighborsCellList)
         {
             cellInList.UpdateRegardingNeighbors();
-        }
-        foreach (Cell cellInList in neighborsCellList)
-        {
             if (cellInList.currentType == CellType.Empty)
             {
                 cellInList.ChangeState(CellState.Reveal);
@@ -121,6 +124,7 @@ public class Cell : MonoBehaviour
         }
         ChangeState(CellState.Reveal);
     }
+    #endregion
 
     #region CELL STATE
     public void ChangeState(CellState newState)
@@ -153,7 +157,7 @@ public class Cell : MonoBehaviour
 
     private void CoverState()
     {
-        Debug.Log("switch to Cover State");
+        //Debug.Log("switch to Cover State");
         cellCover.SetActive(true);
         cellFlag.SetActive(false);
         cellSword.SetActive(false);
@@ -161,7 +165,7 @@ public class Cell : MonoBehaviour
 
     private void FlagState()
     {
-        Debug.Log("switch to Flag State");
+        //Debug.Log("switch to Flag State");
         cellFlag.SetActive(true);
         cellCover.SetActive(false);
         cellSword.SetActive(false);
@@ -169,7 +173,7 @@ public class Cell : MonoBehaviour
 
     private void SwordState()
     {
-        Debug.Log("switch to Sword State");
+        //Debug.Log("switch to Sword State");
         cellFlag.SetActive(false);
         cellCover.SetActive(false);
         cellSword.SetActive(true);
@@ -177,14 +181,7 @@ public class Cell : MonoBehaviour
 
     private void RevealState()
     {
-        Debug.Log("switch to Reveal State");
-        cellCover.SetActive(false);
-        if (currentType == CellType.Mine)
-        {
-            GameManager.Instance.player.DecreaseHealth(1);
-            ChangeType(CellType.Empty, false);
-            StartCoroutine(CO_MineExplosion());
-        }
+        //Debug.Log("switch to Reveal State");
         if (currentType != CellType.Hint)
         {
             foreach (Cell cell in neighborsCellList)
@@ -199,22 +196,11 @@ public class Cell : MonoBehaviour
         cellCover.SetActive(false);
         cellSword.SetActive(false);
     }
-    private IEnumerator CO_MineExplosion()
-    {
-        mineExplosionAnim.SetActive(true);
-        yield return new WaitForSeconds(2f);
-        mineExplosionAnim.SetActive(false);
-        foreach (Cell cell in neighborsCellList)
-        {
-            if (cell.currentType != CellType.Mine)
-            {
-                cell.UpdateRegardingNeighbors();
-            }
-        }
-    }
+
+
     private void ClickedState()
     {
-        Debug.Log("switch to Clicked State");
+        //Debug.Log("switch to Clicked State");
     }
     #endregion
 

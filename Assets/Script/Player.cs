@@ -40,6 +40,7 @@ public class Player : MonoBehaviour
         {
             return;
         }
+
         #region CLIC GAUCHE UP
         // Clique sur le bouton gauche
         if (Input.GetMouseButtonUp(0))
@@ -60,7 +61,7 @@ public class Player : MonoBehaviour
                 //Explose la mine si sans est une
                 if (cellClicked.currentType == CellType.Mine)
                 {
-                    cellClicked.ChangeState(CellState.Reveal);
+                    cellClicked.MineExplosion();
                 }
                 //Augmente le compteur de clic et révèle la case
                 else
