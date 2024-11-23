@@ -4,6 +4,7 @@ using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 
+#region ENUMS
 public enum CellState
 {
     Cover,
@@ -30,6 +31,7 @@ public enum ItemType
     Sword,
     Coin
 }
+#endregion
 
 public class Cell : MonoBehaviour
 {
@@ -95,36 +97,6 @@ public class Cell : MonoBehaviour
         }
     }
 
-    #endregion
-
-    #region CELL MODIFICATIONS METHODS
-    public void DestroyCellType(GameObject mineAnimType)
-    {
-        ChangeState(CellState.Cover);
-        StartCoroutine(CO_MineDestruction(mineAnimType));
-    }
-    public void MineExplosion()
-    {
-        GameManager.Instance.player.DecreaseHealth(1);
-        StartCoroutine(CO_MineDestruction(mineExplosionAnim));
-    }
-    private IEnumerator CO_MineDestruction(GameObject mineAnimType)
-    {
-        mineAnimType.SetActive(true);
-        ChangeType(CellType.Empty);
-        yield return new WaitForSeconds(2f);
-        mineAnimType.SetActive(false);
-        UpdateRegardingNeighbors();
-        foreach (Cell cellInList in neighborsCellList)
-        {
-            cellInList.UpdateRegardingNeighbors();
-            if (cellInList.currentType == CellType.Empty)
-            {
-                cellInList.ChangeState(CellState.Reveal);
-            }
-        }
-        ChangeState(CellState.Reveal);
-    }
     #endregion
 
     #region CELL STATE
@@ -300,6 +272,36 @@ public class Cell : MonoBehaviour
         cellItemSword.SetActive(true);
     }
 
+    #endregion
+
+    #region CELL MODIFICATIONS METHODS
+    public void MineSwordDestruction(GameObject mineAnimType)
+    {
+        ChangeState(CellState.Cover);
+        StartCoroutine(CO_MineDestruction(mineAnimType));
+    }
+    public void MineExplosion()
+    {
+        GameManager.Instance.player.DecreaseHealth(1);
+        StartCoroutine(CO_MineDestruction(mineExplosionAnim));
+    }
+    private IEnumerator CO_MineDestruction(GameObject mineAnimType)
+    {
+        mineAnimType.SetActive(true);
+        ChangeType(CellType.Empty);
+        yield return new WaitForSeconds(2f);
+        mineAnimType.SetActive(false);
+        UpdateRegardingNeighbors();
+        foreach (Cell cellInList in neighborsCellList)
+        {
+            cellInList.UpdateRegardingNeighbors();
+            if (cellInList.currentType == CellType.Empty)
+            {
+                cellInList.ChangeState(CellState.Reveal);
+            }
+        }
+        ChangeState(CellState.Reveal);
+    }
     #endregion
 
     #region NEIGHBORS MANAGEMENT
