@@ -47,7 +47,7 @@ public class Player : MonoBehaviour
             return;
         }
 
-        #region LEFT UP CLICK
+        #region LEFT CLICK
         // Clique sur le bouton gauche
         if (Input.GetMouseButtonUp(0))
         {
@@ -81,9 +81,21 @@ public class Player : MonoBehaviour
         }
 
         //Clic gauche Down
-        if (Input.GetMouseButton(0))
+        if (Input.GetMouseButtonDown(0))
         {
-            
+            Cell cellClicked = cellOver;
+            int neighborsFlagged = cellClicked.GetNeighborsState(CellState.Flag);
+            int neighborsMine = cellClicked.GetNeighborsType(CellType.Mine);
+            if (neighborsFlagged != neighborsMine && cellClicked.currentType == CellType.Hint)
+            {
+                foreach (Cell neighborsCell in cellClicked.neighborsCellList)
+                {
+                    if (neighborsCell.currentState == CellState.Cover)
+                    {
+                        neighborsCell.ChangeState(CellState.Clicked);
+                    }
+                }
+            }
         }
         #endregion
 
@@ -128,15 +140,11 @@ public class Player : MonoBehaviour
     #region CLICK METHODS
     public void ClikOnRevealHintCell(Cell cellClicked)
     {
-        int neighborsFlagged = 0;
-        int neighborsMine = 0;
-        int neighborsCover = 0;
         int mineExploded = 0;
 
         //Récupère le nombre de drapeaux et de mines autour
-        neighborsFlagged = cellClicked.GetNeighborsState(CellState.Flag);
-        neighborsMine = cellClicked.GetNeighborsType(CellType.Mine);
-        neighborsCover = cellClicked.GetNeighborsState(CellState.Cover);
+        int neighborsFlagged = cellClicked.GetNeighborsState(CellState.Flag);
+        int neighborsMine = cellClicked.GetNeighborsType(CellType.Mine);
 
         //Reveal les case couverte autour
         if (cellClicked.currentType == CellType.Hint && neighborsFlagged == neighborsMine)
@@ -161,6 +169,16 @@ public class Player : MonoBehaviour
                     {
                         neighborsCell.ChangeState(CellState.Reveal);
                     }
+                }
+            }
+        }
+        else
+        {
+            foreach (Cell neighborsCell in cellClicked.neighborsCellList)
+            {
+                if (neighborsCell.currentState == CellState.Clicked)
+                {
+                    neighborsCell.ChangeState(CellState.Cover);
                 }
             }
         }

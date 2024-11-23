@@ -8,9 +8,9 @@ using UnityEngine;
 public enum CellState
 {
     Cover,
+    Clicked,
     Flag,
     PlantedSword,
-    Cliked,
     Reveal
 }
 
@@ -110,6 +110,14 @@ public class Cell : MonoBehaviour
                 CoverState();
                 break;
 
+            case CellState.Clicked:
+                ClickedState();
+                break;
+
+            case CellState.Reveal:
+                RevealState();
+                break;
+
             case CellState.Flag:
                 FlagState();
                 break;
@@ -117,20 +125,12 @@ public class Cell : MonoBehaviour
             case CellState.PlantedSword:
                 SwordState();
                 break;
-
-            case CellState.Cliked:
-                ClickedState();
-                break;
-
-            case CellState.Reveal:
-                RevealState();
-                break;
         }
     }
 
     private void CoverState()
     {
-        //Debug.Log("switch to Cover State");
+        //Debug.Log(this.name + " switch to Cover State");
         cellCover.SetActive(true);
         cellFlag.SetActive(false);
         cellSword.SetActive(false);
@@ -174,7 +174,7 @@ public class Cell : MonoBehaviour
 
     private void ClickedState()
     {
-        //Debug.Log("switch to Clicked State");
+        Debug.Log(this.name + " switch to Clicked State");
     }
     #endregion
 
