@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: Floor_Debug
   m_EditorClassIdentifier: 
   proceduralGrid: 1
-  minGridSize: {x: 12, y: 12}
-  maxGridSize: {x: 10, y: 10}
+  minGridSize: {x: 15, y: 15}
+  maxGridSize: {x: 15, y: 15}
   floorPourcentageOfMine: 8
   minPotion: 2
   maxPotion: 2

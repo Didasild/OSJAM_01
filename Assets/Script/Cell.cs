@@ -140,7 +140,7 @@ public class Cell : MonoBehaviour
 
     private void ClickedState()
     {
-        Debug.Log(this.name + " switch to Clicked State");
+        //Debug.Log(this.name + " switch to Clicked State");
         cellClicked.SetActive(true);
         cellSword.SetActive(false);
         cellCover.SetActive(false);

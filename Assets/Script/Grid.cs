@@ -36,8 +36,14 @@ public class Grid : MonoBehaviour
         float gridWidth = gridSize.x * cellSize; // Largeur totale de la grille
         float gridHeight = gridSize.y * cellSize;   // Hauteur totale de la grille
 
-        Vector2 gridOffset = new Vector2(-gridWidth / 2 + cellSize / 2, gridHeight / 2 - cellSize / 2);
+        // Ajustement pour la parité des dimensions
+        float xAdjustment = (gridSize.x % 2 == 0) ? 0 : cellSize / 2; // Décalage si impair
+        float yAdjustment = (gridSize.y % 2 == 0) ? 0 : -cellSize / 2; // Décalage si impair
 
+        Vector2 gridOffset = new Vector2(
+            -gridWidth / 2 + cellSize / 2 + xAdjustment, // Ajustement horizontal
+            gridHeight / 2 - cellSize / 2 + yAdjustment  // Ajustement vertical
+        );
         // Parcourir les lignes et colonnes pour générer la grille
         for (int row = 0; row < gridSize.y; row++)
         {

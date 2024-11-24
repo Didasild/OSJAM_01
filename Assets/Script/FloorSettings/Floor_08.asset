@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   proceduralGrid: 1
   minGridSize: {x: 5, y: 5}
-  maxGridSize: {x: 18, y: 25}
+  maxGridSize: {x: 18, y: 20}
   floorPourcentageOfMine: 25
   minPotion: 0
   maxPotion: 1
