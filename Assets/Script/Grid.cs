@@ -20,19 +20,6 @@ public class Grid : MonoBehaviour
     public List<Cell> cellMineList = new List<Cell>(); //Liste de mines de la grid
     [Button(enabledMode: EButtonEnableMode.Playmode)]
 
-    public void ClearGrid()
-    {
-        foreach (Cell cell in cellList)
-        {
-            if (cell != null)
-            {
-                Destroy(cell.gameObject);
-            }
-        }
-        cellList = new List<Cell>();
-        cellMineList = new List<Cell> ();
-    }
-
     #region GRID GENERATION
     public void GenerateGrid(Vector2Int gridSize, int pourcentageOfMine)
     {
@@ -173,6 +160,19 @@ public class Grid : MonoBehaviour
         {
             cell.UpdateRegardingNeighbors();
         }
+    }
+
+    public void ClearGrid()
+    {
+        foreach (Cell cell in cellList)
+        {
+            if (cell != null)
+            {
+                Destroy(cell.gameObject);
+            }
+        }
+        cellList = new List<Cell>();
+        cellMineList = new List<Cell>();
     }
     #endregion
 

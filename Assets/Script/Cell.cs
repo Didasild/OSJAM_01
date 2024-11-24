@@ -47,6 +47,7 @@ public class Cell : MonoBehaviour
 
     [Header("CELL VISUALS STATE")]
     public GameObject cellCover;
+    public GameObject cellClicked;
     public GameObject cellFlag;
     public GameObject cellSword;
 
@@ -131,25 +132,18 @@ public class Cell : MonoBehaviour
     private void CoverState()
     {
         //Debug.Log(this.name + " switch to Cover State");
+        cellClicked.SetActive(false);
+        cellFlag.SetActive(false);
+        cellSword.SetActive(false);
         cellCover.SetActive(true);
-        cellFlag.SetActive(false);
-        cellSword.SetActive(false);
     }
 
-    private void FlagState()
+    private void ClickedState()
     {
-        //Debug.Log("switch to Flag State");
-        cellFlag.SetActive(true);
-        cellCover.SetActive(false);
+        Debug.Log(this.name + " switch to Clicked State");
+        cellClicked.SetActive(true);
         cellSword.SetActive(false);
-    }
-
-    private void SwordState()
-    {
-        //Debug.Log("switch to Sword State");
-        cellFlag.SetActive(false);
         cellCover.SetActive(false);
-        cellSword.SetActive(true);
     }
 
     private void RevealState()
@@ -166,15 +160,28 @@ public class Cell : MonoBehaviour
                 }
             }
         }
+        cellClicked.SetActive(false);
         cellFlag.SetActive(false);
-        cellCover.SetActive(false);
         cellSword.SetActive(false);
+        cellCover.SetActive(false);
     }
 
-
-    private void ClickedState()
+    private void FlagState()
     {
-        Debug.Log(this.name + " switch to Clicked State");
+        //Debug.Log("switch to Flag State");
+        cellClicked.SetActive(false);
+        cellFlag.SetActive(true);
+        cellSword.SetActive(false);
+        cellCover.SetActive(false);
+    }
+
+    private void SwordState()
+    {
+        //Debug.Log("switch to Sword State");
+        cellClicked.SetActive(false);
+        cellFlag.SetActive(false);
+        cellSword.SetActive(true);
+        cellCover.SetActive(false);
     }
     #endregion
 

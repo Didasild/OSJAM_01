@@ -24,6 +24,10 @@ public class Player : MonoBehaviour
     [NaughtyAttributes.ReadOnly]
     public int clicCounter;
 
+    //Private Variables
+    private Cell cellClicked;
+    private Cell firstCellClicked;
+
     // Update is called once per frame
     void Update()
     {
@@ -51,7 +55,12 @@ public class Player : MonoBehaviour
         // Clique sur le bouton gauche
         if (Input.GetMouseButtonUp(0))
         {
-            Cell cellClicked = cellOver;
+            cellClicked = cellOver;
+            if (firstCellClicked != cellClicked)
+            {
+                ResetClickedState();
+                return;
+            }
             if (cellClicked.currentState == CellState.Reveal && cellClicked.currentType == CellType.Hint)
             {
                 ClikOnRevealHintCell(cellClicked);
@@ -78,24 +87,25 @@ public class Player : MonoBehaviour
             }
             //Update le compteur de mine restantes
             UpdateMineCounter();
+            ResetClickedState();
         }
 
         //Clic gauche Down
         if (Input.GetMouseButtonDown(0))
         {
-            Cell cellClicked = cellOver;
-            int neighborsFlagged = cellClicked.GetNeighborsState(CellState.Flag);
-            int neighborsMine = cellClicked.GetNeighborsType(CellType.Mine);
-            if (neighborsFlagged != neighborsMine && cellClicked.currentType == CellType.Hint)
+            firstCellClicked = cellOver;
+            SwitchCellsToClickedState();
+        }
+
+        //Clic gauche enfoncé (s'update en permanence)
+        if (Input.GetMouseButton(0))
+        {
+            if (cellClicked != cellOver)
             {
-                foreach (Cell neighborsCell in cellClicked.neighborsCellList)
-                {
-                    if (neighborsCell.currentState == CellState.Cover)
-                    {
-                        neighborsCell.ChangeState(CellState.Clicked);
-                    }
-                }
+                ResetClickedState();
+                SwitchCellsToClickedState();
             }
+
         }
         #endregion
 
@@ -124,7 +134,6 @@ public class Player : MonoBehaviour
             //Update le compteur de mine restantes
             UpdateMineCounter();
         }
-
         #endregion
 
         #region MIDDLE CLICK
@@ -151,12 +160,12 @@ public class Player : MonoBehaviour
         {
             foreach (Cell neighborsCell in cellClicked.neighborsCellList)
             {
-                if (neighborsCell.currentState == CellState.Cover && neighborsCell.currentType == CellType.Mine)
+                if (neighborsCell.currentState == CellState.Clicked && neighborsCell.currentType == CellType.Mine)
                 {
                     mineExploded += 1;
                     neighborsCell.MineExplosion();
                 }
-                if (neighborsCell.currentState == CellState.Cover)
+                if (neighborsCell.currentState == CellState.Clicked)
                 {
                     neighborsCell.ChangeState(CellState.Reveal);
                 }
@@ -172,15 +181,10 @@ public class Player : MonoBehaviour
                 }
             }
         }
+        //Passe en state Clicked les cellules couvertes
         else
         {
-            foreach (Cell neighborsCell in cellClicked.neighborsCellList)
-            {
-                if (neighborsCell.currentState == CellState.Clicked)
-                {
-                    neighborsCell.ChangeState(CellState.Cover);
-                }
-            }
+            ResetClickedState();
         }
     }
 
@@ -240,6 +244,36 @@ public class Player : MonoBehaviour
         }
         cellClicked.ChangeType(CellType.Empty);
         cellClicked.UpdateRegardingNeighbors();
+    }
+
+    public void SwitchCellsToClickedState()
+    {
+        cellClicked = cellOver;
+
+        int neighborsFlagged = cellClicked.GetNeighborsState(CellState.Flag);
+        int neighborsMine = cellClicked.GetNeighborsType(CellType.Mine);
+        //neighborsFlagged != neighborsMine && /// Condition
+        if (cellClicked.currentType == CellType.Hint && cellClicked.currentState == CellState.Reveal)
+        {
+             foreach (Cell neighborsCell in cellClicked.neighborsCellList)
+             {
+                 if (neighborsCell.currentState == CellState.Cover)
+                 {
+                     neighborsCell.ChangeState(CellState.Clicked);
+                 }
+             }
+        }
+    }
+
+    public void ResetClickedState()
+    {
+        foreach (Cell neighborsCell in cellClicked.neighborsCellList)
+        {
+            if (neighborsCell.currentState == CellState.Clicked)
+            {
+                neighborsCell.ChangeState(CellState.Cover);
+            }
+        }
     }
     #endregion
 
