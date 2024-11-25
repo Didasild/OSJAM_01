@@ -488,16 +488,15 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 9d3a96bcb2da1c24b9dcfaabb5b5e8b1, type: 2}
   - {fileID: 11400000, guid: 315c162e0b77a5b44b1d53af0a21b397, type: 2}
   - {fileID: 11400000, guid: e17c05d68e4060d4cb681ac7bf5afe3e, type: 2}
-  - {fileID: 11400000, guid: 2ab474d28f5ee7044b286abda118eee4, type: 2}
-  - {fileID: 11400000, guid: cbe1d0e58a4b4904b8a7142eb2f8a86e, type: 2}
-  - {fileID: 11400000, guid: 25b73b98b7c7ebc44bf0b59043508a78, type: 2}
-  - {fileID: 11400000, guid: b975f834d651b8f45bd0752b5cc26aec, type: 2}
-  - {fileID: 11400000, guid: 9442c315d405eaf47976a444576e8d94, type: 2}
+  floorLoop: 0
   currentFloorSettings: {fileID: 0}
+  pourcentageOfMineIncrement: 3
   endScreenUI: {fileID: 1289361010}
   grid: {fileID: 712061424}
   player: {fileID: 1365082114}
   mainCamera: {fileID: 519420028}
+  pourcentageUpdate: 0
+  pourcentageOfMine: 0
 --- !u!1 &398473297
 GameObject:
   m_ObjectHideFlags: 0
@@ -2240,7 +2239,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   initialHealthPoints: 3
   healthPointText: {fileID: 1131021739}
-  initialSwordCounter: 0
+  initialSwordCounter: 5
   swordCounterText: {fileID: 1241197192}
   theoricalMineLeft: 0
   realMineLeft: 0
