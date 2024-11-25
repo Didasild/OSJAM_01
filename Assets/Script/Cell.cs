@@ -285,18 +285,18 @@ public class Cell : MonoBehaviour
     public void MineSwordDestruction(GameObject mineAnimType)
     {
         ChangeState(CellState.Cover);
-        StartCoroutine(CO_MineDestruction(mineAnimType));
+        StartCoroutine(CO_MineDestruction(mineAnimType, 1.9f));
     }
     public void MineExplosion()
     {
         GameManager.Instance.player.DecreaseHealth(1);
-        StartCoroutine(CO_MineDestruction(mineExplosionAnim));
+        StartCoroutine(CO_MineDestruction(mineExplosionAnim, 1.4f));
     }
-    private IEnumerator CO_MineDestruction(GameObject mineAnimType)
+    private IEnumerator CO_MineDestruction(GameObject mineAnimType, float animDuration)
     {
         mineAnimType.SetActive(true);
         ChangeType(CellType.Empty);
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(animDuration);
         mineAnimType.SetActive(false);
         UpdateRegardingNeighbors();
         foreach (Cell cellInList in neighborsCellList)

@@ -2239,7 +2239,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   initialHealthPoints: 3
   healthPointText: {fileID: 1131021739}
-  initialSwordCounter: 5
+  initialSwordCounter: 0
   swordCounterText: {fileID: 1241197192}
   theoricalMineLeft: 0
   realMineLeft: 0

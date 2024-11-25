@@ -12,7 +12,7 @@ public class Player : MonoBehaviour
     [Header("SWORD")]
     public int initialSwordCounter = 0;
     public TMP_Text swordCounterText;
-    private int swordCounter = 5;
+    private int swordCounter = 0;
     [Header("MINE LEFT")]
     [NaughtyAttributes.ReadOnly]
     public int theoricalMineLeft;
