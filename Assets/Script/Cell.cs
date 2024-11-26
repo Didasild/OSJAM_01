@@ -149,17 +149,17 @@ public class Cell : MonoBehaviour
     private void RevealState()
     {
         int nbOfNeighborsMine = GetNeighborsType(CellType.Mine);
-        //Debug.Log("switch to Reveal State");
         if (nbOfNeighborsMine == 0)
         {
             foreach (Cell cell in neighborsCellList)
             {
-                if (cell.currentState == CellState.Cover && cell.currentType != CellType.Mine)
+                if (cell.currentState == CellState.Cover)
                 {
                     cell.ChangeState(CellState.Reveal);
                 }
             }
         }
+        GameManager.Instance.player.IncreaseMana();
         cellClicked.SetActive(false);
         cellFlag.SetActive(false);
         cellSword.SetActive(false);

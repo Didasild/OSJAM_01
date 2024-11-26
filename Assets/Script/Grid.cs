@@ -1,5 +1,6 @@
 using NaughtyAttributes;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class Grid : MonoBehaviour
@@ -12,8 +13,15 @@ public class Grid : MonoBehaviour
     [Header("GRID INFORMATIONS")]
     [NaughtyAttributes.ReadOnly]
     public List<Cell> cellList = new List<Cell>(); //Liste des cellules de la grid
+
+    [Header("MINE LEFT")]
     [NaughtyAttributes.ReadOnly]
     public int numberOfMineLeft;
+    [NaughtyAttributes.ReadOnly]
+    public int theoricalMineLeft;
+    [NaughtyAttributes.ReadOnly]
+    //public int realMineLeft;
+    public TMP_Text theoricalMineLeftText;
 
     [Header("GRID PROCEDURAL SETTINGS")]
     //public int numberOfMine;
@@ -255,6 +263,14 @@ public class Grid : MonoBehaviour
         }
 
         return neighbors;
+    }
+    #endregion
+
+    #region MINE COUNTER
+    public void UpdateMineCounter()
+    {
+        theoricalMineLeft = GetTheoricalMineLeft();
+        theoricalMineLeftText.text = theoricalMineLeft.ToString();
     }
     #endregion
 }

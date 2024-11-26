@@ -4,27 +4,30 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    private Cell cellOver;
     [Header("HEALTH")]
     public int initialHealthPoints = 3;
     public TMP_Text healthPointText;
     private int healthPoints;
+
+    [Header("MANA")]
+    public int initialManaPoints = 10;
+    public int maxManaPoints = 100;
+    public TMP_Text manaPointText;
+    private int manaPoints;
+
     [Header("SWORD")]
     public int initialSwordCounter = 0;
     public TMP_Text swordCounterText;
     private int swordCounter = 0;
-    [Header("MINE LEFT")]
-    [NaughtyAttributes.ReadOnly]
-    public int theoricalMineLeft;
-    [NaughtyAttributes.ReadOnly]
-    public int realMineLeft;
-    public TMP_Text theoricalMineLeftText;
+
+
 
     [Header("CLICK COUNTER")]
     [NaughtyAttributes.ReadOnly]
     public int clicCounter;
 
     //Private Variables
+    private Cell cellOver;
     private Cell cellClicked;
     private Cell firstCellClicked;
 
@@ -86,7 +89,7 @@ public class Player : MonoBehaviour
                 ClickOnItemCell(cellClicked, CellType.Sword);
             }
             //Update le compteur de mine restantes
-            UpdateMineCounter();
+            GameManager.Instance.grid.UpdateMineCounter();
             ResetClickedState();
         }
 
@@ -132,7 +135,7 @@ public class Player : MonoBehaviour
                 IncreaseSwordCounter();
             }
             //Update le compteur de mine restantes
-            UpdateMineCounter();
+            GameManager.Instance.grid.UpdateMineCounter();
         }
         #endregion
 
@@ -301,10 +304,56 @@ public class Player : MonoBehaviour
     }
     #endregion
 
-    #region SWORD
-    public void ResetSwordCounter()
+    #region MANA
+    public void IncreaseMana(int manaIncrease = 1)
     {
-        swordCounter = initialSwordCounter;
+        if (manaPoints < maxManaPoints)
+        {
+            manaPoints += manaIncrease;
+            manaPointText.text = manaPoints.ToString();
+        }
+        else
+        {
+            return;
+        }
+
+    }
+
+    public void DecreaseMana(int manaDecrease)
+    {
+        if (manaPoints == 0)
+        {
+            return;
+        }
+        manaPoints -= manaDecrease;
+        manaPointText.text += manaPoints.ToString();
+    }
+
+    public bool AsEnoughMana(int manaNecessary)
+    {
+        bool enoughMana = false;
+        if (manaNecessary >= manaPoints)
+        {
+            enoughMana = true;
+        }
+        else
+        {
+            enoughMana = false;
+        }
+        return enoughMana;
+    }
+
+    public void ResetMana()
+    {
+        manaPoints = initialManaPoints;
+        manaPointText.text= manaPoints.ToString();
+    }
+    #endregion
+
+    #region SWORD
+    public void IncreaseSwordCounter(int swordIncrease = 1)
+    {
+        swordCounter += swordIncrease;
         swordCounterText.text = swordCounter.ToString();
     }
 
@@ -317,13 +366,11 @@ public class Player : MonoBehaviour
         swordCounter -= swordDecrease;
         swordCounterText.text = swordCounter.ToString();
     }
-
-    public void IncreaseSwordCounter(int swordIncrease = 1)
+    public void ResetSwordCounter()
     {
-        swordCounter += swordIncrease;
+        swordCounter = initialSwordCounter;
         swordCounterText.text = swordCounter.ToString();
     }
-
     #endregion
 
     #region CLICK COUNTER
@@ -335,14 +382,6 @@ public class Player : MonoBehaviour
     public void IncreaseClickCount()
     {
         clicCounter += 1;
-    }
-    #endregion
-
-    #region MINE COUNTER
-    public void UpdateMineCounter()
-    {
-        theoricalMineLeft = GameManager.Instance.grid.GetTheoricalMineLeft();
-        theoricalMineLeftText.text = theoricalMineLeft.ToString();
     }
     #endregion
 

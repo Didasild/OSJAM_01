@@ -36,10 +36,10 @@ public class GameManager : MonoBehaviour
     public Player player;
     public GameObject mainCamera;
 
-    [Header("OBSERVATIONS")]
+    //[Header("OBSERVATIONS")]
     //Private Variables
-    public int pourcentageUpdate = 0;
-    public int pourcentageOfMine = 0;
+    private int pourcentageUpdate = 0;
+    private int pourcentageOfMine = 0;
 
 
     private void Awake()
