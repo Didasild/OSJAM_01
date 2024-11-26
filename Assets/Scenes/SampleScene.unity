@@ -1208,6 +1208,8 @@ MonoBehaviour:
   cellSize: 0.16
   cellList: []
   numberOfMineLeft: 0
+  theoricalMineLeft: 0
+  theoricalMineLeftText: {fileID: 2143294031}
   cellMineList: []
 --- !u!1 &719562628
 GameObject:
@@ -2113,7 +2115,7 @@ GameObject:
   - component: {fileID: 1131021740}
   - component: {fileID: 1131021739}
   m_Layer: 5
-  m_Name: HP
+  m_Name: Health Points
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2628,9 +2630,6 @@ MonoBehaviour:
   manaPointText: {fileID: 280205485}
   initialSwordCounter: 0
   swordCounterText: {fileID: 1241197192}
-  theoricalMineLeft: 0
-  realMineLeft: 0
-  theoricalMineLeftText: {fileID: 2143294031}
   clicCounter: 0
 --- !u!4 &1365082115
 Transform:

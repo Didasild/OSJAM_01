@@ -19,7 +19,6 @@ public class Grid : MonoBehaviour
     public int numberOfMineLeft;
     [NaughtyAttributes.ReadOnly]
     public int theoricalMineLeft;
-    [NaughtyAttributes.ReadOnly]
     //public int realMineLeft;
     public TMP_Text theoricalMineLeftText;
 
