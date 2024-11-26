@@ -122,7 +122,8 @@ public class Player : MonoBehaviour
             }
             else if (cellOver.currentState == CellState.Flag && swordCounter >= 1)
             {
-                cellOver.ChangeState(CellState.PlantedSword);
+                //cellOver.ChangeState(CellState.PlantedSword);
+                cellOver.ItemStatetransition(CellState.PlantedSword, 0.5f);
                 DecreaseSwordCounter();
             }
             else if (cellOver.currentState == CellState.Flag && swordCounter == 0)
@@ -221,7 +222,7 @@ public class Player : MonoBehaviour
     {
         if (cellClicked.currentType == CellType.Mine)
         {
-            cellClicked.MineSwordDestruction(cellClicked.mineSwordAnim);
+            cellClicked.MineSwordDestruction(cellClicked.animSwordOnMine);
         }
         else
         {

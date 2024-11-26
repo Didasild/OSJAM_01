@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
-using Unity.VisualScripting;
 using UnityEngine;
 
 #region ENUMS
@@ -11,7 +10,8 @@ public enum CellState
     Clicked,
     Flag,
     PlantedSword,
-    Reveal
+    Reveal,
+    None
 }
 
 public enum CellType
@@ -58,10 +58,10 @@ public class Cell : MonoBehaviour
     public GameObject cellItemPotion;
     public GameObject cellItemSword;
 
-    [Header("CELL VISUALS MINE")]
-    public GameObject mineExplosionAnim;
-    public GameObject mineSwordAnim;
-
+    [Header("CELL ANIMS STATE")]
+    public GameObject animMineExplosion;
+    public GameObject animSwordOnMine;
+    public GameObject animPlantedSword;
 
     #region INIT
     public void Initialize(Grid grid, Vector2Int cellPosition)
@@ -290,7 +290,7 @@ public class Cell : MonoBehaviour
     public void MineExplosion()
     {
         GameManager.Instance.player.DecreaseHealth(1);
-        StartCoroutine(CO_MineDestruction(mineExplosionAnim, 1.4f));
+        StartCoroutine(CO_MineDestruction(animMineExplosion, 1.4f));
     }
     private IEnumerator CO_MineDestruction(GameObject mineAnimType, float animDuration)
     {
@@ -308,6 +308,26 @@ public class Cell : MonoBehaviour
             }
         }
         ChangeState(CellState.Reveal);
+    }
+
+    public void ItemStatetransition(CellState cellNewState, float animDuration)
+    {
+        ChangeState(CellState.Cover);
+        StartCoroutine(CO_StateTransitionAnim(cellNewState, animDuration));
+    }
+    private IEnumerator CO_StateTransitionAnim(CellState cellNewState, float animDuration)
+    {
+        if (cellNewState == CellState.PlantedSword)
+        {
+            animPlantedSword.SetActive(true);
+        }
+        yield return new WaitForSeconds(animDuration);
+        if (cellNewState == CellState.PlantedSword)
+        {
+            animPlantedSword.SetActive(false);
+            ChangeState(CellState.PlantedSword);
+        }
+
     }
     #endregion
 

@@ -739,7 +739,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: e17c05d68e4060d4cb681ac7bf5afe3e, type: 2}
   floorLoop: 0
   currentFloorSettings: {fileID: 0}
-  pourcentageOfMineIncrement: 3
+  pourcentageOfMineIncrement: 5
   endScreenUI: {fileID: 1289361010}
   grid: {fileID: 712061424}
   player: {fileID: 1365082114}
