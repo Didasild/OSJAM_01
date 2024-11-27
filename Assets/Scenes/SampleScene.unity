@@ -209,7 +209,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &179062848
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2657,7 +2657,7 @@ GameObject:
   - component: {fileID: 1393215839}
   - component: {fileID: 1393215838}
   m_Layer: 0
-  m_Name: BG_Test
+  m_Name: BG_Grid
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
