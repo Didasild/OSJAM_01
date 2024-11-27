@@ -64,10 +64,12 @@ public class Player : MonoBehaviour
                 ResetClickedState();
                 return;
             }
+
             if (cellClicked.currentState == CellState.Reveal && cellClicked.currentType == CellType.Hint)
             {
                 ClikOnRevealHintCell(cellClicked);
             }
+
             if (cellClicked.currentState == CellState.Cover)
             {
                 ClickOnCoverCell(cellClicked);
@@ -80,13 +82,13 @@ public class Player : MonoBehaviour
             {
                 ClickOnGateCell(cellClicked);
             }
-            else if (cellClicked.currentType == CellType.Potion)
+            else if (cellClicked.currentItemType == ItemTypeEnum.Potion)
             {
-                ClickOnItemCell(cellClicked, CellType.Potion);
+                ClickOnItemCell(cellClicked, ItemTypeEnum.Potion);
             }
-            else if (cellClicked.currentType == CellType.Sword)
+            else if (cellClicked.currentItemType == ItemTypeEnum.Sword)
             {
-                ClickOnItemCell(cellClicked, CellType.Sword);
+                ClickOnItemCell(cellClicked, ItemTypeEnum.Sword);
             }
             //Update le compteur de mine restantes
             GameManager.Instance.grid.UpdateMineCounter();
@@ -200,8 +202,8 @@ public class Player : MonoBehaviour
             cellClicked.ChangeType(CellType.Empty);
             cellClicked.RemoveNeighborsMine();
             GameManager.Instance.grid.SetItemsType(CellType.Gate, 1);
-            GameManager.Instance.grid.SetItemsType(CellType.Potion, GameManager.Instance.currentFloorSettings.GetNumberOfPotion());
-            GameManager.Instance.grid.SetItemsType(CellType.Sword, GameManager.Instance.currentFloorSettings.GetNumberOfSword());
+            GameManager.Instance.grid.SetItemsType(CellType.Item, GameManager.Instance.currentFloorSettings.GetNumberOfPotion(), ItemTypeEnum.Potion);
+            GameManager.Instance.grid.SetItemsType(CellType.Item, GameManager.Instance.currentFloorSettings.GetNumberOfSword(), ItemTypeEnum.Sword);
 
         }
         //Explose la mine si sans est une
@@ -236,13 +238,13 @@ public class Player : MonoBehaviour
         ResetClickCounter();
     }
 
-    public void ClickOnItemCell(Cell cellClicked, CellType cellType)
+    public void ClickOnItemCell(Cell cellClicked, ItemTypeEnum itemType)
     {
-        if (cellType == CellType.Potion)
+        if (itemType == ItemTypeEnum.Potion)
         {
             IncreaseHealth(1);
         }
-        else if (cellType == CellType.Sword) 
+        else if (itemType == ItemTypeEnum.Sword) 
         {
             IncreaseSwordCounter();
         }

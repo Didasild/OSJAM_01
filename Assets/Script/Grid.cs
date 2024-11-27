@@ -120,8 +120,9 @@ public class Grid : MonoBehaviour
         }
     }
 
-    public void SetItemsType(CellType cellType, int numberOfItem)
+    public void SetItemsType(CellType cellType, int numberOfItem, ItemTypeEnum itemType = ItemTypeEnum.None)
     {
+        // Crée la liste des cellule vide + hint
         List<Cell> emptyCellsList = GetCoverCellsByType(CellType.Empty);
         if (cellType != CellType.Gate)
         {
@@ -160,7 +161,8 @@ public class Grid : MonoBehaviour
         // Change le type de chaque cellule sélectionnée
         foreach (Cell cell in selectedCells)
         {
-            cell.ChangeType(cellType);
+            cell.ChangeItemType(itemType);
+            cell.ChangeType(cellType, itemType);
             cell.UpdateRegardingNeighbors();
         }
     }

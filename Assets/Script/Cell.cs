@@ -21,15 +21,15 @@ public enum CellType
     Hint,
     Gate,
     NPC,
-    Potion,
-    Sword
+    Item,
 }
 
-public enum ItemType
+public enum ItemTypeEnum
 {
+    None,
     Potion,
     Sword,
-    Coin
+    Coin,
 }
 #endregion
 
@@ -38,6 +38,7 @@ public class Cell : MonoBehaviour
     [Header("CELL INFORMATIONS")]
     public CellState currentState;
     public CellType currentType;
+    public ItemTypeEnum currentItemType;
     [NaughtyAttributes.ReadOnly]
     public Vector2Int _cellPosition;
     public List<Cell> neighborsCellList = new List<Cell>(); //Liste des voisins de la cellule
@@ -82,7 +83,7 @@ public class Cell : MonoBehaviour
             }
         }
 
-        if (currentType == CellType.Mine || currentType == CellType.Potion || currentType == CellType.Sword || currentType == CellType.Gate)
+        if (currentType == CellType.Mine || currentType == CellType.Item || currentType == CellType.Gate)
         {
             numberText.text = "";
         }
@@ -186,9 +187,8 @@ public class Cell : MonoBehaviour
     #endregion
 
     #region CELL TYPE
-    public void ChangeType(CellType newType, bool updateVisual = true)
+    public void ChangeType(CellType newType, ItemTypeEnum itemType = ItemTypeEnum.None, bool updateVisual = true)
     {
-
         currentType = newType;
 
         switch (currentType)
@@ -209,16 +209,10 @@ public class Cell : MonoBehaviour
                 GateType();
                 break;
 
-            case CellType.Potion:
-                PotionType();
+            case CellType.Item:
+                ItemType();
                 break;
-
-            case CellType.Sword:
-                SwordType();
-                break;
-
         }
-
     }
 
     private void EmptyType(bool updateVisual = true)
@@ -262,27 +256,61 @@ public class Cell : MonoBehaviour
         cellItemSword.SetActive(false);
     }
 
-    private void PotionType()
+    private void ItemType()
     {
         cellEmpty.SetActive(false);
         cellMine.SetActive(false);
         cellStair.SetActive(false);
-        cellItemPotion.SetActive(true);
-        cellItemSword.SetActive(false);
     }
-    private void SwordType()
+    //private void SwordType()
+    //{
+    //    cellEmpty.SetActive(false);
+    //    cellMine.SetActive(false);
+    //    cellStair.SetActive(false);
+    //    cellItemPotion.SetActive(false);
+    //    cellItemSword.SetActive(true);
+    //}
+    #endregion
+
+    #region ITEM TYPE
+    public void ChangeItemType(ItemTypeEnum newType)
     {
-        cellEmpty.SetActive(false);
-        cellMine.SetActive(false);
-        cellStair.SetActive(false);
-        cellItemPotion.SetActive(false);
+        currentItemType = newType;
+
+        switch (currentItemType)
+        {
+            case ItemTypeEnum.None: 
+                
+                break;
+
+            case ItemTypeEnum.Potion:
+                PotionType();
+                break;
+
+            case ItemTypeEnum.Sword:
+                SwordType();
+                break;
+
+            case ItemTypeEnum.Coin:
+                
+                break;
+        }
+    }
+
+    public void PotionType()
+    {
+        cellItemPotion.SetActive(true);
+    }
+
+    public void SwordType()
+    {
         cellItemSword.SetActive(true);
     }
 
     #endregion
 
     #region CELL MODIFICATIONS METHODS
-    public void MineSwordDestruction(GameObject mineAnimType)
+        public void MineSwordDestruction(GameObject mineAnimType)
     {
         ChangeState(CellState.Cover);
         StartCoroutine(CO_MineDestruction(mineAnimType, 1.9f));
