@@ -123,7 +123,7 @@ public class Player : MonoBehaviour
             else if (cellOver.currentState == CellState.Flag && swordCounter >= 1)
             {
                 //cellOver.ChangeState(CellState.PlantedSword);
-                cellOver.ItemStatetransition(CellState.PlantedSword, 0.5f);
+                cellOver.ItemStatetransition(CellState.PlantedSword, 0.35f);
                 DecreaseSwordCounter();
             }
             else if (cellOver.currentState == CellState.Flag && swordCounter == 0)
