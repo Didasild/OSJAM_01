@@ -694,6 +694,7 @@ GameObject:
   m_Component:
   - component: {fileID: 348095976}
   - component: {fileID: 348095977}
+  - component: {fileID: 348095978}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -744,6 +745,21 @@ MonoBehaviour:
   grid: {fileID: 712061424}
   player: {fileID: 1365082114}
   mainCamera: {fileID: 519420028}
+--- !u!114 &348095978
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 348095975}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 89657720d811aae489ce138c2e695240, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  stairSprite: {fileID: 21300000, guid: 4da8033da897100478d00c9957cde8ed, type: 3}
+  potionSprite: {fileID: 21300000, guid: 77c5984af1a39a94c9d1477a2181da17, type: 3}
+  swordSprite: {fileID: 21300000, guid: 54ceded6e7260694680ffbdefdb0cf0e, type: 3}
 --- !u!1 &398473297
 GameObject:
   m_ObjectHideFlags: 0
