@@ -20,8 +20,6 @@ public class Player : MonoBehaviour
     public TMP_Text swordCounterText;
     private int swordCounter = 0;
 
-
-
     [Header("CLICK COUNTER")]
     [NaughtyAttributes.ReadOnly]
     public int clicCounter;
@@ -248,7 +246,9 @@ public class Player : MonoBehaviour
         {
             IncreaseSwordCounter();
         }
+        // Fait disparaitre l'item collecté
         cellClicked.ChangeType(CellType.Empty);
+        cellClicked.ChangeItemType(ItemTypeEnum.None);
         cellClicked.UpdateRegardingNeighbors();
     }
 

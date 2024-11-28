@@ -13,12 +13,15 @@ public class GameManager : MonoBehaviour
     //Singleton
     private static GameManager _instance;
     public static GameManager Instance => _instance;
+    [SerializeField] private CellVisualManager _CellVisualManager;
 
     //Public Variables
     [Header("INFORMATIONS STATE")]
+    [NaughtyAttributes.ReadOnly]
     public GameState currentGameState;
 
     [Header("FLOOR ELEMENTS")]
+    [NaughtyAttributes.ReadOnly]
     public int currentFloorLevel;
     public TMP_Text floorLevelText;
     public FloorSettings[] floorSettingsList;
@@ -40,6 +43,8 @@ public class GameManager : MonoBehaviour
     //Private Variables
     private int pourcentageUpdate = 0;
     private int pourcentageOfMine = 0;
+
+    public static CellVisualManager CellVisualManager => _instance._CellVisualManager;
 
 
     private void Awake()

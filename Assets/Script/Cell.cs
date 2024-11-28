@@ -55,9 +55,8 @@ public class Cell : MonoBehaviour
     [Header("CELL VISUALS TYPE")]
     public GameObject cellEmpty;
     public GameObject cellMine;
+    public SpriteRenderer itemVisual;
     public GameObject cellStair;
-    public GameObject cellItemPotion;
-    public GameObject cellItemSword;
 
     [Header("CELL ANIMS STATE")]
     public GameObject animMineExplosion;
@@ -220,10 +219,8 @@ public class Cell : MonoBehaviour
         if (updateVisual == true)
         {
             cellEmpty.SetActive(true);
-            cellMine.SetActive(false);
+            //cellMine.SetActive(false);
             cellStair.SetActive(false);
-            cellItemPotion.SetActive(false);
-            cellItemSword.SetActive(false);
         }
         else
         {
@@ -233,43 +230,25 @@ public class Cell : MonoBehaviour
     private void MineType()
     {
         cellEmpty.SetActive(false);
-        cellMine.SetActive(true);
         cellStair.SetActive(false);
-        cellItemPotion.SetActive(false);
-        cellItemSword.SetActive(false);
     }
     private void HintType()
     {
         cellEmpty.SetActive(true);
-        cellMine.SetActive(false);
         cellStair.SetActive(false);
-        cellItemPotion.SetActive(false);
-        cellItemSword.SetActive(false);
     }
 
     private void GateType()
     {
         cellEmpty.SetActive(false);
-        cellMine.SetActive(false);
         cellStair.SetActive(true);
-        cellItemPotion.SetActive(false);
-        cellItemSword.SetActive(false);
     }
 
     private void ItemType()
     {
-        cellEmpty.SetActive(false);
-        cellMine.SetActive(false);
+        cellEmpty.SetActive(true);
         cellStair.SetActive(false);
     }
-    //private void SwordType()
-    //{
-    //    cellEmpty.SetActive(false);
-    //    cellMine.SetActive(false);
-    //    cellStair.SetActive(false);
-    //    cellItemPotion.SetActive(false);
-    //    cellItemSword.SetActive(true);
-    //}
     #endregion
 
     #region ITEM TYPE
@@ -279,8 +258,8 @@ public class Cell : MonoBehaviour
 
         switch (currentItemType)
         {
-            case ItemTypeEnum.None: 
-                
+            case ItemTypeEnum.None:
+                NoneItemType();
                 break;
 
             case ItemTypeEnum.Potion:
@@ -296,15 +275,19 @@ public class Cell : MonoBehaviour
                 break;
         }
     }
+    public void NoneItemType()
+    {
+        itemVisual.sprite = GameManager.CellVisualManager.UpdateItemVisuel(currentItemType);
+    }
 
     public void PotionType()
     {
-        cellItemPotion.SetActive(true);
+        itemVisual.sprite = GameManager.CellVisualManager.UpdateItemVisuel(currentItemType);
     }
 
     public void SwordType()
     {
-        cellItemSword.SetActive(true);
+        itemVisual.sprite = GameManager.CellVisualManager.UpdateItemVisuel(currentItemType);
     }
 
     #endregion
