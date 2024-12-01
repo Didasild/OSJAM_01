@@ -62,7 +62,7 @@ public class Cell : MonoBehaviour
     public GameObject animPlantedSword;
 
     #region INIT
-    public void Initialize(Grid grid, Vector2Int cellPosition)
+    public void Initialize(GridManager grid, Vector2Int cellPosition)
     {
         _cellPosition = cellPosition;
         ChangeState(currentState);
@@ -372,9 +372,9 @@ public class Cell : MonoBehaviour
     #endregion
 
     #region NEIGHBORS MANAGEMENT
-    public void GenerateNeighborsList(Grid grid)
+    public void GenerateNeighborsList(GridManager gridManager)
     {
-        neighborsCellList = grid.GetNeighbors(_cellPosition);
+        neighborsCellList = gridManager.GetNeighbors(_cellPosition);
     }
 
     public void ChangeNeighborStates()
@@ -413,7 +413,7 @@ public class Cell : MonoBehaviour
                 neighbor.ChangeType(CellType.Empty);
             }
         }
-        GameManager.Instance.grid.SetCellsVisuals();
+        GameManager.Instance.gridManager.SetCellsVisuals();
         ChangeState(CellState.Reveal);
     }
 

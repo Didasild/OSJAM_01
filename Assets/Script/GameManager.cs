@@ -35,7 +35,7 @@ public class GameManager : MonoBehaviour
 
     [Header("REFERENCES")]
     public GameObject endScreenUI;
-    public Grid grid;
+    public GridManager gridManager;
     public Player player;
     public GameObject mainCamera;
 
@@ -87,7 +87,7 @@ public class GameManager : MonoBehaviour
     public void InGameState()
     {
         currentFloorSettings = floorSettingsList[currentFloorLevel % floorSettingsList.Length];
-        grid.GenerateGrid(currentFloorSettings.GetGridSize(),currentFloorSettings.floorPourcentageOfMine);
+        gridManager.GenerateGrid(currentFloorSettings.GetGridSize(),currentFloorSettings.floorPourcentageOfMine);
         player.ResetHealtPoint();
         player.ResetClickCounter();
     }
@@ -132,7 +132,7 @@ public class GameManager : MonoBehaviour
         if (currentFloorSettings.proceduralGrid == true)
         {
             //Génère une grille aléatoire avec les Settings récupérés
-            grid.GenerateGrid(currentFloorSettings.GetGridSize(), pourcentageOfMine);
+            gridManager.GenerateGrid(currentFloorSettings.GetGridSize(), pourcentageOfMine);
         }
 
     }

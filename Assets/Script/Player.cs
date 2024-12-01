@@ -89,7 +89,7 @@ public class Player : MonoBehaviour
                 ClickOnItemCell(cellClicked, ItemTypeEnum.Sword);
             }
             //Update le compteur de mine restantes
-            GameManager.Instance.grid.UpdateMineCounter();
+            GameManager.Instance.gridManager.UpdateMineCounter();
             ResetClickedState();
         }
 
@@ -136,7 +136,7 @@ public class Player : MonoBehaviour
                 IncreaseSwordCounter();
             }
             //Update le compteur de mine restantes
-            GameManager.Instance.grid.UpdateMineCounter();
+            GameManager.Instance.gridManager.UpdateMineCounter();
         }
         #endregion
 
@@ -199,9 +199,9 @@ public class Player : MonoBehaviour
         {
             cellClicked.ChangeType(CellType.Empty);
             cellClicked.RemoveNeighborsMine();
-            GameManager.Instance.grid.SetItemsType(CellType.Gate, 1);
-            GameManager.Instance.grid.SetItemsType(CellType.Item, GameManager.Instance.currentFloorSettings.GetNumberOfPotion(), ItemTypeEnum.Potion);
-            GameManager.Instance.grid.SetItemsType(CellType.Item, GameManager.Instance.currentFloorSettings.GetNumberOfSword(), ItemTypeEnum.Sword);
+            GameManager.Instance.gridManager.SetItemsType(CellType.Gate, 1);
+            GameManager.Instance.gridManager.SetItemsType(CellType.Item, GameManager.Instance.currentFloorSettings.GetNumberOfPotion(), ItemTypeEnum.Potion);
+            GameManager.Instance.gridManager.SetItemsType(CellType.Item, GameManager.Instance.currentFloorSettings.GetNumberOfSword(), ItemTypeEnum.Sword);
 
         }
         //Explose la mine si sans est une
