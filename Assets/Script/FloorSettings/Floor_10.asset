@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Floor_10
   m_EditorClassIdentifier: 
   proceduralGrid: 1
+  savedGridString: 
   minGridSize: {x: 15, y: 15}
   maxGridSize: {x: 20, y: 20}
   floorPourcentageOfMine: 28

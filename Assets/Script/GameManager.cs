@@ -87,7 +87,14 @@ public class GameManager : MonoBehaviour
     public void InGameState()
     {
         currentFloorSettings = floorSettingsList[currentFloorLevel % floorSettingsList.Length];
-        gridManager.GenerateGrid(currentFloorSettings.GetGridSize(),currentFloorSettings.floorPourcentageOfMine);
+        if (currentFloorSettings.proceduralGrid == true)
+        {
+            gridManager.GenerateGrid(currentFloorSettings.GetGridSize(), currentFloorSettings.floorPourcentageOfMine);
+        }
+        else
+        {
+            gridManager.LoadGridFromString(currentFloorSettings.savedGridString, currentFloorSettings.GetGridSize()) ;
+        }
         player.ResetHealtPoint();
         player.ResetClickCounter();
     }

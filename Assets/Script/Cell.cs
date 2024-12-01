@@ -20,8 +20,8 @@ public enum CellType
     Mine,
     Hint,
     Gate,
-    NPC,
     Item,
+    NPC
 }
 
 public enum ItemTypeEnum

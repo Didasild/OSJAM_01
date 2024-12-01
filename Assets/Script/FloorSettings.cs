@@ -5,6 +5,11 @@ public class FloorSettings : ScriptableObject
 {
     [Header("GENERAL")]
     public bool proceduralGrid = true;
+
+    [Header("________LOADED GRID SETTINGS")]
+    public string savedGridString;
+
+    [Header("________PROCEDURAL GRID SETTINGS")]
     [Header("GRID")]
     [SerializeField] private Vector2Int minGridSize = new Vector2Int(5,5);
     [SerializeField] private Vector2Int maxGridSize = new Vector2Int(10, 10);

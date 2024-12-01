@@ -1,7 +1,9 @@
 using NaughtyAttributes;
+using System;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using static UnityEngine.Rendering.DebugUI.Table;
 
 public class GridManager : MonoBehaviour
 {
@@ -13,6 +15,8 @@ public class GridManager : MonoBehaviour
     [Header("GRID INFORMATIONS")]
     [NaughtyAttributes.ReadOnly]
     public List<Cell> cellList = new List<Cell>(); //Liste des cellules de la grid
+
+    public string savedGridState;
 
     [Header("MINE LEFT")]
     [NaughtyAttributes.ReadOnly]
@@ -27,7 +31,7 @@ public class GridManager : MonoBehaviour
     public List<Cell> cellMineList = new List<Cell>(); //Liste de mines de la grid
     [Button(enabledMode: EButtonEnableMode.Playmode)]
 
-    #region GRID GENERATION
+    #region PROCEDURAL GRID GENERATION
     public void GenerateGrid(Vector2Int gridSize, int pourcentageOfMine)
     {
         if (cellPrefab == null)
@@ -35,6 +39,9 @@ public class GridManager : MonoBehaviour
             Debug.LogError("Prefab de cellule non assigné !");
             return;
         }
+
+        //Sauvegarde l'état de la grille
+        savedGridState = SaveGridString();
 
         // Efface les anciennes cellules si la grille est regénérée
         ClearGrid();
@@ -58,13 +65,9 @@ public class GridManager : MonoBehaviour
             {
                 // Calculer la position de chaque cellule (ajustée par l'offset)
                 Vector2 cellPosition = new Vector2(col * cellSize, -row * cellSize) + gridOffset;
-
-                // Instancier la cellule
                 Cell newCell = Instantiate(cellPrefab, cellPosition, Quaternion.identity);
-                cellList.Add(newCell);
-
-                // Optionnel : Attacher la cellule à un parent dans la hiérarchie
                 newCell.transform.SetParent(transform);
+                cellList.Add(newCell);
 
                 // Renommer la cellule pour faciliter le débogage
                 newCell.name = $"Cell_{row}_{col}";
@@ -76,6 +79,7 @@ public class GridManager : MonoBehaviour
         {
             cell.GenerateNeighborsList(this);
         }
+
         //Transforme tout les enfants en Empty
         foreach (Cell cell in cellList)
         {
@@ -85,7 +89,6 @@ public class GridManager : MonoBehaviour
 
         SetMineType(pourcentageOfMine);
     }
-    // Méthode pour effacer l'ancienne grille
     public void SetMineType(int pourcentageOfMine)
     {
         if (cellList.Count == 0)
@@ -105,7 +108,7 @@ public class GridManager : MonoBehaviour
             Cell randomCell = cellList[i];
             do
             {
-                int randomIndex = Random.Range(0, cellList.Count);
+                int randomIndex = UnityEngine.Random.Range(0, cellList.Count);
                 randomCell = cellList[randomIndex];
             } while (alreadyChanged.Contains(randomCell));
 
@@ -148,7 +151,7 @@ public class GridManager : MonoBehaviour
         for (int i = 0; i < numberOfItem; i++)
         {
             // Génère un index aléatoire parmi les cellules restantes
-            int randomIndex = Random.Range(0, emptyCellsList.Count);
+            int randomIndex = UnityEngine.Random.Range(0, emptyCellsList.Count);
 
             // Sélectionne une cellule et la retire de la liste temporaire
             Cell selectedCell = emptyCellsList[randomIndex];
@@ -176,10 +179,143 @@ public class GridManager : MonoBehaviour
             cell.UpdateRegardingNeighbors();
         }
     }
+    #endregion
 
-    public void SaveGrid()
+    #region LOADED GRID GENERATION
+    public void LoadGridFromString(string gridString, Vector2Int gridSize)
     {
+        //Retourne une erreur si il n'y a pas de string
+        if (string.IsNullOrEmpty(gridString))
+        {
+            Debug.LogError("Grid state est vide !");
+            return;
+        }
+        // Efface l'ancienne grille
+        ClearGrid();
 
+        // Calculer l'offset pour centrer la grille
+        float gridWidth = gridSize.x * cellSize; // Largeur totale de la grille
+        float gridHeight = gridSize.y * cellSize; // Hauteur totale de la grille
+
+        // Ajustement pour la parité des dimensions
+        float xAdjustment = (gridSize.x % 2 == 0) ? 0 : cellSize / 2; // Décalage si impair
+        float yAdjustment = (gridSize.y % 2 == 0) ? 0 : -cellSize / 2; // Décalage si impair
+
+        Vector2 gridOffset = new Vector2(
+            -gridWidth / 2 + cellSize / 2 + xAdjustment, // Ajustement horizontal
+            gridHeight / 2 - cellSize / 2 + yAdjustment  // Ajustement vertical
+        );
+
+        // Divise le string en segments pour chaque cellule
+        string[] cellDataArray = gridString.Split('|');
+
+        foreach (string cellData in cellDataArray)
+        {
+            // Découper chaque cellule par "_"
+            string[] cellInfo = cellData.Split('_');
+            if (cellInfo.Length != 5) continue; // Si les données ne sont pas complètes, ignorer
+
+            // Extraire les coordonnées et les autres informations
+            int y = int.Parse(cellInfo[0]);
+            int x = int.Parse(cellInfo[1]);
+            string stateAbbreviation = cellInfo[2];
+            string typeAbbreviation = cellInfo[3];
+            string itemTypeAbbreviation = cellInfo[4];
+
+            // Créer une nouvelle cellule à ces coordonnées
+            // Calculer la position de chaque cellule (ajustée par l'offset)
+            Vector2 cellPosition = new Vector2(x * cellSize, -y * cellSize) + gridOffset;
+
+            // Instancier une nouvelle cellule
+            Cell newCell = Instantiate(cellPrefab, cellPosition, Quaternion.identity);
+            newCell.transform.SetParent(transform); // Assigner un parent si nécessaire
+            cellList.Add(newCell); // Ajouter la cellule à la liste
+
+            // Convertir les abréviations en valeurs d'enum
+            CellState state = GetStateFromAbbreviation(stateAbbreviation);
+            CellType type = GetTypeFromAbbreviation(typeAbbreviation);
+            ItemTypeEnum itemType = GetItemTypeFromAbbreviation(itemTypeAbbreviation);
+
+            // Initialiser la cellule avec ses nouveaux états
+            newCell.currentState = state;
+            newCell.currentType = type;
+            newCell.currentItemType = itemType;
+            newCell.Initialize(this, new Vector2Int(x, y)); // Initialisation avec les bonnes coordonnées
+        }
+        foreach (Cell cell in cellList)
+        {
+            cell.GenerateNeighborsList(this);
+        }
+        SetCellsVisuals();
+
+    }
+
+    public CellState GetStateFromAbbreviation(string abbreviation)
+    {
+        return abbreviation switch
+        {
+            "Co" => CellState.Cover,
+            "Cl" => CellState.Clicked,
+            "Fl" => CellState.Flag,
+            "Pl" => CellState.PlantedSword,
+            "Re" => CellState.Reveal,
+            "No" => CellState.None,
+            _ => throw new ArgumentException($"Abréviation inconnue : {abbreviation}")
+        };
+    }
+
+    public CellType GetTypeFromAbbreviation(string abbreviation)
+    {
+        return abbreviation switch
+        {
+            "Em" => CellType.Empty,
+            "Mi" => CellType.Mine,
+            "Hi" => CellType.Hint,
+            "Ga" => CellType.Gate,
+            "It" => CellType.Item,
+            _ => throw new ArgumentException($"Abréviation inconnue : {abbreviation}")
+        };
+    }
+
+    public ItemTypeEnum GetItemTypeFromAbbreviation(string abbreviation)
+    {
+        return abbreviation switch
+        {
+            "Po" => ItemTypeEnum.Potion,
+            "Sw" => ItemTypeEnum.Sword,
+            "Co" => ItemTypeEnum.Coin,
+            "No" => ItemTypeEnum.None,
+            _ => throw new ArgumentException($"Abréviation inconnue : {abbreviation}")
+        };
+    }
+
+    #endregion
+
+    #region GRID GENERATION FONCTIONS
+    public string SaveGridString()
+    {
+        System.Text.StringBuilder gridStringBuilder = new System.Text.StringBuilder();
+
+        foreach (Cell cell in cellList)
+        {
+            // Coordonnées de la cellule
+            int x = cell._cellPosition.x;
+            int y = cell._cellPosition.y;
+
+            // État de la cellule (par exemple "em" pour Empty, "co" pour Cover)
+            string state = cell.currentState.ToString().Substring(0, 2);
+            string type = cell.currentType.ToString().Substring(0, 2);
+            string itemType = cell.currentItemType.ToString().Substring(0, 2);
+
+            // Ajouter à la chaîne sous forme : x_y_state|
+            gridStringBuilder.Append($"{x}_{y}_{state}_{type}_{itemType}|");
+        }
+        // Retirer le dernier caractère "|" pour une chaîne propre
+        if (gridStringBuilder.Length > 0)
+        {
+            gridStringBuilder.Length--;
+        }
+        return gridStringBuilder.ToString();
     }
 
     public void ClearGrid()
