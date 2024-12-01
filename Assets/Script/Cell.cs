@@ -46,19 +46,17 @@ public class Cell : MonoBehaviour
     public int numberOfNeighborsMine;
     public TMP_Text numberText;
 
-    [Header("CELL VISUALS STATE")]
-    public GameObject cellCover;
-    public GameObject cellClicked;
-    public GameObject cellFlag;
-    public GameObject cellSword;
-
-    [Header("CELL VISUALS TYPE")]
+    [Header("CELL BASE VISUAL")]
     public GameObject cellEmpty;
-    public GameObject cellMine;
+    public GameObject cellCover;
+
+    [Header("CELL ADDITIONAL VISUAL")]
+    public SpriteRenderer stateVisual;
+    public SpriteRenderer typeVisual;
     public SpriteRenderer itemVisual;
-    public GameObject cellStair;
 
     [Header("CELL ANIMS STATE")]
+    public GameObject animParent;
     public GameObject animMineExplosion;
     public GameObject animSwordOnMine;
     public GameObject animPlantedSword;
@@ -70,7 +68,7 @@ public class Cell : MonoBehaviour
         ChangeState(currentState);
     }
 
-    //Initialise le visuel de la case
+    //Update le visual de la cellule
     public void UpdateRegardingNeighbors()
     {
         numberOfNeighborsMine = 0;
@@ -97,7 +95,6 @@ public class Cell : MonoBehaviour
             ChangeType(CellType.Empty);
         }
     }
-
     #endregion
 
     #region CELL STATE
@@ -124,7 +121,7 @@ public class Cell : MonoBehaviour
                 break;
 
             case CellState.PlantedSword:
-                SwordState();
+                SwordPlantedState();
                 break;
         }
     }
@@ -132,22 +129,19 @@ public class Cell : MonoBehaviour
     private void CoverState()
     {
         //Debug.Log(this.name + " switch to Cover State");
-        cellClicked.SetActive(false);
-        cellFlag.SetActive(false);
-        cellSword.SetActive(false);
+        stateVisual.sprite = GameManager.CellVisualManager.GetStateVisual(currentState);
         cellCover.SetActive(true);
     }
 
     private void ClickedState()
     {
         //Debug.Log(this.name + " switch to Clicked State");
-        cellClicked.SetActive(true);
-        cellSword.SetActive(false);
-        cellCover.SetActive(false);
+        stateVisual.sprite = GameManager.CellVisualManager.GetStateVisual(currentState);
     }
 
     private void RevealState()
     {
+        //Reveal les cellules autour si il n'y a pas de mines
         int nbOfNeighborsMine = GetNeighborsType(CellType.Mine);
         if (nbOfNeighborsMine == 0)
         {
@@ -159,29 +153,25 @@ public class Cell : MonoBehaviour
                 }
             }
         }
+
+        //Augmente le mana a chaque case reveal
         GameManager.Instance.player.IncreaseMana();
-        cellClicked.SetActive(false);
-        cellFlag.SetActive(false);
-        cellSword.SetActive(false);
+
+        //Update Visual
         cellCover.SetActive(false);
+        stateVisual.sprite = GameManager.CellVisualManager.GetStateVisual(currentState);
     }
 
     private void FlagState()
     {
         //Debug.Log("switch to Flag State");
-        cellClicked.SetActive(false);
-        cellFlag.SetActive(true);
-        cellSword.SetActive(false);
-        cellCover.SetActive(false);
+        stateVisual.sprite = GameManager.CellVisualManager.GetStateVisual(currentState);
     }
 
-    private void SwordState()
+    private void SwordPlantedState()
     {
         //Debug.Log("switch to Sword State");
-        cellClicked.SetActive(false);
-        cellFlag.SetActive(false);
-        cellSword.SetActive(true);
-        cellCover.SetActive(false);
+        stateVisual.sprite = GameManager.CellVisualManager.GetStateVisual(currentState);
     }
     #endregion
 
@@ -219,8 +209,7 @@ public class Cell : MonoBehaviour
         if (updateVisual == true)
         {
             cellEmpty.SetActive(true);
-            //cellMine.SetActive(false);
-            cellStair.SetActive(false);
+            typeVisual.sprite = GameManager.CellVisualManager.GetTypeVisual(currentType);
         }
         else
         {
@@ -229,25 +218,24 @@ public class Cell : MonoBehaviour
     }
     private void MineType()
     {
-        cellEmpty.SetActive(false);
-        cellStair.SetActive(false);
+        typeVisual.sprite = GameManager.CellVisualManager.GetTypeVisual(currentType);
     }
     private void HintType()
     {
         cellEmpty.SetActive(true);
-        cellStair.SetActive(false);
+        typeVisual.sprite = GameManager.CellVisualManager.GetTypeVisual(currentType);
     }
 
     private void GateType()
     {
         cellEmpty.SetActive(false);
-        cellStair.SetActive(true);
+        typeVisual.sprite = GameManager.CellVisualManager.GetTypeVisual(currentType);
     }
 
     private void ItemType()
     {
         cellEmpty.SetActive(true);
-        cellStair.SetActive(false);
+        typeVisual.sprite = GameManager.CellVisualManager.GetTypeVisual(currentType);
     }
     #endregion
 
@@ -277,38 +265,79 @@ public class Cell : MonoBehaviour
     }
     public void NoneItemType()
     {
-        itemVisual.sprite = GameManager.CellVisualManager.UpdateItemVisuel(currentItemType);
+        itemVisual.sprite = GameManager.CellVisualManager.GetItemVisuel(currentItemType);
     }
 
     public void PotionType()
     {
-        itemVisual.sprite = GameManager.CellVisualManager.UpdateItemVisuel(currentItemType);
+        itemVisual.sprite = GameManager.CellVisualManager.GetItemVisuel(currentItemType);
     }
 
     public void SwordType()
     {
-        itemVisual.sprite = GameManager.CellVisualManager.UpdateItemVisuel(currentItemType);
+        itemVisual.sprite = GameManager.CellVisualManager.GetItemVisuel(currentItemType);
+    }
+
+    #endregion
+
+    #region ANIMATIONS
+    public GameObject InstatiateAnimation(GameObject animPrefab)
+    {
+        {
+            if (animPrefab == null)
+            {
+                Debug.LogError("Prefab ou parent est null !");
+                return null;
+            }
+
+            // Instancie le prefab
+            GameObject instance = Instantiate(animPrefab, animParent.transform);
+
+            // Optionnel : Réinitialise la position locale
+            instance.transform.localPosition = Vector3.zero;
+
+            // Optionnel : Réinitialise l'échelle locale
+            instance.transform.localScale = Vector3.one;
+
+            return instance;
+        }
+    }
+
+    public void DestroyAnimationPrefab()
+    {
+        // Vérifie si le GameObject a des enfants
+        if (animParent.transform.childCount > 0)
+        {
+            // Parcours tous les enfants
+            for (int i = animParent.transform.childCount - 1; i >= 0; i--)
+            {
+                // Supprime chaque enfant
+                Destroy(animParent.transform.GetChild(i).gameObject);
+            }
+        }
     }
 
     #endregion
 
     #region CELL MODIFICATIONS METHODS
-        public void MineSwordDestruction(GameObject mineAnimType)
+    public void MineSwordDestruction(GameObject mineAnimType)
     {
         ChangeState(CellState.Cover);
-        StartCoroutine(CO_MineDestruction(mineAnimType, 1.9f));
+        StartCoroutine(CO_MineDestruction(GameManager.CellVisualManager.mineSwordedAnimation, 1.9f));
     }
     public void MineExplosion()
     {
         GameManager.Instance.player.DecreaseHealth(1);
-        StartCoroutine(CO_MineDestruction(animMineExplosion, 1.4f));
+        StartCoroutine(CO_MineDestruction(GameManager.CellVisualManager.mineExplosionAnimation, 1.4f));
     }
     private IEnumerator CO_MineDestruction(GameObject mineAnimType, float animDuration)
     {
-        mineAnimType.SetActive(true);
+        InstatiateAnimation(mineAnimType);
+        //mineAnimType.SetActive(true);
         ChangeType(CellType.Empty);
         yield return new WaitForSeconds(animDuration);
-        mineAnimType.SetActive(false);
+        //mineAnimType.SetActive(false);
+        DestroyAnimationPrefab();
         UpdateRegardingNeighbors();
         foreach (Cell cellInList in neighborsCellList)
         {
@@ -330,12 +359,12 @@ public class Cell : MonoBehaviour
     {
         if (cellNewState == CellState.PlantedSword)
         {
-            animPlantedSword.SetActive(true);
+            InstatiateAnimation(GameManager.CellVisualManager.plantedSwordAnimation);
         }
         yield return new WaitForSeconds(animDuration);
         if (cellNewState == CellState.PlantedSword)
         {
-            animPlantedSword.SetActive(false);
+            DestroyAnimationPrefab();
             ChangeState(CellState.PlantedSword);
         }
 

@@ -729,6 +729,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e2d138dca5b5224b931649b46072b53, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _CellVisualManager: {fileID: 348095978}
   currentGameState: 0
   currentFloorLevel: 0
   floorLevelText: {fileID: 789845775}
@@ -758,8 +759,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stairSprite: {fileID: 21300000, guid: 4da8033da897100478d00c9957cde8ed, type: 3}
-  potionSprite: {fileID: 21300000, guid: 77c5984af1a39a94c9d1477a2181da17, type: 3}
-  swordSprite: {fileID: 21300000, guid: 54ceded6e7260694680ffbdefdb0cf0e, type: 3}
+  potionSprite: {fileID: 21300000, guid: 41f988e86a5c0994e8c9d22350730de3, type: 3}
+  swordSprite: {fileID: 21300000, guid: d604552c523f7ce479ccf8018b66b727, type: 3}
+  clickedSprite: {fileID: 21300000, guid: 8e384d0534402204c93fef71a8659e84, type: 3}
+  flagSprite: {fileID: 21300000, guid: 4c5f42157c6f1b04f8d27f6793da0370, type: 3}
+  plantedSwordSprite: {fileID: 21300000, guid: 315bbc9ef95011947978da787bbc903b, type: 3}
+  stairType: {fileID: 21300000, guid: e31730fbbfba0d5488be33e71ec3f6fc, type: 3}
+  mineExplosionAnimation: {fileID: 735029770632867219, guid: 788e9c56c1dca8d419a4d03f8570560a, type: 3}
+  mineSwordedAnimation: {fileID: 2848005772284224300, guid: 229ef30d1439cd649a956d38120a0580, type: 3}
+  plantedSwordAnimation: {fileID: 6271478425686541969, guid: 9819873197c9915408555a501a962d53, type: 3}
 --- !u!1 &398473297
 GameObject:
   m_ObjectHideFlags: 0
