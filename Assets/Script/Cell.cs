@@ -71,6 +71,7 @@ public class Cell : MonoBehaviour
     //Update le visual de la cellule
     public void UpdateRegardingNeighbors()
     {
+        //Update le type selon les voisins
         numberOfNeighborsMine = 0;
         foreach (Cell cell in neighborsCellList)
         {
@@ -79,7 +80,6 @@ public class Cell : MonoBehaviour
                 numberOfNeighborsMine += 1;
             }
         }
-
         if (currentType == CellType.Mine || currentType == CellType.Item || currentType == CellType.Gate)
         {
             numberText.text = "";
@@ -94,6 +94,10 @@ public class Cell : MonoBehaviour
             numberText.text = "";
             ChangeType(CellType.Empty);
         }
+        //Update le reste du visuel selon le type et l'état
+        stateVisual.sprite = GameManager.CellVisualManager.GetStateVisual(currentState);
+        typeVisual.sprite = GameManager.CellVisualManager.GetTypeVisual(currentType);
+        itemVisual.sprite = GameManager.CellVisualManager.GetItemVisuel(currentItemType);
     }
     #endregion
 

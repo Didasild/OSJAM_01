@@ -21,10 +21,10 @@ public class GameManager : MonoBehaviour
     public GameState currentGameState;
 
     [Header("FLOOR ELEMENTS")]
-    [NaughtyAttributes.ReadOnly]
-    public int currentFloorLevel;
     public TMP_Text floorLevelText;
     public FloorSettings[] floorSettingsList;
+    [NaughtyAttributes.ReadOnly]
+    public int currentFloorLevel;
     [NaughtyAttributes.ReadOnly]
     public int floorLoop = 0;
     [NaughtyAttributes.ReadOnly]

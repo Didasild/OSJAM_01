@@ -715,8 +715,6 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 519420032}
-  - {fileID: 1365082115}
   - {fileID: 712061423}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -734,7 +732,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _CellVisualManager: {fileID: 348095978}
   currentGameState: 0
-  currentFloorLevel: 0
   floorLevelText: {fileID: 789845775}
   floorSettingsList:
   - {fileID: 11400000, guid: ec82750b335c2b04ba160f72b9409164, type: 2}
@@ -742,6 +739,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 9d3a96bcb2da1c24b9dcfaabb5b5e8b1, type: 2}
   - {fileID: 11400000, guid: 315c162e0b77a5b44b1d53af0a21b397, type: 2}
   - {fileID: 11400000, guid: e17c05d68e4060d4cb681ac7bf5afe3e, type: 2}
+  currentFloorLevel: 0
   floorLoop: 0
   currentFloorSettings: {fileID: 0}
   pourcentageOfMineIncrement: 5
@@ -1042,7 +1040,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 348095976}
+  m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &534226820
 GameObject:
@@ -2671,7 +2669,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 348095976}
+  m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1393215837
 GameObject:
@@ -3260,6 +3258,8 @@ PrefabInstance:
 SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
+  - {fileID: 519420032}
+  - {fileID: 1365082115}
   - {fileID: 348095976}
   - {fileID: 1336173534}
   - {fileID: 534226823}

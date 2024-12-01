@@ -177,6 +177,11 @@ public class GridManager : MonoBehaviour
         }
     }
 
+    public void SaveGrid()
+    {
+
+    }
+
     public void ClearGrid()
     {
         foreach (Cell cell in cellList)

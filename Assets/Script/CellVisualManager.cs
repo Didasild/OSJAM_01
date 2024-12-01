@@ -25,11 +25,11 @@ public class CellVisualManager : MonoBehaviour
     public Sprite GetTypeVisual(CellType cellType)
     {
         Sprite cellTypeVisual = null;
-        if (cellType == CellType.Empty || cellType == CellType.Item || cellType == CellType.Mine)
-        {
-            cellTypeVisual = null;
-        }
-        else if (cellType == CellType.Gate)
+        //if (cellType == CellType.Empty || cellType == CellType.Item || cellType == CellType.Mine || cellType == CellType.Hint)
+        //{
+        //    cellTypeVisual = null;
+        //}
+        if (cellType == CellType.Gate)
         {
             cellTypeVisual = stairType;
         }
