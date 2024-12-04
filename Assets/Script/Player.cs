@@ -200,8 +200,8 @@ public class Player : MonoBehaviour
             cellClicked.ChangeType(CellType.Empty);
             cellClicked.RemoveNeighborsMine();
             GameManager.Instance.gridManager.SetItemsType(CellType.Gate, 1);
-            GameManager.Instance.gridManager.SetItemsType(CellType.Item, GameManager.Instance.currentFloorSettings.GetNumberOfPotion(), ItemTypeEnum.Potion);
-            GameManager.Instance.gridManager.SetItemsType(CellType.Item, GameManager.Instance.currentFloorSettings.GetNumberOfSword(), ItemTypeEnum.Sword);
+            GameManager.Instance.gridManager.SetItemsType(CellType.Item, GameManager.Instance.currentRoomSettings.GetNumberOfPotion(), ItemTypeEnum.Potion);
+            GameManager.Instance.gridManager.SetItemsType(CellType.Item, GameManager.Instance.currentRoomSettings.GetNumberOfSword(), ItemTypeEnum.Sword);
 
         }
         //Explose la mine si sans est une

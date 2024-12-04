@@ -1,7 +1,7 @@
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "FloorSettings", menuName = "Balancing /FloorSettings")]
-public class FloorSettings : ScriptableObject
+[CreateAssetMenu(fileName = "RoomSettings", menuName = "Balancing /RoomSettings")]
+public class RoomSettings : ScriptableObject
 {
     [Header("GENERAL")]
     public bool proceduralGrid = true;
@@ -13,7 +13,7 @@ public class FloorSettings : ScriptableObject
     [Header("GRID")]
     [SerializeField] private Vector2Int minGridSize = new Vector2Int(5,5);
     [SerializeField] private Vector2Int maxGridSize = new Vector2Int(10, 10);
-    public int floorPourcentageOfMine = 5;
+    public int roomPourcentageOfMine = 5;
     [Header("HEALTH")]
     [SerializeField] private int minPotion;
     [SerializeField] private int maxPotion;

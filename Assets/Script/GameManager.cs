@@ -17,13 +17,13 @@ public class GameManager : MonoBehaviour
 
     [Header("FLOOR ELEMENTS")]
     public TMP_Text floorLevelText;
-    public FloorSettings[] floorSettingsList;
+    public RoomSettings[] roomSettingsList;
     [NaughtyAttributes.ReadOnly]
     public int currentFloorLevel;
     [NaughtyAttributes.ReadOnly]
     public int floorLoop = 0;
     [NaughtyAttributes.ReadOnly]
-    public FloorSettings currentFloorSettings;
+    public RoomSettings currentRoomSettings;
 
     [Header("DIFFICULTY")]
     public int pourcentageOfMineIncrement = 3;
@@ -85,14 +85,14 @@ public class GameManager : MonoBehaviour
 
     public void InGameState()
     {
-        currentFloorSettings = floorSettingsList[currentFloorLevel % floorSettingsList.Length];
-        if (currentFloorSettings.proceduralGrid == true)
+        currentRoomSettings = roomSettingsList[currentFloorLevel % roomSettingsList.Length];
+        if (currentRoomSettings.proceduralGrid == true)
         {
-            gridManager.GenerateGrid(currentFloorSettings.GetGridSize(), currentFloorSettings.floorPourcentageOfMine);
+            gridManager.GenerateGrid(currentRoomSettings.GetGridSize(), currentRoomSettings.roomPourcentageOfMine);
         }
         else
         {
-            gridManager.LoadGridFromString(currentFloorSettings.savedGridString, currentFloorSettings.GetGridSize()) ;
+            gridManager.LoadGridFromString(currentRoomSettings.savedGridString, currentRoomSettings.GetGridSize()) ;
         }
         player.ResetHealtPoint();
         player.ResetClickCounter();
@@ -113,7 +113,7 @@ public class GameManager : MonoBehaviour
     }
     #endregion
 
-    #region FLOOR GENERATION
+    #region FLOOR GENERATION PLACEHOLDER
     public void ChangeFloorLevel()
     {
         //Update le numéro du floor
@@ -121,10 +121,10 @@ public class GameManager : MonoBehaviour
         floorLevelText.text = currentFloorLevel.ToString();
 
         // Calculer l'index du floor actuel dans la liste
-        int floorIndex = currentFloorLevel % floorSettingsList.Length;
+        int floorIndex = currentFloorLevel % roomSettingsList.Length;
 
         //Récupère le floor suivant dans la liste
-        currentFloorSettings = floorSettingsList[floorIndex];
+        currentRoomSettings = roomSettingsList[floorIndex];
 
         // Vérifier si on recommence une boucle
         if (floorIndex == 0 && currentFloorLevel > 0)
@@ -132,13 +132,13 @@ public class GameManager : MonoBehaviour
             IncreaseLoopDiffficulty(pourcentageOfMineIncrement);
         }
         //Détermine le pourcentage de mine
-        pourcentageOfMine = currentFloorSettings.floorPourcentageOfMine + pourcentageUpdate;
+        pourcentageOfMine = currentRoomSettings.roomPourcentageOfMine + pourcentageUpdate;
 
         //Check si c'est une grille procédurale ou généré
-        if (currentFloorSettings.proceduralGrid == true)
+        if (currentRoomSettings.proceduralGrid == true)
         {
             //Génère une grille aléatoire avec les Settings récupérés
-            gridManager.GenerateGrid(currentFloorSettings.GetGridSize(), pourcentageOfMine);
+            gridManager.GenerateGrid(currentRoomSettings.GetGridSize(), pourcentageOfMine);
         }
 
     }
