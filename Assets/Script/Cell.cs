@@ -57,9 +57,6 @@ public class Cell : MonoBehaviour
 
     [Header("CELL ANIMS STATE")]
     public GameObject animParent;
-    public GameObject animMineExplosion;
-    public GameObject animSwordOnMine;
-    public GameObject animPlantedSword;
 
     #region INIT
     public void Initialize(GridManager grid, Vector2Int cellPosition)

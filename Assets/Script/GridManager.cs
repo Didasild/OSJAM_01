@@ -1,15 +1,16 @@
 using NaughtyAttributes;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
-using static UnityEngine.Rendering.DebugUI.Table;
 
 public class GridManager : MonoBehaviour
 {
     [Header("GRID GENERAL SETTINGS")]
     public Cell cellPrefab; // Le prefab de la cellule
-    public float cellSize = 16f;   // Taille des cellules (espacement)
+    public float cellSize = 0.16f;   // Taille des cellules (espacement)
+    public float timeBetweenApparition = 0.1f;
 
 
     [Header("GRID INFORMATIONS")]
@@ -30,6 +31,7 @@ public class GridManager : MonoBehaviour
     //public int numberOfMine;
     public List<Cell> cellMineList = new List<Cell>(); //Liste de mines de la grid
     [Button(enabledMode: EButtonEnableMode.Playmode)]
+
 
     #region PROCEDURAL GRID GENERATION
     public void GenerateGrid(Vector2Int gridSize, int pourcentageOfMine)
@@ -88,6 +90,7 @@ public class GridManager : MonoBehaviour
         }
 
         SetMineType(pourcentageOfMine);
+        ActiveListOfCells(timeBetweenApparition);
     }
     public void SetMineType(int pourcentageOfMine)
     {
@@ -332,6 +335,22 @@ public class GridManager : MonoBehaviour
     }
     #endregion
 
+    #region GRID VISUAL FONCTIONS
+    public void ActiveListOfCells(float timeBetweenApparition)
+    {
+        StartCoroutine(CO_ActiveWithDelay(timeBetweenApparition));
+    }
+
+    private IEnumerator CO_ActiveWithDelay(float timeBetweenApparition)
+    {
+        foreach (Cell cell in cellList)
+        {
+            cell.gameObject.SetActive(true);
+            yield return new WaitForSeconds(timeBetweenApparition); // Attends le délai avant de continuer
+        }
+    }
+    #endregion
+
     #region GET GRID INFORMATIONS
     public List<Cell> GetCellsByType(CellType typeOfCellWanted)
     {
@@ -403,7 +422,6 @@ public class GridManager : MonoBehaviour
                 neighbors.Add(neighbor); // Ajoute le voisin à la liste
             }
         }
-
         return neighbors;
     }
     #endregion

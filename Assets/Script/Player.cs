@@ -222,7 +222,7 @@ public class Player : MonoBehaviour
     {
         if (cellClicked.currentType == CellType.Mine)
         {
-            cellClicked.MineSwordDestruction(cellClicked.animSwordOnMine);
+            cellClicked.MineSwordDestruction(GameManager.CellVisualManager.mineSwordedAnimation);
         }
         else
         {

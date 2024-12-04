@@ -283,13 +283,14 @@ GameObject:
   - component: {fileID: 2125257166701740220}
   - component: {fileID: 3712063207644448669}
   - component: {fileID: 364980339709739537}
+  - component: {fileID: 2663853168915052573}
   m_Layer: 0
   m_Name: Cell
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2125257166701740220
 Transform:
   m_ObjectHideFlags: 0
@@ -303,9 +304,9 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 1624357295065434156}
   - {fileID: 1992692794518853954}
   - {fileID: 382581663666868813}
+  - {fileID: 1624357295065434156}
   - {fileID: 747270315395152916}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -316,7 +317,7 @@ BoxCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4634166477021220514}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_Density: 1
   m_Material: {fileID: 0}
@@ -380,9 +381,28 @@ MonoBehaviour:
   typeVisual: {fileID: 2469119105154910921}
   itemVisual: {fileID: 7269597997932643388}
   animParent: {fileID: 893933950214680590}
-  animMineExplosion: {fileID: 0}
-  animSwordOnMine: {fileID: 0}
-  animPlantedSword: {fileID: 0}
+--- !u!95 &2663853168915052573
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4634166477021220514}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 16e2cda02db34bf47891f4187f2efbd9, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &5073111335782266271
 GameObject:
   m_ObjectHideFlags: 0

@@ -730,11 +730,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e2d138dca5b5224b931649b46072b53, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _CellVisualManager: {fileID: 348095978}
   currentGameState: 0
   floorLevelText: {fileID: 789845775}
   floorSettingsList:
-  - {fileID: 11400000, guid: 4b69429a8b00d6e4a94149aabdd9c092, type: 2}
+  - {fileID: 11400000, guid: ec82750b335c2b04ba160f72b9409164, type: 2}
   - {fileID: 11400000, guid: 1c3ccc13d96914445a0f642c7cfd80e8, type: 2}
   - {fileID: 11400000, guid: 9d3a96bcb2da1c24b9dcfaabb5b5e8b1, type: 2}
   - {fileID: 11400000, guid: 315c162e0b77a5b44b1d53af0a21b397, type: 2}
@@ -747,6 +746,7 @@ MonoBehaviour:
   gridManager: {fileID: 712061424}
   player: {fileID: 1365082114}
   mainCamera: {fileID: 519420028}
+  _CellVisualManager: {fileID: 348095978}
 --- !u!114 &348095978
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1231,6 +1231,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cellPrefab: {fileID: 364980339709739537, guid: 58d5dd58eb3d9ef43b9b9d0bf076832c, type: 3}
   cellSize: 0.16
+  timeBetweenApparition: 0.01
   cellList: []
   savedGridState: 
   numberOfMineLeft: 0

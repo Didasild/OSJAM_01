@@ -10,11 +10,6 @@ public enum GameState
 
 public class GameManager : MonoBehaviour
 {
-    //Singleton
-    private static GameManager _instance;
-    public static GameManager Instance => _instance;
-    [SerializeField] private CellVisualManager _CellVisualManager;
-
     //Public Variables
     [Header("INFORMATIONS STATE")]
     [NaughtyAttributes.ReadOnly]
@@ -44,6 +39,10 @@ public class GameManager : MonoBehaviour
     private int pourcentageUpdate = 0;
     private int pourcentageOfMine = 0;
 
+    //Singleton
+    private static GameManager _instance;
+    public static GameManager Instance => _instance;
+    [SerializeField] private CellVisualManager _CellVisualManager;
     public static CellVisualManager CellVisualManager => _instance._CellVisualManager;
 
 
