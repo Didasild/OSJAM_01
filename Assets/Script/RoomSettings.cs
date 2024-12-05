@@ -1,19 +1,22 @@
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "RoomSettings", menuName = "Balancing /RoomSettings")]
+[CreateAssetMenu(fileName = "RoomSettings", menuName = "DungeonGeneration/RoomSettings")]
 public class RoomSettings : ScriptableObject
 {
     [Header("GENERAL")]
     public bool proceduralGrid = true;
+    public bool isMandatory = false;
 
     [Header("________LOADED GRID SETTINGS")]
     public string savedGridString;
 
     [Header("________PROCEDURAL GRID SETTINGS")]
-    [Header("GRID")]
+    [Header("ROOM GRID")]
     [SerializeField] private Vector2Int minGridSize = new Vector2Int(5,5);
     [SerializeField] private Vector2Int maxGridSize = new Vector2Int(10, 10);
     public int roomPourcentageOfMine = 5;
+    [Header("STAIR")]
+    [SerializeField] private bool haveStair;
     [Header("HEALTH")]
     [SerializeField] private int minPotion;
     [SerializeField] private int maxPotion;

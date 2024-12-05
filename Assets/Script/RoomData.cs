@@ -2,14 +2,14 @@ using UnityEngine;
 
 public class RoomData : MonoBehaviour
 {
-    public RoomSettings floorSettings;
+    public RoomSettings roomSettings;
     public string roomSavedDate;
     public Vector2Int roomPosition;
 
-    public GameObject roomUp;
-    public GameObject roomDown;
-    public GameObject roomLeft;
-    public GameObject roomRight;
+    public RoomData roomUp;
+    public RoomData roomDown;
+    public RoomData roomLeft;
+    public RoomData roomRight;
 
     public void Initialize(Vector2Int position)
     {

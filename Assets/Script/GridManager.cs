@@ -342,7 +342,7 @@ public class GridManager : MonoBehaviour
         StartCoroutine(CO_ActiveWithDelay(timeBetweenApparition));
     }
 
-    private IEnumerator CO_ActiveWithDelay(float timeBetweenApparition)
+    public IEnumerator CO_ActiveWithDelay(float timeBetweenApparition)
     {
         foreach (Cell cell in cellList)
         {

@@ -4,6 +4,7 @@ using TMPro;
 
 public enum GameState
 {
+    None,
     InGame,
     Loose,
 }
@@ -17,7 +18,6 @@ public class GameManager : MonoBehaviour
 
     [Header("FLOOR ELEMENTS")]
     public TMP_Text floorLevelText;
-    public RoomSettings[] roomSettingsList;
     [NaughtyAttributes.ReadOnly]
     public int currentFloorLevel;
     [NaughtyAttributes.ReadOnly]
@@ -26,13 +26,19 @@ public class GameManager : MonoBehaviour
     public RoomSettings currentRoomSettings;
 
     [Header("DIFFICULTY")]
-    public int pourcentageOfMineIncrement = 3;
+    public int pourcentageOfMineIncrement = 5;
+
+    [Header("MANAGER REFERENCES")]
+    public DungeonManager dungeonManager;
+    public GridManager gridManager;
 
     [Header("REFERENCES")]
     public GameObject endScreenUI;
-    public GridManager gridManager;
     public Player player;
     public GameObject mainCamera;
+
+    [Header("TMP")]
+    private RoomSettings[] roomSettingsList;
 
     //[Header("OBSERVATIONS")]
     //Private Variables
@@ -85,15 +91,9 @@ public class GameManager : MonoBehaviour
 
     public void InGameState()
     {
-        currentRoomSettings = roomSettingsList[currentFloorLevel % roomSettingsList.Length];
-        if (currentRoomSettings.proceduralGrid == true)
-        {
-            gridManager.GenerateGrid(currentRoomSettings.GetGridSize(), currentRoomSettings.roomPourcentageOfMine);
-        }
-        else
-        {
-            gridManager.LoadGridFromString(currentRoomSettings.savedGridString, currentRoomSettings.GetGridSize()) ;
-        }
+        dungeonManager.GenerateFloor();
+        GenerateRoom();
+
         player.ResetHealtPoint();
         player.ResetClickCounter();
     }
@@ -113,7 +113,21 @@ public class GameManager : MonoBehaviour
     }
     #endregion
 
-    #region FLOOR GENERATION PLACEHOLDER
+    #region ROOM GENERATION
+
+    public void GenerateRoom()
+    {
+        currentRoomSettings = dungeonManager.currentRoom.roomSettings;
+        if (currentRoomSettings.proceduralGrid == true)
+        {
+            gridManager.GenerateGrid(currentRoomSettings.GetGridSize(), currentRoomSettings.roomPourcentageOfMine);
+        }
+        else
+        {
+            gridManager.LoadGridFromString(currentRoomSettings.savedGridString, currentRoomSettings.GetGridSize());
+        }
+    }
+    
     public void ChangeFloorLevel()
     {
         //Update le numéro du floor

@@ -10,13 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e1fa203da9941e14e9ac5c76d2db6dfb, type: 3}
-  m_Name: Floor_08
+  m_Name: Room_03
   m_EditorClassIdentifier: 
   proceduralGrid: 1
-  minGridSize: {x: 5, y: 5}
-  maxGridSize: {x: 18, y: 20}
-  floorPourcentageOfMine: 25
-  minPotion: 0
+  savedGridString: 
+  minGridSize: {x: 12, y: 12}
+  maxGridSize: {x: 15, y: 15}
+  roomPourcentageOfMine: 15
+  minPotion: 1
   maxPotion: 1
   minSword: 0
   maxSword: 1
