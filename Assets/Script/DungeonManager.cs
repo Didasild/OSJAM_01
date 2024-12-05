@@ -6,6 +6,8 @@ public class DungeonManager : MonoBehaviour
     public RoomData roomPrefab;
     public Vector2 floorSize = new Vector2 (3, 4);
 
+    public RoomData currentRoom;
+
     [SerializeField] private List<RoomData> roomDataList = new List<RoomData> ();
 
     public void Start()

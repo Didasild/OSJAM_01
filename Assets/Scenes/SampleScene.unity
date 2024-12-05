@@ -734,7 +734,7 @@ MonoBehaviour:
   currentGameState: 0
   floorLevelText: {fileID: 789845775}
   roomSettingsList:
-  - {fileID: 11400000, guid: 4b69429a8b00d6e4a94149aabdd9c092, type: 2}
+  - {fileID: 11400000, guid: ec82750b335c2b04ba160f72b9409164, type: 2}
   - {fileID: 11400000, guid: 1c3ccc13d96914445a0f642c7cfd80e8, type: 2}
   - {fileID: 11400000, guid: 4b69429a8b00d6e4a94149aabdd9c092, type: 2}
   - {fileID: 11400000, guid: 315c162e0b77a5b44b1d53af0a21b397, type: 2}
@@ -1157,6 +1157,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   roomPrefab: {fileID: 7399068105048544342, guid: 199e0e52c9943d54e968ef4dfb638015, type: 3}
   floorSize: {x: 3, y: 4}
+  currentRoom: {fileID: 0}
   roomDataList: []
 --- !u!1 &691876061
 GameObject:

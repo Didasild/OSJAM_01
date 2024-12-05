@@ -1,3 +1,4 @@
+using NUnit.Framework;
 using System.Collections;
 using TMPro;
 using UnityEngine;
@@ -194,8 +195,11 @@ public class Player : MonoBehaviour
 
     public void ClickOnCoverCell(Cell cellClicked)
     {
-        //Génére les items et assure que le premier clic est vide
-        if (clicCounter == 0)//remplacer par la condition que la grid soit totalement couverte
+        //Vérifie si la grid doit être procédurale et est complètement couverte puis génère les items
+        // VOIR POUR UNE MEILLEURE CONDITION GENRE SI GRID PROCEDURAL ETC...
+        int nbOfCellsCover = GameManager.Instance.gridManager.GetCellsByState(CellState.Cover).Count;
+        int nbOfCells = GameManager.Instance.gridManager.cellList.Count;
+        if (nbOfCells == nbOfCellsCover && GameManager.Instance.currentRoomSettings.proceduralGrid == true)
         {
             cellClicked.ChangeType(CellType.Empty);
             cellClicked.RemoveNeighborsMine();

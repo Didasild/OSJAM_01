@@ -4,6 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using static UnityEngine.Rendering.DebugUI.Table;
 
 public class GridManager : MonoBehaviour
 {
@@ -48,35 +49,19 @@ public class GridManager : MonoBehaviour
         // Efface les anciennes cellules si la grille est regénérée
         ClearGrid();
 
-        // Calcul de l'offset pour centrer la grille
-        float gridWidth = gridSize.x * cellSize; // Largeur totale de la grille
-        float gridHeight = gridSize.y * cellSize;   // Hauteur totale de la grille
-
-        // Ajustement pour la parité des dimensions
-        float xAdjustment = (gridSize.x % 2 == 0) ? 0 : cellSize / 2; // Décalage si impair
-        float yAdjustment = (gridSize.y % 2 == 0) ? 0 : -cellSize / 2; // Décalage si impair
-
-        Vector2 gridOffset = new Vector2(
-            -gridWidth / 2 + cellSize / 2 + xAdjustment, // Ajustement horizontal
-            gridHeight / 2 - cellSize / 2 + yAdjustment  // Ajustement vertical
-        );
         // Parcourir les lignes et colonnes pour générer la grille
         for (int row = 0; row < gridSize.y; row++)
         {
             for (int col = 0; col < gridSize.x; col++)
             {
                 // Calculer la position de chaque cellule (ajustée par l'offset)
-                Vector2 cellPosition = new Vector2(col * cellSize, -row * cellSize) + gridOffset;
-                Cell newCell = Instantiate(cellPrefab, cellPosition, Quaternion.identity);
-                newCell.transform.SetParent(transform);
-                cellList.Add(newCell);
+                Vector2 cellPosition = new Vector2(col * cellSize, -row * cellSize) + GetGridOffset(cellSize, gridSize);
 
-                // Renommer la cellule pour faciliter le débogage
-                newCell.name = $"Cell_{row}_{col}";
-
-                newCell.Initialize(this, new Vector2Int(row, col));
+                Cell newCell = CellInstanciation(cellPosition, row, col);
+                newCell.Initialize(new Vector2Int(row, col));
             }
         }
+        //Génère la liste des voisins
         foreach (Cell cell in cellList)
         {
             cell.GenerateNeighborsList(this);
@@ -90,6 +75,8 @@ public class GridManager : MonoBehaviour
         }
 
         SetMineType(pourcentageOfMine);
+
+        //Setup l'animation d'apparition
         ActiveListOfCells(timeBetweenApparition);
     }
     public void SetMineType(int pourcentageOfMine)
@@ -196,19 +183,6 @@ public class GridManager : MonoBehaviour
         // Efface l'ancienne grille
         ClearGrid();
 
-        // Calculer l'offset pour centrer la grille
-        float gridWidth = gridSize.x * cellSize; // Largeur totale de la grille
-        float gridHeight = gridSize.y * cellSize; // Hauteur totale de la grille
-
-        // Ajustement pour la parité des dimensions
-        float xAdjustment = (gridSize.x % 2 == 0) ? 0 : cellSize / 2; // Décalage si impair
-        float yAdjustment = (gridSize.y % 2 == 0) ? 0 : -cellSize / 2; // Décalage si impair
-
-        Vector2 gridOffset = new Vector2(
-            -gridWidth / 2 + cellSize / 2 + xAdjustment, // Ajustement horizontal
-            gridHeight / 2 - cellSize / 2 + yAdjustment  // Ajustement vertical
-        );
-
         // Divise le string en segments pour chaque cellule
         string[] cellDataArray = gridString.Split('|');
 
@@ -227,12 +201,10 @@ public class GridManager : MonoBehaviour
 
             // Créer une nouvelle cellule à ces coordonnées
             // Calculer la position de chaque cellule (ajustée par l'offset)
-            Vector2 cellPosition = new Vector2(x * cellSize, -y * cellSize) + gridOffset;
+            Vector2 cellPosition = new Vector2(x * cellSize, -y * cellSize) + GetGridOffset(cellSize, gridSize);
 
             // Instancier une nouvelle cellule
-            Cell newCell = Instantiate(cellPrefab, cellPosition, Quaternion.identity);
-            newCell.transform.SetParent(transform); // Assigner un parent si nécessaire
-            cellList.Add(newCell); // Ajouter la cellule à la liste
+            Cell newCell = CellInstanciation(cellPosition, y, x);
 
             // Convertir les abréviations en valeurs d'enum
             CellState state = GetStateFromAbbreviation(stateAbbreviation);
@@ -243,7 +215,8 @@ public class GridManager : MonoBehaviour
             newCell.currentState = state;
             newCell.currentType = type;
             newCell.currentItemType = itemType;
-            newCell.Initialize(this, new Vector2Int(x, y)); // Initialisation avec les bonnes coordonnées
+
+            newCell.Initialize(new Vector2Int(x, y)); // Initialisation avec les bonnes coordonnées et le bon état
         }
         foreach (Cell cell in cellList)
         {
@@ -251,7 +224,6 @@ public class GridManager : MonoBehaviour
         }
         SetCellsVisuals();
         ActiveListOfCells(timeBetweenApparition);
-
     }
 
     public CellState GetStateFromAbbreviation(string abbreviation)
@@ -320,6 +292,32 @@ public class GridManager : MonoBehaviour
             gridStringBuilder.Length--;
         }
         return gridStringBuilder.ToString();
+    }
+
+    public Vector2 GetGridOffset(float cellSize, Vector2Int gridSize)
+    {
+        // Calcul de l'offset pour centrer la grille
+        float gridWidth = gridSize.x * cellSize; // Largeur totale de la grille
+        float gridHeight = gridSize.y * cellSize;   // Hauteur totale de la grille
+
+        // Ajustement pour la parité des dimensions
+        float xAdjustment = (gridSize.x % 2 == 0) ? 0 : cellSize / 2; // Décalage si impair
+        float yAdjustment = (gridSize.y % 2 == 0) ? 0 : -cellSize / 2; // Décalage si impair
+
+        Vector2 gridOffset = new Vector2(
+            -gridWidth / 2 + cellSize / 2 + xAdjustment, // Ajustement horizontal
+            gridHeight / 2 - cellSize / 2 + yAdjustment  // Ajustement vertical
+        );
+        return gridOffset;
+    }
+
+    public Cell CellInstanciation(Vector2 cellPosition, int row, int col)
+    {
+        Cell newCell = Instantiate(cellPrefab, cellPosition, Quaternion.identity);
+        newCell.transform.SetParent(transform);
+        cellList.Add(newCell);
+        newCell.name = $"Cell_{row}_{col}"; // Renommer la cellule pour faciliter le débogage
+        return newCell;
     }
 
     public void ClearGrid()

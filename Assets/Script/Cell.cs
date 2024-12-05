@@ -59,7 +59,7 @@ public class Cell : MonoBehaviour
     public GameObject animParent;
 
     #region INIT
-    public void Initialize(GridManager grid, Vector2Int cellPosition)
+    public void Initialize(Vector2Int cellPosition)
     {
         _cellPosition = cellPosition;
         ChangeState(currentState);
