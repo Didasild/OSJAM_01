@@ -736,7 +736,7 @@ MonoBehaviour:
   roomSettingsList:
   - {fileID: 11400000, guid: 4b69429a8b00d6e4a94149aabdd9c092, type: 2}
   - {fileID: 11400000, guid: 1c3ccc13d96914445a0f642c7cfd80e8, type: 2}
-  - {fileID: 11400000, guid: 9d3a96bcb2da1c24b9dcfaabb5b5e8b1, type: 2}
+  - {fileID: 11400000, guid: 4b69429a8b00d6e4a94149aabdd9c092, type: 2}
   - {fileID: 11400000, guid: 315c162e0b77a5b44b1d53af0a21b397, type: 2}
   - {fileID: 11400000, guid: e17c05d68e4060d4cb681ac7bf5afe3e, type: 2}
   currentFloorLevel: 0

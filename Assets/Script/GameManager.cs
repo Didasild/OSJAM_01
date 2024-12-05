@@ -140,6 +140,10 @@ public class GameManager : MonoBehaviour
             //Génère une grille aléatoire avec les Settings récupérés
             gridManager.GenerateGrid(currentRoomSettings.GetGridSize(), pourcentageOfMine);
         }
+        else
+        {
+            gridManager.LoadGridFromString(currentRoomSettings.savedGridString, currentRoomSettings.GetGridSize());
+        }
 
     }
 

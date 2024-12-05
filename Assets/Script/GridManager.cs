@@ -250,6 +250,7 @@ public class GridManager : MonoBehaviour
             cell.GenerateNeighborsList(this);
         }
         SetCellsVisuals();
+        ActiveListOfCells(timeBetweenApparition);
 
     }
 

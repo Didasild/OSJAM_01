@@ -13,9 +13,10 @@ MonoBehaviour:
   m_Name: Floor_03
   m_EditorClassIdentifier: 
   proceduralGrid: 1
+  savedGridString: 
   minGridSize: {x: 12, y: 12}
   maxGridSize: {x: 15, y: 15}
-  floorPourcentageOfMine: 10
+  roomPourcentageOfMine: 15
   minPotion: 1
   maxPotion: 1
   minSword: 0
