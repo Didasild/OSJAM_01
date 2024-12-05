@@ -43,7 +43,7 @@ public class GridManager : MonoBehaviour
             return;
         }
 
-        //Sauvegarde l'état de la grille
+        //Sauvegarde l'état de la grille, a enlever plus tard
         savedGridState = SaveGridString();
 
         // Efface les anciennes cellules si la grille est regénérée
