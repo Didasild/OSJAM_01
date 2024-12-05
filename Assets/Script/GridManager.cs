@@ -79,6 +79,7 @@ public class GridManager : MonoBehaviour
         //Setup l'animation d'apparition
         ActiveListOfCells(timeBetweenApparition);
     }
+
     public void SetMineType(int pourcentageOfMine)
     {
         if (cellList.Count == 0)
@@ -268,31 +269,6 @@ public class GridManager : MonoBehaviour
     #endregion
 
     #region GRID GENERATION FONCTIONS
-    public string SaveGridString()
-    {
-        System.Text.StringBuilder gridStringBuilder = new System.Text.StringBuilder();
-
-        foreach (Cell cell in cellList)
-        {
-            // Coordonnées de la cellule
-            int x = cell._cellPosition.x;
-            int y = cell._cellPosition.y;
-
-            // État de la cellule (par exemple "em" pour Empty, "co" pour Cover)
-            string state = cell.currentState.ToString().Substring(0, 2);
-            string type = cell.currentType.ToString().Substring(0, 2);
-            string itemType = cell.currentItemType.ToString().Substring(0, 2);
-
-            // Ajouter à la chaîne sous forme : x_y_state|
-            gridStringBuilder.Append($"{x}_{y}_{state}_{type}_{itemType}|");
-        }
-        // Retirer le dernier caractère "|" pour une chaîne propre
-        if (gridStringBuilder.Length > 0)
-        {
-            gridStringBuilder.Length--;
-        }
-        return gridStringBuilder.ToString();
-    }
 
     public Vector2 GetGridOffset(float cellSize, Vector2Int gridSize)
     {
@@ -318,6 +294,32 @@ public class GridManager : MonoBehaviour
         cellList.Add(newCell);
         newCell.name = $"Cell_{row}_{col}"; // Renommer la cellule pour faciliter le débogage
         return newCell;
+    }
+
+    public string SaveGridString()
+    {
+        System.Text.StringBuilder gridStringBuilder = new System.Text.StringBuilder();
+
+        foreach (Cell cell in cellList)
+        {
+            // Coordonnées de la cellule
+            int x = cell._cellPosition.x;
+            int y = cell._cellPosition.y;
+
+            // État de la cellule (par exemple "em" pour Empty, "co" pour Cover)
+            string state = cell.currentState.ToString().Substring(0, 2);
+            string type = cell.currentType.ToString().Substring(0, 2);
+            string itemType = cell.currentItemType.ToString().Substring(0, 2);
+
+            // Ajouter à la chaîne sous forme : x_y_state|
+            gridStringBuilder.Append($"{x}_{y}_{state}_{type}_{itemType}|");
+        }
+        // Retirer le dernier caractère "|" pour une chaîne propre
+        if (gridStringBuilder.Length > 0)
+        {
+            gridStringBuilder.Length--;
+        }
+        return gridStringBuilder.ToString();
     }
 
     public void ClearGrid()
@@ -425,7 +427,7 @@ public class GridManager : MonoBehaviour
     }
     #endregion
 
-    #region MINE COUNTER
+    #region MINE COUNTER // A DEPLACER DANS PLAYER OU AUTRE PLUS PERTINENT
     public void UpdateMineCounter()
     {
         theoricalMineLeft = GetTheoricalMineLeft();
