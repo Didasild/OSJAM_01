@@ -1,9 +1,19 @@
 using UnityEngine;
 
+#region
+public enum roomState
+{
+    Undiscover,
+    Started,
+    Complete
+}
+#endregion
+
 public class RoomData : MonoBehaviour
 {
     public RoomSettings roomSettings;
-    public string roomSavedDate;
+    public roomState currentRoomState;
+    public string roomSavedString;
     public Vector2Int roomPosition;
 
     public RoomData roomUp;
@@ -18,4 +28,23 @@ public class RoomData : MonoBehaviour
         //Debug.Log($"Room initialized at grid position: {roomPosition}");
     }
 
+    public void ChangeRoomSate(roomState newRoomState)
+    {
+        currentRoomState = newRoomState;
+
+        switch (currentRoomState)
+        {
+            case roomState.Undiscover:
+
+                break;
+
+            case roomState.Started:
+
+                break;
+
+            case roomState.Complete:
+
+                break;
+        }
+    }
 }

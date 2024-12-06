@@ -118,13 +118,19 @@ public class GameManager : MonoBehaviour
     public void GenerateRoom()
     {
         currentRoomSettings = dungeonManager.currentRoom.roomSettings;
-        if (currentRoomSettings.proceduralGrid == true)
+        RoomData currentRoomData = dungeonManager.currentRoom;
+        if (currentRoomData.currentRoomState != roomState.Undiscover)
+        {
+            gridManager.LoadGridFromString(currentRoomData.roomSavedString, currentRoomSettings.GetGridSizeFromString());
+        }
+        else if (currentRoomSettings.proceduralGrid == true)
         {
             gridManager.GenerateGrid(currentRoomSettings.GetGridSize(), currentRoomSettings.roomPourcentageOfMine);
         }
         else
         {
-            gridManager.LoadGridFromString(currentRoomSettings.savedGridString, currentRoomSettings.GetGridSize());
+            gridManager.LoadGridFromString(currentRoomSettings.gridSavedString, currentRoomSettings.GetGridSizeFromString());
+            currentRoomData.ChangeRoomSate(roomState.Started);
         }
     }
     
@@ -156,7 +162,7 @@ public class GameManager : MonoBehaviour
         }
         else
         {
-            gridManager.LoadGridFromString(currentRoomSettings.savedGridString, currentRoomSettings.GetGridSize());
+            gridManager.LoadGridFromString(currentRoomSettings.gridSavedString, currentRoomSettings.GetGridSize());
         }
 
     }

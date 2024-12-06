@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   proceduralGrid: 1
   isMandatory: 1
-  savedGridString: 
-  minGridSize: {x: 10, y: 10}
+  gridSavedString: 
+  minGridSize: {x: 5, y: 5}
   maxGridSize: {x: 10, y: 10}
   roomPourcentageOfMine: 5
   haveStair: 0

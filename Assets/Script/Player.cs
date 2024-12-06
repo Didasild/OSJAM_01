@@ -213,12 +213,13 @@ public class Player : MonoBehaviour
         {
             cellClicked.MineExplosion();
         }
-
         //Augmente le compteur de clic et révèle la case
         else
         {
             cellClicked.ChangeState(CellState.Reveal);
         }
+
+        GameManager.Instance.dungeonManager.currentRoom.ChangeRoomSate(roomState.Started);
         IncreaseClickCount();
     }
 

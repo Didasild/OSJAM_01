@@ -32,11 +32,7 @@ public class DungeonManager : MonoBehaviour
     public GameObject buttonUp;
     public GameObject buttonDown;
 
-    public void Start()
-    {
-
-    }
-
+    #region FLOOR GENERATION
     public void GenerateFloor()
     {
         List<RoomSettings> availableRoomList = new List<RoomSettings>(roomSettingsList);
@@ -110,8 +106,30 @@ public class DungeonManager : MonoBehaviour
         UpdateButtonStates();
     }
 
+    public void GiveNeighbors()
+    {
+        foreach (RoomData room in roomList)
+        {
+            Vector2Int position = room.roomPosition;
+
+            // Cherche les voisins
+            room.roomUp = FindRoomAtPosition(position + Vector2Int.up);
+            room.roomDown = FindRoomAtPosition(position + Vector2Int.down);
+            room.roomLeft = FindRoomAtPosition(position + Vector2Int.left);
+            room.roomRight = FindRoomAtPosition(position + Vector2Int.right);
+        }
+    }
+    private RoomData FindRoomAtPosition(Vector2Int position)
+    {
+        // Cherche la room correspondant à la position donnée
+        return roomList.Find(r => r.roomPosition == position);
+    }
+    #endregion
+
+    #region BUTTON DIRECTION FONCTIONS
     public void ChangeRoomDirection(int directionValue)
     {
+        SaveRoomData();
         RoomDirection direction = (RoomDirection)directionValue;
         switch (direction)
         {
@@ -143,23 +161,9 @@ public class DungeonManager : MonoBehaviour
         UpdateButtonStates();
     }
 
-    public void GiveNeighbors()
+    public void SaveRoomData()
     {
-        foreach (RoomData room in roomList)
-        {
-            Vector2Int position = room.roomPosition;
-
-            // Cherche les voisins
-            room.roomUp = FindRoomAtPosition(position + Vector2Int.up);
-            room.roomDown = FindRoomAtPosition(position + Vector2Int.down);
-            room.roomLeft = FindRoomAtPosition(position + Vector2Int.left);
-            room.roomRight = FindRoomAtPosition(position + Vector2Int.right);
-        }
-    }
-    private RoomData FindRoomAtPosition(Vector2Int position)
-    {
-        // Cherche la room correspondant à la position donnée
-        return roomList.Find(r => r.roomPosition == position);
+        currentRoom.roomSavedString = GameManager.Instance.gridManager.SaveGridString();
     }
 
     public void UpdateButtonStates()
@@ -170,4 +174,7 @@ public class DungeonManager : MonoBehaviour
         buttonUp.SetActive(currentRoom.roomUp != null);
         buttonDown.SetActive(currentRoom.roomDown != null);
     }
+    #endregion
+
+
 }
