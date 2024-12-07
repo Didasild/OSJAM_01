@@ -30,7 +30,7 @@ public class DungeonManager : MonoBehaviour
     [NaughtyAttributes.ReadOnly]
     [SerializeField] private List<RoomData> roomList = new List<RoomData> ();
     //Private Room Settings
-    private RoomSettings[] roomSettingsList;
+    private RoomSettings[] _roomSettingsList;
 
     [Header("BUTTONS")]
     public GameObject buttonRight;
@@ -42,11 +42,11 @@ public class DungeonManager : MonoBehaviour
     #region FLOOR GENERATION
     public void GenerateFloor(Vector2Int floorSize)
     {
-        roomSettingsList = currentFloorSetting.roomSettingsList;
+        _roomSettingsList = currentFloorSetting.roomSettingsList;
 
         ClearFloor();
 
-        List<RoomSettings> availableRoomList = new List<RoomSettings>(roomSettingsList);
+        List<RoomSettings> availableRoomList = new List<RoomSettings>(_roomSettingsList);
         for (int y = 0; y < floorSize.y; y++)
         {
             for (int x = 0; x < floorSize.x; x++)
@@ -59,7 +59,7 @@ public class DungeonManager : MonoBehaviour
                 if (roomData != null)
                 {
                     roomData.Initialize(gridPosition); // Initialisation avec la position
-                    roomList.Add(roomData); // Ajouter à la liste
+                    roomList.Add(roomData); // Ajouter ï¿½ la liste
                     roomData.transform.SetParent(transform);
                 }
                 // Nommer la room pour faciliter le debug
@@ -78,29 +78,29 @@ public class DungeonManager : MonoBehaviour
             return;
         }
 
-        // Créer une liste temporaire de RoomSettings à assigner
+        // Crï¿½er une liste temporaire de RoomSettings ï¿½ assigner
         List<RoomSettings> tempRoomSettings = new List<RoomSettings>();
 
-        // Ajouter tous les éléments `isMandatory`
+        // Ajouter tous les ï¿½lï¿½ments `isMandatory`
         List<RoomSettings> mandatorySettings = availableRoomList.Where(rs => rs.isMandatory).ToList();
         tempRoomSettings.AddRange(mandatorySettings);
 
-        // Compléter la liste avec des éléments non obligatoires
+        // Complï¿½ter la liste avec des ï¿½lï¿½ments non obligatoires
         List<RoomSettings> nonMandatorySettings = availableRoomList.Where(rs => !rs.isMandatory).ToList();
         int remainingSlots = roomList.Count - tempRoomSettings.Count;
 
         if (remainingSlots > 0)
         {
-            // Ajouter aléatoirement des RoomSettings non obligatoires jusqu'à atteindre la taille de roomList
+            // Ajouter alï¿½atoirement des RoomSettings non obligatoires jusqu'ï¿½ atteindre la taille de roomList
             System.Random rng = new System.Random();
             nonMandatorySettings = nonMandatorySettings.OrderBy(x => rng.Next()).Take(remainingSlots).ToList();
             tempRoomSettings.AddRange(nonMandatorySettings);
         }
 
-        // Mélanger la liste finale de RoomSettings
+        // Mï¿½langer la liste finale de RoomSettings
         tempRoomSettings = tempRoomSettings.OrderBy(x => UnityEngine.Random.value).ToList();
 
-        // Assigner les RoomSettings mélangés aux RoomData
+        // Assigner les RoomSettings mï¿½langï¿½s aux RoomData
         for (int i = 0; i < roomList.Count; i++)
         {
             roomList[i].roomSettings = tempRoomSettings[i];
@@ -133,7 +133,7 @@ public class DungeonManager : MonoBehaviour
     }
     private RoomData FindRoomAtPosition(Vector2Int position)
     {
-        // Cherche la room correspondant à la position donnée
+        // Cherche la room correspondant ï¿½ la position donnï¿½e
         return roomList.Find(r => r.roomPosition == position);
     }
 

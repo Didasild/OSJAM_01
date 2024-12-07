@@ -4,7 +4,6 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
-using static UnityEngine.Rendering.DebugUI.Table;
 
 public class GridManager : MonoBehaviour
 {
@@ -13,7 +12,6 @@ public class GridManager : MonoBehaviour
     public Cell cellPrefab; // Le prefab de la cellule
     public float cellSize = 0.16f;   // Taille des cellules (espacement)
     public float timeBetweenApparition = 0.1f;
-
 
     [Header("GRID INFORMATIONS")]
     [NaughtyAttributes.ReadOnly]
@@ -39,33 +37,33 @@ public class GridManager : MonoBehaviour
     {
         if (cellPrefab == null)
         {
-            Debug.LogError("Prefab de cellule non assigné !");
+            Debug.LogError("Prefab de cellule non assignï¿½ !");
             return;
         }
 
-        // Efface les anciennes cellules si la grille est regénérée
+        // Efface les anciennes cellules si la grille est regï¿½nï¿½rï¿½e
         ClearGrid();
 
-        // Parcourir les lignes et colonnes pour générer la grille
+        // Parcourir les lignes et colonnes pour gï¿½nï¿½rer la grille
         for (int row = 0; row < gridSize.y; row++)
         {
             for (int col = 0; col < gridSize.x; col++)
             {
                 Vector2 gridOffset = GetGridOffset(cellSize, gridSize);
-                // Calculer la position de chaque cellule (ajustée par l'offset)
+                // Calculer la position de chaque cellule (ajustï¿½e par l'offset)
                 Vector2 cellPosition = new Vector2(col * cellSize, -row * cellSize) + gridOffset ;
 
                 Cell newCell = CellInstanciation(cellPosition, row, col);
                 newCell.Initialize(new Vector2Int(row, col));
             }
         }
-        //Génère la liste des voisins
+        //Gï¿½nï¿½re la liste des voisins
         foreach (Cell cell in cellList)
         {
             cell.GenerateNeighborsList(this);
         }
 
-        //Transforme tout les enfants en Empty
+        //Transforme tous les enfants en Empty
         foreach (Cell cell in cellList)
         {
             Cell cellToDefine = cell.GetComponent<Cell>();
@@ -73,14 +71,14 @@ public class GridManager : MonoBehaviour
         }
         Debug.Log("Grid Size: " + gridSize);
 
-        //Set les mines
+        //Set mines
         SetMineType(pourcentageOfMine);
 
         //Setup l'animation d'apparition
         ActiveListOfCells(timeBetweenApparition);
     }
 
-    public void SetMineType(int pourcentageOfMine)
+    private void SetMineType(int pourcentageOfMine)
     {
         if (cellList.Count == 0)
         {
@@ -88,10 +86,10 @@ public class GridManager : MonoBehaviour
             return;
         }
 
-        // S'assurer que le nombre d'objets à changer ne dépasse pas la taille de la liste
+        // S'assurer que le nombre d'objets ï¿½ changer ne dï¿½passe pas la taille de la liste
         int countToChange = Mathf.RoundToInt(cellList.Count * (pourcentageOfMine / 100f));
 
-        // Liste temporaire pour suivre les objets déjà modifiés
+        // Liste temporaire pour suivre les objets dï¿½jï¿½ modifiï¿½s
         List<Cell> alreadyChanged = new List<Cell>();
 
         for (int i = 0;i < countToChange;i++)
@@ -102,8 +100,7 @@ public class GridManager : MonoBehaviour
                 int randomIndex = UnityEngine.Random.Range(0, cellList.Count);
                 randomCell = cellList[randomIndex];
             } while (alreadyChanged.Contains(randomCell));
-
-                alreadyChanged.Add(randomCell);
+            alreadyChanged.Add(randomCell);
 
             Cell cell = randomCell.GetComponent<Cell>();
             if (cell != null)
@@ -116,14 +113,14 @@ public class GridManager : MonoBehaviour
 
     public void SetItemsType(CellType cellType, int numberOfItem, ItemTypeEnum itemType = ItemTypeEnum.None)
     {
-        // Crée la liste des cellule vide + hint
+        // Crï¿½e la liste des cellules vides + hint
         List<Cell> emptyCellsList = GetCoverCellsByType(CellType.Empty);
         if (cellType != CellType.Gate)
         {
             emptyCellsList.AddRange(GetCoverCellsByType(CellType.Hint));
         }
 
-        // Si aucune cellule dans la liste des "cover cells", utiliser la liste générale
+        // Si aucune cellule dans la liste des "cover cells", utiliser la liste gï¿½nï¿½rale
         if (emptyCellsList.Count == 0)
         {
             emptyCellsList = GetCellsByType(CellType.Empty);
@@ -133,26 +130,26 @@ public class GridManager : MonoBehaviour
             }
         }
 
-        // S'assurer de ne pas essayer de sélectionner plus de cellules que disponibles
+        // S'assurer de ne pas essayer de sï¿½lectionner plus de cellules que disponibles
         numberOfItem = Mathf.Min(numberOfItem, emptyCellsList.Count);
 
-        // Liste temporaire pour éviter les doublons
+        // Liste temporaire pour ï¿½viter les doublons
         List<Cell> selectedCells = new List<Cell>();
 
         for (int i = 0; i < numberOfItem; i++)
         {
-            // Génère un index aléatoire parmi les cellules restantes
+            // Gï¿½nï¿½re un index alï¿½atoire parmi les cellules restantes
             int randomIndex = UnityEngine.Random.Range(0, emptyCellsList.Count);
 
-            // Sélectionne une cellule et la retire de la liste temporaire
+            // Sï¿½lectionne une cellule et la retire de la liste temporaire
             Cell selectedCell = emptyCellsList[randomIndex];
             emptyCellsList.RemoveAt(randomIndex);
 
-            // Ajoute la cellule à la liste des cellules sélectionnées
+            // Ajoute la cellule ï¿½ la liste des cellules sï¿½lectionnï¿½es
             selectedCells.Add(selectedCell);
         }
 
-        // Change le type de chaque cellule sélectionnée
+        // Change le type de chaque cellule sï¿½lectionnï¿½e
         foreach (Cell cell in selectedCells)
         {
             cell.ChangeItemType(itemType);
@@ -175,7 +172,7 @@ public class GridManager : MonoBehaviour
     #region LOADED GRID GENERATION
     public void LoadGridFromString(string gridString, Vector2Int gridSize)
     {
-        //Retourne une erreur si il n'y a pas de string
+        //Retourne une erreur s'il n'y a pas de string
         if (string.IsNullOrEmpty(gridString))
         {
             Debug.LogError("Grid state est vide !");
@@ -189,36 +186,36 @@ public class GridManager : MonoBehaviour
 
         foreach (string cellData in cellDataArray)
         {
-            // Découper chaque cellule par "_"
+            // Dï¿½couper chaque cellule par "_"
             string[] cellInfo = cellData.Split('_');
-            if (cellInfo.Length != 5) continue; // Si les données ne sont pas complètes, ignorer
+            if (cellInfo.Length != 5) continue; // Si les donnï¿½es ne sont pas complï¿½tes, ignorer
 
-            // Extraire les coordonnées et les autres informations
+            // Extraire les coordonnï¿½es et les autres informations
             int x = int.Parse(cellInfo[0]);
             int y = int.Parse(cellInfo[1]);
             string stateAbbreviation = cellInfo[2];
             string typeAbbreviation = cellInfo[3];
             string itemTypeAbbreviation = cellInfo[4];
 
-            // Créer une nouvelle cellule à ces coordonnées
-            // Calculer la position de chaque cellule (ajustée par l'offset)
+            // Crï¿½er une nouvelle cellule ï¿½ ces coordonnï¿½es
+            // Calculer la position de chaque cellule (ajustï¿½e par l'offset)
             Vector2 gridOffset = GetGridOffset(cellSize, gridSize);
             Vector2 cellPosition = new Vector2(y * cellSize, -x * cellSize) + gridOffset;
 
             // Instancier une nouvelle cellule
             Cell newCell = CellInstanciation(cellPosition, x, y);
 
-            // Convertir les abréviations en valeurs d'enum
+            // Convertir les abrï¿½viations en valeurs d'enum
             CellState state = GetStateFromAbbreviation(stateAbbreviation);
             CellType type = GetTypeFromAbbreviation(typeAbbreviation);
             ItemTypeEnum itemType = GetItemTypeFromAbbreviation(itemTypeAbbreviation);
 
-            // Initialiser la cellule avec ses nouveaux états
+            // Initialiser la cellule avec ses nouveaux ï¿½tats
             newCell.currentState = state;
             newCell.currentType = type;
             newCell.currentItemType = itemType;
 
-            newCell.Initialize(new Vector2Int(x, y)); // Initialisation avec les bonnes coordonnées et le bon état
+            newCell.Initialize(new Vector2Int(x, y)); // Initialisation avec les bonnes coordonnï¿½es et le bon ï¿½tat
         }
         foreach (Cell cell in cellList)
         {
@@ -228,7 +225,7 @@ public class GridManager : MonoBehaviour
         ActiveListOfCells(timeBetweenApparition);
     }
 
-    public CellState GetStateFromAbbreviation(string abbreviation)
+    private CellState GetStateFromAbbreviation(string abbreviation)
     {
         return abbreviation switch
         {
@@ -238,11 +235,11 @@ public class GridManager : MonoBehaviour
             "Pl" => CellState.PlantedSword,
             "Re" => CellState.Reveal,
             "No" => CellState.None,
-            _ => throw new ArgumentException($"Abréviation inconnue : {abbreviation}")
+            _ => throw new ArgumentException($"Abrï¿½viation inconnue : {abbreviation}")
         };
     }
 
-    public CellType GetTypeFromAbbreviation(string abbreviation)
+    private CellType GetTypeFromAbbreviation(string abbreviation)
     {
         return abbreviation switch
         {
@@ -251,11 +248,11 @@ public class GridManager : MonoBehaviour
             "Hi" => CellType.Hint,
             "Ga" => CellType.Gate,
             "It" => CellType.Item,
-            _ => throw new ArgumentException($"Abréviation inconnue : {abbreviation}")
+            _ => throw new ArgumentException($"Abrï¿½viation inconnue : {abbreviation}")
         };
     }
 
-    public ItemTypeEnum GetItemTypeFromAbbreviation(string abbreviation)
+    private ItemTypeEnum GetItemTypeFromAbbreviation(string abbreviation)
     {
         return abbreviation switch
         {
@@ -263,7 +260,7 @@ public class GridManager : MonoBehaviour
             "Sw" => ItemTypeEnum.Sword,
             "Co" => ItemTypeEnum.Coin,
             "No" => ItemTypeEnum.None,
-            _ => throw new ArgumentException($"Abréviation inconnue : {abbreviation}")
+            _ => throw new ArgumentException($"Abrï¿½viation inconnue : {abbreviation}")
         };
     }
 
@@ -271,15 +268,15 @@ public class GridManager : MonoBehaviour
 
     #region GRID GENERATION FONCTIONS
 
-    public Vector2 GetGridOffset(float cellSize, Vector2Int gridSize)
+    private Vector2 GetGridOffset(float cellSize, Vector2Int gridSize)
     {
         // Calcul de l'offset pour centrer la grille
         float gridWidth = gridSize.x * cellSize; // Largeur totale de la grille
         float gridHeight = gridSize.y * cellSize;   // Hauteur totale de la grille
 
-        // Ajustement pour la parité des dimensions
-        float xAdjustment = (gridSize.x % 2 == 0) ? 0 : cellSize / 2; // Décalage si impair
-        float yAdjustment = (gridSize.y % 2 == 0) ? 0 : -cellSize / 2; // Décalage si impair
+        // Ajustement pour la paritï¿½ des dimensions
+        float xAdjustment = (gridSize.x % 2 == 0) ? 0 : cellSize / 2; // Dï¿½calage si impair
+        float yAdjustment = (gridSize.y % 2 == 0) ? 0 : -cellSize / 2; // Dï¿½calage si impair
 
         Vector2 gridOffset = new Vector2(
             -gridWidth / 2 + cellSize / 2 + xAdjustment, // Ajustement horizontal
@@ -288,12 +285,12 @@ public class GridManager : MonoBehaviour
         return gridOffset;
     }
 
-    public Cell CellInstanciation(Vector2 cellPosition, int row, int col)
+    private Cell CellInstanciation(Vector2 cellPosition, int row, int col)
     {
         Cell newCell = Instantiate(cellPrefab, cellPosition, Quaternion.identity);
         newCell.transform.SetParent(transform);
         cellList.Add(newCell);
-        newCell.name = $"Cell_{row}_{col}"; // Renommer la cellule pour faciliter le débogage
+        newCell.name = $"Cell_{row}_{col}"; // Renommer la cellule pour faciliter le dï¿½bogage
         return newCell;
     }
 
@@ -303,19 +300,19 @@ public class GridManager : MonoBehaviour
 
         foreach (Cell cell in cellList)
         {
-            // Coordonnées de la cellule
+            // Coordonnï¿½es de la cellule
             int x = cell._cellPosition.x;
             int y = cell._cellPosition.y;
 
-            // État de la cellule (par exemple "em" pour Empty, "co" pour Cover)
+            // ï¿½tat de la cellule (par exemple "em" pour Empty, "co" pour Cover)
             string state = cell.currentState.ToString().Substring(0, 2);
             string type = cell.currentType.ToString().Substring(0, 2);
             string itemType = cell.currentItemType.ToString().Substring(0, 2);
 
-            // Ajouter à la chaîne sous forme : x_y_state|
+            // Ajouter ï¿½ la chaï¿½ne sous forme : x_y_state|
             gridStringBuilder.Append($"{x}_{y}_{state}_{type}_{itemType}|");
         }
-        // Retirer le dernier caractère "|" pour une chaîne propre
+        // Retirer le dernier caractï¿½re "|" pour une chaï¿½ne propre
         if (gridStringBuilder.Length > 0)
         {
             gridStringBuilder.Length--;
@@ -323,7 +320,7 @@ public class GridManager : MonoBehaviour
         return gridStringBuilder.ToString();
     }
 
-    public void ClearGrid()
+    private void ClearGrid()
     {
         foreach (Cell cell in cellList)
         {
@@ -343,12 +340,12 @@ public class GridManager : MonoBehaviour
         StartCoroutine(CO_ActiveWithDelay(timeBetweenApparition));
     }
 
-    public IEnumerator CO_ActiveWithDelay(float timeBetweenApparition)
+    private IEnumerator CO_ActiveWithDelay(float timeBetweenApparition)
     {
         foreach (Cell cell in cellList)
         {
             cell.gameObject.SetActive(true);
-            yield return new WaitForSeconds(timeBetweenApparition); // Attends le délai avant de continuer
+            yield return new WaitForSeconds(timeBetweenApparition); // Attends le dï¿½lai avant de continuer
         }
     }
     #endregion
@@ -378,7 +375,7 @@ public class GridManager : MonoBehaviour
         }
         return emptyCells;
     }
-    public List<Cell> GetCoverCellsByType(CellType typeOfCellWanted)
+    private List<Cell> GetCoverCellsByType(CellType typeOfCellWanted)
     {
         List<Cell> emptyCoverCells = new List<Cell>();
         foreach (Cell cell in cellList)
@@ -391,7 +388,7 @@ public class GridManager : MonoBehaviour
         return emptyCoverCells;
     }
 
-    public int GetTheoricalMineLeft()
+    private int GetTheoricalMineLeft()
     {
         int nbRealOfMine = GetCellsByType(CellType.Mine).Count;
         int nbOfFlagged = GetCellsByState(CellState.Flag).Count;
@@ -402,7 +399,7 @@ public class GridManager : MonoBehaviour
     {
         List<Cell> neighbors = new List<Cell>();
 
-        // Définir les offsets pour les 8 directions autour d'une cellule
+        // Dï¿½finir les offsets pour les 8 directions autour d'une cellule
         int[,] directions = new int[,]
         {
             { -1, -1 }, { -1, 0 }, { -1, 1 }, // Haut-gauche, Haut, Haut-droite
@@ -421,14 +418,14 @@ public class GridManager : MonoBehaviour
 
             if (neighbor != null)
             {
-                neighbors.Add(neighbor); // Ajoute le voisin à la liste
+                neighbors.Add(neighbor); // Ajoute le voisin ï¿½ la liste
             }
         }
         return neighbors;
     }
     #endregion
 
-    #region MINE COUNTER // A DEPLACER DANS PLAYER OU AUTRE PLUS PERTINENT
+    #region MINE COUNTER // A DÃ‰PLACER DANS PLAYER OU AUTRE PLUS PERTINENT
     public void UpdateMineCounter()
     {
         theoricalMineLeft = GetTheoricalMineLeft();
