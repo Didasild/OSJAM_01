@@ -54,8 +54,9 @@ public class GridManager : MonoBehaviour
         {
             for (int col = 0; col < gridSize.x; col++)
             {
+                Vector2 gridOffset = GetGridOffset(cellSize, gridSize);
                 // Calculer la position de chaque cellule (ajustée par l'offset)
-                Vector2 cellPosition = new Vector2(col * cellSize, -row * cellSize) + GetGridOffset(cellSize, gridSize);
+                Vector2 cellPosition = new Vector2(col * cellSize, -row * cellSize) + gridOffset ;
 
                 Cell newCell = CellInstanciation(cellPosition, row, col);
                 newCell.Initialize(new Vector2Int(row, col));
@@ -73,6 +74,7 @@ public class GridManager : MonoBehaviour
             Cell cellToDefine = cell.GetComponent<Cell>();
             cellToDefine.ChangeType(CellType.Empty);
         }
+        Debug.Log("Grid Size: " + gridSize);
 
         SetMineType(pourcentageOfMine);
 
@@ -194,18 +196,19 @@ public class GridManager : MonoBehaviour
             if (cellInfo.Length != 5) continue; // Si les données ne sont pas complètes, ignorer
 
             // Extraire les coordonnées et les autres informations
-            int y = int.Parse(cellInfo[0]);
-            int x = int.Parse(cellInfo[1]);
+            int x = int.Parse(cellInfo[0]);
+            int y = int.Parse(cellInfo[1]);
             string stateAbbreviation = cellInfo[2];
             string typeAbbreviation = cellInfo[3];
             string itemTypeAbbreviation = cellInfo[4];
 
             // Créer une nouvelle cellule à ces coordonnées
             // Calculer la position de chaque cellule (ajustée par l'offset)
-            Vector2 cellPosition = new Vector2(x * cellSize, -y * cellSize) + GetGridOffset(cellSize, gridSize);
+            Vector2 gridOffset = GetGridOffset(cellSize, gridSize);
+            Vector2 cellPosition = new Vector2(y * cellSize, -x * cellSize) + gridOffset;
 
             // Instancier une nouvelle cellule
-            Cell newCell = CellInstanciation(cellPosition, y, x);
+            Cell newCell = CellInstanciation(cellPosition, x, y);
 
             // Convertir les abréviations en valeurs d'enum
             CellState state = GetStateFromAbbreviation(stateAbbreviation);

@@ -17,14 +17,19 @@ public class DungeonManager : MonoBehaviour
 {
     [Header("GENERAL SETTINGS")]
     public RoomData roomPrefab;
-    public Vector2 floorSize = new Vector2 (3, 4);
+
+    [Header("FLOOR SETTINGS")]
+    public FloorSettings currentFloorSetting;
+    public FloorSettings[] floorSettingsList;
+    //public Vector2 floorSize = new Vector2 (3, 4);
 
     [Header("ROOM SETTINGS")]
-    public RoomSettings[] roomSettingsList;
     [NaughtyAttributes.ReadOnly]
     public RoomData currentRoom;
     [NaughtyAttributes.ReadOnly]
     [SerializeField] private List<RoomData> roomList = new List<RoomData> ();
+    //Private Room Settings
+    public RoomSettings[] roomSettingsList;
 
     [Header("BUTTONS")]
     public GameObject buttonRight;
@@ -33,8 +38,12 @@ public class DungeonManager : MonoBehaviour
     public GameObject buttonDown;
 
     #region FLOOR GENERATION
-    public void GenerateFloor()
+    public void GenerateFloor(Vector2Int floorSize)
     {
+        roomSettingsList = currentFloorSetting.roomSettingsList;
+
+        ClearFloor();
+
         List<RoomSettings> availableRoomList = new List<RoomSettings>(roomSettingsList);
         for (int y = 0; y < floorSize.y; y++)
         {
@@ -103,6 +112,7 @@ public class DungeonManager : MonoBehaviour
         int randomIndex = Random.Range(0, roomList.Count);
         selectedRoomData = roomList[randomIndex];
         currentRoom = selectedRoomData;
+        GameManager.Instance.GenerateRoom(currentRoom);
         UpdateButtonStates();
     }
 
@@ -124,9 +134,22 @@ public class DungeonManager : MonoBehaviour
         // Cherche la room correspondant à la position donnée
         return roomList.Find(r => r.roomPosition == position);
     }
+
+    public void ClearFloor()
+    {
+        foreach (RoomData room in roomList)
+        {
+            if (room != null)
+            {
+                Destroy(room.gameObject);
+            }
+        }
+        roomList = new List<RoomData>();
+    }
+
     #endregion
 
-    #region BUTTON DIRECTION FONCTIONS
+    #region ON CLICK BUTTON FONCTIONS
     public void ChangeRoomDirection(int directionValue)
     {
         SaveRoomData();
@@ -137,24 +160,28 @@ public class DungeonManager : MonoBehaviour
                 if (currentRoom.roomRight != null)
                 {
                     currentRoom = currentRoom.roomRight;
+                    GameManager.Instance.GenerateRoom(currentRoom);
                 }
                 break;
             case RoomDirection.Left:
                 if (currentRoom.roomLeft != null)
                 {
                     currentRoom = currentRoom.roomLeft;
+                    GameManager.Instance.GenerateRoom(currentRoom);
                 }
                 break;
             case RoomDirection.Up:
                 if (currentRoom.roomUp != null)
                 {
                     currentRoom = currentRoom.roomUp;
+                    GameManager.Instance.GenerateRoom(currentRoom);
                 }
                 break;
             case RoomDirection.Down:
                 if (currentRoom.roomDown != null)
                 {
                     currentRoom = currentRoom.roomDown;
+                    GameManager.Instance.GenerateRoom(currentRoom);
                 }
                 break;
         }

@@ -13,7 +13,7 @@ public class FloorSettings : ScriptableObject
     [SerializeField] private Vector2Int maxGridSize = new Vector2Int(4, 4);
 
     [Header("ROOM SETTINGS")]
-    [SerializeField] private RoomSettings[] roomSettingsList;
+    [SerializeField] public RoomSettings[] roomSettingsList;
 
     public Vector2Int GetFloorSize()
     {

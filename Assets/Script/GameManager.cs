@@ -91,11 +91,20 @@ public class GameManager : MonoBehaviour
 
     public void InGameState()
     {
-        dungeonManager.GenerateFloor();
-        GenerateRoom();
+        if (dungeonManager.floorSettingsList.Length > 1)
+        {
+            //Génère un floor et une première room
+            dungeonManager.currentFloorSetting = dungeonManager.floorSettingsList[0];
+            dungeonManager.GenerateFloor(dungeonManager.currentFloorSetting.GetFloorSize());
 
-        player.ResetHealtPoint();
-        player.ResetClickCounter();
+            //Reset les data
+            player.ResetHealtPoint();
+            player.ResetClickCounter();
+        }
+        else
+        {
+            Debug.LogError("Pas de floor dans la floor setting list du Dungeon Manager");
+        }
     }
 
     public void RestartGame()
@@ -115,22 +124,21 @@ public class GameManager : MonoBehaviour
 
     #region ROOM GENERATION
 
-    public void GenerateRoom()
+    public void GenerateRoom(RoomData roomData)
     {
-        currentRoomSettings = dungeonManager.currentRoom.roomSettings;
-        RoomData currentRoomData = dungeonManager.currentRoom;
-        if (currentRoomData.currentRoomState != roomState.Undiscover)
+        currentRoomSettings = roomData.roomSettings;
+        if (roomData.currentRoomState != roomState.Undiscover)
         {
-            gridManager.LoadGridFromString(currentRoomData.roomSavedString, currentRoomSettings.GetGridSizeFromString());
+            gridManager.LoadGridFromString(roomData.roomSavedString, currentRoomSettings.GetRoomSizeFromString(roomData.roomSavedString));
         }
-        else if (currentRoomSettings.proceduralGrid == true)
+        else if (currentRoomSettings.proceduralRoom == true)
         {
-            gridManager.GenerateGrid(currentRoomSettings.GetGridSize(), currentRoomSettings.roomPourcentageOfMine);
+            gridManager.GenerateGrid(currentRoomSettings.GetRoomSize(), currentRoomSettings.roomPourcentageOfMine);
         }
         else
         {
-            gridManager.LoadGridFromString(currentRoomSettings.gridSavedString, currentRoomSettings.GetGridSizeFromString());
-            currentRoomData.ChangeRoomSate(roomState.Started);
+            gridManager.LoadGridFromString(currentRoomSettings.roomLoadString, currentRoomSettings.GetRoomSizeFromString(currentRoomSettings.roomLoadString));
+            roomData.ChangeRoomSate(roomState.Started);
         }
     }
     
@@ -141,29 +149,22 @@ public class GameManager : MonoBehaviour
         floorLevelText.text = currentFloorLevel.ToString();
 
         // Calculer l'index du floor actuel dans la liste
-        int floorIndex = currentFloorLevel % roomSettingsList.Length;
+        int floorIndex = currentFloorLevel % dungeonManager.floorSettingsList.Length;
 
         //Récupère le floor suivant dans la liste
-        currentRoomSettings = roomSettingsList[floorIndex];
+        dungeonManager.currentFloorSetting = dungeonManager.floorSettingsList[floorIndex];
 
+        //Génère un floor et la room de départ
+        dungeonManager.GenerateFloor(dungeonManager.currentFloorSetting.GetFloorSize());
+
+        /// A REDEFINIR AU BESOIN
         // Vérifier si on recommence une boucle
-        if (floorIndex == 0 && currentFloorLevel > 0)
-        {
-            IncreaseLoopDiffficulty(pourcentageOfMineIncrement);
-        }
-        //Détermine le pourcentage de mine
-        pourcentageOfMine = currentRoomSettings.roomPourcentageOfMine + pourcentageUpdate;
-
-        //Check si c'est une grille procédurale ou généré
-        if (currentRoomSettings.proceduralGrid == true)
-        {
-            //Génère une grille aléatoire avec les Settings récupérés
-            gridManager.GenerateGrid(currentRoomSettings.GetGridSize(), pourcentageOfMine);
-        }
-        else
-        {
-            gridManager.LoadGridFromString(currentRoomSettings.gridSavedString, currentRoomSettings.GetGridSize());
-        }
+        //if (floorIndex == 0 && currentFloorLevel > 0)
+        //{
+        //    IncreaseLoopDiffficulty(pourcentageOfMineIncrement);
+        //}
+        ////Détermine le pourcentage de mine
+        //pourcentageOfMine = currentRoomSettings.roomPourcentageOfMine + pourcentageUpdate;
 
     }
 

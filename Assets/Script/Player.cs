@@ -199,7 +199,7 @@ public class Player : MonoBehaviour
         // VOIR POUR UNE MEILLEURE CONDITION GENRE SI GRID PROCEDURAL ETC...
         int nbOfCellsCover = GameManager.Instance.gridManager.GetCellsByState(CellState.Cover).Count;
         int nbOfCells = GameManager.Instance.gridManager.cellList.Count;
-        if (nbOfCells == nbOfCellsCover && GameManager.Instance.currentRoomSettings.proceduralGrid == true)
+        if (nbOfCells == nbOfCellsCover && GameManager.Instance.currentRoomSettings.proceduralRoom == true)
         {
             cellClicked.ChangeType(CellType.Empty);
             cellClicked.RemoveNeighborsMine();

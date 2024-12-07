@@ -4,16 +4,16 @@ using UnityEngine;
 public class RoomSettings : ScriptableObject
 {
     [Header("GENERAL")]
-    public bool proceduralGrid = true;
+    public bool proceduralRoom = true;
     public bool isMandatory = false;
 
     [Header("________LOADED GRID SETTINGS")]
-    public string gridSavedString;
+    public string roomLoadString; // USE ONLY FOR FIRST GENERATION NEVER CHANGE
 
     [Header("________PROCEDURAL GRID SETTINGS")]
     [Header("ROOM GRID")]
-    [SerializeField] private Vector2Int minGridSize = new Vector2Int(5,5);
-    [SerializeField] private Vector2Int maxGridSize = new Vector2Int(10, 10);
+    [SerializeField] private Vector2Int minRoomSize = new Vector2Int(5,5);
+    [SerializeField] private Vector2Int maxRoomSize = new Vector2Int(10, 10);
     public int roomPourcentageOfMine = 5;
     [Header("STAIR")]
     [SerializeField] private bool haveStair;
@@ -24,12 +24,13 @@ public class RoomSettings : ScriptableObject
     [SerializeField] private int minSword;
     [SerializeField] private int maxSword;
 
-    public Vector2Int GetGridSize()
+    #region PROCEDURAL GET INFOS
+    public Vector2Int GetRoomSize()
     {
-        int randomRow = Random.Range(minGridSize.x, maxGridSize.x+1);
-        int randomCol = Random.Range(minGridSize.y, maxGridSize.y+1);
-        Vector2Int gridSize = new Vector2Int(randomRow, randomCol);
-        return gridSize;
+        int randomRow = Random.Range(minRoomSize.x, maxRoomSize.x+1);
+        int randomCol = Random.Range(minRoomSize.y, maxRoomSize.y+1);
+        Vector2Int roomSize = new Vector2Int(randomRow, randomCol);
+        return roomSize;
     }
 
     public int GetNumberOfPotion()
@@ -43,31 +44,34 @@ public class RoomSettings : ScriptableObject
         int numberOfSword = Random.Range(minSword, maxSword + 1);
         return numberOfSword;
     }
+    #endregion
 
-    public Vector2Int GetGridSizeFromString()
+    #region LOADED GET INFOS
+    public Vector2Int GetRoomSizeFromString(string roomSavedString)
     {
         int maxRow = 0;
         int maxCol = 0;
-
         // Diviser la chaîne en segments individuels
-        string[] cellDataArray = gridSavedString.Split('|');
+        string[] cellDataArray = roomSavedString.Split('|');
 
         foreach (string cellData in cellDataArray)
         {
             // Extraire les coordonnées de chaque cellule
             string[] parts = cellData.Split('_');
-            if (parts.Length >= 2)
+            if (parts.Length >= 3) // Vérifier qu'on a bien les coordonnées et les états
             {
-                int row = int.Parse(parts[0]);
-                int col = int.Parse(parts[1]);
-
-                // Trouver les valeurs maximales pour les coordonnées
-                maxRow = Mathf.Max(maxRow, row);
-                maxCol = Mathf.Max(maxCol, col);
+                if (int.TryParse(parts[0], out int row) && int.TryParse(parts[1], out int col))
+                {
+                    // Trouver les valeurs maximales pour les coordonnées
+                    maxRow = Mathf.Max(maxRow, row);
+                    maxCol = Mathf.Max(maxCol, col);
+                }
             }
         }
+        Debug.Log($"Grid Size Savec:{maxRow + 1} rows {maxCol + 1} columns");
 
-        // Ajouter 1 pour transformer les index en tailles (par exemple, index 0-4 = taille 5)
+        // Retourner les dimensions (colonnes = maxCol + 1, lignes = maxRow + 1)
         return new Vector2Int(maxCol + 1, maxRow + 1);
     }
+    #endregion
 }
