@@ -12,7 +12,7 @@ public enum roomState
 public class RoomData : MonoBehaviour
 {
     #region PARAMETERS
-    [Header("GENEREL SETTINGS")]
+    [Header("GENERAL SETTINGS")]
     [NaughtyAttributes.ReadOnly] public RoomSettings roomSettings;
     [NaughtyAttributes.ReadOnly] public roomState currentRoomState;
     [NaughtyAttributes.ReadOnly] public string roomSavedString;

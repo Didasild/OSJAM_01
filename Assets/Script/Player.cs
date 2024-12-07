@@ -89,7 +89,7 @@ public class Player : MonoBehaviour
             {
                 ClickOnItemCell(_cellClicked, ItemTypeEnum.Sword);
             }
-            //Update le compteur de mine restantes
+            //Update le compteur de mines restantes
             GameManager.Instance.gridManager.UpdateMineCounter();
             ResetClickedState();
         }
@@ -136,7 +136,7 @@ public class Player : MonoBehaviour
                 _cellOver.ChangeState(CellState.Cover);
                 IncreaseSwordCounter();
             }
-            //Update le compteur de mine restantes
+            //Update le compteur de mines restantes
             GameManager.Instance.gridManager.UpdateMineCounter();
         }
         #endregion
@@ -196,7 +196,7 @@ public class Player : MonoBehaviour
     public void ClickOnCoverCell(Cell cellClicked)
     {
         //V�rifie si la grid doit �tre proc�durale et est compl�tement couverte puis g�n�re les items
-        // VOIR POUR UNE MEILLEURE CONDITION GENRE SI GRID PROCEDURAL ETC...
+        // VOIR POUR UNE MEILLEURE CONDITION GENRE SI GRID PROCEDURAL…
         int nbOfCellsCover = GameManager.Instance.gridManager.GetCellsByState(CellState.Cover).Count;
         int nbOfCells = GameManager.Instance.gridManager.cellList.Count;
         if (nbOfCells == nbOfCellsCover && GameManager.Instance.currentRoomSettings.proceduralRoom == true)
