@@ -35,6 +35,7 @@ public enum ItemTypeEnum
 
 public class Cell : MonoBehaviour
 {
+    #region PARAMETERS
     [Header("CELL INFORMATIONS")]
     public CellState currentState;
     public CellType currentType;
@@ -57,6 +58,8 @@ public class Cell : MonoBehaviour
 
     [Header("CELL ANIMS STATE")]
     public GameObject animParent;
+    #endregion
+
 
     #region INIT
     public void Initialize(Vector2Int cellPosition)

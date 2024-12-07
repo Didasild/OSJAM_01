@@ -15,6 +15,7 @@ public enum RoomDirection
 
 public class DungeonManager : MonoBehaviour
 {
+    #region PARAMETERS
     [Header("GENERAL SETTINGS")]
     public RoomData roomPrefab;
 
@@ -29,13 +30,14 @@ public class DungeonManager : MonoBehaviour
     [NaughtyAttributes.ReadOnly]
     [SerializeField] private List<RoomData> roomList = new List<RoomData> ();
     //Private Room Settings
-    public RoomSettings[] roomSettingsList;
+    private RoomSettings[] roomSettingsList;
 
     [Header("BUTTONS")]
     public GameObject buttonRight;
     public GameObject buttonLeft;
     public GameObject buttonUp;
     public GameObject buttonDown;
+    #endregion
 
     #region FLOOR GENERATION
     public void GenerateFloor(Vector2Int floorSize)
@@ -112,7 +114,7 @@ public class DungeonManager : MonoBehaviour
         int randomIndex = Random.Range(0, roomList.Count);
         selectedRoomData = roomList[randomIndex];
         currentRoom = selectedRoomData;
-        GameManager.Instance.GenerateRoom(currentRoom);
+        GameManager.Instance.ChangeRoom(currentRoom);
         UpdateButtonStates();
     }
 
@@ -149,7 +151,7 @@ public class DungeonManager : MonoBehaviour
 
     #endregion
 
-    #region ON CLICK BUTTON FONCTIONS
+    #region BUTTON FONCTIONS
     public void ChangeRoomDirection(int directionValue)
     {
         SaveRoomData();
@@ -160,28 +162,28 @@ public class DungeonManager : MonoBehaviour
                 if (currentRoom.roomRight != null)
                 {
                     currentRoom = currentRoom.roomRight;
-                    GameManager.Instance.GenerateRoom(currentRoom);
+                    GameManager.Instance.ChangeRoom(currentRoom);
                 }
                 break;
             case RoomDirection.Left:
                 if (currentRoom.roomLeft != null)
                 {
                     currentRoom = currentRoom.roomLeft;
-                    GameManager.Instance.GenerateRoom(currentRoom);
+                    GameManager.Instance.ChangeRoom(currentRoom);
                 }
                 break;
             case RoomDirection.Up:
                 if (currentRoom.roomUp != null)
                 {
                     currentRoom = currentRoom.roomUp;
-                    GameManager.Instance.GenerateRoom(currentRoom);
+                    GameManager.Instance.ChangeRoom(currentRoom);
                 }
                 break;
             case RoomDirection.Down:
                 if (currentRoom.roomDown != null)
                 {
                     currentRoom = currentRoom.roomDown;
-                    GameManager.Instance.GenerateRoom(currentRoom);
+                    GameManager.Instance.ChangeRoom(currentRoom);
                 }
                 break;
         }

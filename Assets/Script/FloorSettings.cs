@@ -4,6 +4,7 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "FloorSettings", menuName = "DungeonGeneration/FloorSettings")]
 public class FloorSettings : ScriptableObject
 {
+    #region PARAMETERS
     [Header("GENERAL")]
     public bool proceduralFloor = true;
 
@@ -14,6 +15,7 @@ public class FloorSettings : ScriptableObject
 
     [Header("ROOM SETTINGS")]
     [SerializeField] public RoomSettings[] roomSettingsList;
+    #endregion
 
     public Vector2Int GetFloorSize()
     {

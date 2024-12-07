@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class CellVisualManager : MonoBehaviour
 {
+    #region PARAMETERS
     [Header("_______CELL VISUAL")]
     [Header("ITEMS VISUAL")]
     public Sprite stairSprite;
@@ -20,15 +21,13 @@ public class CellVisualManager : MonoBehaviour
     public GameObject mineExplosionAnimation;
     public GameObject mineSwordedAnimation;
     public GameObject plantedSwordAnimation;
+    #endregion
+
 
     #region GET CELLS VISUALS
     public Sprite GetTypeVisual(CellType cellType)
     {
         Sprite cellTypeVisual = null;
-        //if (cellType == CellType.Empty || cellType == CellType.Item || cellType == CellType.Mine || cellType == CellType.Hint)
-        //{
-        //    cellTypeVisual = null;
-        //}
         if (cellType == CellType.Gate)
         {
             cellTypeVisual = stairType;

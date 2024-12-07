@@ -8,6 +8,7 @@ using static UnityEngine.Rendering.DebugUI.Table;
 
 public class GridManager : MonoBehaviour
 {
+    #region PARAMETERS
     [Header("GRID GENERAL SETTINGS")]
     public Cell cellPrefab; // Le prefab de la cellule
     public float cellSize = 0.16f;   // Taille des cellules (espacement)
@@ -17,8 +18,6 @@ public class GridManager : MonoBehaviour
     [Header("GRID INFORMATIONS")]
     [NaughtyAttributes.ReadOnly]
     public List<Cell> cellList = new List<Cell>(); //Liste des cellules de la grid
-
-    public string savedGridState;
 
     [Header("MINE LEFT")]
     [NaughtyAttributes.ReadOnly]
@@ -32,6 +31,7 @@ public class GridManager : MonoBehaviour
     //public int numberOfMine;
     public List<Cell> cellMineList = new List<Cell>(); //Liste de mines de la grid
     [Button(enabledMode: EButtonEnableMode.Playmode)]
+    #endregion
 
 
     #region PROCEDURAL GRID GENERATION
@@ -42,9 +42,6 @@ public class GridManager : MonoBehaviour
             Debug.LogError("Prefab de cellule non assigné !");
             return;
         }
-
-        //Sauvegarde l'état de la grille, a enlever plus tard
-        savedGridState = SaveGridString();
 
         // Efface les anciennes cellules si la grille est regénérée
         ClearGrid();
@@ -76,6 +73,7 @@ public class GridManager : MonoBehaviour
         }
         Debug.Log("Grid Size: " + gridSize);
 
+        //Set les mines
         SetMineType(pourcentageOfMine);
 
         //Setup l'animation d'apparition

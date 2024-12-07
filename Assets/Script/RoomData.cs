@@ -1,6 +1,6 @@
 using UnityEngine;
 
-#region
+#region ENUMS
 public enum roomState
 {
     Undiscover,
@@ -11,15 +11,20 @@ public enum roomState
 
 public class RoomData : MonoBehaviour
 {
-    public RoomSettings roomSettings;
-    public roomState currentRoomState;
-    public string roomSavedString;
-    public Vector2Int roomPosition;
+    #region PARAMETERS
+    [Header("GENEREL SETTINGS")]
+    [NaughtyAttributes.ReadOnly] public RoomSettings roomSettings;
+    [NaughtyAttributes.ReadOnly] public roomState currentRoomState;
+    [NaughtyAttributes.ReadOnly] public string roomSavedString;
+    [NaughtyAttributes.ReadOnly] public Vector2Int roomPosition;
 
-    public RoomData roomUp;
-    public RoomData roomDown;
-    public RoomData roomLeft;
-    public RoomData roomRight;
+    [Header("NEIGHBORS")]
+    [NaughtyAttributes.ReadOnly] public RoomData roomUp;
+    [NaughtyAttributes.ReadOnly] public RoomData roomDown;
+    [NaughtyAttributes.ReadOnly] public RoomData roomLeft;
+    [NaughtyAttributes.ReadOnly] public RoomData roomRight;
+    #endregion
+
 
     public void Initialize(Vector2Int position)
     {

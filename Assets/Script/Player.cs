@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
+    #region PARAMETERS
     [Header("HEALTH")]
     public int initialHealthPoints = 3;
     public TMP_Text healthPointText;
@@ -29,8 +30,9 @@ public class Player : MonoBehaviour
     private Cell cellOver;
     private Cell cellClicked;
     private Cell firstCellClicked;
+    #endregion
 
-    // Update is called once per frame
+
     void Update()
     {
         // Convertit la position de la souris en coordonnées du monde
@@ -203,7 +205,10 @@ public class Player : MonoBehaviour
         {
             cellClicked.ChangeType(CellType.Empty);
             cellClicked.RemoveNeighborsMine();
-            GameManager.Instance.gridManager.SetItemsType(CellType.Gate, 1);
+            if (GameManager.Instance.currentRoomSettings.haveStair == true)
+            {
+                GameManager.Instance.gridManager.SetItemsType(CellType.Gate, 1);
+            }
             GameManager.Instance.gridManager.SetItemsType(CellType.Item, GameManager.Instance.currentRoomSettings.GetNumberOfPotion(), ItemTypeEnum.Potion);
             GameManager.Instance.gridManager.SetItemsType(CellType.Item, GameManager.Instance.currentRoomSettings.GetNumberOfSword(), ItemTypeEnum.Sword);
 

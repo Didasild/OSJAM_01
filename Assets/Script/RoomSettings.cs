@@ -3,6 +3,7 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "RoomSettings", menuName = "DungeonGeneration/RoomSettings")]
 public class RoomSettings : ScriptableObject
 {
+    #region PARAMETERS
     [Header("GENERAL")]
     public bool proceduralRoom = true;
     public bool isMandatory = false;
@@ -16,13 +17,14 @@ public class RoomSettings : ScriptableObject
     [SerializeField] private Vector2Int maxRoomSize = new Vector2Int(10, 10);
     public int roomPourcentageOfMine = 5;
     [Header("STAIR")]
-    [SerializeField] private bool haveStair;
+    public bool haveStair;
     [Header("HEALTH")]
     [SerializeField] private int minPotion;
     [SerializeField] private int maxPotion;
     [Header("SWORD")]
     [SerializeField] private int minSword;
     [SerializeField] private int maxSword;
+    #endregion
 
     #region PROCEDURAL GET INFOS
     public Vector2Int GetRoomSize()

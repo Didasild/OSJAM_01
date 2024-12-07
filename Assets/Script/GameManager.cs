@@ -2,16 +2,18 @@ using System.Collections;
 using UnityEngine;
 using TMPro;
 
+#region ENUMS
 public enum GameState
 {
     None,
     InGame,
     Loose,
 }
+#endregion
 
 public class GameManager : MonoBehaviour
 {
-    //Public Variables
+    #region PARAMETERS
     [Header("INFORMATIONS STATE")]
     [NaughtyAttributes.ReadOnly]
     public GameState currentGameState;
@@ -25,9 +27,6 @@ public class GameManager : MonoBehaviour
     [NaughtyAttributes.ReadOnly]
     public RoomSettings currentRoomSettings;
 
-    [Header("DIFFICULTY")]
-    public int pourcentageOfMineIncrement = 5;
-
     [Header("MANAGER REFERENCES")]
     public DungeonManager dungeonManager;
     public GridManager gridManager;
@@ -35,23 +34,24 @@ public class GameManager : MonoBehaviour
     [Header("REFERENCES")]
     public GameObject endScreenUI;
     public Player player;
-    public GameObject mainCamera;
-
-    [Header("TMP")]
-    private RoomSettings[] roomSettingsList;
 
     //[Header("OBSERVATIONS")]
     //Private Variables
-    private int pourcentageUpdate = 0;
-    private int pourcentageOfMine = 0;
+    //private int pourcentageUpdate = 0;
+    //private int pourcentageOfMine = 0;
+
+    //[Header("DIFFICULTY")]
+    //public int pourcentageOfMineIncrement = 5;
 
     //Singleton
     private static GameManager _instance;
     public static GameManager Instance => _instance;
     [SerializeField] private CellVisualManager _CellVisualManager;
     public static CellVisualManager CellVisualManager => _instance._CellVisualManager;
+    #endregion
 
 
+    #region INIT
     private void Awake()
     {
         _instance = this;
@@ -61,6 +61,7 @@ public class GameManager : MonoBehaviour
     {
         ChangeGameState(GameState.InGame);
     }
+    #endregion
 
     #region GAME STATE
     public void ChangeGameState(GameState gameState)
@@ -122,9 +123,9 @@ public class GameManager : MonoBehaviour
     }
     #endregion
 
-    #region ROOM GENERATION
+    #region ROOM AND FLOOR MANAGEMENT
 
-    public void GenerateRoom(RoomData roomData)
+    public void ChangeRoom(RoomData roomData)
     {
         currentRoomSettings = roomData.roomSettings;
         if (roomData.currentRoomState != roomState.Undiscover)
@@ -141,7 +142,7 @@ public class GameManager : MonoBehaviour
             roomData.ChangeRoomSate(roomState.Started);
         }
     }
-    
+
     public void ChangeFloorLevel()
     {
         //Update le numéro du floor
@@ -167,14 +168,13 @@ public class GameManager : MonoBehaviour
         //pourcentageOfMine = currentRoomSettings.roomPourcentageOfMine + pourcentageUpdate;
 
     }
-
-    public int IncreaseLoopDiffficulty(int pourcentageOfMineIncrement)
-    {
-        //Update le nombre de loop
-        floorLoop += 1;
-        pourcentageUpdate += pourcentageOfMineIncrement;
-        return pourcentageUpdate;
-    }
+    /// DIFFICULTY 
+    //public int IncreaseLoopDiffficulty(int pourcentageOfMineIncrement)
+    //{
+    //    //Update le nombre de loop
+    //    floorLoop += 1;
+    //    pourcentageUpdate += pourcentageOfMineIncrement;
+    //    return pourcentageUpdate;
+    //}
     #endregion
-
 }

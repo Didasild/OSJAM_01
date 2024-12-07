@@ -18,7 +18,7 @@ MonoBehaviour:
   minRoomSize: {x: 5, y: 5}
   maxRoomSize: {x: 10, y: 10}
   roomPourcentageOfMine: 10
-  haveStair: 0
+  haveStair: 1
   minPotion: 2
   maxPotion: 2
   minSword: 2
