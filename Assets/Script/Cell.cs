@@ -21,7 +21,7 @@ public enum CellType
     Hint,
     Gate,
     Item,
-    NPC
+    Npc
 }
 
 public enum ItemTypeEnum
@@ -94,7 +94,7 @@ public class Cell : MonoBehaviour
             numberText.text = "";
             ChangeType(CellType.Empty);
         }
-        //Update le reste du visuel selon le type et l'état
+        //Update le reste du visuel selon le type et l'Ã©tat
         stateVisual.sprite = GameManager.CellVisualManager.GetStateVisual(currentState);
         typeVisual.sprite = GameManager.CellVisualManager.GetTypeVisual(currentType);
         itemVisual.sprite = GameManager.CellVisualManager.GetItemVisuel(currentItemType);
@@ -210,14 +210,10 @@ public class Cell : MonoBehaviour
 
     private void EmptyType(bool updateVisual = true)
     {
-        if (updateVisual == true)
+        if (updateVisual)
         {
             cellEmpty.SetActive(true);
             typeVisual.sprite = GameManager.CellVisualManager.GetTypeVisual(currentType);
-        }
-        else
-        {
-            return;
         }
     }
     private void MineType()
@@ -267,17 +263,17 @@ public class Cell : MonoBehaviour
                 break;
         }
     }
-    public void NoneItemType()
+    private void NoneItemType()
     {
         itemVisual.sprite = GameManager.CellVisualManager.GetItemVisuel(currentItemType);
     }
 
-    public void PotionType()
+    private void PotionType()
     {
         itemVisual.sprite = GameManager.CellVisualManager.GetItemVisuel(currentItemType);
     }
 
-    public void SwordType()
+    private void SwordType()
     {
         itemVisual.sprite = GameManager.CellVisualManager.GetItemVisuel(currentItemType);
     }
@@ -285,31 +281,28 @@ public class Cell : MonoBehaviour
     #endregion
 
     #region ANIMATIONS
-    public GameObject InstatiateAnimation(GameObject animPrefab)
+    private void InstantiateAnimation(GameObject animPrefab)
     {
         {
             if (animPrefab == null)
             {
                 Debug.LogError("Prefab ou parent est null !");
-                return null;
             }
 
             // Instancie le prefab
             GameObject instance = Instantiate(animPrefab, animParent.transform);
 
-            // Optionnel : Réinitialise la position locale
+            // Optionnel : RÃ©initialise la position locale
             instance.transform.localPosition = Vector3.zero;
 
-            // Optionnel : Réinitialise l'échelle locale
+            // Optionnel : RÃ©initialise l'Ã©chelle locale
             instance.transform.localScale = Vector3.one;
-
-            return instance;
         }
     }
 
-    public void DestroyAnimationPrefab()
+    private void DestroyAnimationPrefab()
     {
-        // Vérifie si le GameObject a des enfants
+        // VÃ©rifie si le GameObject a des enfants
         if (animParent.transform.childCount > 0)
         {
             // Parcours tous les enfants
@@ -336,7 +329,7 @@ public class Cell : MonoBehaviour
     }
     private IEnumerator CO_MineDestruction(GameObject mineAnimType, float animDuration)
     {
-        InstatiateAnimation(mineAnimType);
+        InstantiateAnimation(mineAnimType);
         //mineAnimType.SetActive(true);
         ChangeType(CellType.Empty);
         yield return new WaitForSeconds(animDuration);
@@ -354,7 +347,7 @@ public class Cell : MonoBehaviour
         ChangeState(CellState.Reveal);
     }
 
-    public void ItemStatetransition(CellState cellNewState, float animDuration)
+    public void ItemStateTransition(CellState cellNewState, float animDuration)
     {
         ChangeState(CellState.Cover);
         StartCoroutine(CO_StateTransitionAnim(cellNewState, animDuration));
@@ -363,7 +356,7 @@ public class Cell : MonoBehaviour
     {
         if (cellNewState == CellState.PlantedSword)
         {
-            InstatiateAnimation(GameManager.CellVisualManager.plantedSwordAnimation);
+            InstantiateAnimation(GameManager.CellVisualManager.plantedSwordAnimation);
         }
         yield return new WaitForSeconds(animDuration);
         if (cellNewState == CellState.PlantedSword)

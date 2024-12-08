@@ -16,9 +16,9 @@ public class Player : MonoBehaviour
     private int _manaPoints;
 
     [Header("SWORD")]
-    public int initialSwordCounter = 0;
+    public int initialSwordCounter;
     public TMP_Text swordCounterText;
-    private int _swordCounter = 0;
+    private int _swordCounter;
 
     [Header("CLICK COUNTER")]
     [NaughtyAttributes.ReadOnly]
@@ -66,7 +66,7 @@ public class Player : MonoBehaviour
 
             if (_cellClicked.currentState == CellState.Reveal && _cellClicked.currentType == CellType.Hint)
             {
-                ClikOnRevealHintCell(_cellClicked);
+                ClickOnRevealHintCell(_cellClicked);
             }
 
             if (_cellClicked.currentState == CellState.Cover)
@@ -124,7 +124,7 @@ public class Player : MonoBehaviour
             else if (_cellOver.currentState == CellState.Flag && _swordCounter >= 1)
             {
                 //cellOver.ChangeState(CellState.PlantedSword);
-                _cellOver.ItemStatetransition(CellState.PlantedSword, 0.35f);
+                _cellOver.ItemStateTransition(CellState.PlantedSword, 0.35f);
                 DecreaseSwordCounter();
             }
             else if (_cellOver.currentState == CellState.Flag && _swordCounter == 0)
@@ -152,7 +152,7 @@ public class Player : MonoBehaviour
     }
 
     #region CLICK METHODS
-    public void ClikOnRevealHintCell(Cell cellClicked)
+    private void ClickOnRevealHintCell(Cell cellClicked)
     {
         int mineExploded = 0;
 
@@ -193,17 +193,17 @@ public class Player : MonoBehaviour
         }
     }
 
-    public void ClickOnCoverCell(Cell cellClicked)
+    private void ClickOnCoverCell(Cell cellClicked)
     {
         //V�rifie si la grid doit �tre proc�durale et est compl�tement couverte puis g�n�re les items
         // VOIR POUR UNE MEILLEURE CONDITION GENRE SI GRID PROCEDURAL…
         int nbOfCellsCover = GameManager.Instance.gridManager.GetCellsByState(CellState.Cover).Count;
         int nbOfCells = GameManager.Instance.gridManager.cellList.Count;
-        if (nbOfCells == nbOfCellsCover && GameManager.Instance.currentRoomSettings.proceduralRoom == true)
+        if (nbOfCells == nbOfCellsCover && GameManager.Instance.currentRoomSettings.proceduralRoom)
         {
             cellClicked.ChangeType(CellType.Empty);
             cellClicked.RemoveNeighborsMine();
-            if (GameManager.Instance.currentRoomSettings.haveStair == true)
+            if (GameManager.Instance.currentRoomSettings.haveStair)
             {
                 GameManager.Instance.gridManager.SetItemsType(CellType.Gate, 1);
             }
@@ -222,11 +222,11 @@ public class Player : MonoBehaviour
             cellClicked.ChangeState(CellState.Reveal);
         }
 
-        GameManager.Instance.dungeonManager.currentRoom.ChangeRoomSate(roomState.Started);
+        GameManager.Instance.dungeonManager.currentRoom.ChangeRoomSate(RoomState.Started);
         IncreaseClickCount();
     }
 
-    public void ClickOnPlantedSwordCell(Cell cellClicked)
+    private void ClickOnPlantedSwordCell(Cell cellClicked)
     {
         if (cellClicked.currentType == CellType.Mine)
         {
@@ -238,13 +238,13 @@ public class Player : MonoBehaviour
         }
     }
 
-    public void ClickOnGateCell(Cell cellClicked)
+    private void ClickOnGateCell(Cell cellClicked)
     {
         GameManager.Instance.ChangeFloorLevel();
         ResetClickCounter();
     }
 
-    public void ClickOnItemCell(Cell cellClicked, ItemTypeEnum itemType)
+    private void ClickOnItemCell(Cell cellClicked, ItemTypeEnum itemType)
     {
         if (itemType == ItemTypeEnum.Potion)
         {
@@ -260,13 +260,10 @@ public class Player : MonoBehaviour
         cellClicked.UpdateRegardingNeighbors();
     }
 
-    public void SwitchCellsToClickedState()
+    private void SwitchCellsToClickedState()
     {
         _cellClicked = _cellOver;
-
-        int neighborsFlagged = _cellClicked.GetNeighborsState(CellState.Flag);
-        int neighborsMine = _cellClicked.GetNeighborsType(CellType.Mine);
-        //neighborsFlagged != neighborsMine && /// Condition
+        
         if (_cellClicked.currentType == CellType.Hint && _cellClicked.currentState == CellState.Reveal)
         {
              foreach (Cell neighborsCell in _cellClicked.neighborsCellList)
@@ -279,7 +276,7 @@ public class Player : MonoBehaviour
         }
     }
 
-    public void ResetClickedState()
+    private void ResetClickedState()
     {
         foreach (Cell neighborsCell in _cellClicked.neighborsCellList)
         {
@@ -292,7 +289,7 @@ public class Player : MonoBehaviour
     #endregion
 
     #region HEALTH
-    public void ResetHealtPoint()
+    public void ResetHealthPoint()
     {
         _healthPoints = initialHealthPoints;
         healthPointText.text = _healthPoints.ToString();
@@ -323,11 +320,6 @@ public class Player : MonoBehaviour
             _manaPoints += manaIncrease;
             manaPointText.text = _manaPoints.ToString();
         }
-        else
-        {
-            return;
-        }
-
     }
 
     public void DecreaseMana(int manaDecrease)
@@ -390,7 +382,7 @@ public class Player : MonoBehaviour
         clicCounter = 0;
     }
 
-    public void IncreaseClickCount()
+    private void IncreaseClickCount()
     {
         clicCounter += 1;
     }

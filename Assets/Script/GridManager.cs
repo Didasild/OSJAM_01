@@ -2,6 +2,7 @@ using NaughtyAttributes;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using TMPro;
 using UnityEngine;
 
@@ -16,6 +17,8 @@ public class GridManager : MonoBehaviour
     [Header("GRID INFORMATIONS")]
     [NaughtyAttributes.ReadOnly]
     public List<Cell> cellList = new List<Cell>(); //Liste des cellules de la grid
+    [NaughtyAttributes.ReadOnly]
+    public List<Cell> cellMineList = new List<Cell>(); //Liste de mines de la grid
 
     [Header("MINE LEFT")]
     [NaughtyAttributes.ReadOnly]
@@ -25,10 +28,6 @@ public class GridManager : MonoBehaviour
     //public int realMineLeft;
     public TMP_Text theoricalMineLeftText;
 
-    [Header("GRID PROCEDURAL SETTINGS")]
-    //public int numberOfMine;
-    public List<Cell> cellMineList = new List<Cell>(); //Liste de mines de la grid
-    [Button(enabledMode: EButtonEnableMode.Playmode)]
     #endregion
 
 
@@ -75,7 +74,7 @@ public class GridManager : MonoBehaviour
         SetMineType(pourcentageOfMine);
 
         //Setup l'animation d'apparition
-        ActiveListOfCells(timeBetweenApparition);
+        ActiveListOfCells(timeBetweenApparition, RoomState.Undiscover);
     }
 
     private void SetMineType(int pourcentageOfMine)
@@ -222,7 +221,7 @@ public class GridManager : MonoBehaviour
             cell.GenerateNeighborsList(this);
         }
         SetCellsVisuals();
-        ActiveListOfCells(timeBetweenApparition);
+        ActiveListOfCells(timeBetweenApparition, GameManager.Instance.dungeonManager.currentRoom.currentRoomState);
     }
 
     private CellState GetStateFromAbbreviation(string abbreviation)
@@ -335,19 +334,54 @@ public class GridManager : MonoBehaviour
     #endregion
 
     #region GRID VISUAL FONCTIONS
-    public void ActiveListOfCells(float timeBetweenApparition)
+    public void ActiveListOfCells(float timeBetweenApparition, RoomState roomState)
     {
-        StartCoroutine(CO_ActiveWithDelay(timeBetweenApparition));
-    }
-
-    private IEnumerator CO_ActiveWithDelay(float timeBetweenApparition)
-    {
-        foreach (Cell cell in cellList)
+        if (roomState != RoomState.Undiscover)
         {
-            cell.gameObject.SetActive(true);
-            yield return new WaitForSeconds(timeBetweenApparition); // Attends le d�lai avant de continuer
+            foreach (Cell cell in cellList)
+            {
+                cell.gameObject.SetActive(true);
+            }
+        }
+        else
+        {
+            StartCoroutine(CO_ActiveCellsWithDelay(timeBetweenApparition));
         }
     }
+
+    private IEnumerator CO_ActiveCellsWithDelay(float timeBetweenApparition)
+    {
+        // Grouper les cellules par distance diagonale
+        Dictionary<int, List<Cell>> diagonalGroups = new Dictionary<int, List<Cell>>();
+
+        foreach (Cell cell in cellList)
+        {
+            // Calculer la distance diagonale
+            int diagonalIndex = cell._cellPosition.x + cell._cellPosition.y;
+
+            // Ajouter la cellule dans le groupe correspondant
+            if (!diagonalGroups.ContainsKey(diagonalIndex))
+            {
+                diagonalGroups[diagonalIndex] = new List<Cell>();
+            }
+            diagonalGroups[diagonalIndex].Add(cell);
+        }
+
+        // Tri des groupes par distance diagonale (clé du dictionnaire)
+        var sortedKeys = diagonalGroups.Keys.OrderBy(key => key).ToList();
+
+        // Faire apparaître chaque groupe avec un délai
+        foreach (int key in sortedKeys)
+        {
+            foreach (Cell cell in diagonalGroups[key])
+            {
+                cell.gameObject.SetActive(true); // Activer la cellule
+            }
+            yield return new WaitForSecondsRealtime(timeBetweenApparition); // Délai entre les groupes
+        }
+    }
+    
+    
     #endregion
 
     #region GET GRID INFORMATIONS

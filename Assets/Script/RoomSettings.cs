@@ -6,7 +6,7 @@ public class RoomSettings : ScriptableObject
     #region PARAMETERS
     [Header("GENERAL")]
     public bool proceduralRoom = true;
-    public bool isMandatory = false;
+    public bool isMandatory;
 
     [Header("________LOADED GRID SETTINGS")]
     public string roomLoadString; // USE ONLY FOR FIRST GENERATION NEVER CHANGE
@@ -53,24 +53,24 @@ public class RoomSettings : ScriptableObject
     {
         int maxRow = 0;
         int maxCol = 0;
-        // Diviser la chaÓne en segments individuels
+        // Diviser la cha√Æne en segments individuels
         string[] cellDataArray = roomSavedString.Split('|');
 
         foreach (string cellData in cellDataArray)
         {
-            // Extraire les coordonnÈes de chaque cellule
+            // Extraire les coordonn√©es de chaque cellule
             string[] parts = cellData.Split('_');
-            if (parts.Length >= 3) // VÈrifier qu'on a bien les coordonnÈes et les Ètats
+            if (parts.Length >= 3) // V√©rifier qu'on a bien les coordonn√©es et les √©tats
             {
                 if (int.TryParse(parts[0], out int row) && int.TryParse(parts[1], out int col))
                 {
-                    // Trouver les valeurs maximales pour les coordonnÈes
+                    // Trouver les valeurs maximales pour les coordonn√©es
                     maxRow = Mathf.Max(maxRow, row);
                     maxCol = Mathf.Max(maxCol, col);
                 }
             }
         }
-        Debug.Log($"Grid Size Savec:{maxRow + 1} rows {maxCol + 1} columns");
+        Debug.Log($"Grid Size Save:{maxRow + 1} rows {maxCol + 1} columns");
 
         // Retourner les dimensions (colonnes = maxCol + 1, lignes = maxRow + 1)
         return new Vector2Int(maxCol + 1, maxRow + 1);

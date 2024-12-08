@@ -1,6 +1,5 @@
 using System.Collections.Generic;
 using System.Linq;
-using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
 #region ENUMS
@@ -70,7 +69,7 @@ public class DungeonManager : MonoBehaviour
         AssignRoomSettings(roomList, availableRoomList);
     }
 
-    public void AssignRoomSettings(List<RoomData> roomList, List<RoomSettings> availableRoomList)
+    private void AssignRoomSettings(List<RoomData> roomList, List<RoomSettings> availableRoomList)
     {
         if (roomList.Count > availableRoomList.Count)
         {
@@ -108,7 +107,7 @@ public class DungeonManager : MonoBehaviour
         AssignRandomFirstRoom();
     }
 
-    public void AssignRandomFirstRoom()
+    private void AssignRandomFirstRoom()
     {
         RoomData selectedRoomData = null;
         int randomIndex = Random.Range(0, roomList.Count);
@@ -118,7 +117,7 @@ public class DungeonManager : MonoBehaviour
         UpdateButtonStates();
     }
 
-    public void GiveNeighbors()
+    private void GiveNeighbors()
     {
         foreach (RoomData room in roomList)
         {
@@ -195,7 +194,7 @@ public class DungeonManager : MonoBehaviour
         currentRoom.roomSavedString = GameManager.Instance.gridManager.SaveGridString();
     }
 
-    public void UpdateButtonStates()
+    private void UpdateButtonStates()
     {
         StopAllCoroutines();
         buttonRight.SetActive(currentRoom.roomRight != null);

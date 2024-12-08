@@ -1,7 +1,7 @@
 using UnityEngine;
 
 #region ENUMS
-public enum roomState
+public enum RoomState
 {
     Undiscover,
     Started,
@@ -14,7 +14,7 @@ public class RoomData : MonoBehaviour
     #region PARAMETERS
     [Header("GENERAL SETTINGS")]
     [NaughtyAttributes.ReadOnly] public RoomSettings roomSettings;
-    [NaughtyAttributes.ReadOnly] public roomState currentRoomState;
+    [NaughtyAttributes.ReadOnly] public RoomState currentRoomState;
     [NaughtyAttributes.ReadOnly] public string roomSavedString;
     [NaughtyAttributes.ReadOnly] public Vector2Int roomPosition;
 
@@ -33,21 +33,21 @@ public class RoomData : MonoBehaviour
         //Debug.Log($"Room initialized at grid position: {roomPosition}");
     }
 
-    public void ChangeRoomSate(roomState newRoomState)
+    public void ChangeRoomSate(RoomState newRoomState)
     {
         currentRoomState = newRoomState;
 
         switch (currentRoomState)
         {
-            case roomState.Undiscover:
+            case RoomState.Undiscover:
 
                 break;
 
-            case roomState.Started:
+            case RoomState.Started:
 
                 break;
 
-            case roomState.Complete:
+            case RoomState.Complete:
 
                 break;
         }

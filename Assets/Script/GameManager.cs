@@ -23,7 +23,7 @@ public class GameManager : MonoBehaviour
     [NaughtyAttributes.ReadOnly]
     public int currentFloorLevel;
     [NaughtyAttributes.ReadOnly]
-    public int floorLoop = 0;
+    public int floorLoop;
     [NaughtyAttributes.ReadOnly]
     public RoomSettings currentRoomSettings;
 
@@ -84,22 +84,22 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public void LooseState()
+    private void LooseState()
     {
         endScreenUI.SetActive(true);
         currentFloorLevel = 0;
     }
 
-    public void InGameState()
+    private void InGameState()
     {
         if (dungeonManager.floorSettingsList.Length > 1)
         {
-            //Génère un floor et une première room
+            //GÃ©nÃ¨re un floor et une premiÃ¨re room
             dungeonManager.currentFloorSetting = dungeonManager.floorSettingsList[0];
             dungeonManager.GenerateFloor(dungeonManager.currentFloorSetting.GetFloorSize());
 
             //Reset les data
-            player.ResetHealtPoint();
+            player.ResetHealthPoint();
             player.ResetClickCounter();
         }
         else
@@ -128,47 +128,47 @@ public class GameManager : MonoBehaviour
     public void ChangeRoom(RoomData roomData)
     {
         currentRoomSettings = roomData.roomSettings;
-        if (roomData.currentRoomState != roomState.Undiscover)
+        if (roomData.currentRoomState != RoomState.Undiscover)
         {
             gridManager.LoadGridFromString(roomData.roomSavedString, currentRoomSettings.GetRoomSizeFromString(roomData.roomSavedString));
         }
-        else if (currentRoomSettings.proceduralRoom == true)
+        else if (currentRoomSettings.proceduralRoom)
         {
             gridManager.GenerateGrid(currentRoomSettings.GetRoomSize(), currentRoomSettings.roomPourcentageOfMine);
         }
         else
         {
             gridManager.LoadGridFromString(currentRoomSettings.roomLoadString, currentRoomSettings.GetRoomSizeFromString(currentRoomSettings.roomLoadString));
-            roomData.ChangeRoomSate(roomState.Started);
+            roomData.ChangeRoomSate(RoomState.Started);
         }
     }
 
     public void ChangeFloorLevel()
     {
-        //Update le numéro du floor
+        //Update le numÃ©ro du floor
         currentFloorLevel += 1;
         floorLevelText.text = currentFloorLevel.ToString();
 
         // Calculer l'index du floor actuel dans la liste
         int floorIndex = currentFloorLevel % dungeonManager.floorSettingsList.Length;
 
-        //Récupère le floor suivant dans la liste
+        //RÃ©cupÃ¨re le floor suivant dans la liste
         dungeonManager.currentFloorSetting = dungeonManager.floorSettingsList[floorIndex];
 
-        //Génère un floor et la room de départ
+        //GÃ©nÃ¨re un floor et la room de dÃ©part
         dungeonManager.GenerateFloor(dungeonManager.currentFloorSetting.GetFloorSize());
 
-        /// A REDEFINIR AU BESOIN
-        // Vérifier si on recommence une boucle
+        // A REDEFINIR AU BESOIN
+        // VÃ©rifier si on recommence une boucle
         //if (floorIndex == 0 && currentFloorLevel > 0)
         //{
         //    IncreaseLoopDiffficulty(pourcentageOfMineIncrement);
         //}
-        ////Détermine le pourcentage de mine
+        ////DÃ©termine le pourcentage de mine
         //pourcentageOfMine = currentRoomSettings.roomPourcentageOfMine + pourcentageUpdate;
 
     }
-    /// DIFFICULTY 
+    // DIFFICULTY 
     //public int IncreaseLoopDiffficulty(int pourcentageOfMineIncrement)
     //{
     //    //Update le nombre de loop

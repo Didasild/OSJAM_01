@@ -796,12 +796,10 @@ MonoBehaviour:
   currentFloorLevel: 0
   floorLoop: 0
   currentRoomSettings: {fileID: 0}
-  pourcentageOfMineIncrement: 5
   dungeonManager: {fileID: 660007369}
   gridManager: {fileID: 712061424}
   endScreenUI: {fileID: 1289361010}
   player: {fileID: 1365082114}
-  mainCamera: {fileID: 519420028}
   _CellVisualManager: {fileID: 348095978}
 --- !u!114 &348095978
 MonoBehaviour:
@@ -1382,13 +1380,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cellPrefab: {fileID: 364980339709739537, guid: 58d5dd58eb3d9ef43b9b9d0bf076832c, type: 3}
   cellSize: 0.16
-  timeBetweenApparition: 0.01
+  timeBetweenApparition: 0.03
   cellList: []
-  savedGridState: 
+  cellMineList: []
   numberOfMineLeft: 0
   theoricalMineLeft: 0
   theoricalMineLeftText: {fileID: 2143294031}
-  cellMineList: []
 --- !u!1 &719562628
 GameObject:
   m_ObjectHideFlags: 0
