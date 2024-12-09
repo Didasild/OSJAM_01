@@ -74,7 +74,7 @@ public class GridManager : MonoBehaviour
         SetMineType(pourcentageOfMine);
 
         //Setup l'animation d'apparition
-        ActiveListOfCells(timeBetweenApparition, RoomState.Undiscover);
+        ActiveListOfCells(timeBetweenApparition, RoomState.FogOfWar);
     }
 
     private void SetMineType(int pourcentageOfMine)
@@ -336,7 +336,7 @@ public class GridManager : MonoBehaviour
     #region GRID VISUAL FONCTIONS
     public void ActiveListOfCells(float timeBetweenApparition, RoomState roomState)
     {
-        if (roomState != RoomState.Undiscover)
+        if (roomState != RoomState.FogOfWar)
         {
             foreach (Cell cell in cellList)
             {

@@ -1,9 +1,10 @@
 using UnityEngine;
+using UnityEngine.UIElements;
 
 #region ENUMS
 public enum RoomState
 {
-    Undiscover,
+    FogOfWar,
     Started,
     Complete
 }
@@ -12,7 +13,10 @@ public enum RoomState
 public class RoomData : MonoBehaviour
 {
     #region PARAMETERS
-    [Header("GENERAL SETTINGS")]
+    [Header("ROOM MINIMAP VISUAL")]
+    public Image roomStateVisual;
+
+    [Header("GENERAL DATA")]
     [NaughtyAttributes.ReadOnly] public RoomSettings roomSettings;
     [NaughtyAttributes.ReadOnly] public RoomState currentRoomState;
     [NaughtyAttributes.ReadOnly] public string roomSavedString;
@@ -39,7 +43,7 @@ public class RoomData : MonoBehaviour
 
         switch (currentRoomState)
         {
-            case RoomState.Undiscover:
+            case RoomState.FogOfWar:
 
                 break;
 

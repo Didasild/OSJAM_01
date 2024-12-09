@@ -95,9 +95,9 @@ public class Cell : MonoBehaviour
             ChangeType(CellType.Empty);
         }
         //Update le reste du visuel selon le type et l'état
-        stateVisual.sprite = GameManager.CellVisualManager.GetStateVisual(currentState);
-        typeVisual.sprite = GameManager.CellVisualManager.GetTypeVisual(currentType);
-        itemVisual.sprite = GameManager.CellVisualManager.GetItemVisuel(currentItemType);
+        stateVisual.sprite = GameManager.CellVisualManager.GetCellStateVisual(currentState);
+        typeVisual.sprite = GameManager.CellVisualManager.GetCellTypeVisual(currentType);
+        itemVisual.sprite = GameManager.CellVisualManager.GetCellItemVisuel(currentItemType);
     }
     #endregion
 
@@ -133,14 +133,14 @@ public class Cell : MonoBehaviour
     private void CoverState()
     {
         //Debug.Log(this.name + " switch to Cover State");
-        stateVisual.sprite = GameManager.CellVisualManager.GetStateVisual(currentState);
+        stateVisual.sprite = GameManager.CellVisualManager.GetCellStateVisual(currentState);
         cellCover.SetActive(true);
     }
 
     private void ClickedState()
     {
         //Debug.Log(this.name + " switch to Clicked State");
-        stateVisual.sprite = GameManager.CellVisualManager.GetStateVisual(currentState);
+        stateVisual.sprite = GameManager.CellVisualManager.GetCellStateVisual(currentState);
     }
 
     private void RevealState()
@@ -163,19 +163,19 @@ public class Cell : MonoBehaviour
 
         //Update Visual
         cellCover.SetActive(false);
-        stateVisual.sprite = GameManager.CellVisualManager.GetStateVisual(currentState);
+        stateVisual.sprite = GameManager.CellVisualManager.GetCellStateVisual(currentState);
     }
 
     private void FlagState()
     {
         //Debug.Log("switch to Flag State");
-        stateVisual.sprite = GameManager.CellVisualManager.GetStateVisual(currentState);
+        stateVisual.sprite = GameManager.CellVisualManager.GetCellStateVisual(currentState);
     }
 
     private void SwordPlantedState()
     {
         //Debug.Log("switch to Sword State");
-        stateVisual.sprite = GameManager.CellVisualManager.GetStateVisual(currentState);
+        stateVisual.sprite = GameManager.CellVisualManager.GetCellStateVisual(currentState);
     }
     #endregion
 
@@ -213,29 +213,29 @@ public class Cell : MonoBehaviour
         if (updateVisual)
         {
             cellEmpty.SetActive(true);
-            typeVisual.sprite = GameManager.CellVisualManager.GetTypeVisual(currentType);
+            typeVisual.sprite = GameManager.CellVisualManager.GetCellTypeVisual(currentType);
         }
     }
     private void MineType()
     {
-        typeVisual.sprite = GameManager.CellVisualManager.GetTypeVisual(currentType);
+        typeVisual.sprite = GameManager.CellVisualManager.GetCellTypeVisual(currentType);
     }
     private void HintType()
     {
         cellEmpty.SetActive(true);
-        typeVisual.sprite = GameManager.CellVisualManager.GetTypeVisual(currentType);
+        typeVisual.sprite = GameManager.CellVisualManager.GetCellTypeVisual(currentType);
     }
 
     private void GateType()
     {
         cellEmpty.SetActive(false);
-        typeVisual.sprite = GameManager.CellVisualManager.GetTypeVisual(currentType);
+        typeVisual.sprite = GameManager.CellVisualManager.GetCellTypeVisual(currentType);
     }
 
     private void ItemType()
     {
         cellEmpty.SetActive(true);
-        typeVisual.sprite = GameManager.CellVisualManager.GetTypeVisual(currentType);
+        typeVisual.sprite = GameManager.CellVisualManager.GetCellTypeVisual(currentType);
     }
     #endregion
 
@@ -265,17 +265,17 @@ public class Cell : MonoBehaviour
     }
     private void NoneItemType()
     {
-        itemVisual.sprite = GameManager.CellVisualManager.GetItemVisuel(currentItemType);
+        itemVisual.sprite = GameManager.CellVisualManager.GetCellItemVisuel(currentItemType);
     }
 
     private void PotionType()
     {
-        itemVisual.sprite = GameManager.CellVisualManager.GetItemVisuel(currentItemType);
+        itemVisual.sprite = GameManager.CellVisualManager.GetCellItemVisuel(currentItemType);
     }
 
     private void SwordType()
     {
-        itemVisual.sprite = GameManager.CellVisualManager.GetItemVisuel(currentItemType);
+        itemVisual.sprite = GameManager.CellVisualManager.GetCellItemVisuel(currentItemType);
     }
 
     #endregion
