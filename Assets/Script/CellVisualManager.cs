@@ -25,7 +25,7 @@ public class CellVisualManager : MonoBehaviour
 
 
     #region GET CELLS VISUALS
-    public Sprite GetTypeVisual(CellType cellType)
+    public Sprite GetCellTypeVisual(CellType cellType)
     {
         Sprite cellTypeVisual = null;
         if (cellType == CellType.Gate)
@@ -35,7 +35,7 @@ public class CellVisualManager : MonoBehaviour
         return cellTypeVisual;
     }
 
-    public Sprite GetStateVisual(CellState cellState)
+    public Sprite GetCellStateVisual(CellState cellState)
     {
         Sprite cellStateVisual = null;
         if (cellState == CellState.None || cellState == CellState.Reveal || cellState == CellState.Cover) 
@@ -57,7 +57,7 @@ public class CellVisualManager : MonoBehaviour
         return cellStateVisual;
     }
 
-    public Sprite GetItemVisuel(ItemTypeEnum itemType)
+    public Sprite GetCellItemVisuel(ItemTypeEnum itemType)
     {
         Sprite spriteItemVisual = null;
         if (itemType == ItemTypeEnum.None)

@@ -17,8 +17,10 @@ public class DungeonManager : MonoBehaviour
     #region PARAMETERS
     [Header("GENERAL SETTINGS")]
     public RoomData roomPrefab;
+    public Transform roomContainer;
 
     [Header("FLOOR SETTINGS")]
+    [NaughtyAttributes.ReadOnly]
     public FloorSettings currentFloorSetting;
     public FloorSettings[] floorSettingsList;
     //public Vector2 floorSize = new Vector2 (3, 4);
@@ -54,12 +56,12 @@ public class DungeonManager : MonoBehaviour
                 Vector2Int gridPosition = new Vector2Int(x, y);
 
                 // Instancier le GameObject room
-                RoomData roomData = Instantiate(roomPrefab, transform);
+                RoomData roomData = Instantiate(roomPrefab, roomContainer);
                 if (roomData != null)
                 {
                     roomData.Initialize(gridPosition); // Initialisation avec la position
                     roomList.Add(roomData); // Ajouter � la liste
-                    roomData.transform.SetParent(transform);
+                    roomData.transform.SetParent(roomContainer);
                 }
                 // Nommer la room pour faciliter le debug
                 roomData.name = $"Room_{x}_{y}";

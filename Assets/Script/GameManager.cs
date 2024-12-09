@@ -128,7 +128,7 @@ public class GameManager : MonoBehaviour
     public void ChangeRoom(RoomData roomData)
     {
         currentRoomSettings = roomData.roomSettings;
-        if (roomData.currentRoomState != RoomState.Undiscover)
+        if (roomData.currentRoomState != RoomState.FogOfWar)
         {
             gridManager.LoadGridFromString(roomData.roomSavedString, currentRoomSettings.GetRoomSizeFromString(roomData.roomSavedString));
         }
