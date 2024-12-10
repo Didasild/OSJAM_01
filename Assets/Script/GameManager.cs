@@ -48,6 +48,9 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance => _instance;
     [SerializeField] private CellVisualManager _CellVisualManager;
     public static CellVisualManager CellVisualManager => _instance._CellVisualManager;
+
+    [SerializeField] private RoomVisualManager _RoomVisualManager;
+    public static RoomVisualManager RoomVisualManager => _instance._RoomVisualManager;
     #endregion
 
 

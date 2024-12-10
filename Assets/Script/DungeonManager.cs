@@ -18,6 +18,7 @@ public class DungeonManager : MonoBehaviour
     [Header("GENERAL SETTINGS")]
     public RoomData roomPrefab;
     public Transform roomContainer;
+    public float roomSize;
 
     [Header("FLOOR SETTINGS")]
     [NaughtyAttributes.ReadOnly]
@@ -59,9 +60,10 @@ public class DungeonManager : MonoBehaviour
                 RoomData roomData = Instantiate(roomPrefab, roomContainer);
                 if (roomData != null)
                 {
-                    roomData.Initialize(gridPosition); // Initialisation avec la position
+                    roomData.Initialize(gridPosition, roomSize); // Initialisation avec la position
                     roomList.Add(roomData); // Ajouter � la liste
                     roomData.transform.SetParent(roomContainer);
+                    roomData.roomStateVisual.sprite = GameManager.RoomVisualManager.GetRoomStateVisual(RoomState.FogOfWar);
                 }
                 // Nommer la room pour faciliter le debug
                 roomData.name = $"Room_{x}_{y}";
@@ -112,10 +114,18 @@ public class DungeonManager : MonoBehaviour
     private void AssignRandomFirstRoom()
     {
         RoomData selectedRoomData = null;
+        //Selectionne une room random
         int randomIndex = Random.Range(0, roomList.Count);
         selectedRoomData = roomList[randomIndex];
         currentRoom = selectedRoomData;
+
+        //La génère
         GameManager.Instance.ChangeRoom(currentRoom);
+
+        //Update le visuel de la minimap
+        currentRoom.roomSelectedVisual.sprite = GameManager.RoomVisualManager.GetSelectedVisual(true);
+
+        //Update les boutons
         UpdateButtonStates();
     }
 
@@ -156,6 +166,7 @@ public class DungeonManager : MonoBehaviour
     public void ChangeRoomDirection(int directionValue)
     {
         SaveRoomData();
+        currentRoom.roomSelectedVisual.sprite = GameManager.RoomVisualManager.GetSelectedVisual(false);
         RoomDirection direction = (RoomDirection)directionValue;
         switch (direction)
         {
@@ -188,6 +199,7 @@ public class DungeonManager : MonoBehaviour
                 }
                 break;
         }
+        currentRoom.roomSelectedVisual.sprite = GameManager.RoomVisualManager.GetSelectedVisual(true);
         UpdateButtonStates();
     }
 

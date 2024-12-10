@@ -1,5 +1,5 @@
 using UnityEngine;
-using UnityEngine.UIElements;
+using UnityEngine.UI;
 
 #region ENUMS
 public enum RoomState
@@ -13,9 +13,6 @@ public enum RoomState
 public class RoomData : MonoBehaviour
 {
     #region PARAMETERS
-    [Header("ROOM MINIMAP VISUAL")]
-    public Image roomStateVisual;
-
     [Header("GENERAL DATA")]
     [NaughtyAttributes.ReadOnly] public RoomSettings roomSettings;
     [NaughtyAttributes.ReadOnly] public RoomState currentRoomState;
@@ -27,33 +24,62 @@ public class RoomData : MonoBehaviour
     [NaughtyAttributes.ReadOnly] public RoomData roomDown;
     [NaughtyAttributes.ReadOnly] public RoomData roomLeft;
     [NaughtyAttributes.ReadOnly] public RoomData roomRight;
+
+    [Header("ROOM MINIMAP VISUAL")]
+    public Image roomStateVisual;
+    public Image roomSelectedVisual;
     #endregion
 
 
-    public void Initialize(Vector2Int position)
+    public void Initialize(Vector2Int position, float roomSize = 1.0f)
     {
-        roomPosition = position;
-        // Debug : Afficher la position dans la console
-        //Debug.Log($"Room initialized at grid position: {roomPosition}");
+        this.roomPosition = position;
+
+        // Calculez la position dans le monde
+        Vector3 worldPosition = new Vector3(
+            position.x * roomSize,
+            -position.y * roomSize, // Utilisez `-gridPosition.y` pour descendre sur l'axe Y
+            0 // Z reste constant (2D)
+        );
+
+        // Placez le GameObject à cette position
+        transform.localPosition = worldPosition;
     }
 
     public void ChangeRoomSate(RoomState newRoomState)
     {
         currentRoomState = newRoomState;
+        //Update le visuel de la room
+        roomStateVisual.sprite = GameManager.RoomVisualManager.GetRoomStateVisual(currentRoomState);
 
         switch (currentRoomState)
         {
             case RoomState.FogOfWar:
-
+                FogOfWarRoomState();
                 break;
 
             case RoomState.Started:
-
+                StartedRoomState();
                 break;
 
             case RoomState.Complete:
-
+                CompleteRoomState();
                 break;
         }
+    }
+
+    private void FogOfWarRoomState()
+    {
+
+    }
+
+    private void StartedRoomState()
+    {
+
+    }
+
+    private void CompleteRoomState()
+    {
+
     }
 }
