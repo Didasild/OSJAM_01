@@ -38,11 +38,11 @@ public class RoomData : MonoBehaviour
         // Calculez la position dans le monde
         Vector3 worldPosition = new Vector3(
             position.x * roomSize,
-            -position.y * roomSize, // Utilisez `-gridPosition.y` pour descendre sur l'axe Y
+            position.y * roomSize, // Utilisez `-gridPosition.y` pour descendre sur l'axe Y
             0 // Z reste constant (2D)
         );
 
-        // Placez le GameObject à cette position
+        // Placez le GameObject ï¿½ cette position
         transform.localPosition = worldPosition;
     }
 

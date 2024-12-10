@@ -1274,7 +1274,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   roomPrefab: {fileID: 7399068105048544342, guid: 199e0e52c9943d54e968ef4dfb638015, type: 3}
   roomContainer: {fileID: 1950187531}
-  roomSize: 100
+  roomSize: 70
   currentFloorSetting: {fileID: 0}
   floorSettingsList:
   - {fileID: 11400000, guid: f2719cc03730d5f448359f49a2aee2ea, type: 2}
