@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.UIElements;
 
 #region ENUMS
 public enum RoomState
@@ -13,6 +14,10 @@ public enum RoomState
 public class RoomData : MonoBehaviour
 {
     #region PARAMETERS
+    [Header("GENERAL DATA")]
+    [Header("ROOM MINIMAP VISUAL")]
+    public Image roomStateVisual;
+
     [Header("GENERAL DATA")]
     [NaughtyAttributes.ReadOnly] public RoomSettings roomSettings;
     [NaughtyAttributes.ReadOnly] public RoomState currentRoomState;
@@ -42,7 +47,7 @@ public class RoomData : MonoBehaviour
             0 // Z reste constant (2D)
         );
 
-        // Placez le GameObject à cette position
+        // Placez le GameObject ï¿½ cette position
         transform.localPosition = worldPosition;
     }
 
@@ -56,6 +61,8 @@ public class RoomData : MonoBehaviour
         {
             case RoomState.FogOfWar:
                 FogOfWarRoomState();
+            case RoomState.FogOfWar:
+
                 break;
 
             case RoomState.Started:
