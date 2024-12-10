@@ -1,6 +1,5 @@
 using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.UIElements;
 
 #region ENUMS
 public enum RoomState
@@ -14,9 +13,6 @@ public enum RoomState
 public class RoomData : MonoBehaviour
 {
     #region PARAMETERS
-    [Header("GENERAL DATA")]
-    [Header("ROOM MINIMAP VISUAL")]
-    public Image roomStateVisual;
 
     [Header("GENERAL DATA")]
     [NaughtyAttributes.ReadOnly] public RoomSettings roomSettings;
@@ -61,10 +57,7 @@ public class RoomData : MonoBehaviour
         {
             case RoomState.FogOfWar:
                 FogOfWarRoomState();
-            case RoomState.FogOfWar:
-
                 break;
-
             case RoomState.Started:
                 StartedRoomState();
                 break;
