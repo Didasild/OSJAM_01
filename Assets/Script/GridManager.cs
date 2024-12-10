@@ -68,8 +68,6 @@ public class GridManager : MonoBehaviour
             Cell cellToDefine = cell.GetComponent<Cell>();
             cellToDefine.ChangeType(CellType.Empty);
         }
-        Debug.Log("Grid Size: " + gridSize);
-
         //Set mines
         SetMineType(pourcentageOfMine);
 
