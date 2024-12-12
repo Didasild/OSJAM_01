@@ -48,6 +48,13 @@ public class DungeonManager : MonoBehaviour
 
         ClearFloor();
 
+        // Calcul du décalage pour centrer la grille
+        Vector3 offset = new Vector3(
+            -(floorSize.x * roomSize) / 2.0f + (roomSize / 2.0f), // Décalage X
+            -(floorSize.y * roomSize) / 2.0f + (roomSize / 2.0f), // Décalage Y
+            0 // Z reste constant
+        );
+
         List<RoomSettings> availableRoomList = new List<RoomSettings>(_roomSettingsList);
         for (int y = 0; y < floorSize.y; y++)
         {
@@ -60,7 +67,7 @@ public class DungeonManager : MonoBehaviour
                 RoomData roomData = Instantiate(roomPrefab, roomContainer);
                 if (roomData != null)
                 {
-                    roomData.Initialize(gridPosition, roomSize); // Initialisation avec la position
+                    roomData.Initialize(gridPosition, roomSize, offset); // Initialisation avec la position
                     roomList.Add(roomData); // Ajouter � la liste
                     roomData.transform.SetParent(roomContainer);
                     roomData.roomStateVisual.sprite = GameManager.RoomVisualManager.GetRoomStateVisual(RoomState.FogOfWar);

@@ -32,18 +32,18 @@ public class RoomData : MonoBehaviour
     #endregion
 
 
-    public void Initialize(Vector2Int position, float roomSize = 1.0f)
+    public void Initialize(Vector2Int position, float roomSize = 1.0f, Vector3 offset = default)
     {
         this.roomPosition = position;
 
         // Calculez la position dans le monde
         Vector3 worldPosition = new Vector3(
             position.x * roomSize,
-            position.y * roomSize, // Utilisez `-gridPosition.y` pour descendre sur l'axe Y
-            0 // Z reste constant (2D)
-        );
+            position.y * roomSize,
+            0
+        ) + offset; // Ajoutez le décalage global pour centrer la grille
 
-        // Placez le GameObject � cette position
+        // Placez le GameObject à cette position
         transform.localPosition = worldPosition;
     }
 
