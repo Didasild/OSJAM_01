@@ -149,13 +149,14 @@ public class DungeonManager : MonoBehaviour
             room.roomRight = FindRoomAtPosition(position + Vector2Int.right);
         }
     }
+    
     private RoomData FindRoomAtPosition(Vector2Int position)
     {
         // Cherche la room correspondant � la position donn�e
         return roomList.Find(r => r.roomPosition == position);
     }
-
-    public void ClearFloor()
+    
+    private void ClearFloor()
     {
         foreach (RoomData room in roomList)
         {
@@ -166,8 +167,9 @@ public class DungeonManager : MonoBehaviour
         }
         roomList = new List<RoomData>();
     }
-
+    
     #endregion
+    
 
     #region BUTTON FONCTIONS
     public void ChangeRoomDirection(int directionValue)

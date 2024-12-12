@@ -91,6 +91,7 @@ public class Player : MonoBehaviour
             }
             //Update le compteur de mines restantes
             GameManager.Instance.gridManager.UpdateMineCounter();
+            GameManager.Instance.gridManager.CheckRoomCompletion();
             ResetClickedState();
         }
 
@@ -222,7 +223,10 @@ public class Player : MonoBehaviour
             cellClicked.ChangeState(CellState.Reveal);
         }
 
-        GameManager.Instance.dungeonManager.currentRoom.ChangeRoomSate(RoomState.Started);
+        if (GameManager.Instance.dungeonManager.currentRoom.currentRoomState != RoomState.Complete)
+        {
+            GameManager.Instance.dungeonManager.currentRoom.ChangeRoomSate(RoomState.Started);
+        }
         IncreaseClickCount();
     }
 

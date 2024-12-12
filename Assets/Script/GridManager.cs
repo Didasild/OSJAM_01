@@ -455,6 +455,16 @@ public class GridManager : MonoBehaviour
         }
         return neighbors;
     }
+    
+    public void CheckRoomCompletion()
+    {
+        int nbOfCoverCells = cellList.Count - GetCellsByState(CellState.Reveal).Count;
+        int nbOfMine = GetCellsByType(CellType.Mine).Count;
+        if (nbOfMine == nbOfCoverCells)
+        {
+            GameManager.Instance.dungeonManager.currentRoom.ChangeRoomSate(RoomState.Complete);
+        }
+    }
     #endregion
 
     #region MINE COUNTER // A DÉPLACER DANS PLAYER OU AUTRE PLUS PERTINENT
