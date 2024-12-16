@@ -7,7 +7,7 @@ public enum GameState
 {
     None,
     InGame,
-    Loose,
+    Lose,
 }
 #endregion
 
@@ -34,14 +34,6 @@ public class GameManager : MonoBehaviour
     [Header("REFERENCES")]
     public GameObject endScreenUI;
     public Player player;
-
-    //[Header("OBSERVATIONS")]
-    //Private Variables
-    //private int pourcentageUpdate = 0;
-    //private int pourcentageOfMine = 0;
-
-    //[Header("DIFFICULTY")]
-    //public int pourcentageOfMineIncrement = 5;
 
     //Singleton
     private static GameManager _instance;
@@ -81,13 +73,13 @@ public class GameManager : MonoBehaviour
                 InGameState();
                 break;
 
-            case GameState.Loose:
-                LooseState();
+            case GameState.Lose:
+                LoseState();
                 break;
         }
     }
 
-    private void LooseState()
+    private void LoseState()
     {
         endScreenUI.SetActive(true);
         currentFloorLevel = 0;

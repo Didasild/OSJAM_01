@@ -31,7 +31,7 @@ public class Player : MonoBehaviour
     #endregion
 
 
-    void Update()
+    private void Update()
     {
         // Convertit la position de la souris en coordonn�es du monde
         Vector2 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
@@ -112,7 +112,7 @@ public class Player : MonoBehaviour
             }
 
         }
-        #endregion
+        #endregion LEFT CLICK
 
         #region RIGHT CLICK 
         // Clique sur le bouton droit
@@ -122,13 +122,13 @@ public class Player : MonoBehaviour
             {
                 _cellOver.ChangeState(CellState.Flag);
             }
-            else if (_cellOver.currentState == CellState.Flag && _swordCounter >= 1)
+            else if (_cellOver.currentState == CellState.Flag && _swordCounter >= 1f)
             {
                 //cellOver.ChangeState(CellState.PlantedSword);
                 _cellOver.ItemStateTransition(CellState.PlantedSword, 0.35f);
                 DecreaseSwordCounter();
             }
-            else if (_cellOver.currentState == CellState.Flag && _swordCounter == 0)
+            else if (_cellOver.currentState == CellState.Flag && _swordCounter == 0f)
             {
                 _cellOver.ChangeState(CellState.Cover);
             }
@@ -212,7 +212,7 @@ public class Player : MonoBehaviour
             GameManager.Instance.gridManager.SetItemsType(CellType.Item, GameManager.Instance.currentRoomSettings.GetNumberOfSword(), ItemTypeEnum.Sword);
 
         }
-        //Explose la mine si sans est une
+        //Explose la mine si c'en est une
         if (cellClicked.currentType == CellType.Mine)
         {
             cellClicked.MineExplosion();
@@ -305,7 +305,7 @@ public class Player : MonoBehaviour
         healthPointText.text = _healthPoints.ToString();
         if (_healthPoints <= 0)
         {
-            GameManager.Instance.ChangeGameState(GameState.Loose);
+            GameManager.Instance.ChangeGameState(GameState.Lose);
         }
     }
 

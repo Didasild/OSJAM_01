@@ -272,12 +272,12 @@ public class GridManager : MonoBehaviour
         float gridHeight = gridSize.y * cellSize;   // Hauteur totale de la grille
 
         // Ajustement pour la parit� des dimensions
-        float xAdjustment = (gridSize.x % 2 == 0) ? 0 : cellSize / 2; // D�calage si impair
-        float yAdjustment = (gridSize.y % 2 == 0) ? 0 : -cellSize / 2; // D�calage si impair
+        float xAdjustment = (gridSize.x % 2f == 0f) ? 0f : cellSize / 2f; // D�calage si impair
+        float yAdjustment = (gridSize.y % 2f == 0f) ? 0f : -cellSize / 2f; // D�calage si impair
 
         Vector2 gridOffset = new Vector2(
-            -gridWidth / 2 + cellSize / 2 + xAdjustment, // Ajustement horizontal
-            gridHeight / 2 - cellSize / 2 + yAdjustment  // Ajustement vertical
+            -gridWidth / 2f + cellSize / 2f + xAdjustment, // Ajustement horizontal
+            gridHeight / 2f - cellSize / 2f + yAdjustment  // Ajustement vertical
         );
         return gridOffset;
     }
