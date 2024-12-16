@@ -29,9 +29,8 @@ public class ButtonBehavior : MonoBehaviour
         }
     }
 
-    public void ButtonClick(int direction)
+    public void OnuttonClick()
     {
         
     }
-    
 }
