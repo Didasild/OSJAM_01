@@ -29,6 +29,8 @@ public class RoomData : MonoBehaviour
     [Header("ROOM MINIMAP VISUAL")]
     public Image roomStateVisual;
     public Image roomSelectedVisual;
+    
+    private DungeonManager _dungeonManager;
     #endregion
 
 
@@ -45,6 +47,8 @@ public class RoomData : MonoBehaviour
 
         // Placez le GameObject à cette position
         transform.localPosition = worldPosition;
+        
+        _dungeonManager = GameManager.Instance.dungeonManager;
     }
 
     public void ChangeRoomSate(RoomState newRoomState)
@@ -66,6 +70,7 @@ public class RoomData : MonoBehaviour
                 CompleteRoomState();
                 break;
         }
+        _dungeonManager.UpdateButtonStates();
     }
 
     private void FogOfWarRoomState()
@@ -82,4 +87,5 @@ public class RoomData : MonoBehaviour
     {
 
     }
+    
 }

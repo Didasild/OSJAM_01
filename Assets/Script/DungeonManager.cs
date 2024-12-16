@@ -169,7 +169,6 @@ public class DungeonManager : MonoBehaviour
     }
     
     #endregion
-    
 
     #region BUTTON FONCTIONS
     public void ChangeRoomDirection(int directionValue)
@@ -217,13 +216,22 @@ public class DungeonManager : MonoBehaviour
         currentRoom.roomSavedString = GameManager.Instance.gridManager.SaveGridString();
     }
 
-    private void UpdateButtonStates()
+    public void UpdateButtonStates()
     {
-        StopAllCoroutines();
-        buttonRight.SetActive(currentRoom.roomRight != null);
-        buttonLeft.SetActive(currentRoom.roomLeft != null);
-        buttonUp.SetActive(currentRoom.roomUp != null);
-        buttonDown.SetActive(currentRoom.roomDown != null);
+        if (currentRoom.currentRoomState == RoomState.Complete)
+        {
+            buttonRight.SetActive(currentRoom.roomRight != null);
+            buttonLeft.SetActive(currentRoom.roomLeft != null);
+            buttonUp.SetActive(currentRoom.roomUp != null);
+            buttonDown.SetActive(currentRoom.roomDown != null);
+        }
+        else if(currentRoom.currentRoomState == RoomState.Started)
+        {
+            buttonRight.SetActive(false);
+            buttonLeft.SetActive(false);
+            buttonUp.SetActive(false);
+            buttonDown.SetActive(false);
+        }
     }
     #endregion
 

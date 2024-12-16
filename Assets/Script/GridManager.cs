@@ -460,7 +460,7 @@ public class GridManager : MonoBehaviour
     {
         int nbOfCoverCells = cellList.Count - GetCellsByState(CellState.Reveal).Count;
         int nbOfMine = GetCellsByType(CellType.Mine).Count;
-        if (nbOfMine == nbOfCoverCells)
+        if (nbOfMine == nbOfCoverCells && nbOfMine == GetCellsByState(CellState.Flag).Count)
         {
             GameManager.Instance.dungeonManager.currentRoom.ChangeRoomSate(RoomState.Complete);
         }
