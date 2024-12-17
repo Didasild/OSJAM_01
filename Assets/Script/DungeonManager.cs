@@ -171,11 +171,10 @@ public class DungeonManager : MonoBehaviour
     #endregion
 
     #region BUTTON FONCTIONS
-    public void ChangeRoomDirection(int directionValue)
+    public void ChangeRoomDirection(RoomDirection direction)
     {
         SaveRoomData();
         currentRoom.roomSelectedVisual.sprite = GameManager.RoomVisualManager.GetSelectedVisual(false);
-        RoomDirection direction = (RoomDirection)directionValue;
         switch (direction)
         {
             case RoomDirection.Right:

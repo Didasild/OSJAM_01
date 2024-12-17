@@ -260,8 +260,8 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 5799208636253544003}
         m_TargetAssemblyTypeName: ButtonBehavior, Assembly-CSharp
-        m_MethodName: ButtonClick
-        m_Mode: 3
+        m_MethodName: OnButtonClick
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -282,3 +282,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 577feb2d43fb5ce458a6fde7d4e71962, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  buttonDirection: 0
