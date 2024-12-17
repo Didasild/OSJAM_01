@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 #region ENUMS
@@ -10,7 +11,7 @@ public enum RoomState
 }
 #endregion
 
-public class RoomData : MonoBehaviour
+public class RoomData : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerClickHandler
 {
     #region PARAMETERS
 
@@ -51,6 +52,7 @@ public class RoomData : MonoBehaviour
         _dungeonManager = GameManager.Instance.dungeonManager;
     }
 
+    #region ROOM STATE
     public void ChangeRoomSate(RoomState newRoomState)
     {
         currentRoomState = newRoomState;
@@ -87,5 +89,30 @@ public class RoomData : MonoBehaviour
     {
 
     }
-    
+    #endregion ROOM STATE
+
+    #region POINTER
+    public void OnPointerEnter(PointerEventData eventData)
+    {
+        
+    }
+
+    public void OnPointerExit(PointerEventData eventData)
+    {
+        
+    }
+
+    public void OnPointerClick(PointerEventData eventData)
+    {
+        if (currentRoomState == RoomState.FogOfWar || _dungeonManager.currentRoom == this || _dungeonManager.currentRoom.currentRoomState == RoomState.Started)
+        {
+            return;
+        }
+        else
+        {
+            _dungeonManager.ChangeRoomMinimap(this);
+        }
+
+    }
+    #endregion POINTER
 }

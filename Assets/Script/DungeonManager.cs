@@ -210,7 +210,17 @@ public class DungeonManager : MonoBehaviour
         UpdateButtonStates();
     }
 
-    public void SaveRoomData()
+    public void ChangeRoomMinimap(RoomData room)
+    {
+        SaveRoomData();
+        currentRoom.roomSelectedVisual.sprite = GameManager.RoomVisualManager.GetSelectedVisual(false);
+        currentRoom = room;
+        GameManager.Instance.ChangeRoom(room);
+        currentRoom.roomSelectedVisual.sprite = GameManager.RoomVisualManager.GetSelectedVisual(true);
+        UpdateButtonStates();
+    }
+
+    private void SaveRoomData()
     {
         currentRoom.roomSavedString = GameManager.Instance.gridManager.SaveGridString();
     }

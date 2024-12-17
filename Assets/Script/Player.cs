@@ -25,7 +25,8 @@ public class Player : MonoBehaviour
     public int clicCounter;
 
     //Private Variables
-    private Cell _cellOver;
+    [NaughtyAttributes.ReadOnly]
+    [SerializeField] private Cell _cellOver;
     private Cell _cellClicked;
     private Cell _firstCellClicked;
     #endregion

@@ -164,13 +164,5 @@ public class GameManager : MonoBehaviour
         //pourcentageOfMine = currentRoomSettings.roomPourcentageOfMine + pourcentageUpdate;
 
     }
-    // DIFFICULTY 
-    //public int IncreaseLoopDiffficulty(int pourcentageOfMineIncrement)
-    //{
-    //    //Update le nombre de loop
-    //    floorLoop += 1;
-    //    pourcentageUpdate += pourcentageOfMineIncrement;
-    //    return pourcentageUpdate;
-    //}
     #endregion
 }
