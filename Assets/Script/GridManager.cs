@@ -21,13 +21,11 @@ public class GridManager : MonoBehaviour
     public List<Cell> cellMineList = new List<Cell>(); //Liste de mines de la grid
 
     [Header("MINE LEFT")]
+    public TMP_Text theoricalMineLeftText;
     [NaughtyAttributes.ReadOnly]
     public int numberOfMineLeft;
     [NaughtyAttributes.ReadOnly]
     public int theoricalMineLeft;
-    //public int realMineLeft;
-    public TMP_Text theoricalMineLeftText;
-
     #endregion
 
 
