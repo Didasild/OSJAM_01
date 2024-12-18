@@ -27,8 +27,7 @@ public class GridManager : MonoBehaviour
     [NaughtyAttributes.ReadOnly]
     public int theoricalMineLeft;
     #endregion
-
-
+    
     #region PROCEDURAL GRID GENERATION
     public void GenerateGrid(Vector2Int gridSize, int pourcentageOfMine)
     {

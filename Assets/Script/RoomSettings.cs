@@ -70,8 +70,6 @@ public class RoomSettings : ScriptableObject
                 }
             }
         }
-        //Debug.Log($"Grid Size Save:{maxRow + 1} rows {maxCol + 1} columns");
-
         // Retourner les dimensions (colonnes = maxCol + 1, lignes = maxRow + 1)
         return new Vector2Int(maxCol + 1, maxRow + 1);
     }
