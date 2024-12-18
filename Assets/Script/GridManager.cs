@@ -162,7 +162,7 @@ public class GridManager : MonoBehaviour
             cell.UpdateRegardingNeighbors();
         }
     }
-    #endregion
+    #endregion PROCEDURAL GRID GENERATION
 
     #region LOADED GRID GENERATION
     public void LoadGridFromString(string gridString, Vector2Int gridSize)
@@ -259,9 +259,9 @@ public class GridManager : MonoBehaviour
         };
     }
 
-    #endregion
+    #endregion LOADED GRID GENERATION
 
-    #region GRID GENERATION FONCTIONS
+    #region COMMON GENERATION FONCTIONS
 
     private Vector2 GetGridOffset(float cellSize, Vector2Int gridSize)
     {
@@ -327,7 +327,7 @@ public class GridManager : MonoBehaviour
         cellList = new List<Cell>();
         cellMineList = new List<Cell>();
     }
-    #endregion
+    #endregion COMMON GENERATION FONCTIONS
 
     #region GRID VISUAL FONCTIONS
     public void ActiveListOfCells(float timeBetweenApparition, RoomState roomState)
@@ -378,7 +378,7 @@ public class GridManager : MonoBehaviour
     }
     
     
-    #endregion
+    #endregion GRID VISUAL FONCTIONS
 
     #region GET GRID INFORMATIONS
     public List<Cell> GetCellsByType(CellType typeOfCellWanted)
@@ -463,7 +463,7 @@ public class GridManager : MonoBehaviour
             GameManager.Instance.dungeonManager.currentRoom.ChangeRoomSate(RoomState.Complete);
         }
     }
-    #endregion
+    #endregion GET GRID INFORMATIONS
 
     #region MINE COUNTER // A DÉPLACER DANS PLAYER OU AUTRE PLUS PERTINENT
     public void UpdateMineCounter()

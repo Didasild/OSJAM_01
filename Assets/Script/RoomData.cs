@@ -9,7 +9,7 @@ public enum RoomState
     Started,
     Complete
 }
-#endregion
+#endregion ENUMS
 
 public class RoomData : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerClickHandler
 {
@@ -34,7 +34,7 @@ public class RoomData : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     private DungeonManager _dungeonManager;
     #endregion
 
-
+    #region INIT
     public void Initialize(Vector2Int position, float roomSize = 1.0f, Vector3 offset = default)
     {
         this.roomPosition = position;
@@ -51,6 +51,7 @@ public class RoomData : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
         
         _dungeonManager = GameManager.Instance.dungeonManager;
     }
+    #endregion INIT
 
     #region ROOM STATE
     public void ChangeRoomSate(RoomState newRoomState)

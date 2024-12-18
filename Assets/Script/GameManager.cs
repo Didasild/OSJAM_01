@@ -43,8 +43,7 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] private RoomVisualManager _RoomVisualManager;
     public static RoomVisualManager RoomVisualManager => _instance._RoomVisualManager;
-    #endregion
-
+    #endregion PARAMETERS
 
     #region INIT
     private void Awake()
@@ -56,7 +55,7 @@ public class GameManager : MonoBehaviour
     {
         ChangeGameState(GameState.InGame);
     }
-    #endregion
+    #endregion INIT
 
     #region GAME STATE
     public void ChangeGameState(GameState gameState)
@@ -116,7 +115,7 @@ public class GameManager : MonoBehaviour
             endScreenUI.SetActive(false);
         }
     }
-    #endregion
+    #endregion GAME STATE
 
     #region ROOM AND FLOOR MANAGEMENT
 
@@ -164,5 +163,5 @@ public class GameManager : MonoBehaviour
         //pourcentageOfMine = currentRoomSettings.roomPourcentageOfMine + pourcentageUpdate;
 
     }
-    #endregion
+    #endregion ROOM AND FLOOR MANAGEMENT
 }
