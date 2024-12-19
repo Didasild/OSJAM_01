@@ -374,9 +374,9 @@ MonoBehaviour:
   _cellPosition: {x: 0, y: 0}
   neighborsCellList: []
   numberOfNeighborsMine: 0
-  numberText: {fileID: 2169501575802712571}
   cellEmpty: {fileID: 7908236844943373467}
   cellCover: {fileID: 5073111335782266271}
+  numberText: {fileID: 2169501575802712571}
   stateVisual: {fileID: 7780765407585118857}
   typeVisual: {fileID: 2469119105154910921}
   itemVisual: {fileID: 7269597997932643388}

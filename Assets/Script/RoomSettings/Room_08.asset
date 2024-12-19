@@ -12,14 +12,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e1fa203da9941e14e9ac5c76d2db6dfb, type: 3}
   m_Name: Room_08
   m_EditorClassIdentifier: 
-  proceduralGrid: 1
+  proceduralRoom: 1
   isMandatory: 0
-  savedGridString: 
-  minGridSize: {x: 5, y: 5}
-  maxGridSize: {x: 18, y: 20}
+  roomType: 0
+  roomLoadString: 
+  minRoomSize: {x: 5, y: 5}
+  maxRoomSize: {x: 10, y: 10}
   roomPourcentageOfMine: 20
+  roomPourcentageOfNone: 5
   haveStair: 0
   minPotion: 0
   maxPotion: 1
   minSword: 0
   maxSword: 1
+  itemRanges:
+  - itemType: 1
+    min: 0
+    max: 1
+  - itemType: 2
+    min: 0
+    max: 1

@@ -210,8 +210,8 @@ public class Player : MonoBehaviour
             {
                 GameManager.Instance.gridManager.SetItemsType(CellType.Gate, 1);
             }
-            GameManager.Instance.gridManager.SetItemsType(CellType.Item, GameManager.Instance.currentRoomSettings.GetNumberOfPotion(), ItemTypeEnum.Potion);
-            GameManager.Instance.gridManager.SetItemsType(CellType.Item, GameManager.Instance.currentRoomSettings.GetNumberOfSword(), ItemTypeEnum.Sword);
+            GameManager.Instance.gridManager.SetItemsType(CellType.Item, GameManager.Instance.currentRoomSettings.GetNumberOfItem(ItemTypeEnum.Potion), ItemTypeEnum.Potion);
+            GameManager.Instance.gridManager.SetItemsType(CellType.Item, GameManager.Instance.currentRoomSettings.GetNumberOfItem(ItemTypeEnum.Sword), ItemTypeEnum.Sword);
 
         }
         //Explose la mine si c'en est une

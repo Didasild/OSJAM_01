@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections.Generic;
 
 public enum RoomType
 {
@@ -29,15 +30,28 @@ public class RoomSettings : ScriptableObject
     [Header("ROOM GRID")]
     [SerializeField] private Vector2Int minRoomSize = new Vector2Int(5,5);
     [SerializeField] private Vector2Int maxRoomSize = new Vector2Int(10, 10);
+    
+    [Header("SPECIFIC CELLS")]
     public int roomPourcentageOfMine = 5;
-    [Header("STAIR")]
+    public int roomPourcentageOfNone = 5;
     public bool haveStair;
-    [Header("HEALTH")]
-    [SerializeField] private int minPotion;
-    [SerializeField] private int maxPotion;
-    [Header("SWORD")]
-    [SerializeField] private int minSword;
-    [SerializeField] private int maxSword;
+    
+
+    // [Header("HEALTH")]
+    // [SerializeField] private int minPotion;
+    // [SerializeField] private int maxPotion;
+    // [Header("SWORD")]
+    // [SerializeField] private int minSword;
+    // [SerializeField] private int maxSword;
+    [System.Serializable]
+    public struct ItemRange
+    {
+        public ItemTypeEnum itemType;
+        public int min;
+        public int max;
+    }
+    [Header("________ITEMS")]
+    public List<ItemRange> itemRanges;
     #endregion
 
     #region PROCEDURAL GET INFOS
@@ -48,17 +62,29 @@ public class RoomSettings : ScriptableObject
         Vector2Int roomSize = new Vector2Int(randomRow, randomCol);
         return roomSize;
     }
-
-    public int GetNumberOfPotion()
+    public int GetNumberOfItem(ItemTypeEnum itemType)
     {
-        int numberOfPotion = Random.Range(minPotion, maxPotion+1);
-        return numberOfPotion;
+        var range = GetRange(itemType);
+        if (range.HasValue)
+        {
+            return Random.Range(range.Value.min, range.Value.max + 1);
+        }
+        else
+        {
+            return 0; // Si le type d'item n'est pas configuré
+        }
     }
-
-    public int GetNumberOfSword()
+    private ItemRange? GetRange(ItemTypeEnum itemType)
     {
-        int numberOfSword = Random.Range(minSword, maxSword + 1);
-        return numberOfSword;
+        foreach (var range in itemRanges)
+        {
+            if (range.itemType == itemType)
+            {
+                return range;
+            }
+        }
+        Debug.Log($"Item type {itemType} non configuré dans {name} !");
+        return null;
     }
     #endregion
 
