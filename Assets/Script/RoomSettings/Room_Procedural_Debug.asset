@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   proceduralRoom: 1
   isMandatory: 1
+  roomType: 1
   roomLoadString: 
   minRoomSize: {x: 5, y: 5}
   maxRoomSize: {x: 10, y: 10}

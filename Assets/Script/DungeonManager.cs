@@ -70,7 +70,6 @@ public class DungeonManager : MonoBehaviour
                     roomData.Initialize(gridPosition, roomSize, offset); // Initialisation avec la position
                     roomList.Add(roomData); // Ajouter � la liste
                     roomData.transform.SetParent(roomContainer);
-                    roomData.roomStateVisual.sprite = GameManager.RoomVisualManager.GetRoomStateVisual(RoomState.FogOfWar);
                 }
                 // Nommer la room pour faciliter le debug
                 roomData.name = $"Room_{x}_{y}";
@@ -88,32 +87,37 @@ public class DungeonManager : MonoBehaviour
             return;
         }
 
-        // Cr�er une liste temporaire de RoomSettings � assigner
+        // Créer une liste temporaire de RoomSettings � assigner
         List<RoomSettings> tempRoomSettings = new List<RoomSettings>();
 
-        // Ajouter tous les �l�ments `isMandatory`
+        // Ajouter tous les éléments `isMandatory`
         List<RoomSettings> mandatorySettings = availableRoomList.Where(rs => rs.isMandatory).ToList();
         tempRoomSettings.AddRange(mandatorySettings);
 
-        // Compl�ter la liste avec des �l�ments non obligatoires
+        // Compléter la liste avec des éléments non obligatoires
         List<RoomSettings> nonMandatorySettings = availableRoomList.Where(rs => !rs.isMandatory).ToList();
         int remainingSlots = roomList.Count - tempRoomSettings.Count;
 
         if (remainingSlots > 0)
         {
-            // Ajouter al�atoirement des RoomSettings non obligatoires jusqu'� atteindre la taille de roomList
+            // Ajouter aléatoirement des RoomSettings non obligatoires jusqu'� atteindre la taille de roomList
             System.Random rng = new System.Random();
             nonMandatorySettings = nonMandatorySettings.OrderBy(x => rng.Next()).Take(remainingSlots).ToList();
             tempRoomSettings.AddRange(nonMandatorySettings);
         }
 
-        // M�langer la liste finale de RoomSettings
+        // Mélanger la liste finale de RoomSettings
         tempRoomSettings = tempRoomSettings.OrderBy(x => UnityEngine.Random.value).ToList();
 
-        // Assigner les RoomSettings m�lang�s aux RoomData
+        // Assigner les RoomSettings mélangés aux RoomData
         for (int i = 0; i < roomList.Count; i++)
         {
             roomList[i].roomSettings = tempRoomSettings[i];
+        }
+
+        foreach (RoomData room in roomList)
+        {
+            room.InitializeRoomType();
         }
         AssignRandomFirstRoom();
     }

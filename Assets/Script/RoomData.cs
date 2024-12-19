@@ -18,6 +18,7 @@ public class RoomData : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     [Header("GENERAL DATA")]
     [NaughtyAttributes.ReadOnly] public RoomSettings roomSettings;
     [NaughtyAttributes.ReadOnly] public RoomState currentRoomState;
+    [NaughtyAttributes.ReadOnly] public RoomType CurrentRoomType;
     [NaughtyAttributes.ReadOnly] public string roomSavedString;
     [NaughtyAttributes.ReadOnly] public Vector2Int roomPosition;
 
@@ -28,10 +29,12 @@ public class RoomData : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     [NaughtyAttributes.ReadOnly] public RoomData roomRight;
 
     [Header("ROOM MINIMAP VISUAL")]
+    public Image roomTypeVisual;
     public Image roomStateVisual;
     public Image roomSelectedVisual;
     
     private DungeonManager _dungeonManager;
+    private RoomVisualManager _roomVisualManager;
     #endregion
 
 
@@ -48,8 +51,19 @@ public class RoomData : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 
         // Placez le GameObject à cette position
         transform.localPosition = worldPosition;
+
+        //Setup le visuel
+        _roomVisualManager = GameManager.RoomVisualManager;
+        roomStateVisual.sprite = _roomVisualManager.GetRoomStateVisual(RoomState.FogOfWar);
         
+        //Assigne le dungeon manager
         _dungeonManager = GameManager.Instance.dungeonManager;
+    }
+
+    public void InitializeRoomType()
+    {
+        CurrentRoomType = roomSettings.roomType;
+        roomTypeVisual.sprite = _roomVisualManager.GetRoomTypeVisual(RoomType.None);
     }
 
     #region ROOM STATE
@@ -87,7 +101,14 @@ public class RoomData : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 
     private void CompleteRoomState()
     {
-
+        if (CurrentRoomType != RoomType.None)
+        {
+            //Fait apparaitre le type de la room
+            Color roomTypeVisualColor = roomTypeVisual.color;
+            roomTypeVisualColor.a = 1;
+            roomTypeVisual.color = roomTypeVisualColor;
+        }
+        roomTypeVisual.sprite = _roomVisualManager.GetRoomTypeVisual(CurrentRoomType);
     }
     #endregion ROOM STATE
 

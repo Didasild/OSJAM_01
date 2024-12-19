@@ -1,12 +1,18 @@
 using UnityEngine;
+using UnityEngine.UI;
 
 public class RoomVisualManager : MonoBehaviour
 {
-    [Header("_______MINIMAP ROOM VISUAL")]
+    [Header("_______MINIMAP ROOM STATE VISUAL")]
     public Sprite roomFoWSprite;
     public Sprite roomStartedSprite;
     public Sprite roomCompleteSprite;
     public Sprite roomSelectedSprite;
+    
+    [Header("_______MINIMAP ROOM TYPE VISUAL")]
+    public Sprite roomTypeStairSprite;
+    public Sprite roomTypeShopSprite;
+    public Sprite roomTypeBossSprite;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
 
     public Sprite GetRoomStateVisual(RoomState roomState)
@@ -25,6 +31,21 @@ public class RoomVisualManager : MonoBehaviour
             roomStateVisual = roomCompleteSprite;
         }
         return roomStateVisual;
+    }
+
+    public Sprite GetRoomTypeVisual(RoomType roomType)
+    {
+        Sprite roomTypeVisual = null;
+        if (roomType == RoomType.None)
+        {
+            return null;
+        }
+        else if (roomType == RoomType.Stair)
+        {
+            roomTypeVisual = roomTypeStairSprite;
+        }
+
+        return roomTypeVisual;
     }
 
     public Sprite GetSelectedVisual(bool isSelected)

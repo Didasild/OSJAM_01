@@ -1,12 +1,26 @@
 using UnityEngine;
 
+public enum RoomType
+{
+    None,
+    Stair,
+    Shop,
+    Boss
+}
+
 [CreateAssetMenu(fileName = "RoomSettings", menuName = "DungeonGeneration/RoomSettings")]
+
 public class RoomSettings : ScriptableObject
 {
+
+    
     #region PARAMETERS
     [Header("GENERAL")]
     public bool proceduralRoom = true;
     public bool isMandatory;
+    
+    [Header("TAG")]
+    public RoomType roomType;
 
     [Header("________LOADED GRID SETTINGS")]
     public string roomLoadString; // USE ONLY FOR FIRST GENERATION NEVER CHANGE
