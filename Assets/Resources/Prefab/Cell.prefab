@@ -317,7 +317,7 @@ BoxCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4634166477021220514}
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 3
   m_Density: 1
   m_Material: {fileID: 0}
@@ -381,6 +381,7 @@ MonoBehaviour:
   typeVisual: {fileID: 2469119105154910921}
   itemVisual: {fileID: 7269597997932643388}
   animParent: {fileID: 893933950214680590}
+  collider: {fileID: 3712063207644448669}
 --- !u!95 &2663853168915052573
 Animator:
   serializedVersion: 7

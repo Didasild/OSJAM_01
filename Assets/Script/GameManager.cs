@@ -128,7 +128,7 @@ public class GameManager : MonoBehaviour
         }
         else if (currentRoomSettings.proceduralRoom)
         {
-            gridManager.GenerateGrid(currentRoomSettings.GetRoomSize(), currentRoomSettings.roomPourcentageOfMine);
+            gridManager.GenerateGrid(currentRoomSettings.GetRoomSize());
             roomData.ChangeRoomSate(RoomState.Started);
         }
         else

@@ -36,13 +36,6 @@ public class RoomSettings : ScriptableObject
     public int roomPourcentageOfNone = 5;
     public bool haveStair;
     
-
-    // [Header("HEALTH")]
-    // [SerializeField] private int minPotion;
-    // [SerializeField] private int maxPotion;
-    // [Header("SWORD")]
-    // [SerializeField] private int minSword;
-    // [SerializeField] private int maxSword;
     [System.Serializable]
     public struct ItemRange
     {

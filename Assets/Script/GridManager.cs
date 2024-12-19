@@ -29,7 +29,7 @@ public class GridManager : MonoBehaviour
     #endregion
     
     #region PROCEDURAL GRID GENERATION
-    public void GenerateGrid(Vector2Int gridSize, int pourcentageOfMine)
+    public void GenerateGrid(Vector2Int gridSize)
     {
         if (cellPrefab == null)
         {
@@ -66,13 +66,14 @@ public class GridManager : MonoBehaviour
             cellToDefine.ChangeType(CellType.Empty);
         }
         //Set mines
-        SetMineType(pourcentageOfMine);
+        SetCellType(GameManager.Instance.currentRoomSettings.roomPourcentageOfMine, CellType.Mine);
+        SetCellType(GameManager.Instance.currentRoomSettings.roomPourcentageOfNone, CellType.None);
 
         //Setup l'animation d'apparition
         ActiveListOfCells(timeBetweenApparition, RoomState.FogOfWar);
     }
 
-    private void SetMineType(int pourcentageOfMine)
+    private void SetCellType(int pourcentageOfType, CellType cellType)
     {
         if (cellList.Count == 0)
         {
@@ -80,10 +81,10 @@ public class GridManager : MonoBehaviour
             return;
         }
 
-        // S'assurer que le nombre d'objets � changer ne d�passe pas la taille de la liste
-        int countToChange = Mathf.RoundToInt(cellList.Count * (pourcentageOfMine / 100f));
+        // S'assurer que le nombre d'objets à changer ne dépasse pas la taille de la liste
+        int countToChange = Mathf.RoundToInt(cellList.Count * (pourcentageOfType / 100f));
 
-        // Liste temporaire pour suivre les objets d�j� modifi�s
+        // Liste temporaire pour suivre les objets déjà modifiés
         List<Cell> alreadyChanged = new List<Cell>();
 
         for (int i = 0;i < countToChange;i++)
@@ -97,24 +98,28 @@ public class GridManager : MonoBehaviour
             alreadyChanged.Add(randomCell);
 
             Cell cell = randomCell.GetComponent<Cell>();
-            if (cell != null)
+            if (cell != null && cellType == CellType.Mine)
             {
                 cell.ChangeType(CellType.Mine);
                 cellMineList.Add(randomCell);
+            }
+            else if (cell != null && cellType == CellType.None)
+            {
+                cell.ChangeType(CellType.None);
             }
         }
     }
 
     public void SetItemsType(CellType cellType, int numberOfItem, ItemTypeEnum itemType = ItemTypeEnum.None)
     {
-        // Cr�e la liste des cellules vides + hint
+        // Crée la liste des cellules vides + hint
         List<Cell> emptyCellsList = GetCoverCellsByType(CellType.Empty);
         if (cellType != CellType.Gate)
         {
             emptyCellsList.AddRange(GetCoverCellsByType(CellType.Hint));
         }
 
-        // Si aucune cellule dans la liste des "cover cells", utiliser la liste g�n�rale
+        // Si aucune cellule dans la liste des "cover cells", utiliser la liste générale
         if (emptyCellsList.Count == 0)
         {
             emptyCellsList = GetCellsByType(CellType.Empty);
@@ -124,7 +129,7 @@ public class GridManager : MonoBehaviour
             }
         }
 
-        // S'assurer de ne pas essayer de s�lectionner plus de cellules que disponibles
+        // S'assurer de ne pas essayer de sélectionner plus de cellules que disponibles
         numberOfItem = Mathf.Min(numberOfItem, emptyCellsList.Count);
 
         // Liste temporaire pour �viter les doublons
@@ -132,14 +137,14 @@ public class GridManager : MonoBehaviour
 
         for (int i = 0; i < numberOfItem; i++)
         {
-            // G�n�re un index al�atoire parmi les cellules restantes
+            // Génère un index al�atoire parmi les cellules restantes
             int randomIndex = UnityEngine.Random.Range(0, emptyCellsList.Count);
 
-            // S�lectionne une cellule et la retire de la liste temporaire
+            // Sélectionne une cellule et la retire de la liste temporaire
             Cell selectedCell = emptyCellsList[randomIndex];
             emptyCellsList.RemoveAt(randomIndex);
 
-            // Ajoute la cellule � la liste des cellules s�lectionn�es
+            // Ajoute la cellule à la liste des cellules sélectionnées
             selectedCells.Add(selectedCell);
         }
 
@@ -158,7 +163,14 @@ public class GridManager : MonoBehaviour
         cellsWithExcluded.Remove(cellIgnore);
         foreach (Cell cell in cellsWithExcluded)
         {
-            cell.UpdateRegardingNeighbors();
+            if (cell.currentType != CellType.None)
+            {
+                cell.UpdateRegardingNeighbors();
+            }
+            else
+            {
+                cell.ChangeType(CellType.None);
+            }
         }
     }
     #endregion PROCEDURAL GRID GENERATION
@@ -229,7 +241,7 @@ public class GridManager : MonoBehaviour
             "Pl" => CellState.PlantedSword,
             "Re" => CellState.Reveal,
             "No" => CellState.None,
-            _ => throw new ArgumentException($"Abr�viation inconnue : {abbreviation}")
+            _ => throw new ArgumentException($"Abréviation inconnue : {abbreviation}")
         };
     }
 
@@ -242,7 +254,8 @@ public class GridManager : MonoBehaviour
             "Hi" => CellType.Hint,
             "Ga" => CellType.Gate,
             "It" => CellType.Item,
-            _ => throw new ArgumentException($"Abr�viation inconnue : {abbreviation}")
+            "No" => CellType.None,
+            _ => throw new ArgumentException($"Abréviation inconnue : {abbreviation}")
         };
     }
 
@@ -254,7 +267,7 @@ public class GridManager : MonoBehaviour
             "Sw" => ItemTypeEnum.Sword,
             "Co" => ItemTypeEnum.Coin,
             "No" => ItemTypeEnum.None,
-            _ => throw new ArgumentException($"Abr�viation inconnue : {abbreviation}")
+            _ => throw new ArgumentException($"Abréviation inconnue : {abbreviation}")
         };
     }
 

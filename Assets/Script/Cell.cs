@@ -17,6 +17,7 @@ public enum CellState
 public enum CellType
 {
     Empty,
+    None,
     Mine,
     Hint,
     Gate,
@@ -59,8 +60,8 @@ public class Cell : MonoBehaviour
     
     //Private Variables
     private CellVisualManager _cellVisualManager;
+    private Collider2D collider;
     #endregion
-
 
     #region INIT
     public void Initialize(Vector2Int cellPosition)
@@ -68,6 +69,7 @@ public class Cell : MonoBehaviour
         _cellPosition = cellPosition;
         _cellVisualManager = GameManager.CellVisualManager;
         ChangeState(currentState);
+        collider = GetComponent<Collider2D>();
     }
 
     //Update le visual de la cellule
@@ -191,6 +193,10 @@ public class Cell : MonoBehaviour
             case CellType.Empty:
                 EmptyType(updateVisual);
                 break;
+            
+            case CellType.None:
+                NoneType();
+                break;
 
             case CellType.Mine:
                 MineType();
@@ -217,6 +223,16 @@ public class Cell : MonoBehaviour
             cellEmpty.SetActive(true);
             typeVisual.sprite = _cellVisualManager.GetCellTypeVisual(currentType);
         }
+    }
+    private void NoneType()
+    {
+        typeVisual.sprite = null;
+        stateVisual.sprite = null;
+        itemVisual.sprite = null;
+        cellEmpty.SetActive(false);
+        cellCover.SetActive(false);
+        numberText.text = "";
+        Destroy(collider);
     }
     private void MineType()
     {
@@ -315,7 +331,6 @@ public class Cell : MonoBehaviour
             }
         }
     }
-
     #endregion
 
     #region CELL MODIFICATIONS METHODS
