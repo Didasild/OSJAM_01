@@ -38,7 +38,7 @@ public class CellVisualManager : MonoBehaviour
     public Sprite GetCellStateVisual(CellState cellState)
     {
         Sprite cellStateVisual = null;
-        if (cellState == CellState.None || cellState == CellState.Reveal || cellState == CellState.Cover) 
+        if (cellState == CellState.Reveal || cellState == CellState.Cover) 
         {
             return null;
         }
