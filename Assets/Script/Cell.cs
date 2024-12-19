@@ -74,6 +74,10 @@ public class Cell : MonoBehaviour
     //Update le visual de la cellule
     public void UpdateRegardingNeighbors()
     {
+        if (currentType == CellType.None)
+        {
+            return;
+        }
         //Update le type selon les voisins
         numberOfNeighborsMine = 0;
         foreach (Cell cell in neighborsCellList)
@@ -346,10 +350,8 @@ public class Cell : MonoBehaviour
     private IEnumerator CO_MineDestruction(GameObject mineAnimType, float animDuration)
     {
         InstantiateAnimation(mineAnimType);
-        //mineAnimType.SetActive(true);
         ChangeType(CellType.Empty);
         yield return new WaitForSeconds(animDuration);
-        //mineAnimType.SetActive(false);
         DestroyAnimationPrefab();
         UpdateRegardingNeighbors();
         foreach (Cell cellInList in neighborsCellList)
