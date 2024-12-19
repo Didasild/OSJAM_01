@@ -37,19 +37,17 @@ public class Cell : MonoBehaviour
 {
     #region PARAMETERS
     [Header("CELL INFORMATIONS")]
-    public CellState currentState;
-    public CellType currentType;
-    public ItemTypeEnum currentItemType;
-    [NaughtyAttributes.ReadOnly]
-    public Vector2Int _cellPosition;
-    public List<Cell> neighborsCellList = new List<Cell>(); //Liste des voisins de la cellule
-    [NaughtyAttributes.ReadOnly]
-    public int numberOfNeighborsMine;
-    public TMP_Text numberText;
-
+    [NaughtyAttributes.ReadOnly] public CellState currentState;
+    [NaughtyAttributes.ReadOnly] public CellType currentType;
+    [NaughtyAttributes.ReadOnly] public ItemTypeEnum currentItemType;
+    [NaughtyAttributes.ReadOnly] public Vector2Int _cellPosition;
+    [NaughtyAttributes.ReadOnly] public List<Cell> neighborsCellList = new List<Cell>(); //Liste des voisins de la cellule
+    [NaughtyAttributes.ReadOnly] public int numberOfNeighborsMine;
+    
     [Header("CELL BASE VISUAL")]
     public GameObject cellEmpty;
     public GameObject cellCover;
+    public TMP_Text numberText;
 
     [Header("CELL ADDITIONAL VISUAL")]
     public SpriteRenderer stateVisual;
@@ -59,6 +57,7 @@ public class Cell : MonoBehaviour
     [Header("CELL ANIMS STATE")]
     public GameObject animParent;
     
+    //Private Variables
     private CellVisualManager _cellVisualManager;
     #endregion
 

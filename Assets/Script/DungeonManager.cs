@@ -172,9 +172,9 @@ public class DungeonManager : MonoBehaviour
         roomList = new List<RoomData>();
     }
     
-    #endregion
+    #endregion FLOOR GENERATION
 
-    #region BUTTON FONCTIONS
+    #region CHANGE ROOMS
     public void ChangeRoomDirection(RoomDirection direction)
     {
         SaveRoomData();
@@ -246,7 +246,7 @@ public class DungeonManager : MonoBehaviour
             buttonDown.SetActive(false);
         }
     }
-    #endregion
+    #endregion BUTTON FONCTIONS
 
 
 }
