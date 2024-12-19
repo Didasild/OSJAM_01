@@ -11,7 +11,6 @@ public enum CellState
     Flag,
     PlantedSword,
     Reveal,
-    None
 }
 
 public enum CellType
