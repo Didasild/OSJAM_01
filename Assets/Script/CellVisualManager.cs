@@ -5,7 +5,6 @@ public class CellVisualManager : MonoBehaviour
     #region PARAMETERS
     [Header("_______CELL VISUAL")]
     [Header("ITEMS VISUAL")]
-    public Sprite stairSprite;
     public Sprite potionSprite;
     public Sprite swordSprite;
 
@@ -21,6 +20,11 @@ public class CellVisualManager : MonoBehaviour
     public GameObject mineExplosionAnimation;
     public GameObject mineSwordedAnimation;
     public GameObject plantedSwordAnimation;
+    
+    [Header("_______CELL EDITOR VISUAL")]
+    public Sprite coverSprite;
+    public Sprite revealSprite;
+    public Sprite mineIconSprite;
     #endregion
 
 

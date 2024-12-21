@@ -8,6 +8,7 @@ public class RoomEditor : MonoBehaviour
     public Vector2Int gridSize = new Vector2Int(5, 5); // Taille de la grille
     public float cellSpacing = 1.0f;                  // Espacement entre les cellules
     public GameObject cellPrefab;                   // Prefab de la cellule
+    public CellVisualManager cellVisualManager;
     
     [Header("____ROOM INFOS")]
     public List<CellEditor> cells;
@@ -42,7 +43,7 @@ public class RoomEditor : MonoBehaviour
                 if (cellEditor != null)
                 {
                     cellEditor.gridPosition = new Vector2Int(x, y);
-                    cellEditor.ResetName();
+                    cellEditor.Initialisation(cellVisualManager);
                 }
             }
         }
