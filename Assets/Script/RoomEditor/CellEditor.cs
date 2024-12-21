@@ -18,7 +18,7 @@ public class CellEditor : MonoBehaviour
     
     //PRIVATE
     private CellVisualManager _cellVisualManager;
-
+    
     private void OnValidate()
     {
         gameObject.name = $"Cell ({cellState}, {cellType})";
@@ -30,6 +30,10 @@ public class CellEditor : MonoBehaviour
         gameObject.name = $"Cell ({cellState}, {cellType})";
         _cellVisualManager = cellVisualManager;
         UpdateCellVisual();
+        foreach (Transform child in transform)
+        {
+            child.gameObject.hideFlags = HideFlags.HideInHierarchy; // Rend l'objet non sélectionnable
+        }
     }
     
     public void UpdateCellVisual()
