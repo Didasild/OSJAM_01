@@ -224,6 +224,7 @@ MonoBehaviour:
   cellState: 0
   cellType: 0
   itemType: 0
+  isSelected: 0
   cellStateVisual: {fileID: 3126336701650697365}
   cellTypeVisual: {fileID: 7487232728163872945}
   _cellPosition: {x: 0, y: 0}

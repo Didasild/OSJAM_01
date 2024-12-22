@@ -21,8 +21,4 @@ MonoBehaviour:
   roomPourcentageOfMine: 10
   roomPourcentageOfNone: 5
   haveStair: 0
-  minPotion: 0
-  maxPotion: 0
-  minSword: 0
-  maxSword: 0
   itemRanges: []

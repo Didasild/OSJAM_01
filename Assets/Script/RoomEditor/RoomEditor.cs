@@ -6,36 +6,43 @@ using UnityEngine.Serialization;
 [ExecuteInEditMode]
 public class RoomEditor : MonoBehaviour
 {
-    [Header("____ROOM EDITOR SETUP")]
+    #region VARIABLES
+    [FormerlySerializedAs("gridSize")] [Header("____GENERATION")]
+    public Vector2Int roomSize = new Vector2Int(5, 5); // Taille de la grille
+    
+    [Header("____SAVE")]
+    public string scriptableName;
+
+    [Header("____PROCEDURAL FONCTIONS")]
+    public CellSelectionConditions cellSelectionConditions;
+    public CellsModifications cellsModifications;
+    
+    [Header("____DEBUG")]
     public float cellSpacing = 1.0f;                  // Espacement entre les cellules
     public GameObject cellPrefab;                   // Prefab de la cellule
     public CellVisualManager cellVisualManager;
-    
-    [Header("____ROOM SETTINGS")]
-    public Vector2Int gridSize = new Vector2Int(5, 5); // Taille de la grille
-    public string scriptableName;
+    [NaughtyAttributes.ReadOnly] public List<CellEditor> selectedCells;
+    [NaughtyAttributes.ReadOnly] public List<CellEditor> cells;
+    public string roomSaveString;
     
     [System.Serializable]
     public struct CellSelectionConditions
     {
+        public bool onlySelected;
         public List<CellState> cellState;
         public List<CellType> cellType;
-        public bool onlySelected;
     }
-    [Header("____ROOM FONCTIONS")]
-    public CellSelectionConditions cellSelectionConditions;
-    public List<CellEditor> selectedCells;
-    
-    [Header("____ROOM INFOS")]
-    public List<CellEditor> cells;
-
-    public string roomSaveString;
-    
-    private void OnValidate()
+    [System.Serializable]
+    public struct CellsModifications
     {
-        
+        public CellState cellNewState;
+        public CellType cellNewType;
+        public int numberOfModifications;
+        //public bool isAPourcentage; A FAIRE SI NECESSAIRE
     }
+    #endregion
 
+    #region GENERATION FUNCTIONS
     public void GenerateEditorRoom()
     {
         ClearEditorRoom();
@@ -48,11 +55,11 @@ public class RoomEditor : MonoBehaviour
         }
 
         // Générer la grille
-        for (int row = 0; row < gridSize.y; row++)
+        for (int row = 0; row < roomSize.y; row++)
         {
-            for (int col = 0; col < gridSize.x; col++)
+            for (int col = 0; col < roomSize.x; col++)
             {
-                Vector2 gridOffset = GridManager.GetGridOffset(cellSpacing, gridSize);                // Calculer la position de chaque cellule (ajust�e par l'offset)
+                Vector2 gridOffset = GridManager.GetGridOffset(cellSpacing, roomSize);                // Calculer la position de chaque cellule (ajust�e par l'offset)
                 Vector2 cellPosition = new Vector2(col * cellSpacing, -row * cellSpacing) + gridOffset ;
                 GameObject cell = Instantiate(cellPrefab, cellPosition, Quaternion.identity, transform);
                 cells.Add(cell.GetComponent<CellEditor>());
@@ -77,7 +84,15 @@ public class RoomEditor : MonoBehaviour
         }
         cells = new List<CellEditor>();
     }
+    #endregion GENERATION FUNCTIONS
 
+    #region SAVE FUNCTIONS
+    public void CreateRoomScriptable()
+    {
+        ClearSavedString();
+        roomSaveString = SaveRoomString();
+        
+    }
     public String SaveRoomString()
     {
         ClearSavedString();
@@ -103,22 +118,20 @@ public class RoomEditor : MonoBehaviour
         }
         return gridStringBuilder.ToString();
     }
-    public void CreateRoomScriptable()
-    {
-        ClearSavedString();
-        roomSaveString = SaveRoomString();
-        
-    }
     
-    public void ClearSavedString()
+    private void ClearSavedString()
     {
         roomSaveString = string.Empty;
     }
+    #endregion SAVE FUNCTIONS
 
-    #region ROOM EDITOR FUNCTIONS
+    #region EDITOR FUNCTIONS
+    
+    
+    
     public void SelectCells(CellSelectionConditions cellSelectionConditions)
     {
-        Debug.Log("Dans la fonction");
+        selectedCells = new List<CellEditor>();
         //Etablis la liste de cellule à traiter en fonction de la condition de selection
         List<CellEditor> matchingCells = new List<CellEditor>();
         if (cellSelectionConditions.onlySelected)
@@ -147,7 +160,6 @@ public class RoomEditor : MonoBehaviour
 
         foreach (CellEditor cell in matchingCells)
         {
-            Debug.Log("Dans le foreach");
             bool matchesState = true;
             bool matchesType = true;
 
@@ -163,11 +175,9 @@ public class RoomEditor : MonoBehaviour
 
             if (matchesState && matchesType)
             {
-                matchingCells.Add(cell);
+                selectedCells.Add(cell);
             }
         }
-        selectedCells = matchingCells;
     }
-    #endregion
-
+    #endregion EDITOR FUNCTIONS
 }
