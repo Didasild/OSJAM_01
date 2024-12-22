@@ -380,6 +380,37 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1451116359}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &262222408
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 262222409}
+  m_Layer: 0
+  m_Name: TestGUIOverview
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &262222409
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 262222408}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.31253597, y: -0.16243303, z: 0.0861071}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &326953103
 GameObject:
   m_ObjectHideFlags: 1
@@ -2089,15 +2120,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9f5ce88d7a634aa499d42764164cedef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  roomSize: {x: 3, y: 3}
+  scriptableName: 
+  cellSelectionConditions:
+    onlySelected: 0
+    cellState: 04000000
+    cellType: 02000000
+  cellsModifications:
+    cellNewState: 0
+    cellNewType: 0
+    numberOfModifications: 0
   cellSpacing: 0.16
   cellPrefab: {fileID: 9198906607439180770, guid: c83598a6bc890214e966b8418b7e45b9, type: 3}
   cellVisualManager: {fileID: 1809192503}
-  gridSize: {x: 3, y: 3}
-  scriptableName: 
-  cellSelectionConditions:
-    cellState: 0000000004000000
-    cellType: 02000000
-    onlySelected: 0
   selectedCells:
   - {fileID: 1906315923}
   cells:
@@ -2837,3 +2872,4 @@ SceneRoots:
   m_Roots:
   - {fileID: 1809192501}
   - {fileID: 1137463578016294822}
+  - {fileID: 262222409}

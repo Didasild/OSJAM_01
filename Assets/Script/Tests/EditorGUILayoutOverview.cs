@@ -1,4 +1,7 @@
+using Unity.VisualScripting;
 using UnityEditor;
+using UnityEditor.IMGUI.Controls;
+using UnityEditor.Rendering;
 using UnityEngine;
 
 public class EditorGUILayoutExhaustiveWindow : EditorWindow
@@ -135,6 +138,14 @@ public class EditorGUILayoutExhaustiveWindow : EditorWindow
         {
             Debug.LogError("Error logged!");
         }
+        
+        // Création d'une liste d'exemples de données pour afficher dans un arbre
+        TreeViewItem root = new TreeViewItem { id = 0, displayName = "Root" };
+        root.AddChild(new TreeViewItem { id = 1, displayName = "Child 1" });
+        root.AddChild(new TreeViewItem { id = 2, displayName = "Child 2" });
+
+        // Dessiner l'arbre avec CoreEditorUtils
+        CoreEditorUtils.DrawHeader("TITLE");
 
         // Fin du ScrollView
         EditorGUILayout.EndScrollView();

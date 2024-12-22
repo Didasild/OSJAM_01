@@ -1,12 +1,20 @@
 using UnityEditor;
+using UnityEditor.Rendering;
 using UnityEngine;
 
 [CustomEditor(typeof(RoomEditor))]
 public class RoomEditorInspector : Editor
 {
+    #region VARIABLES
     // Référence à l'objet sérialisé
     SerializedProperty cellSelectionConditionsProperty;
     private bool debugFoldout;
+    private bool generationSection;
+    private bool saveSection;
+    
+    private int smallSpacing = 5;
+    #endregion
+
 
     void OnEnable()
     {
@@ -14,37 +22,54 @@ public class RoomEditorInspector : Editor
     }
     public override void OnInspectorGUI()
     {
+        #region SETUP
         // Synchronise les modifications dans l'inspecteur
         serializedObject.Update();
-
         RoomEditor roomEditor = (RoomEditor)target;
+        #endregion SETUP
 
-        // Ajouter un en-tête pour la génération de la grille
-        GUILayout.Space(10);
-        EditorGUI.BeginDisabledGroup(true); 
-        EditorGUILayout.TextField("GENERATION FUNCTIONS");
-        EditorGUI.EndDisabledGroup();
-        GUILayout.Space(5);
-        roomEditor.roomSize = EditorGUILayout.Vector2IntField("Room Size", roomEditor.roomSize);
-        if (GUILayout.Button("Generate Room"))
+        #region TITLE
+        //_______TITLE
+        EditorGUILayout.LabelField("ROOM EDITOR", EditorStyles.toolbarButton);
+        //Spacing
+        EditorGUILayout.Space(smallSpacing*2);
+        #endregion TITLE
+
+        #region GENERATION
+        //________SECTION - GENERATION
+        //Header Foldout - GENERATION
+        CoreEditorUtils.DrawSplitter();
+        generationSection = CoreEditorUtils.DrawHeaderFoldout("GENERATION", generationSection, false, null);
+        if (generationSection)
         {
-            roomEditor.GenerateEditorRoom();
+            //Room Size
+            roomEditor.roomSize = EditorGUILayout.Vector2IntField("Room Size", roomEditor.roomSize);
+            
+            //Room Generation Functions
+            if (GUILayout.Button("Generate Room"))
+            {
+                roomEditor.GenerateEditorRoom();
+            }
+            if (GUILayout.Button("Clear Room"))
+            {
+                roomEditor.ClearEditorRoom();
+            }
+        }
+        #endregion GENERATION
+
+        //________SECTION - SAVE
+        //Header Foldout - SAVE
+        CoreEditorUtils.DrawSplitter();
+        saveSection = CoreEditorUtils.DrawHeaderFoldout("SAVE", saveSection, false, null);
+        if (saveSection)
+        {
+            roomEditor.scriptableName = EditorGUILayout.TextField("Scriptable Name", roomEditor.scriptableName);
+            if (GUILayout.Button("Create Room Scriptable"))
+            {
+                roomEditor.CreateRoomScriptable();
+            }
         }
 
-        if (GUILayout.Button("Clear Room"))
-        {
-            roomEditor.ClearEditorRoom();
-        }
-
-        
-        GUILayout.Space(10);
-        EditorGUILayout.LabelField("_____SAVE FUNCTIONS", EditorStyles.boldLabel);
-        GUILayout.Space(5);
-        roomEditor.scriptableName = EditorGUILayout.TextField("Scriptable Name", roomEditor.scriptableName);
-        if (GUILayout.Button("Create Room Scriptable"))
-        {
-            roomEditor.CreateRoomScriptable();
-        }
         
         GUILayout.Space(10);
         EditorGUILayout.LabelField("_____PROCEDURAL FUNCTIONS", EditorStyles.boldLabel);
