@@ -8,6 +8,7 @@ public class CellEditor : MonoBehaviour
     public CellState cellState;
     public CellType cellType;
     public ItemTypeEnum itemType;
+    public bool isSelected;
 
     [Header("CELL VISUAL")]
     public SpriteRenderer cellStateVisual;

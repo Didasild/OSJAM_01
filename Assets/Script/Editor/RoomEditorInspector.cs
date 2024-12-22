@@ -32,10 +32,13 @@ public class RoomEditorInspector : Editor
         {
             roomEditor.CreateRoomScriptable();
         }
+        
+        GUILayout.Space(10);
+        EditorGUILayout.LabelField("_____ROOM FUNCTIONS", EditorStyles.boldLabel);
         GUILayout.Space(5);
-        if (GUILayout.Button("Save Room String"))
+        if (GUILayout.Button("Select Cells"))
         {
-            roomEditor.roomSaveString = roomEditor.SaveRoomString();
+            roomEditor.SelectCells(roomEditor.cellSelectionConditions);
         }
     }
 }
