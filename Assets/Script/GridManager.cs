@@ -274,7 +274,7 @@ public class GridManager : MonoBehaviour
 
     #region COMMON GENERATION FONCTIONS
 
-    private Vector2 GetGridOffset(float cellSize, Vector2Int gridSize)
+    public static Vector2 GetGridOffset(float cellSize, Vector2Int gridSize)
     {
         // Calcul de l'offset pour centrer la grille
         float gridWidth = gridSize.x * cellSize; // Largeur totale de la grille

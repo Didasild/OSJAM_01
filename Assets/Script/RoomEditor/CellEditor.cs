@@ -13,8 +13,7 @@ public class CellEditor : MonoBehaviour
     public SpriteRenderer cellStateVisual;
     public SpriteRenderer cellTypeVisual;
     
-    [HideInInspector]
-    public Vector2Int gridPosition; // La position dans la grille
+    public Vector2Int _cellPosition; // La position dans la grille
     
     //PRIVATE
     private CellVisualManager _cellVisualManager;
@@ -25,7 +24,7 @@ public class CellEditor : MonoBehaviour
         UpdateCellVisual();
     }
 
-    public void Initialisation(CellVisualManager cellVisualManager)
+    public void Initialize(CellVisualManager cellVisualManager)
     {
         gameObject.name = $"Cell ({cellState}, {cellType})";
         _cellVisualManager = cellVisualManager;

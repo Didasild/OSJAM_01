@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -12,6 +13,8 @@ public class RoomEditor : MonoBehaviour
     
     [Header("____ROOM INFOS")]
     public List<CellEditor> cells;
+
+    public string roomSaveString;
     
     private void OnValidate()
     {
@@ -30,20 +33,21 @@ public class RoomEditor : MonoBehaviour
         }
 
         // Générer la grille
-        for (int y = 0; y < gridSize.y; y++)
+        for (int row = 0; row < gridSize.y; row++)
         {
-            for (int x = 0; x < gridSize.x; x++)
+            for (int col = 0; col < gridSize.x; col++)
             {
-                Vector3 position = new Vector3(x * cellSpacing, y * cellSpacing, 0);
-                GameObject cell = Instantiate(cellPrefab, position, Quaternion.identity, transform);
+                Vector2 gridOffset = GridManager.GetGridOffset(cellSpacing, gridSize);                // Calculer la position de chaque cellule (ajust�e par l'offset)
+                Vector2 cellPosition = new Vector2(col * cellSpacing, -row * cellSpacing) + gridOffset ;
+                GameObject cell = Instantiate(cellPrefab, cellPosition, Quaternion.identity, transform);
                 cells.Add(cell.GetComponent<CellEditor>());
                 
                 // Configure la cellule
                 CellEditor cellEditor = cell.GetComponent<CellEditor>();
                 if (cellEditor != null)
                 {
-                    cellEditor.gridPosition = new Vector2Int(x, y);
-                    cellEditor.Initialisation(cellVisualManager);
+                    cellEditor._cellPosition = new Vector2Int(row, col);
+                    cellEditor.Initialize(cellVisualManager);
                 }
             }
         }
@@ -59,8 +63,39 @@ public class RoomEditor : MonoBehaviour
         cells = new List<CellEditor>();
     }
 
+    public String SaveRoomString()
+    {
+        ClearSavedString();
+        System.Text.StringBuilder gridStringBuilder = new System.Text.StringBuilder();
+        foreach (CellEditor cell in cells)
+        {
+            // Coordonn�es de la cellule
+            int x = cell._cellPosition.x;
+            int y = cell._cellPosition.y;
+
+            // �tat de la cellule (par exemple "em" pour Empty, "co" pour Cover)
+            string state = cell.cellState.ToString().Substring(0, 2);
+            string type = cell.cellType.ToString().Substring(0, 2);
+            string itemType = cell.itemType.ToString().Substring(0, 2);
+
+            // Ajouter � la cha�ne sous forme : x_y_state|
+            gridStringBuilder.Append($"{x}_{y}_{state}_{type}_{itemType}|");
+        }
+        // Retirer le dernier caract�re "|" pour une cha�ne propre
+        if (gridStringBuilder.Length > 0)
+        {
+            gridStringBuilder.Length--;
+        }
+        return gridStringBuilder.ToString();
+    }
+
     public void CreateRoomScriptable()
     {
         
+    }
+
+    public void ClearSavedString()
+    {
+        roomSaveString = string.Empty;
     }
 }

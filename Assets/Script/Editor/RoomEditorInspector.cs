@@ -32,5 +32,10 @@ public class RoomEditorInspector : Editor
         {
             roomEditor.CreateRoomScriptable();
         }
+        GUILayout.Space(5);
+        if (GUILayout.Button("Save Room String"))
+        {
+            roomEditor.roomSaveString = roomEditor.SaveRoomString();
+        }
     }
 }
