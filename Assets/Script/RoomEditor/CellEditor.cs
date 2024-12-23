@@ -18,6 +18,12 @@ public class CellEditor : MonoBehaviour
     public SpriteRenderer cellTypeVisual;
     public SpriteRenderer debugVisual;
     public Color debugBaseColor;
+    public Color debugHighlightColor;
+    
+    private bool isFadingOut = false;
+    private float fadeStartTime;
+    private const float fadeDuration = 1f;
+    private const float delayBeforeFade = 0.5f;
     
     public Vector2Int _cellPosition; // La position dans la grille
     
@@ -131,33 +137,38 @@ public class CellEditor : MonoBehaviour
 
     public void HighlightCell()
     {
-        debugVisual.color = debugBaseColor;
-        debugVisual.color = Color.red;
-        // Lance une coroutine pour effectuer le fade-out
-        StartCoroutine(FadeOutCoroutine());
+        // Change la couleur immédiatement
+        debugVisual.color = debugHighlightColor;
+
+        // Démarre le processus de fade-out après 1 seconde
+        fadeStartTime = (float)EditorApplication.timeSinceStartup + delayBeforeFade;
+        isFadingOut = true;
+
+        // Déclenche l'update du fade
+        EditorApplication.update += FadeOutUpdate;
     }
-    private IEnumerator FadeOutCoroutine()
+
+    private void FadeOutUpdate()
     {
-        // Attendre 1 seconde avant de commencer le fade-out
-        yield return new WaitForSeconds(1f);
+        if (!isFadingOut) return;
 
-        float fadeDuration = 0.5f; // Durée du fade-out
-        Color startColor = debugVisual.color;
-        Color endColor = debugBaseColor;
-
-        float elapsedTime = 0f;
-
-        // Transition de la couleur actuelle vers la couleur de base
-        while (elapsedTime < fadeDuration)
+        // Si 1 seconde s'est écoulée
+        if ((float)EditorApplication.timeSinceStartup > fadeStartTime)
         {
-            elapsedTime += Time.deltaTime;
+            float elapsedTime = (float)EditorApplication.timeSinceStartup - fadeStartTime;
             float t = Mathf.Clamp01(elapsedTime / fadeDuration);
-            debugVisual.color = Color.Lerp(startColor, endColor, t);
-            yield return null; // Attendre le prochain frame
-        }
 
-        // S'assurer que la couleur finale est bien définie
-        debugVisual.color = debugBaseColor;
+            // Lerp entre la couleur rouge et la couleur de base
+            debugVisual.color = Color.Lerp(debugHighlightColor, debugBaseColor, t);
+
+            // Quand l'animation est terminée, nettoie l'update et réinitialise la couleur
+            if (t >= 1f)
+            {
+                isFadingOut = false;
+                EditorApplication.update -= FadeOutUpdate;
+                debugVisual.color = debugBaseColor;
+            }
+        }
     }
     #endregion VISUAL FUNCTIONS
 

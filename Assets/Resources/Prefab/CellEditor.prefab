@@ -229,6 +229,7 @@ MonoBehaviour:
   cellTypeVisual: {fileID: 7487232728163872945}
   debugVisual: {fileID: 3610390154062530418}
   debugBaseColor: {r: 1, g: 1, b: 1, a: 0.039215688}
+  debugHighlightColor: {r: 1, g: 0.25672385, b: 0, a: 0.78431374}
   _cellPosition: {x: 0, y: 0}
 --- !u!212 &3610390154062530418
 SpriteRenderer:
