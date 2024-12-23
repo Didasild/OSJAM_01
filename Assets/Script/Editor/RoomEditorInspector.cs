@@ -6,19 +6,28 @@ using UnityEngine;
 public class RoomEditorInspector : Editor
 {
     #region VARIABLES
-    // Référence à l'objet sérialisé
+    // Serialized Properties
     SerializedProperty cellSelectionConditionsProperty;
+    SerializedProperty cellsTypeChangeProperty;
+    SerializedProperty cellsStateChangeProperty;
+    
+    //Bool Sections
     private bool debugFoldout;
     private bool generationSection;
     private bool saveSection;
+    private bool proceduralSection;
+    private bool debugSection;
     
+    //GUI variables
     private int smallSpacing = 5;
     #endregion
-
 
     void OnEnable()
     {
         cellSelectionConditionsProperty = serializedObject.FindProperty("cellSelectionConditions");
+        cellsTypeChangeProperty = serializedObject.FindProperty("cellsTypeChange");
+        cellsStateChangeProperty = serializedObject.FindProperty("cellsStateChange");
+        
     }
     public override void OnInspectorGUI()
     {
@@ -42,6 +51,7 @@ public class RoomEditorInspector : Editor
         generationSection = CoreEditorUtils.DrawHeaderFoldout("GENERATION", generationSection, false, null);
         if (generationSection)
         {
+            EditorGUILayout.Space(smallSpacing);
             //Room Size
             roomEditor.roomSize = EditorGUILayout.Vector2IntField("Room Size", roomEditor.roomSize);
             
@@ -54,40 +64,98 @@ public class RoomEditorInspector : Editor
             {
                 roomEditor.ClearEditorRoom();
             }
+            EditorGUILayout.Space(smallSpacing);
         }
+        EditorGUILayout.Space(smallSpacing);
         #endregion GENERATION
+        
+        #region PROCEDURAL FUNCTION
+        //________SECTION - PROCEDURAL FUNCTIONS
+        //Header Foldout - PROCEDURAL FUNCTIONS
+        CoreEditorUtils.DrawSplitter();
+        proceduralSection = CoreEditorUtils.DrawHeaderFoldout("PROCEDURAL FUNCTION", proceduralSection, false, null);
+        if (proceduralSection)
+        {
+            EditorGUILayout.Space(smallSpacing);
+            EditorGUILayout.HelpBox("This section allow to procedurally change some cells. First define the range of cells that have to be change and apply the modification you want", MessageType.Info);
+            EditorGUILayout.Space(smallSpacing);
+            
+            CoreEditorUtils.DrawFoldoutEndSplitter();
+            // Afficher uniquement la propriété 'cellSelectionConditions' par défaut
+            EditorGUILayout.PropertyField(cellSelectionConditionsProperty);
+            EditorGUILayout.Space(smallSpacing);
+            
+            EditorGUILayout.BeginHorizontal();
+            if (GUILayout.Button("Clear Conditions"))
+            {
+                roomEditor.ClearConditions();
+            }
+            if (GUILayout.Button("Show Cells"))
+            {
+                // TROUVER UN MOYEN DE HIGHLIGHT LES CELLULES CONCERNES
+                roomEditor.SelectCells(roomEditor.cellSelectionConditions);
+            }
+            EditorGUILayout.EndHorizontal();
+            EditorGUILayout.Space(smallSpacing);
+            
+            CoreEditorUtils.DrawFoldoutEndSplitter();
+            EditorGUILayout.BeginHorizontal();
+            EditorGUILayout.PropertyField(cellsTypeChangeProperty);
+            EditorGUILayout.PropertyField(cellsStateChangeProperty);
+            EditorGUILayout.EndHorizontal();
+            EditorGUILayout.Space(smallSpacing);
+            
+            EditorGUILayout.BeginHorizontal();
+            if (GUILayout.Button("Random Change Type"))
+            {
+                //A FAIRE
+            }
 
+            if (GUILayout.Button("Random Change State"))
+            {
+                //A FAIRE
+            }
+            EditorGUILayout.EndHorizontal();
+            EditorGUILayout.Space(smallSpacing);
+            
+            CoreEditorUtils.DrawFoldoutEndSplitter();
+            EditorGUILayout.Space(smallSpacing);
+        }
+        EditorGUILayout.Space(smallSpacing);
+        #endregion PROCEDURAL FUNCTION
+        
+        #region SAVE
         //________SECTION - SAVE
         //Header Foldout - SAVE
         CoreEditorUtils.DrawSplitter();
         saveSection = CoreEditorUtils.DrawHeaderFoldout("SAVE", saveSection, false, null);
         if (saveSection)
         {
+            EditorGUILayout.Space(smallSpacing);
             roomEditor.scriptableName = EditorGUILayout.TextField("Scriptable Name", roomEditor.scriptableName);
             if (GUILayout.Button("Create Room Scriptable"))
             {
                 roomEditor.CreateRoomScriptable();
             }
+            EditorGUILayout.Space(smallSpacing);
         }
-
-        
-        GUILayout.Space(10);
-        EditorGUILayout.LabelField("_____PROCEDURAL FUNCTIONS", EditorStyles.boldLabel);
-        GUILayout.Space(5);
-        // Afficher uniquement la propriété 'cellSelectionConditions' par défaut
-        EditorGUILayout.PropertyField(cellSelectionConditionsProperty);
-        if (GUILayout.Button("Select Cells"))
-        {
-            roomEditor.SelectCells(roomEditor.cellSelectionConditions);
-        }
+        EditorGUILayout.Space(smallSpacing);
+        #endregion SAVE
         
         // Applique les changements à l'objet
         serializedObject.ApplyModifiedProperties();
         
-        debugFoldout = EditorGUILayout.Foldout(debugFoldout, "Debug Options");
-        if (debugFoldout)
+        #region DEBUG
+        //________SECTION - PROCEDURAL FUNCTIONS
+        //Header Foldout - PROCEDURAL FUNCTIONS
+        CoreEditorUtils.DrawSplitter();
+        debugSection = CoreEditorUtils.DrawHeaderFoldout("DEBUG", debugSection, false, null);
+        if (debugSection)
         {
+            EditorGUILayout.Space(smallSpacing);
+            EditorGUILayout.HelpBox("Debug Section, don't changer value here", MessageType.Warning);
             DrawDefaultInspector();
         }
+        #endregion DEBUG
     }
 }

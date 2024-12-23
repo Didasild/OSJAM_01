@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.Serialization;
 
@@ -12,10 +13,11 @@ public class RoomEditor : MonoBehaviour
     
     [Header("____SAVE")]
     public string scriptableName;
-
-    [Header("____PROCEDURAL FONCTIONS")]
+    
+    //Procedural Functions
     public CellSelectionConditions cellSelectionConditions;
-    public CellsModifications cellsModifications;
+    public CellsTypeChange cellsTypeChange;
+    public CellsStateChange cellsStateChange;
     
     [Header("____DEBUG")]
     public float cellSpacing = 1.0f;                  // Espacement entre les cellules
@@ -29,19 +31,25 @@ public class RoomEditor : MonoBehaviour
     public struct CellSelectionConditions
     {
         public bool onlySelected;
-        public List<CellState> cellState;
         public List<CellType> cellType;
+        public List<CellState> cellState;
     }
     [System.Serializable]
-    public struct CellsModifications
+    public struct CellsTypeChange
+    {
+        public CellType cellNewState;
+        public int numberTypeChange;
+        public bool isAPourcentage;
+    }
+    [System.Serializable]
+    public struct CellsStateChange
     {
         public CellState cellNewState;
-        public CellType cellNewType;
-        public int numberOfModifications;
-        //public bool isAPourcentage; A FAIRE SI NECESSAIRE
+        public int numberStateChange;
+        public bool isAPourcentage;
     }
     #endregion
-
+    
     #region GENERATION FUNCTIONS
     public void GenerateEditorRoom()
     {
@@ -127,8 +135,6 @@ public class RoomEditor : MonoBehaviour
 
     #region EDITOR FUNCTIONS
     
-    
-    
     public void SelectCells(CellSelectionConditions cellSelectionConditions)
     {
         selectedCells = new List<CellEditor>();
@@ -176,8 +182,17 @@ public class RoomEditor : MonoBehaviour
             if (matchesState && matchesType)
             {
                 selectedCells.Add(cell);
+                cell.HighlightCell();
             }
         }
     }
+
+    public void ClearConditions()
+    {
+        cellSelectionConditions.onlySelected = false;
+        cellSelectionConditions.cellState = null;
+        cellSelectionConditions.cellType = null;
+    }
+    
     #endregion EDITOR FUNCTIONS
 }
