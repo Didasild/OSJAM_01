@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Room_Procedural_Debug
   m_EditorClassIdentifier: 
   proceduralRoom: 1
-  isMandatory: 1
+  Mandatory: 1
   roomType: 1
   roomLoadString: 
   minRoomSize: {x: 5, y: 5}
@@ -21,10 +21,6 @@ MonoBehaviour:
   roomPourcentageOfMine: 10
   roomPourcentageOfNone: 5
   haveStair: 1
-  minPotion: 2
-  maxPotion: 2
-  minSword: 2
-  maxSword: 2
   itemRanges:
   - itemType: 1
     min: 2

@@ -73,6 +73,16 @@ public class GridManager : MonoBehaviour
         ActiveListOfCells(timeBetweenApparition, RoomState.FogOfWar);
     }
 
+    public void FirstClickGeneration()
+    {
+        if (GameManager.Instance.currentRoomSettings.haveStair)
+        {
+            SetItemsType(CellType.Gate, 1);
+        }
+        SetItemsType(CellType.Item, GameManager.Instance.currentRoomSettings.GetNumberOfItem(ItemTypeEnum.Potion), ItemTypeEnum.Potion);
+        SetItemsType(CellType.Item, GameManager.Instance.currentRoomSettings.GetNumberOfItem(ItemTypeEnum.Sword), ItemTypeEnum.Sword);
+        SetNoneState();
+    }
     private void SetCellType(int pourcentageOfType, CellType cellType)
     {
         if (cellList.Count == 0)
