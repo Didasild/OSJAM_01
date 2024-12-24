@@ -86,14 +86,17 @@ public class RoomEditorInspector : Editor
             EditorGUILayout.Space(smallSpacing);
             
             EditorGUILayout.BeginHorizontal();
+            if (GUILayout.Button("Show Cells"))
+            {
+                roomEditor.SelectCells(roomEditor.cellSelectionConditions);
+                foreach (CellEditor cell in roomEditor.selectedCells)
+                {
+                    cell.HighlightCell();
+                }
+            }
             if (GUILayout.Button("Clear Conditions"))
             {
                 roomEditor.ClearConditions();
-            }
-            if (GUILayout.Button("Show Cells"))
-            {
-                // TROUVER UN MOYEN DE HIGHLIGHT LES CELLULES CONCERNES
-                roomEditor.SelectCells(roomEditor.cellSelectionConditions);
             }
             EditorGUILayout.EndHorizontal();
             EditorGUILayout.Space(smallSpacing);
@@ -108,12 +111,12 @@ public class RoomEditorInspector : Editor
             EditorGUILayout.BeginHorizontal();
             if (GUILayout.Button("Random Change Type"))
             {
-                //A FAIRE
+                roomEditor.ChangeCellType(roomEditor.cellsTypeChange);
             }
 
             if (GUILayout.Button("Random Change State"))
             {
-                //A FAIRE
+                roomEditor.ChangeCellState(roomEditor.cellsStateChange);
             }
             EditorGUILayout.EndHorizontal();
             EditorGUILayout.Space(smallSpacing);
@@ -132,6 +135,10 @@ public class RoomEditorInspector : Editor
         if (saveSection)
         {
             EditorGUILayout.Space(smallSpacing);
+            if (GUILayout.Button("Generate Hint Cells"))
+            {
+                roomEditor.GenerateHintCells();
+            }
             roomEditor.scriptableName = EditorGUILayout.TextField("Scriptable Name", roomEditor.scriptableName);
             if (GUILayout.Button("Create Room Scriptable"))
             {

@@ -1,4 +1,6 @@
 using System.Collections;
+using System.Collections.Generic;
+using TMPro;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.Serialization;
@@ -17,8 +19,10 @@ public class CellEditor : MonoBehaviour
     public SpriteRenderer cellStateVisual;
     public SpriteRenderer cellTypeVisual;
     public SpriteRenderer debugVisual;
+    public TMP_Text debugHintText;
     public Color debugBaseColor;
     public Color debugHighlightColor;
+    public List<CellEditor> neighborsCellList = new List<CellEditor>(); 
     
     private bool isFadingOut = false;
     private float fadeStartTime;
@@ -55,9 +59,15 @@ public class CellEditor : MonoBehaviour
         gameObject.name = $"Cell ({cellState}, {cellType})";
         _cellVisualManager = cellVisualManager;
         UpdateCellVisual();
-        foreach (Transform child in transform)
+        HideAllDescendants(transform);
+    }
+
+    private void HideAllDescendants(Transform parent)
+    {
+        foreach (Transform child in parent)
         {
             child.gameObject.hideFlags = HideFlags.HideInHierarchy; // Rend l'objet non sélectionnable
+            HideAllDescendants(child); // Appel récursif pour les enfants de cet enfant
         }
     }
     #endregion
@@ -76,7 +86,7 @@ public class CellEditor : MonoBehaviour
                 break; // Sort de la boucle dès que l'objet est trouvé
             }
         }
-        Debug.Log($"Selected: {isSelected} :" + gameObject.name);
+        //Debug.Log($"Selected: {isSelected} :" + gameObject.name);
     }
     #endregion
 
@@ -90,6 +100,12 @@ public class CellEditor : MonoBehaviour
                 break;
             case CellState.Reveal:
                 cellStateVisual.sprite = _cellVisualManager.revealSprite;
+                break;
+            case CellState.Flag:
+                cellStateVisual.sprite = _cellVisualManager.flagSprite;
+                break;
+            case CellState.PlantedSword:
+                cellStateVisual.sprite = _cellVisualManager.plantedSwordSprite;
                 break;
         }
 
@@ -108,10 +124,14 @@ public class CellEditor : MonoBehaviour
             case CellType.Gate:
                 cellTypeVisual.sprite = _cellVisualManager.stairType;
                 break;
+            case CellType.Hint:
+
+                break;
             case CellType.Item:
                 UpdateItemVisual(itemType);
                 break;
         }
+        UpdateHintText();
         //Debug.Log($"Sprite mis à jour pour l'état : {cellState}");
     }
 
@@ -132,6 +152,33 @@ public class CellEditor : MonoBehaviour
                 cellTypeVisual.sprite = null;
                 Debug.LogWarning("Pas de visuel pour le coin");
                 break;
+        }
+    }
+
+    public void UpdateHintText()
+    {
+        if (cellType != CellType.Hint)
+        {
+            debugHintText.text = "";
+            return;
+        }
+        int hintNumber = 0;
+        foreach (CellEditor cellEditor in neighborsCellList)
+        {
+            if (cellEditor.cellType  == CellType.Mine)
+            {
+                hintNumber++;
+            }
+        }
+
+        if (hintNumber == 0)
+        {
+            debugHintText.text = "";
+            cellType = CellType.Empty;
+        }
+        else
+        {
+            debugHintText.text = hintNumber.ToString();
         }
     }
 

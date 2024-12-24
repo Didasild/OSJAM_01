@@ -8,7 +8,7 @@ using UnityEngine.Serialization;
 public class RoomEditor : MonoBehaviour
 {
     #region VARIABLES
-    [FormerlySerializedAs("gridSize")] [Header("____GENERATION")]
+    [Header("____GENERATION")]
     public Vector2Int roomSize = new Vector2Int(5, 5); // Taille de la grille
     
     [Header("____SAVE")]
@@ -37,7 +37,8 @@ public class RoomEditor : MonoBehaviour
     [System.Serializable]
     public struct CellsTypeChange
     {
-        public CellType cellNewState;
+        public CellType cellNewType;
+        public ItemTypeEnum newItemType;
         public int numberTypeChange;
         public bool isAPourcentage;
     }
@@ -81,8 +82,39 @@ public class RoomEditor : MonoBehaviour
                 }
             }
         }
+        foreach (CellEditor cellEditor in cells)
+        {
+            cellEditor.neighborsCellList = GiveNeighbors(cellEditor._cellPosition);
+        }
     }
-    
+    public List<CellEditor> GiveNeighbors(Vector2Int cellPosition)
+    {
+        List<CellEditor> neighbors = new List<CellEditor>();
+        // Définir les offsets pour les 8 directions autour d'une cellule
+        int[,] directions = new int[,]
+        {
+            { -1, -1 }, { -1, 0 }, { -1, 1 }, // Haut-gauche, Haut, Haut-droite
+            {  0, -1 },            {  0, 1 }, // Gauche, Droite
+            {  1, -1 }, {  1, 0 }, {  1, 1 }  // Bas-gauche, Bas, Bas-droite
+        };
+
+        for (int i = 0; i < directions.GetLength(0); i++)
+        {
+            int newRow = cellPosition.x + directions[i, 0];
+            int newCol = cellPosition.y + directions[i, 1];
+            Vector2Int neighborPosition = new Vector2Int(newRow, newCol);
+
+            //Recherche dans la liste
+            CellEditor neighbor = cells.Find(cell => cell._cellPosition == neighborPosition);
+
+            if (neighbor != null)
+            {
+                neighbors.Add(neighbor); // Ajoute le voisin � la liste
+            }
+        }
+
+        return neighbors;
+    }
     public void ClearEditorRoom()
     {
         // Supprimez tous les enfants
@@ -92,14 +124,41 @@ public class RoomEditor : MonoBehaviour
         }
         cells = new List<CellEditor>();
     }
+    
     #endregion GENERATION FUNCTIONS
 
     #region SAVE FUNCTIONS
+    public void GenerateHintCells()
+    {
+        List<CellEditor> emptyCells = new List<CellEditor>();
+        foreach (CellEditor cell in cells)
+        {
+            if (cell.cellType == CellType.Empty)
+            {
+                emptyCells.Add(cell);
+            }
+        }
+
+        foreach (CellEditor cell in emptyCells)
+        {
+            foreach (CellEditor neighbor in cell.neighborsCellList)
+            {
+                if (neighbor.cellType == CellType.Mine)
+                {
+                    // Change le type de la cellule si un voisin est de type "Mine"
+                    cell.cellType = CellType.Hint;
+                    cell.UpdateCellVisual();
+                    cell.HighlightCell();
+                    break;
+                }
+            }
+        }
+    }
     public void CreateRoomScriptable()
     {
+        GenerateHintCells();
         ClearSavedString();
         roomSaveString = SaveRoomString();
-        
     }
     public String SaveRoomString()
     {
@@ -126,16 +185,14 @@ public class RoomEditor : MonoBehaviour
         }
         return gridStringBuilder.ToString();
     }
-    
     private void ClearSavedString()
     {
         roomSaveString = string.Empty;
     }
     #endregion SAVE FUNCTIONS
 
-    #region EDITOR FUNCTIONS
-    
-    public void SelectCells(CellSelectionConditions cellSelectionConditions)
+    #region EDITOR FUNCTION
+    public List<CellEditor> SelectCells(CellSelectionConditions cellSelectionConditions)
     {
         selectedCells = new List<CellEditor>();
         //Etablis la liste de cellule à traiter en fonction de la condition de selection
@@ -154,15 +211,22 @@ public class RoomEditor : MonoBehaviour
         {
             matchingCells = cells;
         }
-        
         // Vérifie les listes state et type 
         bool hasStateConditions = cellSelectionConditions.cellState != null && cellSelectionConditions.cellState.Count > 0;
         bool hasTypeConditions = cellSelectionConditions.cellType != null && cellSelectionConditions.cellType.Count > 0;
 
+        // Si aucune condition n'est spécifiée, sélectionne toutes les cellules
         if (!hasStateConditions && !hasTypeConditions)
         {
-            selectedCells = matchingCells;
+            foreach (CellEditor cell in matchingCells)
+            {
+                selectedCells.Add(cell);
+            }
+            return matchingCells;
         }
+
+        // Liste temporaire pour collecter les cellules correspondant aux conditions
+        List<CellEditor> tempSelectedCells = new List<CellEditor>();
 
         foreach (CellEditor cell in matchingCells)
         {
@@ -181,9 +245,85 @@ public class RoomEditor : MonoBehaviour
 
             if (matchesState && matchesType)
             {
-                selectedCells.Add(cell);
-                cell.HighlightCell();
+                tempSelectedCells.Add(cell);
             }
+        }
+
+        // Ajoute les cellules correspondantes à la liste principale et applique le highlight
+        foreach (CellEditor cell in tempSelectedCells)
+        {
+            selectedCells.Add(cell);
+        }
+        return selectedCells;
+    }
+
+    public void ChangeCellType(CellsTypeChange cellTypeChange)
+    {
+        int numberOfCells = cellsTypeChange.numberTypeChange;
+        // Vérifie que le pourcentage est valide (entre 0 et 100)
+        if (cellTypeChange.isAPourcentage)
+        {
+            numberOfCells = GetPourcentage(numberOfCells);
+        }
+
+        List<CellEditor> shuffledCellList = SelectCells(this.cellSelectionConditions);
+        ShuffleList(shuffledCellList);
+        for (int i = 0; i < numberOfCells; i++)
+        {
+            shuffledCellList[i].cellType = cellsTypeChange.cellNewType;
+            if (cellTypeChange.cellNewType == CellType.Item)
+            {
+                shuffledCellList[i].itemType = cellsTypeChange.newItemType;
+            }
+            shuffledCellList[i].UpdateCellVisual();
+            shuffledCellList[i].HighlightCell();
+        }
+    }
+
+    public void ChangeCellState(CellsStateChange cellStateChange)
+    {
+        int numberOfCells = cellsStateChange.numberStateChange;
+
+        if (cellStateChange.isAPourcentage)
+        {
+            numberOfCells = GetPourcentage(numberOfCells);
+        }
+        
+        List<CellEditor> shuffledCellList = SelectCells(this.cellSelectionConditions);
+        ShuffleList(shuffledCellList);
+        for (int i = 0; i < numberOfCells; i++)
+        {
+            shuffledCellList[i].cellState = cellStateChange.cellNewState;
+            shuffledCellList[i].UpdateCellVisual();
+            shuffledCellList[i].HighlightCell();
+        }
+    }
+    
+    //Fonction pour retourner un pourcentage par rapport à une liste
+    private int GetPourcentage(int numberToPourcent)
+    {
+        if (numberToPourcent < 0 || numberToPourcent > 100)
+        {
+            Debug.LogError("Le pourcentage doit être entre 0 et 100.");
+            return numberToPourcent;
+        }
+        else
+        {
+            numberToPourcent = numberToPourcent * selectedCells.Count / 100;
+        }
+
+        return numberToPourcent;
+    }
+    
+    // Fonction pour mélanger la liste
+    private void ShuffleList(List<CellEditor> list)
+    {
+        for (int i = 0; i < list.Count; i++)
+        {
+            CellEditor temp = list[i];
+            int randomIndex = UnityEngine.Random.Range(i, list.Count);
+            list[i] = list[randomIndex];
+            list[randomIndex] = temp;
         }
     }
 
