@@ -91,11 +91,11 @@ public class DungeonManager : MonoBehaviour
         List<RoomSettings> tempRoomSettings = new List<RoomSettings>();
 
         // Ajouter tous les éléments `isMandatory`
-        List<RoomSettings> mandatorySettings = availableRoomList.Where(rs => rs.isMandatory).ToList();
+        List<RoomSettings> mandatorySettings = availableRoomList.Where(rs => rs.Mandatory).ToList();
         tempRoomSettings.AddRange(mandatorySettings);
 
         // Compléter la liste avec des éléments non obligatoires
-        List<RoomSettings> nonMandatorySettings = availableRoomList.Where(rs => !rs.isMandatory).ToList();
+        List<RoomSettings> nonMandatorySettings = availableRoomList.Where(rs => !rs.Mandatory).ToList();
         int remainingSlots = roomList.Count - tempRoomSettings.Count;
 
         if (remainingSlots > 0)

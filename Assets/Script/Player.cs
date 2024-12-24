@@ -198,7 +198,7 @@ public class Player : MonoBehaviour
 
     private void ClickOnCoverCell(Cell cellClicked)
     {
-        //V�rifie si la grid doit �tre proc�durale et est compl�tement couverte puis g�n�re les items
+        //Vérifie si la grid doit être proc�durale et est complètement couverte puis génère les items
         // VOIR POUR UNE MEILLEURE CONDITION GENRE SI GRID PROCEDURAL…
         int nbOfCellsCover = GameManager.Instance.gridManager.GetCellsByState(CellState.Cover).Count;
         int nbOfCells = GameManager.Instance.gridManager.cellList.Count;
@@ -212,7 +212,7 @@ public class Player : MonoBehaviour
             }
             GameManager.Instance.gridManager.SetItemsType(CellType.Item, GameManager.Instance.currentRoomSettings.GetNumberOfItem(ItemTypeEnum.Potion), ItemTypeEnum.Potion);
             GameManager.Instance.gridManager.SetItemsType(CellType.Item, GameManager.Instance.currentRoomSettings.GetNumberOfItem(ItemTypeEnum.Sword), ItemTypeEnum.Sword);
-
+            GameManager.Instance.gridManager.SetNoneState();
         }
         //Explose la mine si c'en est une
         if (cellClicked.currentType == CellType.Mine)

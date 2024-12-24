@@ -7,21 +7,21 @@ using UnityEngine;
 public enum CellState
 {
     Cover,
+    Reveal,
     Clicked,
     Flag,
     PlantedSword,
-    Reveal,
 }
 
 public enum CellType
 {
     Empty,
-    None,
     Mine,
     Hint,
     Gate,
     Item,
-    Npc
+    None,
+    Npc,
 }
 
 public enum ItemTypeEnum
@@ -216,6 +216,7 @@ public class Cell : MonoBehaviour
             case CellType.Item:
                 ItemType();
                 break;
+            
         }
     }
 

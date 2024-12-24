@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections.Generic;
+using UnityEngine.Serialization;
 
 public enum RoomType
 {
@@ -16,7 +17,7 @@ public class RoomSettings : ScriptableObject
     #region PARAMETERS
     [Header("GENERAL")]
     public bool proceduralRoom = true;
-    public bool isMandatory;
+    public bool Mandatory;
     
     [Header("TAG")]
     public RoomType roomType;

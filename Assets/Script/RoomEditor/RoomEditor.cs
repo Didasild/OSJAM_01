@@ -13,6 +13,7 @@ public class RoomEditor : MonoBehaviour
     
     [Header("____SAVE")]
     public string scriptableName;
+    public bool isMandatory;
     
     //Procedural Functions
     public CellSelectionConditions cellSelectionConditions;
@@ -26,6 +27,7 @@ public class RoomEditor : MonoBehaviour
     [NaughtyAttributes.ReadOnly] public List<CellEditor> selectedCells;
     [NaughtyAttributes.ReadOnly] public List<CellEditor> cells;
     public string roomSaveString;
+    private string defaultSaveFolder = "Assets/Script/RoomSettings/EDITOR_Rooms";
     
     [System.Serializable]
     public struct CellSelectionConditions
@@ -159,6 +161,24 @@ public class RoomEditor : MonoBehaviour
         GenerateHintCells();
         ClearSavedString();
         roomSaveString = SaveRoomString();
+        
+        string path = EditorUtility.SaveFilePanelInProject("Save Room", scriptableName, "asset", "Message test", defaultSaveFolder);
+        if (string.IsNullOrEmpty(path))
+            return;
+        RoomSettings newRoomSettings = ScriptableObject.CreateInstance<RoomSettings>();
+        
+        //Set les parametres du room setting
+        SetRoomSetting(newRoomSettings);
+        
+        // Sauvegarde l'instance dans le fichier spécifié
+        AssetDatabase.CreateAsset(newRoomSettings, path);
+        AssetDatabase.SaveAssets();
+        
+        // Met l'objet nouvellement créé en surbrillance dans le Project
+        EditorUtility.FocusProjectWindow();
+        Selection.activeObject = newRoomSettings;
+
+        Debug.Log($"ScriptableObject created at {path}");
     }
     public String SaveRoomString()
     {
@@ -188,6 +208,13 @@ public class RoomEditor : MonoBehaviour
     private void ClearSavedString()
     {
         roomSaveString = string.Empty;
+    }
+
+    private void SetRoomSetting(RoomSettings roomSettings)
+    {
+        roomSettings.roomLoadString = roomSaveString;
+        roomSettings.proceduralRoom = false;
+        roomSettings.Mandatory = isMandatory;
     }
     #endregion SAVE FUNCTIONS
 

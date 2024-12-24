@@ -82,7 +82,6 @@ public class RoomData : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
             case RoomState.Started:
                 StartedRoomState();
                 break;
-
             case RoomState.Complete:
                 CompleteRoomState();
                 break;

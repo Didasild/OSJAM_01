@@ -140,6 +140,7 @@ public class RoomEditorInspector : Editor
                 roomEditor.GenerateHintCells();
             }
             roomEditor.scriptableName = EditorGUILayout.TextField("Scriptable Name", roomEditor.scriptableName);
+            roomEditor.isMandatory = EditorGUILayout.Toggle("Is Mandatory", roomEditor.isMandatory);
             if (GUILayout.Button("Create Room Scriptable"))
             {
                 roomEditor.CreateRoomScriptable();

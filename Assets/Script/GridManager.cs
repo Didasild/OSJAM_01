@@ -173,6 +173,16 @@ public class GridManager : MonoBehaviour
             }
         }
     }
+
+    public void SetNoneState()
+    {
+        List<Cell> cellsNone = new List<Cell>(cellList);
+        cellsNone = GetCellsByType(CellType.None);
+        foreach (Cell cell in cellsNone)
+        {
+            cell.currentState = CellState.Reveal;
+        }
+    }
     #endregion PROCEDURAL GRID GENERATION
 
     #region LOADED GRID GENERATION
@@ -467,9 +477,9 @@ public class GridManager : MonoBehaviour
     
     public void CheckRoomCompletion()
     {
-        int nbOfCoverCells = cellList.Count - GetCellsByState(CellState.Reveal).Count;
+        int nbOfCoverCells = GetCellsByState(CellState.Cover).Count + GetCellsByState(CellState.Flag).Count;
         int nbOfMine = GetCellsByType(CellType.Mine).Count;
-        if (nbOfMine == nbOfCoverCells && nbOfMine == GetCellsByState(CellState.Flag).Count)
+        if (nbOfMine == nbOfCoverCells)
         {
             GameManager.Instance.dungeonManager.currentRoom.ChangeRoomSate(RoomState.Complete);
         }
