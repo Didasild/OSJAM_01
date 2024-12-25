@@ -57,10 +57,19 @@ public class RoomEditorInspector : Editor
             roomEditor.roomSize = EditorGUILayout.Vector2IntField("Room Size", roomEditor.roomSize);
             
             //Room Generation Functions
-            if (GUILayout.Button("Generate Room"))
+            if (GUILayout.Button("Generate New Room"))
             {
                 roomEditor.GenerateEditorRoom();
             }
+            CoreEditorUtils.DrawFoldoutEndSplitter();
+            EditorGUILayout.Space(smallSpacing);
+            roomEditor.roomSettings = (RoomSettings)EditorGUILayout.ObjectField(roomEditor.roomSettings, typeof(RoomSettings), true);
+            if (GUILayout.Button("Load From Room Settings"))
+            {
+                
+            }
+            CoreEditorUtils.DrawFoldoutEndSplitter();
+            EditorGUILayout.Space(smallSpacing);
             if (GUILayout.Button("Clear Room"))
             {
                 roomEditor.ClearEditorRoom();

@@ -131,7 +131,7 @@ GameObject:
   - component: {fileID: 2110547}
   - component: {fileID: 2110549}
   m_Layer: 0
-  m_Name: Cell (Cover, Mine)
+  m_Name: Cell (Cover, Empty)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -780,7 +780,7 @@ GameObject:
   - component: {fileID: 39611182}
   - component: {fileID: 39611184}
   m_Layer: 0
-  m_Name: Cell (Cover, Empty)
+  m_Name: Cell (Cover, Hint)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2388,7 +2388,7 @@ GameObject:
   - component: {fileID: 124136759}
   - component: {fileID: 124136761}
   m_Layer: 0
-  m_Name: Cell (Cover, Empty)
+  m_Name: Cell (Cover, Hint)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5980,7 +5980,7 @@ GameObject:
   - component: {fileID: 253999248}
   - component: {fileID: 253999250}
   m_Layer: 0
-  m_Name: Cell (Cover, Hint)
+  m_Name: Cell (Cover, Empty)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6553,7 +6553,7 @@ GameObject:
   - component: {fileID: 317959615}
   - component: {fileID: 317959617}
   m_Layer: 0
-  m_Name: Cell (Cover, Hint)
+  m_Name: Cell (Cover, Empty)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7744,7 +7744,7 @@ GameObject:
   - component: {fileID: 364432058}
   - component: {fileID: 364432060}
   m_Layer: 0
-  m_Name: Cell (Cover, Empty)
+  m_Name: Cell (Cover, Mine)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -16031,7 +16031,7 @@ GameObject:
   - component: {fileID: 818416603}
   - component: {fileID: 818416605}
   m_Layer: 0
-  m_Name: Cell (Cover, Empty)
+  m_Name: Cell (Cover, Hint)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -16978,7 +16978,7 @@ GameObject:
   - component: {fileID: 887466982}
   - component: {fileID: 887466984}
   m_Layer: 0
-  m_Name: Cell (Cover, Hint)
+  m_Name: Cell (Cover, Empty)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -20134,7 +20134,7 @@ GameObject:
   - component: {fileID: 1046701070}
   - component: {fileID: 1046701072}
   m_Layer: 0
-  m_Name: Cell (Cover, Empty)
+  m_Name: Cell (Cover, Hint)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -22327,7 +22327,7 @@ GameObject:
   - component: {fileID: 1137740313}
   - component: {fileID: 1137740315}
   m_Layer: 0
-  m_Name: Cell (Cover, Empty)
+  m_Name: Cell (Cover, Mine)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -28546,7 +28546,7 @@ GameObject:
   - component: {fileID: 1417909178}
   - component: {fileID: 1417909180}
   m_Layer: 0
-  m_Name: Cell (Cover, Hint)
+  m_Name: Cell (Cover, Mine)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -29132,7 +29132,7 @@ GameObject:
   - component: {fileID: 1453761486}
   - component: {fileID: 1453761488}
   m_Layer: 0
-  m_Name: Cell (Cover, Empty)
+  m_Name: Cell (Cover, Hint)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -30514,7 +30514,7 @@ GameObject:
   - component: {fileID: 1528971174}
   - component: {fileID: 1528971176}
   m_Layer: 0
-  m_Name: Cell (Cover, Hint)
+  m_Name: Cell (Cover, Mine)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -31067,7 +31067,7 @@ GameObject:
   - component: {fileID: 1546335777}
   - component: {fileID: 1546335779}
   m_Layer: 0
-  m_Name: Cell (Cover, Hint)
+  m_Name: Cell (Cover, Empty)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -32405,7 +32405,7 @@ GameObject:
   - component: {fileID: 1609750237}
   - component: {fileID: 1609750239}
   m_Layer: 0
-  m_Name: Cell (Cover, Empty)
+  m_Name: Cell (Cover, Hint)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -33728,7 +33728,7 @@ GameObject:
   - component: {fileID: 1665044706}
   - component: {fileID: 1665044708}
   m_Layer: 0
-  m_Name: Cell (Cover, Hint)
+  m_Name: Cell (Cover, Empty)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -35224,7 +35224,7 @@ GameObject:
   - component: {fileID: 1772251456}
   - component: {fileID: 1772251458}
   m_Layer: 0
-  m_Name: Cell (Cover, Hint)
+  m_Name: Cell (Cover, Empty)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -35797,7 +35797,7 @@ GameObject:
   - component: {fileID: 1796947788}
   - component: {fileID: 1796947790}
   m_Layer: 0
-  m_Name: Cell (Cover, Empty)
+  m_Name: Cell (Cover, Hint)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -36205,6 +36205,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   roomSize: {x: 10, y: 8}
+  roomSettings: {fileID: 0}
   scriptableName: F03_RL_Chloe_04
   isMandatory: 1
   roomType: 1
@@ -36443,7 +36444,7 @@ GameObject:
   - component: {fileID: 1830247496}
   - component: {fileID: 1830247498}
   m_Layer: 0
-  m_Name: Cell (Cover, Empty)
+  m_Name: Cell (Cover, Hint)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -39453,7 +39454,7 @@ GameObject:
   - component: {fileID: 1958712099}
   - component: {fileID: 1958712101}
   m_Layer: 0
-  m_Name: Cell (Cover, Mine)
+  m_Name: Cell (Cover, Hint)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -39921,7 +39922,7 @@ GameObject:
   - component: {fileID: 1986681135}
   - component: {fileID: 1986681137}
   m_Layer: 0
-  m_Name: Cell (Cover, Hint)
+  m_Name: Cell (Cover, Empty)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -42412,7 +42413,7 @@ GameObject:
   - component: {fileID: 2117825954}
   - component: {fileID: 2117825956}
   m_Layer: 0
-  m_Name: Cell (Cover, Empty)
+  m_Name: Cell (Cover, Mine)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

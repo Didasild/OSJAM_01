@@ -10,6 +10,7 @@ public class RoomEditor : MonoBehaviour
     #region VARIABLES
     [Header("____GENERATION")]
     public Vector2Int roomSize = new Vector2Int(5, 5); // Taille de la grille
+    public RoomSettings roomSettings;
     
     [Header("____SAVE")]
     public string scriptableName;
