@@ -14,13 +14,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   proceduralRoom: 1
   Mandatory: 1
-  roomType: 1
+  roomType: 0
   roomLoadString: 
   minRoomSize: {x: 5, y: 5}
   maxRoomSize: {x: 10, y: 10}
   roomPourcentageOfMine: 10
   roomPourcentageOfNone: 5
-  haveStair: 1
+  haveStair: 0
   itemRanges:
   - itemType: 1
     min: 2
