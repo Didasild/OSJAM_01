@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e1fa203da9941e14e9ac5c76d2db6dfb, type: 3}
+  m_Name: F02_RL_Chloe_01_Sword
+  m_EditorClassIdentifier: 
+  proceduralRoom: 0
+  Mandatory: 1
+  roomType: 0
+  roomLoadString: 0_0_Re_Em_No|0_1_Re_Em_No|0_2_Re_Em_No|0_3_Re_No_No|0_4_Re_No_No|0_5_Re_No_No|0_6_Co_Ga_No|0_7_Co_Hi_No|0_8_Co_Mi_No|1_0_Re_Em_No|1_1_Re_Em_No|1_2_Re_Em_No|1_3_Re_No_No|1_4_Re_No_No|1_5_Re_No_No|1_6_Co_Em_No|1_7_Co_Hi_No|1_8_Co_Hi_No|2_0_Re_Em_No|2_1_Re_Em_No|2_2_Re_Hi_No|2_3_Re_No_No|2_4_Re_No_No|2_5_Re_No_No|2_6_Co_Em_No|2_7_Co_Hi_No|2_8_Co_Mi_No|3_0_Re_Em_No|3_1_Re_It_Sw|3_2_Re_Hi_No|3_3_Co_Mi_No|3_4_Co_Hi_No|3_5_Co_Hi_No|3_6_Co_Hi_No|3_7_Co_Hi_No|3_8_Co_Hi_No|4_0_Re_Em_No|4_1_Re_Em_No|4_2_Re_Hi_No|4_3_Re_Hi_No|4_4_Co_Mi_No|4_5_Co_Hi_No|4_6_Co_Hi_No|4_7_Co_Mi_No|4_8_Co_Hi_No|5_0_Re_Em_No|5_1_Re_It_Sw|5_2_Re_Hi_No|5_3_Co_Mi_No|5_4_Co_Mi_No|5_5_Co_Hi_No|5_6_Co_Hi_No|5_7_Co_Mi_No|5_8_Co_Hi_No|6_0_Re_Em_No|6_1_Re_Em_No|6_2_Re_Hi_No|6_3_Re_No_No|6_4_Re_No_No|6_5_Re_No_No|6_6_Co_Hi_No|6_7_Co_Hi_No|6_8_Co_Hi_No|7_0_Re_Em_No|7_1_Re_Em_No|7_2_Re_Em_No|7_3_Re_No_No|7_4_Re_No_No|7_5_Re_No_No|7_6_Co_Mi_No|7_7_Co_Hi_No|7_8_Co_Em_No|8_0_Re_Em_No|8_1_Re_Em_No|8_2_Re_Em_No|8_3_Re_No_No|8_4_Re_No_No|8_5_Re_No_No|8_6_Co_Hi_No|8_7_Co_Hi_No|8_8_Co_Em_No
+  minRoomSize: {x: 5, y: 5}
+  maxRoomSize: {x: 10, y: 10}
+  roomPourcentageOfMine: 5
+  roomPourcentageOfNone: 5
+  haveStair: 0
+  itemRanges: []

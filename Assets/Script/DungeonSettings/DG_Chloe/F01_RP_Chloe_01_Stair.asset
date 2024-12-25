@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e1fa203da9941e14e9ac5c76d2db6dfb, type: 3}
+  m_Name: F01_RP_Chloe_01_Stair
+  m_EditorClassIdentifier: 
+  proceduralRoom: 1
+  Mandatory: 1
+  roomType: 1
+  roomLoadString: 
+  minRoomSize: {x: 10, y: 10}
+  maxRoomSize: {x: 10, y: 10}
+  roomPourcentageOfMine: 13
+  roomPourcentageOfNone: 0
+  haveStair: 1
+  itemRanges: []

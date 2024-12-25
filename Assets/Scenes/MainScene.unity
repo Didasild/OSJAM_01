@@ -815,7 +815,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 89657720d811aae489ce138c2e695240, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  stairSprite: {fileID: 21300000, guid: 4da8033da897100478d00c9957cde8ed, type: 3}
   potionSprite: {fileID: 21300000, guid: 41f988e86a5c0994e8c9d22350730de3, type: 3}
   swordSprite: {fileID: 21300000, guid: d604552c523f7ce479ccf8018b66b727, type: 3}
   clickedSprite: {fileID: 21300000, guid: 8e384d0534402204c93fef71a8659e84, type: 3}
@@ -825,6 +824,9 @@ MonoBehaviour:
   mineExplosionAnimation: {fileID: 735029770632867219, guid: 788e9c56c1dca8d419a4d03f8570560a, type: 3}
   mineSwordedAnimation: {fileID: 2848005772284224300, guid: 229ef30d1439cd649a956d38120a0580, type: 3}
   plantedSwordAnimation: {fileID: 6271478425686541969, guid: 9819873197c9915408555a501a962d53, type: 3}
+  coverSprite: {fileID: 0}
+  revealSprite: {fileID: 0}
+  mineIconSprite: {fileID: 0}
 --- !u!114 &348095979
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1281,9 +1283,9 @@ MonoBehaviour:
   roomSize: 70
   currentFloorSetting: {fileID: 0}
   floorSettingsList:
-  - {fileID: 11400000, guid: f2719cc03730d5f448359f49a2aee2ea, type: 2}
-  - {fileID: 11400000, guid: 199622be3439f3243b11bed646c78d6a, type: 2}
-  - {fileID: 11400000, guid: 36f00f57764cbc7489d4f5edd05ca28f, type: 2}
+  - {fileID: 11400000, guid: d3e43ccb300fa3544a5a5c803673e917, type: 2}
+  - {fileID: 11400000, guid: 8152ead2af1f86642affb6bbc8ad4519, type: 2}
+  - {fileID: 11400000, guid: d184cd54bb16ea44799b8993f1f1fdd0, type: 2}
   currentRoom: {fileID: 0}
   roomList: []
   buttonRight: {fileID: 1641184622}
@@ -1477,9 +1479,9 @@ MonoBehaviour:
   timeBetweenApparition: 0.03
   cellList: []
   cellMineList: []
+  theoricalMineLeftText: {fileID: 2143294031}
   numberOfMineLeft: 0
   theoricalMineLeft: 0
-  theoricalMineLeftText: {fileID: 2143294031}
 --- !u!1 &719562628
 GameObject:
   m_ObjectHideFlags: 0

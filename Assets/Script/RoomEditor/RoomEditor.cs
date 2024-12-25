@@ -160,12 +160,44 @@ public class RoomEditor : MonoBehaviour
 
     public void ClearCellsData()
     {
+        List<CellEditor> hintCells = new List<CellEditor>();
+        //Set les None en state reveal
         foreach (CellEditor cell in cells)
         {
             if (cell.cellType == CellType.None && cell.cellState != CellState.Reveal)
             {
                 cell.cellState = CellState.Reveal;
                 cell.HighlightCell();
+            }
+
+            if (cell.cellType == CellType.Hint)
+            {
+                hintCells.Add(cell);
+            }
+        }
+        
+        //Update les Hint
+
+        foreach (CellEditor hintCell in hintCells)
+        {
+            bool isHint = false;
+            foreach (CellEditor neighbor in hintCell.neighborsCellList)
+            {
+                if (neighbor.cellType == CellType.Mine)
+                {
+                    // Change le type de la cellule si un voisin est de type "Mine"
+                    hintCell.cellType = CellType.Hint;
+                    hintCell.UpdateCellVisual();
+                    hintCell.HighlightCell();
+                    isHint = true;
+                    break;
+                }
+            }
+            if (isHint == false)
+            {
+                hintCell.cellType = CellType.Empty;
+                hintCell.UpdateCellVisual();
+                hintCell.HighlightCell();
             }
         }
     }
