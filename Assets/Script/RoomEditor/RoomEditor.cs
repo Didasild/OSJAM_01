@@ -14,6 +14,7 @@ public class RoomEditor : MonoBehaviour
     [Header("____SAVE")]
     public string scriptableName;
     public bool isMandatory;
+    public RoomType roomType;
     
     //Procedural Functions
     public CellSelectionConditions cellSelectionConditions;
@@ -153,6 +154,18 @@ public class RoomEditor : MonoBehaviour
                     cell.HighlightCell();
                     break;
                 }
+            }
+        }
+    }
+
+    public void ClearCellsData()
+    {
+        foreach (CellEditor cell in cells)
+        {
+            if (cell.cellType == CellType.None && cell.cellState != CellState.Reveal)
+            {
+                cell.cellState = CellState.Reveal;
+                cell.HighlightCell();
             }
         }
     }

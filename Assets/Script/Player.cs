@@ -198,13 +198,9 @@ public class Player : MonoBehaviour
     private void ClickOnCoverCell(Cell cellClicked)
     {
         //Vérifie si la grid doit être procédurale et est complètement couverte puis génère les items
-        int nbOfCellsCover = GameManager.Instance.gridManager.cellList.Count - GameManager.Instance.gridManager.GetCellsByState(CellState.Reveal).Count;
-        int nbOfCells = GameManager.Instance.gridManager.cellList.Count;
-        if (nbOfCells == nbOfCellsCover && GameManager.Instance.currentRoomSettings.proceduralRoom)
+        if (GameManager.Instance.gridManager.CheckFirstClickOnProcedural())
         {
-            cellClicked.ChangeType(CellType.Empty);
-            cellClicked.RemoveNeighborsMine();
-            GameManager.Instance.gridManager.FirstClickGeneration();
+            GameManager.Instance.gridManager.FirstClickGeneration(cellClicked);
         }
         //Explose la mine si c'en est une
         if (cellClicked.currentType == CellType.Mine)
@@ -222,13 +218,9 @@ public class Player : MonoBehaviour
     private void ClickOnPlantedSwordCell(Cell cellClicked)
     {
         //Vérifie si la grid doit être procédurale et est complètement couverte puis génère les items
-        int nbOfCellsCover = GameManager.Instance.gridManager.cellList.Count - GameManager.Instance.gridManager.GetCellsByState(CellState.Reveal).Count;
-        int nbOfCells = GameManager.Instance.gridManager.cellList.Count;
-        if (nbOfCells == nbOfCellsCover && GameManager.Instance.currentRoomSettings.proceduralRoom)
+        if (GameManager.Instance.gridManager.CheckFirstClickOnProcedural())
         {
-            cellClicked.ChangeType(CellType.Empty);
-            cellClicked.RemoveNeighborsMine();
-            GameManager.Instance.gridManager.FirstClickGeneration();
+            GameManager.Instance.gridManager.FirstClickGeneration(cellClicked);
         }
         if (cellClicked.currentType == CellType.Mine)
         {

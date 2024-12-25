@@ -73,8 +73,10 @@ public class GridManager : MonoBehaviour
         ActiveListOfCells(timeBetweenApparition, RoomState.FogOfWar);
     }
 
-    public void FirstClickGeneration()
+    public void FirstClickGeneration(Cell cellClicked)
     {
+        cellClicked.ChangeType(CellType.Empty);
+        cellClicked.RemoveNeighborsMine();
         if (GameManager.Instance.currentRoomSettings.haveStair)
         {
             SetItemsType(CellType.Gate, 1);
@@ -483,6 +485,18 @@ public class GridManager : MonoBehaviour
             }
         }
         return neighbors;
+    }
+
+    public bool CheckFirstClickOnProcedural()
+    {
+        bool firstClickProcedural = false;
+        int nbOfCellsCover = cellList.Count - GetCellsByState(CellState.Reveal).Count;
+        int nbOfCells = cellList.Count;
+        if (nbOfCells == nbOfCellsCover && GameManager.Instance.currentRoomSettings.proceduralRoom)
+        {
+            firstClickProcedural = true;
+        }
+        return firstClickProcedural;
     }
     
     public void CheckRoomCompletion()

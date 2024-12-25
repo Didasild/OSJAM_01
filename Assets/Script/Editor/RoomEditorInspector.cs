@@ -35,6 +35,7 @@ public class RoomEditorInspector : Editor
         // Synchronise les modifications dans l'inspecteur
         serializedObject.Update();
         RoomEditor roomEditor = (RoomEditor)target;
+        Undo.RegisterCompleteObjectUndo(roomEditor, "Room Editor");
         #endregion SETUP
 
         #region TITLE
@@ -81,7 +82,6 @@ public class RoomEditorInspector : Editor
             EditorGUILayout.Space(smallSpacing);
             
             CoreEditorUtils.DrawFoldoutEndSplitter();
-            // Afficher uniquement la propriété 'cellSelectionConditions' par défaut
             EditorGUILayout.PropertyField(cellSelectionConditionsProperty);
             EditorGUILayout.Space(smallSpacing);
             
@@ -105,6 +105,7 @@ public class RoomEditorInspector : Editor
             EditorGUILayout.BeginHorizontal();
             EditorGUILayout.PropertyField(cellsTypeChangeProperty);
             EditorGUILayout.PropertyField(cellsStateChangeProperty);
+            EditorGUILayout.Space(smallSpacing);
             EditorGUILayout.EndHorizontal();
             EditorGUILayout.Space(smallSpacing);
             
@@ -135,16 +136,30 @@ public class RoomEditorInspector : Editor
         if (saveSection)
         {
             EditorGUILayout.Space(smallSpacing);
+            EditorGUILayout.BeginHorizontal();
             if (GUILayout.Button("Generate Hint Cells"))
             {
                 roomEditor.GenerateHintCells();
             }
-            roomEditor.scriptableName = EditorGUILayout.TextField("Scriptable Name", roomEditor.scriptableName);
+            if (GUILayout.Button("Clear Cells Data"))
+            {
+                roomEditor.ClearCellsData();
+            }
+            EditorGUILayout.EndHorizontal();
+            EditorGUILayout.Space(smallSpacing);
+            EditorGUILayout.BeginHorizontal();
             roomEditor.isMandatory = EditorGUILayout.Toggle("Is Mandatory", roomEditor.isMandatory);
+            roomEditor.roomType = (RoomType)EditorGUILayout.EnumPopup("Room Type", roomEditor.roomType);
+            EditorGUILayout.EndHorizontal();
+            EditorGUILayout.Space(smallSpacing);
+            roomEditor.scriptableName = EditorGUILayout.TextField("Scriptable Name", roomEditor.scriptableName);
+            EditorGUILayout.Space(smallSpacing*2);
+            CoreEditorUtils.DrawSplitter();
             if (GUILayout.Button("Create Room Scriptable"))
             {
                 roomEditor.CreateRoomScriptable();
             }
+            CoreEditorUtils.DrawSplitter();
             EditorGUILayout.Space(smallSpacing);
         }
         EditorGUILayout.Space(smallSpacing);
@@ -152,6 +167,11 @@ public class RoomEditorInspector : Editor
         
         // Applique les changements à l'objet
         serializedObject.ApplyModifiedProperties();
+        // Applique les changements
+        if (GUI.changed)
+        {
+            EditorUtility.SetDirty(roomEditor);
+        }
         
         #region DEBUG
         //________SECTION - PROCEDURAL FUNCTIONS
