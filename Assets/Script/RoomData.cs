@@ -64,7 +64,7 @@ public class RoomData : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     public void InitializeRoomType()
     {
         CurrentRoomType = roomSettings.roomType;
-        roomTypeVisual.sprite = _roomVisualManager.GetRoomTypeVisual(RoomType.None);
+        roomTypeVisual.sprite = _roomVisualManager.GetRoomTypeVisual(RoomType.Base);
     }
 
     #region ROOM STATE
@@ -101,7 +101,7 @@ public class RoomData : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 
     private void CompleteRoomState()
     {
-        if (CurrentRoomType != RoomType.None)
+        if (CurrentRoomType != RoomType.Base)
         {
             //Fait apparaitre le type de la room
             Color roomTypeVisualColor = roomTypeVisual.color;

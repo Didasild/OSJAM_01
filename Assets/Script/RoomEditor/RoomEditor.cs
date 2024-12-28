@@ -13,9 +13,13 @@ public class RoomEditor : MonoBehaviour
     public RoomSettings roomSettings;
     
     [Header("____SAVE")]
-    public string scriptableName;
+    private string scriptableName;
     public bool isMandatory;
+    public Chapters chapter;
+    public int floorID;
+    public int roomID;
     public RoomType roomType;
+    public GenerationType generationType;
     
     //Procedural Functions
     public CellSelectionConditions cellSelectionConditions;
@@ -29,7 +33,7 @@ public class RoomEditor : MonoBehaviour
     [NaughtyAttributes.ReadOnly] public List<CellEditor> selectedCells;
     [NaughtyAttributes.ReadOnly] public List<CellEditor> cells;
     public string roomSaveString;
-    private string defaultSaveFolder = "Assets/Script/RoomSettings/EDITOR_Rooms";
+    private string defaultSaveFolder;
     
     [System.Serializable]
     public struct CellSelectionConditions
@@ -59,7 +63,6 @@ public class RoomEditor : MonoBehaviour
     public void GenerateEditorRoom()
     {
         ClearEditorRoom();
-        
         // Vérifiez que le prefab est assigné
         if (cellPrefab == null)
         {
@@ -208,6 +211,14 @@ public class RoomEditor : MonoBehaviour
         ClearSavedString();
         roomSaveString = SaveRoomString();
         
+        //A UPDATE lorsqu'il y a aura du semi procédural
+        generationType = GenerationType.RL;
+        
+        //Set le nom
+        defaultSaveFolder = "Assets/Resources/Chapters/" + chapter.ToString();
+        scriptableName = chapter.ToString() + "_F" +  floorID.ToString("D2") + "_" + generationType.ToString() + "_" + roomType.ToString() + "_";
+        
+        //Crée l'instance
         string path = EditorUtility.SaveFilePanelInProject("Save Room", scriptableName, "asset", "Message test", defaultSaveFolder);
         if (string.IsNullOrEmpty(path))
             return;

@@ -4,10 +4,17 @@ using UnityEngine.Serialization;
 
 public enum RoomType
 {
-    None,
+    Base,
     Stair,
     Shop,
     Boss
+}
+
+public enum GenerationType
+{
+    RP,
+    RSP,
+    RL,
 }
 
 [CreateAssetMenu(fileName = "RoomSettings", menuName = "DungeonGeneration/RoomSettings")]

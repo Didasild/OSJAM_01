@@ -36,7 +36,7 @@ public class RoomVisualManager : MonoBehaviour
     public Sprite GetRoomTypeVisual(RoomType roomType)
     {
         Sprite roomTypeVisual = null;
-        if (roomType == RoomType.None)
+        if (roomType == RoomType.Base)
         {
             return null;
         }
