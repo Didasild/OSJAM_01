@@ -38,14 +38,14 @@ public class GridManager : MonoBehaviour
         }
 
         // Efface les anciennes cellules si la grille est reg�n�r�e
-        ClearGrid();
+        ClearRoom();
 
         // Parcourir les lignes et colonnes pour g�n�rer la grille
         for (int row = 0; row < gridSize.y; row++)
         {
             for (int col = 0; col < gridSize.x; col++)
             {
-                Vector2 gridOffset = GetGridOffset(cellSize, gridSize);
+                Vector2 gridOffset = GetRoomOffset(cellSize, gridSize);
                 // Calculer la position de chaque cellule (ajust�e par l'offset)
                 Vector2 cellPosition = new Vector2(col * cellSize, -row * cellSize) + gridOffset ;
 
@@ -197,53 +197,53 @@ public class GridManager : MonoBehaviour
     }
     #endregion PROCEDURAL GRID GENERATION
 
-    #region LOADED GRID GENERATION
-    public void LoadGridFromString(string gridString, Vector2Int gridSize)
+    #region LOADED ROOM GENERATION
+    public void LoadRoomFromString(string roomString, Vector2Int roomSize)
     {
         //Retourne une erreur s'il n'y a pas de string
-        if (string.IsNullOrEmpty(gridString))
+        if (string.IsNullOrEmpty(roomString))
         {
-            Debug.LogError("Grid state est vide !");
+            Debug.LogError("Room String est vide !");
             return;
         }
         // Efface l'ancienne grille
-        ClearGrid();
+        ClearRoom();
 
         // Divise le string en segments pour chaque cellule
-        string[] cellDataArray = gridString.Split('|');
+        string[] cellDataArray = roomString.Split('|');
 
         foreach (string cellData in cellDataArray)
         {
-            // D�couper chaque cellule par "_"
+            // Découper chaque cellule par "_"
             string[] cellInfo = cellData.Split('_');
-            if (cellInfo.Length != 5) continue; // Si les donn�es ne sont pas compl�tes, ignorer
+            if (cellInfo.Length != 5) continue; // Si les données ne sont pas complètes, ignorer
 
-            // Extraire les coordonn�es et les autres informations
             int x = int.Parse(cellInfo[0]);
             int y = int.Parse(cellInfo[1]);
+            // Extraire les coordonnées et les autres informations
             string stateAbbreviation = cellInfo[2];
             string typeAbbreviation = cellInfo[3];
             string itemTypeAbbreviation = cellInfo[4];
 
-            // Cr�er une nouvelle cellule � ces coordonn�es
-            // Calculer la position de chaque cellule (ajust�e par l'offset)
-            Vector2 gridOffset = GetGridOffset(cellSize, gridSize);
             Vector2 cellPosition = new Vector2(y * cellSize, -x * cellSize) + gridOffset;
+            // Créer une nouvelle cellule à ces coordonnées
+            // Calculer la position de chaque cellule (ajustée par l'offset)
+            Vector2 roomOffset = GetRoomOffset(cellSize, roomSize);
 
             // Instancier une nouvelle cellule
-            Cell newCell = CellInstanciation(cellPosition, x, y);
+            Cell newCell = CellInstanciation(cellPosition, row, col);
 
             // Convertir les abr�viations en valeurs d'enum
             CellState state = GetStateFromAbbreviation(stateAbbreviation);
             CellType type = GetTypeFromAbbreviation(typeAbbreviation);
             ItemTypeEnum itemType = GetItemTypeFromAbbreviation(itemTypeAbbreviation);
 
-            // Initialiser la cellule avec ses nouveaux �tats
+            // Initialiser la cellule avec ses nouveaux états
             newCell.currentState = state;
             newCell.currentType = type;
             newCell.currentItemType = itemType;
 
-            newCell.Initialize(new Vector2Int(x, y)); // Initialisation avec les bonnes coordonn�es et le bon �tat
+            newCell.Initialize(new Vector2Int(row, col)); // Initialisation avec les bonnes coordonn�es et le bon �tat
         }
         foreach (Cell cell in cellList)
         {
@@ -253,7 +253,7 @@ public class GridManager : MonoBehaviour
         ActiveListOfCells(timeBetweenApparition, GameManager.Instance.dungeonManager.currentRoom.currentRoomState);
     }
 
-    private CellState GetStateFromAbbreviation(string abbreviation)
+    public static CellState GetStateFromAbbreviation(string abbreviation)
     {
         return abbreviation switch
         {
@@ -266,7 +266,7 @@ public class GridManager : MonoBehaviour
         };
     }
 
-    private CellType GetTypeFromAbbreviation(string abbreviation)
+    public static CellType GetTypeFromAbbreviation(string abbreviation)
     {
         return abbreviation switch
         {
@@ -280,7 +280,7 @@ public class GridManager : MonoBehaviour
         };
     }
 
-    private ItemTypeEnum GetItemTypeFromAbbreviation(string abbreviation)
+    public static ItemTypeEnum GetItemTypeFromAbbreviation(string abbreviation)
     {
         return abbreviation switch
         {
@@ -292,11 +292,11 @@ public class GridManager : MonoBehaviour
         };
     }
 
-    #endregion LOADED GRID GENERATION
+    #endregion LOADED ROOM GENERATION
 
     #region COMMON GENERATION FONCTIONS
 
-    public static Vector2 GetGridOffset(float cellSize, Vector2Int gridSize)
+    public static Vector2 GetRoomOffset(float cellSize, Vector2Int gridSize)
     {
         // Calcul de l'offset pour centrer la grille
         float gridWidth = gridSize.x * cellSize; // Largeur totale de la grille
@@ -348,7 +348,7 @@ public class GridManager : MonoBehaviour
         return gridStringBuilder.ToString();
     }
 
-    private void ClearGrid()
+    private void ClearRoom()
     {
         foreach (Cell cell in cellList)
         {

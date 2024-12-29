@@ -10,10 +10,11 @@ public class RoomEditor : MonoBehaviour
     #region VARIABLES
     [Header("____GENERATION")]
     public Vector2Int roomSize = new Vector2Int(5, 5); // Taille de la grille
-    public RoomSettings roomSettings;
+    public RoomSettings roomSettingsToLoad;
+    public RoomSettings roomSettingsToSave;
     
     [Header("____SAVE")]
-    private string scriptableName;
+    private string _scriptableName;
     public bool isMandatory;
     public Chapters chapter;
     public int floorID;
@@ -33,16 +34,16 @@ public class RoomEditor : MonoBehaviour
     [NaughtyAttributes.ReadOnly] public List<CellEditor> selectedCells;
     [NaughtyAttributes.ReadOnly] public List<CellEditor> cells;
     public string roomSaveString;
-    private string defaultSaveFolder;
+    private string _defaultSaveFolder;
     
-    [System.Serializable]
+    [Serializable]
     public struct CellSelectionConditions
     {
         public bool onlySelected;
         public List<CellType> cellType;
         public List<CellState> cellState;
     }
-    [System.Serializable]
+    [Serializable]
     public struct CellsTypeChange
     {
         public CellType cellNewType;
@@ -50,7 +51,7 @@ public class RoomEditor : MonoBehaviour
         public int numberTypeChange;
         public bool isAPourcentage;
     }
-    [System.Serializable]
+    [Serializable]
     public struct CellsStateChange
     {
         public CellState cellNewState;
@@ -75,7 +76,7 @@ public class RoomEditor : MonoBehaviour
         {
             for (int col = 0; col < roomSize.x; col++)
             {
-                Vector2 gridOffset = GridManager.GetGridOffset(cellSpacing, roomSize);                // Calculer la position de chaque cellule (ajust�e par l'offset)
+                Vector2 gridOffset = GridManager.GetRoomOffset(cellSpacing, roomSize);                // Calculer la position de chaque cellule (ajust�e par l'offset)
                 Vector2 cellPosition = new Vector2(col * cellSpacing, -row * cellSpacing) + gridOffset ;
                 GameObject cell = Instantiate(cellPrefab, cellPosition, Quaternion.identity, transform);
                 cells.Add(cell.GetComponent<CellEditor>());
@@ -94,7 +95,69 @@ public class RoomEditor : MonoBehaviour
             cellEditor.neighborsCellList = GiveNeighbors(cellEditor._cellPosition);
         }
     }
-    public List<CellEditor> GiveNeighbors(Vector2Int cellPosition)
+    public void LoadEditorRoom()
+    {
+        roomSaveString = roomSettingsToLoad.roomLoadString;
+        if (string.IsNullOrEmpty(roomSaveString))
+        {
+            Debug.LogError("Room String est vide !");
+            return;
+        }
+        ClearEditorRoom();
+        
+        // Divise le string en segments pour chaque cellule
+        string[] cellDataArray = roomSaveString.Split('|');
+
+        foreach (string cellData in cellDataArray)
+        {
+            // Découper chaque cellule par "_"
+            string[] cellInfo = cellData.Split('_');
+            if (cellInfo.Length != 5) continue; // Si les données ne sont pas complètes, ignorer
+
+            // Extraire les coordonnées et les autres informations
+            int row = int.Parse(cellInfo[0]);
+            int col = int.Parse(cellInfo[1]);
+            string stateAbbreviation = cellInfo[2];
+            string typeAbbreviation = cellInfo[3];
+            string itemTypeAbbreviation = cellInfo[4];
+            
+            // Créer une nouvelle cellule à ces coordonnées
+            // Calculer la position de chaque cellule (ajustée par l'offset)
+            Vector2 roomOffset = GridManager.GetRoomOffset(cellSpacing, roomSize);
+            Vector2 cellPosition = new Vector2(col * cellSpacing, -row * cellSpacing) + roomOffset;
+            
+            // Instancier une nouvelle cellule
+            GameObject cell = Instantiate(cellPrefab, cellPosition, Quaternion.identity, transform);
+            cells.Add(cell.GetComponent<CellEditor>());
+            CellEditor cellEditor = cell.GetComponent<CellEditor>();
+            
+            // Convertir les abréviations en valeurs d'enum
+            CellState state = GridManager.GetStateFromAbbreviation(stateAbbreviation);
+            CellType type = GridManager.GetTypeFromAbbreviation(typeAbbreviation);
+            ItemTypeEnum itemType = GridManager.GetItemTypeFromAbbreviation(itemTypeAbbreviation);
+            
+            cellEditor.cellState = state;
+            cellEditor.cellType = type;
+            cellEditor.itemType = itemType;
+            
+            if (cellEditor != null)
+            {
+                cellEditor._cellPosition = new Vector2Int(row, col);
+                cellEditor.Initialize(cellVisualManager);
+            }
+            
+            //Update les infos de save de l'inspector
+            roomSettingsToSave = roomSettingsToLoad;
+            isMandatory = roomSettingsToLoad.Mandatory;
+            roomType = roomSettingsToLoad.roomType;
+        }
+
+        foreach (CellEditor cellEditor in cells)
+        {
+            cellEditor.neighborsCellList = GiveNeighbors(cellEditor._cellPosition);
+        }
+    }
+    private List<CellEditor> GiveNeighbors(Vector2Int cellPosition)
     {
         List<CellEditor> neighbors = new List<CellEditor>();
         // Définir les offsets pour les 8 directions autour d'une cellule
@@ -122,6 +185,7 @@ public class RoomEditor : MonoBehaviour
 
         return neighbors;
     }
+    
     public void ClearEditorRoom()
     {
         // Supprimez tous les enfants
@@ -208,6 +272,7 @@ public class RoomEditor : MonoBehaviour
     public void CreateRoomScriptable()
     {
         GenerateHintCells();
+        ClearCellsData();
         ClearSavedString();
         roomSaveString = SaveRoomString();
         
@@ -215,11 +280,11 @@ public class RoomEditor : MonoBehaviour
         generationType = GenerationType.RL;
         
         //Set le nom
-        defaultSaveFolder = "Assets/Resources/Chapters/" + chapter.ToString();
-        scriptableName = chapter.ToString() + "_F" +  floorID.ToString("D2") + "_" + generationType.ToString() + "_" + roomType.ToString() + "_";
+        _defaultSaveFolder = "Assets/Resources/Chapters/" + chapter.ToString();
+        _scriptableName = chapter.ToString() + "_F" +  floorID.ToString("D2") + "_" + generationType.ToString() + "_" + roomType.ToString() + "_" + roomID.ToString("D2");
         
         //Crée l'instance
-        string path = EditorUtility.SaveFilePanelInProject("Save Room", scriptableName, "asset", "Message test", defaultSaveFolder);
+        string path = EditorUtility.SaveFilePanelInProject("Save Room", _scriptableName, "asset", "Message test", _defaultSaveFolder);
         if (string.IsNullOrEmpty(path))
             return;
         RoomSettings newRoomSettings = ScriptableObject.CreateInstance<RoomSettings>();
@@ -237,7 +302,16 @@ public class RoomEditor : MonoBehaviour
 
         Debug.Log($"ScriptableObject created at {path}");
     }
-    public String SaveRoomString()
+
+    public void UpdateExistingRoomScriptable()
+    {
+        GenerateHintCells();
+        ClearCellsData();
+        roomSettingsToSave.Mandatory = isMandatory;
+        roomSettingsToSave.roomType = roomType;
+        roomSettingsToSave.roomLoadString = SaveRoomString();
+    }
+    private String SaveRoomString()
     {
         ClearSavedString();
         System.Text.StringBuilder gridStringBuilder = new System.Text.StringBuilder();

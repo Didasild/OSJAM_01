@@ -13,9 +13,11 @@ public class CellEditor : MonoBehaviour
     public CellState cellState;
     public CellType cellType;
     public ItemTypeEnum itemType;
-    public bool isSelected;
 
-    [Header("DEBUG")] 
+
+    [Header("DEBUG / SETUP")] 
+    [HideInInspector]
+    public bool isSelected;
     public SpriteRenderer cellStateVisual;
     public SpriteRenderer cellTypeVisual;
     public SpriteRenderer debugVisual;
@@ -197,8 +199,14 @@ public class CellEditor : MonoBehaviour
 
     private void FadeOutUpdate()
     {
-        if (!isFadingOut) return;
-
+        if (!isFadingOut || debugVisual == null) 
+        {
+            // Arrête l'animation si l'objet n'existe plus
+            isFadingOut = false;
+            EditorApplication.update -= FadeOutUpdate;
+            return;
+        }
+        
         // Si 1 seconde s'est écoulée
         if ((float)EditorApplication.timeSinceStartup > fadeStartTime)
         {

@@ -124,7 +124,7 @@ public class GameManager : MonoBehaviour
         currentRoomSettings = roomData.roomSettings;
         if (roomData.currentRoomState != RoomState.FogOfWar)
         {
-            gridManager.LoadGridFromString(roomData.roomSavedString, currentRoomSettings.GetRoomSizeFromString(roomData.roomSavedString));
+            gridManager.LoadRoomFromString(roomData.roomSavedString, currentRoomSettings.GetRoomSizeFromString(roomData.roomSavedString));
         }
         else if (currentRoomSettings.proceduralRoom)
         {
@@ -133,7 +133,7 @@ public class GameManager : MonoBehaviour
         }
         else
         {
-            gridManager.LoadGridFromString(currentRoomSettings.roomLoadString, currentRoomSettings.GetRoomSizeFromString(currentRoomSettings.roomLoadString));
+            gridManager.LoadRoomFromString(currentRoomSettings.roomLoadString, currentRoomSettings.GetRoomSizeFromString(currentRoomSettings.roomLoadString));
             roomData.ChangeRoomSate(RoomState.Started);
         }
     }
