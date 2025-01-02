@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
+using TMPro;
 using UnityEngine;
 
 #region ENUMS
@@ -39,6 +40,9 @@ public class DungeonManager : MonoBehaviour
     public GameObject buttonLeft;
     public GameObject buttonUp;
     public GameObject buttonDown;
+
+    [Header("DEBUG")] 
+    public TMP_Text roomNameDebugText;
     #endregion
 
     #region FLOOR GENERATION
@@ -87,7 +91,7 @@ public class DungeonManager : MonoBehaviour
             return;
         }
 
-        // Créer une liste temporaire de RoomSettings � assigner
+        // Créer une liste temporaire de RoomSettings à assigner
         List<RoomSettings> tempRoomSettings = new List<RoomSettings>();
 
         // Ajouter tous les éléments `isMandatory`
@@ -138,6 +142,7 @@ public class DungeonManager : MonoBehaviour
 
         //Update les boutons
         UpdateButtonStates();
+        UpdateRoomDebugName();
     }
 
     private void GiveNeighbors()
@@ -212,6 +217,7 @@ public class DungeonManager : MonoBehaviour
         }
         currentRoom.roomSelectedVisual.sprite = GameManager.RoomVisualManager.GetSelectedVisual(true);
         UpdateButtonStates();
+        UpdateRoomDebugName();
     }
 
     public void ChangeRoomMinimap(RoomData room)
@@ -247,6 +253,13 @@ public class DungeonManager : MonoBehaviour
         }
     }
     #endregion BUTTON FONCTIONS
+
+    #region DEBUG
+    public void UpdateRoomDebugName()
+    {
+        roomNameDebugText.text = currentRoom.roomSettings.name;
+    }
+    #endregion DEBUG
 
 
 }

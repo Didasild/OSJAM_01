@@ -21,6 +21,7 @@ public class CellEditor : MonoBehaviour
     public SpriteRenderer cellStateVisual;
     public SpriteRenderer cellTypeVisual;
     public SpriteRenderer debugVisual;
+    public int hintNumber = 0;
     public TMP_Text debugHintText;
     public Color debugBaseColor;
     public Color debugHighlightColor;
@@ -159,12 +160,14 @@ public class CellEditor : MonoBehaviour
 
     public void UpdateHintText()
     {
+        
         if (cellType != CellType.Hint)
         {
             debugHintText.text = "";
             return;
         }
-        int hintNumber = 0;
+
+        hintNumber = 0;
         foreach (CellEditor cellEditor in neighborsCellList)
         {
             if (cellEditor.cellType  == CellType.Mine)

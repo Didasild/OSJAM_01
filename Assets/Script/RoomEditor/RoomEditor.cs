@@ -228,7 +228,9 @@ public class RoomEditor : MonoBehaviour
 
     public void ClearCellsData()
     {
+        GenerateHintCells();
         List<CellEditor> hintCells = new List<CellEditor>();
+        List<CellEditor> mineCells = new List<CellEditor>();
         //Set les None en state reveal
         foreach (CellEditor cell in cells)
         {
@@ -242,30 +244,45 @@ public class RoomEditor : MonoBehaviour
             {
                 hintCells.Add(cell);
             }
+
+            if (cell.cellType == CellType.Mine)
+            {
+                mineCells.Add(cell);
+            }
         }
         
         //Update les Hint
-
         foreach (CellEditor hintCell in hintCells)
         {
-            bool isHint = false;
+            int numberOfNeighborsMine = 0;
             foreach (CellEditor neighbor in hintCell.neighborsCellList)
             {
                 if (neighbor.cellType == CellType.Mine)
                 {
-                    // Change le type de la cellule si un voisin est de type "Mine"
-                    hintCell.cellType = CellType.Hint;
-                    hintCell.UpdateCellVisual();
-                    hintCell.HighlightCell();
-                    isHint = true;
-                    break;
+                    numberOfNeighborsMine++;
                 }
             }
-            if (isHint == false)
+            if (numberOfNeighborsMine == 0)
             {
                 hintCell.cellType = CellType.Empty;
                 hintCell.UpdateCellVisual();
                 hintCell.HighlightCell();
+            }
+            else if (numberOfNeighborsMine != hintCell.hintNumber)
+            {
+                hintCell.UpdateCellVisual();
+                hintCell.HighlightCell();
+            }
+        }
+        
+        //Update les mines
+        foreach (CellEditor mineCell in mineCells)
+        {
+            if (mineCell.cellState == CellState.Reveal)
+            {
+                mineCell.cellState = CellState.Cover;
+                mineCell.UpdateCellVisual();
+                mineCell.HighlightCell();
             }
         }
     }

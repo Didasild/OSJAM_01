@@ -26,6 +26,7 @@ public class GridManager : MonoBehaviour
     public int numberOfMineLeft;
     [NaughtyAttributes.ReadOnly]
     public int theoricalMineLeft;
+    
     #endregion
     
     #region PROCEDURAL GRID GENERATION
@@ -218,17 +219,17 @@ public class GridManager : MonoBehaviour
             string[] cellInfo = cellData.Split('_');
             if (cellInfo.Length != 5) continue; // Si les données ne sont pas complètes, ignorer
 
-            int x = int.Parse(cellInfo[0]);
-            int y = int.Parse(cellInfo[1]);
             // Extraire les coordonnées et les autres informations
+            int row = int.Parse(cellInfo[0]);
+            int col = int.Parse(cellInfo[1]);
             string stateAbbreviation = cellInfo[2];
             string typeAbbreviation = cellInfo[3];
             string itemTypeAbbreviation = cellInfo[4];
 
-            Vector2 cellPosition = new Vector2(y * cellSize, -x * cellSize) + gridOffset;
             // Créer une nouvelle cellule à ces coordonnées
             // Calculer la position de chaque cellule (ajustée par l'offset)
             Vector2 roomOffset = GetRoomOffset(cellSize, roomSize);
+            Vector2 cellPosition = new Vector2(col * cellSize, -row * cellSize) + roomOffset;
 
             // Instancier une nouvelle cellule
             Cell newCell = CellInstanciation(cellPosition, row, col);
