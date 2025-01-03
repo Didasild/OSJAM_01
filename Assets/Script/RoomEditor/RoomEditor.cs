@@ -97,7 +97,7 @@ public class RoomEditor : MonoBehaviour
     }
     public void LoadEditorRoom()
     {
-        roomSaveString = roomSettingsToLoad.roomLoadString;
+        roomSaveString = roomSettingsToLoad.roomIDString;
         if (string.IsNullOrEmpty(roomSaveString))
         {
             Debug.LogError("Room String est vide !");
@@ -148,7 +148,7 @@ public class RoomEditor : MonoBehaviour
             
             //Update les infos de save de l'inspector
             roomSettingsToSave = roomSettingsToLoad;
-            isMandatory = roomSettingsToLoad.Mandatory;
+            isMandatory = roomSettingsToLoad.mandatory;
             roomType = roomSettingsToLoad.roomType;
         }
 
@@ -324,9 +324,9 @@ public class RoomEditor : MonoBehaviour
     {
         GenerateHintCells();
         ClearCellsData();
-        roomSettingsToSave.Mandatory = isMandatory;
+        roomSettingsToSave.mandatory = isMandatory;
         roomSettingsToSave.roomType = roomType;
-        roomSettingsToSave.roomLoadString = SaveRoomString();
+        roomSettingsToSave.roomIDString = SaveRoomString();
     }
     private String SaveRoomString()
     {
@@ -360,9 +360,9 @@ public class RoomEditor : MonoBehaviour
 
     private void SetRoomSetting(RoomSettings roomSettings)
     {
-        roomSettings.roomLoadString = roomSaveString;
+        roomSettings.roomIDString = roomSaveString;
         roomSettings.proceduralRoom = false;
-        roomSettings.Mandatory = isMandatory;
+        roomSettings.mandatory = isMandatory;
     }
     #endregion SAVE FUNCTIONS
 

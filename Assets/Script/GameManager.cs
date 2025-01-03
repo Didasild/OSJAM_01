@@ -133,7 +133,7 @@ public class GameManager : MonoBehaviour
         }
         else
         {
-            gridManager.LoadRoomFromString(currentRoomSettings.roomLoadString, currentRoomSettings.GetRoomSizeFromString(currentRoomSettings.roomLoadString));
+            gridManager.LoadRoomFromString(currentRoomSettings.roomIDString, currentRoomSettings.GetRoomSizeFromString(currentRoomSettings.roomIDString));
             roomData.ChangeRoomSate(RoomState.Started);
         }
     }

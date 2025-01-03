@@ -16,8 +16,7 @@ public class CellEditor : MonoBehaviour
 
 
     [Header("DEBUG / SETUP")] 
-    [HideInInspector]
-    public bool isSelected;
+
     public SpriteRenderer cellStateVisual;
     public SpriteRenderer cellTypeVisual;
     public SpriteRenderer debugVisual;
@@ -26,6 +25,7 @@ public class CellEditor : MonoBehaviour
     public Color debugBaseColor;
     public Color debugHighlightColor;
     public List<CellEditor> neighborsCellList = new List<CellEditor>(); 
+    public bool isSelected;
     
     private bool isFadingOut = false;
     private float fadeStartTime;

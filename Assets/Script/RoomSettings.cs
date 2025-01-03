@@ -7,6 +7,8 @@ public enum RoomType
     Base,
     Stair,
     Shop,
+    Sword,
+    Potion,
     Boss
 }
 
@@ -24,18 +26,19 @@ public class RoomSettings : ScriptableObject
     #region PARAMETERS
     [Header("GENERAL")]
     public bool proceduralRoom = true;
-    public bool Mandatory;
+    public bool mandatory;
     
     [Header("TAG")]
     public RoomType roomType;
 
     [Header("________LOADED GRID SETTINGS")]
-    public string roomLoadString; // USE ONLY FOR FIRST GENERATION NEVER CHANGE
+    [FormerlySerializedAs("roomLoadString")] public string roomIDString; // USE ONLY FOR FIRST GENERATION NEVER CHANGE
+    public bool proceduralCells;
 
     [Header("________PROCEDURAL GRID SETTINGS")]
     [Header("ROOM GRID")]
-    [SerializeField] private Vector2Int minRoomSize = new Vector2Int(5,5);
-    [SerializeField] private Vector2Int maxRoomSize = new Vector2Int(10, 10);
+    [SerializeField] public Vector2Int minRoomSize = new Vector2Int(5,5);
+    [SerializeField] public Vector2Int maxRoomSize = new Vector2Int(10, 10);
     
     [Header("SPECIFIC CELLS")]
     public int roomPourcentageOfMine = 5;
@@ -49,7 +52,6 @@ public class RoomSettings : ScriptableObject
         public int min;
         public int max;
     }
-    [Header("________ITEMS")]
     public List<ItemRange> itemRanges;
     #endregion
 

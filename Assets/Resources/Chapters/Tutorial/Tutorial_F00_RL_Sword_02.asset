@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e1fa203da9941e14e9ac5c76d2db6dfb, type: 3}
-  m_Name: F03_RL_Chloe_05
+  m_Name: Tutorial_F00_RL_Sword_02
   m_EditorClassIdentifier: 
   proceduralRoom: 0
-  mandatory: 1
-  roomType: 3
+  mandatory: 0
+  roomType: 0
   roomIDString: 0_0_Co_Hi_No|0_1_Co_Hi_No|0_2_Co_Hi_No|0_3_Co_Mi_No|0_4_Co_Mi_No|1_0_Co_Hi_No|1_1_Co_Mi_No|1_2_Co_Hi_No|1_3_Co_Mi_No|1_4_Co_Hi_No|2_0_Co_Hi_No|2_1_Co_Hi_No|2_2_Co_Hi_No|2_3_Co_Hi_No|2_4_Co_Hi_No|3_0_Co_Mi_No|3_1_Co_Hi_No|3_2_Co_Em_No|3_3_Co_Em_No|3_4_Co_Em_No|4_0_Co_Hi_No|4_1_Co_Hi_No|4_2_Co_Em_No|4_3_Co_Em_No|4_4_Co_Em_No|5_0_Co_Em_No|5_1_Co_Hi_No|5_2_Co_Hi_No|5_3_Co_Hi_No|5_4_Co_Em_No|6_0_Re_No_No|6_1_Re_No_No|6_2_Co_Mi_No|6_3_Re_No_No|6_4_Re_No_No|7_0_Re_No_No|7_1_Re_No_No|7_2_Co_Hi_No|7_3_Re_No_No|7_4_Re_No_No|8_0_Co_Hi_No|8_1_Co_Mi_No|8_2_Co_Hi_No|8_3_Co_Em_No|8_4_Co_Em_No|9_0_Co_Hi_No|9_1_Co_Hi_No|9_2_Co_Hi_No|9_3_Co_Hi_No|9_4_Co_Em_No|10_0_Co_It_Sw|10_1_Co_Mi_No|10_2_Co_Mi_No|10_3_Co_Hi_No|10_4_Co_Em_No|11_0_Co_Hi_No|11_1_Co_Hi_No|11_2_Co_Hi_No|11_3_Co_Hi_No|11_4_Co_Hi_No|12_0_Co_Hi_No|12_1_Co_Mi_No|12_2_Co_Mi_No|12_3_Co_Hi_No|12_4_Co_Mi_No|13_0_Re_Hi_No|13_1_Re_Hi_No|13_2_Re_Hi_No|13_3_Re_Hi_No|13_4_Re_Hi_No|14_0_Re_Em_No|14_1_Re_Em_No|14_2_Re_Em_No|14_3_Re_Em_No|14_4_Re_Em_No
   proceduralCells: 0
   minRoomSize: {x: 5, y: 5}

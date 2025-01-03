@@ -13,7 +13,7 @@ public class RoomEditorInspector : Editor
     
     //Bool Sections
     private bool _debugFoldout;
-    private bool _generationSection;
+    private bool _generationSection = true;
     private bool _saveSection;
     private bool _proceduralSection;
     private bool _debugSection;
