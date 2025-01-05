@@ -463,7 +463,7 @@ MonoBehaviour:
   cellState: 0
   cellType: 0
   itemType: 0
-  isSelected: 0
+  proceduralCell: 0
   cellStateVisual: {fileID: 3126336701650697365}
   cellTypeVisual: {fileID: 7487232728163872945}
   debugVisual: {fileID: 3610390154062530418}
@@ -472,6 +472,7 @@ MonoBehaviour:
   debugBaseColor: {r: 1, g: 1, b: 1, a: 0.039215688}
   debugHighlightColor: {r: 1, g: 0.25672385, b: 0, a: 0.78431374}
   neighborsCellList: []
+  isSelected: 0
   _cellPosition: {x: 0, y: 0}
 --- !u!212 &3610390154062530418
 SpriteRenderer:

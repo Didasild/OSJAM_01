@@ -13,7 +13,7 @@ public class CellEditor : MonoBehaviour
     public CellState cellState;
     public CellType cellType;
     public ItemTypeEnum itemType;
-    public bool randomCell;
+    public bool proceduralCell;
     
     [Header("DEBUG / SETUP")]
     public SpriteRenderer cellStateVisual;
@@ -95,7 +95,7 @@ public class CellEditor : MonoBehaviour
     #region VISUAL FUNCTIONS
     public void UpdateCellVisual()
     {
-        if (randomCell)
+        if (proceduralCell)
         {
             cellState = CellState.Cover;
             cellType = CellType.Empty;
@@ -140,7 +140,7 @@ public class CellEditor : MonoBehaviour
                 break;
         }
 
-        if (!randomCell)
+        if (!proceduralCell)
         {
             UpdateHintText();
         }

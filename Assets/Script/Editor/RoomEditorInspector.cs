@@ -10,6 +10,7 @@ public class RoomEditorInspector : Editor
     SerializedProperty cellSelectionConditionsProperty;
     SerializedProperty cellsTypeChangeProperty;
     SerializedProperty cellsStateChangeProperty;
+    SerializedProperty itemRangeProperty;
     
     //Bool Sections
     private bool _debugFoldout;
@@ -17,6 +18,8 @@ public class RoomEditorInspector : Editor
     private bool _saveSection;
     private bool _proceduralSection;
     private bool _debugSection;
+    private bool _randomCellFoldout;
+    private bool _loadCellFoldout;
     
     //GUI variables
     private int _smallSpacing = 5;
@@ -26,6 +29,7 @@ public class RoomEditorInspector : Editor
         cellSelectionConditionsProperty = serializedObject.FindProperty("cellSelectionConditions");
         cellsTypeChangeProperty = serializedObject.FindProperty("cellsTypeChange");
         cellsStateChangeProperty = serializedObject.FindProperty("cellsStateChange");
+        itemRangeProperty = serializedObject.FindProperty("itemRanges");
  
     }
     public override void OnInspectorGUI()
@@ -98,9 +102,6 @@ public class RoomEditorInspector : Editor
         if (_proceduralSection)
         {
             EditorGUILayout.Space(_smallSpacing);
-            EditorGUILayout.HelpBox("This section allow to procedurally change some cells. First define the range of cells that have to be change and apply the modification you want", MessageType.Info);
-            
-            EditorGUILayout.Space(_smallSpacing);
             CoreEditorUtils.DrawFoldoutEndSplitter();
             EditorGUILayout.Space(_smallSpacing);
             
@@ -123,42 +124,56 @@ public class RoomEditorInspector : Editor
             EditorGUILayout.EndHorizontal();
             
             EditorGUILayout.Space(_smallSpacing);
-            CoreEditorUtils.DrawFoldoutEndSplitter();
-            EditorGUILayout.Space(_smallSpacing);
             
-            EditorGUILayout.BeginHorizontal();
-            if (GUILayout.Button("Set as Random Cell"))
+            CoreEditorUtils.DrawSplitter();
+            EditorGUILayout.Space(_smallSpacing);
+            _loadCellFoldout = CoreEditorUtils.DrawSubHeaderFoldout("SET LOADED CELLS", _loadCellFoldout, false, null);
+            if (_loadCellFoldout)
             {
-                roomEditor.SetRandomCell(true);
-            }
-            if (GUILayout.Button("Unset as Random Cell"))
-            {
-                roomEditor.SetRandomCell(false);
-            }
-            EditorGUILayout.EndHorizontal();
+                EditorGUILayout.Space(_smallSpacing);
+                EditorGUILayout.BeginHorizontal();
+                EditorGUILayout.PropertyField(cellsTypeChangeProperty);
+                EditorGUILayout.PropertyField(cellsStateChangeProperty);
+                EditorGUILayout.Space(_smallSpacing);
+                EditorGUILayout.EndHorizontal();
+                EditorGUILayout.Space(_smallSpacing);
             
-            EditorGUILayout.Space(_smallSpacing);
-            CoreEditorUtils.DrawFoldoutEndSplitter();
-            EditorGUILayout.Space(_smallSpacing);
-            
-            EditorGUILayout.BeginHorizontal();
-            EditorGUILayout.PropertyField(cellsTypeChangeProperty);
-            EditorGUILayout.PropertyField(cellsStateChangeProperty);
-            EditorGUILayout.Space(_smallSpacing);
-            EditorGUILayout.EndHorizontal();
-            EditorGUILayout.Space(_smallSpacing);
-            
-            EditorGUILayout.BeginHorizontal();
-            if (GUILayout.Button("Change Type"))
-            {
-                roomEditor.ChangeCellType(roomEditor.cellsTypeChange);
-            }
+                EditorGUILayout.BeginHorizontal();
+                if (GUILayout.Button("Change Type"))
+                {
+                    roomEditor.ChangeCellType(roomEditor.cellsTypeChange);
+                }
 
-            if (GUILayout.Button("Change State"))
-            {
-                roomEditor.ChangeCellState(roomEditor.cellsStateChange);
+                if (GUILayout.Button("Change State"))
+                {
+                    roomEditor.ChangeCellState(roomEditor.cellsStateChange);
+                }
+                EditorGUILayout.EndHorizontal();
             }
-            EditorGUILayout.EndHorizontal();
+            EditorGUILayout.Space(_smallSpacing);
+            
+            CoreEditorUtils.DrawSplitter();
+            EditorGUILayout.Space(_smallSpacing);
+            _randomCellFoldout = CoreEditorUtils.DrawSubHeaderFoldout("SET PROCEDURAL CELLS", _randomCellFoldout, false, null);
+            if (_randomCellFoldout)
+            {
+                EditorGUILayout.Space(_smallSpacing);
+                EditorGUILayout.BeginHorizontal();
+                if (GUILayout.Button("Set as Random Cell"))
+                {
+                    roomEditor.SetRandomCell(true);
+                }
+                if (GUILayout.Button("Unset as Random Cell"))
+                {
+                    roomEditor.SetRandomCell(false);
+                }
+                EditorGUILayout.EndHorizontal();
+                EditorGUILayout.BeginHorizontal();
+                roomEditor.haveStair = EditorGUILayout.Toggle("Have Stair", roomEditor.haveStair);
+                roomEditor.pourcentageOfRandomMine = EditorGUILayout.IntField("Pourcentage of Mine", roomEditor.pourcentageOfRandomMine);
+                EditorGUILayout.EndHorizontal();
+                EditorGUILayout.PropertyField(itemRangeProperty);
+            }
             
             EditorGUILayout.Space(_smallSpacing);
             CoreEditorUtils.DrawFoldoutEndSplitter();

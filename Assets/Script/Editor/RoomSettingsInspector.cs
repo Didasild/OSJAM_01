@@ -10,10 +10,10 @@ public class RoomSettingsInspector : Editor
     SerializedProperty itemGenerationProperty;
     
     //Bool Sections
-    private bool debugSection;
-    private bool generalSection = true;
-    private bool proceduralSection = true;
-    private bool proceduralCellsSection = true;
+    private bool _debugSection;
+    private bool _generalSection = true;
+    private bool _proceduralSection = true;
+    private bool _proceduralCellsSection = true;
     
     //GUI variables
     private int _smallSpacing = 5;
@@ -38,12 +38,12 @@ public class RoomSettingsInspector : Editor
         };
         #endregion SETUP
 
-
+        #region GENERAL
         //________SECTION - GENERAL
         //Header Foldout - GENERAL
         CoreEditorUtils.DrawSplitter();
-        generalSection = CoreEditorUtils.DrawHeaderFoldout("GENERAL", generalSection, false, null);
-        if (generalSection)
+        _generalSection = CoreEditorUtils.DrawHeaderFoldout("GENERAL", _generalSection);
+        if (_generalSection)
         {
             EditorGUILayout.Space(_smallSpacing);
             roomSettings.proceduralRoom = EditorGUILayout.Toggle("Fully Procedural Room", roomSettings.proceduralRoom);
@@ -67,14 +67,16 @@ public class RoomSettingsInspector : Editor
                 roomSettings.proceduralCells = EditorGUILayout.Toggle("Have Procedural Cells", roomSettings.proceduralCells);
             }
         }
-        
+        #endregion GENERAL
+
+        #region PROCEDURAL
         if (roomSettings.proceduralRoom)
         {
             //________SECTION - PROCEDURAL PARAMETERS
             //Header Foldout - PROCEDURAL PARAMETERS
             CoreEditorUtils.DrawSplitter();
-            proceduralSection = CoreEditorUtils.DrawHeaderFoldout("PROCEDURAL PARAMETERS", proceduralSection, false, null);
-            if (proceduralSection)
+            _proceduralSection = CoreEditorUtils.DrawHeaderFoldout("PROCEDURAL ROOM PARAMETERS", _proceduralSection);
+            if (_proceduralSection)
             {
                 EditorGUILayout.Space(_smallSpacing);
                 
@@ -105,27 +107,56 @@ public class RoomSettingsInspector : Editor
                 EditorGUILayout.PropertyField(itemGenerationProperty);
                 EditorGUILayout.Space(_smallSpacing);
             }
+            
+            GUI.enabled = false;
+            CoreEditorUtils.DrawSplitter();
+            _proceduralCellsSection = CoreEditorUtils.DrawHeaderFoldout("PROCEDURAL CELLS PARAMETERS", _proceduralCellsSection);
+            GUI.enabled = true;
         }
+        #endregion PROCEDURAL
 
+        #region PROCEDURAL CELLS
         if (roomSettings.proceduralCells && !roomSettings.proceduralRoom)
         {
+            GUI.enabled = false;
+            CoreEditorUtils.DrawSplitter();
+            _proceduralSection = CoreEditorUtils.DrawHeaderFoldout("PROCEDURAL ROOM PARAMETERS", _proceduralSection);
+            GUI.enabled = true;
             //________SECTION - PROCEDURAL CELLS PARAMETERS
             //Header Foldout - PROCEDURAL CELLS PARAMETERS
             CoreEditorUtils.DrawSplitter();
-            proceduralCellsSection = CoreEditorUtils.DrawHeaderFoldout("PROCEDURAL CELLS PARAMETERS", proceduralCellsSection, false, null);
-            if (proceduralCellsSection)
+            _proceduralCellsSection = CoreEditorUtils.DrawHeaderFoldout("PROCEDURAL CELLS PARAMETERS", _proceduralCellsSection);
+            if (_proceduralCellsSection)
             {
+                EditorGUILayout.Space(_smallSpacing);
+                GUI.enabled = false;
+                EditorGUILayout.TextField("CELLS SETTINGS", centeredStyle);
+                GUI.enabled = true;
+                EditorGUILayout.Space(_smallSpacing);
                 
+                EditorGUILayout.BeginHorizontal();
+                roomSettings.haveStair = EditorGUILayout.Toggle("Have Stair", roomSettings.haveStair);
+                roomSettings.roomPourcentageOfMine = EditorGUILayout.IntField("Pourcentage of Mine", roomSettings.roomPourcentageOfMine);
+                EditorGUILayout.EndHorizontal();
+                
+                EditorGUILayout.Space(_smallSpacing);
+                CoreEditorUtils.DrawFoldoutEndSplitter();
+                EditorGUILayout.Space(_smallSpacing);
+                
+                EditorGUILayout.LabelField("ITEMS GENERATION", EditorStyles.boldLabel);
+                EditorGUILayout.PropertyField(itemGenerationProperty);
+                EditorGUILayout.Space(_smallSpacing);
             }
         }
+        #endregion PROCEDURAL CELLS
         
         #region DEBUG
         //________SECTION - PROCEDURAL FUNCTIONS
         //Header Foldout - PROCEDURAL FUNCTIONS
         CoreEditorUtils.DrawSplitter();
-        debugSection = CoreEditorUtils.DrawHeaderFoldout("DEBUG", debugSection, false, null);
+        _debugSection = CoreEditorUtils.DrawHeaderFoldout("DEBUG", _debugSection);
         EditorGUILayout.Space(_smallSpacing);
-        if (debugSection)
+        if (_debugSection)
         {
             EditorGUILayout.Space(_smallSpacing);
             EditorGUILayout.HelpBox("Debug Section, don't changer value here", MessageType.Warning);

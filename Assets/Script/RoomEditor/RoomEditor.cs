@@ -26,6 +26,9 @@ public class RoomEditor : MonoBehaviour
     public CellSelectionConditions cellSelectionConditions;
     public CellsTypeChange cellsTypeChange;
     public CellsStateChange cellsStateChange;
+    public List<RoomSettings.ItemRange> itemRanges;
+    public bool haveStair;
+    public int pourcentageOfRandomMine;
     
     [Header("____DEBUG")]
     public float cellSpacing = 1.0f;                  // Espacement entre les cellules
@@ -112,7 +115,7 @@ public class RoomEditor : MonoBehaviour
         {
             // Découper chaque cellule par "_"
             string[] cellInfo = cellData.Split('_');
-            if (cellInfo.Length != 5) continue; // Si les données ne sont pas complètes, ignorer
+            if (cellInfo.Length < 5) return; // Si les données ne sont pas complètes, ignorer
 
             // Extraire les coordonnées et les autres informations
             int row = int.Parse(cellInfo[0]);
@@ -120,6 +123,9 @@ public class RoomEditor : MonoBehaviour
             string stateAbbreviation = cellInfo[2];
             string typeAbbreviation = cellInfo[3];
             string itemTypeAbbreviation = cellInfo[4];
+            
+            // Vérifie s'il y a un flag procédural (6e élément dans le tableau)
+            bool isProcedural = cellInfo.Length > 5 && cellInfo[5] == "Pr";
             
             // Créer une nouvelle cellule à ces coordonnées
             // Calculer la position de chaque cellule (ajustée par l'offset)
@@ -135,7 +141,23 @@ public class RoomEditor : MonoBehaviour
             CellState state = GridManager.GetStateFromAbbreviation(stateAbbreviation);
             CellType type = GridManager.GetTypeFromAbbreviation(typeAbbreviation);
             ItemTypeEnum itemType = GridManager.GetItemTypeFromAbbreviation(itemTypeAbbreviation);
-            
+
+            if (isProcedural)
+            {
+                cellEditor.proceduralCell = true;
+                itemRanges  = new List<RoomSettings.ItemRange>();
+                foreach (var itemRange in roomSettingsToLoad.itemRanges)
+                {
+                   itemRanges.Add(new RoomSettings.ItemRange
+                   {
+                       itemType = itemRange.itemType,
+                       min = itemRange.min,
+                       max = itemRange.max,
+                   });
+                }
+                haveStair = roomSettingsToLoad.haveStair;
+                pourcentageOfRandomMine = roomSettingsToLoad.roomPourcentageOfMine;
+            }
             cellEditor.cellState = state;
             cellEditor.cellType = type;
             cellEditor.itemType = itemType;
@@ -204,7 +226,7 @@ public class RoomEditor : MonoBehaviour
         List<CellEditor> emptyCells = new List<CellEditor>();
         foreach (CellEditor cell in cells)
         {
-            if (cell.cellType == CellType.Empty)
+            if (cell.cellType == CellType.Empty && !cell.proceduralCell)
             {
                 emptyCells.Add(cell);
             }
@@ -285,6 +307,16 @@ public class RoomEditor : MonoBehaviour
                 mineCell.HighlightCell();
             }
         }
+        
+        //check si RSP
+        if (isRoomSemiProcedural())
+        {
+            generationType = GenerationType.RSP;
+        }
+        else
+        {
+            generationType = GenerationType.RL;
+        }
     }
     public void CreateRoomScriptable()
     {
@@ -294,7 +326,14 @@ public class RoomEditor : MonoBehaviour
         roomSaveString = SaveRoomString();
         
         //A UPDATE lorsqu'il y a aura du semi procédural
-        generationType = GenerationType.RL;
+        if (isRoomSemiProcedural())
+        {
+            generationType = GenerationType.RSP;
+        }
+        else
+        {
+            generationType = GenerationType.RL;
+        }
         
         //Set le nom
         _defaultSaveFolder = "Assets/Resources/Chapters/" + chapter.ToString();
@@ -316,8 +355,10 @@ public class RoomEditor : MonoBehaviour
         // Met l'objet nouvellement créé en surbrillance dans le Project
         EditorUtility.FocusProjectWindow();
         Selection.activeObject = newRoomSettings;
+        roomSettingsToSave = newRoomSettings;
 
         Debug.Log($"ScriptableObject created at {path}");
+
     }
 
     public void UpdateExistingRoomScriptable()
@@ -327,6 +368,28 @@ public class RoomEditor : MonoBehaviour
         roomSettingsToSave.mandatory = isMandatory;
         roomSettingsToSave.roomType = roomType;
         roomSettingsToSave.roomIDString = SaveRoomString();
+        if (isRoomSemiProcedural())
+        {
+            roomSettingsToLoad.proceduralRoom = false;
+            roomSettingsToSave.proceduralCells = true;
+            roomSettingsToSave.haveStair = haveStair;
+            roomSettingsToSave.roomPourcentageOfMine = pourcentageOfRandomMine;
+            // Copie profonde de la liste itemRanges
+            roomSettingsToSave.itemRanges = new List<RoomSettings.ItemRange>();
+            foreach (var itemRange in itemRanges)
+            {
+                roomSettingsToSave.itemRanges.Add(new RoomSettings.ItemRange
+                {
+                    itemType = itemRange.itemType,
+                    min = itemRange.min,
+                    max = itemRange.max
+                });
+            }
+        }
+        else
+        {
+            roomSettingsToSave.proceduralCells = false;
+        }
     }
     private String SaveRoomString()
     {
@@ -342,9 +405,17 @@ public class RoomEditor : MonoBehaviour
             string state = cell.cellState.ToString().Substring(0, 2);
             string type = cell.cellType.ToString().Substring(0, 2);
             string itemType = cell.itemType.ToString().Substring(0, 2);
-
-            // Ajouter à la chaine sous forme : x_y_state|
-            gridStringBuilder.Append($"{x}_{y}_{state}_{type}_{itemType}|");
+            if (cell.proceduralCell)
+            {
+                string proceduralString = "Pr";
+                // Ajouter à la chaine sous forme : x_y_state|
+                gridStringBuilder.Append($"{x}_{y}_{state}_{type}_{itemType}_{proceduralString}|");
+            }
+            else
+            {
+                // Ajouter à la chaine sous forme : x_y_state|
+                gridStringBuilder.Append($"{x}_{y}_{state}_{type}_{itemType}|");
+            }
         }
         // Retirer le dernier caractère "|" pour une cha�ne propre
         if (gridStringBuilder.Length > 0)
@@ -363,6 +434,28 @@ public class RoomEditor : MonoBehaviour
         roomSettings.roomIDString = roomSaveString;
         roomSettings.proceduralRoom = false;
         roomSettings.mandatory = isMandatory;
+        if (isRoomSemiProcedural())
+        {
+            roomSettings.proceduralCells = true;
+            roomSettings.haveStair = haveStair;
+            roomSettings.roomPourcentageOfMine = pourcentageOfRandomMine;
+            // Copie profonde de la liste itemRanges
+            roomSettings.itemRanges = new List<RoomSettings.ItemRange>();
+            foreach (var itemRange in itemRanges)
+            {
+                roomSettings.itemRanges.Add(new RoomSettings.ItemRange
+                {
+                    itemType = itemRange.itemType,
+                    min = itemRange.min,
+                    max = itemRange.max
+                });
+            }
+        }
+        else
+        {
+            roomSettings.proceduralCells = false;
+        }
+        
     }
     #endregion SAVE FUNCTIONS
 
@@ -479,9 +572,17 @@ public class RoomEditor : MonoBehaviour
         List<CellEditor> selectedCellList = SelectCells(this.cellSelectionConditions);
         foreach (CellEditor selectedCells in selectedCellList)
         {
-            selectedCells.randomCell = setRandomCell;
+            selectedCells.proceduralCell = setRandomCell;
             selectedCells.UpdateCellVisual();
             selectedCells.HighlightCell();
+        }
+        if (isRoomSemiProcedural())
+        {
+            generationType = GenerationType.RSP;
+        }
+        else
+        {
+            generationType = GenerationType.RL;
         }
     }
     
@@ -519,6 +620,19 @@ public class RoomEditor : MonoBehaviour
         cellSelectionConditions.cellState = null;
         cellSelectionConditions.cellType = null;
     }
-    
+
+    private bool isRoomSemiProcedural()
+    {
+        bool roomSemiProcedural = false;
+        foreach (CellEditor cell in cells)
+        {
+            if (cell.proceduralCell == true)
+            {
+                roomSemiProcedural = true;
+                break;
+            }
+        }
+        return roomSemiProcedural;
+    }
     #endregion EDITOR FUNCTIONS
 }
