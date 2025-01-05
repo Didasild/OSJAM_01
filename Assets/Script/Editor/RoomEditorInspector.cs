@@ -127,6 +127,21 @@ public class RoomEditorInspector : Editor
             EditorGUILayout.Space(_smallSpacing);
             
             EditorGUILayout.BeginHorizontal();
+            if (GUILayout.Button("Set as Random Cell"))
+            {
+                roomEditor.SetRandomCell(true);
+            }
+            if (GUILayout.Button("Unset as Random Cell"))
+            {
+                roomEditor.SetRandomCell(false);
+            }
+            EditorGUILayout.EndHorizontal();
+            
+            EditorGUILayout.Space(_smallSpacing);
+            CoreEditorUtils.DrawFoldoutEndSplitter();
+            EditorGUILayout.Space(_smallSpacing);
+            
+            EditorGUILayout.BeginHorizontal();
             EditorGUILayout.PropertyField(cellsTypeChangeProperty);
             EditorGUILayout.PropertyField(cellsStateChangeProperty);
             EditorGUILayout.Space(_smallSpacing);
@@ -134,12 +149,12 @@ public class RoomEditorInspector : Editor
             EditorGUILayout.Space(_smallSpacing);
             
             EditorGUILayout.BeginHorizontal();
-            if (GUILayout.Button("Random Change Type"))
+            if (GUILayout.Button("Change Type"))
             {
                 roomEditor.ChangeCellType(roomEditor.cellsTypeChange);
             }
 
-            if (GUILayout.Button("Random Change State"))
+            if (GUILayout.Button("Change State"))
             {
                 roomEditor.ChangeCellState(roomEditor.cellsStateChange);
             }

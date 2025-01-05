@@ -13,10 +13,9 @@ public class CellEditor : MonoBehaviour
     public CellState cellState;
     public CellType cellType;
     public ItemTypeEnum itemType;
-
-
-    [Header("DEBUG / SETUP")] 
-
+    public bool randomCell;
+    
+    [Header("DEBUG / SETUP")]
     public SpriteRenderer cellStateVisual;
     public SpriteRenderer cellTypeVisual;
     public SpriteRenderer debugVisual;
@@ -96,6 +95,12 @@ public class CellEditor : MonoBehaviour
     #region VISUAL FUNCTIONS
     public void UpdateCellVisual()
     {
+        if (randomCell)
+        {
+            cellState = CellState.Cover;
+            cellType = CellType.Empty;
+            UpdateRandomVisual();
+        }
         switch (cellState)
         {
             case CellState.Cover:
@@ -134,7 +139,11 @@ public class CellEditor : MonoBehaviour
                 UpdateItemVisual(itemType);
                 break;
         }
-        UpdateHintText();
+
+        if (!randomCell)
+        {
+            UpdateHintText();
+        }
         //Debug.Log($"Sprite mis à jour pour l'état : {cellState}");
     }
 
@@ -158,9 +167,13 @@ public class CellEditor : MonoBehaviour
         }
     }
 
+    private void UpdateRandomVisual()
+    {
+        debugHintText.text = "?";
+    }
+
     public void UpdateHintText()
     {
-        
         if (cellType != CellType.Hint)
         {
             debugHintText.text = "";

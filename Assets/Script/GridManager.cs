@@ -196,6 +196,7 @@ public class GridManager : MonoBehaviour
             cell.currentState = CellState.Reveal;
         }
     }
+    
     #endregion PROCEDURAL GRID GENERATION
 
     #region LOADED ROOM GENERATION

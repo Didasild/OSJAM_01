@@ -473,6 +473,17 @@ public class RoomEditor : MonoBehaviour
             shuffledCellList[i].HighlightCell();
         }
     }
+
+    public void SetRandomCell(bool setRandomCell)
+    {
+        List<CellEditor> selectedCellList = SelectCells(this.cellSelectionConditions);
+        foreach (CellEditor selectedCells in selectedCellList)
+        {
+            selectedCells.randomCell = setRandomCell;
+            selectedCells.UpdateCellVisual();
+            selectedCells.HighlightCell();
+        }
+    }
     
     //Fonction pour retourner un pourcentage par rapport à une liste
     private int GetPourcentage(int numberToPourcent)
