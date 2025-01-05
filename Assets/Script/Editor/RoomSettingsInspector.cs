@@ -64,7 +64,7 @@ public class RoomSettingsInspector : Editor
                 EditorGUILayout.TextField("ROOM ID INFO", centeredStyle);
                 GUI.enabled = true;
                 roomSettings.roomIDString = EditorGUILayout.TextField("Room ID String", roomSettings.roomIDString);
-                roomSettings.proceduralCells = EditorGUILayout.Toggle("Have Procedural Cells", roomSettings.proceduralCells);
+                roomSettings.haveProceduralCells = EditorGUILayout.Toggle("Have Procedural Cells", roomSettings.haveProceduralCells);
             }
         }
         #endregion GENERAL
@@ -116,7 +116,7 @@ public class RoomSettingsInspector : Editor
         #endregion PROCEDURAL
 
         #region PROCEDURAL CELLS
-        if (roomSettings.proceduralCells && !roomSettings.proceduralRoom)
+        if (roomSettings.haveProceduralCells && !roomSettings.proceduralRoom)
         {
             GUI.enabled = false;
             CoreEditorUtils.DrawSplitter();

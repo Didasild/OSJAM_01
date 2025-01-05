@@ -33,7 +33,7 @@ public class RoomSettings : ScriptableObject
 
     [Header("________LOADED GRID SETTINGS")]
     [FormerlySerializedAs("roomLoadString")] public string roomIDString; // USE ONLY FOR FIRST GENERATION NEVER CHANGE
-    public bool proceduralCells;
+    public bool haveProceduralCells;
 
     [Header("________PROCEDURAL GRID SETTINGS")]
     [Header("ROOM GRID")]

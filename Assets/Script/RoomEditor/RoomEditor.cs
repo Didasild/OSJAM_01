@@ -371,7 +371,7 @@ public class RoomEditor : MonoBehaviour
         if (isRoomSemiProcedural())
         {
             roomSettingsToLoad.proceduralRoom = false;
-            roomSettingsToSave.proceduralCells = true;
+            roomSettingsToSave.haveProceduralCells = true;
             roomSettingsToSave.haveStair = haveStair;
             roomSettingsToSave.roomPourcentageOfMine = pourcentageOfRandomMine;
             // Copie profonde de la liste itemRanges
@@ -388,7 +388,7 @@ public class RoomEditor : MonoBehaviour
         }
         else
         {
-            roomSettingsToSave.proceduralCells = false;
+            roomSettingsToSave.haveProceduralCells = false;
         }
     }
     private String SaveRoomString()
@@ -436,7 +436,7 @@ public class RoomEditor : MonoBehaviour
         roomSettings.mandatory = isMandatory;
         if (isRoomSemiProcedural())
         {
-            roomSettings.proceduralCells = true;
+            roomSettings.haveProceduralCells = true;
             roomSettings.haveStair = haveStair;
             roomSettings.roomPourcentageOfMine = pourcentageOfRandomMine;
             // Copie profonde de la liste itemRanges
@@ -453,7 +453,7 @@ public class RoomEditor : MonoBehaviour
         }
         else
         {
-            roomSettings.proceduralCells = false;
+            roomSettings.haveProceduralCells = false;
         }
         
     }
