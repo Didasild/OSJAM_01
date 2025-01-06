@@ -88,8 +88,7 @@ public class RoomSettings : ScriptableObject
         return null;
     }
     #endregion
-
-    #region LOADED GET INFOS
+#region LOADED GET INFOS
     public Vector2Int GetRoomSizeFromString(string roomSavedString)
     {
         int maxRow = 0;

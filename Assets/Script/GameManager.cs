@@ -118,13 +118,12 @@ public class GameManager : MonoBehaviour
     #endregion GAME STATE
 
     #region ROOM AND FLOOR MANAGEMENT
-
     public void ChangeRoom(RoomData roomData)
     {
         currentRoomSettings = roomData.roomSettings;
         if (roomData.currentRoomState != RoomState.FogOfWar)
         {
-            gridManager.LoadRoomFromString(roomData.roomSavedString, currentRoomSettings.GetRoomSizeFromString(roomData.roomSavedString));
+            gridManager.LoadRoomFromString(roomData.roomSavedString, currentRoomSettings.GetRoomSizeFromString(roomData.roomSavedString), currentRoomSettings.haveProceduralCells);
         }
         else if (currentRoomSettings.proceduralRoom)
         {
@@ -133,7 +132,7 @@ public class GameManager : MonoBehaviour
         }
         else
         {
-            gridManager.LoadRoomFromString(currentRoomSettings.roomIDString, currentRoomSettings.GetRoomSizeFromString(currentRoomSettings.roomIDString));
+            gridManager.LoadRoomFromString(currentRoomSettings.roomIDString, currentRoomSettings.GetRoomSizeFromString(currentRoomSettings.roomIDString), currentRoomSettings.haveProceduralCells);
             roomData.ChangeRoomSate(RoomState.Started);
         }
     }
@@ -152,16 +151,6 @@ public class GameManager : MonoBehaviour
 
         //Génère un floor et la room de départ
         dungeonManager.GenerateFloor(dungeonManager.currentFloorSetting.GetFloorSize());
-
-        // A REDEFINIR AU BESOIN
-        // Vérifier si on recommence une boucle
-        //if (floorIndex == 0 && currentFloorLevel > 0)
-        //{
-        //    IncreaseLoopDiffficulty(pourcentageOfMineIncrement);
-        //}
-        ////Détermine le pourcentage de mine
-        //pourcentageOfMine = currentRoomSettings.roomPourcentageOfMine + pourcentageUpdate;
-
     }
     #endregion ROOM AND FLOOR MANAGEMENT
 }

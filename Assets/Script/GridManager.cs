@@ -19,6 +19,7 @@ public class GridManager : MonoBehaviour
     public List<Cell> cellList = new List<Cell>(); //Liste des cellules de la grid
     [NaughtyAttributes.ReadOnly]
     public List<Cell> cellMineList = new List<Cell>(); //Liste de mines de la grid
+    private List<Cell> _cellProceduralList = new List<Cell>();
 
     [Header("MINE LEFT")]
     public TMP_Text theoricalMineLeftText;
@@ -26,6 +27,7 @@ public class GridManager : MonoBehaviour
     public int numberOfMineLeft;
     [NaughtyAttributes.ReadOnly]
     public int theoricalMineLeft;
+    
     
     #endregion
     
@@ -67,8 +69,8 @@ public class GridManager : MonoBehaviour
             cellToDefine.ChangeType(CellType.Empty);
         }
         //Set mines
-        SetCellType(GameManager.Instance.currentRoomSettings.roomPourcentageOfMine, CellType.Mine);
-        SetCellType(GameManager.Instance.currentRoomSettings.roomPourcentageOfNone, CellType.None);
+        SetCellType(GameManager.Instance.currentRoomSettings.roomPourcentageOfMine, CellType.Mine, cellList);
+        SetCellType(GameManager.Instance.currentRoomSettings.roomPourcentageOfNone, CellType.None, cellList);
 
         //Setup l'animation d'apparition
         ActiveListOfCells(timeBetweenApparition, RoomState.FogOfWar);
@@ -80,13 +82,13 @@ public class GridManager : MonoBehaviour
         cellClicked.RemoveNeighborsMine();
         if (GameManager.Instance.currentRoomSettings.haveStair)
         {
-            SetItemsType(CellType.Gate, 1);
+            SetItemsType(CellType.Gate, 1, cellList);
         }
-        SetItemsType(CellType.Item, GameManager.Instance.currentRoomSettings.GetNumberOfItem(ItemTypeEnum.Potion), ItemTypeEnum.Potion);
-        SetItemsType(CellType.Item, GameManager.Instance.currentRoomSettings.GetNumberOfItem(ItemTypeEnum.Sword), ItemTypeEnum.Sword);
+        SetItemsType(CellType.Item, GameManager.Instance.currentRoomSettings.GetNumberOfItem(ItemTypeEnum.Potion), cellList, ItemTypeEnum.Potion);
+        SetItemsType(CellType.Item, GameManager.Instance.currentRoomSettings.GetNumberOfItem(ItemTypeEnum.Sword), cellList, ItemTypeEnum.Sword);
         SetNoneState();
     }
-    private void SetCellType(int pourcentageOfType, CellType cellType)
+    private void SetCellType(int pourcentageOfType, CellType cellType, List<Cell> cellList)
     {
         if (cellList.Count == 0)
         {
@@ -123,13 +125,13 @@ public class GridManager : MonoBehaviour
         }
     }
 
-    public void SetItemsType(CellType cellType, int numberOfItem, ItemTypeEnum itemType = ItemTypeEnum.None)
+    public void SetItemsType(CellType cellType, int numberOfItem, List<Cell> cellList, ItemTypeEnum itemType = ItemTypeEnum.None)
     {
         // Crée la liste des cellules vides + hint
-        List<Cell> emptyCellsList = GetCoverCellsByType(CellType.Empty);
+        List<Cell> emptyCellsList = GetCoverCellsByType(CellType.Empty, cellList);
         if (cellType != CellType.Gate)
         {
-            emptyCellsList.AddRange(GetCoverCellsByType(CellType.Hint));
+            emptyCellsList.AddRange(GetCoverCellsByType(CellType.Hint, cellList));
         }
 
         // Si aucune cellule dans la liste des "cover cells", utiliser la liste générale
@@ -200,7 +202,7 @@ public class GridManager : MonoBehaviour
     #endregion PROCEDURAL GRID GENERATION
 
     #region LOADED ROOM GENERATION
-    public void LoadRoomFromString(string roomString, Vector2Int roomSize)
+    public void LoadRoomFromString(string roomString, Vector2Int roomSize, bool isRSP)
     {
         //Retourne une erreur s'il n'y a pas de string
         if (string.IsNullOrEmpty(roomString))
@@ -218,7 +220,7 @@ public class GridManager : MonoBehaviour
         {
             // Découper chaque cellule par "_"
             string[] cellInfo = cellData.Split('_');
-            if (cellInfo.Length != 5) continue; // Si les données ne sont pas complètes, ignorer
+            if (cellInfo.Length < 5) return; // Si les données ne sont pas complètes, ignorer
 
             // Extraire les coordonnées et les autres informations
             int row = int.Parse(cellInfo[0]);
@@ -226,6 +228,9 @@ public class GridManager : MonoBehaviour
             string stateAbbreviation = cellInfo[2];
             string typeAbbreviation = cellInfo[3];
             string itemTypeAbbreviation = cellInfo[4];
+            
+            // Vérifie s'il y a un flag procédural (6e élément dans le tableau)
+            bool isProcedural = cellInfo.Length > 5 && cellInfo[5] == "Pr";
 
             // Créer une nouvelle cellule à ces coordonnées
             // Calculer la position de chaque cellule (ajustée par l'offset)
@@ -234,8 +239,14 @@ public class GridManager : MonoBehaviour
 
             // Instancier une nouvelle cellule
             Cell newCell = CellInstanciation(cellPosition, row, col);
+            
+            //Ajoute à la liste des cellules procédural
+            if (isProcedural)
+            {
+                _cellProceduralList.Add(newCell);
+            }
 
-            // Convertir les abr�viations en valeurs d'enum
+            // Convertir les abréviations en valeurs d'enum
             CellState state = GetStateFromAbbreviation(stateAbbreviation);
             CellType type = GetTypeFromAbbreviation(typeAbbreviation);
             ItemTypeEnum itemType = GetItemTypeFromAbbreviation(itemTypeAbbreviation);
@@ -245,8 +256,16 @@ public class GridManager : MonoBehaviour
             newCell.currentType = type;
             newCell.currentItemType = itemType;
 
-            newCell.Initialize(new Vector2Int(row, col)); // Initialisation avec les bonnes coordonn�es et le bon �tat
+            newCell.Initialize(new Vector2Int(row, col)); // Initialisation avec les bonnes coordonnées et le bon état
         }
+
+        if (isRSP && _cellProceduralList.Count > 0)
+        {
+            SetCellType(GameManager.Instance.currentRoomSettings.roomPourcentageOfMine, CellType.Mine, _cellProceduralList);
+            SetItemsType(CellType.Item, GameManager.Instance.currentRoomSettings.GetNumberOfItem(ItemTypeEnum.Potion), _cellProceduralList, ItemTypeEnum.Potion);
+            SetItemsType(CellType.Item, GameManager.Instance.currentRoomSettings.GetNumberOfItem(ItemTypeEnum.Sword), _cellProceduralList, ItemTypeEnum.Sword);
+        }
+        
         foreach (Cell cell in cellList)
         {
             cell.GenerateNeighborsList(this);
@@ -440,7 +459,7 @@ public class GridManager : MonoBehaviour
         }
         return emptyCells;
     }
-    private List<Cell> GetCoverCellsByType(CellType typeOfCellWanted)
+    private List<Cell> GetCoverCellsByType(CellType typeOfCellWanted, List<Cell> cellList)
     {
         List<Cell> emptyCoverCells = new List<Cell>();
         foreach (Cell cell in cellList)
