@@ -261,6 +261,10 @@ public class GridManager : MonoBehaviour
 
         if (isRSP && _cellProceduralList.Count > 0)
         {
+            if (GameManager.Instance.currentRoomSettings.haveStair)
+            {
+                SetItemsType(CellType.Gate, 1, _cellProceduralList);
+            }
             SetCellType(GameManager.Instance.currentRoomSettings.roomPourcentageOfMine, CellType.Mine, _cellProceduralList);
             SetItemsType(CellType.Item, GameManager.Instance.currentRoomSettings.GetNumberOfItem(ItemTypeEnum.Potion), _cellProceduralList, ItemTypeEnum.Potion);
             SetItemsType(CellType.Item, GameManager.Instance.currentRoomSettings.GetNumberOfItem(ItemTypeEnum.Sword), _cellProceduralList, ItemTypeEnum.Sword);
