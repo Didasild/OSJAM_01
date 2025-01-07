@@ -163,24 +163,23 @@ public class GridManager : MonoBehaviour
             selectedCells.Add(selectedCell);
         }
 
-        // Change le type de chaque cellule s�lectionn�e
+        // Change le type de chaque cellule sélectionnée
         foreach (Cell cell in selectedCells)
         {
             cell.ChangeItemType(itemType);
             cell.ChangeType(cellType, itemType);
-            cell.UpdateRegardingNeighbors();
+            cell.UpdateRegardingNeighbors(GameManager.Instance.currentRoomSettings.isFoW);
         }
     }
 
-    public void SetCellsVisuals(Cell cellIgnore = null)
+    public void SetCellsVisuals()
     {
         List<Cell> cellsWithExcluded = new List<Cell>(cellList);
-        cellsWithExcluded.Remove(cellIgnore);
         foreach (Cell cell in cellsWithExcluded)
         {
             if (cell.currentType != CellType.None)
             {
-                cell.UpdateRegardingNeighbors();
+                cell.UpdateRegardingNeighbors(GameManager.Instance.currentRoomSettings.isFoW);
             }
             else
             {
@@ -273,6 +272,11 @@ public class GridManager : MonoBehaviour
         foreach (Cell cell in cellList)
         {
             cell.GenerateNeighborsList(this);
+        }
+
+        if (GameManager.Instance.currentRoomSettings.isFoW)
+        {
+            
         }
         SetCellsVisuals();
         ActiveListOfCells(timeBetweenApparition, GameManager.Instance.dungeonManager.currentRoom.currentRoomState);

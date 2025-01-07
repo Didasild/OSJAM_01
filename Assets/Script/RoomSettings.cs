@@ -27,6 +27,7 @@ public class RoomSettings : ScriptableObject
     [Header("GENERAL")]
     public bool proceduralRoom = true;
     public bool mandatory;
+    public bool isFoW;
     
     [Header("TAG")]
     public RoomType roomType;

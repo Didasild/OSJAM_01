@@ -16,6 +16,7 @@ public class RoomEditor : MonoBehaviour
     [Header("____SAVE")]
     private string _scriptableName;
     public bool isMandatory;
+    public bool isInFoW;
     public Chapters chapter;
     public int floorID;
     public int roomID;
@@ -434,6 +435,7 @@ public class RoomEditor : MonoBehaviour
         roomSettings.roomIDString = roomSaveString;
         roomSettings.proceduralRoom = false;
         roomSettings.mandatory = isMandatory;
+        roomSettings.isFoW = isInFoW;
         if (isRoomSemiProcedural())
         {
             roomSettings.haveProceduralCells = true;

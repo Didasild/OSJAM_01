@@ -59,6 +59,7 @@ public class RoomSettingsInspector : Editor
             roomSettings.mandatory = EditorGUILayout.Toggle("Is Mandatory", roomSettings.mandatory);
             roomSettings.roomType = (RoomType)EditorGUILayout.EnumPopup("Room Type", roomSettings.roomType);
             EditorGUILayout.EndHorizontal();
+            roomSettings.isFoW = EditorGUILayout.Toggle("Is FoW", roomSettings.isFoW);
             EditorGUILayout.Space(_smallSpacing);
             if (!roomSettings.proceduralRoom)
             {

@@ -189,24 +189,10 @@ public class RoomEditorInspector : Editor
         if (_saveSection)
         {
             EditorGUILayout.Space(_smallSpacing);
-            GUI.enabled = false;
-            EditorGUILayout.TextField("ROOM CLEARING", centeredStyle);
-            GUI.enabled = true;
             EditorGUILayout.BeginHorizontal();
-            if (GUILayout.Button("Generate Hint Cells"))
-            {
-                roomEditor.GenerateHintCells();
-            }
-            if (GUILayout.Button("Clear Cells Data"))
-            {
-                roomEditor.ClearCellsData();
-            }
-            EditorGUILayout.EndHorizontal();
-            EditorGUILayout.Space(_smallSpacing);
-            CoreEditorUtils.DrawFoldoutEndSplitter();
-            EditorGUILayout.Space(_smallSpacing);
-            
             roomEditor.isMandatory = EditorGUILayout.Toggle("Is Mandatory", roomEditor.isMandatory);
+            roomEditor.isInFoW = EditorGUILayout.Toggle("Is In FoW", roomEditor.isInFoW);
+            EditorGUILayout.EndHorizontal();
             EditorGUILayout.Space(_smallSpacing);
             CoreEditorUtils.DrawFoldoutEndSplitter();
             EditorGUILayout.Space(_smallSpacing);
@@ -225,10 +211,29 @@ public class RoomEditorInspector : Editor
             roomEditor.floorID = EditorGUILayout.IntField("Floor ID", roomEditor.floorID);
             roomEditor.roomID = EditorGUILayout.IntField("Room ID", roomEditor.roomID);
             EditorGUILayout.EndHorizontal();
-            EditorGUILayout.Space(_smallSpacing);
             
+            EditorGUILayout.Space(_smallSpacing);
             CoreEditorUtils.DrawSplitter();
             EditorGUILayout.Space(_smallSpacing);
+            
+            GUI.enabled = false;
+            EditorGUILayout.TextField("ROOM CLEARING", centeredStyle);
+            GUI.enabled = true;
+            EditorGUILayout.BeginHorizontal();
+            if (GUILayout.Button("Generate Hint Cells"))
+            {
+                roomEditor.GenerateHintCells();
+            }
+            if (GUILayout.Button("Clear Cells Data"))
+            {
+                roomEditor.ClearCellsData();
+            }
+            EditorGUILayout.EndHorizontal();
+            
+            EditorGUILayout.Space(_smallSpacing);
+            CoreEditorUtils.DrawFoldoutEndSplitter();
+            EditorGUILayout.Space(_smallSpacing);
+            
             GUI.enabled = false;
             EditorGUILayout.TextField(roomEditor.chapter.ToString() + "_F" +
                                       roomEditor.floorID.ToString("D2") + "_" + 

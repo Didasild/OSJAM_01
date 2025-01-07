@@ -9,6 +9,7 @@ public class CellVisualManager : MonoBehaviour
     public Sprite swordSprite;
 
     [Header("CELL STATE VISUAL")]
+    public Sprite inactiveSprite;
     public Sprite clickedSprite;
     public Sprite flagSprite;
     public Sprite plantedSwordSprite;
@@ -45,6 +46,10 @@ public class CellVisualManager : MonoBehaviour
         if (cellState == CellState.Reveal || cellState == CellState.Cover) 
         {
             return null;
+        }
+        else if (cellState == CellState.Inactive)
+        {
+            cellStateVisual = inactiveSprite;
         }
         else if (cellState == CellState.Clicked)
         {

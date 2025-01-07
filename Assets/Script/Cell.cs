@@ -6,6 +6,7 @@ using UnityEngine;
 #region ENUMS
 public enum CellState
 {
+    Inactive,
     Cover,
     Reveal,
     Clicked,
@@ -72,12 +73,13 @@ public class Cell : MonoBehaviour
     }
 
     //Update le visual de la cellule
-    public void UpdateRegardingNeighbors()
+    public void UpdateRegardingNeighbors(bool haveFoWCell = false)
     {
         if (currentType == CellType.None)
         {
             return;
         }
+        
         //Update le type selon les voisins
         numberOfNeighborsMine = 0;
         foreach (Cell cell in neighborsCellList)
@@ -101,6 +103,25 @@ public class Cell : MonoBehaviour
             numberText.text = "";
             ChangeType(CellType.Empty);
         }
+        
+        //Update l'état FoW selon les voisins
+        if (haveFoWCell)
+        {
+            int revealNeighbors = 0;
+            foreach (Cell cell in neighborsCellList)
+            {
+                if (cell.currentState == CellState.Reveal && cell.currentType != CellType.None)
+                {
+                    revealNeighbors += 1;
+                    break;
+                }
+            }
+            if (revealNeighbors == 0)
+            {
+                ChangeState(CellState.Inactive);
+            }
+        }
+        
         //Update le reste du visuel selon le type et l'état
         stateVisual.sprite = _cellVisualManager.GetCellStateVisual(currentState);
         typeVisual.sprite = _cellVisualManager.GetCellTypeVisual(currentType);
@@ -115,6 +136,10 @@ public class Cell : MonoBehaviour
 
         switch (currentState)
         {
+            case CellState.Inactive:
+                InactiveState();
+                break;
+            
             case CellState.Cover:
                 CoverState();
                 break;
@@ -135,6 +160,12 @@ public class Cell : MonoBehaviour
                 SwordPlantedState();
                 break;
         }
+    }
+
+    private void InactiveState()
+    {
+        stateVisual.sprite = _cellVisualManager.GetCellStateVisual(currentState);
+        cellCover.SetActive(true);
     }
 
     private void CoverState()

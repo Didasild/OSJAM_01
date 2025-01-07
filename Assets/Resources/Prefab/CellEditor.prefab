@@ -424,7 +424,7 @@ GameObject:
   - component: {fileID: 8864883565999120579}
   - component: {fileID: 3610390154062530418}
   m_Layer: 0
-  m_Name: Cell (Cover, Empty)
+  m_Name: Cell (Inactive, Empty)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
