@@ -16,7 +16,7 @@ MonoBehaviour:
   mandatory: 0
   roomType: 0
   roomIDString: 
-  proceduralCells: 0
+  haveProceduralCells: 0
   minRoomSize: {x: 5, y: 5}
   maxRoomSize: {x: 10, y: 10}
   roomPourcentageOfMine: 16

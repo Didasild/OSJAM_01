@@ -13,9 +13,10 @@ MonoBehaviour:
   m_Name: F01_RP_Chloe_02_Potion
   m_EditorClassIdentifier: 
   proceduralRoom: 1
-  Mandatory: 1
+  mandatory: 0
   roomType: 0
-  roomLoadString: 
+  roomIDString: 
+  haveProceduralCells: 0
   minRoomSize: {x: 5, y: 5}
   maxRoomSize: {x: 10, y: 10}
   roomPourcentageOfMine: 13

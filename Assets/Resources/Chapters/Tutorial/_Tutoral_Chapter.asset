@@ -9,11 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d6b7aef4937d0054da1f650a1766cb15, type: 3}
-  m_Name: Debug_Floor_01
+  m_Script: {fileID: 11500000, guid: 23ec1cf0c50baf44c8be1d4c7dfb88f8, type: 3}
+  m_Name: _Tutoral_Chapter
   m_EditorClassIdentifier: 
-  proceduralFloor: 1
-  minGridSize: {x: 1, y: 1}
-  maxGridSize: {x: 1, y: 1}
-  roomSettingsList:
-  - {fileID: 11400000, guid: 3874eaf7b7f24ec43b073b2be72ed74b, type: 2}
+  chapter: 0
+  floorSettings: []
