@@ -99,6 +99,7 @@ public class CellEditor : MonoBehaviour
         {
             cellState = CellState.Cover;
             cellType = CellType.Empty;
+            itemType = ItemTypeEnum.None;
             UpdateRandomVisual();
         }
         switch (cellState)

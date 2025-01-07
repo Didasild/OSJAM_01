@@ -17,21 +17,23 @@ public class RoomSettingsInspector : Editor
     
     //GUI variables
     private int _smallSpacing = 5;
+    private Texture2D _customIcon;
     #endregion
     
     void OnEnable()
     {
         itemGenerationProperty = serializedObject.FindProperty("itemRanges");
+        // Charger une icône personnalisée à partir des Assets
+        _customIcon = AssetDatabase.LoadAssetAtPath<Texture2D>("Assets/Resources/2D/InspectorIcons/RoomSettingsIcon.png");
+        ApplyCustomIcon();
     }
     public override void OnInspectorGUI()
     {
         #region SETUP
         // Synchronise les modifications dans l'inspecteur
         serializedObject.Update();
-        RoomSettings roomSettings = (RoomSettings)target;
-        Undo.RegisterCompleteObjectUndo(roomSettings, "Room Settings");
+        RoomSettings roomSettings = (RoomSettings)target; //Style centered
         
-        //Style centered
         GUIStyle centeredStyle = new GUIStyle(GUI.skin.textField)
         {
             alignment = TextAnchor.MiddleCenter
@@ -172,5 +174,23 @@ public class RoomSettingsInspector : Editor
         {
             EditorUtility.SetDirty(roomSettings);
         }
+    }
+
+    private void ApplyCustomIcon()
+    {
+        if (_customIcon == null)
+        {
+            Debug.LogWarning("L'icône personnalisée n'a pas été trouvée. Assurez-vous qu'elle est placée dans 'Assets/Icons/RoomSettingIcon.png'.");
+            return;
+        }
+
+        // Appliquer l'icône à l'objet sélectionné
+        RoomSettings roomSetting = (RoomSettings)target;
+        EditorGUIUtility.SetIconForObject(roomSetting, _customIcon);
+
+        // Marquer la scène ou le projet comme modifié
+        EditorUtility.SetDirty(roomSetting);
+
+        Debug.Log("Icône personnalisée appliquée avec succès !");
     }
 }
