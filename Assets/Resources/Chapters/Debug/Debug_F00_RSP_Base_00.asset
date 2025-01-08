@@ -22,7 +22,7 @@ MonoBehaviour:
   maxRoomSize: {x: 10, y: 10}
   roomPourcentageOfMine: 10
   roomPourcentageOfNone: 5
-  haveStair: 1
+  haveStair: 0
   itemRanges:
   - itemType: 2
     min: 1

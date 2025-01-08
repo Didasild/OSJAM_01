@@ -1422,8 +1422,8 @@ MonoBehaviour:
   roomSize: 70
   currentFloorSetting: {fileID: 0}
   floorSettingsList:
-  - {fileID: 11400000, guid: 6a0861b0c6c78634d901defe6171dc75, type: 2}
   - {fileID: 11400000, guid: e55edad9f1fa2f94d8fab1d60a1582fe, type: 2}
+  - {fileID: 11400000, guid: 6a0861b0c6c78634d901defe6171dc75, type: 2}
   - {fileID: 11400000, guid: 6a0861b0c6c78634d901defe6171dc75, type: 2}
   currentRoom: {fileID: 0}
   roomList: []
