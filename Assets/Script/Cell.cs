@@ -183,6 +183,14 @@ public class Cell : MonoBehaviour
 
     private void RevealState()
     {
+        //Optimisable ici je pense plutot que 2 foreach
+        foreach (Cell cell in neighborsCellList)
+        {
+            if (cell.currentState == CellState.Inactive)
+            {
+                cell.ChangeState(CellState.Cover);
+            }
+        }
         //Reveal les cellules autour si il n'y a pas de mines
         int nbOfNeighborsMine = GetNeighborsType(CellType.Mine);
         if (nbOfNeighborsMine == 0)
