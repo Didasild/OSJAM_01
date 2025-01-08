@@ -1,0 +1,32 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e1fa203da9941e14e9ac5c76d2db6dfb, type: 3}
+  m_Name: Debug_F00_RSP_Stair_00
+  m_EditorClassIdentifier: 
+  proceduralRoom: 0
+  mandatory: 1
+  isFoW: 1
+  roomType: 0
+  roomIDString: 0_0_Co_Em_No_Pr|0_1_Co_Em_No_Pr|0_2_Co_Em_No_Pr|0_3_Co_Em_No_Pr|0_4_Co_Em_No_Pr|0_5_Co_Em_No_Pr|0_6_Co_Em_No_Pr|0_7_Co_Em_No_Pr|0_8_Co_Em_No_Pr|0_9_Co_Em_No_Pr|0_10_Co_Em_No_Pr|0_11_Co_Em_No_Pr|0_12_Co_Em_No_Pr|0_13_Co_Em_No_Pr|0_14_Co_Em_No_Pr|1_0_Co_Em_No_Pr|1_1_Co_Em_No_Pr|1_2_Co_Em_No_Pr|1_3_Co_Em_No_Pr|1_4_Co_Em_No_Pr|1_5_Co_Em_No_Pr|1_6_Co_Em_No_Pr|1_7_Co_Em_No_Pr|1_8_Co_Em_No_Pr|1_9_Co_Em_No_Pr|1_10_Co_Em_No_Pr|1_11_Co_Em_No_Pr|1_12_Co_Em_No_Pr|1_13_Co_Em_No_Pr|1_14_Co_Em_No_Pr|2_0_Co_Em_No_Pr|2_1_Co_Em_No_Pr|2_2_Co_Em_No_Pr|2_3_Co_Em_No_Pr|2_4_Co_Em_No_Pr|2_5_Co_Em_No_Pr|2_6_Co_Em_No_Pr|2_7_Co_Em_No_Pr|2_8_Co_Em_No_Pr|2_9_Co_Em_No_Pr|2_10_Co_Em_No_Pr|2_11_Co_Em_No_Pr|2_12_Co_Em_No_Pr|2_13_Co_Em_No_Pr|2_14_Co_Em_No_Pr|3_0_Co_Em_No_Pr|3_1_Co_Em_No_Pr|3_2_Co_Em_No_Pr|3_3_Re_No_No|3_4_Re_No_No|3_5_Re_No_No|3_6_Co_Em_No_Pr|3_7_Co_Em_No_Pr|3_8_Co_Em_No_Pr|3_9_Re_No_No|3_10_Re_No_No|3_11_Re_No_No|3_12_Co_Em_No_Pr|3_13_Co_Em_No_Pr|3_14_Co_Em_No_Pr|4_0_Co_Em_No_Pr|4_1_Co_Em_No_Pr|4_2_Co_Em_No_Pr|4_3_Re_No_No|4_4_Re_No_No|4_5_Re_No_No|4_6_Co_Em_No_Pr|4_7_Co_Em_No_Pr|4_8_Co_Em_No_Pr|4_9_Re_No_No|4_10_Re_No_No|4_11_Re_No_No|4_12_Co_Em_No_Pr|4_13_Co_Em_No_Pr|4_14_Co_Em_No_Pr|5_0_Co_Em_No_Pr|5_1_Co_Em_No_Pr|5_2_Co_Em_No_Pr|5_3_Re_No_No|5_4_Re_No_No|5_5_Re_No_No|5_6_Co_Em_No_Pr|5_7_Co_Em_No_Pr|5_8_Co_Em_No_Pr|5_9_Re_No_No|5_10_Re_No_No|5_11_Re_No_No|5_12_Co_Em_No_Pr|5_13_Co_Em_No_Pr|5_14_Co_Em_No_Pr|6_0_Co_Em_No_Pr|6_1_Co_Em_No_Pr|6_2_Co_Em_No_Pr|6_3_Co_Em_No_Pr|6_4_Co_Em_No_Pr|6_5_Co_Em_No_Pr|6_6_Co_Em_No_Pr|6_7_Co_Em_No_Pr|6_8_Co_Em_No_Pr|6_9_Co_Em_No_Pr|6_10_Co_Em_No_Pr|6_11_Co_Em_No_Pr|6_12_Co_Em_No_Pr|6_13_Co_Em_No_Pr|6_14_Co_Em_No_Pr|7_0_Co_Em_No_Pr|7_1_Co_Em_No_Pr|7_2_Co_Em_No_Pr|7_3_Co_Em_No_Pr|7_4_Co_Em_No_Pr|7_5_Co_Em_No_Pr|7_6_Co_Em_No_Pr|7_7_Co_Em_No_Pr|7_8_Co_Em_No_Pr|7_9_Co_Em_No_Pr|7_10_Co_Em_No_Pr|7_11_Co_Em_No_Pr|7_12_Co_Em_No_Pr|7_13_Co_Em_No_Pr|7_14_Co_Em_No_Pr|8_0_Co_Em_No_Pr|8_1_Co_Em_No_Pr|8_2_Co_Em_No_Pr|8_3_Co_Em_No_Pr|8_4_Co_Em_No_Pr|8_5_Co_Em_No_Pr|8_6_Co_Em_No_Pr|8_7_Co_Em_No_Pr|8_8_Co_Em_No_Pr|8_9_Co_Em_No_Pr|8_10_Co_Em_No_Pr|8_11_Co_Em_No_Pr|8_12_Co_Em_No_Pr|8_13_Co_Em_No_Pr|8_14_Co_Em_No_Pr|9_0_Co_Em_No_Pr|9_1_Co_Em_No_Pr|9_2_Co_Em_No_Pr|9_3_Re_No_No|9_4_Re_No_No|9_5_Re_No_No|9_6_Co_Em_No_Pr|9_7_Co_Em_No_Pr|9_8_Co_Em_No_Pr|9_9_Re_No_No|9_10_Re_No_No|9_11_Re_No_No|9_12_Co_Em_No_Pr|9_13_Co_Em_No_Pr|9_14_Co_Em_No_Pr|10_0_Co_Em_No_Pr|10_1_Co_Em_No_Pr|10_2_Co_Em_No_Pr|10_3_Re_No_No|10_4_Re_No_No|10_5_Re_No_No|10_6_Co_Em_No_Pr|10_7_Co_Em_No_Pr|10_8_Co_Em_No_Pr|10_9_Re_No_No|10_10_Re_No_No|10_11_Re_No_No|10_12_Co_Em_No_Pr|10_13_Co_Em_No_Pr|10_14_Co_Em_No_Pr|11_0_Co_Em_No_Pr|11_1_Co_Em_No_Pr|11_2_Co_Em_No_Pr|11_3_Re_No_No|11_4_Re_No_No|11_5_Re_No_No|11_6_Co_Em_No_Pr|11_7_Co_Em_No_Pr|11_8_Co_Em_No_Pr|11_9_Re_No_No|11_10_Re_No_No|11_11_Re_No_No|11_12_Co_Em_No_Pr|11_13_Co_Em_No_Pr|11_14_Co_Em_No_Pr|12_0_Co_Em_No_Pr|12_1_Co_Em_No_Pr|12_2_Co_Em_No_Pr|12_3_Co_Em_No_Pr|12_4_Co_Em_No_Pr|12_5_Co_Hi_No|12_6_Co_Hi_No|12_7_Co_Hi_No|12_8_Co_Hi_No|12_9_Co_Hi_No|12_10_Co_Em_No_Pr|12_11_Co_Em_No_Pr|12_12_Co_Em_No_Pr|12_13_Co_Em_No_Pr|12_14_Co_Em_No_Pr|13_0_Co_Em_No_Pr|13_1_Co_Em_No_Pr|13_2_Co_Em_No_Pr|13_3_Co_Em_No_Pr|13_4_Co_Em_No_Pr|13_5_Co_Hi_No|13_6_Co_Mi_No|13_7_Co_Hi_No|13_8_Co_Mi_No|13_9_Co_Hi_No|13_10_Co_Em_No_Pr|13_11_Co_Em_No_Pr|13_12_Co_Em_No_Pr|13_13_Co_Em_No_Pr|13_14_Co_Em_No_Pr|14_0_Co_Em_No_Pr|14_1_Co_Em_No_Pr|14_2_Co_Em_No_Pr|14_3_Co_Em_No_Pr|14_4_Co_Em_No_Pr|14_5_Co_Hi_No|14_6_Re_Hi_No|14_7_Re_Hi_No|14_8_Re_Hi_No|14_9_Co_Hi_No|14_10_Co_Em_No_Pr|14_11_Co_Em_No_Pr|14_12_Co_Em_No_Pr|14_13_Co_Em_No_Pr|14_14_Co_Em_No_Pr
+  haveProceduralCells: 1
+  minRoomSize: {x: 5, y: 5}
+  maxRoomSize: {x: 10, y: 10}
+  roomPourcentageOfMine: 16
+  roomPourcentageOfNone: 5
+  haveStair: 1
+  itemRanges:
+  - itemType: 2
+    min: 0
+    max: 2
+  - itemType: 1
+    min: 0
+    max: 2
