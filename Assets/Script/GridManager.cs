@@ -19,7 +19,8 @@ public class GridManager : MonoBehaviour
     public List<Cell> cellList = new List<Cell>(); //Liste des cellules de la grid
     [NaughtyAttributes.ReadOnly]
     public List<Cell> cellMineList = new List<Cell>(); //Liste de mines de la grid
-    private List<Cell> _cellProceduralList = new List<Cell>();
+    [NaughtyAttributes.ReadOnly]
+    public List<Cell> _cellProceduralList = new List<Cell>();
 
     [Header("MINE LEFT")]
     public TMP_Text theoricalMineLeftText;
@@ -88,27 +89,27 @@ public class GridManager : MonoBehaviour
         SetItemsType(CellType.Item, GameManager.Instance.currentRoomSettings.GetNumberOfItem(ItemTypeEnum.Sword), cellList, ItemTypeEnum.Sword);
         SetNoneState();
     }
-    private void SetCellType(int pourcentageOfType, CellType cellType, List<Cell> cellList)
+    private void SetCellType(int pourcentageOfType, CellType cellType, List<Cell> usedCellList)
     {
-        if (cellList.Count == 0)
+        if (usedCellList.Count == 0)
         {
             Debug.LogWarning("La liste des enfants est vide !");
             return;
         }
 
         // S'assurer que le nombre d'objets à changer ne dépasse pas la taille de la liste
-        int countToChange = Mathf.RoundToInt(cellList.Count * (pourcentageOfType / 100f));
+        int countToChange = Mathf.RoundToInt(usedCellList.Count * (pourcentageOfType / 100f));
 
         // Liste temporaire pour suivre les objets déjà modifiés
         List<Cell> alreadyChanged = new List<Cell>();
 
         for (int i = 0;i < countToChange;i++)
         {
-            Cell randomCell = cellList[i];
+            Cell randomCell = usedCellList[i];
             do
             {
-                int randomIndex = UnityEngine.Random.Range(0, cellList.Count);
-                randomCell = cellList[randomIndex];
+                int randomIndex = UnityEngine.Random.Range(0, usedCellList.Count);
+                randomCell = usedCellList[randomIndex];
             } while (alreadyChanged.Contains(randomCell));
             alreadyChanged.Add(randomCell);
 
@@ -273,11 +274,7 @@ public class GridManager : MonoBehaviour
         {
             cell.GenerateNeighborsList(this);
         }
-
-        if (GameManager.Instance.currentRoomSettings.isFoW)
-        {
-            
-        }
+        cellMineList = GetCellsByType(CellType.Mine);
         SetCellsVisuals();
         ActiveListOfCells(timeBetweenApparition, GameManager.Instance.dungeonManager.currentRoom.currentRoomState);
     }
@@ -388,6 +385,7 @@ public class GridManager : MonoBehaviour
         }
         cellList = new List<Cell>();
         cellMineList = new List<Cell>();
+        _cellProceduralList = new List<Cell>();
     }
     #endregion COMMON GENERATION FONCTIONS
 
