@@ -17,22 +17,27 @@ public class RoomSettingsInspector : Editor
     
     //GUI variables
     private int _smallSpacing = 5;
+    private RoomSettings _roomSettings;
     private Texture2D _customIcon;
     #endregion
+
+    // Permet d'exécuter du code à l'initialisation du script
+    private RoomSettingsInspector()
+    {
+        ApplyCustomIcon();
+    }
     
+    // permet d'exécuter du code à la selection de l'objet
     void OnEnable()
     {
         itemGenerationProperty = serializedObject.FindProperty("itemRanges");
-        // Charger une icône personnalisée à partir des Assets
-        _customIcon = AssetDatabase.LoadAssetAtPath<Texture2D>("Assets/Resources/2D/InspectorIcons/RoomSettingsIcon.png");
-        ApplyCustomIcon();
     }
     public override void OnInspectorGUI()
     {
         #region SETUP
         // Synchronise les modifications dans l'inspecteur
         serializedObject.Update();
-        RoomSettings roomSettings = (RoomSettings)target; //Style centered
+        _roomSettings = (RoomSettings)target; //Style centered
         
         GUIStyle centeredStyle = new GUIStyle(GUI.skin.textField)
         {
@@ -48,7 +53,7 @@ public class RoomSettingsInspector : Editor
         if (_generalSection)
         {
             EditorGUILayout.Space(_smallSpacing);
-            roomSettings.proceduralRoom = EditorGUILayout.Toggle("Fully Procedural Room", roomSettings.proceduralRoom);
+            _roomSettings.proceduralRoom = EditorGUILayout.Toggle("Fully Procedural Room", _roomSettings.proceduralRoom);
             EditorGUILayout.Space(_smallSpacing);
             
             GUI.enabled = false;
@@ -56,24 +61,24 @@ public class RoomSettingsInspector : Editor
             GUI.enabled = true;
 
             EditorGUILayout.BeginHorizontal();
-            roomSettings.mandatory = EditorGUILayout.Toggle("Is Mandatory", roomSettings.mandatory);
-            roomSettings.roomType = (RoomType)EditorGUILayout.EnumPopup("Room Type", roomSettings.roomType);
+            _roomSettings.mandatory = EditorGUILayout.Toggle("Is Mandatory", _roomSettings.mandatory);
+            _roomSettings.roomType = (RoomType)EditorGUILayout.EnumPopup("Room Type", _roomSettings.roomType);
             EditorGUILayout.EndHorizontal();
-            roomSettings.isFoW = EditorGUILayout.Toggle("Is FoW", roomSettings.isFoW);
+            _roomSettings.isFoW = EditorGUILayout.Toggle("Is FoW", _roomSettings.isFoW);
             EditorGUILayout.Space(_smallSpacing);
-            if (!roomSettings.proceduralRoom)
+            if (!_roomSettings.proceduralRoom)
             {
                 GUI.enabled = false;
                 EditorGUILayout.TextField("ROOM ID INFO", centeredStyle);
                 GUI.enabled = true;
-                roomSettings.roomIDString = EditorGUILayout.TextField("Room ID String", roomSettings.roomIDString);
-                roomSettings.haveProceduralCells = EditorGUILayout.Toggle("Have Procedural Cells", roomSettings.haveProceduralCells);
+                _roomSettings.roomIDString = EditorGUILayout.TextField("Room ID String", _roomSettings.roomIDString);
+                _roomSettings.haveProceduralCells = EditorGUILayout.Toggle("Have Procedural Cells", _roomSettings.haveProceduralCells);
             }
         }
         #endregion GENERAL
 
         #region PROCEDURAL
-        if (roomSettings.proceduralRoom)
+        if (_roomSettings.proceduralRoom)
         {
             //________SECTION - PROCEDURAL PARAMETERS
             //Header Foldout - PROCEDURAL PARAMETERS
@@ -88,8 +93,8 @@ public class RoomSettingsInspector : Editor
                 GUI.enabled = true;
                 
                 EditorGUILayout.LabelField("ROOM SIZE", EditorStyles.boldLabel);
-                roomSettings.minRoomSize = EditorGUILayout.Vector2IntField("Min Room Size", roomSettings.minRoomSize);
-                roomSettings.maxRoomSize = EditorGUILayout.Vector2IntField("Max Room Size", roomSettings.maxRoomSize);
+                _roomSettings.minRoomSize = EditorGUILayout.Vector2IntField("Min Room Size", _roomSettings.minRoomSize);
+                _roomSettings.maxRoomSize = EditorGUILayout.Vector2IntField("Max Room Size", _roomSettings.maxRoomSize);
                 
                 EditorGUILayout.Space(_smallSpacing);
                 CoreEditorUtils.DrawFoldoutEndSplitter();
@@ -97,10 +102,10 @@ public class RoomSettingsInspector : Editor
                 
                 EditorGUILayout.LabelField("SPECIFIC CELLS SETTINGS", EditorStyles.boldLabel);
                 EditorGUILayout.BeginHorizontal();
-                roomSettings.roomPourcentageOfMine = EditorGUILayout.IntField("Pourcentage of Mine", roomSettings.roomPourcentageOfMine);
-                roomSettings.roomPourcentageOfNone = EditorGUILayout.IntField("Pourcentage of None", roomSettings.roomPourcentageOfNone);
+                _roomSettings.roomPourcentageOfMine = EditorGUILayout.IntField("Pourcentage of Mine", _roomSettings.roomPourcentageOfMine);
+                _roomSettings.roomPourcentageOfNone = EditorGUILayout.IntField("Pourcentage of None", _roomSettings.roomPourcentageOfNone);
                 EditorGUILayout.EndHorizontal();
-                roomSettings.haveStair = EditorGUILayout.Toggle("Have Stair", roomSettings.haveStair);
+                _roomSettings.haveStair = EditorGUILayout.Toggle("Have Stair", _roomSettings.haveStair);
                 
                 EditorGUILayout.Space(_smallSpacing);
                 CoreEditorUtils.DrawFoldoutEndSplitter();
@@ -119,7 +124,7 @@ public class RoomSettingsInspector : Editor
         #endregion PROCEDURAL
 
         #region PROCEDURAL CELLS
-        if (roomSettings.haveProceduralCells && !roomSettings.proceduralRoom)
+        if (_roomSettings.haveProceduralCells && !_roomSettings.proceduralRoom)
         {
             GUI.enabled = false;
             CoreEditorUtils.DrawSplitter();
@@ -138,8 +143,8 @@ public class RoomSettingsInspector : Editor
                 EditorGUILayout.Space(_smallSpacing);
                 
                 EditorGUILayout.BeginHorizontal();
-                roomSettings.haveStair = EditorGUILayout.Toggle("Have Stair", roomSettings.haveStair);
-                roomSettings.roomPourcentageOfMine = EditorGUILayout.IntField("Pourcentage of Mine", roomSettings.roomPourcentageOfMine);
+                _roomSettings.haveStair = EditorGUILayout.Toggle("Have Stair", _roomSettings.haveStair);
+                _roomSettings.roomPourcentageOfMine = EditorGUILayout.IntField("Pourcentage of Mine", _roomSettings.roomPourcentageOfMine);
                 EditorGUILayout.EndHorizontal();
                 
                 EditorGUILayout.Space(_smallSpacing);
@@ -173,13 +178,15 @@ public class RoomSettingsInspector : Editor
         // Applique les changements
         if (GUI.changed)
         {
-            EditorUtility.SetDirty(roomSettings);
+            EditorUtility.SetDirty(_roomSettings);
         }
     }
 
     private void ApplyCustomIcon()
     {
-        if (_customIcon == null)
+        Texture2D customIcon = GetIcon();
+
+        if (customIcon == null)
         {
             Debug.LogWarning("L'icône personnalisée n'a pas été trouvée. Assurez-vous qu'elle est placée dans 'Assets/Icons/RoomSettingIcon.png'.");
             return;
@@ -187,11 +194,30 @@ public class RoomSettingsInspector : Editor
 
         // Appliquer l'icône à l'objet sélectionné
         RoomSettings roomSetting = (RoomSettings)target;
-        EditorGUIUtility.SetIconForObject(roomSetting, _customIcon);
+        EditorGUIUtility.SetIconForObject(roomSetting, customIcon);
 
         // Marquer la scène ou le projet comme modifié
-        EditorUtility.SetDirty(roomSetting);
+        // EditorUtility.SetDirty(roomSetting);
 
         Debug.Log("Icône personnalisée appliquée avec succès !");
+    }
+
+    private Texture2D GetIcon()
+    {
+        _customIcon = null;
+        _customIcon = AssetDatabase.LoadAssetAtPath("Assets/Resources/2D/InspectorIcons/RoomSettingProceduralIcon.png", typeof(Texture2D)) as Texture2D;
+        // if (_roomSettings.proceduralRoom)
+        // {
+        //     customIcon = AssetDatabase.LoadAssetAtPath("Assets/Resources/2D/InspectorIcons/RoomSettingProceduralIcon.png", typeof(Texture2D)) as Texture2D;
+        // }
+        // else if (_roomSettings.haveProceduralCells)
+        // {
+        //     customIcon = AssetDatabase.LoadAssetAtPath("Assets/Resources/2D/InspectorIcons/RoomSettingSemiProceduralIcon.png", typeof(Texture2D)) as Texture2D;
+        // }
+        // else
+        // {
+        //     customIcon = AssetDatabase.LoadAssetAtPath("Assets/Resources/2D/InspectorIcons/RoomSettingLoadedIcon.png", typeof(Texture2D)) as Texture2D;
+        // }
+        return _customIcon;
     }
 }
