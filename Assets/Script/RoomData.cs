@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 #region ENUMS
@@ -18,7 +19,7 @@ public class RoomData : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     [Header("GENERAL DATA")]
     [NaughtyAttributes.ReadOnly] public RoomSettings roomSettings;
     [NaughtyAttributes.ReadOnly] public RoomState currentRoomState;
-    [NaughtyAttributes.ReadOnly] public RoomType CurrentRoomType;
+    [NaughtyAttributes.ReadOnly] public RoomType currentRoomType;
     [NaughtyAttributes.ReadOnly] public string roomSavedString;
     [NaughtyAttributes.ReadOnly] public Vector2Int roomPosition;
 
@@ -63,7 +64,7 @@ public class RoomData : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 
     public void InitializeRoomType()
     {
-        CurrentRoomType = roomSettings.roomType;
+        currentRoomType = roomSettings.roomType;
         roomTypeVisual.sprite = _roomVisualManager.GetRoomTypeVisual(RoomType.Base);
     }
 
@@ -101,14 +102,14 @@ public class RoomData : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 
     private void CompleteRoomState()
     {
-        if (CurrentRoomType != RoomType.Base)
+        if (currentRoomType != RoomType.Base)
         {
             //Fait apparaitre le type de la room
             Color roomTypeVisualColor = roomTypeVisual.color;
             roomTypeVisualColor.a = 1;
             roomTypeVisual.color = roomTypeVisualColor;
         }
-        roomTypeVisual.sprite = _roomVisualManager.GetRoomTypeVisual(CurrentRoomType);
+        roomTypeVisual.sprite = _roomVisualManager.GetRoomTypeVisual(currentRoomType);
     }
     #endregion ROOM STATE
 

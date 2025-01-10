@@ -183,7 +183,7 @@ public class Cell : MonoBehaviour
 
     private void RevealState()
     {
-        //Optimisable ici je pense plutot que 2 foreach
+        //Optimisable ici, je pense plutôt que 2 foreach
         foreach (Cell cell in neighborsCellList)
         {
             if (cell.currentState == CellState.Inactive)

@@ -129,7 +129,8 @@ public class DungeonManager : MonoBehaviour
     private void AssignRandomFirstRoom()
     {
         RoomData selectedRoomData = null;
-        //Selectionne une room random
+        
+        //Sélectionne une room random
         int randomIndex = Random.Range(0, roomList.Count);
         selectedRoomData = roomList[randomIndex];
         currentRoom = selectedRoomData;
@@ -255,7 +256,7 @@ public class DungeonManager : MonoBehaviour
     #endregion BUTTON FONCTIONS
 
     #region DEBUG
-    public void UpdateRoomDebugName()
+    private void UpdateRoomDebugName()
     {
         roomNameDebugText.text = currentRoom.roomSettings.name;
     }

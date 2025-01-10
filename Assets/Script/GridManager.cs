@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class GridManager : MonoBehaviour
 {
@@ -20,7 +21,7 @@ public class GridManager : MonoBehaviour
     [NaughtyAttributes.ReadOnly]
     public List<Cell> cellMineList = new List<Cell>(); //Liste de mines de la grid
     [NaughtyAttributes.ReadOnly]
-    public List<Cell> _cellProceduralList = new List<Cell>();
+    public List<Cell> cellProceduralList = new List<Cell>();
 
     [Header("MINE LEFT")]
     public TMP_Text theoricalMineLeftText;
@@ -202,7 +203,7 @@ public class GridManager : MonoBehaviour
     #endregion PROCEDURAL GRID GENERATION
 
     #region LOADED ROOM GENERATION
-    public void LoadRoomFromString(string roomString, Vector2Int roomSize, bool isRSP)
+    public void LoadRoomFromString(string roomString, Vector2Int roomSize, bool isRsp)
     {
         //Retourne une erreur s'il n'y a pas de string
         if (string.IsNullOrEmpty(roomString))
@@ -240,10 +241,10 @@ public class GridManager : MonoBehaviour
             // Instancier une nouvelle cellule
             Cell newCell = CellInstanciation(cellPosition, row, col);
             
-            //Ajoute à la liste des cellules procédural
+            //Ajoute à la liste des cellules procédurales
             if (isProcedural)
             {
-                _cellProceduralList.Add(newCell);
+                cellProceduralList.Add(newCell);
             }
 
             // Convertir les abréviations en valeurs d'enum
@@ -259,15 +260,15 @@ public class GridManager : MonoBehaviour
             newCell.Initialize(new Vector2Int(row, col)); // Initialisation avec les bonnes coordonnées et le bon état
         }
 
-        if (isRSP && _cellProceduralList.Count > 0)
+        if (isRsp && cellProceduralList.Count > 0)
         {
             if (GameManager.Instance.currentRoomSettings.haveStair)
             {
-                SetItemsType(CellType.Gate, 1, _cellProceduralList);
+                SetItemsType(CellType.Gate, 1, cellProceduralList);
             }
-            SetCellType(GameManager.Instance.currentRoomSettings.roomPourcentageOfMine, CellType.Mine, _cellProceduralList);
-            SetItemsType(CellType.Item, GameManager.Instance.currentRoomSettings.GetNumberOfItem(ItemTypeEnum.Potion), _cellProceduralList, ItemTypeEnum.Potion);
-            SetItemsType(CellType.Item, GameManager.Instance.currentRoomSettings.GetNumberOfItem(ItemTypeEnum.Sword), _cellProceduralList, ItemTypeEnum.Sword);
+            SetCellType(GameManager.Instance.currentRoomSettings.roomPourcentageOfMine, CellType.Mine, cellProceduralList);
+            SetItemsType(CellType.Item, GameManager.Instance.currentRoomSettings.GetNumberOfItem(ItemTypeEnum.Potion), cellProceduralList, ItemTypeEnum.Potion);
+            SetItemsType(CellType.Item, GameManager.Instance.currentRoomSettings.GetNumberOfItem(ItemTypeEnum.Sword), cellProceduralList, ItemTypeEnum.Sword);
         }
         
         foreach (Cell cell in cellList)
@@ -385,7 +386,7 @@ public class GridManager : MonoBehaviour
         }
         cellList = new List<Cell>();
         cellMineList = new List<Cell>();
-        _cellProceduralList = new List<Cell>();
+        cellProceduralList = new List<Cell>();
     }
     #endregion COMMON GENERATION FONCTIONS
 

@@ -1,5 +1,6 @@
 using TMPro;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class Player : MonoBehaviour
 {
@@ -26,7 +27,7 @@ public class Player : MonoBehaviour
 
     //Private Variables
     [NaughtyAttributes.ReadOnly]
-    [SerializeField] private Cell _cellOver;
+    [SerializeField] private Cell cellOver;
     private Cell _cellClicked;
     private Cell _firstCellClicked;
     #endregion
@@ -41,14 +42,14 @@ public class Player : MonoBehaviour
 
         if (hit.collider != null)
         {
-            _cellOver = hit.collider.GetComponent<Cell>();
+            cellOver = hit.collider.GetComponent<Cell>();
         }
         else
         {
             //Debug.Log("Aucune cellule d�tect�e");
             return;
         }
-        if (_cellOver == null || GameManager.Instance.currentGameState != GameState.InGame)
+        if (cellOver == null || GameManager.Instance.currentGameState != GameState.InGame)
         {
             return;
         }
@@ -57,7 +58,7 @@ public class Player : MonoBehaviour
         // Clique sur le bouton gauche
         if (Input.GetMouseButtonUp(0))
         {
-            _cellClicked = _cellOver;
+            _cellClicked = cellOver;
             if (_firstCellClicked != _cellClicked)
             {
                 ResetClickedState();
@@ -98,14 +99,14 @@ public class Player : MonoBehaviour
         //Clic gauche Down
         if (Input.GetMouseButtonDown(0))
         {
-            _firstCellClicked = _cellOver;
+            _firstCellClicked = cellOver;
             SwitchCellsToClickedState();
         }
 
         //Clic gauche enfonc� (s'update en permanence)
         if (Input.GetMouseButton(0))
         {
-            if (_cellClicked != _cellOver)
+            if (_cellClicked != cellOver)
             {
                 ResetClickedState();
                 SwitchCellsToClickedState();
@@ -118,23 +119,23 @@ public class Player : MonoBehaviour
         // Clique sur le bouton droit
         if (Input.GetMouseButtonDown(1))
         {
-            if (_cellOver.currentState == CellState.Cover)
+            if (cellOver.currentState == CellState.Cover)
             {
-                _cellOver.ChangeState(CellState.Flag);
+                cellOver.ChangeState(CellState.Flag);
             }
-            else if (_cellOver.currentState == CellState.Flag && _swordCounter >= 1f)
+            else if (cellOver.currentState == CellState.Flag && _swordCounter >= 1f)
             {
                 //cellOver.ChangeState(CellState.PlantedSword);
-                _cellOver.ItemStateTransition(CellState.PlantedSword, 0.35f);
+                cellOver.ItemStateTransition(CellState.PlantedSword, 0.35f);
                 DecreaseSwordCounter();
             }
-            else if (_cellOver.currentState == CellState.Flag && _swordCounter == 0f)
+            else if (cellOver.currentState == CellState.Flag && _swordCounter == 0f)
             {
-                _cellOver.ChangeState(CellState.Cover);
+                cellOver.ChangeState(CellState.Cover);
             }
-            else if (_cellOver.currentState == CellState.PlantedSword)
+            else if (cellOver.currentState == CellState.PlantedSword)
             {
-                _cellOver.ChangeState(CellState.Cover);
+                cellOver.ChangeState(CellState.Cover);
                 IncreaseSwordCounter();
             }
             //Update le compteur de mines restantes
@@ -257,7 +258,7 @@ public class Player : MonoBehaviour
 
     private void SwitchCellsToClickedState()
     {
-        _cellClicked = _cellOver;
+        _cellClicked = cellOver;
         
         if (_cellClicked.currentType == CellType.Hint && _cellClicked.currentState == CellState.Reveal)
         {
@@ -300,7 +301,7 @@ public class Player : MonoBehaviour
         }
     }
 
-    public void IncreaseHealth(int heal)
+    private void IncreaseHealth(int heal)
     {
         _healthPoints += heal;
         healthPointText.text = _healthPoints.ToString();
@@ -349,13 +350,13 @@ public class Player : MonoBehaviour
     #endregion
 
     #region SWORD
-    public void IncreaseSwordCounter(int swordIncrease = 1)
+    private void IncreaseSwordCounter(int swordIncrease = 1)
     {
         _swordCounter += swordIncrease;
         swordCounterText.text = _swordCounter.ToString();
     }
 
-    public void DecreaseSwordCounter(int swordDecrease = 1)
+    private void DecreaseSwordCounter(int swordDecrease = 1)
     {
         if (_swordCounter == 0)
         {
