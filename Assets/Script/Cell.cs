@@ -60,7 +60,8 @@ public class Cell : MonoBehaviour
     
     //Private Variables
     private CellVisualManager _cellVisualManager;
-    private Collider2D collider;
+    private Collider2D _collider;
+    public Animator _animator;
     #endregion
 
     #region INIT
@@ -68,8 +69,9 @@ public class Cell : MonoBehaviour
     {
         _cellPosition = cellPosition;
         _cellVisualManager = GameManager.CellVisualManager;
+        _animator = GetComponent<Animator>();
         ChangeState(currentState);
-        collider = GetComponent<Collider2D>();
+        _collider = GetComponent<Collider2D>();
     }
 
     //Update le visual de la cellule
@@ -136,10 +138,6 @@ public class Cell : MonoBehaviour
 
         switch (currentState)
         {
-            case CellState.Inactive:
-                InactiveState();
-                break;
-            
             case CellState.Cover:
                 CoverState();
                 break;
@@ -150,6 +148,10 @@ public class Cell : MonoBehaviour
 
             case CellState.Reveal:
                 RevealState();
+                break;
+            
+            case CellState.Inactive:
+                InactiveState();
                 break;
 
             case CellState.Flag:
@@ -208,7 +210,7 @@ public class Cell : MonoBehaviour
         GameManager.Instance.player.IncreaseMana();
 
         //Update Visual
-        cellCover.SetActive(false);
+        RevealAnimation();
         stateVisual.sprite = _cellVisualManager.GetCellStateVisual(currentState);
     }
 
@@ -275,7 +277,7 @@ public class Cell : MonoBehaviour
         cellEmpty.SetActive(false);
         cellCover.SetActive(false);
         numberText.text = "";
-        Destroy(collider);
+        Destroy(_collider);
     }
     private void MineType()
     {
@@ -359,6 +361,18 @@ public class Cell : MonoBehaviour
             // Optionnel : Réinitialise l'échelle locale
             instance.transform.localScale = Vector3.one;
         }
+    }
+
+    private void RevealAnimation()
+    {
+        _animator.Play("Cell_Reveal");
+        CO_RevealAnimation();
+    }
+
+    private IEnumerator CO_RevealAnimation()
+    {
+        yield return new WaitForSeconds(0.2f);
+        cellCover.SetActive(false);
     }
 
     private void DestroyAnimationPrefab()

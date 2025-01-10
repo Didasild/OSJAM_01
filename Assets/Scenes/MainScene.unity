@@ -1620,7 +1620,7 @@ MonoBehaviour:
   timeBetweenApparition: 0.03
   cellList: []
   cellMineList: []
-  _cellProceduralList: []
+  cellProceduralList: []
   theoricalMineLeftText: {fileID: 2143294031}
   numberOfMineLeft: 0
   theoricalMineLeft: 0
@@ -3224,7 +3224,7 @@ MonoBehaviour:
   initialSwordCounter: 0
   swordCounterText: {fileID: 1241197192}
   clicCounter: 0
-  _cellOver: {fileID: 0}
+  cellOver: {fileID: 0}
 --- !u!4 &1365082115
 Transform:
   m_ObjectHideFlags: 0
