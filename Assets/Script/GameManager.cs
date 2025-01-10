@@ -1,6 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using NUnit.Framework;
 using UnityEngine;
 using TMPro;
 
@@ -53,6 +52,8 @@ public class GameManager : MonoBehaviour
     private void Awake()
     {
         _instance = this;
+        player.Init();
+        dungeonManager.Init();
     }
 
     public void Start()

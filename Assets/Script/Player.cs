@@ -30,8 +30,13 @@ public class Player : MonoBehaviour
     [SerializeField] private Cell cellOver;
     private Cell _cellClicked;
     private Cell _firstCellClicked;
+    private GridManager _gridManager;
     #endregion
 
+    public void Init()
+    {
+        _gridManager = GameManager.Instance.gridManager;
+    }
     private void Update()
     {
         // Convertit la position de la souris en coordonn�es du monde
@@ -91,8 +96,8 @@ public class Player : MonoBehaviour
                 ClickOnItemCell(_cellClicked, ItemTypeEnum.Sword);
             }
             //Update le compteur de mines restantes
-            GameManager.Instance.gridManager.UpdateMineCounter();
-            GameManager.Instance.gridManager.CheckRoomCompletion();
+            _gridManager.UpdateMineCounter();
+            _gridManager.CheckRoomCompletion();
             ResetClickedState();
         }
 
@@ -139,8 +144,8 @@ public class Player : MonoBehaviour
                 IncreaseSwordCounter();
             }
             //Update le compteur de mines restantes
-            GameManager.Instance.gridManager.UpdateMineCounter();
-            GameManager.Instance.gridManager.CheckRoomCompletion();
+            _gridManager.UpdateMineCounter();
+            _gridManager.CheckRoomCompletion();
         }
         #endregion
 
@@ -199,9 +204,9 @@ public class Player : MonoBehaviour
     private void ClickOnCoverCell(Cell cellClicked)
     {
         //Vérifie si la grid doit être procédurale et est complètement couverte puis génère les items
-        if (GameManager.Instance.gridManager.CheckFirstClickOnProcedural())
+        if (_gridManager.CheckFirstClickOnProcedural())
         {
-            GameManager.Instance.gridManager.FirstClickGeneration(cellClicked);
+            _gridManager.FirstClickGeneration(cellClicked);
         }
         //Explose la mine si c'en est une
         if (cellClicked.currentType == CellType.Mine)
@@ -219,9 +224,9 @@ public class Player : MonoBehaviour
     private void ClickOnPlantedSwordCell(Cell cellClicked)
     {
         //Vérifie si la grid doit être procédurale et est complètement couverte puis génère les items
-        if (GameManager.Instance.gridManager.CheckFirstClickOnProcedural())
+        if (_gridManager.CheckFirstClickOnProcedural())
         {
-            GameManager.Instance.gridManager.FirstClickGeneration(cellClicked);
+            _gridManager.FirstClickGeneration(cellClicked);
         }
         if (cellClicked.currentType == CellType.Mine)
         {
@@ -383,5 +388,4 @@ public class Player : MonoBehaviour
         clicCounter += 1;
     }
     #endregion
-
 }

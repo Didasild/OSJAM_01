@@ -380,12 +380,12 @@ public class Cell : MonoBehaviour
     public void MineSwordDestruction(GameObject mineAnimType)
     {
         ChangeState(CellState.Cover);
-        StartCoroutine(CO_MineDestruction(GameManager.CellVisualManager.mineSwordedAnimation, 1.9f));
+        StartCoroutine(CO_MineDestruction(_cellVisualManager.mineSwordedAnimation, 1.9f));
     }
     public void MineExplosion()
     {
         GameManager.Instance.player.DecreaseHealth(1);
-        StartCoroutine(CO_MineDestruction(GameManager.CellVisualManager.mineExplosionAnimation, 1.4f));
+        StartCoroutine(CO_MineDestruction(_cellVisualManager.mineExplosionAnimation, 1.4f));
     }
     private IEnumerator CO_MineDestruction(GameObject mineAnimType, float animDuration)
     {
@@ -414,7 +414,7 @@ public class Cell : MonoBehaviour
     {
         if (cellNewState == CellState.PlantedSword)
         {
-            InstantiateAnimation(GameManager.CellVisualManager.plantedSwordAnimation);
+            InstantiateAnimation(_cellVisualManager.plantedSwordAnimation);
         }
         yield return new WaitForSeconds(animDuration);
         if (cellNewState == CellState.PlantedSword)

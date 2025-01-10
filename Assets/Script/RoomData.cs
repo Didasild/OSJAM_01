@@ -114,6 +114,7 @@ public class RoomData : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     #endregion ROOM STATE
 
     #region POINTER
+    //Click sur la minimap
     public void OnPointerEnter(PointerEventData eventData)
     {
         
