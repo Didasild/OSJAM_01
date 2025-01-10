@@ -148,7 +148,7 @@ public class CellEditor : MonoBehaviour
         //Debug.Log($"Sprite mis à jour pour l'état : {cellState}");
     }
 
-    public void UpdateItemVisual(ItemTypeEnum itemType)
+    private void UpdateItemVisual(ItemTypeEnum itemType)
     {
         switch (itemType)
         {
@@ -173,7 +173,7 @@ public class CellEditor : MonoBehaviour
         debugHintText.text = "?";
     }
 
-    public void UpdateHintText()
+    private void UpdateHintText()
     {
         if (cellType != CellType.Hint)
         {

@@ -46,6 +46,11 @@ public class RoomSettings : ScriptableObject
     public int roomPourcentageOfNone = 5;
     public bool haveStair;
     
+    [Header("CUSTOM ICON")]
+    public Texture2D roomProceduralIcon;
+    public Texture2D roomSemiProceduralIcon;
+    public Texture2D roomLoadedIcon;
+    
     [System.Serializable]
     public struct ItemRange
     {

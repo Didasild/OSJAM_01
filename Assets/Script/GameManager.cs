@@ -1,4 +1,6 @@
 using System.Collections;
+using System.Collections.Generic;
+using NUnit.Framework;
 using UnityEngine;
 using TMPro;
 
@@ -17,13 +19,15 @@ public class GameManager : MonoBehaviour
     [Header("INFORMATIONS STATE")]
     [NaughtyAttributes.ReadOnly]
     public GameState currentGameState;
+    public Chapters currentChapter;
+    public List<ChapterSettings> chaptersList = new List<ChapterSettings>();
+    [NaughtyAttributes.ReadOnly]
+    public ChapterSettings currentChapterSettings;
 
     [Header("FLOOR ELEMENTS")]
     public TMP_Text floorLevelText;
     [NaughtyAttributes.ReadOnly]
     public int currentFloorLevel;
-    [NaughtyAttributes.ReadOnly]
-    public int floorLoop;
     [NaughtyAttributes.ReadOnly]
     public RoomSettings currentRoomSettings;
 
@@ -86,7 +90,13 @@ public class GameManager : MonoBehaviour
 
     private void InGameState()
     {
-        if (dungeonManager.floorSettingsList.Length > 1)
+        //Assigne le current chapter settings en fonction du chapter selectionné
+        currentChapterSettings = chaptersList.Find(setting => setting.chapter == currentChapter);
+        
+        //Donne au dungeon les floor correspondant au chapter
+        dungeonManager.floorSettingsList = new FloorSettings[] { };
+        dungeonManager.floorSettingsList = currentChapterSettings.floorSettings;
+        if (dungeonManager.floorSettingsList.Length >= 1)
         {
             //Génère un floor et une première room
             dungeonManager.currentFloorSetting = dungeonManager.floorSettingsList[0];

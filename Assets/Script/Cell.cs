@@ -6,9 +6,9 @@ using UnityEngine;
 #region ENUMS
 public enum CellState
 {
-    Inactive,
     Cover,
     Reveal,
+    Inactive,
     Clicked,
     Flag,
     PlantedSword,

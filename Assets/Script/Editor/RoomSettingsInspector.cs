@@ -20,12 +20,6 @@ public class RoomSettingsInspector : Editor
     private RoomSettings _roomSettings;
     private Texture2D _customIcon;
     #endregion
-
-    // Permet d'exécuter du code à l'initialisation du script
-    private RoomSettingsInspector()
-    {
-        ApplyCustomIcon();
-    }
     
     // permet d'exécuter du code à la selection de l'objet
     void OnEnable()
@@ -182,6 +176,12 @@ public class RoomSettingsInspector : Editor
         }
     }
 
+    #region CUSTOM ICON (Not used)
+    // Permet d'exécuter du code à l'initialisation du script
+    // private RoomSettingsInspector()
+    // {
+    //     ApplyCustomIcon();
+    // }
     private void ApplyCustomIcon()
     {
         Texture2D customIcon = GetIcon();
@@ -204,20 +204,22 @@ public class RoomSettingsInspector : Editor
 
     private Texture2D GetIcon()
     {
-        _customIcon = null;
-        _customIcon = AssetDatabase.LoadAssetAtPath("Assets/Resources/2D/InspectorIcons/RoomSettingProceduralIcon.png", typeof(Texture2D)) as Texture2D;
-        // if (_roomSettings.proceduralRoom)
-        // {
-        //     customIcon = AssetDatabase.LoadAssetAtPath("Assets/Resources/2D/InspectorIcons/RoomSettingProceduralIcon.png", typeof(Texture2D)) as Texture2D;
-        // }
-        // else if (_roomSettings.haveProceduralCells)
-        // {
-        //     customIcon = AssetDatabase.LoadAssetAtPath("Assets/Resources/2D/InspectorIcons/RoomSettingSemiProceduralIcon.png", typeof(Texture2D)) as Texture2D;
-        // }
-        // else
-        // {
-        //     customIcon = AssetDatabase.LoadAssetAtPath("Assets/Resources/2D/InspectorIcons/RoomSettingLoadedIcon.png", typeof(Texture2D)) as Texture2D;
-        // }
+        _roomSettings = (RoomSettings)target;
+        _customIcon = _roomSettings.roomLoadedIcon;
+        if (_roomSettings.proceduralRoom)
+        {
+            _customIcon = AssetDatabase.LoadAssetAtPath("Assets/Resources/2D/InspectorIcons/RoomSettingProceduralIcon.png", typeof(Texture2D)) as Texture2D;
+        }
+        else if (_roomSettings.haveProceduralCells)
+        {
+            _customIcon = AssetDatabase.LoadAssetAtPath("Assets/Resources/2D/InspectorIcons/RoomSettingSemiProceduralIcon.png", typeof(Texture2D)) as Texture2D;
+        }
+        else
+        {
+            _customIcon = AssetDatabase.LoadAssetAtPath("Assets/Resources/2D/InspectorIcons/RoomSettingLoadedIcon.png", typeof(Texture2D)) as Texture2D;
+        }
         return _customIcon;
     }
+    #endregion CUSTOM ICON (Not used)
+
 }

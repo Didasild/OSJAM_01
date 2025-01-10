@@ -931,9 +931,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentGameState: 0
+  currentChapter: 2
+  chaptersList:
+  - {fileID: 11400000, guid: 24d5c5240a1c1934188ccdc42deb809a, type: 2}
+  - {fileID: 11400000, guid: b56d33571110ddb409192cb3c02e12fd, type: 2}
+  currentChapterSettings: {fileID: 0}
   floorLevelText: {fileID: 789845775}
   currentFloorLevel: 0
-  floorLoop: 0
   currentRoomSettings: {fileID: 0}
   dungeonManager: {fileID: 660007369}
   gridManager: {fileID: 712061424}
@@ -1421,10 +1425,7 @@ MonoBehaviour:
   roomContainer: {fileID: 1950187531}
   roomSize: 70
   currentFloorSetting: {fileID: 0}
-  floorSettingsList:
-  - {fileID: 11400000, guid: 6a0861b0c6c78634d901defe6171dc75, type: 2}
-  - {fileID: 11400000, guid: 6a0861b0c6c78634d901defe6171dc75, type: 2}
-  - {fileID: 11400000, guid: 6a0861b0c6c78634d901defe6171dc75, type: 2}
+  floorSettingsList: []
   currentRoom: {fileID: 0}
   roomList: []
   buttonRight: {fileID: 1641184622}
@@ -1619,6 +1620,7 @@ MonoBehaviour:
   timeBetweenApparition: 0.03
   cellList: []
   cellMineList: []
+  _cellProceduralList: []
   theoricalMineLeftText: {fileID: 2143294031}
   numberOfMineLeft: 0
   theoricalMineLeft: 0

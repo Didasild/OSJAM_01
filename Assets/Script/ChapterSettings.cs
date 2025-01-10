@@ -14,7 +14,7 @@ public class ChapterSettings : ScriptableObject
     #region PARAMETERS
     [Header("GENERAL")]
     public Chapters chapter;
-    public List<FloorSettings> floorSettings;
+    public FloorSettings[] floorSettings;
     
      #endregion
 }
