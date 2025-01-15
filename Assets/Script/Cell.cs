@@ -125,6 +125,11 @@ public class Cell : MonoBehaviour
                 ChangeState(CellState.Inactive);
             }
         }
+
+        if (currentState == CellState.Reveal)
+        {
+            cellCover.SetActive(false);
+        }
         
         //Update le reste du visuel selon le type et l'état
         stateVisual.sprite = _cellVisualManager.GetCellStateVisual(currentState);
@@ -214,7 +219,7 @@ public class Cell : MonoBehaviour
         //Update Visual
         //RevealAnimation();
         PlayAnimation("Cell_Reveal");
-        CO_DeactiveCoverAfterDelay(0.2f);
+        StartCoroutine(CO_DeactiveCoverAfterDelay(0.2f));
         stateVisual.sprite = _cellVisualManager.GetCellStateVisual(currentState);
     }
 
