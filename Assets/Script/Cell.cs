@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -72,6 +73,7 @@ public class Cell : MonoBehaviour
         _animator = GetComponent<Animator>();
         ChangeState(currentState);
         _collider = GetComponent<Collider2D>();
+        gameObject.SetActive(false);
     }
 
     //Update le visual de la cellule
@@ -210,7 +212,9 @@ public class Cell : MonoBehaviour
         GameManager.Instance.player.IncreaseMana();
 
         //Update Visual
-        RevealAnimation();
+        //RevealAnimation();
+        PlayAnimation("Cell_Reveal");
+        CO_DeactiveCoverAfterDelay(0.2f);
         stateVisual.sprite = _cellVisualManager.GetCellStateVisual(currentState);
     }
 
@@ -363,15 +367,14 @@ public class Cell : MonoBehaviour
         }
     }
 
-    private void RevealAnimation()
+    public void PlayAnimation(String animName)
     {
-        _animator.Play("Cell_Reveal");
-        CO_RevealAnimation();
+        _animator.Play(animName);
     }
 
-    private IEnumerator CO_RevealAnimation()
+    public IEnumerator CO_DeactiveCoverAfterDelay(float delay)
     {
-        yield return new WaitForSeconds(0.2f);
+        yield return new WaitForSeconds(delay);
         cellCover.SetActive(false);
     }
 

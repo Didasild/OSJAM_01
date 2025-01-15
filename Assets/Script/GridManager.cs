@@ -398,6 +398,7 @@ public class GridManager : MonoBehaviour
             foreach (Cell cell in cellList)
             {
                 cell.gameObject.SetActive(true);
+                cell.PlayAnimation("Cell_Apparition");
             }
         }
         else
@@ -433,12 +434,11 @@ public class GridManager : MonoBehaviour
             foreach (Cell cell in diagonalGroups[key])
             {
                 cell.gameObject.SetActive(true); // Activer la cellule
+                cell.PlayAnimation("Cell_Apparition");
             }
             yield return new WaitForSecondsRealtime(timeBetweenApparition); // Délai entre les groupes
         }
     }
-    
-    
     #endregion GRID VISUAL FONCTIONS
 
     #region GET GRID INFORMATIONS
