@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e1fa203da9941e14e9ac5c76d2db6dfb, type: 3}
+  m_Name: Debug_F01_RL_Base_01
+  m_EditorClassIdentifier: 
+  proceduralRoom: 0
+  mandatory: 1
+  isFoW: 1
+  roomType: 0
+  roomIDString: 0_0_Co_Hi_No|0_1_Co_Mi_No|0_2_Co_Hi_No|0_3_Co_Hi_No|0_4_Co_Hi_No|1_0_Co_Hi_No|1_1_Co_Hi_No|1_2_Co_Hi_No|1_3_Co_Mi_No|1_4_Co_Hi_No|2_0_Co_Mi_No|2_1_Co_Hi_No|2_2_Pl_Hi_No|2_3_Co_Hi_No|2_4_Co_Mi_No|3_0_Co_Hi_No|3_1_Co_Hi_No|3_2_Co_Hi_No|3_3_Co_Hi_No|3_4_Co_Hi_No|4_0_Co_Hi_No|4_1_Co_Mi_No|4_2_Co_Mi_No|4_3_Co_Hi_No|4_4_Co_Em_No
+  haveProceduralCells: 0
+  minRoomSize: {x: 5, y: 5}
+  maxRoomSize: {x: 10, y: 10}
+  roomPourcentageOfMine: 5
+  roomPourcentageOfNone: 5
+  haveStair: 0
+  roomProceduralIcon: {fileID: 0}
+  roomSemiProceduralIcon: {fileID: 0}
+  roomLoadedIcon: {fileID: 0}
+  itemRanges: []

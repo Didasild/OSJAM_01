@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d6b7aef4937d0054da1f650a1766cb15, type: 3}
-  m_Name: Debug_Floor_01
+  m_Name: Debug_Floor_00
   m_EditorClassIdentifier: 
   proceduralFloor: 1
   minGridSize: {x: 1, y: 3}
   maxGridSize: {x: 1, y: 3}
   roomSettingsList:
-  - {fileID: 11400000, guid: 3fb76d925366b0544a058fab9d86648c, type: 2}
-  - {fileID: 11400000, guid: 3fb76d925366b0544a058fab9d86648c, type: 2}
-  - {fileID: 11400000, guid: 3fb76d925366b0544a058fab9d86648c, type: 2}
+  - {fileID: 11400000, guid: 3874eaf7b7f24ec43b073b2be72ed74b, type: 2}
+  - {fileID: 11400000, guid: 0f394ede5e39b904b941589fbc09852c, type: 2}
+  - {fileID: 11400000, guid: bee70c05c7cd54143b2b797863000255, type: 2}

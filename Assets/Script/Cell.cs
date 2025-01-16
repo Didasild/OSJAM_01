@@ -51,7 +51,8 @@ public class Cell : MonoBehaviour
     public GameObject cellCover;
     public TMP_Text numberText;
 
-    [Header("CELL ADDITIONAL VISUAL")]
+    [Header("CELL ADDITIONAL VISUAL")] 
+    public GameObject visualParent;
     public SpriteRenderer stateVisual;
     public SpriteRenderer typeVisual;
     public SpriteRenderer itemVisual;
@@ -174,7 +175,10 @@ public class Cell : MonoBehaviour
     private void InactiveState()
     {
         stateVisual.sprite = _cellVisualManager.GetCellStateVisual(currentState);
-        cellCover.SetActive(true);
+        cellCover.SetActive(false);
+        cellEmpty.SetActive(false);
+        visualParent.SetActive(false);
+        numberText.color = Color.clear;
     }
 
     private void CoverState()
@@ -182,16 +186,23 @@ public class Cell : MonoBehaviour
         //Debug.Log(this.name + " switch to Cover State");
         stateVisual.sprite = _cellVisualManager.GetCellStateVisual(currentState);
         cellCover.SetActive(true);
+        visualParent.SetActive(true);
     }
 
     private void ClickedState()
     {
         //Debug.Log(this.name + " switch to Clicked State");
+        visualParent.SetActive(true);
         stateVisual.sprite = _cellVisualManager.GetCellStateVisual(currentState);
     }
 
     private void RevealState()
     {
+        //reactive le parent
+        visualParent.SetActive(true);
+        cellEmpty.SetActive(true);
+        numberText.color = Color.black;
+        
         //Optimisable ici, je pense plutôt que 2 foreach
         foreach (Cell cell in neighborsCellList)
         {
@@ -227,12 +238,14 @@ public class Cell : MonoBehaviour
     {
         //Debug.Log("switch to Flag State");
         stateVisual.sprite = _cellVisualManager.GetCellStateVisual(currentState);
+        visualParent.SetActive(true);
     }
 
     private void SwordPlantedState()
     {
         //Debug.Log("switch to Sword State");
         stateVisual.sprite = _cellVisualManager.GetCellStateVisual(currentState);
+        visualParent.SetActive(true);
     }
     #endregion
 
