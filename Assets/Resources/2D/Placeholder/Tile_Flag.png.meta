@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 9bf1c74ad1f8357459f78be98139cca1
+guid: d03c09711abe83545846e93949248edb
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 4595353813821260308
-    second: Tile_Bomb_0
+      213: 2168292635933505817
+    second: Tile_Flag_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -96,11 +96,24 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 32
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Tile_Bomb_0
+      name: Tile_Flag_0
       rect:
         serializedVersion: 2
         x: 0
@@ -115,8 +128,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 4128d0a42f9f5cf30800000000000000
-      internalID: 4595353813821260308
+      spriteID: 91979ed0aa2571e10800000000000000
+      internalID: 2168292635933505817
       vertices: []
       indices: 
       edges: []
@@ -135,7 +148,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Tile_Bomb_0: 4595353813821260308
+      Tile_Flag_0: 2168292635933505817
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
