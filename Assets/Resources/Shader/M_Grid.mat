@@ -51,13 +51,17 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
+    - _CellSize: 32
+    - _GridOffSet: 0.4
+    - _GridXOffSet: 0
+    - _GridYOffSet: 0
     - _QueueControl: 0
     - _QueueOffset: 0
     - _Thickness: 0.05
     m_Colors:
-    - _CenterBackGround: {r: 0, g: 0, b: 0, a: 0}
+    - _CenterBackGround: {r: 0.08627451, g: 0.08627451, b: 0.08627451, a: 0}
     - _Color: {r: 0, g: 0, b: 0, a: 0}
-    - _ColorCenter: {r: 1, g: 1, b: 1, a: 0}
+    - _ColorCenter: {r: 0.16862746, g: 0.16862746, b: 0.16862746, a: 0}
     - _DefaultScale: {r: 10, g: 10, b: 0, a: 0}
     - _Size: {r: 1, g: 1, b: 0, a: 0}
   m_BuildTextureStacks: []
