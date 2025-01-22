@@ -174,7 +174,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: AtlasUI_0
+      name: CursorIndicator
       rect:
         serializedVersion: 2
         x: 8
@@ -196,13 +196,13 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: AtlasUI_1
+      name: ArrowChangeRoom
       rect:
         serializedVersion: 2
         x: 34
-        y: 484
-        width: 39
-        height: 23
+        y: 483
+        width: 38
+        height: 24
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -218,7 +218,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: AtlasUI_2
+      name: RoomBorder
       rect:
         serializedVersion: 2
         x: 106
@@ -240,7 +240,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: AtlasUI_3
+      name: RoomGridIndicator
       rect:
         serializedVersion: 2
         x: 70
@@ -275,10 +275,10 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      AtlasUI_0: 5615049925277274972
-      AtlasUI_1: -27374742667951537
-      AtlasUI_2: 7033700994571701675
-      AtlasUI_3: 578071053488710019
+      ArrowChangeRoom: -27374742667951537
+      CursorIndicator: 5615049925277274972
+      RoomBorder: 7033700994571701675
+      RoomGridIndicator: 578071053488710019
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

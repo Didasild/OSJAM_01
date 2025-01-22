@@ -20,7 +20,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: M_BaseUI
+  m_Name: M_BaseColor3
   m_Shader: {fileID: -6465566751694194690, guid: 971a7e17277678f43a768bb674a3cf44, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
