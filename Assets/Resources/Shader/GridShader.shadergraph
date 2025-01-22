@@ -1265,8 +1265,8 @@
     "m_ObjectId": "122f3c339d9645eeaa00b3775f2d33ab",
     "m_Title": "SCREEN RESOLUTION",
     "m_Position": {
-        "x": -2212.0,
-        "y": -490.0001525878906
+        "x": -2212.66650390625,
+        "y": -489.3333740234375
     }
 }
 
@@ -3098,7 +3098,7 @@
     "m_AlphaClip": false,
     "m_CastShadows": true,
     "m_ReceiveShadows": true,
-    "m_DisableTint": false,
+    "m_DisableTint": true,
     "m_AdditionalMotionVectorMode": 0,
     "m_AlembicMotionVectors": false,
     "m_SupportsLODCrossFade": false,
@@ -3542,8 +3542,8 @@
     "m_ObjectId": "807c7577875945f78ec9ab9ae24e7942",
     "m_Title": "CELLS MASK",
     "m_Position": {
-        "x": -1086.0,
-        "y": -1324.0001220703125
+        "x": -1086.66650390625,
+        "y": -1323.33349609375
     }
 }
 
@@ -5096,8 +5096,8 @@
     "m_ObjectId": "cc8a40a73f724f1896401536ee95520a",
     "m_Title": "NB OF COL AND RAW",
     "m_Position": {
-        "x": -1574.0,
-        "y": -656.0001220703125
+        "x": -1574.66650390625,
+        "y": -655.333251953125
     }
 }
 
@@ -5213,8 +5213,8 @@
     "m_ObjectId": "d073a462931a48f39b6701fd9891a221",
     "m_Title": "1px SIZE",
     "m_Position": {
-        "x": -1431.0,
-        "y": -437.0001220703125
+        "x": -1431.3333740234375,
+        "y": -436.6666259765625
     }
 }
 
