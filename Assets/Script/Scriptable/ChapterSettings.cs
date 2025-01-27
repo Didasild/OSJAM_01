@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using NaughtyAttributes;
 
 public enum Chapters
 {
@@ -13,8 +14,8 @@ public class ChapterSettings : ScriptableObject
 
     #region PARAMETERS
     [Header("GENERAL")]
-    public Chapters chapter;
-    public FloorSettings[] floorSettings;
+    public Chapters chapter; 
+    [Expandable, AllowNesting] public FloorSettings[] floorSettings;
     
      #endregion
 }

@@ -23,9 +23,6 @@ MonoBehaviour:
   roomPourcentageOfMine: 10
   roomPourcentageOfNone: 5
   haveStair: 0
-  roomProceduralIcon: {fileID: 0}
-  roomSemiProceduralIcon: {fileID: 0}
-  roomLoadedIcon: {fileID: 2800000, guid: d4a149d51c970424bae335582d7055e9, type: 3}
   itemRanges:
   - itemType: 2
     min: 1

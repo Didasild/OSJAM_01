@@ -46,11 +46,6 @@ public class RoomSettings : ScriptableObject
     public int roomPourcentageOfNone = 5;
     public bool haveStair;
     
-    [Header("CUSTOM ICON")]
-    public Texture2D roomProceduralIcon;
-    public Texture2D roomSemiProceduralIcon;
-    public Texture2D roomLoadedIcon;
-    
     [System.Serializable]
     public struct ItemRange
     {
@@ -94,7 +89,8 @@ public class RoomSettings : ScriptableObject
         return null;
     }
     #endregion
-#region LOADED GET INFOS
+    
+    #region LOADED GET INFOS
     public Vector2Int GetRoomSizeFromString(string roomSavedString)
     {
         int maxRow = 0;

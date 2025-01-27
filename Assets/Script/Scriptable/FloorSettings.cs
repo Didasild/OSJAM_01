@@ -1,4 +1,5 @@
 using UnityEngine;
+using NaughtyAttributes;
 
 [CreateAssetMenu(fileName = "FloorSettings", menuName = "DungeonGeneration/FloorSettings")]
 public class FloorSettings : ScriptableObject
@@ -13,7 +14,7 @@ public class FloorSettings : ScriptableObject
     [SerializeField] private Vector2Int maxGridSize = new Vector2Int(4, 4);
 
     [Header("ROOM SETTINGS")]
-    [SerializeField] public RoomSettings[] roomSettingsList;
+    [SerializeField] [Expandable, AllowNesting] public RoomSettings[] roomSettingsList;
     #endregion
 
     public Vector2Int GetFloorSize()
