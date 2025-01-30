@@ -382,7 +382,7 @@ MonoBehaviour:
   typeVisual: {fileID: 2469119105154910921}
   itemVisual: {fileID: 7269597997932643388}
   animParent: {fileID: 893933950214680590}
-  _animator: {fileID: 0}
+  _animator: {fileID: 2663853168915052573}
 --- !u!95 &2663853168915052573
 Animator:
   serializedVersion: 7

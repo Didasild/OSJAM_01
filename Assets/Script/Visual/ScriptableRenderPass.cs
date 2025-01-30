@@ -5,7 +5,7 @@ using UnityEngine.Rendering.Universal;
 
 namespace Dida.Rendering
 {
-    public class MyPass : ScriptableRenderPass
+    public class GlobalColorsRenderPass : ScriptableRenderPass
     {
         #region CACHED PROPERTIES IDs
 
@@ -20,7 +20,7 @@ namespace Dida.Rendering
 
         public override void RecordRenderGraph(RenderGraph renderGraph, ContextContainer frameData)
         {
-            MySettings mySettings = VolumeManager.instance.stack.GetComponent<MySettings>();
+            VisualSettings mySettings = VolumeManager.instance.stack.GetComponent<VisualSettings>();
 
             Shader.SetGlobalFloat(MY_SHADER_PROP, mySettings.ExterAlpha.value);
             Shader.SetGlobalColor(MY_SHADER_COLOR1, mySettings.Color1.value);

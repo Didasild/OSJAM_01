@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Dida.Rendering;
 using TMPro;
 using UnityEngine;
 
@@ -61,6 +62,8 @@ public class Cell : MonoBehaviour
     public GameObject animParent;
     
     //Private Variables
+    private GameManager _gameManager;
+    private VisualSettings _visualSettings;
     private CellVisualManager _cellVisualManager;
     private Collider2D _collider;
     public Animator _animator;
@@ -69,11 +72,17 @@ public class Cell : MonoBehaviour
     #region INIT
     public void Initialize(Vector2Int cellPosition)
     {
-        _cellPosition = cellPosition;
+        _gameManager = GameManager.Instance;
+        if (_gameManager.currentVolume.profile.TryGet(out _visualSettings)) { }
         _cellVisualManager = GameManager.CellVisualManager;
+        
         _animator = GetComponent<Animator>();
-        ChangeState(currentState);
         _collider = GetComponent<Collider2D>();
+        
+        _cellPosition = cellPosition;
+        
+        ChangeState(currentState);
+
         gameObject.SetActive(false);
     }
 
@@ -201,7 +210,7 @@ public class Cell : MonoBehaviour
         //reactive le parent
         visualParent.SetActive(true);
         cellEmpty.SetActive(true);
-        numberText.color = Color.black;
+        numberText.color = _visualSettings.Color5.value;
         
         //Optimisable ici, je pense plutôt que 2 foreach
         foreach (Cell cell in neighborsCellList)

@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.Rendering;
 
 #region ENUMS
 public enum GameState
@@ -33,6 +34,7 @@ public class GameManager : MonoBehaviour
     [Header("MANAGER REFERENCES")]
     public DungeonManager dungeonManager;
     public GridManager gridManager;
+    public Volume currentVolume;
 
     [Header("REFERENCES")]
     public GameObject endScreenUI;
