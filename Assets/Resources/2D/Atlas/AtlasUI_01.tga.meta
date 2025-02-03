@@ -55,7 +55,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: 0
     aniso: 1
     mipBias: 0
     wrapU: 0
@@ -147,10 +147,10 @@ TextureImporter:
       name: CursorIndicator
       rect:
         serializedVersion: 2
-        x: 9
-        y: 496
-        width: 11
-        height: 10
+        x: 8
+        y: 495
+        width: 13
+        height: 12
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}

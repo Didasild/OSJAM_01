@@ -178,9 +178,9 @@ TextureImporter:
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 9f6cf09b3ed83e6b0800000000000000
+      spriteID: 76893dd630ec38342a1d5b2d64987dda
       internalID: -5268211129891436807
       vertices: []
       indices: 
@@ -202,7 +202,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8730f36b7d36ec645bab68a378a3c5a5
+      spriteID: 8fceef14b8bf54444bb15dc91207690e
       internalID: 1179532729
       vertices: []
       indices: 
@@ -224,7 +224,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 58d54b39a78be3e49852e5e687eeff53
+      spriteID: 0d1d3560cc2445c478ed8cb98c8609d6
       internalID: 1570783750
       vertices: []
       indices: 
@@ -246,7 +246,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f18357eb5f0a2fb46898286f222b7241
+      spriteID: 3f36d91c70db1e649b2f39110986551f
       internalID: -164991702
       vertices: []
       indices: 
@@ -256,8 +256,8 @@ TextureImporter:
       name: Icon_Item_Sword
       rect:
         serializedVersion: 2
-        x: 32
-        y: 960
+        x: 0
+        y: 928
         width: 32
         height: 32
       alignment: 0
@@ -268,7 +268,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 295c7cbe2b1644742a99fdd12887afe8
+      spriteID: 0578e0bb0a98c9746a7468db2a2a1621
       internalID: -1642188784
       vertices: []
       indices: 

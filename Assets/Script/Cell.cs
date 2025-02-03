@@ -4,7 +4,8 @@ using System.Collections.Generic;
 using Dida.Rendering;
 using TMPro;
 using UnityEngine;
-
+using NaughtyAttributes;
+    
 #region ENUMS
 public enum CellState
 {
@@ -40,12 +41,12 @@ public class Cell : MonoBehaviour
 {
     #region PARAMETERS
     [Header("CELL INFORMATIONS")]
-    [NaughtyAttributes.ReadOnly] public CellState currentState;
-    [NaughtyAttributes.ReadOnly] public CellType currentType;
-    [NaughtyAttributes.ReadOnly] public ItemTypeEnum currentItemType;
-    [NaughtyAttributes.ReadOnly] public Vector2Int _cellPosition;
-    [NaughtyAttributes.ReadOnly] public List<Cell> neighborsCellList = new List<Cell>(); //Liste des voisins de la cellule
-    [NaughtyAttributes.ReadOnly] public int numberOfNeighborsMine;
+    [ReadOnly] public CellState currentState;
+    [ReadOnly] public CellType currentType;
+    [ReadOnly] public ItemTypeEnum currentItemType;
+    [ReadOnly] public Vector2Int _cellPosition;
+    [ReadOnly] public List<Cell> neighborsCellList = new List<Cell>(); //Liste des voisins de la cellule
+    [ReadOnly] public int numberOfNeighborsMine;
     
     [Header("CELL BASE VISUAL")]
     public GameObject cellEmpty;
@@ -63,27 +64,38 @@ public class Cell : MonoBehaviour
     
     //Private Variables
     private GameManager _gameManager;
-    private VisualSettings _visualSettings;
-    private CellVisualManager _cellVisualManager;
+
     private Collider2D _collider;
-    public Animator _animator;
+    private Animator _animator;
+    
+    private CellVisualManager _cellVisualManager;
+    private SpriteRenderer _emptySprite;
     #endregion
 
     #region INIT
     public void Initialize(Vector2Int cellPosition)
     {
         _gameManager = GameManager.Instance;
-        if (_gameManager.currentVolume.profile.TryGet(out _visualSettings)) { }
-        _cellVisualManager = GameManager.CellVisualManager;
+        _cellVisualManager = GameManager.cellVisualManager;
         
         _animator = GetComponent<Animator>();
         _collider = GetComponent<Collider2D>();
+        
+        SetCellColors();
         
         _cellPosition = cellPosition;
         
         ChangeState(currentState);
 
         gameObject.SetActive(false);
+    }
+
+    private void SetCellColors()
+    {
+        _emptySprite = cellEmpty.GetComponent<SpriteRenderer>();
+        _emptySprite.color = _cellVisualManager.GetElementColor(1);
+
+        itemVisual.color = _cellVisualManager.GetElementColor(3);
     }
 
     //Update le visual de la cellule
@@ -210,7 +222,8 @@ public class Cell : MonoBehaviour
         //reactive le parent
         visualParent.SetActive(true);
         cellEmpty.SetActive(true);
-        numberText.color = _visualSettings.Color5.value;
+        
+        numberText.color = _cellVisualManager.GetElementColor(5);
         
         //Optimisable ici, je pense plutôt que 2 foreach
         foreach (Cell cell in neighborsCellList)

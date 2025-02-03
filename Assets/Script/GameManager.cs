@@ -44,7 +44,7 @@ public class GameManager : MonoBehaviour
     private static GameManager _instance;
     public static GameManager Instance => _instance;
     [SerializeField] private CellVisualManager _CellVisualManager;
-    public static CellVisualManager CellVisualManager => _instance._CellVisualManager;
+    public static CellVisualManager cellVisualManager => _instance._CellVisualManager;
 
     [SerializeField] private RoomVisualManager _RoomVisualManager;
     public static RoomVisualManager RoomVisualManager => _instance._RoomVisualManager;
@@ -54,6 +54,7 @@ public class GameManager : MonoBehaviour
     private void Awake()
     {
         _instance = this;
+        cellVisualManager.Init();
         player.Init();
         dungeonManager.Init();
     }

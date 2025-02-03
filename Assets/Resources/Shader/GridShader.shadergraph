@@ -16,6 +16,9 @@
             "m_Id": "41436797171f4e3294b2944023d9bab7"
         },
         {
+            "m_Id": "1f6ac1e174144b3983f892c44f223fe6"
+        },
+        {
             "m_Id": "75fed1659be741bf807242668eb4a41c"
         },
         {
@@ -1266,7 +1269,7 @@
     "m_Title": "SCREEN RESOLUTION",
     "m_Position": {
         "x": -2212.0,
-        "y": -490.0
+        "y": -489.9998474121094
     }
 }
 
@@ -1533,6 +1536,36 @@
     "m_Labels": [
         "Y"
     ]
+}
+
+{
+    "m_SGVersion": 3,
+    "m_Type": "UnityEditor.ShaderGraph.Internal.ColorShaderProperty",
+    "m_ObjectId": "1f6ac1e174144b3983f892c44f223fe6",
+    "m_Guid": {
+        "m_GuidSerialized": "7bb393fc-c4f4-4784-837b-4dfb5b625b0d"
+    },
+    "m_Name": "Color5",
+    "m_DefaultRefNameVersion": 1,
+    "m_RefNameGeneratedByDisplayName": "Color5",
+    "m_DefaultReferenceName": "_Color5",
+    "m_OverrideReferenceName": "",
+    "m_GeneratePropertyBlock": false,
+    "m_UseCustomSlotLabel": false,
+    "m_CustomSlotLabel": "",
+    "m_DismissedVersion": 0,
+    "m_Precision": 0,
+    "overrideHLSLDeclaration": true,
+    "hlslDeclarationOverride": 1,
+    "m_Hidden": false,
+    "m_Value": {
+        "r": 1.0,
+        "g": 1.0,
+        "b": 1.0,
+        "a": 0.0
+    },
+    "isMainColor": false,
+    "m_ColorMode": 0
 }
 
 {
@@ -4206,6 +4239,9 @@
             "m_Id": "75fed1659be741bf807242668eb4a41c"
         },
         {
+            "m_Id": "1f6ac1e174144b3983f892c44f223fe6"
+        },
+        {
             "m_Id": "7d8d0abc4a0c439284bfa0fded943523"
         },
         {
@@ -5096,7 +5132,7 @@
     "m_ObjectId": "cc8a40a73f724f1896401536ee95520a",
     "m_Title": "NB OF COL AND RAW",
     "m_Position": {
-        "x": -1574.0,
+        "x": -1573.9998779296875,
         "y": -656.0
     }
 }
@@ -5213,8 +5249,8 @@
     "m_ObjectId": "d073a462931a48f39b6701fd9891a221",
     "m_Title": "1px SIZE",
     "m_Position": {
-        "x": -1573.0,
-        "y": -444.0001220703125
+        "x": -1572.9998779296875,
+        "y": -444.0
     }
 }
 

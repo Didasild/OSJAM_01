@@ -1,4 +1,7 @@
+using Dida.Rendering;
 using UnityEngine;
+using Debug = UnityEngine.Debug;
+using NaughtyAttributes;
 
 public class CellVisualManager : MonoBehaviour
 {
@@ -22,12 +25,25 @@ public class CellVisualManager : MonoBehaviour
     public GameObject mineSwordedAnimation;
     public GameObject plantedSwordAnimation;
     
-    [Header("_______CELL EDITOR VISUAL")]
-    public Sprite coverSprite;
-    public Sprite revealSprite;
-    public Sprite mineIconSprite;
+    [Header("_______OTHER")] 
+    public bool inMainScene;
+    [Header("_______CELL EDITOR VISUAL")] 
+    [HideIf("inMainScene")] public Sprite coverSprite;
+    [HideIf("inMainScene")] public Sprite revealSprite;
+    [HideIf("inMainScene")] public Sprite mineIconSprite;
+    
+    [HideInInspector] public VisualSettings visualSettings;
     #endregion
 
+    #region INIT
+
+    public void Init()
+    {
+        if (GameManager.Instance.currentVolume.profile.TryGet(out visualSettings)) { }
+    }
+    
+
+    #endregion INIT
 
     #region GET CELLS VISUALS
     public Sprite GetCellTypeVisual(CellType cellType)
@@ -82,6 +98,33 @@ public class CellVisualManager : MonoBehaviour
             spriteItemVisual = swordSprite;
         }
         return spriteItemVisual;
+    }
+
+    public Color GetElementColor(int colorIndex)
+    {
+        Color returnedColor = default;
+        switch (colorIndex)
+        {
+            case 1:
+                returnedColor = visualSettings.Color1.value;
+                break;
+            case 2:
+                returnedColor = visualSettings.Color2.value;
+                break;
+            case 3:
+                returnedColor = visualSettings.Color3.value;
+                break;
+            case 4:
+                returnedColor = visualSettings.Color4.value;
+                break;
+            case 5:
+                returnedColor = visualSettings.Color5.value;
+                break;
+            default:
+                Debug.LogWarning("Index de couleur invalide : " + colorIndex);
+                break;
+        }
+        return returnedColor;
     }
     #endregion
 
