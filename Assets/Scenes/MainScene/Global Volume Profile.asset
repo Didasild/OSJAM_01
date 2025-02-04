@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Global Volume Profile
   m_EditorClassIdentifier: 
   components:
-  - {fileID: 953869944089701943}
+  - {fileID: 8666805865643500176}
   - {fileID: 106725441321269248}
 --- !u!114 &106725441321269248
 MonoBehaviour:
@@ -68,6 +68,37 @@ MonoBehaviour:
   Color3:
     m_OverrideState: 1
     m_Value: {r: 1, g: 0.84313726, b: 0.113, a: 1}
+  Color4:
+    m_OverrideState: 1
+    m_Value: {r: 0, g: 0, b: 0, a: 1}
+  Color5:
+    m_OverrideState: 1
+    m_Value: {r: 1, g: 1, b: 1, a: 1}
+--- !u!114 &8666805865643500176
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 0}
+  m_Name: VisualSettings
+  m_EditorClassIdentifier: Assembly-CSharp:Dida.Rendering:VisualSettings
+  active: 1
+  ExterAlpha:
+    m_OverrideState: 0
+    m_Value: 0.5
+  Color1:
+    m_OverrideState: 1
+    m_Value: {r: 0.3529412, g: 0.3529412, b: 0.3529412, a: 1}
+  Color2:
+    m_OverrideState: 1
+    m_Value: {r: 0.08176088, g: 0.08176088, b: 0.08176088, a: 1}
+  Color3:
+    m_OverrideState: 1
+    m_Value: {r: 0.91194963, g: 0.8056621, b: 0.12904935, a: 1}
   Color4:
     m_OverrideState: 1
     m_Value: {r: 0, g: 0, b: 0, a: 1}
