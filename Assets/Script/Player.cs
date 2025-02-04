@@ -1,6 +1,6 @@
 using TMPro;
 using UnityEngine;
-using UnityEngine.Serialization;
+using NaughtyAttributes;
 
 public class Player : MonoBehaviour
 {
@@ -21,12 +21,12 @@ public class Player : MonoBehaviour
     public TMP_Text swordCounterText;
     private int _swordCounter;
 
-    [Header("CLICK COUNTER")]
-    [NaughtyAttributes.ReadOnly]
-    public int clicCounter;
+    [Header("INFOS")]
+    [ReadOnly] public int clicCounter;
+    [ReadOnly] public Vector2 mousePosition;
+    
 
     //Private Variables
-    [NaughtyAttributes.ReadOnly]
     [SerializeField] private Cell cellOver;
     private Cell _cellClicked;
     private Cell _firstCellClicked;
@@ -40,7 +40,7 @@ public class Player : MonoBehaviour
     private void Update()
     {
         // Convertit la position de la souris en coordonn�es du monde
-        Vector2 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 
         // Effectue un raycast � la position de la souris
         RaycastHit2D hit = Physics2D.Raycast(mousePosition, Vector2.zero);
@@ -51,7 +51,7 @@ public class Player : MonoBehaviour
         }
         else
         {
-            //Debug.Log("Aucune cellule d�tect�e");
+            //Debug.Log("Aucune cellule détectée");
             return;
         }
         if (cellOver == null || GameManager.Instance.currentGameState != GameState.InGame)
