@@ -40,6 +40,8 @@ Material:
     m_Floats:
     - _UseColor1: 0
     - _UseColor2: 0
-    m_Colors: []
+    m_Colors:
+    - _SpritePosition: {r: 35, g: 485, b: 0, a: 0}
+    - _SpriteSize: {r: 37, g: 21, b: 0, a: 0}
   m_BuildTextureStacks: []
   m_AllowLocking: 1
