@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d7fd9488000d3734a9e00ee676215985, type: 3}
-  m_Name: Global Volume Profile
+  m_Name: CustomGlobalVolume
   m_EditorClassIdentifier: 
   components:
-  - {fileID: 8666805865643500176}
   - {fileID: 106725441321269248}
+  - {fileID: 4915069371588200835}
 --- !u!114 &106725441321269248
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -68,6 +68,37 @@ MonoBehaviour:
   Color3:
     m_OverrideState: 1
     m_Value: {r: 1, g: 0.84313726, b: 0.113, a: 1}
+  Color4:
+    m_OverrideState: 1
+    m_Value: {r: 0, g: 0, b: 0, a: 1}
+  Color5:
+    m_OverrideState: 1
+    m_Value: {r: 1, g: 1, b: 1, a: 1}
+--- !u!114 &4915069371588200835
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0fa9402727b91cd48a6c4a2ce5f671ba, type: 3}
+  m_Name: VisualSettings
+  m_EditorClassIdentifier: 
+  active: 1
+  ExterAlpha:
+    m_OverrideState: 0
+    m_Value: 0.5
+  Color1:
+    m_OverrideState: 1
+    m_Value: {r: 0.4528302, g: 0.4528302, b: 0.4528302, a: 1}
+  Color2:
+    m_OverrideState: 1
+    m_Value: {r: 0.11320752, g: 0.11320752, b: 0.11320752, a: 1}
+  Color3:
+    m_OverrideState: 1
+    m_Value: {r: 0.8490566, g: 0.6278786, b: 0.08810955, a: 1}
   Color4:
     m_OverrideState: 1
     m_Value: {r: 0, g: 0, b: 0, a: 1}
