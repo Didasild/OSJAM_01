@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: CustomGlobalVolume
   m_EditorClassIdentifier: 
   components:
-  - {fileID: 106725441321269248}
   - {fileID: 4915069371588200835}
+  - {fileID: 106725441321269248}
 --- !u!114 &106725441321269248
 MonoBehaviour:
   m_ObjectHideFlags: 3
