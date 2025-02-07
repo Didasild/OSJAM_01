@@ -232,7 +232,7 @@ public class Cell : MonoBehaviour
         //Optimisable ici, je pense plutôt que 2 foreach
         foreach (Cell cell in neighborsCellList)
         {
-            if (cell.currentState == CellState.Inactive)
+            if (cell.currentState == CellState.Inactive && cell.currentType != CellType.None)
             {
                 cell.ChangeState(CellState.Cover);
             }
