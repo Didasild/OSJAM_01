@@ -51,6 +51,7 @@ public class Cell : MonoBehaviour
     [Header("CELL BASE VISUAL")]
     public GameObject cellEmpty;
     public GameObject cellCover;
+    public GameObject cellOutline;
     public TMP_Text numberText;
 
     [Header("CELL ADDITIONAL VISUAL")] 
@@ -101,7 +102,7 @@ public class Cell : MonoBehaviour
     //Update le visual de la cellule
     public void UpdateRegardingNeighbors(bool haveFoWCell = false)
     {
-        if (currentType == CellType.None)
+        if (currentType == CellType.None || currentState == CellState.Inactive)
         {
             return;
         }
@@ -198,6 +199,7 @@ public class Cell : MonoBehaviour
         stateVisual.sprite = _cellVisualManager.GetCellStateVisual(currentState);
         cellCover.SetActive(false);
         cellEmpty.SetActive(false);
+        cellOutline.SetActive(false);
         visualParent.SetActive(false);
         numberText.color = Color.clear;
     }
@@ -207,6 +209,7 @@ public class Cell : MonoBehaviour
         //Debug.Log(this.name + " switch to Cover State");
         stateVisual.sprite = _cellVisualManager.GetCellStateVisual(currentState);
         cellCover.SetActive(true);
+        cellOutline.SetActive(true);
         visualParent.SetActive(true);
     }
 
@@ -222,6 +225,7 @@ public class Cell : MonoBehaviour
         //reactive le parent
         visualParent.SetActive(true);
         cellEmpty.SetActive(true);
+        cellOutline.SetActive(true);
         
         numberText.color = _cellVisualManager.GetElementColor(5);
         

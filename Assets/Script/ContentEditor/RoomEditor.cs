@@ -257,12 +257,17 @@ public class RoomEditor : MonoBehaviour
         //Set les None en state reveal
         foreach (CellEditor cell in cells)
         {
-            if (cell.cellType == CellType.None && cell.cellState != CellState.Reveal)
+            if (cell.cellType == CellType.None && cell.cellState != CellState.Reveal && cell.cellState != CellState.Inactive)
             {
                 cell.cellState = CellState.Reveal;
                 cell.HighlightCell();
             }
-
+            else if (cell.cellType == CellType.None && cell.cellState == CellState.Reveal)
+            {
+                cell.cellState = CellState.Inactive;
+                cell.HighlightCell();
+            }
+            
             if (cell.cellType == CellType.Hint)
             {
                 hintCells.Add(cell);
@@ -391,6 +396,7 @@ public class RoomEditor : MonoBehaviour
         {
             roomSettingsToSave.haveProceduralCells = false;
         }
+        EditorUtility.FocusProjectWindow();
     }
     private String SaveRoomString()
     {

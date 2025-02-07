@@ -23,7 +23,4 @@ MonoBehaviour:
   roomPourcentageOfMine: 5
   roomPourcentageOfNone: 5
   haveStair: 0
-  roomProceduralIcon: {fileID: 0}
-  roomSemiProceduralIcon: {fileID: 0}
-  roomLoadedIcon: {fileID: 0}
   itemRanges: []

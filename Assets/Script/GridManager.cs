@@ -289,6 +289,7 @@ public class GridManager : MonoBehaviour
             "Fl" => CellState.Flag,
             "Pl" => CellState.PlantedSword,
             "Re" => CellState.Reveal,
+            "In" => CellState.Inactive,
             _ => throw new ArgumentException($"Abréviation inconnue : {abbreviation}")
         };
     }
