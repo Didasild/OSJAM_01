@@ -71,6 +71,7 @@ public class Cell : MonoBehaviour
     
     private CellVisualManager _cellVisualManager;
     private SpriteRenderer _emptySprite;
+    private SpriteRenderer _outlineSprite;
     #endregion
 
     #region INIT
@@ -94,7 +95,11 @@ public class Cell : MonoBehaviour
     private void SetCellColors()
     {
         _emptySprite = cellEmpty.GetComponent<SpriteRenderer>();
+        _outlineSprite = cellOutline.GetComponent<SpriteRenderer>();
+        
         _emptySprite.color = _cellVisualManager.GetElementColor(1);
+        
+        _outlineSprite.color = _cellVisualManager.GetElementColor(5);
 
         itemVisual.color = _cellVisualManager.GetElementColor(3);
     }

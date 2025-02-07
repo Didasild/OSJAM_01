@@ -20,31 +20,30 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: M_BaseColor2_BG
+  m_Name: M_BaseColor5BorderRoom
   m_Shader: {fileID: -6465566751694194690, guid: 971a7e17277678f43a768bb674a3cf44, type: 3}
-  m_Parent: {fileID: 2100000, guid: b7a3424646b68144c8f0b71541f8b5a8, type: 2}
+  m_Parent: {fileID: 2100000, guid: 135837a820efcf5458ec62830ef10ddc, type: 2}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords: []
-  m_InvalidKeywords:
-  - _ALPHATEST_ON
+  m_InvalidKeywords: []
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
   m_CustomRenderQueue: -1
   stringTagMap: {}
-  disabledShaderPasses:
-  - MOTIONVECTORS
+  disabledShaderPasses: []
   m_LockedProperties: 
   m_SavedProperties:
     serializedVersion: 3
-    m_TexEnvs:
-    - _BaseTexture:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
+    m_TexEnvs: []
     m_Ints: []
     m_Floats:
-    - _QueueControl: 0
-    m_Colors: []
+    - _UseColor1: 0
+    - _UseColor2: 0
+    - _UseColor3: 0
+    - _UseColor4: 0
+    m_Colors:
+    - _SpritePosition: {r: 106, g: 474, b: 0, a: 0}
+    - _SpriteSize: {r: 32, g: 32, b: 0, a: 0}
   m_BuildTextureStacks: []
   m_AllowLocking: 1
