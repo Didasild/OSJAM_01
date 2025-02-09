@@ -14,5 +14,6 @@ namespace Dida.Rendering
         public ColorParameter Color3 = new ColorParameter(Color.black, false, false, true);
         public ColorParameter Color4 = new ColorParameter(Color.black, false, false, true);
         public ColorParameter Color5 = new ColorParameter(Color.black, false, false, true);
+        public ColorParameter Color6 = new ColorParameter(Color.black, false, false, true);
     }
 }

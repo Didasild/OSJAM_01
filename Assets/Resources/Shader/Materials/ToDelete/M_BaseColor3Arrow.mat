@@ -20,9 +20,9 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: M_BaseColor2_BG
+  m_Name: M_BaseColor3Arrow
   m_Shader: {fileID: -6465566751694194690, guid: 971a7e17277678f43a768bb674a3cf44, type: 3}
-  m_Parent: {fileID: 2100000, guid: b7a3424646b68144c8f0b71541f8b5a8, type: 2}
+  m_Parent: {fileID: 2100000, guid: 1db05a5b74f836c41ba36d1071db817a, type: 2}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords: []
   m_InvalidKeywords:
@@ -38,13 +38,17 @@ Material:
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
-    - _BaseTexture:
-        m_Texture: {fileID: 0}
+    - _SampleTexture2D_503252b1d7dc41afbbfcc9f3dfac4c5b_Texture_1_Texture2D:
+        m_Texture: {fileID: 2800000, guid: 2328d0e7a215b974cb180197997a987b, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
     - _QueueControl: 0
-    m_Colors: []
+    - _UseColor1: 0
+    - _UseColor2: 0
+    m_Colors:
+    - _SpritePosition: {r: 35, g: 485, b: 0, a: 0}
+    - _SpriteSize: {r: 37, g: 21, b: 0, a: 0}
   m_BuildTextureStacks: []
   m_AllowLocking: 1

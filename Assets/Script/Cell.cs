@@ -97,9 +97,9 @@ public class Cell : MonoBehaviour
         _emptySprite = cellEmpty.GetComponent<SpriteRenderer>();
         _outlineSprite = cellOutline.GetComponent<SpriteRenderer>();
         
-        _emptySprite.color = _cellVisualManager.GetElementColor(1);
+        //_emptySprite.color = _cellVisualManager.GetElementColor(1);
         
-        _outlineSprite.color = _cellVisualManager.GetElementColor(5);
+        //_outlineSprite.color = _cellVisualManager.GetElementColor(5);
 
         itemVisual.color = _cellVisualManager.GetElementColor(3);
     }

@@ -15,6 +15,7 @@ namespace Dida.Rendering
         private static readonly int MY_SHADER_COLOR3 = Shader.PropertyToID("_Color3");
         private static readonly int MY_SHADER_COLOR4 = Shader.PropertyToID("_Color4");
         private static readonly int MY_SHADER_COLOR5 = Shader.PropertyToID("_Color5");
+        private static readonly int MY_SHADER_COLOR6 = Shader.PropertyToID("_Color6");
 
         #endregion CACHED PROPERTIES IDs
 
@@ -28,6 +29,7 @@ namespace Dida.Rendering
             Shader.SetGlobalVector(MY_SHADER_COLOR3, mySettings.Color3.value);
             Shader.SetGlobalColor(MY_SHADER_COLOR4, mySettings.Color4.value);
             Shader.SetGlobalColor(MY_SHADER_COLOR5, mySettings.Color5.value);
+            Shader.SetGlobalColor(MY_SHADER_COLOR6, mySettings.Color6.value);
         }
     }
 }
