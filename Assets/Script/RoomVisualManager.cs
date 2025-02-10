@@ -4,14 +4,15 @@ using Dida.Rendering;
 using NaughtyAttributes;
 using UnityEngine;
 using UnityEngine.Rendering;
+using UnityEngine.Serialization;
 using UnityEngine.VFX;
 
 public class RoomVisualManager : MonoBehaviour
 {
     #region PARAMETERS
-    [Header("POST PROCESS")]
-    public Volume mainVolume;
-    [ReadOnly] public ColorPaletteScriptable currentColorPalette;
+    [Header("AMBIANCE / POST PROCESS")]
+    public Volume mainColorsVolume;
+    public Volume transitionColorsVolume;
     public float visualTransitionDuration;
     
     [Header("_______MINIMAP ROOM STATE VISUAL")]
@@ -25,49 +26,60 @@ public class RoomVisualManager : MonoBehaviour
     public Sprite roomTypeShopSprite;
     public Sprite roomTypeBossSprite;
     
-    private VolumeProfile _roomProfile;
+    private VolumeProfile _roomMainProfile;
     private VisualSettings _roomVisualSettings;
+    private VisualSettings _roomTransitionVisualSettings;
+    
     #endregion PARAMETERS
 
     #region INITIALIZATION
     public void Init()
     {
-        _roomProfile = mainVolume.profile;
-        if (_roomProfile.TryGet(out _roomVisualSettings)){ }
-    }
+        _roomMainProfile = mainColorsVolume.profile;
+        if (_roomMainProfile.TryGet(out _roomVisualSettings)){ }
 
+    }
     #endregion INITIALIZATION
 
     #region SET FUNCTIONS
-    public void SetRoomVisual(RoomData roomData)
+    public void UpdateRoomVisual(RoomData roomData)
     {
-        if (roomData.roomSettings.roomColorPalette != null)
+        //UNE CONDITION QUI CHECK SI C'EST LE MEME PROFILE ET RETURN SI C'EST LE CAS
+        if (roomData.roomSettings.roomColorsVolumeProfile != null)
         {
-            currentColorPalette = roomData.roomSettings.roomColorPalette;
+            if (roomData.roomSettings.roomColorsVolumeProfile.TryGet(out _roomTransitionVisualSettings)){ }
         }
         else
         {
-            currentColorPalette = GameManager.Instance.currentChapterSettings.chapterDefaultPalette;
+            if (GameManager.Instance.currentChapterSettings.chapterDefaultColorsVolume.TryGet(out _roomTransitionVisualSettings)){ }
         }
-        ApplyPaletteToVolume(currentColorPalette);
+        TransitionVolume();
     }
-    private void ApplyPaletteToVolume(ColorPaletteScriptable colorPaletteToApply)
-    {
-        if (!_roomProfile.TryGet(out _roomVisualSettings)) return;
 
-        // Lancer une transition pour chaque couleur
-        TransitionColor(() => _roomVisualSettings.Color1.value, x => _roomVisualSettings.Color1.value = x, colorPaletteToApply.colors[0], visualTransitionDuration);
-        TransitionColor(() => _roomVisualSettings.Color2.value, x => _roomVisualSettings.Color2.value = x, colorPaletteToApply.colors[1], visualTransitionDuration);
-        TransitionColor(() => _roomVisualSettings.Color3.value, x => _roomVisualSettings.Color3.value = x, colorPaletteToApply.colors[2], visualTransitionDuration);
-        TransitionColor(() => _roomVisualSettings.Color4.value, x => _roomVisualSettings.Color4.value = x, colorPaletteToApply.colors[3], visualTransitionDuration);
-        TransitionColor(() => _roomVisualSettings.Color5.value, x => _roomVisualSettings.Color5.value = x, colorPaletteToApply.colors[4], visualTransitionDuration);
-        TransitionColor(() => _roomVisualSettings.Color6.value, x => _roomVisualSettings.Color6.value = x, colorPaletteToApply.colors[5], visualTransitionDuration);
-    }
-    private void TransitionColor(System.Func<Color> getter, System.Action<Color> setter, Color newColor, float transitionDuration)
+    private void TransitionVolume()
     {
-        Color startColor = getter(); // Récupère la couleur actuelle
-        DOTween.To(() => startColor, x => { startColor = x; setter(x); }, newColor, transitionDuration);
+        //ICI
+        //Transition avec le poids puis applique le profile de transition au main et clean le transition
     }
+    
+    //A DELETE
+    // private void ApplyPaletteToVolume(ColorPaletteScriptable colorPaletteToApply)
+    // {
+    //     if (!_roomMainProfile.TryGet(out _roomVisualSettings)) return;
+    //
+    //     // Lancer une transition pour chaque couleur
+    //     TransitionColor(() => _roomVisualSettings.Color1.value, x => _roomVisualSettings.Color1.value = x, colorPaletteToApply.colors[0], visualTransitionDuration);
+    //     TransitionColor(() => _roomVisualSettings.Color2.value, x => _roomVisualSettings.Color2.value = x, colorPaletteToApply.colors[1], visualTransitionDuration);
+    //     TransitionColor(() => _roomVisualSettings.Color3.value, x => _roomVisualSettings.Color3.value = x, colorPaletteToApply.colors[2], visualTransitionDuration);
+    //     TransitionColor(() => _roomVisualSettings.Color4.value, x => _roomVisualSettings.Color4.value = x, colorPaletteToApply.colors[3], visualTransitionDuration);
+    //     TransitionColor(() => _roomVisualSettings.Color5.value, x => _roomVisualSettings.Color5.value = x, colorPaletteToApply.colors[4], visualTransitionDuration);
+    //     TransitionColor(() => _roomVisualSettings.Color6.value, x => _roomVisualSettings.Color6.value = x, colorPaletteToApply.colors[5], visualTransitionDuration);
+    // }
+    // private void TransitionColor(Func<Color> getter, Action<Color> setter, Color newColor, float transitionDuration)
+    // {
+    //     Color startColor = getter(); // Récupère la couleur actuelle
+    //     DOTween.To(() => startColor, x => { startColor = x; setter(x); }, newColor, transitionDuration);
+    // }
     #endregion SET FUNCTIONS
 
 

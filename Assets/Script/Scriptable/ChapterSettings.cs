@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using NaughtyAttributes;
+using UnityEngine.Rendering;
 
 public enum Chapters
 {
@@ -17,6 +18,7 @@ public class ChapterSettings : ScriptableObject
     public Chapters chapter; 
     [Expandable] public FloorSettings[] floorSettings;
     public ColorPaletteScriptable chapterDefaultPalette;
+    public VolumeProfile chapterDefaultColorsVolume;
 
     #endregion
 }

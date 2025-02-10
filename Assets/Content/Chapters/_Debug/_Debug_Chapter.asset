@@ -17,3 +17,4 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 43c998593f6483d41a13f674f9a57a1c, type: 2}
   - {fileID: 11400000, guid: 6a0861b0c6c78634d901defe6171dc75, type: 2}
   chapterDefaultPalette: {fileID: 11400000, guid: c240f311ce396384791f0ec8d75bb901, type: 2}
+  chapterDefaultColorsVolume: {fileID: 11400000, guid: bffc1dc1e00d820418e292a3a0c1f325, type: 2}

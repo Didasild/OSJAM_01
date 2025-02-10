@@ -1,6 +1,7 @@
 using UnityEditor;
 using UnityEditor.Rendering;
 using UnityEngine;
+using UnityEngine.Rendering;
 
 [CustomEditor(typeof(RoomSettings))]
 public class RoomSettingsInspector : Editor
@@ -71,7 +72,7 @@ public class RoomSettingsInspector : Editor
             GUI.enabled = false;
             EditorGUILayout.TextField("VISUAL SETTINGS", centeredStyle);
             GUI.enabled = true;
-            _roomSettings.roomColorPalette = (ColorPaletteScriptable)EditorGUILayout.ObjectField("Room Color Palette", _roomSettings.roomColorPalette, typeof(ColorPaletteScriptable), false);
+            _roomSettings.roomColorsVolumeProfile = (VolumeProfile)EditorGUILayout.ObjectField("Room Color Palette", _roomSettings.roomColorsVolumeProfile, typeof(VolumeProfile), false);
             EditorGUILayout.Space(_smallSpacing);
         }
         #endregion GENERAL

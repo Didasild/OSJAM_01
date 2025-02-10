@@ -39,7 +39,7 @@ public class CellVisualManager : MonoBehaviour
 
     public void Init()
     {
-        if (GameManager.roomVisualManager.mainVolume.profile.TryGet(out visualSettings)) { }
+        if (GameManager.roomVisualManager.mainColorsVolume.profile.TryGet(out visualSettings)) { }
     }
     
 

@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections.Generic;
+using UnityEngine.Rendering;
 using UnityEngine.Serialization;
 
 public enum RoomType
@@ -34,6 +35,7 @@ public class RoomSettings : ScriptableObject
     
     [Header("VISUAL")]
     public ColorPaletteScriptable roomColorPalette;
+    public VolumeProfile roomColorsVolumeProfile;
 
     [Header("________LOADED GRID SETTINGS")]
     [FormerlySerializedAs("roomLoadString")] public string roomIDString; // USE ONLY FOR FIRST GENERATION NEVER CHANGE
