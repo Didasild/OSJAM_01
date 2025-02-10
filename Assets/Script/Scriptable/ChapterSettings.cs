@@ -15,7 +15,8 @@ public class ChapterSettings : ScriptableObject
     #region PARAMETERS
     [Header("GENERAL")]
     public Chapters chapter; 
-    [Expandable, AllowNesting] public FloorSettings[] floorSettings;
-    
-     #endregion
+    [Expandable] public FloorSettings[] floorSettings;
+    public ColorPaletteScriptable chapterDefaultPalette;
+
+    #endregion
 }

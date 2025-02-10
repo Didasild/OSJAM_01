@@ -35,7 +35,6 @@ public class GameManager : MonoBehaviour
     [Header("MANAGER REFERENCES")]
     public DungeonManager dungeonManager;
     public GridManager gridManager;
-    public Volume currentVolume;
 
     [Header("REFERENCES")]
     public GameObject endScreenUI;
@@ -49,16 +48,20 @@ public class GameManager : MonoBehaviour
     public static CellVisualManager cellVisualManager => _instance._CellVisualManager;
 
     [SerializeField] private RoomVisualManager _RoomVisualManager;
-    [HideInInspector] public static RoomVisualManager RoomVisualManager => _instance._RoomVisualManager;
+    public static RoomVisualManager roomVisualManager => _instance._RoomVisualManager;
     #endregion PARAMETERS
 
     #region INIT
     private void Awake()
     {
         _instance = this;
+        
+        roomVisualManager.Init();
         cellVisualManager.Init();
+        
         player.Init();
         dungeonManager.Init();
+        
         debugObject.SetActive(false);
     }
 
@@ -138,6 +141,7 @@ public class GameManager : MonoBehaviour
     public void ChangeRoom(RoomData roomData)
     {
         currentRoomSettings = roomData.roomSettings;
+        roomVisualManager.SetRoomVisual(roomData);
         if (roomData.currentRoomState != RoomState.FogOfWar)
         {
             gridManager.LoadRoomFromString(roomData.roomSavedString, currentRoomSettings.GetRoomSizeFromString(roomData.roomSavedString), currentRoomSettings.haveProceduralCells);
@@ -152,6 +156,7 @@ public class GameManager : MonoBehaviour
             gridManager.LoadRoomFromString(currentRoomSettings.roomIDString, currentRoomSettings.GetRoomSizeFromString(currentRoomSettings.roomIDString), currentRoomSettings.haveProceduralCells);
             roomData.ChangeRoomSate(RoomState.Started);
         }
+        
     }
 
     public void ChangeFloorLevel()

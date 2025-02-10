@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.Serialization;
 using UnityEngine.UI;
+using NaughtyAttributes;
 
 #region ENUMS
 public enum RoomState
@@ -17,17 +18,17 @@ public class RoomData : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     #region PARAMETERS
 
     [Header("GENERAL DATA")]
-    [NaughtyAttributes.ReadOnly] public RoomSettings roomSettings;
-    [NaughtyAttributes.ReadOnly] public RoomState currentRoomState;
-    [NaughtyAttributes.ReadOnly] public RoomType currentRoomType;
-    [NaughtyAttributes.ReadOnly] public string roomSavedString;
-    [NaughtyAttributes.ReadOnly] public Vector2Int roomPosition;
+    [ReadOnly] public RoomSettings roomSettings;
+    [ReadOnly] public RoomState currentRoomState;
+    [ReadOnly] public RoomType currentRoomType;
+    [ReadOnly] public string roomSavedString;
+    [ReadOnly] public Vector2Int roomPosition;
 
     [Header("NEIGHBORS")]
-    [NaughtyAttributes.ReadOnly] public RoomData roomUp;
-    [NaughtyAttributes.ReadOnly] public RoomData roomDown;
-    [NaughtyAttributes.ReadOnly] public RoomData roomLeft;
-    [NaughtyAttributes.ReadOnly] public RoomData roomRight;
+    [ReadOnly] public RoomData roomUp;
+    [ReadOnly] public RoomData roomDown;
+    [ReadOnly] public RoomData roomLeft;
+    [ReadOnly] public RoomData roomRight;
 
     [Header("ROOM MINIMAP VISUAL")]
     public Image roomTypeVisual;
@@ -54,11 +55,12 @@ public class RoomData : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
         transform.localPosition = worldPosition;
 
         //Setup le visuel
-        _roomVisualManager = GameManager.RoomVisualManager;
+        _roomVisualManager = GameManager.roomVisualManager;
         roomStateVisual.sprite = _roomVisualManager.GetRoomStateVisual(RoomState.FogOfWar);
         
         //Assigne le dungeon manager
         _dungeonManager = GameManager.Instance.dungeonManager;
+        
     }
     #endregion INIT
 
@@ -73,7 +75,7 @@ public class RoomData : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     {
         currentRoomState = newRoomState;
         //Update le visuel de la room
-        roomStateVisual.sprite = GameManager.RoomVisualManager.GetRoomStateVisual(currentRoomState);
+        roomStateVisual.sprite = GameManager.roomVisualManager.GetRoomStateVisual(currentRoomState);
 
         switch (currentRoomState)
         {
@@ -97,7 +99,7 @@ public class RoomData : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 
     private void StartedRoomState()
     {
-
+        
     }
 
     private void CompleteRoomState()

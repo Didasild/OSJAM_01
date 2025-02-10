@@ -30,7 +30,6 @@ public class RoomEditorInspector : Editor
         cellsTypeChangeProperty = serializedObject.FindProperty("cellsTypeChange");
         cellsStateChangeProperty = serializedObject.FindProperty("cellsStateChange");
         itemRangeProperty = serializedObject.FindProperty("itemRanges");
- 
     }
     public override void OnInspectorGUI()
     {

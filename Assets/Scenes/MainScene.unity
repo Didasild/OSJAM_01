@@ -2039,6 +2039,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1687622997}
+  - {fileID: 1593195241}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &329430831 stripped
@@ -2248,7 +2249,6 @@ MonoBehaviour:
   currentRoomSettings: {fileID: 0}
   dungeonManager: {fileID: 660007369}
   gridManager: {fileID: 712061424}
-  currentVolume: {fileID: 1687622998}
   endScreenUI: {fileID: 1289361010}
   player: {fileID: 1365082114}
   debugObject: {fileID: 816142824}
@@ -2293,6 +2293,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cbe8cd601f2a0d847bc474c4d2c4752d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mainVolume: {fileID: 1687622998}
+  currentColorPalette: {fileID: 0}
+  visualTransitionDuration: 1
   roomFoWSprite: {fileID: 21300000, guid: 264bd4a4bb254b0428fb3d0d65d0119e, type: 3}
   roomStartedSprite: {fileID: 21300000, guid: 37bfd3aee90f3824188408f4d247021e, type: 3}
   roomCompleteSprite: {fileID: 21300000, guid: 53ff0180f4371724ab172385a7ee14c1, type: 3}
@@ -8219,6 +8222,55 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 2125257166701740220, guid: 58d5dd58eb3d9ef43b9b9d0bf076832c, type: 3}
   m_PrefabInstance: {fileID: 1557543601}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1593195240
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1593195241}
+  - component: {fileID: 1593195243}
+  m_Layer: 0
+  m_Name: PPP_Generic
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1593195241
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1593195240}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 1.0790801, y: -0.08422929, z: 0.009969447}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 325545206}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1593195243
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1593195240}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 172515602e62fb746b5d573b38a5fe58, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_IsGlobal: 1
+  priority: 0
+  blendDistance: 0
+  weight: 1
+  sharedProfile: {fileID: 11400000, guid: ccac307ceaa3b5c409744a8863cf3a4a, type: 2}
 --- !u!1 &1641184622 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 9172855607629359649, guid: 3c365be93edc4bd47936f16e2f2c0750, type: 3}
@@ -8319,7 +8371,7 @@ GameObject:
   - component: {fileID: 1687622998}
   - component: {fileID: 1687622999}
   m_Layer: 0
-  m_Name: Main Global Volume
+  m_Name: PPP_ColorPaletteMain
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8353,7 +8405,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_IsGlobal: 1
-  priority: 10
+  priority: 0
   blendDistance: 0
   weight: 1
   sharedProfile: {fileID: 11400000, guid: 30efc7cf415405348a435a3b353f0857, type: 2}
@@ -8364,15 +8416,15 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1687622996}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 55fb8e4e0d1add14c808c563f5f0ba82, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  paletteToAppply: {fileID: 11400000, guid: c240f311ce396384791f0ec8d75bb901, type: 2}
+  paletteToApply: {fileID: 11400000, guid: c240f311ce396384791f0ec8d75bb901, type: 2}
   volume: {fileID: 1687622998}
-  profile: {fileID: 0}
-  _visualSettings: {fileID: 0}
+  profile: {fileID: 11400000, guid: 30efc7cf415405348a435a3b353f0857, type: 2}
+  _visualSettings: {fileID: 4915069371588200835, guid: 30efc7cf415405348a435a3b353f0857, type: 2}
 --- !u!1 &1758659917
 GameObject:
   m_ObjectHideFlags: 0

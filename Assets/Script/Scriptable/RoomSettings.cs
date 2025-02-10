@@ -31,6 +31,9 @@ public class RoomSettings : ScriptableObject
     
     [Header("TAG")]
     public RoomType roomType;
+    
+    [Header("VISUAL")]
+    public ColorPaletteScriptable roomColorPalette;
 
     [Header("________LOADED GRID SETTINGS")]
     [FormerlySerializedAs("roomLoadString")] public string roomIDString; // USE ONLY FOR FIRST GENERATION NEVER CHANGE

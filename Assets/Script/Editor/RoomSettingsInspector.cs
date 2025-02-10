@@ -68,6 +68,11 @@ public class RoomSettingsInspector : Editor
                 _roomSettings.roomIDString = EditorGUILayout.TextField("Room ID String", _roomSettings.roomIDString);
                 _roomSettings.haveProceduralCells = EditorGUILayout.Toggle("Have Procedural Cells", _roomSettings.haveProceduralCells);
             }
+            GUI.enabled = false;
+            EditorGUILayout.TextField("VISUAL SETTINGS", centeredStyle);
+            GUI.enabled = true;
+            _roomSettings.roomColorPalette = (ColorPaletteScriptable)EditorGUILayout.ObjectField("Room Color Palette", _roomSettings.roomColorPalette, typeof(ColorPaletteScriptable), false);
+            EditorGUILayout.Space(_smallSpacing);
         }
         #endregion GENERAL
 

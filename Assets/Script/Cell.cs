@@ -245,9 +245,8 @@ public class Cell : MonoBehaviour
         GameManager.Instance.player.IncreaseMana();
 
         //Update Visual
-        //RevealAnimation();
         PlayAnimation("Cell_Reveal");
-        StartCoroutine(CO_DeactiveCoverAfterDelay(0.2f));
+        //StartCoroutine(CO_DeactiveCoverAfterDelay(0.2f));
         stateVisual.sprite = _cellVisualManager.GetCellStateVisual(currentState);
     }
 
