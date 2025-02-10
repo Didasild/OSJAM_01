@@ -1,7 +1,7 @@
 using UnityEngine;
 using NaughtyAttributes;
 
-[CreateAssetMenu(fileName = "FloorSettings", menuName = "DungeonGeneration/FloorSettings")]
+[CreateAssetMenu(fileName = "FloorSettings", menuName = "MineCrawler/FloorSettings")]
 public class FloorSettings : ScriptableObject
 {
     #region PARAMETERS

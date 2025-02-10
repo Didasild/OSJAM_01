@@ -8,7 +8,7 @@ public enum Chapters
     Chapter1,
     Debug,
 }
-[CreateAssetMenu(fileName = "ChapterSettings", menuName = "DungeonGeneration/ChapterSettings")]
+[CreateAssetMenu(fileName = "ChapterSettings", menuName = "MineCrawler/ChapterSettings")]
 public class ChapterSettings : ScriptableObject
 {
 

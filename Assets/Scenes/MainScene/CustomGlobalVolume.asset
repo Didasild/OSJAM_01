@@ -15,6 +15,7 @@ MonoBehaviour:
   components:
   - {fileID: 4915069371588200835}
   - {fileID: 106725441321269248}
+  - {fileID: 1921341302661848127}
 --- !u!114 &106725441321269248
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -30,7 +31,7 @@ MonoBehaviour:
   active: 1
   color:
     m_OverrideState: 1
-    m_Value: {r: 0, g: 0, b: 0, a: 1}
+    m_Value: {r: 0.052707534, g: 0.19391856, b: 0.408805, a: 1}
   center:
     m_OverrideState: 1
     m_Value: {x: 0.5, y: 0.5}
@@ -77,6 +78,53 @@ MonoBehaviour:
   Color6:
     m_OverrideState: 0
     m_Value: {r: 0, g: 0, b: 0, a: 1}
+--- !u!114 &1921341302661848127
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0b2db86121404754db890f4c8dfe81b2, type: 3}
+  m_Name: Bloom
+  m_EditorClassIdentifier: 
+  active: 1
+  skipIterations:
+    m_OverrideState: 0
+    m_Value: 1
+  threshold:
+    m_OverrideState: 1
+    m_Value: 0.9
+  intensity:
+    m_OverrideState: 1
+    m_Value: 1.5
+  scatter:
+    m_OverrideState: 0
+    m_Value: 0.7
+  clamp:
+    m_OverrideState: 0
+    m_Value: 65472
+  tint:
+    m_OverrideState: 0
+    m_Value: {r: 1, g: 1, b: 1, a: 1}
+  highQualityFiltering:
+    m_OverrideState: 0
+    m_Value: 0
+  downscale:
+    m_OverrideState: 0
+    m_Value: 0
+  maxIterations:
+    m_OverrideState: 0
+    m_Value: 6
+  dirtTexture:
+    m_OverrideState: 0
+    m_Value: {fileID: 0}
+    dimension: 1
+  dirtIntensity:
+    m_OverrideState: 0
+    m_Value: 0
 --- !u!114 &4915069371588200835
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -95,19 +143,19 @@ MonoBehaviour:
     m_Value: 0.5
   Color1:
     m_OverrideState: 1
-    m_Value: {r: 1, g: 1, b: 1, a: 1}
+    m_Value: {r: 0.5707843, g: 0.9308176, b: 0.5800159, a: 1}
   Color2:
     m_OverrideState: 1
-    m_Value: {r: 0.3529412, g: 0.3529412, b: 0.3529412, a: 1}
+    m_Value: {r: 0, g: 0.43137258, b: 0.2627451, a: 1}
   Color3:
     m_OverrideState: 1
-    m_Value: {r: 0.94509804, g: 0.78448516, b: 0.14117646, a: 1}
+    m_Value: {r: 0.9215687, g: 0.61960787, b: 0, a: 1}
   Color4:
     m_OverrideState: 1
-    m_Value: {r: 0.16862746, g: 0.16862746, b: 0.16862746, a: 1}
+    m_Value: {r: 0.32967436, g: 0.49685526, b: 0.4404569, a: 1}
   Color5:
     m_OverrideState: 1
-    m_Value: {r: 0.07450981, g: 0.07450981, b: 0.07450981, a: 1}
+    m_Value: {r: 0, g: 0.27058825, b: 0.19607845, a: 1}
   Color6:
     m_OverrideState: 1
     m_Value: {r: 0, g: 0, b: 0, a: 1}

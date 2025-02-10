@@ -19,7 +19,7 @@ public enum GenerationType
     RL,
 }
 
-[CreateAssetMenu(fileName = "RoomSettings", menuName = "DungeonGeneration/RoomSettings")]
+[CreateAssetMenu(fileName = "RoomSettings", menuName = "MineCrawler/RoomSettings")]
 
 public class RoomSettings : ScriptableObject
 {

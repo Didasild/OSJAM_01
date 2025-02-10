@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using Unity.Collections;
 using UnityEngine.Rendering;
 
 #region ENUMS
@@ -39,6 +40,7 @@ public class GameManager : MonoBehaviour
     [Header("REFERENCES")]
     public GameObject endScreenUI;
     public Player player;
+    public GameObject debugObject;
 
     //Singleton
     private static GameManager _instance;
@@ -47,7 +49,7 @@ public class GameManager : MonoBehaviour
     public static CellVisualManager cellVisualManager => _instance._CellVisualManager;
 
     [SerializeField] private RoomVisualManager _RoomVisualManager;
-    public static RoomVisualManager RoomVisualManager => _instance._RoomVisualManager;
+    [HideInInspector] public static RoomVisualManager RoomVisualManager => _instance._RoomVisualManager;
     #endregion PARAMETERS
 
     #region INIT
@@ -57,6 +59,7 @@ public class GameManager : MonoBehaviour
         cellVisualManager.Init();
         player.Init();
         dungeonManager.Init();
+        debugObject.SetActive(false);
     }
 
     public void Start()

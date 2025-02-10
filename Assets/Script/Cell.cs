@@ -83,27 +83,13 @@ public class Cell : MonoBehaviour
         _animator = GetComponent<Animator>();
         _collider = GetComponent<Collider2D>();
         
-        SetCellColors();
-        
         _cellPosition = cellPosition;
         
         ChangeState(currentState);
 
         gameObject.SetActive(false);
     }
-
-    private void SetCellColors()
-    {
-        _emptySprite = cellEmpty.GetComponent<SpriteRenderer>();
-        _outlineSprite = cellOutline.GetComponent<SpriteRenderer>();
-        
-        //_emptySprite.color = _cellVisualManager.GetElementColor(1);
-        
-        //_outlineSprite.color = _cellVisualManager.GetElementColor(5);
-
-        itemVisual.color = _cellVisualManager.GetElementColor(3);
-    }
-
+    
     //Update le visual de la cellule
     public void UpdateRegardingNeighbors(bool haveFoWCell = false)
     {
@@ -232,7 +218,7 @@ public class Cell : MonoBehaviour
         cellEmpty.SetActive(true);
         cellOutline.SetActive(true);
         
-        numberText.color = _cellVisualManager.GetElementColor(5);
+        numberText.color = _cellVisualManager.GetElementColor(1);
         
         //Optimisable ici, je pense plutôt que 2 foreach
         foreach (Cell cell in neighborsCellList)
