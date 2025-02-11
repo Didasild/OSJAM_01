@@ -26,11 +26,11 @@ public class CellVisualManager : MonoBehaviour
     public GameObject plantedSwordAnimation;
     
     [Header("_______OTHER")] 
-    public bool inMainScene;
+    public bool inEditorScene;
     [Header("_______CELL EDITOR VISUAL")] 
-    [HideIf("inMainScene")] public Sprite coverSprite;
-    [HideIf("inMainScene")] public Sprite revealSprite;
-    [HideIf("inMainScene")] public Sprite mineIconSprite;
+    [ShowIf("inMainScene")] public Sprite coverSprite;
+    [ShowIf("inMainScene")] public Sprite revealSprite;
+    [ShowIf("inMainScene")] public Sprite mineIconSprite;
     
     [HideInInspector] public VisualSettings visualSettings;
     #endregion

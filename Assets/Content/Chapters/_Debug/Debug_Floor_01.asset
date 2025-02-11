@@ -16,6 +16,6 @@ MonoBehaviour:
   minGridSize: {x: 1, y: 3}
   maxGridSize: {x: 1, y: 3}
   roomSettingsList:
-  - {fileID: 11400000, guid: 3fb76d925366b0544a058fab9d86648c, type: 2}
-  - {fileID: 11400000, guid: 3fb76d925366b0544a058fab9d86648c, type: 2}
-  - {fileID: 11400000, guid: 3fb76d925366b0544a058fab9d86648c, type: 2}
+  - {fileID: 11400000, guid: 3874eaf7b7f24ec43b073b2be72ed74b, type: 2}
+  - {fileID: 11400000, guid: 3874eaf7b7f24ec43b073b2be72ed74b, type: 2}
+  - {fileID: 11400000, guid: 3874eaf7b7f24ec43b073b2be72ed74b, type: 2}

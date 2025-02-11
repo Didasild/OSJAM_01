@@ -34,7 +34,6 @@ public class RoomSettings : ScriptableObject
     public RoomType roomType;
     
     [Header("VISUAL")]
-    public ColorPaletteScriptable roomColorPalette;
     public VolumeProfile roomColorsVolumeProfile;
 
     [Header("________LOADED GRID SETTINGS")]

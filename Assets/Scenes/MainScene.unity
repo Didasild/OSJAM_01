@@ -2018,7 +2018,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 325545206}
-  - component: {fileID: 325545207}
   m_Layer: 0
   m_Name: VOLUME
   m_TagString: Untagged
@@ -2044,22 +2043,6 @@ Transform:
   - {fileID: 1593195241}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &325545207
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 325545205}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 55fb8e4e0d1add14c808c563f5f0ba82, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  paletteToApply: {fileID: 11400000, guid: c240f311ce396384791f0ec8d75bb901, type: 2}
-  volume: {fileID: 1687622998}
-  profile: {fileID: 11400000, guid: 30efc7cf415405348a435a3b353f0857, type: 2}
-  _visualSettings: {fileID: 4915069371588200835, guid: 30efc7cf415405348a435a3b353f0857, type: 2}
 --- !u!1 &329430831 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 9172855607629359649, guid: 3c365be93edc4bd47936f16e2f2c0750, type: 3}
@@ -2294,7 +2277,7 @@ MonoBehaviour:
   mineExplosionAnimation: {fileID: 735029770632867219, guid: 788e9c56c1dca8d419a4d03f8570560a, type: 3}
   mineSwordedAnimation: {fileID: 2848005772284224300, guid: 229ef30d1439cd649a956d38120a0580, type: 3}
   plantedSwordAnimation: {fileID: 6271478425686541969, guid: 9819873197c9915408555a501a962d53, type: 3}
-  inMainScene: 1
+  inEditorScene: 0
   coverSprite: {fileID: 0}
   revealSprite: {fileID: 0}
   mineIconSprite: {fileID: 0}

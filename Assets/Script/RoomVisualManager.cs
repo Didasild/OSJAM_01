@@ -4,8 +4,7 @@ using Dida.Rendering;
 using NaughtyAttributes;
 using UnityEngine;
 using UnityEngine.Rendering;
-using UnityEngine.Serialization;
-using UnityEngine.VFX;
+
 
 public class RoomVisualManager : MonoBehaviour
 {
@@ -27,8 +26,9 @@ public class RoomVisualManager : MonoBehaviour
     public Sprite roomTypeBossSprite;
     
     private VolumeProfile _roomMainProfile;
-    private VisualSettings _roomVisualSettings;
     private VisualSettings _roomTransitionVisualSettings;
+
+    private Tweener _currentWeightTween;
     
     #endregion PARAMETERS
 
@@ -36,7 +36,6 @@ public class RoomVisualManager : MonoBehaviour
     public void Init()
     {
         _roomMainProfile = mainColorsVolume.profile;
-        if (_roomMainProfile.TryGet(out _roomVisualSettings)){ }
 
     }
     #endregion INITIALIZATION
@@ -44,45 +43,50 @@ public class RoomVisualManager : MonoBehaviour
     #region SET FUNCTIONS
     public void UpdateRoomVisual(RoomData roomData)
     {
-        //UNE CONDITION QUI CHECK SI C'EST LE MEME PROFILE ET RETURN SI C'EST LE CAS
-        if (roomData.roomSettings.roomColorsVolumeProfile != null)
+        TransitionVolume(roomData.roomSettings.roomColorsVolumeProfile);
+    }
+
+    private void TransitionVolume(VolumeProfile roomProfile = null)
+    {
+        //Check le volume a récup
+        if (roomProfile != null)
         {
-            if (roomData.roomSettings.roomColorsVolumeProfile.TryGet(out _roomTransitionVisualSettings)){ }
+            if (roomProfile == _roomMainProfile)
+            {
+                return;
+            }
+            transitionColorsVolume.profile = roomProfile;
         }
         else
         {
-            if (GameManager.Instance.currentChapterSettings.chapterDefaultColorsVolume.TryGet(out _roomTransitionVisualSettings)){ }
+            if (GameManager.Instance.currentChapterSettings.chapterDefaultColorsVolume == transitionColorsVolume.profile)
+            {
+                return;
+            }
+            transitionColorsVolume.profile = GameManager.Instance.currentChapterSettings.chapterDefaultColorsVolume;
         }
-        TransitionVolume();
-    }
-
-    private void TransitionVolume()
-    {
-        //ICI
-        //Transition avec le poids puis applique le profile de transition au main et clean le transition
+        
+        // Si un tween est déjà en cours, on l'annule
+        _currentWeightTween?.Kill();
+        //Fait la transition si le volume est bon
+        _currentWeightTween = DOWeight(transitionColorsVolume, 1f, visualTransitionDuration)
+            .SetEase(Ease.Linear)
+            .OnComplete(UpdateVolumeProfile);
     }
     
-    //A DELETE
-    // private void ApplyPaletteToVolume(ColorPaletteScriptable colorPaletteToApply)
-    // {
-    //     if (!_roomMainProfile.TryGet(out _roomVisualSettings)) return;
-    //
-    //     // Lancer une transition pour chaque couleur
-    //     TransitionColor(() => _roomVisualSettings.Color1.value, x => _roomVisualSettings.Color1.value = x, colorPaletteToApply.colors[0], visualTransitionDuration);
-    //     TransitionColor(() => _roomVisualSettings.Color2.value, x => _roomVisualSettings.Color2.value = x, colorPaletteToApply.colors[1], visualTransitionDuration);
-    //     TransitionColor(() => _roomVisualSettings.Color3.value, x => _roomVisualSettings.Color3.value = x, colorPaletteToApply.colors[2], visualTransitionDuration);
-    //     TransitionColor(() => _roomVisualSettings.Color4.value, x => _roomVisualSettings.Color4.value = x, colorPaletteToApply.colors[3], visualTransitionDuration);
-    //     TransitionColor(() => _roomVisualSettings.Color5.value, x => _roomVisualSettings.Color5.value = x, colorPaletteToApply.colors[4], visualTransitionDuration);
-    //     TransitionColor(() => _roomVisualSettings.Color6.value, x => _roomVisualSettings.Color6.value = x, colorPaletteToApply.colors[5], visualTransitionDuration);
-    // }
-    // private void TransitionColor(Func<Color> getter, Action<Color> setter, Color newColor, float transitionDuration)
-    // {
-    //     Color startColor = getter(); // Récupère la couleur actuelle
-    //     DOTween.To(() => startColor, x => { startColor = x; setter(x); }, newColor, transitionDuration);
-    // }
+    private static Tweener DOWeight(Volume volume, float endValue, float duration)
+    {
+        return DOTween.To(() => volume.weight, x => volume.weight = x, endValue, duration);
+    }
+
+    private void UpdateVolumeProfile()
+    {
+        mainColorsVolume.profile = null;
+        mainColorsVolume.profile = transitionColorsVolume.profile;
+        transitionColorsVolume.weight = 0;
+    }
     #endregion SET FUNCTIONS
-
-
+    
     #region GET FUNCTIONS
     public Sprite GetRoomStateVisual(RoomState roomState)
     {
@@ -141,6 +145,7 @@ public class RoomVisualManager : MonoBehaviour
     
 
     #endregion
+    
 
     
 

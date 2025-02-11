@@ -15,10 +15,10 @@ public class ChapterSettings : ScriptableObject
 
     #region PARAMETERS
     [Header("GENERAL")]
-    public Chapters chapter; 
-    [Expandable] public FloorSettings[] floorSettings;
-    public ColorPaletteScriptable chapterDefaultPalette;
+    public Chapters chapter;
     public VolumeProfile chapterDefaultColorsVolume;
+    [Expandable] public FloorSettings[] floorSettings;
+
 
     #endregion
 }
