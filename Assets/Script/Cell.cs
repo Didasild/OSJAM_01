@@ -52,13 +52,13 @@ public class Cell : MonoBehaviour
     public GameObject cellEmpty;
     public GameObject cellCover;
     public GameObject cellOutline;
-    public TMP_Text numberText;
 
     [Header("CELL ADDITIONAL VISUAL")] 
     public GameObject visualParent;
     public SpriteRenderer stateVisual;
     public SpriteRenderer typeVisual;
     public SpriteRenderer itemVisual;
+    public SpriteRenderer numberVisual;
 
     [Header("CELL ANIMS STATE")]
     public GameObject animParent;
@@ -69,7 +69,7 @@ public class Cell : MonoBehaviour
     private Collider2D _collider;
     private Animator _animator;
     
-    private CellVisualManager _cellVisualManager;
+    private VisualManager _visualManager;
     private SpriteRenderer _emptySprite;
     private SpriteRenderer _outlineSprite;
     #endregion
@@ -78,7 +78,7 @@ public class Cell : MonoBehaviour
     public void Initialize(Vector2Int cellPosition)
     {
         _gameManager = GameManager.Instance;
-        _cellVisualManager = GameManager.cellVisualManager;
+        _visualManager = GameManager.VisualManager;
         
         _animator = GetComponent<Animator>();
         _collider = GetComponent<Collider2D>();
@@ -109,16 +109,18 @@ public class Cell : MonoBehaviour
         }
         if (currentType == CellType.Mine || currentType == CellType.Item || currentType == CellType.Gate)
         {
-            numberText.text = "";
+            numberVisual.sprite = null;
         }
         else if (numberOfNeighborsMine >= 1)
         {
-            numberText.text = numberOfNeighborsMine.ToString();
+            numberVisual.sprite = _visualManager.GetSprite(numberOfNeighborsMine.ToString());
+            
             ChangeType(CellType.Hint);
         }
         else
         {
-            numberText.text = "";
+            numberVisual.sprite = null;
+            
             ChangeType(CellType.Empty);
         }
         
@@ -146,9 +148,9 @@ public class Cell : MonoBehaviour
         }
         
         //Update le reste du visuel selon le type et l'état
-        stateVisual.sprite = _cellVisualManager.GetCellStateVisual(currentState);
-        typeVisual.sprite = _cellVisualManager.GetCellTypeVisual(currentType);
-        itemVisual.sprite = _cellVisualManager.GetCellItemVisuel(currentItemType);
+        stateVisual.sprite = _visualManager.GetCellStateVisual(currentState);
+        typeVisual.sprite = _visualManager.GetCellTypeVisual(currentType);
+        itemVisual.sprite = _visualManager.GetCellItemVisuel(currentItemType);
     }
     #endregion
 
@@ -187,18 +189,17 @@ public class Cell : MonoBehaviour
 
     private void InactiveState()
     {
-        stateVisual.sprite = _cellVisualManager.GetCellStateVisual(currentState);
+        stateVisual.sprite = _visualManager.GetCellStateVisual(currentState);
         cellCover.SetActive(false);
         cellEmpty.SetActive(false);
         cellOutline.SetActive(false);
         visualParent.SetActive(false);
-        numberText.color = Color.clear;
     }
 
     private void CoverState()
     {
         //Debug.Log(this.name + " switch to Cover State");
-        stateVisual.sprite = _cellVisualManager.GetCellStateVisual(currentState);
+        stateVisual.sprite = _visualManager.GetCellStateVisual(currentState);
         cellCover.SetActive(true);
         cellOutline.SetActive(true);
         visualParent.SetActive(true);
@@ -208,7 +209,7 @@ public class Cell : MonoBehaviour
     {
         //Debug.Log(this.name + " switch to Clicked State");
         visualParent.SetActive(true);
-        stateVisual.sprite = _cellVisualManager.GetCellStateVisual(currentState);
+        stateVisual.sprite = _visualManager.GetCellStateVisual(currentState);
     }
 
     private void RevealState()
@@ -217,8 +218,6 @@ public class Cell : MonoBehaviour
         visualParent.SetActive(true);
         cellEmpty.SetActive(true);
         cellOutline.SetActive(true);
-        
-        numberText.color = _cellVisualManager.GetElementColor(1);
         
         //Optimisable ici, je pense plutôt que 2 foreach
         foreach (Cell cell in neighborsCellList)
@@ -247,20 +246,20 @@ public class Cell : MonoBehaviour
         //Update Visual
         PlayAnimation("Cell_Reveal");
         //StartCoroutine(CO_DeactiveCoverAfterDelay(0.2f));
-        stateVisual.sprite = _cellVisualManager.GetCellStateVisual(currentState);
+        stateVisual.sprite = _visualManager.GetCellStateVisual(currentState);
     }
 
     private void FlagState()
     {
         //Debug.Log("switch to Flag State");
-        stateVisual.sprite = _cellVisualManager.GetCellStateVisual(currentState);
+        stateVisual.sprite = _visualManager.GetCellStateVisual(currentState);
         visualParent.SetActive(true);
     }
 
     private void SwordPlantedState()
     {
         //Debug.Log("switch to Sword State");
-        stateVisual.sprite = _cellVisualManager.GetCellStateVisual(currentState);
+        stateVisual.sprite = _visualManager.GetCellStateVisual(currentState);
         visualParent.SetActive(true);
     }
     #endregion
@@ -304,7 +303,7 @@ public class Cell : MonoBehaviour
         if (updateVisual)
         {
             cellEmpty.SetActive(true);
-            typeVisual.sprite = _cellVisualManager.GetCellTypeVisual(currentType);
+            typeVisual.sprite = _visualManager.GetCellTypeVisual(currentType);
         }
     }
     private void NoneType()
@@ -312,31 +311,34 @@ public class Cell : MonoBehaviour
         typeVisual.sprite = null;
         stateVisual.sprite = null;
         itemVisual.sprite = null;
+        numberVisual.sprite = null;
+        
         cellEmpty.SetActive(false);
         cellCover.SetActive(false);
-        numberText.text = "";
+        
+        //ATTENTION QUAND JE FERAIS LE POOL IL FAUT CHANGER CA
         Destroy(_collider);
     }
     private void MineType()
     {
-        typeVisual.sprite = _cellVisualManager.GetCellTypeVisual(currentType);
+        typeVisual.sprite = _visualManager.GetCellTypeVisual(currentType);
     }
     private void HintType()
     {
         cellEmpty.SetActive(true);
-        typeVisual.sprite = _cellVisualManager.GetCellTypeVisual(currentType);
+        typeVisual.sprite = _visualManager.GetCellTypeVisual(currentType);
     }
 
     private void GateType()
     {
         cellEmpty.SetActive(false);
-        typeVisual.sprite = _cellVisualManager.GetCellTypeVisual(currentType);
+        typeVisual.sprite = _visualManager.GetCellTypeVisual(currentType);
     }
 
     private void ItemType()
     {
         cellEmpty.SetActive(true);
-        typeVisual.sprite = _cellVisualManager.GetCellTypeVisual(currentType);
+        typeVisual.sprite = _visualManager.GetCellTypeVisual(currentType);
     }
     #endregion
 
@@ -366,17 +368,17 @@ public class Cell : MonoBehaviour
     }
     private void NoneItemType()
     {
-        itemVisual.sprite = _cellVisualManager.GetCellItemVisuel(currentItemType);
+        itemVisual.sprite = _visualManager.GetCellItemVisuel(currentItemType);
     }
 
     private void PotionType()
     {
-        itemVisual.sprite = _cellVisualManager.GetCellItemVisuel(currentItemType);
+        itemVisual.sprite = _visualManager.GetCellItemVisuel(currentItemType);
     }
 
     private void SwordType()
     {
-        itemVisual.sprite = _cellVisualManager.GetCellItemVisuel(currentItemType);
+        itemVisual.sprite = _visualManager.GetCellItemVisuel(currentItemType);
     }
 
     #endregion
@@ -431,12 +433,12 @@ public class Cell : MonoBehaviour
     public void MineSwordDestruction(GameObject mineAnimType)
     {
         ChangeState(CellState.Cover);
-        StartCoroutine(CO_MineDestruction(_cellVisualManager.mineSwordedAnimation, 1.9f));
+        StartCoroutine(CO_MineDestruction(_visualManager.mineSwordedAnimation, 1.9f));
     }
     public void MineExplosion()
     {
         GameManager.Instance.player.DecreaseHealth(1);
-        StartCoroutine(CO_MineDestruction(_cellVisualManager.mineExplosionAnimation, 1.4f));
+        StartCoroutine(CO_MineDestruction(_visualManager.mineExplosionAnimation, 1.4f));
     }
     private IEnumerator CO_MineDestruction(GameObject mineAnimType, float animDuration)
     {
@@ -465,7 +467,7 @@ public class Cell : MonoBehaviour
     {
         if (cellNewState == CellState.PlantedSword)
         {
-            InstantiateAnimation(_cellVisualManager.plantedSwordAnimation);
+            InstantiateAnimation(_visualManager.plantedSwordAnimation);
         }
         yield return new WaitForSeconds(animDuration);
         if (cellNewState == CellState.PlantedSword)

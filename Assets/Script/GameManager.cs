@@ -4,6 +4,7 @@ using UnityEngine;
 using TMPro;
 using Unity.Collections;
 using UnityEngine.Rendering;
+using UnityEngine.Serialization;
 
 #region ENUMS
 public enum GameState
@@ -44,8 +45,8 @@ public class GameManager : MonoBehaviour
     //Singleton
     private static GameManager _instance;
     public static GameManager Instance => _instance;
-    [SerializeField] private CellVisualManager _CellVisualManager;
-    public static CellVisualManager cellVisualManager => _instance._CellVisualManager;
+    [FormerlySerializedAs("_CellVisualManager")] [SerializeField] private VisualManager visualManager;
+    public static VisualManager VisualManager => _instance.visualManager;
 
     [SerializeField] private RoomVisualManager _RoomVisualManager;
     public static RoomVisualManager roomVisualManager => _instance._RoomVisualManager;
@@ -57,7 +58,7 @@ public class GameManager : MonoBehaviour
         _instance = this;
         
         roomVisualManager.Init();
-        cellVisualManager.Init();
+        VisualManager.Init();
         
         player.Init();
         dungeonManager.Init();

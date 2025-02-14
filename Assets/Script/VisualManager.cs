@@ -1,11 +1,17 @@
+using System.Collections.Generic;
 using Dida.Rendering;
 using UnityEngine;
 using Debug = UnityEngine.Debug;
 using NaughtyAttributes;
+using UnityEngine.U2D;
 
-public class CellVisualManager : MonoBehaviour
+public class VisualManager : MonoBehaviour
 {
     #region PARAMETERS
+    public SpriteAtlas spriteAtlas;
+    private readonly Dictionary<string, Sprite> spriteDictionary = new Dictionary<string, Sprite>();
+    [ReadOnly] public Sprite[] sprites; 
+    
     [Header("_______CELL VISUAL")]
     [Header("ITEMS VISUAL")]
     public Sprite potionSprite;
@@ -40,12 +46,35 @@ public class CellVisualManager : MonoBehaviour
     public void Init()
     {
         if (GameManager.roomVisualManager.mainColorsVolume.profile.TryGet(out visualSettings)) { }
+        LoadSprites();
+    }
+    private void LoadSprites()
+    {
+        sprites = new Sprite[spriteAtlas.spriteCount];
+        spriteAtlas.GetSprites(sprites);
+        foreach (Sprite sprite in sprites)
+        {
+            spriteDictionary[sprite.name.Replace("(Clone)", "")] = sprite;
+        }
+    }
+    #endregion INIT
+    
+    public Sprite GetSprite(string spriteName)
+    {
+        
+        if (spriteDictionary.TryGetValue(spriteName, out Sprite sprite))
+        {
+            return sprite;
+        }
+        else
+        {
+            return null;
+        }
     }
     
+    #region DEPRECATED GET CELLS VISUALS
 
-    #endregion INIT
-
-    #region GET CELLS VISUALS
+    
     public Sprite GetCellTypeVisual(CellType cellType)
     {
         Sprite cellTypeVisual = null;

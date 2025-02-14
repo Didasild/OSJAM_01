@@ -2302,7 +2302,7 @@ MonoBehaviour:
   endScreenUI: {fileID: 1289361010}
   player: {fileID: 1365082114}
   debugObject: {fileID: 816142824}
-  _CellVisualManager: {fileID: 348095978}
+  visualManager: {fileID: 348095978}
   _RoomVisualManager: {fileID: 348095979}
 --- !u!114 &348095978
 MonoBehaviour:
@@ -2316,6 +2316,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 89657720d811aae489ce138c2e695240, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  spriteAtlas: {fileID: 100100200, guid: b4abebcd77df7d440800899c5f4c5f7d, type: 3}
+  spriteList: []
   potionSprite: {fileID: 21300000, guid: 41f988e86a5c0994e8c9d22350730de3, type: 3}
   swordSprite: {fileID: -1642188784, guid: c94e132b749028748a2f7aabe45ce268, type: 3}
   inactiveSprite: {fileID: 21300000, guid: 4e1f33f8183bea142bea42ba081bf534, type: 3}

@@ -34,7 +34,7 @@ public class CellEditor : MonoBehaviour
     public Vector2Int _cellPosition; // La position dans la grille
     
     //PRIVATE
-    private CellVisualManager _cellVisualManager;
+    private VisualManager _visualManager;
     #endregion VARIABLES
 
     #region "ON" FUNCTIONS
@@ -56,10 +56,10 @@ public class CellEditor : MonoBehaviour
     #endregion "ON" FUNCTIONS
 
     #region INIT
-    public void Initialize(CellVisualManager cellVisualManager)
+    public void Initialize(VisualManager visualManager)
     {
         gameObject.name = $"Cell ({cellState}, {cellType})";
-        _cellVisualManager = cellVisualManager;
+        _visualManager = visualManager;
         UpdateCellVisual();
         HideAllDescendants(transform);
     }
@@ -105,16 +105,16 @@ public class CellEditor : MonoBehaviour
         switch (cellState)
         {
             case CellState.Cover:
-                cellStateVisual.sprite = _cellVisualManager.coverSprite;
+                cellStateVisual.sprite = _visualManager.coverSprite;
                 break;
             case CellState.Reveal:
-                cellStateVisual.sprite = _cellVisualManager.revealSprite;
+                cellStateVisual.sprite = _visualManager.revealSprite;
                 break;
             case CellState.Flag:
-                cellStateVisual.sprite = _cellVisualManager.flagSprite;
+                cellStateVisual.sprite = _visualManager.flagSprite;
                 break;
             case CellState.PlantedSword:
-                cellStateVisual.sprite = _cellVisualManager.plantedSwordSprite;
+                cellStateVisual.sprite = _visualManager.plantedSwordSprite;
                 break;
         }
 
@@ -128,10 +128,10 @@ public class CellEditor : MonoBehaviour
                 cellTypeVisual.sprite = null;
                 break;
             case CellType.Mine:
-                cellTypeVisual.sprite = _cellVisualManager.mineIconSprite;
+                cellTypeVisual.sprite = _visualManager.mineIconSprite;
                 break;
             case CellType.Gate:
-                cellTypeVisual.sprite = _cellVisualManager.stairType;
+                cellTypeVisual.sprite = _visualManager.stairType;
                 break;
             case CellType.Hint:
 
@@ -156,10 +156,10 @@ public class CellEditor : MonoBehaviour
                 cellTypeVisual.sprite = null;
                 break;
             case ItemTypeEnum.Potion:
-                cellTypeVisual.sprite = _cellVisualManager.potionSprite;
+                cellTypeVisual.sprite = _visualManager.potionSprite;
                 break;
             case ItemTypeEnum.Sword:
-                cellTypeVisual.sprite = _cellVisualManager.swordSprite;
+                cellTypeVisual.sprite = _visualManager.swordSprite;
                 break;
             case ItemTypeEnum.Coin:
                 cellTypeVisual.sprite = null;

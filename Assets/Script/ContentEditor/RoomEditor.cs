@@ -34,7 +34,7 @@ public class RoomEditor : MonoBehaviour
     [Header("____DEBUG")]
     public float cellSpacing = 1.0f;                  // Espacement entre les cellules
     public GameObject cellPrefab;                   // Prefab de la cellule
-    public CellVisualManager cellVisualManager;
+    [FormerlySerializedAs("cellVisualManager")] public VisualManager visualManager;
     [NaughtyAttributes.ReadOnly] public List<CellEditor> selectedCells;
     [NaughtyAttributes.ReadOnly] public List<CellEditor> cells;
     public string roomSaveString;
@@ -90,7 +90,7 @@ public class RoomEditor : MonoBehaviour
                 if (cellEditor != null)
                 {
                     cellEditor._cellPosition = new Vector2Int(row, col);
-                    cellEditor.Initialize(cellVisualManager);
+                    cellEditor.Initialize(visualManager);
                 }
             }
         }
@@ -166,7 +166,7 @@ public class RoomEditor : MonoBehaviour
             if (cellEditor != null)
             {
                 cellEditor._cellPosition = new Vector2Int(row, col);
-                cellEditor.Initialize(cellVisualManager);
+                cellEditor.Initialize(visualManager);
             }
             
             //Update les infos de save de l'inspector
