@@ -68,24 +68,26 @@ public class RoomEditor : MonoBehaviour
     public void GenerateEditorRoom()
     {
         ClearEditorRoom();
-        // Vérifiez que le prefab est assigné
+
         if (cellPrefab == null)
         {
             Debug.LogWarning("Cell prefab is not assigned.");
             return;
         }
 
-        // Générer la grille
+        // Calculer le centre de la grille en fonction de sa taille
+        Vector2 gridOffset = new Vector2((roomSize.x - 1) * cellSpacing * -0.5f, (roomSize.y - 1) * cellSpacing * 0.5f);
+
         for (int row = 0; row < roomSize.y; row++)
         {
             for (int col = 0; col < roomSize.x; col++)
             {
-                Vector2 gridOffset = GridManager.GetRoomOffset(cellSpacing, roomSize);                // Calculer la position de chaque cellule (ajust�e par l'offset)
-                Vector2 cellPosition = new Vector2(col * cellSpacing, -row * cellSpacing) + gridOffset ;
+                // Calculer la position de la cellule en appliquant l'offset centré
+                Vector2 cellPosition = new Vector2(col * cellSpacing, -row * cellSpacing) + gridOffset;
                 GameObject cell = Instantiate(cellPrefab, cellPosition, Quaternion.identity, transform);
                 cells.Add(cell.GetComponent<CellEditor>());
-                
-                // Configure la cellule
+            
+                // Configurer la cellule
                 CellEditor cellEditor = cell.GetComponent<CellEditor>();
                 if (cellEditor != null)
                 {
@@ -94,6 +96,7 @@ public class RoomEditor : MonoBehaviour
                 }
             }
         }
+
         foreach (CellEditor cellEditor in cells)
         {
             cellEditor.neighborsCellList = GiveNeighbors(cellEditor._cellPosition);
@@ -102,6 +105,8 @@ public class RoomEditor : MonoBehaviour
     public void LoadEditorRoom()
     {
         roomSaveString = roomSettingsToLoad.roomIDString;
+        roomSize = roomSettingsToLoad.GetRoomSizeFromString(roomSaveString);
+        
         if (string.IsNullOrEmpty(roomSaveString))
         {
             Debug.LogError("Room String est vide !");

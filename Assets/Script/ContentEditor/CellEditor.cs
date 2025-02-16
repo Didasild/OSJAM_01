@@ -88,7 +88,6 @@ public class CellEditor : MonoBehaviour
                 break; // Sort de la boucle dès que l'objet est trouvé
             }
         }
-        //Debug.Log($"Selected: {isSelected} :" + gameObject.name);
     }
     #endregion
 

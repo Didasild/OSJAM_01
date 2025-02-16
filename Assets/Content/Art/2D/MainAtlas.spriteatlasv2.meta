@@ -18,7 +18,7 @@ SpriteAtlasImporter:
     buildTarget: DefaultTexturePlatform
     maxTextureSize: 1024
     resizeAlgorithm: 0
-    textureFormat: -1
+    textureFormat: 4
     textureCompression: 2
     compressionQuality: 50
     crunchedCompression: 0
@@ -34,7 +34,7 @@ SpriteAtlasImporter:
     allowAlphaSplitting: 0
     enableRotation: 0
     enableTightPacking: 1
-    enableAlphaDilation: 0
+    enableAlphaDilation: 1
   secondaryTextureSettings: {}
   variantMultiplier: 1
   bindAsDefault: 1

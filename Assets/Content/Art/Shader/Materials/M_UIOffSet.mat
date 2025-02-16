@@ -42,7 +42,7 @@ Material:
     m_Ints: []
     m_Floats:
     - _XOffSet: -11.5
-    - _XOffset: 0.51
+    - _XOffset: 1
     - _XPixelOffSet: 0
     - _YOffSet: 0
     m_Colors: []

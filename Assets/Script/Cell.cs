@@ -384,6 +384,12 @@ public class Cell : MonoBehaviour
     #endregion
 
     #region ANIMATIONS
+
+    
+
+    #endregion ANIMATIONS
+    
+    #region ANIMATIONS DEPRECATED
     private void InstantiateAnimation(GameObject animPrefab)
     {
         {

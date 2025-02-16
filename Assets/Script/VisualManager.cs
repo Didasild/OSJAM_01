@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using Dida.Rendering;
 using UnityEngine;
@@ -12,31 +13,31 @@ public class VisualManager : MonoBehaviour
     private readonly Dictionary<string, Sprite> spriteDictionary = new Dictionary<string, Sprite>();
     [ReadOnly] public Sprite[] sprites; 
     
-    [Header("_______CELL VISUAL")]
-    [Header("ITEMS VISUAL")]
-    public Sprite potionSprite;
-    public Sprite swordSprite;
 
-    [Header("CELL STATE VISUAL")]
-    public Sprite inactiveSprite;
-    public Sprite clickedSprite;
-    public Sprite flagSprite;
-    public Sprite plantedSwordSprite;
-
-    [Header("CELL TYPE VISUAL")]
-    public Sprite stairType;
 
     [Header("_______CELL ANIMATIONS")]
     public GameObject mineExplosionAnimation;
     public GameObject mineSwordedAnimation;
     public GameObject plantedSwordAnimation;
     
-    [Header("_______OTHER")] 
+    [Header("_______EDITOR")] 
     public bool inEditorScene;
+    [Header("_______CELL VISUAL")]
+    [Header("ITEMS VISUAL")]
+    [ShowIf("inEditorScene")] public Sprite potionSprite;
+    [ShowIf("inEditorScene")] public Sprite swordSprite;
+
+    [Header("CELL STATE VISUAL")]
+    [ShowIf("inEditorScene")]public Sprite flagSprite;
+    [ShowIf("inEditorScene")]public Sprite plantedSwordSprite;
+
+    [Header("CELL TYPE VISUAL")]
+    [ShowIf("inEditorScene")]public Sprite stairType;
+    
     [Header("_______CELL EDITOR VISUAL")] 
-    [ShowIf("inMainScene")] public Sprite coverSprite;
-    [ShowIf("inMainScene")] public Sprite revealSprite;
-    [ShowIf("inMainScene")] public Sprite mineIconSprite;
+    [ShowIf("inEditorScene")] public Sprite coverSprite;
+    [ShowIf("inEditorScene")] public Sprite revealSprite;
+    [ShowIf("inEditorScene")] public Sprite mineIconSprite;
     
     [HideInInspector] public VisualSettings visualSettings;
     #endregion
@@ -61,13 +62,13 @@ public class VisualManager : MonoBehaviour
     
     public Sprite GetSprite(string spriteName)
     {
-        
         if (spriteDictionary.TryGetValue(spriteName, out Sprite sprite))
         {
             return sprite;
         }
         else
         {
+            Debug.LogError($"Sprite {spriteName} not found");
             return null;
         }
     }
@@ -80,7 +81,7 @@ public class VisualManager : MonoBehaviour
         Sprite cellTypeVisual = null;
         if (cellType == CellType.Gate)
         {
-            cellTypeVisual = stairType;
+            cellTypeVisual = GetSprite("Cell_Type_Stair");
         }
         return cellTypeVisual;
     }
@@ -88,25 +89,25 @@ public class VisualManager : MonoBehaviour
     public Sprite GetCellStateVisual(CellState cellState)
     {
         Sprite cellStateVisual = null;
-        if (cellState == CellState.Reveal || cellState == CellState.Cover) 
+        switch (cellState)
         {
-            return null;
-        }
-        else if (cellState == CellState.Inactive)
-        {
-            cellStateVisual = inactiveSprite;
-        }
-        else if (cellState == CellState.Clicked)
-        {
-            cellStateVisual = clickedSprite;
-        }
-        else if (cellState == CellState.Flag)
-        {
-            cellStateVisual = flagSprite;
-        }
-        else if (cellState == CellState.PlantedSword)
-        {
-            cellStateVisual = plantedSwordSprite;
+            case CellState.Reveal:
+            case CellState.Cover:
+                return null;
+            case CellState.Inactive:
+                cellStateVisual = GetSprite("Cell_None");
+                break;
+            case CellState.Clicked:
+                cellStateVisual = GetSprite("Cell_State_Clicked");
+                break;
+            case CellState.Flag:
+                cellStateVisual = GetSprite("Cell_State_Flag");
+                break;
+            case CellState.PlantedSword:
+                cellStateVisual = GetSprite("Cell_State_Sword");
+                break;
+            default:
+                throw new ArgumentOutOfRangeException(nameof(cellState), cellState, null);
         }
         return cellStateVisual;
     }
@@ -120,11 +121,11 @@ public class VisualManager : MonoBehaviour
         }
         else if (itemType == ItemTypeEnum.Potion)
         {
-            spriteItemVisual = potionSprite;
+            spriteItemVisual = GetSprite("Cell_Item_Potion");
         }
         else if (itemType == ItemTypeEnum.Sword)
         {
-            spriteItemVisual = swordSprite;
+            spriteItemVisual = GetSprite("Cell_Item_Sword");
         }
         return spriteItemVisual;
     }
