@@ -2,8 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
-using Unity.Collections;
-using UnityEngine.Rendering;
 using UnityEngine.Serialization;
 
 #region ENUMS

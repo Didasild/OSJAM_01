@@ -1,8 +1,5 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
-using Dida.Rendering;
-using TMPro;
 using UnityEngine;
 using NaughtyAttributes;
 using DG.Tweening;
@@ -262,6 +259,7 @@ public class Cell : MonoBehaviour
     {
         if (cellCover.transform != null && cellCover.activeSelf)
         {
+            cellCover.transform.DOKill();
             cellCover.transform.localScale = Vector3.one;
             cellCover.transform.DOScale(0f, 0.5f * 0.3f) // Bump rapide
                 .SetEase(Ease.InBack)
@@ -427,6 +425,7 @@ public class Cell : MonoBehaviour
 
     public void SpawnAnimation()
     {
+        transform.DOKill();
         transform.localScale = Vector3.zero;
         transform.DOScale(1f, debugAnimDuration)
             .SetEase(Ease.OutCubic)
