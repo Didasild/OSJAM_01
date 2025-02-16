@@ -5,6 +5,7 @@ using Dida.Rendering;
 using TMPro;
 using UnityEngine;
 using NaughtyAttributes;
+using DG.Tweening;
     
 #region ENUMS
 public enum CellState
@@ -62,12 +63,12 @@ public class Cell : MonoBehaviour
 
     [Header("CELL ANIMS STATE")]
     public GameObject animParent;
+    public float debugAnimDuration = 0.5f;
     
     //Private Variables
     private GameManager _gameManager;
 
     private Collider2D _collider;
-    private Animator _animator;
     
     private VisualManager _visualManager;
     private SpriteRenderer _emptySprite;
@@ -80,7 +81,6 @@ public class Cell : MonoBehaviour
         _gameManager = GameManager.Instance;
         _visualManager = GameManager.VisualManager;
         
-        _animator = GetComponent<Animator>();
         _collider = GetComponent<Collider2D>();
         
         _cellPosition = cellPosition;
@@ -212,6 +212,7 @@ public class Cell : MonoBehaviour
         stateVisual.sprite = _visualManager.GetCellStateVisual(currentState);
     }
 
+    #region REVEAL
     private void RevealState()
     {
         //reactive le parent
@@ -227,27 +228,48 @@ public class Cell : MonoBehaviour
                 cell.ChangeState(CellState.Cover);
             }
         }
+
         //Reveal les cellules autour si il n'y a pas de mines
         int nbOfNeighborsMine = GetNeighborsType(CellType.Mine);
         if (nbOfNeighborsMine == 0)
         {
-            foreach (Cell cell in neighborsCellList)
-            {
-                if (cell.currentState == CellState.Cover)
-                {
-                    cell.ChangeState(CellState.Reveal);
-                }
-            }
+            RevealNeighbors();
         }
-
+        
+        RevealAndDisableCover();
+        stateVisual.sprite = _visualManager.GetCellStateVisual(currentState);
+        
         //Augmente le mana a chaque case reveal
         GameManager.Instance.player.IncreaseMana();
-
-        //Update Visual
-        PlayAnimation("Cell_Reveal");
-        //StartCoroutine(CO_DeactiveCoverAfterDelay(0.2f));
-        stateVisual.sprite = _visualManager.GetCellStateVisual(currentState);
     }
+
+    private void RevealNeighbors()
+    {
+        Sequence sequence = DOTween.Sequence(); // Crée une séquence DOTween
+        float delayBetweenCells = 0.05f; // Temps entre chaque reveal
+
+        foreach (Cell cell in neighborsCellList)
+        {
+            if (cell.currentState == CellState.Cover)
+            {
+                sequence.AppendInterval(delayBetweenCells) // Ajoute un délai avant chaque animation
+                    .AppendCallback(() => cell.ChangeState(CellState.Reveal));
+            }
+        }
+    }
+    
+    private void RevealAndDisableCover()
+    {
+        if (cellCover.transform != null && cellCover.activeSelf)
+        {
+            cellCover.transform.localScale = Vector3.one;
+            cellCover.transform.DOScale(0f, 0.5f * 0.3f) // Bump rapide
+                .SetEase(Ease.InBack)
+                .OnComplete(() => cellCover.SetActive(false));
+        }
+    }
+    #endregion REVEAL
+
 
     private void FlagState()
     {
@@ -382,14 +404,8 @@ public class Cell : MonoBehaviour
     }
 
     #endregion
-
+    
     #region ANIMATIONS
-
-    
-
-    #endregion ANIMATIONS
-    
-    #region ANIMATIONS DEPRECATED
     private void InstantiateAnimation(GameObject animPrefab)
     {
         {
@@ -409,17 +425,14 @@ public class Cell : MonoBehaviour
         }
     }
 
-    public void PlayAnimation(String animName)
+    public void SpawnAnimation()
     {
-        _animator.Play(animName);
+        transform.localScale = Vector3.zero;
+        transform.DOScale(1f, debugAnimDuration)
+            .SetEase(Ease.OutCubic)
+            .OnComplete(() => _collider.enabled = true);
     }
-
-    public IEnumerator CO_DeactiveCoverAfterDelay(float delay)
-    {
-        yield return new WaitForSeconds(delay);
-        cellCover.SetActive(false);
-    }
-
+    
     private void DestroyAnimationPrefab()
     {
         // Vérifie si le GameObject a des enfants
@@ -432,6 +445,11 @@ public class Cell : MonoBehaviour
                 Destroy(animParent.transform.GetChild(i).gameObject);
             }
         }
+    }
+    public IEnumerator CO_DeactiveCoverAfterDelay(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        cellCover.SetActive(false);
     }
     #endregion
 

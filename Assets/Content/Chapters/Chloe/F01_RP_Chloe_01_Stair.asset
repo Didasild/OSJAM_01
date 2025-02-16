@@ -14,7 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   proceduralRoom: 1
   mandatory: 0
+  isFoW: 0
   roomType: 1
+  roomColorsVolumeProfile: {fileID: 0}
   roomIDString: 
   haveProceduralCells: 0
   minRoomSize: {x: 10, y: 10}
@@ -22,4 +24,10 @@ MonoBehaviour:
   roomPourcentageOfMine: 13
   roomPourcentageOfNone: 0
   haveStair: 1
-  itemRanges: []
+  itemRanges:
+  - itemType: 2
+    min: 0
+    max: 0
+  - itemType: 1
+    min: 0
+    max: 0

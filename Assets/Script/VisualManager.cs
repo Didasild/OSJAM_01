@@ -12,8 +12,6 @@ public class VisualManager : MonoBehaviour
     public SpriteAtlas spriteAtlas;
     private readonly Dictionary<string, Sprite> spriteDictionary = new Dictionary<string, Sprite>();
     [ReadOnly] public Sprite[] sprites; 
-    
-
 
     [Header("_______CELL ANIMATIONS")]
     public GameObject mineExplosionAnimation;

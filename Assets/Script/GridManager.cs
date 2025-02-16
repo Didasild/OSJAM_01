@@ -368,7 +368,7 @@ public class GridManager : MonoBehaviour
             // Ajouter � la cha�ne sous forme : x_y_state|
             gridStringBuilder.Append($"{x}_{y}_{state}_{type}_{itemType}|");
         }
-        // Retirer le dernier caract�re "|" pour une cha�ne propre
+        // Retirer le dernier caractère "|" pour une chaine propre
         if (gridStringBuilder.Length > 0)
         {
             gridStringBuilder.Length--;
@@ -396,10 +396,11 @@ public class GridManager : MonoBehaviour
     {
         if (roomState != RoomState.FogOfWar)
         {
+            Debug.Log("ActiveList Of Cells is not FogOfWar");
             foreach (Cell cell in cellList)
             {
                 cell.gameObject.SetActive(true);
-                cell.PlayAnimation("Cell_Apparition");
+                cell.SpawnAnimation();
             }
         }
         else
@@ -434,8 +435,8 @@ public class GridManager : MonoBehaviour
         {
             foreach (Cell cell in diagonalGroups[key])
             {
-                cell.gameObject.SetActive(true); // Activer la cellule
-                cell.PlayAnimation("Cell_Apparition");
+                cell.gameObject.SetActive(true);
+                cell.SpawnAnimation();
             }
             yield return new WaitForSecondsRealtime(timeBetweenApparition); // Délai entre les groupes
         }

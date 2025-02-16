@@ -545,6 +545,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 5073111335782266271, guid: 58d5dd58eb3d9ef43b9b9d0bf076832c, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7824800057480612806, guid: 58d5dd58eb3d9ef43b9b9d0bf076832c, type: 3}
       propertyPath: m_IsActive
       value: 0
@@ -782,6 +786,10 @@ PrefabInstance:
     - target: {fileID: 4634166477021220514, guid: 58d5dd58eb3d9ef43b9b9d0bf076832c, type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5073111335782266271, guid: 58d5dd58eb3d9ef43b9b9d0bf076832c, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7824800057480612806, guid: 58d5dd58eb3d9ef43b9b9d0bf076832c, type: 3}
       propertyPath: m_IsActive
@@ -1268,6 +1276,10 @@ PrefabInstance:
     - target: {fileID: 4634166477021220514, guid: 58d5dd58eb3d9ef43b9b9d0bf076832c, type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5073111335782266271, guid: 58d5dd58eb3d9ef43b9b9d0bf076832c, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7824800057480612806, guid: 58d5dd58eb3d9ef43b9b9d0bf076832c, type: 3}
       propertyPath: m_IsActive
@@ -1776,6 +1788,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 5073111335782266271, guid: 58d5dd58eb3d9ef43b9b9d0bf076832c, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7824800057480612806, guid: 58d5dd58eb3d9ef43b9b9d0bf076832c, type: 3}
       propertyPath: m_IsActive
       value: 0
@@ -1838,9 +1854,13 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 824022572}
     m_Modifications:
-    - target: {fileID: 1870218451837387281, guid: 58d5dd58eb3d9ef43b9b9d0bf076832c, type: 3}
+    - target: {fileID: 568086579251735114, guid: 58d5dd58eb3d9ef43b9b9d0bf076832c, type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1870218451837387281, guid: 58d5dd58eb3d9ef43b9b9d0bf076832c, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2125257166701740220, guid: 58d5dd58eb3d9ef43b9b9d0bf076832c, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1893,6 +1913,10 @@ PrefabInstance:
     - target: {fileID: 4634166477021220514, guid: 58d5dd58eb3d9ef43b9b9d0bf076832c, type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5073111335782266271, guid: 58d5dd58eb3d9ef43b9b9d0bf076832c, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7824800057480612806, guid: 58d5dd58eb3d9ef43b9b9d0bf076832c, type: 3}
       propertyPath: m_IsActive
@@ -2301,17 +2325,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spriteAtlas: {fileID: 100100200, guid: b4abebcd77df7d440800899c5f4c5f7d, type: 3}
   sprites: []
-  potionSprite: {fileID: 21300000, guid: 41f988e86a5c0994e8c9d22350730de3, type: 3}
-  swordSprite: {fileID: -1642188784, guid: c94e132b749028748a2f7aabe45ce268, type: 3}
-  inactiveSprite: {fileID: 21300000, guid: 4e1f33f8183bea142bea42ba081bf534, type: 3}
-  clickedSprite: {fileID: 1570783750, guid: c94e132b749028748a2f7aabe45ce268, type: 3}
-  flagSprite: {fileID: 21300000, guid: 4c5f42157c6f1b04f8d27f6793da0370, type: 3}
-  plantedSwordSprite: {fileID: 21300000, guid: 315bbc9ef95011947978da787bbc903b, type: 3}
-  stairType: {fileID: 21300000, guid: e31730fbbfba0d5488be33e71ec3f6fc, type: 3}
   mineExplosionAnimation: {fileID: 735029770632867219, guid: 788e9c56c1dca8d419a4d03f8570560a, type: 3}
   mineSwordedAnimation: {fileID: 2848005772284224300, guid: 229ef30d1439cd649a956d38120a0580, type: 3}
   plantedSwordAnimation: {fileID: 6271478425686541969, guid: 9819873197c9915408555a501a962d53, type: 3}
   inEditorScene: 0
+  potionSprite: {fileID: 0}
+  swordSprite: {fileID: 0}
+  flagSprite: {fileID: 0}
+  plantedSwordSprite: {fileID: 0}
+  stairType: {fileID: 0}
   coverSprite: {fileID: 0}
   revealSprite: {fileID: 0}
   mineIconSprite: {fileID: 0}
@@ -4827,6 +4849,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 5073111335782266271, guid: 58d5dd58eb3d9ef43b9b9d0bf076832c, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7824800057480612806, guid: 58d5dd58eb3d9ef43b9b9d0bf076832c, type: 3}
       propertyPath: m_IsActive
       value: 0
@@ -5354,6 +5380,10 @@ PrefabInstance:
     - target: {fileID: 4634166477021220514, guid: 58d5dd58eb3d9ef43b9b9d0bf076832c, type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5073111335782266271, guid: 58d5dd58eb3d9ef43b9b9d0bf076832c, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7824800057480612806, guid: 58d5dd58eb3d9ef43b9b9d0bf076832c, type: 3}
       propertyPath: m_IsActive
@@ -8683,7 +8713,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &1779639408
 Transform:
@@ -8723,7 +8753,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+  - {fileID: 2100000, guid: 191ecdd42afd24945b203f4d0e53b118, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -9017,7 +9047,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1870218451837387281, guid: 58d5dd58eb3d9ef43b9b9d0bf076832c, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2125257166701740220, guid: 58d5dd58eb3d9ef43b9b9d0bf076832c, type: 3}
       propertyPath: m_LocalPosition.x
@@ -9070,6 +9100,14 @@ PrefabInstance:
     - target: {fileID: 4634166477021220514, guid: 58d5dd58eb3d9ef43b9b9d0bf076832c, type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5073111335782266271, guid: 58d5dd58eb3d9ef43b9b9d0bf076832c, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6154028252075495138, guid: 58d5dd58eb3d9ef43b9b9d0bf076832c, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7824800057480612806, guid: 58d5dd58eb3d9ef43b9b9d0bf076832c, type: 3}
       propertyPath: m_IsActive
@@ -9734,6 +9772,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 5073111335782266271, guid: 58d5dd58eb3d9ef43b9b9d0bf076832c, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7824800057480612806, guid: 58d5dd58eb3d9ef43b9b9d0bf076832c, type: 3}
       propertyPath: m_IsActive
       value: 0
@@ -9876,7 +9918,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &1957584733
 Transform:
@@ -9916,7 +9958,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+  - {fileID: 2100000, guid: 191ecdd42afd24945b203f4d0e53b118, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -10048,6 +10090,10 @@ PrefabInstance:
     - target: {fileID: 4634166477021220514, guid: 58d5dd58eb3d9ef43b9b9d0bf076832c, type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5073111335782266271, guid: 58d5dd58eb3d9ef43b9b9d0bf076832c, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7824800057480612806, guid: 58d5dd58eb3d9ef43b9b9d0bf076832c, type: 3}
       propertyPath: m_IsActive
@@ -10538,6 +10584,10 @@ PrefabInstance:
     - target: {fileID: 4634166477021220514, guid: 58d5dd58eb3d9ef43b9b9d0bf076832c, type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5073111335782266271, guid: 58d5dd58eb3d9ef43b9b9d0bf076832c, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7824800057480612806, guid: 58d5dd58eb3d9ef43b9b9d0bf076832c, type: 3}
       propertyPath: m_IsActive
