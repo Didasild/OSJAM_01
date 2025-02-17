@@ -4,6 +4,7 @@ using UnityEditor;
 using UnityEngine;
 using UnityEngine.Serialization;
 
+
 [ExecuteInEditMode]
 public class RoomEditor : MonoBehaviour
 {
@@ -362,6 +363,7 @@ public class RoomEditor : MonoBehaviour
         EditorUtility.FocusProjectWindow();
         Selection.activeObject = newRoomSettings;
         roomSettingsToSave = newRoomSettings;
+        EditorUtility.SetDirty(newRoomSettings);
 
         Debug.Log($"ScriptableObject created at {path}");
 
@@ -397,6 +399,7 @@ public class RoomEditor : MonoBehaviour
             roomSettingsToSave.haveProceduralCells = false;
         }
         EditorUtility.FocusProjectWindow();
+        EditorUtility.SetDirty(roomSettingsToSave);
     }
     private String SaveRoomString()
     {
