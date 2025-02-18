@@ -72,9 +72,8 @@ public class VisualManager : MonoBehaviour
         }
     }
     
-    #region DEPRECATED GET CELLS VISUALS
-
-    
+    #region GET CELLS VISUALS
+   
     public Sprite GetCellTypeVisual(CellType cellType)
     {
         Sprite cellTypeVisual = null;
