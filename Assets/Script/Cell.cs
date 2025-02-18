@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -481,24 +482,27 @@ public class Cell : MonoBehaviour
         ChangeState(CellState.Reveal);
     }
 
-    public void ItemStateTransition(CellState cellNewState, float animDuration)
+    public void StateTransitionIn(CellState cellNewState, float animDuration)
     {
         ChangeState(CellState.Cover);
-        StartCoroutine(CO_StateTransitionAnim(cellNewState, animDuration));
+        StartCoroutine(CO_StateTransitionInAnim(cellNewState, animDuration));
     }
-    private IEnumerator CO_StateTransitionAnim(CellState cellNewState, float animDuration)
+    private IEnumerator CO_StateTransitionInAnim(CellState cellNewState, float animDuration)
     {
-        if (cellNewState == CellState.PlantedSword)
+        switch (cellNewState)
         {
-            InstantiateAnimation(_visualManager.plantedSwordAnimation);
+            case CellState.PlantedSword:
+                InstantiateAnimation(_visualManager.plantedSwordAnimation);
+                break;
+            case CellState.Flag:
+                InstantiateAnimation(_visualManager.flagInAnimation);
+                break;
+            default:
+                throw new ArgumentOutOfRangeException(nameof(cellNewState), cellNewState, null);
         }
         yield return new WaitForSeconds(animDuration);
-        if (cellNewState == CellState.PlantedSword)
-        {
-            DestroyAnimationPrefab();
-            ChangeState(CellState.PlantedSword);
-        }
-
+        DestroyAnimationPrefab();
+        ChangeState(cellNewState);
     }
     #endregion
 

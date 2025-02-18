@@ -67,6 +67,8 @@ Material:
     - _Color: {r: 0, g: 0, b: 0, a: 0}
     - _ColorCenter: {r: 0.16862746, g: 0.16862746, b: 0.16862746, a: 0}
     - _DefaultScale: {r: 10, g: 10, b: 0, a: 0}
+    - _GridMaskOffSet: {r: 0.1, g: 0.54, b: 0, a: 0}
+    - _GridOffSet: {r: 0, g: 0, b: 0, a: 0}
     - _Size: {r: 1, g: 1, b: 0, a: 0}
   m_BuildTextureStacks: []
   m_AllowLocking: 1

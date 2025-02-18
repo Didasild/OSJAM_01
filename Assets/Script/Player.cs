@@ -126,12 +126,12 @@ public class Player : MonoBehaviour
         {
             if (cellOver.currentState == CellState.Cover)
             {
-                cellOver.ChangeState(CellState.Flag);
+                cellOver.StateTransitionIn(CellState.Flag, 0.2f);
+                //cellOver.ChangeState(CellState.Flag);
             }
             else if (cellOver.currentState == CellState.Flag && _swordCounter >= 1f)
             {
-                //cellOver.ChangeState(CellState.PlantedSword);
-                cellOver.ItemStateTransition(CellState.PlantedSword, 0.35f);
+                cellOver.StateTransitionIn(CellState.PlantedSword, 0.35f);
                 DecreaseSwordCounter();
             }
             else if (cellOver.currentState == CellState.Flag && _swordCounter == 0f)

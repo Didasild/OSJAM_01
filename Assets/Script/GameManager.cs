@@ -38,7 +38,6 @@ public class GameManager : MonoBehaviour
     [Header("REFERENCES")]
     public GameObject endScreenUI;
     public Player player;
-    public GameObject debugObject;
 
     //Singleton
     private static GameManager _instance;
@@ -60,8 +59,6 @@ public class GameManager : MonoBehaviour
         
         player.Init();
         dungeonManager.Init();
-        
-        debugObject.SetActive(false);
     }
 
     public void Start()

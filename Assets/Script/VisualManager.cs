@@ -17,6 +17,7 @@ public class VisualManager : MonoBehaviour
     public GameObject mineExplosionAnimation;
     public GameObject mineSwordedAnimation;
     public GameObject plantedSwordAnimation;
+    public GameObject flagInAnimation;
     
     [Header("_______EDITOR")] 
     public bool inEditorScene;
