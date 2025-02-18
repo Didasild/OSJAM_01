@@ -2308,7 +2308,6 @@ MonoBehaviour:
   gridManager: {fileID: 712061424}
   endScreenUI: {fileID: 1289361010}
   player: {fileID: 1365082114}
-  debugObject: {fileID: 816142824}
   visualManager: {fileID: 348095978}
   _RoomVisualManager: {fileID: 348095979}
 --- !u!114 &348095978
@@ -2353,7 +2352,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mainColorsVolume: {fileID: 1687622998}
   transitionColorsVolume: {fileID: 1527443215}
-  visualTransitionDuration: 1
+  visualTransitionDuration: 0.5
   roomFoWSprite: {fileID: 21300000, guid: 264bd4a4bb254b0428fb3d0d65d0119e, type: 3}
   roomStartedSprite: {fileID: 21300000, guid: 37bfd3aee90f3824188408f4d247021e, type: 3}
   roomCompleteSprite: {fileID: 21300000, guid: 53ff0180f4371724ab172385a7ee14c1, type: 3}
