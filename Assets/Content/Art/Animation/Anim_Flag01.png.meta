@@ -1,0 +1,449 @@
+fileFormatVersion: 2
+guid: 99ebe3e28180d404c907889b06b0958f
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -7258231676164848141
+    second: Anim_Flag01_0
+  - first:
+      213: -7124840085031485430
+    second: Anim_Flag01_1
+  - first:
+      213: 8877727179030762918
+    second: Anim_Flag01_2
+  - first:
+      213: 8752451661714872192
+    second: Anim_Flag01_3
+  - first:
+      213: 4570861786121703015
+    second: Anim_Flag01_4
+  - first:
+      213: -8082357780884731675
+    second: Anim_Flag01_5
+  - first:
+      213: 2601899247660930354
+    second: Anim_Flag01_6
+  - first:
+      213: -5869658817646762041
+    second: Anim_Flag01_7
+  - first:
+      213: -2340874302127358148
+    second: Anim_Flag01_8
+  - first:
+      213: 2297171559544871767
+    second: Anim_Flag01_9
+  - first:
+      213: 8238628370289347982
+    second: Anim_Flag01_10
+  - first:
+      213: 4378058751187884941
+    second: Anim_Flag01_11
+  - first:
+      213: -9075187607592483695
+    second: Anim_Flag01_12
+  - first:
+      213: -2847444546006124059
+    second: Anim_Flag01_13
+  - first:
+      213: 9139480462051507241
+    second: Anim_Flag01_14
+  - first:
+      213: -282250909463417667
+    second: Anim_Flag01_15
+  - first:
+      213: 3089693292712693924
+    second: Anim_Flag01_16
+  - first:
+      213: 5704898822669420850
+    second: Anim_Flag01_17
+  - first:
+      213: 4623099074012437276
+    second: Anim_Flag01_18
+  - first:
+      213: -1375402568294868284
+    second: Anim_Flag01_19
+  - first:
+      213: 6184872911774204989
+    second: Anim_Flag01_20
+  - first:
+      213: 3083329200840295289
+    second: Anim_Flag01_21
+  - first:
+      213: 3683680910557899448
+    second: Anim_Flag01_22
+  - first:
+      213: -2553655310654226162
+    second: Anim_Flag01_23
+  - first:
+      213: 7143807444996685954
+    second: Anim_Flag01_24
+  - first:
+      213: -8504660813319064507
+    second: Anim_Flag01_25
+  - first:
+      213: -7826534167603705227
+    second: Anim_Flag01_26
+  - first:
+      213: -8928535044565508221
+    second: Anim_Flag01_27
+  - first:
+      213: 527936359072583021
+    second: Anim_Flag01_28
+  - first:
+      213: -3847951501069747772
+    second: Anim_Flag01_29
+  - first:
+      213: -168171302206331544
+    second: Anim_Flag01_30
+  - first:
+      213: 5853267308284710123
+    second: Anim_Flag01_31
+  - first:
+      213: -8801771996912696281
+    second: Anim_Flag01_32
+  - first:
+      213: -8912348526281858404
+    second: Anim_Flag01_33
+  - first:
+      213: -91387713662353812
+    second: Anim_Flag01_34
+  - first:
+      213: -4286360669449096834
+    second: Anim_Flag01_35
+  - first:
+      213: -1907227255114018443
+    second: Anim_Flag01_36
+  - first:
+      213: -6353097043288913676
+    second: Anim_Flag01_37
+  - first:
+      213: 79152332867975539
+    second: Anim_Flag01_38
+  - first:
+      213: 3787228802191491530
+    second: Anim_Flag01_39
+  - first:
+      213: -3025383910166886720
+    second: Anim_Flag01_40
+  - first:
+      213: -5655575071513726686
+    second: Anim_Flag01_41
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 128
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Win64
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: iOS
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: VisionOS
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: tvOS
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Anim_Flag01_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 64
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3f5c4bc0fb4954b90800000000000000
+      internalID: -7258231676164848141
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Anim_Flag01_2
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 64
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6a595f645d5043b70800000000000000
+      internalID: 8877727179030762918
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Anim_Flag01_3
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 32
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 087da42f964f67970800000000000000
+      internalID: 8752451661714872192
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Anim_Flag01_5
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 32
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5e840c2ab62b5df80800000000000000
+      internalID: -8082357780884731675
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Anim_Flag01_6
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2359f2e849dcb1420800000000000000
+      internalID: 2601899247660930354
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Anim_Flag01_8
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c3fbbd5893b838fd0800000000000000
+      internalID: -2340874302127358148
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 6691d509a5151c44f818ab0a072d91d6
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      Anim_Flag01_0: -7258231676164848141
+      Anim_Flag01_1: -7124840085031485430
+      Anim_Flag01_2: 8877727179030762918
+      Anim_Flag01_3: 8752451661714872192
+      Anim_Flag01_4: 4570861786121703015
+      Anim_Flag01_5: -8082357780884731675
+      Anim_Flag01_6: 2601899247660930354
+      Anim_Flag01_7: -5869658817646762041
+      Anim_Flag01_8: -2340874302127358148
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
