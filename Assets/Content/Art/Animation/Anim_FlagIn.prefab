@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 548813465608526919}
   - component: {fileID: 580371179278836083}
   m_Layer: 0
-  m_Name: Anim_Flag01
+  m_Name: Anim_FlagIn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

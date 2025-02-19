@@ -27,7 +27,7 @@ public class Player : MonoBehaviour
     
 
     //Private Variables
-    [SerializeField] private Cell cellOver;
+    [SerializeField, ReadOnly] private Cell cellOver;
     private Cell _cellClicked;
     private Cell _firstCellClicked;
     private GridManager _gridManager;

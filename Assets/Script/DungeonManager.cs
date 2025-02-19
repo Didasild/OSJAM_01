@@ -44,14 +44,15 @@ public class DungeonManager : MonoBehaviour
     [Header("DEBUG")] 
     public TMP_Text roomNameDebugText;
     
-    private RoomVisualManager _roomVisualManager;
+    //private RoomVisualManager _roomVisualManager;
+    private VisualManager _visualManager;
     #endregion
 
     #region INIT
 
     public void Init()
     {
-        _roomVisualManager = GameManager.roomVisualManager;
+        _visualManager = GameManager.VisualManager;
     }
     #endregion
 
@@ -149,7 +150,7 @@ public class DungeonManager : MonoBehaviour
         GameManager.Instance.ChangeRoom(currentRoom);
 
         //Update le visuel de la minimap
-        currentRoom.roomSelectedVisual.sprite = _roomVisualManager.GetSelectedVisual(true);
+        currentRoom.roomSelectedVisual.sprite = _visualManager.GetSelectedVisual(true);
 
         //Update les boutons
         UpdateButtonStates();
@@ -194,7 +195,7 @@ public class DungeonManager : MonoBehaviour
     public void ChangeRoomDirection(RoomDirection direction)
     {
         SaveRoomData();
-        currentRoom.roomSelectedVisual.sprite = _roomVisualManager.GetSelectedVisual(false);
+        currentRoom.roomSelectedVisual.sprite = _visualManager.GetSelectedVisual(false);
         switch (direction)
         {
             case RoomDirection.Right:
@@ -226,7 +227,7 @@ public class DungeonManager : MonoBehaviour
                 }
                 break;
         }
-        currentRoom.roomSelectedVisual.sprite = _roomVisualManager.GetSelectedVisual(true);
+        currentRoom.roomSelectedVisual.sprite = _visualManager.GetSelectedVisual(true);
         UpdateButtonStates();
         UpdateRoomDebugName();
     }
@@ -234,10 +235,10 @@ public class DungeonManager : MonoBehaviour
     public void ChangeRoomMinimap(RoomData room)
     {
         SaveRoomData();
-        currentRoom.roomSelectedVisual.sprite = _roomVisualManager.GetSelectedVisual(false);
+        currentRoom.roomSelectedVisual.sprite = _visualManager.GetSelectedVisual(false);
         currentRoom = room;
         GameManager.Instance.ChangeRoom(room);
-        currentRoom.roomSelectedVisual.sprite = _roomVisualManager.GetSelectedVisual(true);
+        currentRoom.roomSelectedVisual.sprite = _visualManager.GetSelectedVisual(true);
         UpdateButtonStates();
     }
 

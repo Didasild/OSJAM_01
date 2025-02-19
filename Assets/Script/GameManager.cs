@@ -45,8 +45,8 @@ public class GameManager : MonoBehaviour
     [FormerlySerializedAs("_CellVisualManager")] [SerializeField] private VisualManager visualManager;
     public static VisualManager VisualManager => _instance.visualManager;
 
-    [SerializeField] private RoomVisualManager _RoomVisualManager;
-    public static RoomVisualManager roomVisualManager => _instance._RoomVisualManager;
+    //[SerializeField] private RoomVisualManager _RoomVisualManager;
+    //public static RoomVisualManager roomVisualManager => _instance._RoomVisualManager;
     #endregion PARAMETERS
 
     #region INIT
@@ -54,7 +54,7 @@ public class GameManager : MonoBehaviour
     {
         _instance = this;
         
-        roomVisualManager.Init();
+        //roomVisualManager.Init();
         VisualManager.Init();
         
         player.Init();
@@ -137,7 +137,7 @@ public class GameManager : MonoBehaviour
     public void ChangeRoom(RoomData roomData)
     {
         currentRoomSettings = roomData.roomSettings;
-        roomVisualManager.UpdateRoomVisual(roomData);
+        VisualManager.UpdateRoomVisual(roomData);
         if (roomData.currentRoomState != RoomState.FogOfWar)
         {
             gridManager.LoadRoomFromString(roomData.roomSavedString, currentRoomSettings.GetRoomSizeFromString(roomData.roomSavedString), currentRoomSettings.haveProceduralCells);

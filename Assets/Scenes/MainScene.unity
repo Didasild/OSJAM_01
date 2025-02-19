@@ -2258,7 +2258,6 @@ GameObject:
   - component: {fileID: 348095976}
   - component: {fileID: 348095977}
   - component: {fileID: 348095978}
-  - component: {fileID: 348095979}
   m_Layer: 0
   m_Name: GAME_MANAGER
   m_TagString: Untagged
@@ -2309,7 +2308,6 @@ MonoBehaviour:
   endScreenUI: {fileID: 1289361010}
   player: {fileID: 1365082114}
   visualManager: {fileID: 348095978}
-  _RoomVisualManager: {fileID: 348095979}
 --- !u!114 &348095978
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2324,10 +2322,25 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spriteAtlas: {fileID: 100100200, guid: b4abebcd77df7d440800899c5f4c5f7d, type: 3}
   sprites: []
+  mainColorsVolume: {fileID: 1687622998}
+  transitionColorsVolume: {fileID: 1527443215}
+  visualTransitionDuration: 0.5
+  animationPrefabs:
+  - {fileID: 1499444410457814521, guid: f7ef07e33d9da144989b5eafc0036a21, type: 3}
+  - {fileID: 735029770632867219, guid: 788e9c56c1dca8d419a4d03f8570560a, type: 3}
+  - {fileID: 2848005772284224300, guid: 229ef30d1439cd649a956d38120a0580, type: 3}
+  - {fileID: 6271478425686541969, guid: 9819873197c9915408555a501a962d53, type: 3}
   mineExplosionAnimation: {fileID: 735029770632867219, guid: 788e9c56c1dca8d419a4d03f8570560a, type: 3}
   mineSwordedAnimation: {fileID: 2848005772284224300, guid: 229ef30d1439cd649a956d38120a0580, type: 3}
   plantedSwordAnimation: {fileID: 6271478425686541969, guid: 9819873197c9915408555a501a962d53, type: 3}
   flagInAnimation: {fileID: 1499444410457814521, guid: f7ef07e33d9da144989b5eafc0036a21, type: 3}
+  roomFoWSprite: {fileID: 21300000, guid: 264bd4a4bb254b0428fb3d0d65d0119e, type: 3}
+  roomStartedSprite: {fileID: 21300000, guid: 37bfd3aee90f3824188408f4d247021e, type: 3}
+  roomCompleteSprite: {fileID: 21300000, guid: 53ff0180f4371724ab172385a7ee14c1, type: 3}
+  roomSelectedSprite: {fileID: 21300000, guid: d2c0d4c9ed9682944a1d6e6857a66f66, type: 3}
+  roomTypeStairSprite: {fileID: 21300000, guid: 2436d20cf76679d4fb57637926f38423, type: 3}
+  roomTypeShopSprite: {fileID: 21300000, guid: d2c0d4c9ed9682944a1d6e6857a66f66, type: 3}
+  roomTypeBossSprite: {fileID: 21300000, guid: d2c0d4c9ed9682944a1d6e6857a66f66, type: 3}
   inEditorScene: 0
   potionSprite: {fileID: 0}
   swordSprite: {fileID: 0}
@@ -2338,28 +2351,6 @@ MonoBehaviour:
   revealSprite: {fileID: 0}
   mineIconSprite: {fileID: 0}
   visualSettings: {fileID: 0}
---- !u!114 &348095979
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 348095975}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cbe8cd601f2a0d847bc474c4d2c4752d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  mainColorsVolume: {fileID: 1687622998}
-  transitionColorsVolume: {fileID: 1527443215}
-  visualTransitionDuration: 0.5
-  roomFoWSprite: {fileID: 21300000, guid: 264bd4a4bb254b0428fb3d0d65d0119e, type: 3}
-  roomStartedSprite: {fileID: 21300000, guid: 37bfd3aee90f3824188408f4d247021e, type: 3}
-  roomCompleteSprite: {fileID: 21300000, guid: 53ff0180f4371724ab172385a7ee14c1, type: 3}
-  roomSelectedSprite: {fileID: 21300000, guid: d2c0d4c9ed9682944a1d6e6857a66f66, type: 3}
-  roomTypeStairSprite: {fileID: 21300000, guid: 2436d20cf76679d4fb57637926f38423, type: 3}
-  roomTypeShopSprite: {fileID: 21300000, guid: d2c0d4c9ed9682944a1d6e6857a66f66, type: 3}
-  roomTypeBossSprite: {fileID: 21300000, guid: d2c0d4c9ed9682944a1d6e6857a66f66, type: 3}
 --- !u!1 &366329924
 GameObject:
   m_ObjectHideFlags: 0

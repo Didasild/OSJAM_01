@@ -1,9 +1,11 @@
 using System;
 using System.Collections.Generic;
+using DG.Tweening;
 using Dida.Rendering;
 using UnityEngine;
 using Debug = UnityEngine.Debug;
 using NaughtyAttributes;
+using UnityEngine.Rendering;
 using UnityEngine.U2D;
 
 public class VisualManager : MonoBehaviour
@@ -13,11 +15,33 @@ public class VisualManager : MonoBehaviour
     private readonly Dictionary<string, Sprite> spriteDictionary = new Dictionary<string, Sprite>();
     [ReadOnly] public Sprite[] sprites; 
 
-    [Header("_______CELL ANIMATIONS")]
+    [Header("AMBIANCE / POST PROCESS")]
+    public Volume mainColorsVolume;
+    public Volume transitionColorsVolume;
+    public float visualTransitionDuration;
+
+    [Header("_______CELL ANIMATIONS")] 
+    public List<GameObject> animationPrefabs;
     public GameObject mineExplosionAnimation;
     public GameObject mineSwordedAnimation;
     public GameObject plantedSwordAnimation;
     public GameObject flagInAnimation;
+    
+    [Header("_______MINIMAP ROOM STATE VISUAL")]
+    public Sprite roomFoWSprite;
+    public Sprite roomStartedSprite;
+    public Sprite roomCompleteSprite;
+    public Sprite roomSelectedSprite;
+    
+    [Header("_______MINIMAP ROOM TYPE VISUAL")]
+    public Sprite roomTypeStairSprite;
+    public Sprite roomTypeShopSprite;
+    public Sprite roomTypeBossSprite;
+    
+    private VolumeProfile _roomMainProfile;
+    private VisualSettings _roomTransitionVisualSettings;
+
+    private Tweener _currentWeightTween;
     
     [Header("_______EDITOR")] 
     public bool inEditorScene;
@@ -45,8 +69,9 @@ public class VisualManager : MonoBehaviour
 
     public void Init()
     {
-        if (GameManager.roomVisualManager.mainColorsVolume.profile.TryGet(out visualSettings)) { }
+        if (mainColorsVolume.profile.TryGet(out visualSettings)) { }
         LoadSprites();
+        _roomMainProfile = mainColorsVolume.profile;
     }
     private void LoadSprites()
     {
@@ -155,5 +180,111 @@ public class VisualManager : MonoBehaviour
         return returnedColor;
     }
     #endregion
+    
+    #region SET ROOM VISUAL
+    public void UpdateRoomVisual(RoomData roomData)
+    {
+        TransitionVolume(roomData.roomSettings.roomColorsVolumeProfile);
+    }
+
+    private void TransitionVolume(VolumeProfile roomProfile = null)
+    {
+        //Check le volume a récup
+        if (roomProfile != null)
+        {
+            if (roomProfile == _roomMainProfile)
+            {
+                return;
+            }
+            transitionColorsVolume.profile = roomProfile;
+        }
+        else
+        {
+            if (GameManager.Instance.currentChapterSettings.chapterDefaultColorsVolume == transitionColorsVolume.profile)
+            {
+                return;
+            }
+            transitionColorsVolume.profile = GameManager.Instance.currentChapterSettings.chapterDefaultColorsVolume;
+        }
+        
+        // Si un tween est déjà en cours, on l'annule
+        _currentWeightTween?.Kill();
+        //Fait la transition si le volume est bon
+        _currentWeightTween = DOWeight(transitionColorsVolume, 1f, visualTransitionDuration)
+            .SetEase(Ease.Linear)
+            .OnComplete(UpdateVolumeProfile);
+    }
+    
+    private static Tweener DOWeight(Volume volume, float endValue, float duration)
+    {
+        return DOTween.To(() => volume.weight, x => volume.weight = x, endValue, duration);
+    }
+
+    private void UpdateVolumeProfile()
+    {
+        mainColorsVolume.profile = null;
+        mainColorsVolume.profile = transitionColorsVolume.profile;
+        transitionColorsVolume.weight = 0;
+    }
+    #endregion SET ROOM FUNCTIONS
+    
+    #region GET ROOM FUNCTIONS
+    public Sprite GetRoomStateVisual(RoomState roomState)
+    {
+        Sprite roomStateVisual = null;
+        switch (roomState)
+        {
+            case RoomState.FogOfWar:
+                roomStateVisual = roomFoWSprite;
+                break;
+            case RoomState.Started:
+                roomStateVisual = roomStartedSprite;
+                break;
+            case RoomState.Complete:
+                roomStateVisual = roomCompleteSprite;
+                break;
+            default:
+                throw new ArgumentOutOfRangeException(nameof(roomState), roomState, null);
+        }
+        return roomStateVisual;
+    }
+
+    public Sprite GetRoomTypeVisual(RoomType roomType)
+    {
+        Sprite roomTypeVisual = null;
+        switch (roomType)
+        {
+            case RoomType.Base:
+                return null;
+            case RoomType.Stair:
+                roomTypeVisual = roomTypeStairSprite;
+                break;
+            case RoomType.Shop:
+                break;
+            case RoomType.Sword:
+                break;
+            case RoomType.Potion:
+                break;
+            case RoomType.Boss:
+                break;
+            default:
+                throw new ArgumentOutOfRangeException(nameof(roomType), roomType, null);
+        }
+
+        return roomTypeVisual;
+    }
+
+    public Sprite GetSelectedVisual(bool isSelected)
+    {
+        Sprite roomSelectedVisual = null;
+        if (isSelected)
+        {
+            roomSelectedVisual = roomSelectedSprite;
+        }
+        return roomSelectedVisual;
+    }
+    
+
+    #endregion GET ROOM FUNCTIONS
 
 }

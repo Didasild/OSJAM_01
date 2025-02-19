@@ -36,13 +36,14 @@ public class RoomData : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     public Image roomSelectedVisual;
     
     private DungeonManager _dungeonManager;
-    private RoomVisualManager _roomVisualManager;
+    //private RoomVisualManager _roomVisualManager;
+    private VisualManager _visualManager;
     #endregion
 
     #region INIT
     public void Initialize(Vector2Int position, float roomSize = 1.0f, Vector3 offset = default)
     {
-        this.roomPosition = position;
+        roomPosition = position;
 
         // Calculez la position dans le monde
         Vector3 worldPosition = new Vector3(
@@ -55,8 +56,8 @@ public class RoomData : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
         transform.localPosition = worldPosition;
 
         //Setup le visuel
-        _roomVisualManager = GameManager.roomVisualManager;
-        roomStateVisual.sprite = _roomVisualManager.GetRoomStateVisual(RoomState.FogOfWar);
+        _visualManager = GameManager.VisualManager;
+        roomStateVisual.sprite = _visualManager.GetRoomStateVisual(RoomState.FogOfWar);
         
         //Assigne le dungeon manager
         _dungeonManager = GameManager.Instance.dungeonManager;
@@ -67,7 +68,7 @@ public class RoomData : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     public void InitializeRoomType()
     {
         currentRoomType = roomSettings.roomType;
-        roomTypeVisual.sprite = _roomVisualManager.GetRoomTypeVisual(RoomType.Base);
+        roomTypeVisual.sprite = _visualManager.GetRoomTypeVisual(RoomType.Base);
     }
 
     #region ROOM STATE
@@ -75,7 +76,7 @@ public class RoomData : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     {
         currentRoomState = newRoomState;
         //Update le visuel de la room
-        roomStateVisual.sprite = GameManager.roomVisualManager.GetRoomStateVisual(currentRoomState);
+        roomStateVisual.sprite = GameManager.VisualManager.GetRoomStateVisual(currentRoomState);
 
         switch (currentRoomState)
         {
@@ -111,7 +112,7 @@ public class RoomData : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
             roomTypeVisualColor.a = 1;
             roomTypeVisual.color = roomTypeVisualColor;
         }
-        roomTypeVisual.sprite = _roomVisualManager.GetRoomTypeVisual(currentRoomType);
+        roomTypeVisual.sprite = _visualManager.GetRoomTypeVisual(currentRoomType);
     }
     #endregion ROOM STATE
 
