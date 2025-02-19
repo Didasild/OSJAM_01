@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 
 public class TransformOffset : MonoBehaviour
@@ -14,7 +13,6 @@ public class TransformOffset : MonoBehaviour
     {
         _basePosition = transform.localPosition;
     }
-
     private void Update()
     {
         float offset = offSetValue * OffsetUnit;

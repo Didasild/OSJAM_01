@@ -13,10 +13,15 @@ MonoBehaviour:
   m_Name: Debug_Floor_00
   m_EditorClassIdentifier: 
   proceduralFloor: 1
-  minGridSize: {x: 2, y: 2}
-  maxGridSize: {x: 2, y: 2}
+  minGridSize: {x: 3, y: 3}
+  maxGridSize: {x: 3, y: 3}
   roomSettingsList:
   - {fileID: 11400000, guid: 3874eaf7b7f24ec43b073b2be72ed74b, type: 2}
   - {fileID: 11400000, guid: 0f394ede5e39b904b941589fbc09852c, type: 2}
   - {fileID: 11400000, guid: bee70c05c7cd54143b2b797863000255, type: 2}
   - {fileID: 11400000, guid: e8c958edb868227449c543db67875966, type: 2}
+  - {fileID: 11400000, guid: 3874eaf7b7f24ec43b073b2be72ed74b, type: 2}
+  - {fileID: 11400000, guid: 3874eaf7b7f24ec43b073b2be72ed74b, type: 2}
+  - {fileID: 11400000, guid: 3874eaf7b7f24ec43b073b2be72ed74b, type: 2}
+  - {fileID: 11400000, guid: 3874eaf7b7f24ec43b073b2be72ed74b, type: 2}
+  - {fileID: 11400000, guid: 3874eaf7b7f24ec43b073b2be72ed74b, type: 2}

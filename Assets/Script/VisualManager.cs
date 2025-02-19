@@ -1,5 +1,7 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using DG.Tweening;
 using Dida.Rendering;
 using UnityEngine;
@@ -19,6 +21,8 @@ public class VisualManager : MonoBehaviour
     public Volume mainColorsVolume;
     public Volume transitionColorsVolume;
     public float visualTransitionDuration;
+    public GameObject grid;
+    public GameObject grindIndicatorParent;
 
     [Header("_______CELL ANIMATIONS")] 
     public List<GameObject> animationPrefabs;
@@ -40,9 +44,15 @@ public class VisualManager : MonoBehaviour
     
     private VolumeProfile _roomMainProfile;
     private VisualSettings _roomTransitionVisualSettings;
-
-    private Tweener _currentWeightTween;
+    [HideInInspector] public VisualSettings visualSettings;
+    private GridManager _gridManager;
     
+    private Material _gridMaterial;
+    private List<TransformOffset> _grindIndicatorOffsetScript;
+    
+    private Tweener _currentWeightTween;
+
+    #region EDITOR ONLY PARAMETERS
     [Header("_______EDITOR")] 
     public bool inEditorScene;
     [Header("_______CELL VISUAL")]
@@ -61,8 +71,8 @@ public class VisualManager : MonoBehaviour
     [ShowIf("inEditorScene")] public Sprite coverSprite;
     [ShowIf("inEditorScene")] public Sprite revealSprite;
     [ShowIf("inEditorScene")] public Sprite mineIconSprite;
-    
-    [HideInInspector] public VisualSettings visualSettings;
+    #endregion EDITOR ONLY PARAMETERS
+
     #endregion
 
     #region INIT
@@ -71,7 +81,13 @@ public class VisualManager : MonoBehaviour
     {
         if (mainColorsVolume.profile.TryGet(out visualSettings)) { }
         LoadSprites();
+        
         _roomMainProfile = mainColorsVolume.profile;
+        
+        _gridMaterial = grid.GetComponent<Renderer>().material;
+        _grindIndicatorOffsetScript = GetTransformOffsets(grindIndicatorParent);
+        
+        _gridManager = GameManager.Instance.gridManager;
     }
     private void LoadSprites()
     {
@@ -81,6 +97,10 @@ public class VisualManager : MonoBehaviour
         {
             spriteDictionary[sprite.name.Replace("(Clone)", "")] = sprite;
         }
+    }
+    private List<TransformOffset> GetTransformOffsets(GameObject gameObjectParent)
+    {
+        return new List<TransformOffset>(gameObjectParent.GetComponentsInChildren<TransformOffset>());
     }
     #endregion INIT
     
@@ -273,7 +293,7 @@ public class VisualManager : MonoBehaviour
 
         return roomTypeVisual;
     }
-
+    
     public Sprite GetSelectedVisual(bool isSelected)
     {
         Sprite roomSelectedVisual = null;
@@ -283,8 +303,85 @@ public class VisualManager : MonoBehaviour
         }
         return roomSelectedVisual;
     }
-    
-
     #endregion GET ROOM FUNCTIONS
+
+    #region ROOM ANIMATIONS
+
+    public void RoomOffsetTransition(Vector2Int roomDirection)
+    {
+        Vector2 gridOffset = _gridMaterial.GetVector("_GridOffset");
+        foreach (TransformOffset transformOffset in _grindIndicatorOffsetScript)
+        {
+            if (transformOffset.verticalOffset)
+            {
+                OffsetRoomIndicatorAnimation(transformOffset, roomDirection.y, visualTransitionDuration);
+            }
+            else
+            {
+                OffsetRoomIndicatorAnimation(transformOffset, roomDirection.x, visualTransitionDuration);
+            }
+        }
+    }
+
+    private void OffsetRoomIndicatorAnimation(TransformOffset transformOffset, int targetValue, float duration)
+    {
+        int absLoops = Mathf.Abs(targetValue);
+        DOTween.To(() => transformOffset.offSetValue, x => transformOffset.offSetValue = x, targetValue, duration)
+            .SetEase(Ease.Linear)
+            .SetLoops(absLoops, LoopType.Restart)
+            //.OnUpdate(() => Debug.Log($"Value: {transformOffset.offSetValue}"))
+            .OnComplete(() => transformOffset.offSetValue = 0f);
+    }
+    
+    public void ActiveListOfCells(float timeBetweenApparition, RoomState roomState)
+    {
+        if (roomState != RoomState.FogOfWar)
+        {
+            Debug.Log("ActiveList Of Cells is not FogOfWar");
+            foreach (Cell cell in _gridManager.cellList)
+            {
+                cell.gameObject.SetActive(true);
+                cell.SpawnAnimation();
+            }
+        }
+        else
+        {
+            StartCoroutine(CO_ActiveCellsWithDelay(timeBetweenApparition));
+        }
+    }
+
+    private IEnumerator CO_ActiveCellsWithDelay(float timeBetweenApparition)
+    {
+        // Grouper les cellules par distance diagonale
+        Dictionary<int, List<Cell>> diagonalGroups = new Dictionary<int, List<Cell>>();
+
+        foreach (Cell cell in _gridManager.cellList)
+        {
+            // Calculer la distance diagonale
+            int diagonalIndex = cell._cellPosition.x + cell._cellPosition.y;
+
+            // Ajouter la cellule dans le groupe correspondant
+            if (!diagonalGroups.ContainsKey(diagonalIndex))
+            {
+                diagonalGroups[diagonalIndex] = new List<Cell>();
+            }
+            diagonalGroups[diagonalIndex].Add(cell);
+        }
+
+        // Tri des groupes par distance diagonale (clé du dictionnaire)
+        var sortedKeys = diagonalGroups.Keys.OrderBy(key => key).ToList();
+
+        // Faire apparaître chaque groupe avec un délai
+        foreach (int key in sortedKeys)
+        {
+            foreach (Cell cell in diagonalGroups[key])
+            {
+                cell.gameObject.SetActive(true);
+                cell.SpawnAnimation();
+            }
+            yield return new WaitForSecondsRealtime(timeBetweenApparition); // Délai entre les groupes
+        }
+    }
+    #endregion
 
 }

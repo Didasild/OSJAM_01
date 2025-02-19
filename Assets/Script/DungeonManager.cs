@@ -234,6 +234,8 @@ public class DungeonManager : MonoBehaviour
 
     public void ChangeRoomMinimap(RoomData room)
     {
+        Debug.Log(GetNextRoomDirection(room.roomPosition));
+        GameManager.VisualManager.RoomOffsetTransition(GetNextRoomDirection(room.roomPosition));
         SaveRoomData();
         currentRoom.roomSelectedVisual.sprite = _visualManager.GetSelectedVisual(false);
         currentRoom = room;
@@ -263,6 +265,10 @@ public class DungeonManager : MonoBehaviour
             buttonUp.SetActive(false);
             buttonDown.SetActive(false);
         }
+    }
+    public Vector2Int GetNextRoomDirection(Vector2Int nextRoomPosition)
+    {
+        return new Vector2Int(nextRoomPosition.x - currentRoom.roomPosition.x, nextRoomPosition.y - currentRoom.roomPosition.y);
     }
     #endregion BUTTON FONCTIONS
 

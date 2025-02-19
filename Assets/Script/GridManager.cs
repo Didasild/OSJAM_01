@@ -57,7 +57,7 @@ public class GridManager : MonoBehaviour
                 newCell.Initialize(new Vector2Int(row, col));
             }
         }
-        //G�n�re la liste des voisins
+        //Génère la liste des voisins
         foreach (Cell cell in cellList)
         {
             cell.GenerateNeighborsList(this);
@@ -74,7 +74,7 @@ public class GridManager : MonoBehaviour
         SetCellType(GameManager.Instance.currentRoomSettings.roomPourcentageOfNone, CellType.None, cellList);
 
         //Setup l'animation d'apparition
-        ActiveListOfCells(timeBetweenApparition, RoomState.FogOfWar);
+        GameManager.VisualManager.ActiveListOfCells(timeBetweenApparition, RoomState.FogOfWar);
     }
 
     public void FirstClickGeneration(Cell cellClicked)
@@ -276,7 +276,7 @@ public class GridManager : MonoBehaviour
         }
         cellMineList = GetCellsByType(CellType.Mine);
         SetCellsVisuals();
-        ActiveListOfCells(timeBetweenApparition, GameManager.Instance.floorManager.currentRoom.currentRoomState);
+        GameManager.VisualManager.ActiveListOfCells(timeBetweenApparition, GameManager.Instance.floorManager.currentRoom.currentRoomState);
     }
 
     public static CellState GetStateFromAbbreviation(string abbreviation)
@@ -389,58 +389,6 @@ public class GridManager : MonoBehaviour
         cellProceduralList = new List<Cell>();
     }
     #endregion COMMON GENERATION FONCTIONS
-
-    #region GRID VISUAL FONCTIONS
-    public void ActiveListOfCells(float timeBetweenApparition, RoomState roomState)
-    {
-        if (roomState != RoomState.FogOfWar)
-        {
-            Debug.Log("ActiveList Of Cells is not FogOfWar");
-            foreach (Cell cell in cellList)
-            {
-                cell.gameObject.SetActive(true);
-                cell.SpawnAnimation();
-            }
-        }
-        else
-        {
-            StartCoroutine(CO_ActiveCellsWithDelay(timeBetweenApparition));
-        }
-    }
-
-    private IEnumerator CO_ActiveCellsWithDelay(float timeBetweenApparition)
-    {
-        // Grouper les cellules par distance diagonale
-        Dictionary<int, List<Cell>> diagonalGroups = new Dictionary<int, List<Cell>>();
-
-        foreach (Cell cell in cellList)
-        {
-            // Calculer la distance diagonale
-            int diagonalIndex = cell._cellPosition.x + cell._cellPosition.y;
-
-            // Ajouter la cellule dans le groupe correspondant
-            if (!diagonalGroups.ContainsKey(diagonalIndex))
-            {
-                diagonalGroups[diagonalIndex] = new List<Cell>();
-            }
-            diagonalGroups[diagonalIndex].Add(cell);
-        }
-
-        // Tri des groupes par distance diagonale (clé du dictionnaire)
-        var sortedKeys = diagonalGroups.Keys.OrderBy(key => key).ToList();
-
-        // Faire apparaître chaque groupe avec un délai
-        foreach (int key in sortedKeys)
-        {
-            foreach (Cell cell in diagonalGroups[key])
-            {
-                cell.gameObject.SetActive(true);
-                cell.SpawnAnimation();
-            }
-            yield return new WaitForSecondsRealtime(timeBetweenApparition); // Délai entre les groupes
-        }
-    }
-    #endregion GRID VISUAL FONCTIONS
 
     #region GET GRID INFORMATIONS
     public List<Cell> GetCellsByType(CellType typeOfCellWanted)
