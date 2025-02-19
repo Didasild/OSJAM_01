@@ -60,7 +60,7 @@ public class RoomData : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
         roomStateVisual.sprite = _visualManager.GetRoomStateVisual(RoomState.FogOfWar);
         
         //Assigne le dungeon manager
-        _dungeonManager = GameManager.Instance.dungeonManager;
+        _dungeonManager = GameManager.Instance.floorManager;
         
     }
     #endregion INIT

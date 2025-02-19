@@ -2303,7 +2303,7 @@ MonoBehaviour:
   floorLevelText: {fileID: 789845775}
   currentFloorLevel: 0
   currentRoomSettings: {fileID: 0}
-  dungeonManager: {fileID: 660007369}
+  floorManager: {fileID: 660007369}
   gridManager: {fileID: 712061424}
   endScreenUI: {fileID: 1289361010}
   player: {fileID: 1365082114}
@@ -3820,7 +3820,7 @@ GameObject:
   - component: {fileID: 660007370}
   - component: {fileID: 660007372}
   m_Layer: 0
-  m_Name: DUNGEON_MANAGER
+  m_Name: FLOOR_MANAGER
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

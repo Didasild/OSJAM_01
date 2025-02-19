@@ -276,7 +276,7 @@ public class GridManager : MonoBehaviour
         }
         cellMineList = GetCellsByType(CellType.Mine);
         SetCellsVisuals();
-        ActiveListOfCells(timeBetweenApparition, GameManager.Instance.dungeonManager.currentRoom.currentRoomState);
+        ActiveListOfCells(timeBetweenApparition, GameManager.Instance.floorManager.currentRoom.currentRoomState);
     }
 
     public static CellState GetStateFromAbbreviation(string abbreviation)
@@ -534,7 +534,7 @@ public class GridManager : MonoBehaviour
         int nbOfMine = GetCellsByType(CellType.Mine).Count;
         if (nbOfMine == nbOfCoverCells)
         {
-            GameManager.Instance.dungeonManager.currentRoom.ChangeRoomSate(RoomState.Complete);
+            GameManager.Instance.floorManager.currentRoom.ChangeRoomSate(RoomState.Complete);
         }
     }
     #endregion GET GRID INFORMATIONS

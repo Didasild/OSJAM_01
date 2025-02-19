@@ -32,7 +32,7 @@ public class GameManager : MonoBehaviour
     public RoomSettings currentRoomSettings;
 
     [Header("MANAGER REFERENCES")]
-    public DungeonManager dungeonManager;
+    public DungeonManager floorManager;
     public GridManager gridManager;
 
     [Header("REFERENCES")]
@@ -44,9 +44,8 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance => _instance;
     [FormerlySerializedAs("_CellVisualManager")] [SerializeField] private VisualManager visualManager;
     public static VisualManager VisualManager => _instance.visualManager;
-
-    //[SerializeField] private RoomVisualManager _RoomVisualManager;
-    //public static RoomVisualManager roomVisualManager => _instance._RoomVisualManager;
+    
+    
     #endregion PARAMETERS
 
     #region INIT
@@ -58,7 +57,7 @@ public class GameManager : MonoBehaviour
         VisualManager.Init();
         
         player.Init();
-        dungeonManager.Init();
+        floorManager.Init();
     }
 
     public void Start()
@@ -100,13 +99,13 @@ public class GameManager : MonoBehaviour
         currentChapterSettings = chaptersList.Find(setting => setting.chapter == currentChapter);
         
         //Donne au dungeon les floor correspondant au chapter
-        dungeonManager.floorSettingsList = new FloorSettings[] { };
-        dungeonManager.floorSettingsList = currentChapterSettings.floorSettings;
-        if (dungeonManager.floorSettingsList.Length >= 1)
+        floorManager.floorSettingsList = new FloorSettings[] { };
+        floorManager.floorSettingsList = currentChapterSettings.floorSettings;
+        if (floorManager.floorSettingsList.Length >= 1)
         {
             //Génère un floor et une première room
-            dungeonManager.currentFloorSetting = dungeonManager.floorSettingsList[0];
-            dungeonManager.GenerateFloor(dungeonManager.currentFloorSetting.GetFloorSize());
+            floorManager.currentFloorSetting = floorManager.floorSettingsList[0];
+            floorManager.GenerateFloor(floorManager.currentFloorSetting.GetFloorSize());
 
             //Reset les data
             player.ResetHealthPoint();
@@ -162,13 +161,13 @@ public class GameManager : MonoBehaviour
         floorLevelText.text = currentFloorLevel.ToString();
 
         // Calculer l'index du floor actuel dans la liste
-        int floorIndex = currentFloorLevel % dungeonManager.floorSettingsList.Length;
+        int floorIndex = currentFloorLevel % floorManager.floorSettingsList.Length;
 
         //Récupère le floor suivant dans la liste
-        dungeonManager.currentFloorSetting = dungeonManager.floorSettingsList[floorIndex];
+        floorManager.currentFloorSetting = floorManager.floorSettingsList[floorIndex];
 
         //Génère un floor et la room de départ
-        dungeonManager.GenerateFloor(dungeonManager.currentFloorSetting.GetFloorSize());
+        floorManager.GenerateFloor(floorManager.currentFloorSetting.GetFloorSize());
     }
     #endregion ROOM AND FLOOR MANAGEMENT
 }
