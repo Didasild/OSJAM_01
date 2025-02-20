@@ -266,9 +266,15 @@ public class DungeonManager : MonoBehaviour
             buttonDown.SetActive(false);
         }
     }
-    public Vector2Int GetNextRoomDirection(Vector2Int nextRoomPosition)
+
+    private Vector2Int GetNextRoomDirection(Vector2Int nextRoomPosition)
     {
         return new Vector2Int(nextRoomPosition.x - currentRoom.roomPosition.x, nextRoomPosition.y - currentRoom.roomPosition.y);
+    }
+
+    private float GetNextRoomDistance(Vector2Int nextRoomPosition)
+    {
+        return Vector2Int.Distance(currentRoom.roomPosition, nextRoomPosition);
     }
     #endregion BUTTON FONCTIONS
 

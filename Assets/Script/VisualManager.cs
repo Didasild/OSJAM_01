@@ -47,7 +47,7 @@ public class VisualManager : MonoBehaviour
     [HideInInspector] public VisualSettings visualSettings;
     private GridManager _gridManager;
     
-    private Material _gridMaterial;
+    public Material _gridMaterial;
     private List<TransformOffset> _grindIndicatorOffsetScript;
     
     private Tweener _currentWeightTween;
@@ -88,6 +88,13 @@ public class VisualManager : MonoBehaviour
         _grindIndicatorOffsetScript = GetTransformOffsets(grindIndicatorParent);
         
         _gridManager = GameManager.Instance.gridManager;
+    }
+
+    [Button]
+    public void MoveGridMaterial()
+    {
+        _gridMaterial.SetFloat("_GridXOffset", 1.5f);
+        Debug.Log(_gridMaterial.GetFloat("_GridXOffset"));
     }
     private void LoadSprites()
     {
@@ -309,28 +316,103 @@ public class VisualManager : MonoBehaviour
 
     public void RoomOffsetTransition(Vector2Int roomDirection)
     {
-        Vector2 gridOffset = _gridMaterial.GetVector("_GridOffset");
+        
         foreach (TransformOffset transformOffset in _grindIndicatorOffsetScript)
         {
-            if (transformOffset.verticalOffset)
+
+            if (!transformOffset.verticalOffset)
             {
-                OffsetRoomIndicatorAnimation(transformOffset, roomDirection.y, visualTransitionDuration);
+                AnimateRoomTransitionValue(
+                    roomDirection.x,
+                    visualTransitionDuration / Mathf.Abs(roomDirection.x),
+                    value => transformOffset.offSetValue = value,
+                    () => transformOffset.offSetValue = 0f);
             }
             else
             {
-                OffsetRoomIndicatorAnimation(transformOffset, roomDirection.x, visualTransitionDuration);
+
+                AnimateRoomTransitionValue(
+                    roomDirection.y,
+                    visualTransitionDuration / Mathf.Abs(roomDirection.y),
+                    value => transformOffset.offSetValue = value,
+                    () => transformOffset.offSetValue = 0f);
             }
         }
+        AnimateRoomTransitionValue(
+            roomDirection.x,
+            visualTransitionDuration,
+            value => _gridMaterial.SetFloat("_GridXOffset", value * 22),
+            () => _gridMaterial.SetFloat("_GridXOffset", 0));
+        
+        AnimateRoomTransitionValue(
+            roomDirection.y,
+            visualTransitionDuration,
+            value => _gridMaterial.SetFloat("_GridYOffset", value * 22),
+            () => _gridMaterial.SetFloat("_GridYOffset", 0));
     }
 
-    private void OffsetRoomIndicatorAnimation(TransformOffset transformOffset, int targetValue, float duration)
+    private Tween AnimateRoomTransitionValue(int targetValue, float duration, Action<float> onUpdate, Action onComplete = null)
     {
+        if (targetValue == 0)
+        {
+            return null;
+        }
+        // On détermine le nombre de loops (nombre absolu de targetValue) et la valeur cible (1 ou -1)
         int absLoops = Mathf.Abs(targetValue);
-        DOTween.To(() => transformOffset.offSetValue, x => transformOffset.offSetValue = x, targetValue, duration)
-            .SetEase(Ease.Linear)
-            .SetLoops(absLoops, LoopType.Restart)
-            //.OnUpdate(() => Debug.Log($"Value: {transformOffset.offSetValue}"))
-            .OnComplete(() => transformOffset.offSetValue = 0f);
+        float finalTarget = targetValue > 0 ? 1f : -1f;
+
+        Sequence seq = DOTween.Sequence();
+
+        // Variable locale pour animer la valeur
+        float animValue = 0f;
+
+        if (absLoops == 1)
+        {
+            // Si une seule boucle, applique un easing spécial (par exemple OutBack)
+            seq.Append(CreateTween(visualTransitionDuration).SetEase(Ease.OutBack));
+        }
+        else
+        {
+            // Premier tween avec un easing (par exemple InSine)
+            seq.Append(CreateTween(duration).SetEase(Ease.InSine)
+                .OnComplete(() => { animValue = 0f; onUpdate?.Invoke(0f); }));
+
+            // Tweens intermédiaires avec easing linéaire
+            for (int i = 1; i < absLoops - 1; i++)
+            {
+                // Réinitialise la valeur avant chaque tween
+                seq.Append(DOTween.To(() => 0f, x => 
+                {
+                    animValue = x;
+                    onUpdate?.Invoke(x);
+                }, finalTarget, duration)
+                .SetEase(Ease.Linear)
+                .OnComplete(() => { animValue = 0f; onUpdate?.Invoke(0f); }));
+            }
+
+            // Dernier tween avec un easing de sortie (par exemple OutBack)
+            seq.Append(CreateTween(visualTransitionDuration).SetEase(Ease.OutBack));
+        }
+
+        // À la fin de la séquence, réinitialise la valeur et appelle le callback onComplete
+        seq.OnComplete(() =>
+        {
+            onUpdate?.Invoke(0f);
+            onComplete?.Invoke();
+        });
+
+        return seq;
+        
+        //A SORTIR DE LA FONCTION
+        // Fonction pour créer un tween qui anime animValue de 0 à finalTarget sur 'duration' secondes
+        Tween CreateTween(float tweenDuration)
+        {
+            return DOTween.To(() => animValue, x => 
+            {
+                animValue = x;
+                onUpdate?.Invoke(x);
+            }, finalTarget, tweenDuration);
+        }
     }
     
     public void ActiveListOfCells(float timeBetweenApparition, RoomState roomState)
