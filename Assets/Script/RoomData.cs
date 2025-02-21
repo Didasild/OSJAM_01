@@ -136,7 +136,7 @@ public class RoomData : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
         }
         else
         {
-            _dungeonManager.ChangeRoomMinimap(this);
+            _dungeonManager.ChangeRoomMinimapIn(this);
         }
 
     }

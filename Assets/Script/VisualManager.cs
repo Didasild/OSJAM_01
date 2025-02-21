@@ -21,8 +21,11 @@ public class VisualManager : MonoBehaviour
     public Volume mainColorsVolume;
     public Volume transitionColorsVolume;
     public float visualTransitionDuration;
+    
+    [Header("GRID / ROOM TRANSITION")]
     public GameObject grid;
     public GameObject grindIndicatorParent;
+    public GameObject roomParent;
 
     [Header("_______CELL ANIMATIONS")] 
     public List<GameObject> animationPrefabs;
@@ -51,6 +54,7 @@ public class VisualManager : MonoBehaviour
     private List<TransformOffset> _grindIndicatorOffsetScript;
     
     private Tweener _currentWeightTween;
+    private bool roomTransitionComplete;
 
     #region EDITOR ONLY PARAMETERS
     [Header("_______EDITOR")] 
@@ -88,6 +92,7 @@ public class VisualManager : MonoBehaviour
         _grindIndicatorOffsetScript = GetTransformOffsets(grindIndicatorParent);
         
         _gridManager = GameManager.Instance.gridManager;
+        DOTween.SetTweensCapacity(1000, 500);
     }
 
     [Button]
@@ -314,41 +319,45 @@ public class VisualManager : MonoBehaviour
 
     #region ROOM ANIMATIONS
 
-    public void RoomOffsetTransition(Vector2Int roomDirection)
+    public void RoomOffsetTransition(Vector2Int roomDirection, RoomData room)
     {
+        roomTransitionComplete = false;
+        //Animation de la room
         
+        
+        //Animation des room indicator
         foreach (TransformOffset transformOffset in _grindIndicatorOffsetScript)
         {
-
             if (!transformOffset.verticalOffset)
             {
-                AnimateRoomTransitionValue(
-                    roomDirection.x,
-                    visualTransitionDuration / Mathf.Abs(roomDirection.x),
+                AnimateRoomTransitionValue(roomDirection.x, visualTransitionDuration / Mathf.Abs(roomDirection.x),
                     value => transformOffset.offSetValue = value,
                     () => transformOffset.offSetValue = 0f);
             }
             else
             {
-
-                AnimateRoomTransitionValue(
-                    roomDirection.y,
-                    visualTransitionDuration / Mathf.Abs(roomDirection.y),
+                AnimateRoomTransitionValue(roomDirection.y, visualTransitionDuration / Mathf.Abs(roomDirection.y),
                     value => transformOffset.offSetValue = value,
                     () => transformOffset.offSetValue = 0f);
             }
         }
-        AnimateRoomTransitionValue(
-            roomDirection.x,
-            visualTransitionDuration,
-            value => _gridMaterial.SetFloat("_GridXOffset", value * 22),
-            () => _gridMaterial.SetFloat("_GridXOffset", 0));
         
-        AnimateRoomTransitionValue(
-            roomDirection.y,
-            visualTransitionDuration,
+        //Animation de la Grid
+        AnimateRoomTransitionValue(-roomDirection.x, visualTransitionDuration,
+            value => _gridMaterial.SetFloat("_GridXOffset", value * 22),
+            () =>
+            {
+                _gridMaterial.SetFloat("_GridXOffset", 0);
+                CompleteRoomTransition(room);
+            });
+        
+        AnimateRoomTransitionValue(-roomDirection.y, visualTransitionDuration,
             value => _gridMaterial.SetFloat("_GridYOffset", value * 22),
-            () => _gridMaterial.SetFloat("_GridYOffset", 0));
+            () =>
+            {
+                _gridMaterial.SetFloat("_GridYOffset", 0);
+                CompleteRoomTransition(room);
+            });
     }
 
     private Tween AnimateRoomTransitionValue(int targetValue, float duration, Action<float> onUpdate, Action onComplete = null)
@@ -357,7 +366,7 @@ public class VisualManager : MonoBehaviour
         {
             return null;
         }
-        // On détermine le nombre de loops (nombre absolu de targetValue) et la valeur cible (1 ou -1)
+
         int absLoops = Mathf.Abs(targetValue);
         float finalTarget = targetValue > 0 ? 1f : -1f;
 
@@ -368,19 +377,15 @@ public class VisualManager : MonoBehaviour
 
         if (absLoops == 1)
         {
-            // Si une seule boucle, applique un easing spécial (par exemple OutBack)
-            seq.Append(CreateTween(visualTransitionDuration).SetEase(Ease.OutBack));
+            seq.Append(CreateTween(visualTransitionDuration*2).SetEase(Ease.OutBack));
         }
         else
         {
-            // Premier tween avec un easing (par exemple InSine)
             seq.Append(CreateTween(duration).SetEase(Ease.InSine)
                 .OnComplete(() => { animValue = 0f; onUpdate?.Invoke(0f); }));
-
-            // Tweens intermédiaires avec easing linéaire
+            
             for (int i = 1; i < absLoops - 1; i++)
             {
-                // Réinitialise la valeur avant chaque tween
                 seq.Append(DOTween.To(() => 0f, x => 
                 {
                     animValue = x;
@@ -389,9 +394,8 @@ public class VisualManager : MonoBehaviour
                 .SetEase(Ease.Linear)
                 .OnComplete(() => { animValue = 0f; onUpdate?.Invoke(0f); }));
             }
-
-            // Dernier tween avec un easing de sortie (par exemple OutBack)
-            seq.Append(CreateTween(visualTransitionDuration).SetEase(Ease.OutBack));
+            
+            seq.Append(CreateTween(visualTransitionDuration*2).SetEase(Ease.OutBack));
         }
 
         // À la fin de la séquence, réinitialise la valeur et appelle le callback onComplete
@@ -403,7 +407,6 @@ public class VisualManager : MonoBehaviour
 
         return seq;
         
-        //A SORTIR DE LA FONCTION
         // Fonction pour créer un tween qui anime animValue de 0 à finalTarget sur 'duration' secondes
         Tween CreateTween(float tweenDuration)
         {
@@ -414,12 +417,24 @@ public class VisualManager : MonoBehaviour
             }, finalTarget, tweenDuration);
         }
     }
+
+    private void CompleteRoomTransition(RoomData room)
+    {
+        if (roomTransitionComplete)
+        {
+            return;
+        }
+        roomTransitionComplete = true;
+        roomParent.transform.position = Vector3.zero;
+        GameManager.Instance.floorManager.ChangeRoomMinimapOut(room);
+        Debug.Log("Transition Complete");
+    }
     
     public void ActiveListOfCells(float timeBetweenApparition, RoomState roomState)
     {
         if (roomState != RoomState.FogOfWar)
         {
-            Debug.Log("ActiveList Of Cells is not FogOfWar");
+            //Debug.Log("ActiveList Of Cells is not FogOfWar");
             foreach (Cell cell in _gridManager.cellList)
             {
                 cell.gameObject.SetActive(true);

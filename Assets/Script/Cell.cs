@@ -65,6 +65,7 @@ public class Cell : MonoBehaviour
     
     //Private Variables
     private GameManager _gameManager;
+    private Sequence revealSequence;
 
     private Collider2D _collider;
     
@@ -243,14 +244,19 @@ public class Cell : MonoBehaviour
 
     private void RevealNeighbors()
     {
-        Sequence sequence = DOTween.Sequence(); // Crée une séquence DOTween
+        // Si une séquence existe déjà, la tuer pour éviter l'accumulation
+        if (revealSequence != null && revealSequence.IsActive())
+            revealSequence.Kill();
+        
+        revealSequence = DOTween.Sequence(); // Crée une séquence DOTween
         float delayBetweenCells = 0.05f; // Temps entre chaque reveal
 
         foreach (Cell cell in neighborsCellList)
         {
             if (cell.currentState == CellState.Cover)
             {
-                sequence.AppendInterval(delayBetweenCells) // Ajoute un délai avant chaque animation
+                
+                revealSequence.AppendInterval(delayBetweenCells) // Ajoute un délai avant chaque animation
                     .AppendCallback(() => cell.ChangeState(CellState.Reveal));
             }
         }

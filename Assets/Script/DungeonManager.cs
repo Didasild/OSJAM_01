@@ -232,15 +232,20 @@ public class DungeonManager : MonoBehaviour
         UpdateRoomDebugName();
     }
 
-    public void ChangeRoomMinimap(RoomData room)
+    public void ChangeRoomMinimapIn(RoomData room)
     {
-        Debug.Log(GetNextRoomDirection(room.roomPosition));
-        GameManager.VisualManager.RoomOffsetTransition(GetNextRoomDirection(room.roomPosition));
         SaveRoomData();
         currentRoom.roomSelectedVisual.sprite = _visualManager.GetSelectedVisual(false);
+        GameManager.VisualManager.RoomOffsetTransition(GetNextRoomDirection(room.roomPosition), room);
+    }
+
+    public void ChangeRoomMinimapOut(RoomData room)
+    {
         currentRoom = room;
         GameManager.Instance.ChangeRoom(room);
+        
         currentRoom.roomSelectedVisual.sprite = _visualManager.GetSelectedVisual(true);
+        
         UpdateButtonStates();
     }
 
