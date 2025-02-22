@@ -321,7 +321,10 @@ public class VisualManager : MonoBehaviour
 
     public void RoomOffsetTransition(Vector2Int roomDirection, RoomData room)
     {
+        int roomXDirection = roomDirection.x * 3;
+        int roomYDirection = roomDirection.y * 3;
         roomTransitionComplete = false;
+        
         //Animation de la room
         
         
@@ -330,29 +333,29 @@ public class VisualManager : MonoBehaviour
         {
             if (!transformOffset.verticalOffset)
             {
-                AnimateRoomTransitionValue(roomDirection.x, visualTransitionDuration / Mathf.Abs(roomDirection.x),
+                AnimateRoomTransitionValue(roomXDirection, visualTransitionDuration / Mathf.Abs(roomXDirection),
                     value => transformOffset.offSetValue = value,
                     () => transformOffset.offSetValue = 0f);
             }
             else
             {
-                AnimateRoomTransitionValue(roomDirection.y, visualTransitionDuration / Mathf.Abs(roomDirection.y),
+                AnimateRoomTransitionValue(roomYDirection, visualTransitionDuration / Mathf.Abs(roomYDirection),
                     value => transformOffset.offSetValue = value,
                     () => transformOffset.offSetValue = 0f);
             }
         }
         
         //Animation de la Grid
-        AnimateRoomTransitionValue(-roomDirection.x, visualTransitionDuration,
-            value => _gridMaterial.SetFloat("_GridXOffset", value * 22),
+        AnimateRoomTransitionValue(-roomXDirection, visualTransitionDuration / Mathf.Abs(roomXDirection),
+            value => _gridMaterial.SetFloat("_GridXOffset", value * 11f),
             () =>
             {
                 _gridMaterial.SetFloat("_GridXOffset", 0);
                 CompleteRoomTransition(room);
             });
         
-        AnimateRoomTransitionValue(-roomDirection.y, visualTransitionDuration,
-            value => _gridMaterial.SetFloat("_GridYOffset", value * 22),
+        AnimateRoomTransitionValue(-roomYDirection, visualTransitionDuration / Mathf.Abs(roomYDirection),
+            value => _gridMaterial.SetFloat("_GridYOffset", value * 11f),
             () =>
             {
                 _gridMaterial.SetFloat("_GridYOffset", 0);
@@ -375,28 +378,23 @@ public class VisualManager : MonoBehaviour
         // Variable locale pour animer la valeur
         float animValue = 0f;
 
-        if (absLoops == 1)
-        {
-            seq.Append(CreateTween(visualTransitionDuration*2).SetEase(Ease.OutBack));
-        }
-        else
-        {
-            seq.Append(CreateTween(duration).SetEase(Ease.InSine)
-                .OnComplete(() => { animValue = 0f; onUpdate?.Invoke(0f); }));
+        //Première séquence
+        seq.Append(CreateTween(duration).SetEase(Ease.InSine)
+           .OnComplete(() => { animValue = 0f; onUpdate?.Invoke(0f); }));
             
-            for (int i = 1; i < absLoops - 1; i++)
+        for (int i = 1; i < absLoops - 1; i++)
+        {
+            seq.Append(DOTween.To(() => 0f, x => 
             {
-                seq.Append(DOTween.To(() => 0f, x => 
-                {
-                    animValue = x;
-                    onUpdate?.Invoke(x);
-                }, finalTarget, duration)
-                .SetEase(Ease.Linear)
-                .OnComplete(() => { animValue = 0f; onUpdate?.Invoke(0f); }));
-            }
-            
-            seq.Append(CreateTween(visualTransitionDuration*2).SetEase(Ease.OutBack));
+                animValue = x;
+                onUpdate?.Invoke(x);
+            }, finalTarget, duration)
+            .SetEase(Ease.Linear)
+            .OnComplete(() => { animValue = 0f; onUpdate?.Invoke(0f); }));
         }
+        
+        //Dernière séquence
+        seq.Append(CreateTween(visualTransitionDuration*2).SetEase(Ease.OutBack));
 
         // À la fin de la séquence, réinitialise la valeur et appelle le callback onComplete
         seq.OnComplete(() =>

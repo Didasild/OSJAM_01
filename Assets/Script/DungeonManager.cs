@@ -1,7 +1,9 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using TMPro;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 #region ENUMS
 public enum RoomDirection
@@ -236,6 +238,7 @@ public class DungeonManager : MonoBehaviour
     {
         SaveRoomData();
         currentRoom.roomSelectedVisual.sprite = _visualManager.GetSelectedVisual(false);
+        DisableButtons();
         GameManager.VisualManager.RoomOffsetTransition(GetNextRoomDirection(room.roomPosition), room);
     }
 
@@ -254,21 +257,34 @@ public class DungeonManager : MonoBehaviour
         currentRoom.roomSavedString = GameManager.Instance.gridManager.SaveGridString();
     }
 
+    private void DisableButtons()
+    {
+        buttonRight.SetActive(false);
+        buttonLeft.SetActive(false);
+        buttonUp.SetActive(false);
+        buttonDown.SetActive(false);
+    }
+
     public void UpdateButtonStates()
     {
-        if (currentRoom.currentRoomState == RoomState.Complete)
+        switch (currentRoom.currentRoomState)
         {
-            buttonRight.SetActive(currentRoom.roomRight != null);
-            buttonLeft.SetActive(currentRoom.roomLeft != null);
-            buttonUp.SetActive(currentRoom.roomUp != null);
-            buttonDown.SetActive(currentRoom.roomDown != null);
-        }
-        else if(currentRoom.currentRoomState == RoomState.Started)
-        {
-            buttonRight.SetActive(false);
-            buttonLeft.SetActive(false);
-            buttonUp.SetActive(false);
-            buttonDown.SetActive(false);
+            case RoomState.Complete:
+                buttonRight.SetActive(currentRoom.roomRight != null);
+                buttonLeft.SetActive(currentRoom.roomLeft != null);
+                buttonUp.SetActive(currentRoom.roomUp != null);
+                buttonDown.SetActive(currentRoom.roomDown != null);
+                break;
+            case RoomState.Started:
+                buttonRight.SetActive(false);
+                buttonLeft.SetActive(false);
+                buttonUp.SetActive(false);
+                buttonDown.SetActive(false);
+                break;
+            case RoomState.FogOfWar:
+                break;
+            default:
+                throw new ArgumentOutOfRangeException();
         }
     }
 
