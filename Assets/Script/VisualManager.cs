@@ -3,11 +3,13 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using DG.Tweening;
+using DG.Tweening.Core;
 using Dida.Rendering;
 using UnityEngine;
 using Debug = UnityEngine.Debug;
 using NaughtyAttributes;
 using UnityEngine.Rendering;
+using UnityEngine.Serialization;
 using UnityEngine.U2D;
 
 public class VisualManager : MonoBehaviour
@@ -24,7 +26,7 @@ public class VisualManager : MonoBehaviour
     
     [Header("GRID / ROOM TRANSITION")]
     public GameObject grid;
-    public GameObject grindIndicatorParent;
+    [FormerlySerializedAs("grindIndicatorParent")] public GameObject gridIndicatorParent;
     public GameObject roomParent;
 
     [Header("_______CELL ANIMATIONS")] 
@@ -50,11 +52,12 @@ public class VisualManager : MonoBehaviour
     [HideInInspector] public VisualSettings visualSettings;
     private GridManager _gridManager;
     
-    public Material _gridMaterial;
-    private List<TransformOffset> _grindIndicatorOffsetScript;
+    private Material _gridMaterial;
+    private List<TransformOffset> _gridIndicatorOffsetScript;
+    public TransformOffset _RoomParentOffsetScript;
     
     private Tweener _currentWeightTween;
-    private bool roomTransitionComplete;
+    private bool _roomTransitionComplete;
 
     #region EDITOR ONLY PARAMETERS
     [Header("_______EDITOR")] 
@@ -80,7 +83,6 @@ public class VisualManager : MonoBehaviour
     #endregion
 
     #region INIT
-
     public void Init()
     {
         if (mainColorsVolume.profile.TryGet(out visualSettings)) { }
@@ -89,18 +91,13 @@ public class VisualManager : MonoBehaviour
         _roomMainProfile = mainColorsVolume.profile;
         
         _gridMaterial = grid.GetComponent<Renderer>().material;
-        _grindIndicatorOffsetScript = GetTransformOffsets(grindIndicatorParent);
+        _gridIndicatorOffsetScript = GetTransformOffsets(gridIndicatorParent);
+        _RoomParentOffsetScript = roomParent.GetComponent<TransformOffset>();
         
         _gridManager = GameManager.Instance.gridManager;
         DOTween.SetTweensCapacity(1000, 500);
     }
-
-    [Button]
-    public void MoveGridMaterial()
-    {
-        _gridMaterial.SetFloat("_GridXOffset", 1.5f);
-        Debug.Log(_gridMaterial.GetFloat("_GridXOffset"));
-    }
+    
     private void LoadSprites()
     {
         sprites = new Sprite[spriteAtlas.spriteCount];
@@ -114,7 +111,6 @@ public class VisualManager : MonoBehaviour
     {
         return new List<TransformOffset>(gameObjectParent.GetComponentsInChildren<TransformOffset>());
     }
-    #endregion INIT
     
     public Sprite GetSprite(string spriteName)
     {
@@ -128,6 +124,7 @@ public class VisualManager : MonoBehaviour
             return null;
         }
     }
+    #endregion INIT
     
     #region GET CELLS VISUALS
    
@@ -277,25 +274,37 @@ public class VisualManager : MonoBehaviour
     {
         int roomXDirection = roomDirection.x * 3;
         int roomYDirection = roomDirection.y * 3;
-        roomTransitionComplete = false;
+        _roomTransitionComplete = false;
         
         //Animation de la room
-        
+        if (roomXDirection != 0)
+        {
+            DOFloat(() => _RoomParentOffsetScript.primaryOffSetValue, x => _RoomParentOffsetScript.primaryOffSetValue = x,
+                    roomXDirection > 0 ? - 1f : 1f, visualTransitionDuration)
+                .SetEase(Ease.Linear);
+        }
+
+        if (roomYDirection != 0)
+        {
+            DOFloat(() => _RoomParentOffsetScript.secondaryOffSetValue, x => _RoomParentOffsetScript.secondaryOffSetValue = x,
+                    roomYDirection > 0 ? -1f : 1f, visualTransitionDuration)
+                .SetEase(Ease.Linear);
+        }
         
         //Animation des room indicator
-        foreach (TransformOffset transformOffset in _grindIndicatorOffsetScript)
+        foreach (TransformOffset transformOffset in _gridIndicatorOffsetScript)
         {
             if (!transformOffset.verticalOffset)
             {
                 AnimateRoomTransitionValue(roomXDirection, visualTransitionDuration / Mathf.Abs(roomXDirection),
-                    value => transformOffset.offSetValue = value,
-                    () => transformOffset.offSetValue = 0f);
+                    value => transformOffset.primaryOffSetValue = value,
+                    () => transformOffset.primaryOffSetValue = 0f);
             }
             else
             {
                 AnimateRoomTransitionValue(roomYDirection, visualTransitionDuration / Mathf.Abs(roomYDirection),
-                    value => transformOffset.offSetValue = value,
-                    () => transformOffset.offSetValue = 0f);
+                    value => transformOffset.primaryOffSetValue = value,
+                    () => transformOffset.primaryOffSetValue = 0f);
             }
         }
         
@@ -307,7 +316,6 @@ public class VisualManager : MonoBehaviour
                 _gridMaterial.SetFloat("_GridXOffset", 0);
                 CompleteRoomTransition(nextRoom);
             });
-        
         AnimateRoomTransitionValue(-roomYDirection, visualTransitionDuration / Mathf.Abs(roomYDirection),
             value => _gridMaterial.SetFloat("_GridYOffset", value * 11f),
             () =>
@@ -326,31 +334,27 @@ public class VisualManager : MonoBehaviour
 
         int absLoops = Mathf.Abs(targetValue);
         float finalTarget = targetValue > 0 ? 1f : -1f;
-
         Sequence seq = DOTween.Sequence();
 
         // Variable locale pour animer la valeur
         float animValue = 0f;
 
-        //Première séquence
-        seq.Append(CreateTween(duration).SetEase(Ease.InSine)
-           .OnComplete(() => { animValue = 0f; onUpdate?.Invoke(0f); }));
-            
+        // Tweens intermédiaires
         for (int i = 1; i < absLoops - 1; i++)
         {
-            seq.Append(DOTween.To(() => 0f, x => 
-            {
-                animValue = x;
-                onUpdate?.Invoke(x);
-            }, finalTarget, duration)
-            .SetEase(Ease.Linear)
-            .OnComplete(() => { animValue = 0f; onUpdate?.Invoke(0f); }));
+            seq.Append(
+                CreateTweenForValue(() => 0f, x => { animValue = x; onUpdate?.Invoke(x); }, finalTarget, duration)
+                    .SetEase(Ease.Linear)
+                    .OnComplete(() => { animValue = 0f; onUpdate?.Invoke(0f); })
+            );
         }
-        
-        //Dernière séquence
-        seq.Append(CreateTween(visualTransitionDuration*2).SetEase(Ease.OutBack));
 
-        // À la fin de la séquence, réinitialise la valeur et appelle le callback onComplete
+        // Dernière tween avec un easing de sortie
+        seq.Append(
+            CreateTweenForValue(() => animValue, x => animValue = x, finalTarget, visualTransitionDuration * 2, onUpdate)
+                .SetEase(Ease.OutBack)
+        );
+
         seq.OnComplete(() =>
         {
             onUpdate?.Invoke(0f);
@@ -358,29 +362,30 @@ public class VisualManager : MonoBehaviour
         });
 
         return seq;
-        
-        // Fonction pour créer un tween qui anime animValue de 0 à finalTarget sur 'duration' secondes
-        Tween CreateTween(float tweenDuration)
-        {
-            return DOTween.To(() => animValue, x => 
-            {
-                animValue = x;
-                onUpdate?.Invoke(x);
-            }, finalTarget, tweenDuration);
-        }
+    }
+    
+    private static Tween CreateTweenForValue(DOGetter<float> getter, DOSetter<float> setter, float finalTarget, float duration, Action<float> onUpdate = null)
+    {
+        return DOTween.To(getter, x => { setter(x); onUpdate?.Invoke(x); }, finalTarget, duration);
+    }
+    
+    private static Tweener DOFloat(DOGetter<float> getter, DOSetter<float> setter, float endValue, float duration)
+    {
+        return DOTween.To(getter, setter, endValue, duration);
     }
 
     private void CompleteRoomTransition(RoomData nextRoom)
     {
-        if (roomTransitionComplete)
+        if (_roomTransitionComplete)
         {
             return;
         }
-        roomTransitionComplete = true;
-        roomParent.transform.position = Vector3.zero;
+        _roomTransitionComplete = true;
+        _RoomParentOffsetScript.ResetOffset();
         GameManager.Instance.floorManager.ChangeRoomOut(nextRoom);
         Debug.Log("Transition Complete");
     }
+
     #endregion SET ROOM MOVEMENT
     
     

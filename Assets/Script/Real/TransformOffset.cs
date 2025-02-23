@@ -1,12 +1,18 @@
+using NaughtyAttributes;
 using UnityEngine;
 
 public class TransformOffset : MonoBehaviour
 {
+    public bool oneWayOffset = true;
+    
+    [ShowIf("oneWayOffset")] 
     public bool verticalOffset = false;
     [Range(-1f, 1f)]
-    public float offSetValue;
+    public float primaryOffSetValue;
+    [Range(-1f, 1f)]
+    public float secondaryOffSetValue;
 
-    private const float OffsetUnit = 6.4f;
+    [SerializeField] private float offsetUnit = 6.4f;
     private Vector3 _basePosition;
 
     private void Start()
@@ -15,15 +21,30 @@ public class TransformOffset : MonoBehaviour
     }
     private void Update()
     {
-        float offset = offSetValue * OffsetUnit;
-
-        if (verticalOffset)
+        float primaryOffset = primaryOffSetValue * offsetUnit;
+        float secondaryOffset = secondaryOffSetValue * offsetUnit;
+        
+        if (oneWayOffset)
         {
-            transform.localPosition = new Vector3(_basePosition.x, _basePosition.y + offset, _basePosition.z);
+            if (verticalOffset)
+            {
+                transform.localPosition = new Vector3(_basePosition.x, _basePosition.y + primaryOffset, 0);
+            }
+            else
+            {
+                transform.localPosition = new Vector3(_basePosition.x + primaryOffset, _basePosition.y, 0);
+            }
         }
         else
         {
-            transform.localPosition = new Vector3(_basePosition.x + offset, _basePosition.y, 0);
+           transform.localPosition = new Vector3(_basePosition.x + primaryOffset, _basePosition.y + secondaryOffset, 0);
         }
+    }
+
+    public void ResetOffset()
+    {
+        primaryOffSetValue = 0f;
+        secondaryOffSetValue = 0f;
+        transform.localPosition = Vector3.zero;
     }
 }

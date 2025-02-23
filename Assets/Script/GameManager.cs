@@ -135,6 +135,7 @@ public class GameManager : MonoBehaviour
     #region ROOM AND FLOOR MANAGEMENT
     public void ChangeRoom(RoomData roomData)
     {
+        
         currentRoomSettings = roomData.roomSettings;
         if (roomData.currentRoomState != RoomState.FogOfWar)
         {
