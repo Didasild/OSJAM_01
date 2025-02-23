@@ -196,65 +196,63 @@ public class DungeonManager : MonoBehaviour
     #region CHANGE ROOMS
     public void ChangeRoomDirection(RoomDirection direction)
     {
-        SaveRoomData();
-        currentRoom.roomSelectedVisual.sprite = _visualManager.GetSelectedVisual(false);
+        ChangeRoomIn();
         switch (direction)
         {
             case RoomDirection.Right:
                 if (currentRoom.roomRight != null)
                 {
-                    currentRoom = currentRoom.roomRight;
-                    GameManager.Instance.ChangeRoom(currentRoom);
+                    _visualManager.RoomOffsetTransition(GetNextRoomDirection(currentRoom.roomRight.roomPosition), currentRoom.roomRight);
                 }
                 break;
             case RoomDirection.Left:
                 if (currentRoom.roomLeft != null)
                 {
-                    currentRoom = currentRoom.roomLeft;
-                    GameManager.Instance.ChangeRoom(currentRoom);
+                    _visualManager.RoomOffsetTransition(GetNextRoomDirection(currentRoom.roomLeft.roomPosition), currentRoom.roomLeft);
                 }
                 break;
             case RoomDirection.Up:
                 if (currentRoom.roomUp != null)
                 {
-                    currentRoom = currentRoom.roomUp;
-                    GameManager.Instance.ChangeRoom(currentRoom);
+                    _visualManager.RoomOffsetTransition(GetNextRoomDirection(currentRoom.roomUp.roomPosition), currentRoom.roomUp);
                 }
                 break;
             case RoomDirection.Down:
                 if (currentRoom.roomDown != null)
                 {
-                    currentRoom = currentRoom.roomDown;
-                    GameManager.Instance.ChangeRoom(currentRoom);
+                    _visualManager.RoomOffsetTransition(GetNextRoomDirection(currentRoom.roomDown.roomPosition), currentRoom.roomDown);
                 }
                 break;
         }
-        currentRoom.roomSelectedVisual.sprite = _visualManager.GetSelectedVisual(true);
-        UpdateButtonStates();
-        UpdateRoomDebugName();
+    }
+    
+    private void SaveRoomData()
+    {
+        currentRoom.roomSavedString = GameManager.Instance.gridManager.SaveGridString();
     }
 
-    public void ChangeRoomMinimapIn(RoomData room)
+    public void ChangeRoomMinimapIn(RoomData nextRoom)
+    {
+        ChangeRoomIn();
+        GameManager.VisualManager.RoomOffsetTransition(GetNextRoomDirection(nextRoom.roomPosition), nextRoom);
+    }
+
+    private void ChangeRoomIn()
     {
         SaveRoomData();
         currentRoom.roomSelectedVisual.sprite = _visualManager.GetSelectedVisual(false);
         DisableButtons();
-        GameManager.VisualManager.RoomOffsetTransition(GetNextRoomDirection(room.roomPosition), room);
     }
 
-    public void ChangeRoomMinimapOut(RoomData room)
+    public void ChangeRoomOut(RoomData nextRoom)
     {
-        currentRoom = room;
-        GameManager.Instance.ChangeRoom(room);
+        currentRoom = nextRoom;
+        GameManager.Instance.ChangeRoom(nextRoom);
         
         currentRoom.roomSelectedVisual.sprite = _visualManager.GetSelectedVisual(true);
         
         UpdateButtonStates();
-    }
-
-    private void SaveRoomData()
-    {
-        currentRoom.roomSavedString = GameManager.Instance.gridManager.SaveGridString();
+        UpdateRoomDebugName();
     }
 
     private void DisableButtons()

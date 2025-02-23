@@ -213,53 +213,6 @@ public class VisualManager : MonoBehaviour
     }
     #endregion
     
-    #region SET ROOM VISUAL
-    public void UpdateRoomVisual(RoomData roomData)
-    {
-        TransitionVolume(roomData.roomSettings.roomColorsVolumeProfile);
-    }
-
-    private void TransitionVolume(VolumeProfile roomProfile = null)
-    {
-        //Check le volume a récup
-        if (roomProfile != null)
-        {
-            if (roomProfile == _roomMainProfile)
-            {
-                return;
-            }
-            transitionColorsVolume.profile = roomProfile;
-        }
-        else
-        {
-            if (GameManager.Instance.currentChapterSettings.chapterDefaultColorsVolume == transitionColorsVolume.profile)
-            {
-                return;
-            }
-            transitionColorsVolume.profile = GameManager.Instance.currentChapterSettings.chapterDefaultColorsVolume;
-        }
-        
-        // Si un tween est déjà en cours, on l'annule
-        _currentWeightTween?.Kill();
-        //Fait la transition si le volume est bon
-        _currentWeightTween = DOWeight(transitionColorsVolume, 1f, visualTransitionDuration)
-            .SetEase(Ease.Linear)
-            .OnComplete(UpdateVolumeProfile);
-    }
-    
-    private static Tweener DOWeight(Volume volume, float endValue, float duration)
-    {
-        return DOTween.To(() => volume.weight, x => volume.weight = x, endValue, duration);
-    }
-
-    private void UpdateVolumeProfile()
-    {
-        mainColorsVolume.profile = null;
-        mainColorsVolume.profile = transitionColorsVolume.profile;
-        transitionColorsVolume.weight = 0;
-    }
-    #endregion SET ROOM FUNCTIONS
-    
     #region GET ROOM FUNCTIONS
     public Sprite GetRoomStateVisual(RoomState roomState)
     {
@@ -317,9 +270,15 @@ public class VisualManager : MonoBehaviour
     }
     #endregion GET ROOM FUNCTIONS
 
-    #region ROOM ANIMATIONS
+    #region ROOM TRANSITION
 
-    public void RoomOffsetTransition(Vector2Int roomDirection, RoomData room)
+    #region SET ROOM MOVEMENT
+
+    public void InitRoomTransition(RoomData nextRoom)
+    {
+        
+    }
+    public void RoomOffsetTransition(Vector2Int roomDirection, RoomData nextRoom)
     {
         int roomXDirection = roomDirection.x * 3;
         int roomYDirection = roomDirection.y * 3;
@@ -351,7 +310,7 @@ public class VisualManager : MonoBehaviour
             () =>
             {
                 _gridMaterial.SetFloat("_GridXOffset", 0);
-                CompleteRoomTransition(room);
+                CompleteRoomTransition(nextRoom);
             });
         
         AnimateRoomTransitionValue(-roomYDirection, visualTransitionDuration / Mathf.Abs(roomYDirection),
@@ -359,7 +318,7 @@ public class VisualManager : MonoBehaviour
             () =>
             {
                 _gridMaterial.SetFloat("_GridYOffset", 0);
-                CompleteRoomTransition(room);
+                CompleteRoomTransition(nextRoom);
             });
     }
 
@@ -416,7 +375,7 @@ public class VisualManager : MonoBehaviour
         }
     }
 
-    private void CompleteRoomTransition(RoomData room)
+    private void CompleteRoomTransition(RoomData nextRoom)
     {
         if (roomTransitionComplete)
         {
@@ -424,9 +383,58 @@ public class VisualManager : MonoBehaviour
         }
         roomTransitionComplete = true;
         roomParent.transform.position = Vector3.zero;
-        GameManager.Instance.floorManager.ChangeRoomMinimapOut(room);
+        GameManager.Instance.floorManager.ChangeRoomOut(nextRoom);
         Debug.Log("Transition Complete");
     }
+    #endregion SET ROOM MOVEMENT
+    
+    
+    #region SET ROOM AMBIANCE
+    public void UpdateRoomVisual(RoomData roomData)
+    {
+        TransitionVolume(roomData.roomSettings.roomColorsVolumeProfile);
+    }
+
+    private void TransitionVolume(VolumeProfile roomProfile = null)
+    {
+        //Check le volume a récup
+        if (roomProfile != null)
+        {
+            if (roomProfile == _roomMainProfile)
+            {
+                return;
+            }
+            transitionColorsVolume.profile = roomProfile;
+        }
+        else
+        {
+            if (GameManager.Instance.currentChapterSettings.chapterDefaultColorsVolume == transitionColorsVolume.profile)
+            {
+                return;
+            }
+            transitionColorsVolume.profile = GameManager.Instance.currentChapterSettings.chapterDefaultColorsVolume;
+        }
+        
+        // Si un tween est déjà en cours, on l'annule
+        _currentWeightTween?.Kill();
+        //Fait la transition si le volume est bon
+        _currentWeightTween = DOWeight(transitionColorsVolume, 1f, visualTransitionDuration)
+            .SetEase(Ease.Linear)
+            .OnComplete(UpdateVolumeProfile);
+    }
+    
+    private static Tweener DOWeight(Volume volume, float endValue, float duration)
+    {
+        return DOTween.To(() => volume.weight, x => volume.weight = x, endValue, duration);
+    }
+
+    private void UpdateVolumeProfile()
+    {
+        mainColorsVolume.profile = null;
+        mainColorsVolume.profile = transitionColorsVolume.profile;
+        transitionColorsVolume.weight = 0;
+    }
+    #endregion SET ROOM FUNCTIONS
     
     public void ActiveListOfCells(float timeBetweenApparition, RoomState roomState)
     {
