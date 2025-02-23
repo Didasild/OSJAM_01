@@ -273,11 +273,6 @@ public class VisualManager : MonoBehaviour
     #region ROOM TRANSITION
 
     #region SET ROOM MOVEMENT
-
-    public void InitRoomTransition(RoomData nextRoom)
-    {
-        
-    }
     public void RoomOffsetTransition(Vector2Int roomDirection, RoomData nextRoom)
     {
         int roomXDirection = roomDirection.x * 3;
@@ -434,7 +429,7 @@ public class VisualManager : MonoBehaviour
         mainColorsVolume.profile = transitionColorsVolume.profile;
         transitionColorsVolume.weight = 0;
     }
-    #endregion SET ROOM FUNCTIONS
+    #endregion SET ROOM MOVEMENT
     
     public void ActiveListOfCells(float timeBetweenApparition, RoomState roomState)
     {

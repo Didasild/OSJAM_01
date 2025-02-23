@@ -193,7 +193,7 @@ public class DungeonManager : MonoBehaviour
     
     #endregion FLOOR GENERATION
 
-    #region CHANGE ROOMS
+    #region CHANGE ROOM
     public void ChangeRoomDirection(RoomDirection direction)
     {
         ChangeRoomIn();
@@ -202,39 +202,43 @@ public class DungeonManager : MonoBehaviour
             case RoomDirection.Right:
                 if (currentRoom.roomRight != null)
                 {
-                    _visualManager.RoomOffsetTransition(GetNextRoomDirection(currentRoom.roomRight.roomPosition), currentRoom.roomRight);
+                    InitRoomTransition(currentRoom.roomRight);
                 }
                 break;
             case RoomDirection.Left:
                 if (currentRoom.roomLeft != null)
                 {
-                    _visualManager.RoomOffsetTransition(GetNextRoomDirection(currentRoom.roomLeft.roomPosition), currentRoom.roomLeft);
+                    InitRoomTransition(currentRoom.roomLeft);
                 }
                 break;
             case RoomDirection.Up:
                 if (currentRoom.roomUp != null)
                 {
-                    _visualManager.RoomOffsetTransition(GetNextRoomDirection(currentRoom.roomUp.roomPosition), currentRoom.roomUp);
+                    InitRoomTransition(currentRoom.roomUp);
                 }
                 break;
             case RoomDirection.Down:
                 if (currentRoom.roomDown != null)
                 {
-                    _visualManager.RoomOffsetTransition(GetNextRoomDirection(currentRoom.roomDown.roomPosition), currentRoom.roomDown);
+                    InitRoomTransition(currentRoom.roomDown);
                 }
                 break;
+            default:
+                throw new ArgumentOutOfRangeException(nameof(direction), direction, null);
         }
-    }
-    
-    private void SaveRoomData()
-    {
-        currentRoom.roomSavedString = GameManager.Instance.gridManager.SaveGridString();
     }
 
     public void ChangeRoomMinimapIn(RoomData nextRoom)
     {
         ChangeRoomIn();
-        GameManager.VisualManager.RoomOffsetTransition(GetNextRoomDirection(nextRoom.roomPosition), nextRoom);
+        InitRoomTransition(nextRoom);
+    }
+    
+    private void InitRoomTransition(RoomData nextRoom)
+    {
+        _visualManager.UpdateRoomVisual(nextRoom);
+        Vector2Int roomDirection = GetNextRoomDirection(nextRoom.roomPosition);
+        _visualManager.RoomOffsetTransition(roomDirection, nextRoom);
     }
 
     private void ChangeRoomIn()
@@ -286,6 +290,14 @@ public class DungeonManager : MonoBehaviour
         }
     }
 
+    #endregion CHANGE ROOM
+
+    #region UTILITARY FUNCTIONS
+    private void SaveRoomData()
+    {
+        currentRoom.roomSavedString = GameManager.Instance.gridManager.SaveGridString();
+    }
+
     private Vector2Int GetNextRoomDirection(Vector2Int nextRoomPosition)
     {
         return new Vector2Int(nextRoomPosition.x - currentRoom.roomPosition.x, nextRoomPosition.y - currentRoom.roomPosition.y);
@@ -295,8 +307,8 @@ public class DungeonManager : MonoBehaviour
     {
         return Vector2Int.Distance(currentRoom.roomPosition, nextRoomPosition);
     }
-    #endregion BUTTON FONCTIONS
-
+    #endregion UTILITARY FUNCTIONS
+    
     #region DEBUG
     private void UpdateRoomDebugName()
     {
