@@ -152,6 +152,7 @@ public class DungeonManager : MonoBehaviour
         GameManager.Instance.ChangeRoom(currentRoom);
 
         //Update le visuel de la minimap
+        _visualManager.UpdateRoomAmbiance(currentRoom);
         currentRoom.roomSelectedVisual.sprite = _visualManager.GetSelectedVisual(true);
 
         //Update les boutons
@@ -236,7 +237,7 @@ public class DungeonManager : MonoBehaviour
     
     private void InitRoomTransition(RoomData nextRoom)
     {
-        _visualManager.UpdateRoomVisual(nextRoom);
+        _visualManager.UpdateRoomAmbiance(nextRoom);
         Vector2Int roomDirection = GetNextRoomDirection(nextRoom.roomPosition);
         _visualManager.RoomOffsetTransition(roomDirection, nextRoom);
     }

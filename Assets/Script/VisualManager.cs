@@ -390,7 +390,7 @@ public class VisualManager : MonoBehaviour
     
     
     #region SET ROOM AMBIANCE
-    public void UpdateRoomVisual(RoomData roomData)
+    public void UpdateRoomAmbiance(RoomData roomData)
     {
         TransitionVolume(roomData.roomSettings.roomColorsVolumeProfile);
     }
