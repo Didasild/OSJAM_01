@@ -48,8 +48,9 @@ public class Cell : MonoBehaviour
     [ReadOnly] public int numberOfNeighborsMine;
     
     [Header("CELL BASE VISUAL")]
-    public GameObject cellEmpty;
+    public GameObject cellOver;
     public GameObject cellCover;
+    public GameObject cellEmpty;
     public GameObject cellOutline;
 
     [Header("CELL ADDITIONAL VISUAL")] 
@@ -288,6 +289,18 @@ public class Cell : MonoBehaviour
         //Debug.Log("switch to Sword State");
         stateVisual.sprite = _visualManager.GetCellStateVisual(currentState);
         visualParent.SetActive(true);
+    }
+
+    public void isOver(bool isOver)
+    {
+        if (isOver)
+        {
+            cellOver.SetActive(true);
+        }
+        else
+        {
+            cellOver.SetActive(false);
+        }
     }
     #endregion
 
