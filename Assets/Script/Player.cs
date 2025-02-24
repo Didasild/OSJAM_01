@@ -51,25 +51,21 @@ public class Player : MonoBehaviour
             cellOver = hit.collider.GetComponent<Cell>();
             if (cellOver != null)
             {
-                // Si la cellule actuelle est différente de la cellule précédente, désactive le survol de la précédente
                 if (_previousCell != null && _previousCell != cellOver)
                 {
                     _previousCell.isOver(false);
                 }
-                // Active le survol sur la cellule actuelle
                 cellOver.isOver(true);
                 _previousCell = cellOver;
             }
         }
         else
         {
-            // Aucun collider n'est détecté : désactive le survol de la cellule précédente, le cas échéant
             if (_previousCell != null)
             {
                 _previousCell.isOver(false);
                 _previousCell = null;
             }
-            //return;
         }
         if (cellOver == null || GameManager.Instance.currentGameState != GameState.InGame)
         {
