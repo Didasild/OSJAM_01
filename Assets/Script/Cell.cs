@@ -66,13 +66,16 @@ public class Cell : MonoBehaviour
     
     //Private Variables
     private GameManager _gameManager;
-    private Sequence revealSequence;
+    private Sequence _revealSequence;
 
     private Collider2D _collider;
     
     private VisualManager _visualManager;
     private SpriteRenderer _emptySprite;
     private SpriteRenderer _outlineSprite;
+
+    private bool _isOverrableState = false;
+    private bool _isOverrableType = false;
     #endregion
 
     #region INIT
@@ -189,6 +192,8 @@ public class Cell : MonoBehaviour
 
     private void InactiveState()
     {
+        _isOverrableState = false;
+        
         stateVisual.sprite = _visualManager.GetCellStateVisual(currentState);
         cellCover.SetActive(false);
         cellEmpty.SetActive(false);
@@ -198,7 +203,8 @@ public class Cell : MonoBehaviour
 
     private void CoverState()
     {
-        //Debug.Log(this.name + " switch to Cover State");
+        _isOverrableState = true;
+        
         stateVisual.sprite = _visualManager.GetCellStateVisual(currentState);
         cellCover.SetActive(true);
         cellOutline.SetActive(true);
@@ -207,7 +213,8 @@ public class Cell : MonoBehaviour
 
     private void ClickedState()
     {
-        //Debug.Log(this.name + " switch to Clicked State");
+        _isOverrableState = false;
+        
         visualParent.SetActive(true);
         stateVisual.sprite = _visualManager.GetCellStateVisual(currentState);
     }
@@ -215,7 +222,8 @@ public class Cell : MonoBehaviour
     #region REVEAL
     private void RevealState()
     {
-        //reactive le parent
+        _isOverrableState = true;
+        
         visualParent.SetActive(true);
         cellEmpty.SetActive(true);
         cellOutline.SetActive(true);
@@ -246,10 +254,10 @@ public class Cell : MonoBehaviour
     private void RevealNeighbors()
     {
         // Si une séquence existe déjà, la tuer pour éviter l'accumulation
-        if (revealSequence != null && revealSequence.IsActive())
-            revealSequence.Kill();
+        if (_revealSequence != null && _revealSequence.IsActive())
+            _revealSequence.Kill();
         
-        revealSequence = DOTween.Sequence(); // Crée une séquence DOTween
+        _revealSequence = DOTween.Sequence(); // Crée une séquence DOTween
         float delayBetweenCells = 0.05f; // Temps entre chaque reveal
 
         foreach (Cell cell in neighborsCellList)
@@ -257,7 +265,7 @@ public class Cell : MonoBehaviour
             if (cell.currentState == CellState.Cover)
             {
                 
-                revealSequence.AppendInterval(delayBetweenCells) // Ajoute un délai avant chaque animation
+                _revealSequence.AppendInterval(delayBetweenCells) // Ajoute un délai avant chaque animation
                     .AppendCallback(() => cell.ChangeState(CellState.Reveal));
             }
         }
@@ -279,28 +287,31 @@ public class Cell : MonoBehaviour
 
     private void FlagState()
     {
-        //Debug.Log("switch to Flag State");
+        _isOverrableState = true;
+        
         stateVisual.sprite = _visualManager.GetCellStateVisual(currentState);
         visualParent.SetActive(true);
     }
 
     private void SwordPlantedState()
     {
-        //Debug.Log("switch to Sword State");
+        _isOverrableState = true;
+        
         stateVisual.sprite = _visualManager.GetCellStateVisual(currentState);
         visualParent.SetActive(true);
     }
 
-    public void isOver(bool isOver)
+    public void IsOver(bool isOver)
     {
-        if (isOver)
+        if (_isOverrableState && _isOverrableType)
         {
-            cellOver.SetActive(true);
+            cellOver.SetActive(isOver);
         }
         else
         {
             cellOver.SetActive(false);
         }
+
     }
     #endregion
 
@@ -340,6 +351,8 @@ public class Cell : MonoBehaviour
 
     private void EmptyType(bool updateVisual = true)
     {
+        _isOverrableType = false;
+        
         if (updateVisual)
         {
             cellEmpty.SetActive(true);
@@ -348,6 +361,8 @@ public class Cell : MonoBehaviour
     }
     private void NoneType()
     {
+        _isOverrableType = false;
+        
         typeVisual.sprite = null;
         stateVisual.sprite = null;
         itemVisual.sprite = null;
@@ -361,22 +376,30 @@ public class Cell : MonoBehaviour
     }
     private void MineType()
     {
+        _isOverrableType = true;
+        
         typeVisual.sprite = _visualManager.GetCellTypeVisual(currentType);
     }
     private void HintType()
     {
+        _isOverrableType = true;
+        
         cellEmpty.SetActive(true);
         typeVisual.sprite = _visualManager.GetCellTypeVisual(currentType);
     }
 
     private void GateType()
     {
+        _isOverrableType = true;
+        
         cellEmpty.SetActive(false);
         typeVisual.sprite = _visualManager.GetCellTypeVisual(currentType);
     }
 
     private void ItemType()
     {
+        _isOverrableType = true;
+        
         cellEmpty.SetActive(true);
         typeVisual.sprite = _visualManager.GetCellTypeVisual(currentType);
     }

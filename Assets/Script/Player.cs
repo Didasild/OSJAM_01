@@ -53,9 +53,9 @@ public class Player : MonoBehaviour
             {
                 if (_previousCell != null && _previousCell != cellOver)
                 {
-                    _previousCell.isOver(false);
+                    _previousCell.IsOver(false);
                 }
-                cellOver.isOver(true);
+                cellOver.IsOver(true);
                 _previousCell = cellOver;
             }
         }
@@ -63,7 +63,7 @@ public class Player : MonoBehaviour
         {
             if (_previousCell != null)
             {
-                _previousCell.isOver(false);
+                _previousCell.IsOver(false);
                 _previousCell = null;
             }
         }
