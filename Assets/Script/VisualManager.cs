@@ -28,6 +28,8 @@ public class VisualManager : MonoBehaviour
     public GameObject grid;
     [FormerlySerializedAs("grindIndicatorParent")] public GameObject gridIndicatorParent;
     public GameObject roomParent;
+    public GameObject roomID_Raw;
+    public GameObject roomID_Col;
 
     [Header("_______CELL ANIMATIONS")] 
     public List<GameObject> animationPrefabs;
@@ -54,7 +56,9 @@ public class VisualManager : MonoBehaviour
     
     private Material _gridMaterial;
     private List<TransformOffset> _gridIndicatorOffsetScript;
-    public TransformOffset _RoomParentOffsetScript;
+    private TransformOffset _RoomParentOffsetScript;
+    private SpriteRenderer _roomIDRawRenderer;
+    private SpriteRenderer _roomIDColRenderer;
     
     private Tweener _currentWeightTween;
     private bool _roomTransitionComplete;
@@ -93,6 +97,8 @@ public class VisualManager : MonoBehaviour
         _gridMaterial = grid.GetComponent<Renderer>().material;
         _gridIndicatorOffsetScript = GetTransformOffsets(gridIndicatorParent);
         _RoomParentOffsetScript = roomParent.GetComponent<TransformOffset>();
+        _roomIDRawRenderer = roomID_Raw.GetComponent<SpriteRenderer>();
+        _roomIDColRenderer = roomID_Col.GetComponent<SpriteRenderer>();
         
         _gridManager = GameManager.Instance.gridManager;
         DOTween.SetTweensCapacity(1000, 500);
@@ -323,6 +329,7 @@ public class VisualManager : MonoBehaviour
                 _gridMaterial.SetFloat("_GridYOffset", 0);
                 CompleteRoomTransition(nextRoom);
             });
+        
     }
 
     private Tween AnimateRoomTransitionValue(int targetValue, float duration, Action<float> onUpdate, Action onComplete = null)
@@ -373,19 +380,6 @@ public class VisualManager : MonoBehaviour
     {
         return DOTween.To(getter, setter, endValue, duration);
     }
-
-    private void CompleteRoomTransition(RoomData nextRoom)
-    {
-        if (_roomTransitionComplete)
-        {
-            return;
-        }
-        _roomTransitionComplete = true;
-        _RoomParentOffsetScript.ResetOffset();
-        GameManager.Instance.floorManager.ChangeRoomOut(nextRoom);
-        Debug.Log("Transition Complete");
-    }
-
     #endregion SET ROOM MOVEMENT
     
     
@@ -485,6 +479,29 @@ public class VisualManager : MonoBehaviour
             yield return new WaitForSecondsRealtime(timeBetweenApparition); // Délai entre les groupes
         }
     }
+    private void CompleteRoomTransition(RoomData nextRoom)
+    {
+        if (_roomTransitionComplete)
+        {
+            return;
+        }
+        _roomTransitionComplete = true;
+        
+        UpdateRoomID(nextRoom);
+        
+        _RoomParentOffsetScript.ResetOffset();
+        
+        GameManager.Instance.floorManager.ChangeRoomOut(nextRoom);
+    }
+
+    public void UpdateRoomID(RoomData roomData)
+    {
+        _roomIDRawRenderer.sprite = GetSprite(roomData.roomPosition.x.ToString() + "b");
+        _roomIDColRenderer.sprite = GetSprite(roomData.roomPosition.y.ToString() + "b");
+    }
+
     #endregion
+
+
 
 }

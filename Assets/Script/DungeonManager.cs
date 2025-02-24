@@ -153,6 +153,7 @@ public class DungeonManager : MonoBehaviour
 
         //Update le visuel de la minimap
         _visualManager.UpdateRoomAmbiance(currentRoom);
+        _visualManager.UpdateRoomID(currentRoom);
         currentRoom.roomSelectedVisual.sprite = _visualManager.GetSelectedVisual(true);
 
         //Update les boutons
