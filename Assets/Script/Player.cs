@@ -1,3 +1,5 @@
+using System;
+using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using NaughtyAttributes;
@@ -25,6 +27,13 @@ public class Player : MonoBehaviour
     [ReadOnly] public int clicCounter;
     [ReadOnly] public Vector2 mousePosition;
     
+    [Serializable]
+    public struct IsOverCondition
+    {
+        public CellState cellState;
+        public CellType cellType;
+    }
+    public List<IsOverCondition> IsOverConditions;
 
     //Private Variables
     [SerializeField, ReadOnly] private Cell cellOver;

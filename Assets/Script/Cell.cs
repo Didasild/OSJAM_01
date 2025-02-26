@@ -65,23 +65,25 @@ public class Cell : MonoBehaviour
     public float debugAnimDuration = 0.5f;
     
     //Private Variables
-    private GameManager _gameManager;
     private Sequence _revealSequence;
 
     private Collider2D _collider;
     
+    private GameManager _gameManager;
+    private Player _player;
     private VisualManager _visualManager;
     private SpriteRenderer _emptySprite;
     private SpriteRenderer _outlineSprite;
 
-    private bool _isOverrableState = false;
-    private bool _isOverrableType = false;
+    private bool _isOverrable = false;
     #endregion
 
     #region INIT
     public void Initialize(Vector2Int cellPosition)
     {
         _gameManager = GameManager.Instance;
+        _player = _gameManager.player;
+        
         _visualManager = GameManager.VisualManager;
         
         _collider = GetComponent<Collider2D>();
@@ -188,12 +190,12 @@ public class Cell : MonoBehaviour
                 SwordPlantedState();
                 break;
         }
+        
+        UpdateOverrableBool();
     }
 
     private void InactiveState()
     {
-        _isOverrableState = false;
-        
         stateVisual.sprite = _visualManager.GetCellStateVisual(currentState);
         cellCover.SetActive(false);
         cellEmpty.SetActive(false);
@@ -203,8 +205,6 @@ public class Cell : MonoBehaviour
 
     private void CoverState()
     {
-        _isOverrableState = true;
-        
         stateVisual.sprite = _visualManager.GetCellStateVisual(currentState);
         cellCover.SetActive(true);
         cellOutline.SetActive(true);
@@ -213,8 +213,6 @@ public class Cell : MonoBehaviour
 
     private void ClickedState()
     {
-        _isOverrableState = false;
-        
         visualParent.SetActive(true);
         stateVisual.sprite = _visualManager.GetCellStateVisual(currentState);
     }
@@ -222,8 +220,6 @@ public class Cell : MonoBehaviour
     #region REVEAL
     private void RevealState()
     {
-        _isOverrableState = true;
-        
         visualParent.SetActive(true);
         cellEmpty.SetActive(true);
         cellOutline.SetActive(true);
@@ -287,31 +283,19 @@ public class Cell : MonoBehaviour
 
     private void FlagState()
     {
-        _isOverrableState = true;
-        
         stateVisual.sprite = _visualManager.GetCellStateVisual(currentState);
         visualParent.SetActive(true);
     }
 
     private void SwordPlantedState()
     {
-        _isOverrableState = true;
-        
         stateVisual.sprite = _visualManager.GetCellStateVisual(currentState);
         visualParent.SetActive(true);
     }
 
     public void IsOver(bool isOver)
     {
-        if (_isOverrableState && _isOverrableType)
-        {
-            cellOver.SetActive(isOver);
-        }
-        else
-        {
-            cellOver.SetActive(false);
-        }
-
+        cellOver.SetActive(_isOverrable && isOver);
     }
     #endregion
 
@@ -345,14 +329,13 @@ public class Cell : MonoBehaviour
             case CellType.Item:
                 ItemType();
                 break;
-            
         }
+        
+        UpdateOverrableBool();
     }
 
     private void EmptyType(bool updateVisual = true)
     {
-        _isOverrableType = false;
-        
         if (updateVisual)
         {
             cellEmpty.SetActive(true);
@@ -361,8 +344,6 @@ public class Cell : MonoBehaviour
     }
     private void NoneType()
     {
-        _isOverrableType = false;
-        
         typeVisual.sprite = null;
         stateVisual.sprite = null;
         itemVisual.sprite = null;
@@ -376,30 +357,22 @@ public class Cell : MonoBehaviour
     }
     private void MineType()
     {
-        _isOverrableType = true;
-        
         typeVisual.sprite = _visualManager.GetCellTypeVisual(currentType);
     }
     private void HintType()
     {
-        _isOverrableType = true;
-        
         cellEmpty.SetActive(true);
         typeVisual.sprite = _visualManager.GetCellTypeVisual(currentType);
     }
 
     private void GateType()
     {
-        _isOverrableType = true;
-        
         cellEmpty.SetActive(false);
         typeVisual.sprite = _visualManager.GetCellTypeVisual(currentType);
     }
 
     private void ItemType()
     {
-        _isOverrableType = true;
-        
         cellEmpty.SetActive(true);
         typeVisual.sprite = _visualManager.GetCellTypeVisual(currentType);
     }
@@ -496,6 +469,20 @@ public class Cell : MonoBehaviour
     #endregion
 
     #region CELL MODIFICATIONS METHODS
+
+    private void UpdateOverrableBool()
+    {
+        _isOverrable = false;
+
+        foreach (Player.IsOverCondition condition in _player.IsOverConditions)
+        {
+            if (condition.cellState == currentState && condition.cellType == currentType)
+            {
+                _isOverrable = true;
+                return; // Sort de la fonction dès qu'on trouve une correspondance
+            }
+        }
+    }
     public void MineSwordDestruction(GameObject mineAnimType)
     {
         ChangeState(CellState.Cover);
