@@ -129,7 +129,7 @@ public class DungeonManager : MonoBehaviour
         // Assigner les RoomSettings mélangés aux RoomData
         for (int i = 0; i < roomList.Count; i++)
         {
-            roomList[i].roomSettings = tempRoomSettings[i];
+            roomList[i].initRoomSettings = tempRoomSettings[i];
         }
 
         foreach (RoomData room in roomList)
@@ -314,7 +314,7 @@ public class DungeonManager : MonoBehaviour
     #region DEBUG
     private void UpdateRoomDebugName()
     {
-        roomNameDebugText.text = currentRoom.roomSettings.name;
+        roomNameDebugText.text = currentRoom.initRoomSettings.name;
     }
     #endregion DEBUG
 

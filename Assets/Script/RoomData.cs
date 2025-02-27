@@ -16,9 +16,8 @@ public enum RoomState
 public class RoomData : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerClickHandler
 {
     #region PARAMETERS
-
     [Header("GENERAL DATA")]
-    [ReadOnly] public RoomSettings roomSettings;
+    [ReadOnly] public RoomSettings initRoomSettings;
     [ReadOnly] public RoomState currentRoomState;
     [ReadOnly] public RoomType currentRoomType;
     [ReadOnly] public string roomSavedString;
@@ -67,7 +66,7 @@ public class RoomData : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 
     public void InitializeRoomType()
     {
-        currentRoomType = roomSettings.roomType;
+        currentRoomType = initRoomSettings.roomType;
         roomTypeVisual.sprite = _visualManager.GetRoomTypeVisual(RoomType.Base);
     }
 

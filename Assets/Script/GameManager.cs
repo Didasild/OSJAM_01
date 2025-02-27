@@ -105,7 +105,7 @@ public class GameManager : MonoBehaviour
         {
             //Génère un floor et une première room
             floorManager.currentFloorSetting = floorManager.floorSettingsList[0];
-            floorManager.GenerateFloor(floorManager.currentFloorSetting.GetFloorSize());
+            floorManager.GenerateFloor(floorManager.currentFloorSetting.GetProceduralFloorSize());
 
             //Reset les data
             player.ResetHealthPoint();
@@ -135,7 +135,7 @@ public class GameManager : MonoBehaviour
     #region ROOM AND FLOOR MANAGEMENT
     public void ChangeRoom(RoomData roomData)
     {
-        currentRoomSettings = roomData.roomSettings;
+        currentRoomSettings = roomData.initRoomSettings;
         if (roomData.currentRoomState != RoomState.FogOfWar)
         {
             gridManager.LoadRoomFromString(roomData.roomSavedString, currentRoomSettings.GetRoomSizeFromString(roomData.roomSavedString), currentRoomSettings.haveProceduralCells);
@@ -166,7 +166,7 @@ public class GameManager : MonoBehaviour
         floorManager.currentFloorSetting = floorManager.floorSettingsList[floorIndex];
 
         //Génère un floor et la room de départ
-        floorManager.GenerateFloor(floorManager.currentFloorSetting.GetFloorSize());
+        floorManager.GenerateFloor(floorManager.currentFloorSetting.GetProceduralFloorSize());
     }
     #endregion ROOM AND FLOOR MANAGEMENT
 }

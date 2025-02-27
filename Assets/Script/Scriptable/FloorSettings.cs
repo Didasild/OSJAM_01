@@ -1,5 +1,8 @@
+using System;
+using System.Collections.Generic;
 using UnityEngine;
 using NaughtyAttributes;
+using Random = UnityEngine.Random;
 
 [CreateAssetMenu(fileName = "FloorSettings", menuName = "MineCrawler/FloorSettings")]
 public class FloorSettings : ScriptableObject
@@ -14,10 +17,21 @@ public class FloorSettings : ScriptableObject
     [SerializeField] private Vector2Int maxGridSize = new Vector2Int(4, 4);
 
     [Header("ROOM SETTINGS")]
-    [SerializeField] [Expandable, AllowNesting] public RoomSettings[] roomSettingsList;
+    [SerializeField] [Expandable] public RoomSettings[] roomSettingsList;
+    
+    [Header("________LOADED FLOOR SETTINGS")]
+    public List<loadedRoomDatas> loadedRoomData;
+    [Serializable]
+    public struct loadedRoomDatas
+    {
+        public bool startingRoom;
+        public RoomSettings initRoomSettings;
+        public RoomState currentRoomState;
+        public Vector2Int roomPosition;
+    }
     #endregion
 
-    public Vector2Int GetFloorSize()
+    public Vector2Int GetProceduralFloorSize()
     {
         int randomRow = Random.Range(minGridSize.x, maxGridSize.x + 1);
         int randomCol = Random.Range(minGridSize.y, maxGridSize.y + 1);

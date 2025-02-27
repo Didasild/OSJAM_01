@@ -25,3 +25,10 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 2eebcb769bea22a4489e34f7d6f3a10a, type: 2}
   - {fileID: 11400000, guid: 2eebcb769bea22a4489e34f7d6f3a10a, type: 2}
   - {fileID: 11400000, guid: 2eebcb769bea22a4489e34f7d6f3a10a, type: 2}
+  loadedRoomData:
+  - initRoomSettings: {fileID: 11400000, guid: 3874eaf7b7f24ec43b073b2be72ed74b, type: 2}
+    currentRoomState: 0
+    roomPosition: {x: 0, y: 0}
+  - initRoomSettings: {fileID: 11400000, guid: 3874eaf7b7f24ec43b073b2be72ed74b, type: 2}
+    currentRoomState: 0
+    roomPosition: {x: 0, y: 1}
