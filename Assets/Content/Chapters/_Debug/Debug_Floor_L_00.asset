@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d6b7aef4937d0054da1f650a1766cb15, type: 3}
-  m_Name: Debug_Floor_00
+  m_Name: Debug_Floor_L_00
   m_EditorClassIdentifier: 
   proceduralFloor: 1
   minGridSize: {x: 3, y: 3}
@@ -25,10 +25,12 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 2eebcb769bea22a4489e34f7d6f3a10a, type: 2}
   - {fileID: 11400000, guid: 2eebcb769bea22a4489e34f7d6f3a10a, type: 2}
   - {fileID: 11400000, guid: 2eebcb769bea22a4489e34f7d6f3a10a, type: 2}
-  loadedRoomData:
-  - initRoomSettings: {fileID: 11400000, guid: 3874eaf7b7f24ec43b073b2be72ed74b, type: 2}
+  loadedRoomDatas:
+  - startingRoom: 1
+    initRoomSettings: {fileID: 11400000, guid: 3874eaf7b7f24ec43b073b2be72ed74b, type: 2}
     currentRoomState: 0
     roomPosition: {x: 0, y: 0}
-  - initRoomSettings: {fileID: 11400000, guid: 3874eaf7b7f24ec43b073b2be72ed74b, type: 2}
-    currentRoomState: 0
-    roomPosition: {x: 0, y: 1}
+  - startingRoom: 0
+    initRoomSettings: {fileID: 11400000, guid: e8c958edb868227449c543db67875966, type: 2}
+    currentRoomState: 1
+    roomPosition: {x: 0, y: 2}

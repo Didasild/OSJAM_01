@@ -20,9 +20,9 @@ public class FloorSettings : ScriptableObject
     [SerializeField] [Expandable] public RoomSettings[] roomSettingsList;
     
     [Header("________LOADED FLOOR SETTINGS")]
-    public List<loadedRoomDatas> loadedRoomData;
+    public List<LoadedRoomData> loadedRoomDatas;
     [Serializable]
-    public struct loadedRoomDatas
+    public struct LoadedRoomData
     {
         public bool startingRoom;
         public RoomSettings initRoomSettings;

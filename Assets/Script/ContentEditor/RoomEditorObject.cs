@@ -5,44 +5,28 @@ using UnityEngine.Serialization;
 [ExecuteInEditMode]
 public class RoomEditorObject : MonoBehaviour
 {
+    private Vector2Int _roomPosition;
     private SpriteRenderer _spriteRenderer;
     private FloorEditor _floorEditor;
+    private RoomSettings _roomSettings;
+    private VisualManager _visualManager;
+    private RoomState _roomState;
 
-    public void Init(FloorEditor floorEditor, Sprite baseSprite)
+    public void Init(FloorEditor floorEditor, RoomSettings roomSettings, Vector2Int roomPosition, RoomState roomState)
     {
-        _spriteRenderer = GetComponent<SpriteRenderer>();
         _floorEditor = floorEditor;
-        UpdateVisual(baseSprite);
+        _visualManager = floorEditor.visualManager;
+        _roomSettings = roomSettings;
+        _roomPosition = roomPosition;
+        _roomState = roomState;
+        name = $"Room {roomPosition}";
+        _spriteRenderer = GetComponent<SpriteRenderer>();
+        
+        UpdateVisual();
     }
 
-    public void UpdateVisual(Sprite sprite)
+    public void UpdateVisual()
     {
-        
-    }
-    [Button]
-    private void addRoomTop()
-    {
-        
-    }
-    [Button]
-    private void addRoomLeft()
-    {
-        
-    }
-    [Button]
-    private void addRoomRight()
-    {
-        
-    }
-    [Button]
-    private void addRoomBot()
-    {
-        
-    }
-    
-    [Button]
-    private void RemoveRoom()
-    {
-        
+        _spriteRenderer.sprite = _visualManager.GetRoomStateVisual(_roomState);
     }
 }
