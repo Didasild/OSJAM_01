@@ -94,6 +94,10 @@ public class CellEditor : MonoBehaviour
     #region VISUAL FUNCTIONS
     public void UpdateCellVisual()
     {
+        if (cellStateVisual == null || _visualManager == null)
+        {
+            return;
+        }
         if (proceduralCell)
         {
             cellState = CellState.Cover;
@@ -149,6 +153,10 @@ public class CellEditor : MonoBehaviour
 
     private void UpdateItemVisual(ItemTypeEnum itemType)
     {
+        if (cellTypeVisual == null || _visualManager == null)
+        {
+            return;
+        }
         switch (itemType)
         {
             case ItemTypeEnum.None:

@@ -10,6 +10,8 @@ public class FloorEditor : MonoBehaviour
     [Header("SETUP")]
     public VisualManager visualManager;
     public RoomEditorObject roomEditorObjectPrefab;
+    public RoomEditorObject selectedRoomEditorObject;
+    public float roomOffset;
     
     [Header("LOAD DATA")]
     public FloorSettings floorToLoad;
@@ -34,9 +36,14 @@ public class FloorEditor : MonoBehaviour
     }
     private void InstantiateRoomFromSettings(List<FloorSettings.LoadedRoomData> roomDatas, int i)
     {
-        RoomEditorObject roomObject = Instantiate(roomEditorObjectPrefab, Vector3.zero, Quaternion.identity, transform);
+        RoomEditorObject roomObject = Instantiate(roomEditorObjectPrefab, InitRoomPosition(roomDatas[i]), Quaternion.identity, transform);
         roomEditorObjects.Add(roomObject);
         roomObject.Init(this, roomDatas[i].initRoomSettings, roomDatas[i].roomPosition, roomDatas[i].currentRoomState);
+    }
+
+    private Vector3 InitRoomPosition(FloorSettings.LoadedRoomData roomData)
+    {
+        return new Vector3(roomData.roomPosition.x * roomOffset, roomData.roomPosition.y * roomOffset, 0);
     }
 
     public void GenerateNewRoom()
