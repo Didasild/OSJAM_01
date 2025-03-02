@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using NaughtyAttributes;
 using TMPro;
 using UnityEditor;
 using UnityEngine;
@@ -16,15 +17,16 @@ public class CellEditor : MonoBehaviour
     public bool proceduralCell;
     
     [Header("DEBUG / SETUP")]
-    public SpriteRenderer cellStateVisual;
-    public SpriteRenderer cellTypeVisual;
-    public SpriteRenderer debugVisual;
-    public int hintNumber = 0;
-    public TMP_Text debugHintText;
-    public Color debugBaseColor;
-    public Color debugHighlightColor;
-    public List<CellEditor> neighborsCellList = new List<CellEditor>(); 
-    public bool isSelected;
+    public bool showSetupElements = false;
+    [ShowIf("showSetupElements")] public SpriteRenderer cellStateVisual;
+    [ShowIf("showSetupElements")] public SpriteRenderer cellTypeVisual;
+    [ShowIf("showSetupElements")] public SpriteRenderer debugVisual;
+    [ShowIf("showSetupElements")] public int hintNumber = 0;
+    [ShowIf("showSetupElements")] public TMP_Text debugHintText;
+    [ShowIf("showSetupElements")] public Color debugBaseColor;
+    [ShowIf("showSetupElements")] public Color debugHighlightColor;
+    [ShowIf("showSetupElements")] public List<CellEditor> neighborsCellList = new List<CellEditor>(); 
+    [ShowIf("showSetupElements")] public bool isSelected;
     
     private bool isFadingOut = false;
     private float fadeStartTime;

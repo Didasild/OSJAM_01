@@ -4,6 +4,7 @@ using UnityEngine;
 using NaughtyAttributes;
 using Random = UnityEngine.Random;
 
+
 [CreateAssetMenu(fileName = "FloorSettings", menuName = "MineCrawler/FloorSettings")]
 public class FloorSettings : ScriptableObject
 {
@@ -24,7 +25,7 @@ public class FloorSettings : ScriptableObject
     [Serializable]
     public struct LoadedRoomData
     {
-        public bool startingRoom;
+        public bool startRoom;
         public RoomSettings initRoomSettings;
         public RoomState currentRoomState;
         public Vector2Int roomPosition;

@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using NaughtyAttributes;
 using UnityEditor;
 using UnityEngine;
@@ -6,15 +7,21 @@ using UnityEngine.Serialization;
 [ExecuteInEditMode]
 public class RoomEditorObject : MonoBehaviour
 {
-    public bool isSelected;
+    public bool isStartRoom;
     public Vector2Int roomPosition;
     public RoomState roomState;
     public RoomSettings roomSettings;
-    public GameObject selectedVisual;
-    public GameObject isStartRoomVisual;
+    
+    [Header("DEBUG / SETUP")]
+    public bool showSetupElements = false;
+    [ShowIf("showSetupElements")] public GameObject selectedVisual;
+    [ShowIf("showSetupElements")] public GameObject isStartRoomVisual;
+    
+    private bool isSelected;
     private SpriteRenderer _spriteRenderer;
     private FloorEditor _floorEditor;
     private VisualManager _visualManager;
+
 
     private void OnValidate()
     {
@@ -31,12 +38,13 @@ public class RoomEditorObject : MonoBehaviour
         // Se désabonne de l'événement de changement de sélection
         Selection.selectionChanged -= UpdateSelectionState;
     }
-    public void Init(FloorEditor floorEditor, RoomSettings roomSettings, Vector2Int roomPosition, RoomState newRoomState)
+    public void Init(FloorEditor floorEditor, RoomSettings roomSettings, Vector2Int roomPosition, RoomState newRoomState, bool isStartRoom)
     {
         _floorEditor = floorEditor;
         _visualManager = floorEditor.visualManager;
         this.roomSettings = roomSettings;
         this.roomPosition = roomPosition;
+        this.isStartRoom = isStartRoom;
         roomState = newRoomState;
         name = $"Room {roomPosition}";
         
@@ -60,20 +68,28 @@ public class RoomEditorObject : MonoBehaviour
             return;
         }
         _spriteRenderer.sprite = _visualManager.GetRoomStateVisual(roomState);
+        isStartRoomVisual.SetActive(isStartRoom);
     }
     
     private void UpdateSelectionState()
     {
-        GameObject[] selectedObjects = Selection.gameObjects;
+        _floorEditor.selectedRoomEditorObjects = new List<RoomEditorObject>();
+        _floorEditor.selectedObjects = Selection.gameObjects;
+
         isSelected = false;
-        foreach (GameObject selected in selectedObjects)
+
+        foreach (GameObject selected in _floorEditor.selectedObjects)
         {
-            // Vérifie si l'objet n'est pas nul et correspond au GameObject actuel
-            if (selected != null && selected == gameObject)
+            RoomEditorObject roomEditorObject = selected.GetComponent<RoomEditorObject>();
+
+            if (roomEditorObject != null)
             {
-                isSelected = true;
-                _floorEditor.selectedRoomEditorObject = this;
-                break;
+                _floorEditor.selectedRoomEditorObjects.Add(roomEditorObject);
+
+                if (selected == this.gameObject)
+                {
+                    isSelected = true;
+                }
             }
         }
         _floorEditor.UpdateSelectedVisual();

@@ -464,6 +464,7 @@ MonoBehaviour:
   cellType: 0
   itemType: 0
   proceduralCell: 0
+  showSetupElements: 0
   cellStateVisual: {fileID: 3126336701650697365}
   cellTypeVisual: {fileID: 7487232728163872945}
   debugVisual: {fileID: 3610390154062530418}

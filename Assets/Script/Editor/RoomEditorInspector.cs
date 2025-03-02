@@ -55,7 +55,7 @@ public class RoomEditorInspector : Editor
         #region GENERATION
         //________SECTION - GENERATION
         //Header Foldout - GENERATION
-        CoreEditorUtils.DrawSplitter();
+        CoreEditorUtils.DrawSplitter(); CoreEditorUtils.DrawSplitter();
         _generationSection = CoreEditorUtils.DrawHeaderFoldout("GENERATION", _generationSection, false, null);
         if (_generationSection)
         {
@@ -96,7 +96,7 @@ public class RoomEditorInspector : Editor
         #region PROCEDURAL FUNCTION
         //________SECTION - PROCEDURAL FUNCTIONS
         //Header Foldout - PROCEDURAL FUNCTIONS
-        CoreEditorUtils.DrawSplitter();
+        CoreEditorUtils.DrawSplitter(); CoreEditorUtils.DrawSplitter();
         _proceduralSection = CoreEditorUtils.DrawHeaderFoldout("PROCEDURAL FUNCTION", _proceduralSection, false, null);
         if (_proceduralSection)
         {
@@ -183,7 +183,7 @@ public class RoomEditorInspector : Editor
         #region SAVE
         //________SECTION - SAVE
         //Header Foldout - SAVE
-        CoreEditorUtils.DrawSplitter();
+        CoreEditorUtils.DrawSplitter(); CoreEditorUtils.DrawSplitter();
         _saveSection = CoreEditorUtils.DrawHeaderFoldout("SAVE", _saveSection, false, null);
         if (_saveSection)
         {
@@ -192,25 +192,6 @@ public class RoomEditorInspector : Editor
             roomEditor.isMandatory = EditorGUILayout.Toggle("Is Mandatory", roomEditor.isMandatory);
             roomEditor.isInFoW = EditorGUILayout.Toggle("Is In FoW", roomEditor.isInFoW);
             EditorGUILayout.EndHorizontal();
-            EditorGUILayout.Space(_smallSpacing);
-            CoreEditorUtils.DrawFoldoutEndSplitter();
-            EditorGUILayout.Space(_smallSpacing);
-            
-            GUI.enabled = false;
-            EditorGUILayout.BeginHorizontal();
-            EditorGUILayout.TextField("Chapter", centeredStyle);
-            EditorGUILayout.TextField("Room Type", centeredStyle);
-            EditorGUILayout.EndHorizontal();
-            GUI.enabled = true;
-            EditorGUILayout.BeginHorizontal();
-            roomEditor.chapter = (Chapters)EditorGUILayout.EnumPopup(roomEditor.chapter);
-            roomEditor.roomType = (RoomType)EditorGUILayout.EnumPopup(roomEditor.roomType);
-            EditorGUILayout.EndHorizontal();
-            EditorGUILayout.BeginHorizontal();
-            roomEditor.floorID = EditorGUILayout.IntField("Floor ID", roomEditor.floorID);
-            roomEditor.roomID = EditorGUILayout.IntField("Room ID", roomEditor.roomID);
-            EditorGUILayout.EndHorizontal();
-            
             EditorGUILayout.Space(_smallSpacing);
             CoreEditorUtils.DrawSplitter();
             EditorGUILayout.Space(_smallSpacing);
@@ -230,14 +211,33 @@ public class RoomEditorInspector : Editor
             EditorGUILayout.EndHorizontal();
             
             EditorGUILayout.Space(_smallSpacing);
+            CoreEditorUtils.DrawSplitter();
+            EditorGUILayout.Space(_smallSpacing);
+            
+            GUI.enabled = false;
+            EditorGUILayout.BeginHorizontal();
+            EditorGUILayout.TextField("Chapter", centeredStyle);
+            EditorGUILayout.TextField("Room Type", centeredStyle);
+            EditorGUILayout.EndHorizontal();
+            GUI.enabled = true;
+            EditorGUILayout.BeginHorizontal();
+            roomEditor.chapter = (Chapters)EditorGUILayout.EnumPopup(roomEditor.chapter);
+            roomEditor.roomType = (RoomType)EditorGUILayout.EnumPopup(roomEditor.roomType);
+            EditorGUILayout.EndHorizontal();
+            EditorGUILayout.BeginHorizontal();
+            roomEditor.floorID = EditorGUILayout.IntField("Floor ID", roomEditor.floorID);
+            roomEditor.roomID = EditorGUILayout.IntField("Room ID", roomEditor.roomID);
+            EditorGUILayout.EndHorizontal();
+            
+            EditorGUILayout.Space(_smallSpacing);
             CoreEditorUtils.DrawFoldoutEndSplitter();
             EditorGUILayout.Space(_smallSpacing);
             
             GUI.enabled = false;
-            EditorGUILayout.TextField(roomEditor.chapter.ToString() + "_F" +
+            EditorGUILayout.TextField(roomEditor.chapter + "_F" +
                                       roomEditor.floorID.ToString("D2") + "_" + 
-                                      roomEditor.generationType.ToString() + "_" + 
-                                      roomEditor.roomType.ToString() + "_" + 
+                                      roomEditor.generationType + "_" + 
+                                      roomEditor.roomType + "_" + 
                                       roomEditor.roomID.ToString("D2"), centeredStyle);
             GUI.enabled = true;
             if (GUILayout.Button("Create New Room Scriptable"))
@@ -245,7 +245,7 @@ public class RoomEditorInspector : Editor
                 roomEditor.CreateRoomScriptable();
             }
             EditorGUILayout.Space(_smallSpacing);
-            CoreEditorUtils.DrawFoldoutEndSplitter();
+            CoreEditorUtils.DrawSplitter();
             EditorGUILayout.Space(_smallSpacing);
             
             EditorGUILayout.BeginHorizontal();
@@ -258,7 +258,6 @@ public class RoomEditorInspector : Editor
             EditorGUILayout.Space(_smallSpacing);
             CoreEditorUtils.DrawSplitter();
             EditorGUILayout.Space(_smallSpacing);
-            
         }
         #endregion SAVE
         
@@ -273,7 +272,7 @@ public class RoomEditorInspector : Editor
         #region DEBUG
         //________SECTION - PROCEDURAL FUNCTIONS
         //Header Foldout - PROCEDURAL FUNCTIONS
-        CoreEditorUtils.DrawSplitter();
+        CoreEditorUtils.DrawSplitter(); CoreEditorUtils.DrawSplitter();
         _debugSection = CoreEditorUtils.DrawHeaderFoldout("DEBUG", _debugSection, false, null);
         if (_debugSection)
         {

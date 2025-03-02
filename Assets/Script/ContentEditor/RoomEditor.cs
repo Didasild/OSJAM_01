@@ -373,31 +373,33 @@ public class RoomEditor : MonoBehaviour
     {
         GenerateHintCells();
         ClearCellsData();
-        roomSettingsToSave.mandatory = isMandatory;
-        roomSettingsToSave.roomType = roomType;
-        roomSettingsToSave.roomIDString = SaveRoomString();
-        if (isRoomSemiProcedural())
-        {
-            roomSettingsToLoad.proceduralRoom = false;
-            roomSettingsToSave.haveProceduralCells = true;
-            roomSettingsToSave.haveStair = haveStair;
-            roomSettingsToSave.roomPourcentageOfMine = pourcentageOfRandomMine;
-            // Copie profonde de la liste itemRanges
-            roomSettingsToSave.itemRanges = new List<RoomSettings.ItemRange>();
-            foreach (var itemRange in itemRanges)
-            {
-                roomSettingsToSave.itemRanges.Add(new RoomSettings.ItemRange
-                {
-                    itemType = itemRange.itemType,
-                    min = itemRange.min,
-                    max = itemRange.max
-                });
-            }
-        }
-        else
-        {
-            roomSettingsToSave.haveProceduralCells = false;
-        }
+        SetRoomSetting(roomSettingsToSave);
+        // A CHECK ET DELETE
+        // roomSettingsToSave.mandatory = isMandatory;
+        // roomSettingsToSave.roomType = roomType;
+        // roomSettingsToSave.roomIDString = SaveRoomString();
+        // roomSettingsToLoad.proceduralRoom = false;
+        // if (isRoomSemiProcedural())
+        // {
+        //     roomSettingsToSave.haveProceduralCells = true;
+        //     roomSettingsToSave.haveStair = haveStair;
+        //     roomSettingsToSave.roomPourcentageOfMine = pourcentageOfRandomMine;
+        //     // Copie profonde de la liste itemRanges
+        //     roomSettingsToSave.itemRanges = new List<RoomSettings.ItemRange>();
+        //     foreach (var itemRange in itemRanges)
+        //     {
+        //         roomSettingsToSave.itemRanges.Add(new RoomSettings.ItemRange
+        //         {
+        //             itemType = itemRange.itemType,
+        //             min = itemRange.min,
+        //             max = itemRange.max
+        //         });
+        //     }
+        // }
+        // else
+        // {
+        //     roomSettingsToSave.haveProceduralCells = false;
+        // }
         EditorUtility.FocusProjectWindow();
         EditorUtility.SetDirty(roomSettingsToSave);
     }
@@ -441,7 +443,7 @@ public class RoomEditor : MonoBehaviour
 
     private void SetRoomSetting(RoomSettings roomSettings)
     {
-        roomSettings.roomIDString = roomSaveString;
+        roomSettings.roomIDString = SaveRoomString();
         roomSettings.proceduralRoom = false;
         roomSettings.mandatory = isMandatory;
         roomSettings.isFoW = isInFoW;

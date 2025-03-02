@@ -26,11 +26,15 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 2eebcb769bea22a4489e34f7d6f3a10a, type: 2}
   - {fileID: 11400000, guid: 2eebcb769bea22a4489e34f7d6f3a10a, type: 2}
   loadedRoomDatas:
-  - startingRoom: 1
+  - startRoom: 1
     initRoomSettings: {fileID: 11400000, guid: 3874eaf7b7f24ec43b073b2be72ed74b, type: 2}
     currentRoomState: 0
     roomPosition: {x: 0, y: 0}
-  - startingRoom: 0
+  - startRoom: 0
     initRoomSettings: {fileID: 11400000, guid: e8c958edb868227449c543db67875966, type: 2}
     currentRoomState: 1
-    roomPosition: {x: 0, y: 2}
+    roomPosition: {x: 1, y: 0}
+  - startRoom: 0
+    initRoomSettings: {fileID: 11400000, guid: e8c958edb868227449c543db67875966, type: 2}
+    currentRoomState: 2
+    roomPosition: {x: 0, y: 1}
