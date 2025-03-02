@@ -1,6 +1,7 @@
 using UnityEditor;
 using UnityEditor.Rendering;
 using UnityEngine;
+using UnityEngine.Rendering;
 
 [CustomEditor(typeof(RoomEditor))]
 public class RoomEditorInspector : Editor
@@ -192,6 +193,7 @@ public class RoomEditorInspector : Editor
             roomEditor.isMandatory = EditorGUILayout.Toggle("Is Mandatory", roomEditor.isMandatory);
             roomEditor.isInFoW = EditorGUILayout.Toggle("Is In FoW", roomEditor.isInFoW);
             EditorGUILayout.EndHorizontal();
+            roomEditor.roomVolumeProfile = (VolumeProfile)EditorGUILayout.ObjectField(roomEditor.roomVolumeProfile, typeof(VolumeProfile), false);
             EditorGUILayout.Space(_smallSpacing);
             CoreEditorUtils.DrawSplitter();
             EditorGUILayout.Space(_smallSpacing);

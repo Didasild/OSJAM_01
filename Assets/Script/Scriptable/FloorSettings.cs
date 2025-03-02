@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 using NaughtyAttributes;
+using UnityEngine.Rendering;
 using Random = UnityEngine.Random;
 
 
@@ -11,6 +12,7 @@ public class FloorSettings : ScriptableObject
     #region PARAMETERS
     [Header("GENERAL")]
     public bool proceduralFloor = true;
+    public VolumeProfile floorBaseVolumeProfile;
 
     [Header("________PROCEDURAL FLOOR SETTINGS")]
     [Header("FLOOR GRID")]

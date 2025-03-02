@@ -34,7 +34,7 @@ public class RoomSettings : ScriptableObject
     public RoomType roomType;
     
     [Header("VISUAL")]
-    public VolumeProfile roomColorsVolumeProfile;
+    public VolumeProfile roomVolumeProfile;
 
     [Header("________LOADED GRID SETTINGS")]
     [FormerlySerializedAs("roomLoadString")] public string roomIDString; // USE ONLY FOR FIRST GENERATION NEVER CHANGE

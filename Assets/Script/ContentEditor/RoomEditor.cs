@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.Rendering;
 using UnityEngine.Serialization;
 
 
@@ -23,6 +24,7 @@ public class RoomEditor : MonoBehaviour
     public int roomID;
     public RoomType roomType;
     public GenerationType generationType;
+    public VolumeProfile roomVolumeProfile;
     
     //Procedural Functions
     public CellSelectionConditions cellSelectionConditions;
@@ -447,6 +449,7 @@ public class RoomEditor : MonoBehaviour
         roomSettings.proceduralRoom = false;
         roomSettings.mandatory = isMandatory;
         roomSettings.isFoW = isInFoW;
+        roomSettings.roomVolumeProfile = roomVolumeProfile;
         if (isRoomSemiProcedural())
         {
             roomSettings.haveProceduralCells = true;

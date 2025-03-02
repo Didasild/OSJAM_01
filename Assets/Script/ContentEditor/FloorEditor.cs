@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.Rendering;
 using UnityEngine.Serialization;
 
 [ExecuteInEditMode]
@@ -23,6 +24,7 @@ public class FloorEditor : MonoBehaviour
     public FloorSettings floorToSave;
     public Chapters chapter;
     public int floorID;
+    [FormerlySerializedAs("baseVolumeProfile")] [FormerlySerializedAs("floorBaseVolumeProfile")] public VolumeProfile defaultVolumeProfile;
     
     [Header("____SETUP")]
     public VisualManager visualManager;
@@ -130,6 +132,7 @@ public class FloorEditor : MonoBehaviour
     {
         floorSettings.proceduralFloor = false;
         floorSettings.loadedRoomDatas = new List<FloorSettings.LoadedRoomData>();
+        floorSettings.floorBaseVolumeProfile = defaultVolumeProfile;
 
         foreach (RoomEditorObject roomEditorObject in roomEditorObjects)
         {

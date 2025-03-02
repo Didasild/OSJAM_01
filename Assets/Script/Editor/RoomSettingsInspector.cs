@@ -72,7 +72,7 @@ public class RoomSettingsInspector : Editor
             GUI.enabled = false;
             EditorGUILayout.TextField("VISUAL SETTINGS", centeredStyle);
             GUI.enabled = true;
-            _roomSettings.roomColorsVolumeProfile = (VolumeProfile)EditorGUILayout.ObjectField("Room Color Palette", _roomSettings.roomColorsVolumeProfile, typeof(VolumeProfile), false);
+            _roomSettings.roomVolumeProfile = (VolumeProfile)EditorGUILayout.ObjectField("Room Color Palette", _roomSettings.roomVolumeProfile, typeof(VolumeProfile), false);
             EditorGUILayout.Space(_smallSpacing);
         }
         #endregion GENERAL

@@ -1,6 +1,7 @@
 using UnityEditor;
 using UnityEditor.Rendering;
 using UnityEngine;
+using UnityEngine.Rendering;
 
 [CustomEditor(typeof(FloorEditor))]
 public class FloorEditorInspector : Editor
@@ -152,6 +153,7 @@ public class FloorEditorInspector : Editor
             floorEditor.chapter = (Chapters)EditorGUILayout.EnumPopup(floorEditor.chapter);
             EditorGUILayout.EndHorizontal();
             floorEditor.floorID = EditorGUILayout.IntField("Floor ID", floorEditor.floorID);
+            floorEditor.defaultVolumeProfile = (VolumeProfile)EditorGUILayout.ObjectField(floorEditor.defaultVolumeProfile, typeof(VolumeProfile), false);
             
             EditorGUILayout.Space(_smallSpacing);
             CoreEditorUtils.DrawFoldoutEndSplitter();
