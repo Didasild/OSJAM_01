@@ -216,7 +216,7 @@ public class RoomEditorInspector : Editor
             EditorGUILayout.Space(_smallSpacing);
             
             GUI.enabled = false;
-            EditorGUILayout.TextField("ROOM CLEARING", centeredStyle);
+            EditorGUILayout.TextField("ROOM CLEANING", centeredStyle);
             GUI.enabled = true;
             EditorGUILayout.BeginHorizontal();
             if (GUILayout.Button("Generate Hint Cells"))

@@ -7,17 +7,18 @@ using UnityEngine.Serialization;
 public class RoomEditorObject : MonoBehaviour
 {
     public bool isSelected;
-    private Vector2Int _roomPosition;
+    public Vector2Int roomPosition;
     public RoomState roomState;
+    public RoomSettings roomSettings;
+    public GameObject selectedVisual;
+    public GameObject isStartRoomVisual;
     private SpriteRenderer _spriteRenderer;
     private FloorEditor _floorEditor;
-    private RoomSettings _roomSettings;
     private VisualManager _visualManager;
-
 
     private void OnValidate()
     {
-        name = $"Room {_roomPosition}";
+        name = $"Room {roomPosition}";
         UpdateVisual();
     }
     private void OnEnable()
@@ -34,16 +35,25 @@ public class RoomEditorObject : MonoBehaviour
     {
         _floorEditor = floorEditor;
         _visualManager = floorEditor.visualManager;
-        _roomSettings = roomSettings;
-        _roomPosition = roomPosition;
+        this.roomSettings = roomSettings;
+        this.roomPosition = roomPosition;
         roomState = newRoomState;
         name = $"Room {roomPosition}";
         
         _spriteRenderer = GetComponent<SpriteRenderer>();
         UpdateVisual();
+        HideAllDescendants(transform);
+    }
+    private void HideAllDescendants(Transform parent)
+    {
+        foreach (Transform child in parent)
+        {
+            child.gameObject.hideFlags = HideFlags.HideInHierarchy; // Rend l'objet non sélectionnable
+            HideAllDescendants(child); // Appel récursif pour les enfants de cet enfant
+        }
     }
 
-    public void UpdateVisual()
+    private void UpdateVisual()
     {
         if (_spriteRenderer == null || _visualManager == null)
         {
@@ -63,8 +73,9 @@ public class RoomEditorObject : MonoBehaviour
             {
                 isSelected = true;
                 _floorEditor.selectedRoomEditorObject = this;
-                break; // Sort de la boucle dès que l'objet est trouvé
+                break;
             }
         }
+        _floorEditor.UpdateSelectedVisual();
     }
 }
