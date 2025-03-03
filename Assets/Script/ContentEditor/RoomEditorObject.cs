@@ -16,12 +16,12 @@ public class RoomEditorObject : MonoBehaviour
     public bool showSetupElements = false;
     [ShowIf("showSetupElements")] public GameObject selectedVisual;
     [ShowIf("showSetupElements")] public GameObject isStartRoomVisual;
+    [ShowIf("showSetupElements")] public GameObject noRoomSettingsVisual;
     
     private bool isSelected;
     private SpriteRenderer _spriteRenderer;
     private FloorEditor _floorEditor;
     private VisualManager _visualManager;
-
 
     private void OnValidate()
     {
@@ -67,7 +67,10 @@ public class RoomEditorObject : MonoBehaviour
         {
             return;
         }
+        noRoomSettingsVisual.SetActive(roomSettings == null);
+        
         _spriteRenderer.sprite = _visualManager.GetRoomStateVisual(roomState);
+        
         isStartRoomVisual.SetActive(isStartRoom);
     }
     

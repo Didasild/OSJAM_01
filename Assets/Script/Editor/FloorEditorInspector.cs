@@ -127,10 +127,29 @@ public class FloorEditorInspector : Editor
             CoreEditorUtils.DrawSplitter();
             EditorGUILayout.Space(_smallSpacing);
             
+            GUI.enabled = false;
+            EditorGUILayout.TextField("ROOM SELECTED OPTIONS", centeredStyle);
+            GUI.enabled = true;
             if (GUILayout.Button("Remove Selected Rooms"))
             {
                 floorEditor.RemoveSelectedRooms();
             }
+
+            if (floorEditor.gameObject.activeInHierarchy && !floorEditor.roomEditor.gameObject.activeInHierarchy)
+            {
+                if (GUILayout.Button("Open in Room Editor"))
+                {
+                    floorEditor.SwitchToRoomEditor(floorEditor.selectedRoomEditorObjects[0].roomSettings);
+                }
+            }
+            else
+            {
+                if (GUILayout.Button("Open Floor Editor"))
+                {
+                    floorEditor.SwitchToFloorEditor();
+                }
+            }
+
             
             EditorGUILayout.Space(_smallSpacing);
             CoreEditorUtils.DrawSplitter();
@@ -149,18 +168,25 @@ public class FloorEditorInspector : Editor
             EditorGUILayout.BeginHorizontal();
             GUI.enabled = false;
             EditorGUILayout.TextField("Chapter", centeredStyle);
+            EditorGUILayout.TextField("Floor Type", centeredStyle);
             GUI.enabled = true;
-            floorEditor.chapter = (Chapters)EditorGUILayout.EnumPopup(floorEditor.chapter);
             EditorGUILayout.EndHorizontal();
+            EditorGUILayout.BeginHorizontal();
+            floorEditor.chapter = (Chapters)EditorGUILayout.EnumPopup(floorEditor.chapter);
+            floorEditor.floorType = (FloorType)EditorGUILayout.EnumPopup(floorEditor.floorType);
+            EditorGUILayout.EndHorizontal();
+            GUI.enabled = false;
+            EditorGUILayout.TextField("Volume Profile", centeredStyle);
+            GUI.enabled = true;
+            floorEditor.floorVolumeProfile = (VolumeProfile)EditorGUILayout.ObjectField(floorEditor.floorVolumeProfile, typeof(VolumeProfile), false);
             floorEditor.floorID = EditorGUILayout.IntField("Floor ID", floorEditor.floorID);
-            floorEditor.defaultVolumeProfile = (VolumeProfile)EditorGUILayout.ObjectField(floorEditor.defaultVolumeProfile, typeof(VolumeProfile), false);
             
             EditorGUILayout.Space(_smallSpacing);
             CoreEditorUtils.DrawFoldoutEndSplitter();
             EditorGUILayout.Space(_smallSpacing);
             
             GUI.enabled = false;
-            EditorGUILayout.TextField(floorEditor.chapter + "_Floor" + "_L_" + floorEditor.floorID.ToString("D2"), centeredStyle);
+            EditorGUILayout.TextField(floorEditor.chapter + "_Floor" + "_L_" + floorEditor.floorType + "_" + floorEditor.floorID.ToString("D2"), centeredStyle);
             GUI.enabled = true;
             if (GUILayout.Button("Create Floor Scriptable"))
             {

@@ -5,6 +5,14 @@ using NaughtyAttributes;
 using UnityEngine.Rendering;
 using Random = UnityEngine.Random;
 
+public enum FloorType
+{
+    FRT,
+    SHI,
+    HOU,
+    CAV,
+    WAT,
+}
 
 [CreateAssetMenu(fileName = "FloorSettings", menuName = "MineCrawler/FloorSettings")]
 public class FloorSettings : ScriptableObject

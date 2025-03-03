@@ -178,9 +178,7 @@ public class RoomEditor : MonoBehaviour
             }
             
             //Update les infos de save de l'inspector
-            roomSettingsToSave = roomSettingsToLoad;
-            isMandatory = roomSettingsToLoad.mandatory;
-            roomType = roomSettingsToLoad.roomType;
+            UpdateEditorInfos(roomSettingsToLoad);
         }
 
         foreach (CellEditor cellEditor in cells)
@@ -226,7 +224,14 @@ public class RoomEditor : MonoBehaviour
         }
         cells = new List<CellEditor>();
     }
-    
+
+    private void UpdateEditorInfos(RoomSettings roomSettings)
+    {
+        roomSettingsToSave = roomSettings;
+        isMandatory = roomSettings.mandatory;
+        roomType = roomSettings.roomType;
+        roomVolumeProfile = roomSettings.roomVolumeProfile;
+    }
     #endregion GENERATION FUNCTIONS
 
     #region SAVE FUNCTIONS

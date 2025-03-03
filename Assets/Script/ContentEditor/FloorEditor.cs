@@ -23,10 +23,12 @@ public class FloorEditor : MonoBehaviour
     [Header("____SAVE")]
     public FloorSettings floorToSave;
     public Chapters chapter;
+    public FloorType floorType;
     public int floorID;
-    [FormerlySerializedAs("baseVolumeProfile")] [FormerlySerializedAs("floorBaseVolumeProfile")] public VolumeProfile defaultVolumeProfile;
+    public VolumeProfile floorVolumeProfile;
     
     [Header("____SETUP")]
+    public RoomEditor roomEditor;
     public VisualManager visualManager;
     public RoomEditorObject roomEditorObjectPrefab;
     public float roomOffset;
@@ -89,7 +91,8 @@ public class FloorEditor : MonoBehaviour
         {
             GenerateRoom(selectedRoomObject.roomPosition + roomNeighborOffset, InitRoomPosition(selectedRoomObject.roomPosition + roomNeighborOffset), roomSettingsToLoad, roomStateToLoad, isStartRoom);
         }
-        
+
+        roomSettingsToLoad = null;
     }
     #endregion
 
@@ -97,8 +100,8 @@ public class FloorEditor : MonoBehaviour
     public void CreateFloorScriptable()
     {
         //Set le nom
-        _defaultSaveFolder = "Assets/Resources/Chapters/" + chapter.ToString();
-        _scriptableName = chapter.ToString() + "_Floor" + "_L_" + floorID.ToString("D2");
+        _defaultSaveFolder = "Assets/Resources/Chapters/" + chapter;
+        _scriptableName = chapter + "_Floor" + "_L_" + floorType + "_" + floorID.ToString("D2");
         
         //Crée l'instance
         string path = EditorUtility.SaveFilePanelInProject("Save Floor", _scriptableName, "asset", "Message test", _defaultSaveFolder);
@@ -132,7 +135,7 @@ public class FloorEditor : MonoBehaviour
     {
         floorSettings.proceduralFloor = false;
         floorSettings.loadedRoomDatas = new List<FloorSettings.LoadedRoomData>();
-        floorSettings.floorBaseVolumeProfile = defaultVolumeProfile;
+        floorSettings.floorBaseVolumeProfile = floorVolumeProfile;
 
         foreach (RoomEditorObject roomEditorObject in roomEditorObjects)
         {
@@ -160,6 +163,12 @@ public class FloorEditor : MonoBehaviour
         
         UpdateSelectedVisual();
     }
+    
+    private Vector3 InitRoomPosition(Vector2Int roomPosition)
+    {
+        return new Vector3(roomPosition.x * roomOffset, roomPosition.y * roomOffset, 0);
+    }
+    
     public void ClearFloor()
     {
         for (int i = transform.childCount - 1; i >= 0; i--)
@@ -181,11 +190,6 @@ public class FloorEditor : MonoBehaviour
         }
     }
     
-    private Vector3 InitRoomPosition(Vector2Int roomPosition)
-    {
-        return new Vector3(roomPosition.x * roomOffset, roomPosition.y * roomOffset, 0);
-    }
-    
     public void UpdateSelectedVisual()
     {
         foreach (RoomEditorObject roomEditorObject in roomEditorObjects)
@@ -203,6 +207,33 @@ public class FloorEditor : MonoBehaviour
     }
     #endregion METHODS
 
+    #region FUNCTIONS
+    public void SwitchToRoomEditor(RoomSettings roomSettingsToOpen)
+    {
+        if (roomSettingsToOpen != null)
+        {
+            if (roomSettingsToOpen.proceduralRoom)
+            {
+                Debug.LogWarning("Can't Open Procedural Room in Editor");
+                return;
+            }
+            roomEditor.roomSettingsToLoad = roomSettingsToOpen;
+            roomEditor.LoadEditorRoom();
+        }
+        else
+        {
+            roomEditor.roomSize = new Vector2Int(10, 10);
+            roomEditor.GenerateEditorRoom();
+        }
+        roomEditor.gameObject.SetActive(true);
+        gameObject.SetActive(false);
+    }
+    public void SwitchToFloorEditor()
+    {
+        roomEditor.gameObject.SetActive(false);
+        gameObject.SetActive(true);
+    }
+    #endregion FUNCTIONS
     #region DEBUG
     public void LoadFloor()
     {
