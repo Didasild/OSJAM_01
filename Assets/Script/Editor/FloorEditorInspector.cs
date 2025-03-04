@@ -10,6 +10,7 @@ public class FloorEditorInspector : Editor
     //Bool Sections
     private bool _loadFloorSection = true;
     private bool _generationSection;
+    private bool _modificationSection;
     
     private bool _debugFoldout;
     private bool _debugSection;
@@ -24,6 +25,7 @@ public class FloorEditorInspector : Editor
         // Synchronise les modifications dans l'inspecteur
         serializedObject.Update();
         FloorEditor floorEditor = (FloorEditor)target;
+        
         Undo.RegisterCompleteObjectUndo(floorEditor, "Room Editor");
         
         GUIStyle centeredStyle = new GUIStyle(GUI.skin.textField)
@@ -72,19 +74,20 @@ public class FloorEditorInspector : Editor
 
         #region GENERATION
         CoreEditorUtils.DrawSplitter(); CoreEditorUtils.DrawSplitter();
-        _generationSection = CoreEditorUtils.DrawHeaderFoldout("ROOM MANAGEMENT", _generationSection, false, null);
+        _generationSection = CoreEditorUtils.DrawHeaderFoldout("GENERATION", _generationSection, false, null);
         if (_generationSection)
         {
             EditorGUILayout.Space(_smallSpacing);
             GUI.enabled = false;
             EditorGUILayout.TextField("ROOM TO GENERATE DATAS", centeredStyle);
             GUI.enabled = true;
-            floorEditor.roomSettingsToLoad = (RoomSettings)EditorGUILayout.ObjectField(floorEditor.roomSettingsToLoad, typeof(RoomSettings), true);
+            floorEditor.roomSettingsToLoad =
+                (RoomSettings)EditorGUILayout.ObjectField(floorEditor.roomSettingsToLoad, typeof(RoomSettings), true);
             EditorGUILayout.BeginHorizontal();
             floorEditor.isStartRoom = EditorGUILayout.Toggle("Is Start Room", floorEditor.isStartRoom);
             floorEditor.roomStateToLoad = (RoomState)EditorGUILayout.EnumPopup(floorEditor.roomStateToLoad);
             EditorGUILayout.EndHorizontal();
-            
+
             EditorGUILayout.Space(_smallSpacing);
             CoreEditorUtils.DrawSplitter();
             EditorGUILayout.Space(_smallSpacing);
@@ -107,15 +110,18 @@ public class FloorEditorInspector : Editor
                 {
                     floorEditor.GenerateNeighborRoom("up");
                 }
+
                 EditorGUILayout.BeginHorizontal();
                 if (GUILayout.Button("LEFT"))
                 {
                     floorEditor.GenerateNeighborRoom("left");
                 }
+
                 if (GUILayout.Button("RIGHT"))
                 {
                     floorEditor.GenerateNeighborRoom("right");
                 }
+
                 EditorGUILayout.EndHorizontal();
                 if (GUILayout.Button("DOWN"))
                 {
@@ -124,17 +130,64 @@ public class FloorEditorInspector : Editor
             }
             
             EditorGUILayout.Space(_smallSpacing);
-            CoreEditorUtils.DrawSplitter();
+            CoreEditorUtils.DrawFoldoutEndSplitter();
             EditorGUILayout.Space(_smallSpacing);
             
             GUI.enabled = false;
-            EditorGUILayout.TextField("ROOM SELECTED OPTIONS", centeredStyle);
+            EditorGUILayout.TextField("REMOVE", centeredStyle);
             GUI.enabled = true;
             if (GUILayout.Button("Remove Selected Rooms"))
             {
                 floorEditor.RemoveSelectedRooms();
             }
 
+            EditorGUILayout.Space(_smallSpacing);
+            CoreEditorUtils.DrawSplitter();
+            EditorGUILayout.Space(_smallSpacing);
+        }
+        #endregion GENERATION
+
+        #region MODIFICATION
+        CoreEditorUtils.DrawSplitter(); CoreEditorUtils.DrawSplitter();
+        _modificationSection = CoreEditorUtils.DrawHeaderFoldout("MODIFICATIONS", _modificationSection, false, null);
+        if (_modificationSection)
+        {
+            EditorGUILayout.Space(_smallSpacing);
+            CoreEditorUtils.DrawFoldoutEndSplitter();
+            EditorGUILayout.Space(_smallSpacing);
+            
+            GUI.enabled = false;
+            EditorGUILayout.TextField("MOVE SELECTED ROOM", centeredStyle);
+            GUI.enabled = true;
+            if (GUILayout.Button("MOVE UP"))
+            {
+                floorEditor.MoveSelectedRooms(Vector2Int.up);
+            }
+
+            EditorGUILayout.BeginHorizontal();
+            if (GUILayout.Button("MOVE LEFT"))
+            {
+                floorEditor.MoveSelectedRooms(Vector2Int.left);   
+            }
+
+            if (GUILayout.Button("MOVE RIGHT"))
+            {
+                floorEditor.MoveSelectedRooms(Vector2Int.right);
+            }
+
+            EditorGUILayout.EndHorizontal();
+            if (GUILayout.Button("MOVE DOWN"))
+            {
+                floorEditor.MoveSelectedRooms(Vector2Int.down);
+            }
+            
+            EditorGUILayout.Space(_smallSpacing);
+            CoreEditorUtils.DrawFoldoutEndSplitter();
+            EditorGUILayout.Space(_smallSpacing);
+            
+            GUI.enabled = false;
+            EditorGUILayout.TextField("EDITOR SWITCH", centeredStyle);
+            GUI.enabled = true;
             if (floorEditor.gameObject.activeInHierarchy && !floorEditor.roomEditor.gameObject.activeInHierarchy)
             {
                 if (GUILayout.Button("Open in Room Editor"))
@@ -149,14 +202,14 @@ public class FloorEditorInspector : Editor
                     floorEditor.SwitchToFloorEditor();
                 }
             }
-
             
             EditorGUILayout.Space(_smallSpacing);
             CoreEditorUtils.DrawSplitter();
             EditorGUILayout.Space(_smallSpacing);
         }
-        #endregion GENERATION
 
+        #endregion MODIFICATION
+        
         #region SAVE
         //________SECTION - SAVE
         //Header Foldout - SAVE
@@ -167,8 +220,8 @@ public class FloorEditorInspector : Editor
             EditorGUILayout.Space(_smallSpacing);
             EditorGUILayout.BeginHorizontal();
             GUI.enabled = false;
-            EditorGUILayout.TextField("Chapter", centeredStyle);
-            EditorGUILayout.TextField("Floor Type", centeredStyle);
+            EditorGUILayout.TextField("CHAPTER", centeredStyle);
+            EditorGUILayout.TextField("FLOOR TYPE", centeredStyle);
             GUI.enabled = true;
             EditorGUILayout.EndHorizontal();
             EditorGUILayout.BeginHorizontal();
@@ -176,7 +229,7 @@ public class FloorEditorInspector : Editor
             floorEditor.floorType = (FloorType)EditorGUILayout.EnumPopup(floorEditor.floorType);
             EditorGUILayout.EndHorizontal();
             GUI.enabled = false;
-            EditorGUILayout.TextField("Volume Profile", centeredStyle);
+            EditorGUILayout.TextField("VOLUME PROFILE", centeredStyle);
             GUI.enabled = true;
             floorEditor.floorVolumeProfile = (VolumeProfile)EditorGUILayout.ObjectField(floorEditor.floorVolumeProfile, typeof(VolumeProfile), false);
             floorEditor.floorID = EditorGUILayout.IntField("Floor ID", floorEditor.floorID);

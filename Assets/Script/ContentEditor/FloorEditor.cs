@@ -154,8 +154,14 @@ public class FloorEditor : MonoBehaviour
     #region METHODS
     private void GenerateRoom(Vector2Int roomGridPosition, Vector3 roomWorldPosition, RoomSettings roomSettings, RoomState roomState, bool isStartRoom = false)
     {
+        if (!CheckIfPositionIsAvailable(roomGridPosition))
+        {
+            Debug.LogWarning("Une Room existe déjà a cette position");
+            return;
+        }
+        
         RoomEditorObject roomObject = Instantiate(roomEditorObjectPrefab, roomWorldPosition , Quaternion.identity, transform);
-        roomObject.Init(this, roomSettingsToLoad, roomGridPosition, roomState, isStartRoom);
+        roomObject.Init(this, roomSettings, roomGridPosition, roomState, isStartRoom);
         roomEditorObjects.Add(roomObject);
         
         selectedRoomEditorObjects = new List<RoomEditorObject>();
@@ -167,6 +173,19 @@ public class FloorEditor : MonoBehaviour
     private Vector3 InitRoomPosition(Vector2Int roomPosition)
     {
         return new Vector3(roomPosition.x * roomOffset, roomPosition.y * roomOffset, 0);
+    }
+
+    public bool CheckIfPositionIsAvailable(Vector2Int roomPosition)
+    {
+        foreach (RoomEditorObject room in roomEditorObjects) // roomEditorObjects est ta liste
+        {
+            if (room.roomPosition == roomPosition)
+            {
+                return false; // La position est déjà prise
+            }
+        }
+
+        return true; // La position est libre
     }
     
     public void ClearFloor()
@@ -187,6 +206,22 @@ public class FloorEditor : MonoBehaviour
             roomEditorObjects.Remove(selectedRoomObject);
             DestroyImmediate(selectedRoomObject.gameObject);
             selectedRoomEditorObjects = new List<RoomEditorObject>();
+        }
+    }
+
+    public void MoveSelectedRooms(Vector2Int roomDirection)
+    {
+        foreach (RoomEditorObject selectedRoomEditorObject in selectedRoomEditorObjects)
+        {
+            if (CheckIfPositionIsAvailable(selectedRoomEditorObject.roomPosition + roomDirection))
+            {
+                selectedRoomEditorObject.roomPosition += roomDirection;
+                selectedRoomEditorObject.UpdatePosition();
+            }
+            else
+            {
+                Debug.LogWarning("Can't move on an existing room");
+            }
         }
     }
     

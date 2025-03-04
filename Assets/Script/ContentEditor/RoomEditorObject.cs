@@ -26,6 +26,7 @@ public class RoomEditorObject : MonoBehaviour
     private void OnValidate()
     {
         name = $"Room {roomPosition}";
+        UpdatePosition();
         UpdateVisual();
     }
     private void OnEnable()
@@ -59,6 +60,11 @@ public class RoomEditorObject : MonoBehaviour
             child.gameObject.hideFlags = HideFlags.HideInHierarchy; // Rend l'objet non sélectionnable
             HideAllDescendants(child); // Appel récursif pour les enfants de cet enfant
         }
+    }
+
+    public void UpdatePosition()
+    {
+        transform.position = new Vector3(roomPosition.x, roomPosition.y, transform.position.z);
     }
 
     private void UpdateVisual()
