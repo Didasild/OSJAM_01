@@ -51,6 +51,6 @@ MonoBehaviour:
     currentRoomState: 0
     roomPosition: {x: 3, y: 2}
   - startRoom: 1
-    initRoomSettings: {fileID: 11400000, guid: eecb56247d72cdf4c83c990f1b99a426, type: 2}
+    initRoomSettings: {fileID: 11400000, guid: 3874eaf7b7f24ec43b073b2be72ed74b, type: 2}
     currentRoomState: 0
     roomPosition: {x: 0, y: 1}

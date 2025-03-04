@@ -22,6 +22,7 @@ public class RoomData : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     [ReadOnly] public RoomType currentRoomType;
     [ReadOnly] public string roomSavedString;
     [ReadOnly] public Vector2Int roomPosition;
+    [ReadOnly] public bool startRoom;
 
     [Header("NEIGHBORS")]
     [ReadOnly] public RoomData roomUp;
@@ -62,13 +63,12 @@ public class RoomData : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
         _dungeonManager = GameManager.Instance.floorManager;
         
     }
-    #endregion INIT
-
     public void InitializeRoomType()
     {
         currentRoomType = initRoomSettings.roomType;
         roomTypeVisual.sprite = _visualManager.GetRoomTypeVisual(RoomType.Base);
     }
+    #endregion INIT
 
     #region ROOM STATE
     public void ChangeRoomSate(RoomState newRoomState)

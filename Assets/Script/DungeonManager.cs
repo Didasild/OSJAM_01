@@ -59,8 +59,9 @@ public class DungeonManager : MonoBehaviour
     #endregion
 
     #region FLOOR GENERATION
-    public void GenerateFloor(Vector2Int floorSize)
+    public void GenerateProceduralFloor(FloorSettings floorSetting)
     {
+        Vector2Int floorSize = floorSetting.GetProceduralFloorSize();
         _roomSettingsList = currentFloorSetting.roomSettingsList;
 
         ClearFloor();
@@ -148,19 +149,59 @@ public class DungeonManager : MonoBehaviour
         selectedRoomData = roomList[randomIndex];
         currentRoom = selectedRoomData;
 
-        //La génère
-        GameManager.Instance.ChangeRoom(currentRoom);
+        InstanciateFirstRoom(currentRoom);
+    }
+    #endregion PROCEDRUAL GENERATION
 
-        //Update le visuel de la minimap
-        _visualManager.UpdateRoomAmbiance(currentRoom);
-        _visualManager.UpdateRoomID(currentRoom);
-        currentRoom.roomSelectedVisual.sprite = _visualManager.GetSelectedVisual(true);
-
-        //Update les boutons
-        UpdateButtonStates();
-        UpdateRoomDebugName();
+    #region LOAD GENERATION
+    public void LoadFloor(FloorSettings floorSetting)
+    {
+        ClearFloor();
+        foreach (FloorSettings.LoadedRoomData loadedRoomData in floorSetting.loadedRoomDatas)
+        {
+            RoomData roomData = Instantiate(roomPrefab, roomContainer);
+            roomList.Add(roomData);
+            roomData.transform.SetParent(roomContainer);
+            roomData.name = $"Room_"+ loadedRoomData.roomPosition;
+            
+            roomData.Initialize(loadedRoomData.roomPosition, roomSize);
+            roomData.startRoom = loadedRoomData.startRoom;
+            roomData.initRoomSettings = loadedRoomData.initRoomSettings;
+            roomData.InitializeRoomType();
+        }
+        GiveNeighbors();
+        currentRoom = FindStartRoom();
+        InstanciateFirstRoom(currentRoom);
     }
 
+    private RoomData FindStartRoom()
+    {
+        List<RoomData> startRooms = new List<RoomData>();
+        
+        foreach (RoomData room in roomList)
+        {
+            if (room.startRoom)
+            {
+                startRooms.Add(room);
+            }
+        }
+        if (startRooms.Count == 0)
+        {
+            Debug.LogWarning("Aucune start room trouvée !");
+            return null;
+        }
+        else if (startRooms.Count > 1)
+        {
+            Debug.LogWarning("Plusieurs Start Rooms!");
+        }
+
+        // Sélectionner une room au hasard parmi celles trouvées
+        return startRooms[Random.Range(0, startRooms.Count)];
+    }
+    
+    #endregion
+    
+    #region FLOOR GENERATION METHODS
     private void GiveNeighbors()
     {
         foreach (RoomData room in roomList)
@@ -192,8 +233,23 @@ public class DungeonManager : MonoBehaviour
         }
         roomList = new List<RoomData>();
     }
-    
-    #endregion FLOOR GENERATION
+
+    private void InstanciateFirstRoom(RoomData roomToInstanciate)
+    {
+        //La génère
+        GameManager.Instance.ChangeRoom(roomToInstanciate);
+
+        //Update le visuel de la minimap
+        _visualManager.UpdateRoomAmbiance(roomToInstanciate);
+        _visualManager.UpdateRoomID(roomToInstanciate);
+        roomToInstanciate.roomSelectedVisual.sprite = _visualManager.GetSelectedVisual(true);
+
+        //Update les boutons
+        UpdateButtonStates();
+        UpdateRoomDebugName();
+    }
+
+    #endregion FLOOR GENERATION METHODS
 
     #region CHANGE ROOM
     public void ChangeRoomDirection(RoomDirection direction)

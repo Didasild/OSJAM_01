@@ -105,8 +105,15 @@ public class GameManager : MonoBehaviour
         {
             //Génère un floor et une première room
             floorManager.currentFloorSetting = floorManager.floorSettingsList[0];
-            floorManager.GenerateFloor(floorManager.currentFloorSetting.GetProceduralFloorSize());
-
+            if (floorManager.currentFloorSetting.proceduralFloor)
+            {
+                floorManager.GenerateProceduralFloor(floorManager.currentFloorSetting);
+            }
+            else
+            {
+                floorManager.LoadFloor(floorManager.currentFloorSetting);
+            }
+            
             //Reset les data
             player.ResetHealthPoint();
             player.ResetClickCounter();
@@ -150,7 +157,6 @@ public class GameManager : MonoBehaviour
             gridManager.LoadRoomFromString(currentRoomSettings.roomIDString, currentRoomSettings.GetRoomSizeFromString(currentRoomSettings.roomIDString), currentRoomSettings.haveProceduralCells);
             roomData.ChangeRoomSate(RoomState.Started);
         }
-        
     }
 
     public void ChangeFloorLevel()
@@ -166,7 +172,15 @@ public class GameManager : MonoBehaviour
         floorManager.currentFloorSetting = floorManager.floorSettingsList[floorIndex];
 
         //Génère un floor et la room de départ
-        floorManager.GenerateFloor(floorManager.currentFloorSetting.GetProceduralFloorSize());
+        if (floorManager.currentFloorSetting.proceduralFloor)
+        {
+            floorManager.GenerateProceduralFloor(floorManager.currentFloorSetting);
+        }
+        else
+        {
+            floorManager.LoadFloor(floorManager.currentFloorSetting);
+        }
+
     }
     #endregion ROOM AND FLOOR MANAGEMENT
 }
