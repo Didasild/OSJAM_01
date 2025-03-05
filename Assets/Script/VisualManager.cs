@@ -53,6 +53,7 @@ public class VisualManager : MonoBehaviour
     private VisualSettings _roomTransitionVisualSettings;
     [HideInInspector] public VisualSettings visualSettings;
     private GridManager _gridManager;
+    private GameManager _gameManager;
     
     private Material _gridMaterial;
     private List<TransformOffset> _gridIndicatorOffsetScript;
@@ -100,6 +101,7 @@ public class VisualManager : MonoBehaviour
         _roomIDRawRenderer = roomID_Raw.GetComponent<SpriteRenderer>();
         _roomIDColRenderer = roomID_Col.GetComponent<SpriteRenderer>();
         
+        _gameManager = GameManager.Instance;
         _gridManager = GameManager.Instance.gridManager;
         DOTween.SetTweensCapacity(1000, 500);
     }
@@ -389,7 +391,7 @@ public class VisualManager : MonoBehaviour
         TransitionVolume(roomData.initRoomSettings.roomVolumeProfile);
     }
 
-    private void TransitionVolume(VolumeProfile roomProfile = null)
+    private void TransitionVolume(VolumeProfile roomProfile)
     {
         //Check le volume a récup
         if (roomProfile != null)
@@ -400,13 +402,17 @@ public class VisualManager : MonoBehaviour
             }
             transitionColorsVolume.profile = roomProfile;
         }
+        else if (_gameManager.floorManager.currentFloorSetting.floorBaseVolumeProfile != null)
+        {
+            transitionColorsVolume.profile = _gameManager.floorManager.currentFloorSetting.floorBaseVolumeProfile;
+        }
         else
         {
-            if (GameManager.Instance.currentChapterSettings.chapterDefaultColorsVolume == transitionColorsVolume.profile)
+            if (_gameManager.currentChapterSettings.chapterDefaultColorsVolume == transitionColorsVolume.profile)
             {
                 return;
             }
-            transitionColorsVolume.profile = GameManager.Instance.currentChapterSettings.chapterDefaultColorsVolume;
+            transitionColorsVolume.profile = _gameManager.currentChapterSettings.chapterDefaultColorsVolume;
         }
         
         // Si un tween est déjà en cours, on l'annule
