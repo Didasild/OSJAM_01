@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using NaughtyAttributes;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.Rendering;
@@ -38,8 +39,8 @@ public class RoomEditor : MonoBehaviour
     public float cellSpacing = 1.0f;                  // Espacement entre les cellules
     public GameObject cellPrefab;                   // Prefab de la cellule
     [FormerlySerializedAs("cellVisualManager")] public VisualManager visualManager;
-    [NaughtyAttributes.ReadOnly] public List<CellEditor> selectedCells;
-    [NaughtyAttributes.ReadOnly] public List<CellEditor> cells;
+    [ReadOnly] public List<CellEditor> selectedCells;
+    [ReadOnly] public List<CellEditor> cells;
     public string roomSaveString;
     private string _defaultSaveFolder;
     
@@ -94,7 +95,7 @@ public class RoomEditor : MonoBehaviour
                 CellEditor cellEditor = cell.GetComponent<CellEditor>();
                 if (cellEditor != null)
                 {
-                    cellEditor._cellPosition = new Vector2Int(row, col);
+                    cellEditor.cellPosition = new Vector2Int(row, col);
                     cellEditor.Initialize(visualManager);
                 }
             }
@@ -102,8 +103,11 @@ public class RoomEditor : MonoBehaviour
 
         foreach (CellEditor cellEditor in cells)
         {
-            cellEditor.neighborsCellList = GiveNeighbors(cellEditor._cellPosition);
+            cellEditor.neighborsCellList = GiveNeighbors(cellEditor.cellPosition);
         }
+
+        roomSettingsToLoad = null;
+        roomSettingsToSave = null;
     }
     public void LoadEditorRoom()
     {
@@ -173,7 +177,7 @@ public class RoomEditor : MonoBehaviour
             
             if (cellEditor != null)
             {
-                cellEditor._cellPosition = new Vector2Int(row, col);
+                cellEditor.cellPosition = new Vector2Int(row, col);
                 cellEditor.Initialize(visualManager);
             }
             
@@ -183,7 +187,7 @@ public class RoomEditor : MonoBehaviour
 
         foreach (CellEditor cellEditor in cells)
         {
-            cellEditor.neighborsCellList = GiveNeighbors(cellEditor._cellPosition);
+            cellEditor.neighborsCellList = GiveNeighbors(cellEditor.cellPosition);
         }
     }
     private List<CellEditor> GiveNeighbors(Vector2Int cellPosition)
@@ -204,14 +208,13 @@ public class RoomEditor : MonoBehaviour
             Vector2Int neighborPosition = new Vector2Int(newRow, newCol);
 
             //Recherche dans la liste
-            CellEditor neighbor = cells.Find(cell => cell._cellPosition == neighborPosition);
+            CellEditor neighbor = cells.Find(cell => cell.cellPosition == neighborPosition);
 
             if (neighbor != null)
             {
                 neighbors.Add(neighbor); // Ajoute le voisin � la liste
             }
         }
-
         return neighbors;
     }
     
@@ -231,6 +234,46 @@ public class RoomEditor : MonoBehaviour
         isMandatory = roomSettings.mandatory;
         roomType = roomSettings.roomType;
         roomVolumeProfile = roomSettings.roomVolumeProfile;
+    }
+
+    public void AddCells(string cellsToAdd)
+    {
+        Vector2Int gridSize = GetGridSize();
+        Vector2Int newGrizeSize = new Vector2Int(gridSize.x, gridSize.y);
+
+        if (cellsToAdd == "right")
+        {
+            // Ajouter une colonne sur la droite
+            for (int y = 0; y <= gridSize.y; y++)
+            {
+                Vector2Int newPosition = new Vector2Int(gridSize.x + 1, y);  // Nouvelle colonne = gridSize.x + 1
+            }
+        }
+        else if (cellsToAdd == "top")
+        {
+            // Ajouter une ligne au-dessus
+            for (int x = 0; x <= gridSize.x; x++)
+            {
+                Vector2Int newPosition = new Vector2Int(x, gridSize.y + 1);  // Nouvelle ligne = gridSize.y + 1
+            }
+        }
+    }
+
+    private Vector2Int GetGridSize()
+    {
+       Vector2Int gridSize = new Vector2Int();
+       
+       // Trouver la taille actuelle de la grille (en supposant que ta grille est rectangulaire)
+       foreach (CellEditor cell in cells)
+       {
+           if (cell.cellPosition.x > gridSize.x)
+               gridSize.x = cell.cellPosition.x;
+
+           if (cell.cellPosition.y > gridSize.y)
+               gridSize.y = cell.cellPosition.y;
+       }
+
+       return gridSize;
     }
     #endregion GENERATION FUNCTIONS
 
@@ -417,8 +460,8 @@ public class RoomEditor : MonoBehaviour
         foreach (CellEditor cell in cells)
         {
             // Coordonnées de la cellule
-            int x = cell._cellPosition.x;
-            int y = cell._cellPosition.y;
+            int x = cell.cellPosition.x;
+            int y = cell.cellPosition.y;
 
             // �tat de la cellule (par exemple "em" pour Empty, "co" pour Cover)
             string state = cell.cellState.ToString().Substring(0, 2);

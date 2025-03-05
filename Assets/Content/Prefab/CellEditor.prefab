@@ -474,7 +474,7 @@ MonoBehaviour:
   debugHighlightColor: {r: 1, g: 0.25672385, b: 0, a: 0.78431374}
   neighborsCellList: []
   isSelected: 1
-  _cellPosition: {x: 0, y: 0}
+  cellPosition: {x: 0, y: 0}
 --- !u!212 &3610390154062530418
 SpriteRenderer:
   m_ObjectHideFlags: 0

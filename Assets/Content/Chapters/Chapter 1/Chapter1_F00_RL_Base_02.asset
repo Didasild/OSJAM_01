@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e1fa203da9941e14e9ac5c76d2db6dfb, type: 3}
+  m_Name: Chapter1_F00_RL_Base_02
+  m_EditorClassIdentifier: 
+  proceduralRoom: 0
+  mandatory: 1
+  isFoW: 1
+  roomType: 0
+  roomVolumeProfile: {fileID: 0}
+  roomIDString: 4_2_Co_Em_No|0_6_In_No_No|2_5_Co_Hi_No|3_14_In_No_No|2_13_Co_Em_No|2_10_Co_Em_No|2_8_Co_Mi_No|3_2_Co_Em_No|1_7_Co_Hi_No|0_0_In_No_No|2_11_Co_Em_No|0_13_Co_Hi_No|0_7_In_No_No|2_3_Co_Hi_No|0_9_Co_Em_No|1_0_Re_Em_No|2_1_Co_Em_No|3_5_Co_Hi_No|2_7_Co_Hi_No|0_12_Co_Mi_No|4_9_Co_Em_No|3_11_Co_Hi_No|3_8_Co_Hi_No|0_8_In_No_No|3_1_In_No_No|1_11_Co_Hi_No|1_9_Co_Hi_No|2_14_In_No_No|3_12_Co_Hi_No|4_1_In_No_No|1_10_Co_Em_No|4_13_Co_Hi_No|0_10_Co_Em_No|2_12_Co_Em_No|2_0_Re_Em_No|1_3_Co_Hi_No|4_0_In_No_No|3_7_Co_Hi_No|2_2_Co_Em_No|4_10_Co_Em_No|0_14_In_No_No|4_8_In_No_No|2_9_Co_Hi_No|1_2_Co_Em_No|3_10_Co_Em_No|3_3_Co_Hi_No|4_6_In_No_No|4_12_Co_Mi_No|4_5_In_No_No|0_11_Co_Hi_No|2_4_Co_Mi_No|1_5_Co_Hi_No|3_6_Co_Em_No|0_3_Co_Em_No|3_4_Co_Hi_No|0_2_Co_Em_No|0_1_In_No_No|1_8_Co_Hi_No|1_13_Co_Hi_No|4_4_Co_Em_No|4_7_In_No_No|3_0_Re_Em_No|1_14_In_No_No|1_6_Co_Em_No|0_5_In_No_No|1_12_Co_Hi_No|0_4_Co_Em_No|3_9_Co_Hi_No|4_11_Co_Hi_No|4_14_In_No_No|2_6_Co_Em_No|4_3_Co_Em_No|3_13_Co_Hi_No|1_1_In_No_No|1_4_Co_Hi_No
+  haveProceduralCells: 0
+  minRoomSize: {x: 5, y: 5}
+  maxRoomSize: {x: 10, y: 10}
+  roomPourcentageOfMine: 5
+  roomPourcentageOfNone: 5
+  haveStair: 0
+  itemRanges: []

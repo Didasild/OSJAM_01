@@ -67,6 +67,28 @@ public class FloorEditorInspector : Editor
                 floorEditor.ClearFloor();
             }
             EditorGUILayout.Space(_smallSpacing);
+            CoreEditorUtils.DrawFoldoutEndSplitter();
+            EditorGUILayout.Space(_smallSpacing);
+            
+            GUI.enabled = false;
+            EditorGUILayout.TextField("EDITOR SWITCH", centeredStyle);
+            GUI.enabled = true;
+            if (floorEditor.gameObject.activeInHierarchy && !floorEditor.roomEditor.gameObject.activeInHierarchy)
+            {
+                if (GUILayout.Button("Open in Room Editor"))
+                {
+                    floorEditor.SwitchToRoomEditor(floorEditor.selectedRoomEditorObjects[0].roomSettings);
+                }
+            }
+            else
+            {
+                if (GUILayout.Button("Open Floor Editor"))
+                {
+                    floorEditor.SwitchToFloorEditor();
+                }
+            }
+            
+            EditorGUILayout.Space(_smallSpacing);
             CoreEditorUtils.DrawSplitter();
             EditorGUILayout.Space(_smallSpacing);
         }
@@ -179,28 +201,6 @@ public class FloorEditorInspector : Editor
             if (GUILayout.Button("MOVE DOWN"))
             {
                 floorEditor.MoveSelectedRooms(Vector2Int.down);
-            }
-            
-            EditorGUILayout.Space(_smallSpacing);
-            CoreEditorUtils.DrawFoldoutEndSplitter();
-            EditorGUILayout.Space(_smallSpacing);
-            
-            GUI.enabled = false;
-            EditorGUILayout.TextField("EDITOR SWITCH", centeredStyle);
-            GUI.enabled = true;
-            if (floorEditor.gameObject.activeInHierarchy && !floorEditor.roomEditor.gameObject.activeInHierarchy)
-            {
-                if (GUILayout.Button("Open in Room Editor"))
-                {
-                    floorEditor.SwitchToRoomEditor(floorEditor.selectedRoomEditorObjects[0].roomSettings);
-                }
-            }
-            else
-            {
-                if (GUILayout.Button("Open Floor Editor"))
-                {
-                    floorEditor.SwitchToFloorEditor();
-                }
             }
             
             EditorGUILayout.Space(_smallSpacing);

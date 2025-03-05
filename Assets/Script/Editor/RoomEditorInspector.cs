@@ -91,6 +91,34 @@ public class RoomEditorInspector : Editor
             EditorGUILayout.Space(_smallSpacing);
             CoreEditorUtils.DrawFoldoutEndSplitter();
             EditorGUILayout.Space(_smallSpacing);
+            
+            if (roomEditor.cells.Count > 0)
+            {
+                GUI.enabled = false;
+                EditorGUILayout.TextField("ADD CELLS", centeredStyle);
+                GUI.enabled = true;
+                if (GUILayout.Button("Add Top Raw"))
+                {
+                
+                }
+                EditorGUILayout.BeginHorizontal();
+                if (GUILayout.Button("Add Left Col"))
+                {
+                
+                }
+                if (GUILayout.Button("Add Right Col"))
+                {
+                
+                }
+                EditorGUILayout.EndHorizontal();
+                if (GUILayout.Button("Add Bot Raw"))
+                {
+                
+                }
+                EditorGUILayout.Space(_smallSpacing);
+                CoreEditorUtils.DrawFoldoutEndSplitter();
+                EditorGUILayout.Space(_smallSpacing);
+            }
         }
         #endregion GENERATION
         

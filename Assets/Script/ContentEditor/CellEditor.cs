@@ -33,7 +33,7 @@ public class CellEditor : MonoBehaviour
     private const float fadeDuration = 1f;
     private const float delayBeforeFade = 0.5f;
     
-    public Vector2Int _cellPosition; // La position dans la grille
+    public Vector2Int cellPosition; // La position dans la grille
     
     //PRIVATE
     private VisualManager _visualManager;
