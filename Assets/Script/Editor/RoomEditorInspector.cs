@@ -97,23 +97,25 @@ public class RoomEditorInspector : Editor
                 GUI.enabled = false;
                 EditorGUILayout.TextField("ADD CELLS", centeredStyle);
                 GUI.enabled = true;
+                GUI.enabled = false;
                 if (GUILayout.Button("Add Top Raw"))
                 {
-                
+                    roomEditor.AddCells("Top");
                 }
                 EditorGUILayout.BeginHorizontal();
                 if (GUILayout.Button("Add Left Col"))
                 {
-                
+                    roomEditor.AddCells("Left");
                 }
+                GUI.enabled = true;
                 if (GUILayout.Button("Add Right Col"))
                 {
-                
+                    roomEditor.AddCells("Right");
                 }
                 EditorGUILayout.EndHorizontal();
                 if (GUILayout.Button("Add Bot Raw"))
                 {
-                
+                    roomEditor.AddCells("Bot");
                 }
                 EditorGUILayout.Space(_smallSpacing);
                 CoreEditorUtils.DrawFoldoutEndSplitter();

@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using NaughtyAttributes;
 using UnityEditor;
 using UnityEngine;
@@ -238,43 +239,82 @@ public class RoomEditor : MonoBehaviour
 
     public void AddCells(string cellsToAdd)
     {
-        Vector2Int gridSize = GetGridSize();
-        Vector2Int newGrizeSize = new Vector2Int(gridSize.x, gridSize.y);
+        Vector3 cellPosition = new Vector3();
+        int maxX = GetGridSize().x;
+        int maxY = GetGridSize().y;
+        List<CellEditor> newCells = new List<CellEditor>();
 
-        if (cellsToAdd == "right")
+        foreach (CellEditor cell in cells)
         {
-            // Ajouter une colonne sur la droite
-            for (int y = 0; y <= gridSize.y; y++)
+            switch (cellsToAdd)
             {
-                Vector2Int newPosition = new Vector2Int(gridSize.x + 1, y);  // Nouvelle colonne = gridSize.x + 1
+                case "Top":
+                    if (cell.cellPosition.x == 0)
+                    {
+                        cellPosition = new Vector3 (cell.transform.position.x, cell.transform.position.y + cellSpacing, 0);
+                        CellEditor newCell = InstantiateCell(cellPosition);
+                        newCell.cellPosition += new Vector2Int(cell.cellPosition.x + 1, cell.cellPosition.y);
+                        newCells.Add(newCell);
+                    }
+                    break; 
+                case "Right":
+                    if (cell.cellPosition.y == maxY)
+                    {
+                        cellPosition = new Vector3 (cell.transform.position.x + cellSpacing, cell.transform.position.y, 0);
+                        CellEditor newCell = InstantiateCell(cellPosition);
+                        newCell.cellPosition += new Vector2Int(cell.cellPosition.x, cell.cellPosition.y + 1);
+                        newCells.Add(newCell);
+                    }
+                    break;
+                case "Bot":
+                    if (cell.cellPosition.x == maxX)
+                    {
+                        cellPosition = new Vector3 (cell.transform.position.x, cell.transform.position.y - cellSpacing, 0);
+                        CellEditor newCell = InstantiateCell(cellPosition);
+                        newCell.cellPosition += new Vector2Int(cell.cellPosition.x + 1, cell.cellPosition.y);
+                        newCells.Add(newCell);
+                    }
+                    break;
+                case "Left":
+                    
+                    break;
             }
         }
-        else if (cellsToAdd == "top")
+        foreach (CellEditor newCell in newCells)
         {
-            // Ajouter une ligne au-dessus
-            for (int x = 0; x <= gridSize.x; x++)
-            {
-                Vector2Int newPosition = new Vector2Int(x, gridSize.y + 1);  // Nouvelle ligne = gridSize.y + 1
-            }
+            cells.Add(newCell);
         }
     }
-
     private Vector2Int GetGridSize()
     {
-       Vector2Int gridSize = new Vector2Int();
+        Vector2Int gridSize = new Vector2Int();
        
-       // Trouver la taille actuelle de la grille (en supposant que ta grille est rectangulaire)
-       foreach (CellEditor cell in cells)
-       {
-           if (cell.cellPosition.x > gridSize.x)
-               gridSize.x = cell.cellPosition.x;
+        // Trouver la taille actuelle de la grille (en supposant que ta grille est rectangulaire)
+        foreach (CellEditor cell in cells)
+        {
+            if (cell.cellPosition.x > gridSize.x)
+                gridSize.x = cell.cellPosition.x;
 
-           if (cell.cellPosition.y > gridSize.y)
-               gridSize.y = cell.cellPosition.y;
-       }
-
-       return gridSize;
+            if (cell.cellPosition.y > gridSize.y)
+                gridSize.y = cell.cellPosition.y;
+        }
+        return gridSize;
     }
+    
+    
+
+    private CellEditor InstantiateCell(Vector3 cellPosition)
+    {
+        // Instancier une nouvelle cellule
+        GameObject cell = Instantiate(cellPrefab, cellPosition, Quaternion.identity, transform);
+        CellEditor cellEditor = cell.GetComponent<CellEditor>();
+        cellEditor.Initialize(visualManager);
+        return cellEditor;
+    }
+
+
+
+
     #endregion GENERATION FUNCTIONS
 
     #region SAVE FUNCTIONS
