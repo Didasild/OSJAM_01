@@ -465,10 +465,11 @@ public class VisualManager : MonoBehaviour
         // Grouper les cellules par distance diagonale
         Dictionary<int, List<Cell>> diagonalGroups = new Dictionary<int, List<Cell>>();
 
-        // List<Cell> activeCells = _gridManager.cellList;
-        // activeCells.RemoveAll(cell => _gridManager.GetCellsByState(CellState.Inactive).Contains(cell));
+        List<Cell> inactiveCells = new List<Cell>(_gridManager.GetCellsByState(CellState.Inactive));
+        List<Cell> activeCells = new List<Cell>(_gridManager.cellList);
+        activeCells.RemoveAll(cell => inactiveCells.Contains(cell));
         
-        foreach (Cell cell in _gridManager.cellList)
+        foreach (Cell cell in activeCells)
         {
             // Calculer la distance diagonale
             int diagonalIndex = cell._cellPosition.x + cell._cellPosition.y;
@@ -484,20 +485,19 @@ public class VisualManager : MonoBehaviour
         // Tri des groupes par distance diagonale (clé du dictionnaire)
         List<int> sortedKeys = diagonalGroups.Keys.OrderBy(key => key).ToList();
 
+        foreach (Cell cell in inactiveCells)
+        {
+            cell.gameObject.SetActive(true);
+            cell.ActiveCollider();
+        }
+        
         // Faire apparaître chaque groupe avec un délai
         foreach (int key in sortedKeys)
         {
             foreach (Cell cell in diagonalGroups[key])
             {
                 cell.gameObject.SetActive(true);
-                if (cell.currentState != CellState.Inactive)
-                {
-                    cell.SpawnAnimation();
-                }
-                else
-                {
-                    cell.ActiveCollider();
-                }
+                cell.SpawnAnimation();
             }
             yield return new WaitForSecondsRealtime(timeBetweenApparition); // Délai entre les groupes
         }
