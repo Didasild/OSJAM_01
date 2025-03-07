@@ -283,6 +283,7 @@ public class RoomEditor : MonoBehaviour
         foreach (CellEditor newCell in newCells)
         {
             cells.Add(newCell);
+            newCell.neighborsCellList = GiveNeighbors(newCell.cellPosition);
         }
     }
     private Vector2Int GetGridSize()
