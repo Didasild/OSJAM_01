@@ -243,8 +243,8 @@ public class Cell : MonoBehaviour
         RevealAndDisableCover();
         stateVisual.sprite = _visualManager.GetCellStateVisual(currentState);
         
-        //Augmente le mana a chaque case reveal
-        GameManager.Instance.player.IncreaseMana();
+        _player.IncreaseMana();
+        _gameManager.gridManager.CheckRoomCompletion(_gameManager.floorManager.currentRoom.roomCondition);
     }
 
     private void RevealNeighbors()
@@ -447,6 +447,11 @@ public class Cell : MonoBehaviour
             .SetEase(Ease.OutCubic)
             .OnComplete(() => _collider.enabled = true);
     }
+
+    public void ActiveCollider()
+    {
+        _collider.enabled = true;
+    }
     
     private void DestroyAnimationPrefab()
     {
@@ -532,6 +537,7 @@ public class Cell : MonoBehaviour
         yield return new WaitForSeconds(animDuration);
         DestroyAnimationPrefab();
         ChangeState(cellNewState);
+        _gameManager.gridManager.CheckRoomCompletion(GameManager.Instance.floorManager.currentRoom.roomCondition);
     }
     #endregion
 

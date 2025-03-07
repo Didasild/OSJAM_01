@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d6b7aef4937d0054da1f650a1766cb15, type: 3}
-  m_Name: Debug_Floor_L_FRT_00
+  m_Name: Debug_Floor_L_SHI_00
   m_EditorClassIdentifier: 
   proceduralFloor: 0
-  floorBaseVolumeProfile: {fileID: 11400000, guid: 30efc7cf415405348a435a3b353f0857, type: 2}
+  floorBaseVolumeProfile: {fileID: 11400000, guid: d252c52afd5c5ff47984d4f563ce4ade, type: 2}
   minGridSize: {x: 2, y: 2}
   maxGridSize: {x: 4, y: 4}
   roomSettingsList: []
@@ -22,35 +22,44 @@ MonoBehaviour:
     initRoomSettings: {fileID: 11400000, guid: 3874eaf7b7f24ec43b073b2be72ed74b, type: 2}
     currentRoomState: 0
     roomPosition: {x: 1, y: 0}
+    roomCondition: 0
   - startRoom: 0
-    initRoomSettings: {fileID: 11400000, guid: 3874eaf7b7f24ec43b073b2be72ed74b, type: 2}
+    initRoomSettings: {fileID: 11400000, guid: d69055cab6f0778419223d81d87579d1, type: 2}
     currentRoomState: 0
     roomPosition: {x: 1, y: 1}
+    roomCondition: 0
   - startRoom: 0
     initRoomSettings: {fileID: 11400000, guid: 3de9fbd7fdca9b24582857244631451d, type: 2}
     currentRoomState: 0
     roomPosition: {x: 3, y: 0}
+    roomCondition: 0
   - startRoom: 0
     initRoomSettings: {fileID: 11400000, guid: 43528039599fd934aa033056c8ae0290, type: 2}
     currentRoomState: 0
     roomPosition: {x: 3, y: 1}
+    roomCondition: 0
   - startRoom: 0
     initRoomSettings: {fileID: 11400000, guid: 20a5d6c7151eedd4088b1c893f392d94, type: 2}
     currentRoomState: 0
     roomPosition: {x: 2, y: 0}
+    roomCondition: 0
   - startRoom: 0
     initRoomSettings: {fileID: 11400000, guid: e8c958edb868227449c543db67875966, type: 2}
     currentRoomState: 0
     roomPosition: {x: 1, y: 2}
+    roomCondition: 0
   - startRoom: 0
     initRoomSettings: {fileID: 11400000, guid: 2eebcb769bea22a4489e34f7d6f3a10a, type: 2}
     currentRoomState: 0
     roomPosition: {x: 2, y: 2}
+    roomCondition: 0
   - startRoom: 0
     initRoomSettings: {fileID: 11400000, guid: 156407c483b78ed44955b3848e43d64c, type: 2}
     currentRoomState: 0
     roomPosition: {x: 3, y: 2}
+    roomCondition: 0
   - startRoom: 1
     initRoomSettings: {fileID: 11400000, guid: 3874eaf7b7f24ec43b073b2be72ed74b, type: 2}
     currentRoomState: 0
     roomPosition: {x: 0, y: 1}
+    roomCondition: 0

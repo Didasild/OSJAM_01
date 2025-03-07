@@ -414,14 +414,18 @@ public class GridManager : MonoBehaviour
 
     private bool FlaggedAllMineCondition()
     {
-        foreach (Cell mineCell in GetCellsByType(CellType.Mine))
+        if (GetCellsByState(CellState.Flag).Count == GetCellsByType(CellType.Mine).Count && GetCellsByState(CellState.Cover).Count == 0)
         {
-            if (mineCell.currentState != CellState.Flag)
+            foreach (Cell mineCell in GetCellsByType(CellType.Mine))
             {
-                return false;
+                if (mineCell.currentState != CellState.Flag)
+                {
+                    return false;
+                }
             }
-        }
-        return true;
+            return true;
+        } 
+        return false;
     }
 
     #endregion

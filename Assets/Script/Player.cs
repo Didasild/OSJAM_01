@@ -149,7 +149,6 @@ public class Player : MonoBehaviour
             if (cellOver.currentState == CellState.Cover)
             {
                 cellOver.StateTransitionIn(CellState.Flag, 0.2f);
-                //cellOver.ChangeState(CellState.Flag);
             }
             else if (cellOver.currentState == CellState.Flag && _swordCounter >= 1f)
             {
@@ -167,7 +166,6 @@ public class Player : MonoBehaviour
             }
             //Update le compteur de mines restantes
             _gridManager.UpdateMineCounter();
-            _gridManager.CheckRoomCompletion(GameManager.Instance.floorManager.currentRoom.roomCondition);
         }
         #endregion
 

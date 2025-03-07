@@ -7249,7 +7249,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentGameState: 0
-  currentChapter: 1
+  currentChapter: 2
   chaptersList:
   - {fileID: 11400000, guid: b144a2ecda7de4844b459aa018dcbe47, type: 2}
   - {fileID: 11400000, guid: 24d5c5240a1c1934188ccdc42deb809a, type: 2}
