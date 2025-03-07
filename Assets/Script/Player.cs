@@ -119,7 +119,7 @@ public class Player : MonoBehaviour
             }
             //Update le compteur de mines restantes
             _gridManager.UpdateMineCounter();
-            _gridManager.CheckRoomCompletion();
+            _gridManager.CheckRoomCompletion(GameManager.Instance.floorManager.currentRoom.roomCondition);
             ResetClickedState();
         }
 
@@ -167,7 +167,7 @@ public class Player : MonoBehaviour
             }
             //Update le compteur de mines restantes
             _gridManager.UpdateMineCounter();
-            _gridManager.CheckRoomCompletion();
+            _gridManager.CheckRoomCompletion(GameManager.Instance.floorManager.currentRoom.roomCondition);
         }
         #endregion
 

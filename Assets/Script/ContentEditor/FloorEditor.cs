@@ -145,6 +145,7 @@ public class FloorEditor : MonoBehaviour
             newRoomData.initRoomSettings = roomEditorObject.roomSettings;
             newRoomData.currentRoomState = roomEditorObject.roomState;
             newRoomData.roomPosition = roomEditorObject.roomPosition;
+            newRoomData.roomCondition = roomEditorObject.roomCondition;
             
             floorSettings.loadedRoomDatas.Add(newRoomData);
         }

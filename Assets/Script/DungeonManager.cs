@@ -85,7 +85,7 @@ public class DungeonManager : MonoBehaviour
                 RoomData roomData = Instantiate(roomPrefab, roomContainer);
                 if (roomData != null)
                 {
-                    roomData.Initialize(gridPosition, roomSize, offset); // Initialisation avec la position
+                    roomData.Initialize(gridPosition, RoomCompletionCondition.None, roomSize, offset); // Initialisation avec la position
                     roomList.Add(roomData); // Ajouter � la liste
                     roomData.transform.SetParent(roomContainer);
                 }
@@ -164,7 +164,7 @@ public class DungeonManager : MonoBehaviour
             roomData.transform.SetParent(roomContainer);
             roomData.name = $"Room_"+ loadedRoomData.roomPosition;
             
-            roomData.Initialize(loadedRoomData.roomPosition, roomSize);
+            roomData.Initialize(loadedRoomData.roomPosition, loadedRoomData.roomCondition, roomSize);
             roomData.startRoom = loadedRoomData.startRoom;
             roomData.initRoomSettings = loadedRoomData.initRoomSettings;
             roomData.InitializeRoomType();

@@ -11,6 +11,11 @@ public enum RoomState
     Started,
     Complete
 }
+public enum RoomCompletionCondition
+{
+    None,
+    FlaggedAllMine,
+}
 #endregion ENUMS
 
 public class RoomData : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerClickHandler
@@ -23,6 +28,7 @@ public class RoomData : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     [ReadOnly] public string roomSavedString;
     [ReadOnly] public Vector2Int roomPosition;
     [ReadOnly] public bool startRoom;
+    [ReadOnly] public RoomCompletionCondition roomCondition;
 
     [Header("NEIGHBORS")]
     [ReadOnly] public RoomData roomUp;
@@ -41,9 +47,10 @@ public class RoomData : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     #endregion
 
     #region INIT
-    public void Initialize(Vector2Int position, float roomSize = 1.0f, Vector3 offset = default)
+    public void Initialize(Vector2Int position, RoomCompletionCondition newRoomCondition, float roomSize = 1.0f,  Vector3 offset = default)
     {
         roomPosition = position;
+        roomCondition = newRoomCondition;
 
         // Calculez la position dans le monde
         Vector3 worldPosition = new Vector3(

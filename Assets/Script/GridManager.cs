@@ -28,8 +28,6 @@ public class GridManager : MonoBehaviour
     public int numberOfMineLeft;
     [NaughtyAttributes.ReadOnly]
     public int theoricalMineLeft;
-    
-    
     #endregion
     
     #region PROCEDURAL GRID GENERATION
@@ -236,27 +234,30 @@ public class GridManager : MonoBehaviour
             // Calculer la position de chaque cellule (ajustée par l'offset)
             Vector2 roomOffset = GetRoomOffset(cellSize, roomSize);
             Vector2 cellPosition = new Vector2(col * cellSize, -row * cellSize) + roomOffset;
-
-            // Instancier une nouvelle cellule
-            Cell newCell = CellInstanciation(cellPosition, row, col);
             
-            //Ajoute à la liste des cellules procédurales
-            if (isProcedural)
-            {
-                cellProceduralList.Add(newCell);
-            }
-
             // Convertir les abréviations en valeurs d'enum
             CellState state = GetStateFromAbbreviation(stateAbbreviation);
             CellType type = GetTypeFromAbbreviation(typeAbbreviation);
             ItemTypeEnum itemType = GetItemTypeFromAbbreviation(itemTypeAbbreviation);
 
-            // Initialiser la cellule avec ses nouveaux états
-            newCell.currentState = state;
-            newCell.currentType = type;
-            newCell.currentItemType = itemType;
+            if (type != CellType.None)
+            {
+                // Instancier une nouvelle cellule
+                Cell newCell = CellInstanciation(cellPosition, row, col);
+            
+                //Ajoute à la liste des cellules procédurales
+                if (isProcedural)
+                {
+                    cellProceduralList.Add(newCell);
+                }
 
-            newCell.Initialize(new Vector2Int(row, col)); // Initialisation avec les bonnes coordonnées et le bon état
+                // Initialiser la cellule avec ses nouveaux états
+                newCell.currentState = state;
+                newCell.currentType = type;
+                newCell.currentItemType = itemType;
+
+                newCell.Initialize(new Vector2Int(row, col)); // Initialisation avec les bonnes coordonnées et le bon état
+            }
         }
 
         if (isRsp && cellProceduralList.Count > 0)
@@ -390,6 +391,41 @@ public class GridManager : MonoBehaviour
     }
     #endregion COMMON GENERATION FONCTIONS
 
+    #region ROOM COMPLETION CHECK
+    public void CheckRoomCompletion(RoomCompletionCondition roomCondition)
+    {
+        bool switchToComplete;
+        switch (roomCondition)
+        {
+            case RoomCompletionCondition.FlaggedAllMine:
+                switchToComplete = FlaggedAllMineCondition();
+                break;
+            
+            default:
+                switchToComplete = FlaggedAllMineCondition();
+                break;
+        }
+
+        if (switchToComplete)
+        {
+            GameManager.Instance.floorManager.currentRoom.ChangeRoomSate(RoomState.Complete);
+        }
+    }
+
+    private bool FlaggedAllMineCondition()
+    {
+        foreach (Cell mineCell in GetCellsByType(CellType.Mine))
+        {
+            if (mineCell.currentState != CellState.Flag)
+            {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    #endregion
+    
     #region GET GRID INFORMATIONS
     public List<Cell> GetCellsByType(CellType typeOfCellWanted)
     {
@@ -475,18 +511,9 @@ public class GridManager : MonoBehaviour
         }
         return firstClickProcedural;
     }
-    
-    public void CheckRoomCompletion()
-    {
-        int nbOfCoverCells = GetCellsByState(CellState.Cover).Count + GetCellsByState(CellState.Flag).Count;
-        int nbOfMine = GetCellsByType(CellType.Mine).Count;
-        if (nbOfMine == nbOfCoverCells)
-        {
-            GameManager.Instance.floorManager.currentRoom.ChangeRoomSate(RoomState.Complete);
-        }
-    }
     #endregion GET GRID INFORMATIONS
 
+    
     #region MINE COUNTER // A DÉPLACER DANS PLAYER OU AUTRE PLUS PERTINENT
     public void UpdateMineCounter()
     {
