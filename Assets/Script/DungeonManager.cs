@@ -54,7 +54,7 @@ public class DungeonManager : MonoBehaviour
 
     public void Init()
     {
-        _visualManager = GameManager.VisualManager;
+        _visualManager = GameManager.visualManager;
     }
     #endregion
 

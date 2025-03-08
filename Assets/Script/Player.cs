@@ -250,7 +250,7 @@ public class Player : MonoBehaviour
         }
         if (cellClicked.currentType == CellType.Mine)
         {
-            cellClicked.MineSwordDestruction(GameManager.VisualManager.mineSwordedAnimation);
+            cellClicked.MineSwordDestruction(GameManager.visualManager.mineSwordedAnimation);
         }
         else
         {

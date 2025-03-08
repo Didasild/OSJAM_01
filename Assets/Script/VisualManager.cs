@@ -502,6 +502,7 @@ public class VisualManager : MonoBehaviour
             yield return new WaitForSecondsRealtime(timeBetweenApparition); // Délai entre les groupes
         }
     }
+    
     private void CompleteRoomTransition(RoomData nextRoom)
     {
         if (_roomTransitionComplete)
@@ -524,6 +525,14 @@ public class VisualManager : MonoBehaviour
     }
 
     #endregion
+
+    #region ROOM COMPLETION
+
+    public void RoomCompletionIn()
+    {
+        
+    }
+    #endregion ROOM COMPLETION
 
 
 

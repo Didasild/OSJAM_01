@@ -63,7 +63,7 @@ public class RoomData : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
         transform.localPosition = worldPosition;
 
         //Setup le visuel
-        _visualManager = GameManager.VisualManager;
+        _visualManager = GameManager.visualManager;
         roomStateVisual.sprite = _visualManager.GetRoomStateVisual(RoomState.FogOfWar);
         
         //Assigne le dungeon manager
@@ -82,7 +82,7 @@ public class RoomData : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     {
         currentRoomState = newRoomState;
         //Update le visuel de la room
-        roomStateVisual.sprite = GameManager.VisualManager.GetRoomStateVisual(currentRoomState);
+        roomStateVisual.sprite = GameManager.visualManager.GetRoomStateVisual(currentRoomState);
 
         switch (currentRoomState)
         {

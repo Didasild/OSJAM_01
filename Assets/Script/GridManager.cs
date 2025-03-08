@@ -72,7 +72,7 @@ public class GridManager : MonoBehaviour
         SetCellType(GameManager.Instance.currentRoomSettings.roomPourcentageOfNone, CellType.None, cellList);
 
         //Setup l'animation d'apparition
-        GameManager.VisualManager.ActiveListOfCells(timeBetweenApparition, RoomState.FogOfWar);
+        GameManager.visualManager.ActiveListOfCells(timeBetweenApparition, RoomState.FogOfWar);
     }
 
     public void FirstClickGeneration(Cell cellClicked)
@@ -277,7 +277,7 @@ public class GridManager : MonoBehaviour
         }
         cellMineList = GetCellsByType(CellType.Mine);
         SetCellsVisuals();
-        GameManager.VisualManager.ActiveListOfCells(timeBetweenApparition, GameManager.Instance.floorManager.currentRoom.currentRoomState);
+        GameManager.visualManager.ActiveListOfCells(timeBetweenApparition, GameManager.Instance.floorManager.currentRoom.currentRoomState);
     }
 
     public static CellState GetStateFromAbbreviation(string abbreviation)
@@ -394,7 +394,7 @@ public class GridManager : MonoBehaviour
     #region ROOM COMPLETION CHECK
     public void CheckRoomCompletion(RoomCompletionCondition roomCondition)
     {
-        bool switchToComplete;
+        bool switchToComplete = false;
         switch (roomCondition)
         {
             case RoomCompletionCondition.FlaggedAllMine:
@@ -409,25 +409,25 @@ public class GridManager : MonoBehaviour
         if (switchToComplete)
         {
             GameManager.Instance.floorManager.currentRoom.ChangeRoomSate(RoomState.Complete);
+            GameManager.visualManager.RoomCompletionIn();
         }
     }
 
     private bool FlaggedAllMineCondition()
     {
-        if (GetCellsByState(CellState.Flag).Count == GetCellsByType(CellType.Mine).Count && GetCellsByState(CellState.Cover).Count == 0)
+        if (GetCellsByState(CellState.Flag).Count != GetCellsByType(CellType.Mine).Count || GetCellsByState(CellState.Cover).Count != 0)
         {
-            foreach (Cell mineCell in GetCellsByType(CellType.Mine))
+            return false;
+        }
+        foreach (Cell mineCell in GetCellsByType(CellType.Mine))
+        {
+            if (mineCell.currentState != CellState.Flag)
             {
-                if (mineCell.currentState != CellState.Flag)
-                {
-                    return false;
-                }
+                return false;
             }
-            return true;
-        } 
-        return false;
+        }
+        return true;
     }
-
     #endregion
     
     #region GET GRID INFORMATIONS
@@ -516,7 +516,6 @@ public class GridManager : MonoBehaviour
         return firstClickProcedural;
     }
     #endregion GET GRID INFORMATIONS
-
     
     #region MINE COUNTER // A DÉPLACER DANS PLAYER OU AUTRE PLUS PERTINENT
     public void UpdateMineCounter()

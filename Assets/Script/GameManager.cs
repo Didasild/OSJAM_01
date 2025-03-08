@@ -42,8 +42,8 @@ public class GameManager : MonoBehaviour
     //Singleton
     private static GameManager _instance;
     public static GameManager Instance => _instance;
-    [FormerlySerializedAs("_CellVisualManager")] [SerializeField] private VisualManager visualManager;
-    public static VisualManager VisualManager => _instance.visualManager;
+    [FormerlySerializedAs("_CellVisualManager")] [SerializeField] private VisualManager _visualManager;
+    public static VisualManager visualManager => _instance._visualManager;
     
     
     #endregion PARAMETERS
@@ -54,7 +54,7 @@ public class GameManager : MonoBehaviour
         _instance = this;
         
         //roomVisualManager.Init();
-        VisualManager.Init();
+        visualManager.Init();
         
         player.Init();
         floorManager.Init();
