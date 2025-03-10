@@ -7262,7 +7262,7 @@ MonoBehaviour:
   gridManager: {fileID: 712061424}
   endScreenUI: {fileID: 1289361010}
   player: {fileID: 1365082114}
-  visualManager: {fileID: 348095978}
+  _visualManager: {fileID: 348095978}
 --- !u!114 &348095978
 MonoBehaviour:
   m_ObjectHideFlags: 0
