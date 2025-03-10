@@ -527,11 +527,12 @@ public class VisualManager : MonoBehaviour
     #endregion
 
     #region ROOM COMPLETION
-
+    
     public void RoomCompletionIn()
     {
         
     }
+    
     #endregion ROOM COMPLETION
 
 
