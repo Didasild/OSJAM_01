@@ -404,8 +404,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 89334858}
+  - component: {fileID: 89334859}
   m_Layer: 0
-  m_Name: RoomCompletion
+  m_Name: MainScreenFeedbacks
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -427,6 +428,19 @@ Transform:
   - {fileID: 870413179}
   m_Father: {fileID: 366329925}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &89334859
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 89334857}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e97dad3eafd400341943d7d092fe3d6b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mainScreenSprite: {fileID: 870413178}
 --- !u!1 &93698348 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 9172855607629359649, guid: 3c365be93edc4bd47936f16e2f2c0750, type: 3}
@@ -7317,6 +7331,7 @@ MonoBehaviour:
   roomParent: {fileID: 712061422}
   roomID_Raw: {fileID: 1018615614}
   roomID_Col: {fileID: 82313152}
+  feedbackController: {fileID: 89334859}
   animationPrefabs:
   - {fileID: 1499444410457814521, guid: f7ef07e33d9da144989b5eafc0036a21, type: 3}
   - {fileID: 735029770632867219, guid: 788e9c56c1dca8d419a4d03f8570560a, type: 3}
@@ -8471,6 +8486,51 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!21 &558381417
+Material:
+  serializedVersion: 8
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: RadialEffect (Instance)
+  m_Shader: {fileID: -6465566751694194690, guid: 4ca9902709424644d9e730a6971ed6dd, type: 3}
+  m_Parent: {fileID: 0}
+  m_ModifiedSerializedProperties: 0
+  m_ValidKeywords: []
+  m_InvalidKeywords: []
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_LockedProperties: 
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - unity_Lightmaps:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - unity_LightmapsInd:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - unity_ShadowMasks:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Ints: []
+    m_Floats:
+    - _EdgeSize: 0.017
+    - _GlobalAlpha: 0
+    - _HaloFill: -0.8
+    - _RadialAnimation: 1
+    - _SineQuantity: 0
+    m_Colors: []
+  m_BuildTextureStacks: []
+  m_AllowLocking: 1
 --- !u!1001 &566764259
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -10766,7 +10826,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 46c3a06f6db4f46468aa7367d1b2bd85, type: 2}
+  - {fileID: 558381417}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -14015,7 +14075,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2793992735033574449, guid: 3c365be93edc4bd47936f16e2f2c0750, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 335
+      value: 330
       objectReference: {fileID: 0}
     - target: {fileID: 2793992735033574449, guid: 3c365be93edc4bd47936f16e2f2c0750, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -14864,7 +14924,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2793992735033574449, guid: 3c365be93edc4bd47936f16e2f2c0750, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -335
+      value: -330
       objectReference: {fileID: 0}
     - target: {fileID: 2793992735033574449, guid: 3c365be93edc4bd47936f16e2f2c0750, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -16197,7 +16257,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2793992735033574449, guid: 3c365be93edc4bd47936f16e2f2c0750, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -335
+      value: -330
       objectReference: {fileID: 0}
     - target: {fileID: 2793992735033574449, guid: 3c365be93edc4bd47936f16e2f2c0750, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -16615,7 +16675,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2793992735033574449, guid: 3c365be93edc4bd47936f16e2f2c0750, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 335
+      value: 330
       objectReference: {fileID: 0}
     - target: {fileID: 2793992735033574449, guid: 3c365be93edc4bd47936f16e2f2c0750, type: 3}
       propertyPath: m_AnchoredPosition.y

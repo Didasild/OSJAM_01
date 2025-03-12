@@ -39,7 +39,10 @@ Material:
     m_Ints: []
     m_Floats:
     - _EdgeSize: 0.017
+    - _GlobalAlpha: 1
+    - _HaloFill: -1
     - _RadialAnimation: 1
+    - _SineQuantity: 0
     m_Colors: []
   m_BuildTextureStacks: []
   m_AllowLocking: 1

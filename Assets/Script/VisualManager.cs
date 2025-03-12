@@ -30,6 +30,7 @@ public class VisualManager : MonoBehaviour
     public GameObject roomParent;
     public GameObject roomID_Raw;
     public GameObject roomID_Col;
+    public MainScreenFeedbackController feedbackController;
 
     [Header("_______CELL ANIMATIONS")] 
     public List<GameObject> animationPrefabs;
@@ -104,6 +105,8 @@ public class VisualManager : MonoBehaviour
         _gameManager = GameManager.Instance;
         _gridManager = GameManager.Instance.gridManager;
         DOTween.SetTweensCapacity(1000, 500);
+        
+        feedbackController.Init(this);
     }
     
     private void LoadSprites()
