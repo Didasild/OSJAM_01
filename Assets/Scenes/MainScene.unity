@@ -405,6 +405,7 @@ GameObject:
   m_Component:
   - component: {fileID: 89334858}
   - component: {fileID: 89334859}
+  - component: {fileID: 89334860}
   m_Layer: 0
   m_Name: MainScreenFeedbacks
   m_TagString: Untagged
@@ -441,6 +442,25 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mainScreenSprite: {fileID: 870413178}
+--- !u!320 &89334860
+PlayableDirector:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 89334857}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_PlayableAsset: {fileID: 11400000, guid: 75de58e10a4d42044bf31140a377b39c, type: 2}
+  m_InitialState: 0
+  m_WrapMode: 1
+  m_DirectorUpdateMode: 1
+  m_InitialTime: 0
+  m_SceneBindings:
+  - key: {fileID: 1770270970862271576, guid: 75de58e10a4d42044bf31140a377b39c, type: 2}
+    value: {fileID: 870413181}
+  m_ExposedReferences:
+    m_References: []
 --- !u!1 &93698348 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 9172855607629359649, guid: 3c365be93edc4bd47936f16e2f2c0750, type: 3}
@@ -8523,10 +8543,12 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
+    - _CentralCell: 1
     - _EdgeSize: 0.017
-    - _GlobalAlpha: 0
-    - _HaloFill: -0.8
-    - _RadialAnimation: 1
+    - _GlobalAlpha: 0.75
+    - _HaloFill: -0.839
+    - _RadialAnimation: 0
+    - _RadialLine: 0
     - _SineQuantity: 0
     m_Colors: []
   m_BuildTextureStacks: []
@@ -10781,6 +10803,7 @@ GameObject:
   m_Component:
   - component: {fileID: 870413179}
   - component: {fileID: 870413180}
+  - component: {fileID: 870413181}
   m_Layer: 0
   m_Name: Square
   m_TagString: Untagged
@@ -10858,6 +10881,28 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!95 &870413181
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 870413178}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 0}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &895585490
 GameObject:
   m_ObjectHideFlags: 0
