@@ -17,11 +17,15 @@ public class VisualManager : MonoBehaviour
     #region PARAMETERS
     public SpriteAtlas spriteAtlas;
     private readonly Dictionary<string, Sprite> spriteDictionary = new Dictionary<string, Sprite>();
-    [ReadOnly] public Sprite[] sprites; 
+    [ReadOnly] public Sprite[] sprites;
+    
+    [Header("VISUAL CONTROLLERS")]
+    public RoomAmbianceController roomAmbianceController;
+    public MainScreenFeedbackController feedbackController;
 
     [Header("AMBIANCE / POST PROCESS")]
     public Volume mainColorsVolume;
-    public Volume transitionColorsVolume;
+    // public Volume transitionColorsVolume;
     public float visualTransitionDuration;
     
     [Header("GRID / ROOM TRANSITION")]
@@ -30,7 +34,6 @@ public class VisualManager : MonoBehaviour
     public GameObject roomParent;
     public GameObject roomID_Raw;
     public GameObject roomID_Col;
-    public MainScreenFeedbackController feedbackController;
 
     [Header("_______CELL ANIMATIONS")] 
     public List<GameObject> animationPrefabs;
@@ -107,6 +110,7 @@ public class VisualManager : MonoBehaviour
         DOTween.SetTweensCapacity(1000, 500);
         
         feedbackController.Init(this);
+        roomAmbianceController.Init();
     }
     
     private void LoadSprites()
@@ -391,51 +395,7 @@ public class VisualManager : MonoBehaviour
     #region SET ROOM AMBIANCE
     public void UpdateRoomAmbiance(RoomData roomData)
     {
-        TransitionVolume(roomData.initRoomSettings.roomVolumeProfile);
-    }
-
-    private void TransitionVolume(VolumeProfile roomProfile)
-    {
-        //Check le volume a récup
-        if (roomProfile != null)
-        {
-            if (roomProfile == _roomMainProfile)
-            {
-                return;
-            }
-            transitionColorsVolume.profile = roomProfile;
-        }
-        else if (_gameManager.floorManager.currentFloorSetting.floorBaseVolumeProfile != null)
-        {
-            transitionColorsVolume.profile = _gameManager.floorManager.currentFloorSetting.floorBaseVolumeProfile;
-        }
-        else
-        {
-            if (_gameManager.currentChapterSettings.chapterDefaultColorsVolume == transitionColorsVolume.profile)
-            {
-                return;
-            }
-            transitionColorsVolume.profile = _gameManager.currentChapterSettings.chapterDefaultColorsVolume;
-        }
-        
-        // Si un tween est déjà en cours, on l'annule
-        _currentWeightTween?.Kill();
-        //Fait la transition si le volume est bon
-        _currentWeightTween = DOWeight(transitionColorsVolume, 1f, visualTransitionDuration)
-            .SetEase(Ease.Linear)
-            .OnComplete(UpdateVolumeProfile);
-    }
-    
-    private static Tweener DOWeight(Volume volume, float endValue, float duration)
-    {
-        return DOTween.To(() => volume.weight, x => volume.weight = x, endValue, duration);
-    }
-
-    private void UpdateVolumeProfile()
-    {
-        mainColorsVolume.profile = null;
-        mainColorsVolume.profile = transitionColorsVolume.profile;
-        transitionColorsVolume.weight = 0;
+        roomAmbianceController.TransitionVolume(roomData.initRoomSettings.roomVolumeProfile);
     }
     #endregion SET ROOM MOVEMENT
     
@@ -535,7 +495,6 @@ public class VisualManager : MonoBehaviour
     {
         
     }
-    
     #endregion ROOM COMPLETION
 
 

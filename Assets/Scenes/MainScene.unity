@@ -7094,6 +7094,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 325545206}
+  - component: {fileID: 325545207}
   m_Layer: 0
   m_Name: VOLUME
   m_TagString: Untagged
@@ -7119,6 +7120,21 @@ Transform:
   - {fileID: 1593195241}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &325545207
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 325545205}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 47519bfd509bb5a4f81fc9b51bba4fd5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mainColorsVolume: {fileID: 1687622998}
+  transitionColorsVolume: {fileID: 1527443215}
+  visualTransitionDuration: 0.3
 --- !u!1 &329430831 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 9172855607629359649, guid: 3c365be93edc4bd47936f16e2f2c0750, type: 3}
@@ -7343,6 +7359,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spriteAtlas: {fileID: 100100200, guid: b4abebcd77df7d440800899c5f4c5f7d, type: 3}
   sprites: []
+  roomAmbianceController: {fileID: 325545207}
   mainColorsVolume: {fileID: 1687622998}
   transitionColorsVolume: {fileID: 1527443215}
   visualTransitionDuration: 0.3
