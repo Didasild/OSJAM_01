@@ -7360,15 +7360,14 @@ MonoBehaviour:
   spriteAtlas: {fileID: 100100200, guid: b4abebcd77df7d440800899c5f4c5f7d, type: 3}
   sprites: []
   roomAmbianceController: {fileID: 325545207}
+  feedbackController: {fileID: 89334859}
   mainColorsVolume: {fileID: 1687622998}
-  transitionColorsVolume: {fileID: 1527443215}
   visualTransitionDuration: 0.3
   grid: {fileID: 2059163338}
   gridIndicatorParent: {fileID: 784323922}
   roomParent: {fileID: 712061422}
   roomID_Raw: {fileID: 1018615614}
   roomID_Col: {fileID: 82313152}
-  feedbackController: {fileID: 89334859}
   animationPrefabs:
   - {fileID: 1499444410457814521, guid: f7ef07e33d9da144989b5eafc0036a21, type: 3}
   - {fileID: 735029770632867219, guid: 788e9c56c1dca8d419a4d03f8570560a, type: 3}
@@ -8562,11 +8561,13 @@ Material:
     m_Floats:
     - _CentralCell: 1
     - _EdgeSize: 0.017
-    - _GlobalAlpha: 0.75
+    - _GlobalAlpha: 1
     - _HaloFill: -0.839
     - _RadialAnimation: 0
     - _RadialLine: 0
+    - _ShadowDrop: 1
     - _SineQuantity: 0
+    - _SquareFill: -0.43
     m_Colors: []
   m_BuildTextureStacks: []
   m_AllowLocking: 1
@@ -10908,7 +10909,7 @@ Animator:
   m_GameObject: {fileID: 870413178}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 1cd52f386bdf3444e898445b9183b01e, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
