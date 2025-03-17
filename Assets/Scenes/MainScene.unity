@@ -442,6 +442,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mainScreenSprite: {fileID: 870413178}
+  _baseEdgeSize: 0
 --- !u!320 &89334860
 PlayableDirector:
   m_ObjectHideFlags: 0
@@ -449,7 +450,7 @@ PlayableDirector:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 89334857}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_PlayableAsset: {fileID: 11400000, guid: 75de58e10a4d42044bf31140a377b39c, type: 2}
   m_InitialState: 0
@@ -7360,7 +7361,7 @@ MonoBehaviour:
   spriteAtlas: {fileID: 100100200, guid: b4abebcd77df7d440800899c5f4c5f7d, type: 3}
   sprites: []
   roomAmbianceController: {fileID: 325545207}
-  feedbackController: {fileID: 89334859}
+  centralFeedbackController: {fileID: 89334859}
   mainColorsVolume: {fileID: 1687622998}
   visualTransitionDuration: 0.3
   grid: {fileID: 2059163338}
@@ -8561,11 +8562,11 @@ Material:
     m_Floats:
     - _CellAnimation: 0.15
     - _CentralCell: 1
-    - _EdgeSize: 0.017
+    - _EdgeSize: 0
     - _GlobalAlpha: 1
     - _HaloFill: -0.839
     - _RadialAnimation: 0
-    - _RadialLine: 0
+    - _RadialLine: 1
     - _ShadowDrop: 1
     - _SineQuantity: 0
     - _SquareFill: -0.43
@@ -10908,7 +10909,7 @@ Animator:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 870413178}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Avatar: {fileID: 0}
   m_Controller: {fileID: 9100000, guid: 1cd52f386bdf3444e898445b9183b01e, type: 2}
   m_CullingMode: 0

@@ -12,6 +12,8 @@ public class MainScreenFeedbackController : MonoBehaviour
     private string _radialLine;
     private string _edgeSize;
     private string _haloFill;
+
+    public float _baseEdgeSize = 0f;
     
     
     public void Init(VisualManager visualManager)
@@ -24,7 +26,23 @@ public class MainScreenFeedbackController : MonoBehaviour
         _edgeSize = "_EdgeSize";
         _haloFill = "_HaloFill";
     }
-
+    
+    public void CellRevealFeedbackIn()
+    {
+        float currentFloat = mainScreenMaterial.GetFloat(_edgeSize);
+        DOTween.Kill(mainScreenMaterial);
+        if (currentFloat <= _baseEdgeSize + 0.05f)
+        {
+            mainScreenMaterial.SetFloat(_edgeSize, currentFloat + 0.005f);
+        }
+        FadeProperty(_baseEdgeSize, 0.5f, _edgeSize);
+    }
+    
+    public void RoomCompletionFeedback()
+    {
+        
+    }
+    
     [Button]
     public void ShowFeedback()
     {

@@ -21,11 +21,10 @@ public class VisualManager : MonoBehaviour
     
     [Header("VISUAL CONTROLLERS")]
     public RoomAmbianceController roomAmbianceController;
-    public MainScreenFeedbackController feedbackController;
+    [FormerlySerializedAs("feedbackController")] public MainScreenFeedbackController centralFeedbackController;
 
     [Header("AMBIANCE / POST PROCESS")]
     public Volume mainColorsVolume;
-    // public Volume transitionColorsVolume;
     public float visualTransitionDuration;
     
     [Header("GRID / ROOM TRANSITION")]
@@ -109,7 +108,7 @@ public class VisualManager : MonoBehaviour
         _gridManager = GameManager.Instance.gridManager;
         DOTween.SetTweensCapacity(1000, 500);
         
-        feedbackController.Init(this);
+        centralFeedbackController.Init(this);
         roomAmbianceController.Init();
     }
     
@@ -282,6 +281,15 @@ public class VisualManager : MonoBehaviour
     }
     #endregion GET ROOM FUNCTIONS
 
+    #region MAIN SCREEN FEEDBACKS
+
+    public void PlayCellRevealFeedback()
+    {
+        centralFeedbackController.CellRevealFeedbackIn();
+    }
+    
+    #endregion MAIN SCREEN FEEDBACKS
+    
     #region ROOM TRANSITION
 
     #region SET ROOM MOVEMENT
@@ -392,7 +400,7 @@ public class VisualManager : MonoBehaviour
     #endregion SET ROOM MOVEMENT
     
     
-    #region SET ROOM AMBIANCE
+    #region AMBIANCE FEEDBACKS
     public void UpdateRoomAmbiance(RoomData roomData)
     {
         roomAmbianceController.TransitionVolume(roomData.initRoomSettings.roomVolumeProfile);

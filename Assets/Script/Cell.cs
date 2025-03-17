@@ -68,6 +68,8 @@ public class Cell : MonoBehaviour
     private Sequence _revealSequence;
 
     private Collider2D _collider;
+
+    private float CellRevealDuration = 0.5f * 0.3f;
     
     private GameManager _gameManager;
     private Player _player;
@@ -191,7 +193,7 @@ public class Cell : MonoBehaviour
                 break;
         }
         
-        UpdateOverrableBool();
+        UpdateOverableBool();
     }
 
     private void InactiveState()
@@ -224,7 +226,6 @@ public class Cell : MonoBehaviour
         cellEmpty.SetActive(true);
         cellOutline.SetActive(true);
         
-        //Optimisable ici, je pense plutôt que 2 foreach
         foreach (Cell cell in neighborsCellList)
         {
             if (cell.currentState == CellState.Inactive && cell.currentType != CellType.None)
@@ -242,7 +243,8 @@ public class Cell : MonoBehaviour
         
         RevealAndDisableCover();
         stateVisual.sprite = _visualManager.GetCellStateVisual(currentState);
-        
+        _visualManager.PlayCellRevealFeedback();
+
         _player.IncreaseMana();
         _gameManager.gridManager.CheckRoomCompletion(_gameManager.floorManager.currentRoom.roomCondition);
     }
@@ -273,7 +275,7 @@ public class Cell : MonoBehaviour
         {
             cellCover.transform.DOKill();
             cellCover.transform.localScale = Vector3.one;
-            cellCover.transform.DOScale(0f, 0.5f * 0.3f) // Bump rapide
+            cellCover.transform.DOScale(0f, CellRevealDuration) // Bump rapide
                 .SetEase(Ease.InBack)
                 .OnComplete(() => cellCover.SetActive(false));
         }
@@ -331,7 +333,7 @@ public class Cell : MonoBehaviour
                 break;
         }
         
-        UpdateOverrableBool();
+        UpdateOverableBool();
     }
 
     private void EmptyType(bool updateVisual = true)
@@ -475,7 +477,7 @@ public class Cell : MonoBehaviour
 
     #region CELL MODIFICATIONS METHODS
 
-    private void UpdateOverrableBool()
+    private void UpdateOverableBool()
     {
         _isOverrable = false;
 
