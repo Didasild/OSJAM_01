@@ -8560,7 +8560,7 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _CellAnimation: 0.15
+    - _CellAnimation: 0.25
     - _CentralCell: 1
     - _EdgeSize: 0
     - _GlobalAlpha: 1

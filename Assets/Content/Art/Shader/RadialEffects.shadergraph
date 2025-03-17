@@ -702,34 +702,6 @@
         {
             "m_OutputSlot": {
                 "m_Node": {
-                    "m_Id": "6c643d55ad6543a48cfefe3b42a2065d"
-                },
-                "m_SlotId": 2
-            },
-            "m_InputSlot": {
-                "m_Node": {
-                    "m_Id": "051974363ea745359feab0456d9c542b"
-                },
-                "m_SlotId": 0
-            }
-        },
-        {
-            "m_OutputSlot": {
-                "m_Node": {
-                    "m_Id": "6c643d55ad6543a48cfefe3b42a2065d"
-                },
-                "m_SlotId": 2
-            },
-            "m_InputSlot": {
-                "m_Node": {
-                    "m_Id": "3c22dd34e4434013954c5cb406b40fe4"
-                },
-                "m_SlotId": 1
-            }
-        },
-        {
-            "m_OutputSlot": {
-                "m_Node": {
                     "m_Id": "6ca8b4ee24894a1f86a69b178c1be8bc"
                 },
                 "m_SlotId": 0
@@ -991,6 +963,34 @@
                     "m_Id": "e106b20b34b447c6a2b50e48e9431a56"
                 },
                 "m_SlotId": 1
+            }
+        },
+        {
+            "m_OutputSlot": {
+                "m_Node": {
+                    "m_Id": "bbbcefe7bb574ad780c430bdf3a1a6cd"
+                },
+                "m_SlotId": 2
+            },
+            "m_InputSlot": {
+                "m_Node": {
+                    "m_Id": "3c22dd34e4434013954c5cb406b40fe4"
+                },
+                "m_SlotId": 1
+            }
+        },
+        {
+            "m_OutputSlot": {
+                "m_Node": {
+                    "m_Id": "c232523b3ed147cd95057087ff9fb2b5"
+                },
+                "m_SlotId": 3
+            },
+            "m_InputSlot": {
+                "m_Node": {
+                    "m_Id": "051974363ea745359feab0456d9c542b"
+                },
+                "m_SlotId": 0
             }
         },
         {
@@ -3466,7 +3466,7 @@
     "m_ShaderOutputName": "OutMinMax",
     "m_StageCapability": 3,
     "m_Value": {
-        "x": 0.05000000074505806,
+        "x": 0.019999999552965165,
         "y": 0.10000000149011612
     },
     "m_DefaultValue": {
