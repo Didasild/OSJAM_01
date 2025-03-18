@@ -21,7 +21,8 @@ public class VisualManager : MonoBehaviour
     
     [Header("VISUAL CONTROLLERS")]
     public RoomAmbianceController roomAmbianceController;
-    [FormerlySerializedAs("feedbackController")] public MainScreenFeedbackController centralFeedbackController;
+    public CentralFeedbackController centralFeedbackController;
+    public FullScreenFeedbackController fullScreenFeedbackController;
 
     [Header("AMBIANCE / POST PROCESS")]
     public Volume mainColorsVolume;
@@ -108,6 +109,7 @@ public class VisualManager : MonoBehaviour
         DOTween.SetTweensCapacity(1000, 500);
         
         centralFeedbackController.Init(this);
+        fullScreenFeedbackController.Init(this);
         roomAmbianceController.Init();
     }
     
@@ -281,18 +283,39 @@ public class VisualManager : MonoBehaviour
     #endregion GET ROOM FUNCTIONS
 
     #region FEEDBACKS
-
-    public void PlayCellRevealFeedback()
+    //Central feedbacks
+    public void PlayCellRevealFeedbacks()
     {
         centralFeedbackController.CellRevealFeedbackIn();
     }
-    
-    public void RoomCompletionIn()
+    public void PlayRoomCompletionFeedbacks()
     {
         centralFeedbackController.RoomCompletionFeedback();
     }
     
+    //FullScreenFeedbacks
+    public void PlayHitFeedbacks()
+    {
+        fullScreenFeedbackController.HitFeedback();
+    }
     #endregion FEEDBACKS
+
+    #region FEEDBACKS UTILS
+    public void FadeProperty(Material targetMaterial, string propertyID, float targetValue, float duration,  float delay = 0, Ease ease = Ease.Linear, bool resetProperty = false)
+    {
+        Tween tween = targetMaterial.DOFloat(targetValue, propertyID, duration)
+            .SetDelay(delay)
+            .SetEase(ease);
+        if (resetProperty)
+        {
+            tween.OnComplete(() => ResetProperty(targetMaterial, 0, propertyID));
+        }
+    }
+    private void ResetProperty(Material targetMaterial, float targetValue, string propertyID)
+    {
+        targetMaterial.SetFloat(propertyID, targetValue);
+    }
+    #endregion FEEDBACKS UTILS
     
     #region ROOM TRANSITION
 

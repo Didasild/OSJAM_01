@@ -243,7 +243,7 @@ public class Cell : MonoBehaviour
         
         RevealAndDisableCover();
         stateVisual.sprite = _visualManager.GetCellStateVisual(currentState);
-        _visualManager.PlayCellRevealFeedback();
+        _visualManager.PlayCellRevealFeedbacks();
 
         _player.IncreaseMana();
         _gameManager.gridManager.CheckRoomCompletion(_gameManager.floorManager.currentRoom.roomCondition);
@@ -498,6 +498,7 @@ public class Cell : MonoBehaviour
     public void MineExplosion()
     {
         GameManager.Instance.player.DecreaseHealth(1);
+        _visualManager.PlayHitFeedbacks();
         StartCoroutine(CO_MineDestruction(_visualManager.mineExplosionAnimation, 1.4f));
     }
     private IEnumerator CO_MineDestruction(GameObject mineAnimType, float animDuration)

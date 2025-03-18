@@ -413,7 +413,7 @@ public class GridManager : MonoBehaviour
         if (switchToComplete)
         {
             GameManager.Instance.floorManager.currentRoom.ChangeRoomSate(RoomState.Complete);
-            GameManager.visualManager.RoomCompletionIn();
+            GameManager.visualManager.PlayRoomCompletionFeedbacks();
         }
     }
 
