@@ -18,7 +18,6 @@ public class MainScreenFeedbackController : MonoBehaviour
 
     public float _baseEdgeSize = 0f;
     
-    
     public void Init(VisualManager visualManager)
     {
         _visualManager = visualManager;
@@ -45,21 +44,10 @@ public class MainScreenFeedbackController : MonoBehaviour
     
     public void RoomCompletionFeedback()
     {
-        Debug.Log("Play Room Completion Feedback");
         ResetCentralSquare();
         FadeProperty(_sineQuantity, 30, 0.4f);
         FadeProperty(_squareFill, -0.5f, 0.4f);
         FadeProperty(_squareFill, -1f, 0.8f, 0.5f);
-    }
-
-    [Button]
-    public void ShowFeedback()
-    {
-        ResetAllProperties();
-        FadeProperty(_globalAlpha, 1f, 0.3f);
-        FadeProperty(_radialLine,1f, 0.6f);
-        FadeProperty(_haloFill,0f, 0.2f,  1f);
-        FadeProperty(_haloFill,-1, 0.2f,  1.2f, Ease.InBack, false);
     }
 
     private void FadeProperty(string propertyID, float targetValue, float duration,  float delay = 0, Ease ease = Ease.Linear, bool resetProperty = false)
@@ -80,7 +68,7 @@ public class MainScreenFeedbackController : MonoBehaviour
 
     private void ResetAllProperties()
     {
-        //mainScreenMaterial.SetFloat(_globalAlpha, 0f);
+        mainScreenMaterial.SetFloat(_globalAlpha, 1f);
         mainScreenMaterial.SetFloat(_radialLine, 0f);
         mainScreenMaterial.SetFloat(_haloFill, -1f);
         mainScreenMaterial.SetFloat(_sineQuantity, 0);

@@ -280,14 +280,19 @@ public class VisualManager : MonoBehaviour
     }
     #endregion GET ROOM FUNCTIONS
 
-    #region MAIN SCREEN FEEDBACKS
+    #region FEEDBACKS
 
     public void PlayCellRevealFeedback()
     {
         centralFeedbackController.CellRevealFeedbackIn();
     }
     
-    #endregion MAIN SCREEN FEEDBACKS
+    public void RoomCompletionIn()
+    {
+        centralFeedbackController.RoomCompletionFeedback();
+    }
+    
+    #endregion FEEDBACKS
     
     #region ROOM TRANSITION
 
@@ -495,15 +500,4 @@ public class VisualManager : MonoBehaviour
     }
 
     #endregion
-
-    #region ROOM COMPLETION
-    
-    public void RoomCompletionIn()
-    {
-        centralFeedbackController.RoomCompletionFeedback();
-    }
-    #endregion ROOM COMPLETION
-
-
-
 }
