@@ -1,3 +1,4 @@
+using System;
 using NaughtyAttributes;
 using UnityEngine;
 using DG.Tweening;
@@ -12,6 +13,8 @@ public class MainScreenFeedbackController : MonoBehaviour
     private string _radialLine;
     private string _edgeSize;
     private string _haloFill;
+    private string _sineQuantity;
+    private string _squareFill;
 
     public float _baseEdgeSize = 0f;
     
@@ -25,6 +28,8 @@ public class MainScreenFeedbackController : MonoBehaviour
         _radialLine = "_RadialLine";
         _edgeSize = "_EdgeSize";
         _haloFill = "_HaloFill";
+        _sineQuantity = "_SineQuantity";
+        _squareFill = "_SquareFill";
     }
     
     public void CellRevealFeedbackIn()
@@ -35,25 +40,29 @@ public class MainScreenFeedbackController : MonoBehaviour
         {
             mainScreenMaterial.SetFloat(_edgeSize, currentFloat + 0.005f);
         }
-        FadeProperty(_baseEdgeSize, 0.5f, _edgeSize);
+        FadeProperty(_edgeSize,_baseEdgeSize, 0.5f);
     }
     
     public void RoomCompletionFeedback()
     {
-        
+        Debug.Log("Play Room Completion Feedback");
+        ResetCentralSquare();
+        FadeProperty(_sineQuantity, 30, 0.4f);
+        FadeProperty(_squareFill, -0.5f, 0.4f);
+        FadeProperty(_squareFill, -1f, 0.8f, 0.5f);
     }
-    
+
     [Button]
     public void ShowFeedback()
     {
         ResetAllProperties();
-        FadeProperty(1f, 0.3f, _globalAlpha);
-        FadeProperty(1f, 0.6f, _radialLine);
-        FadeProperty(0f, 0.2f, _haloFill, 1f);
-        FadeProperty(-1, 0.2f, _haloFill, 1.2f, Ease.InBack, false);
+        FadeProperty(_globalAlpha, 1f, 0.3f);
+        FadeProperty(_radialLine,1f, 0.6f);
+        FadeProperty(_haloFill,0f, 0.2f,  1f);
+        FadeProperty(_haloFill,-1, 0.2f,  1.2f, Ease.InBack, false);
     }
 
-    private void FadeProperty(float targetValue, float duration, string propertyID, float delay = 0, Ease ease = Ease.Linear, bool resetProperty = false)
+    private void FadeProperty(string propertyID, float targetValue, float duration,  float delay = 0, Ease ease = Ease.Linear, bool resetProperty = false)
     {
         Tween tween = mainScreenMaterial.DOFloat(targetValue, propertyID, duration)
             .SetDelay(delay)
@@ -66,13 +75,21 @@ public class MainScreenFeedbackController : MonoBehaviour
 
     private void ResetProperty(float targetValue, string propertyID)
     {
-        mainScreenMaterial.DOFloat(targetValue, propertyID, 0f);
+        mainScreenMaterial.SetFloat(propertyID, targetValue);
     }
 
     private void ResetAllProperties()
     {
-        mainScreenMaterial.SetFloat(_globalAlpha, 0f);
+        //mainScreenMaterial.SetFloat(_globalAlpha, 0f);
         mainScreenMaterial.SetFloat(_radialLine, 0f);
         mainScreenMaterial.SetFloat(_haloFill, -1f);
+        mainScreenMaterial.SetFloat(_sineQuantity, 0);
+        mainScreenMaterial.SetFloat(_squareFill, 0);
+    }
+
+    private void ResetCentralSquare()
+    {
+        mainScreenMaterial.SetFloat(_sineQuantity, 0);
+        mainScreenMaterial.SetFloat(_squareFill, 0);
     }
 }

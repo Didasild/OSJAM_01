@@ -87,7 +87,6 @@ public class VisualManager : MonoBehaviour
     [ShowIf("inEditorScene")] public Sprite revealSprite;
     [ShowIf("inEditorScene")] public Sprite mineIconSprite;
     #endregion EDITOR ONLY PARAMETERS
-
     #endregion
 
     #region INIT
@@ -501,7 +500,7 @@ public class VisualManager : MonoBehaviour
     
     public void RoomCompletionIn()
     {
-        
+        centralFeedbackController.RoomCompletionFeedback();
     }
     #endregion ROOM COMPLETION
 

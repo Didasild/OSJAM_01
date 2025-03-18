@@ -394,6 +394,10 @@ public class GridManager : MonoBehaviour
     #region ROOM COMPLETION CHECK
     public void CheckRoomCompletion(RoomCompletionCondition roomCondition)
     {
+        if (GameManager.Instance.floorManager.currentRoom.currentRoomState == RoomState.Complete)
+        {
+            return;
+        }
         bool switchToComplete = false;
         switch (roomCondition)
         {
