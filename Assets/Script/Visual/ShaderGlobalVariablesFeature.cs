@@ -10,7 +10,8 @@ namespace Dida.Rendering
         public override void Create()
         {
             _passes = new List<ScriptableRenderPass>();
-            _passes.Add(new GlobalColorsRenderPass());
+            _passes.Add(new GlobalColorRenderPass());
+            _passes.Add(new GridRenderPass());
         }
 
         public override void AddRenderPasses(ScriptableRenderer renderer, ref RenderingData renderingData)

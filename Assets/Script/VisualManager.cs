@@ -21,6 +21,9 @@ public class VisualManager : MonoBehaviour
     
     [Header("VISUAL CONTROLLERS")]
     public RoomAmbianceController roomAmbianceController;
+    
+    [Header("FEEDBACKS CONTROLLERS")]
+    public ShakeCamController shakeCamController;
     public CentralFeedbackController centralFeedbackController;
     public FullScreenFeedbackController fullScreenFeedbackController;
 
@@ -54,8 +57,8 @@ public class VisualManager : MonoBehaviour
     public Sprite roomTypeBossSprite;
     
     private VolumeProfile _roomMainProfile;
-    private VisualSettings _roomTransitionVisualSettings;
-    [HideInInspector] public VisualSettings visualSettings;
+    private GlobalColorSettings _roomTransitionGlobalColorSettings;
+    [FormerlySerializedAs("visualSettings")] [HideInInspector] public GlobalColorSettings globalColorSettings;
     private GridManager _gridManager;
     private GameManager _gameManager;
     
@@ -93,7 +96,7 @@ public class VisualManager : MonoBehaviour
     #region INIT
     public void Init()
     {
-        if (mainColorsVolume.profile.TryGet(out visualSettings)) { }
+        if (mainColorsVolume.profile.TryGet(out globalColorSettings)) { }
         LoadSprites();
         
         _roomMainProfile = mainColorsVolume.profile;
@@ -110,6 +113,8 @@ public class VisualManager : MonoBehaviour
         
         centralFeedbackController.Init(this);
         fullScreenFeedbackController.Init(this);
+        shakeCamController.Init();
+        
         roomAmbianceController.Init();
     }
     
@@ -203,19 +208,19 @@ public class VisualManager : MonoBehaviour
         switch (colorIndex)
         {
             case 1:
-                returnedColor = visualSettings.Color1.value;
+                returnedColor = globalColorSettings.Color1.value;
                 break;
             case 2:
-                returnedColor = visualSettings.Color2.value;
+                returnedColor = globalColorSettings.Color2.value;
                 break;
             case 3:
-                returnedColor = visualSettings.Color3.value;
+                returnedColor = globalColorSettings.Color3.value;
                 break;
             case 4:
-                returnedColor = visualSettings.Color4.value;
+                returnedColor = globalColorSettings.Color4.value;
                 break;
             case 5:
-                returnedColor = visualSettings.Color5.value;
+                returnedColor = globalColorSettings.Color5.value;
                 break;
             default:
                 Debug.LogWarning("Index de couleur invalide : " + colorIndex);
@@ -297,6 +302,7 @@ public class VisualManager : MonoBehaviour
     public void PlayHitFeedbacks()
     {
         fullScreenFeedbackController.HitFeedback();
+        shakeCamController.littleShakeCamera();
     }
     #endregion FEEDBACKS
 

@@ -231,7 +231,7 @@ Transform:
   - {fileID: 487898588}
   - {fileID: 821280577}
   - {fileID: 1542727836}
-  - {fileID: 749521841}
+  - {fileID: 2059163340}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &75550090
@@ -7275,7 +7275,6 @@ GameObject:
   m_Component:
   - component: {fileID: 348095976}
   - component: {fileID: 348095977}
-  - component: {fileID: 348095978}
   m_Layer: 0
   m_Name: GAME_MANAGER
   m_TagString: Untagged
@@ -7326,57 +7325,7 @@ MonoBehaviour:
   gridManager: {fileID: 712061424}
   endScreenUI: {fileID: 1289361010}
   player: {fileID: 1365082114}
-  _visualManager: {fileID: 348095978}
---- !u!114 &348095978
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 348095975}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 89657720d811aae489ce138c2e695240, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  spriteAtlas: {fileID: 100100200, guid: b4abebcd77df7d440800899c5f4c5f7d, type: 3}
-  sprites: []
-  roomAmbianceController: {fileID: 325545207}
-  centralFeedbackController: {fileID: 89334859}
-  fullScreenFeedbackController: {fileID: 749521842}
-  mainColorsVolume: {fileID: 1687622998}
-  visualTransitionDuration: 0.3
-  grid: {fileID: 2059163338}
-  gridIndicatorParent: {fileID: 784323922}
-  roomParent: {fileID: 712061422}
-  roomID_Raw: {fileID: 1018615614}
-  roomID_Col: {fileID: 82313152}
-  animationPrefabs:
-  - {fileID: 1499444410457814521, guid: f7ef07e33d9da144989b5eafc0036a21, type: 3}
-  - {fileID: 735029770632867219, guid: 788e9c56c1dca8d419a4d03f8570560a, type: 3}
-  - {fileID: 2848005772284224300, guid: 229ef30d1439cd649a956d38120a0580, type: 3}
-  - {fileID: 6271478425686541969, guid: 9819873197c9915408555a501a962d53, type: 3}
-  mineExplosionAnimation: {fileID: 735029770632867219, guid: 788e9c56c1dca8d419a4d03f8570560a, type: 3}
-  mineSwordedAnimation: {fileID: 2848005772284224300, guid: 229ef30d1439cd649a956d38120a0580, type: 3}
-  plantedSwordAnimation: {fileID: 6271478425686541969, guid: 9819873197c9915408555a501a962d53, type: 3}
-  flagInAnimation: {fileID: 1499444410457814521, guid: f7ef07e33d9da144989b5eafc0036a21, type: 3}
-  roomFoWSprite: {fileID: 21300000, guid: 264bd4a4bb254b0428fb3d0d65d0119e, type: 3}
-  roomStartedSprite: {fileID: 21300000, guid: 37bfd3aee90f3824188408f4d247021e, type: 3}
-  roomCompleteSprite: {fileID: 21300000, guid: 53ff0180f4371724ab172385a7ee14c1, type: 3}
-  roomSelectedSprite: {fileID: 21300000, guid: d2c0d4c9ed9682944a1d6e6857a66f66, type: 3}
-  roomTypeStairSprite: {fileID: 21300000, guid: 2436d20cf76679d4fb57637926f38423, type: 3}
-  roomTypeShopSprite: {fileID: 21300000, guid: d2c0d4c9ed9682944a1d6e6857a66f66, type: 3}
-  roomTypeBossSprite: {fileID: 21300000, guid: d2c0d4c9ed9682944a1d6e6857a66f66, type: 3}
-  visualSettings: {fileID: 0}
-  inEditorScene: 0
-  potionSprite: {fileID: 0}
-  swordSprite: {fileID: 0}
-  flagSprite: {fileID: 0}
-  plantedSwordSprite: {fileID: 0}
-  stairType: {fileID: 0}
-  coverSprite: {fileID: 0}
-  revealSprite: {fileID: 0}
-  mineIconSprite: {fileID: 0}
+  _visualManager: {fileID: 936060482}
 --- !u!1 &366329924
 GameObject:
   m_ObjectHideFlags: 0
@@ -8317,6 +8266,7 @@ GameObject:
   - component: {fileID: 519420031}
   - component: {fileID: 519420029}
   - component: {fileID: 519420030}
+  - component: {fileID: 519420033}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -8442,6 +8392,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1365082115}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &519420033
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 519420028}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bdbb1a4c98dda59458e66cfba7a2a4d8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &520237114
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -9652,13 +9614,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 749521840}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.0125, y: 0.0125, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 390752923}
-  m_Father: {fileID: 67883312}
+  m_Father: {fileID: 2059163340}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &749521842
 MonoBehaviour:
@@ -11054,6 +11016,89 @@ RectTransform:
   m_AnchoredPosition: {x: 175, y: 275.00003}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1 &936060481
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 936060483}
+  - component: {fileID: 936060482}
+  m_Layer: 0
+  m_Name: VISUAL_MANAGER
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &936060482
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 936060481}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 89657720d811aae489ce138c2e695240, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spriteAtlas: {fileID: 100100200, guid: b4abebcd77df7d440800899c5f4c5f7d, type: 3}
+  sprites: []
+  roomAmbianceController: {fileID: 325545207}
+  shakeCamController: {fileID: 519420033}
+  centralFeedbackController: {fileID: 89334859}
+  fullScreenFeedbackController: {fileID: 749521842}
+  mainColorsVolume: {fileID: 1687622998}
+  visualTransitionDuration: 0.3
+  grid: {fileID: 2059163338}
+  gridIndicatorParent: {fileID: 784323922}
+  roomParent: {fileID: 712061422}
+  roomID_Raw: {fileID: 1018615614}
+  roomID_Col: {fileID: 82313152}
+  animationPrefabs:
+  - {fileID: 1499444410457814521, guid: f7ef07e33d9da144989b5eafc0036a21, type: 3}
+  - {fileID: 735029770632867219, guid: 788e9c56c1dca8d419a4d03f8570560a, type: 3}
+  - {fileID: 2848005772284224300, guid: 229ef30d1439cd649a956d38120a0580, type: 3}
+  - {fileID: 6271478425686541969, guid: 9819873197c9915408555a501a962d53, type: 3}
+  mineExplosionAnimation: {fileID: 735029770632867219, guid: 788e9c56c1dca8d419a4d03f8570560a, type: 3}
+  mineSwordedAnimation: {fileID: 2848005772284224300, guid: 229ef30d1439cd649a956d38120a0580, type: 3}
+  plantedSwordAnimation: {fileID: 6271478425686541969, guid: 9819873197c9915408555a501a962d53, type: 3}
+  flagInAnimation: {fileID: 1499444410457814521, guid: f7ef07e33d9da144989b5eafc0036a21, type: 3}
+  roomFoWSprite: {fileID: 21300000, guid: 264bd4a4bb254b0428fb3d0d65d0119e, type: 3}
+  roomStartedSprite: {fileID: 21300000, guid: 37bfd3aee90f3824188408f4d247021e, type: 3}
+  roomCompleteSprite: {fileID: 21300000, guid: 53ff0180f4371724ab172385a7ee14c1, type: 3}
+  roomSelectedSprite: {fileID: 21300000, guid: d2c0d4c9ed9682944a1d6e6857a66f66, type: 3}
+  roomTypeStairSprite: {fileID: 21300000, guid: 2436d20cf76679d4fb57637926f38423, type: 3}
+  roomTypeShopSprite: {fileID: 21300000, guid: d2c0d4c9ed9682944a1d6e6857a66f66, type: 3}
+  roomTypeBossSprite: {fileID: 21300000, guid: d2c0d4c9ed9682944a1d6e6857a66f66, type: 3}
+  visualSettings: {fileID: 0}
+  inEditorScene: 0
+  potionSprite: {fileID: 0}
+  swordSprite: {fileID: 0}
+  flagSprite: {fileID: 0}
+  plantedSwordSprite: {fileID: 0}
+  stairType: {fileID: 0}
+  coverSprite: {fileID: 0}
+  revealSprite: {fileID: 0}
+  mineIconSprite: {fileID: 0}
+--- !u!4 &936060483
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 936060481}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.6681903, y: -0.55617106, z: -0.026934177}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &976356565
 GameObject:
   m_ObjectHideFlags: 0
@@ -16267,12 +16312,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2059163338}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 80, y: 80, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
+  m_Children:
+  - {fileID: 749521841}
+  m_Father: {fileID: 67883312}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2082856406
 GameObject:
@@ -17064,9 +17110,9 @@ SceneRoots:
   m_Roots:
   - {fileID: 325545206}
   - {fileID: 1365082115}
+  - {fileID: 936060483}
   - {fileID: 348095976}
   - {fileID: 1336173534}
-  - {fileID: 2059163340}
   - {fileID: 534226823}
   - {fileID: 67883312}
   - {fileID: 816142825}

@@ -47,6 +47,23 @@ MonoBehaviour:
   dirtIntensity:
     m_OverrideState: 0
     m_Value: 7
+--- !u!114 &-8276270812174985254
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 0}
+  m_Name: GridSettings
+  m_EditorClassIdentifier: Assembly-CSharp:Dida.Rendering:GridSettings
+  active: 1
+  <displayName>k__BackingField: 
+  GridDistortion:
+    m_OverrideState: 1
+    m_Value: 0.75
 --- !u!114 &-5329571970690834917
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -88,6 +105,7 @@ MonoBehaviour:
   m_Name: PPP_Colors_BiomeWater
   m_EditorClassIdentifier: 
   components:
+  - {fileID: 7586662007989637808}
   - {fileID: 4915069371588200835}
   - {fileID: 8498022337032358586}
   - {fileID: -8521342318712305829}
@@ -160,6 +178,22 @@ MonoBehaviour:
   ExterColor:
     m_OverrideState: 1
     m_Value: {r: 0, g: 0, b: 0, a: 0.2509804}
+--- !u!114 &7586662007989637808
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 0}
+  m_Name: GridAmbianceSettings
+  m_EditorClassIdentifier: Assembly-CSharp:Dida.Rendering:GridAmbianceSettings
+  active: 1
+  GridDistortion:
+    m_OverrideState: 1
+    m_Value: 0.75
 --- !u!114 &8498022337032358586
 MonoBehaviour:
   m_ObjectHideFlags: 3

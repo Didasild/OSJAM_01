@@ -19,8 +19,6 @@ public class FullScreenFeedbackController : MonoBehaviour
         _spikeDissolve = "_SpikeDissolve";
         _spikeDensity = "_SpikeDensity";
     }
-
-    [Button]
     public void HitFeedback()
     {
         Debug.Log("Hit Feedback");

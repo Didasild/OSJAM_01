@@ -12,7 +12,7 @@ public class RoomAmbianceController : MonoBehaviour
     
     private GameManager _gameManager;
     private VolumeProfile _roomMainProfile;
-    private VisualSettings _roomTransitionVisualSettings;
+    private GlobalColorSettings _roomTransitionGlobalColorSettings;
     
     private Tweener _currentWeightTween;
 

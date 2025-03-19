@@ -5,7 +5,7 @@ using UnityEngine.Rendering.Universal;
 
 namespace Dida.Rendering
 {
-    public class GlobalColorsRenderPass : ScriptableRenderPass
+    public class GlobalColorRenderPass : ScriptableRenderPass
     {
         #region CACHED PROPERTIES IDs
 
@@ -23,11 +23,11 @@ namespace Dida.Rendering
 
         public override void RecordRenderGraph(RenderGraph renderGraph, ContextContainer frameData)
         {
-            VisualSettings mainAmbianceSettings = VolumeManager.instance.stack.GetComponent<VisualSettings>();
+            GlobalColorSettings mainAmbianceSettings = VolumeManager.instance.stack.GetComponent<GlobalColorSettings>();
                 
             Shader.SetGlobalColor(MY_SHADER_COLOR1, mainAmbianceSettings.Color1.value);
             Shader.SetGlobalColor(MY_SHADER_COLOR2, mainAmbianceSettings.Color2.value);
-            Shader.SetGlobalVector(MY_SHADER_COLOR3, mainAmbianceSettings.Color3.value);
+            Shader.SetGlobalColor(MY_SHADER_COLOR3, mainAmbianceSettings.Color3.value);
             Shader.SetGlobalColor(MY_SHADER_COLOR4, mainAmbianceSettings.Color4.value);
             Shader.SetGlobalColor(MY_SHADER_COLOR5, mainAmbianceSettings.Color5.value);
             Shader.SetGlobalColor(MY_SHADER_COLOR6, mainAmbianceSettings.Color6.value);
