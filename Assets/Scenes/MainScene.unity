@@ -11074,7 +11074,7 @@ MonoBehaviour:
   roomTypeStairSprite: {fileID: 21300000, guid: 2436d20cf76679d4fb57637926f38423, type: 3}
   roomTypeShopSprite: {fileID: 21300000, guid: d2c0d4c9ed9682944a1d6e6857a66f66, type: 3}
   roomTypeBossSprite: {fileID: 21300000, guid: d2c0d4c9ed9682944a1d6e6857a66f66, type: 3}
-  visualSettings: {fileID: 0}
+  globalColorSettings: {fileID: 0}
   inEditorScene: 0
   potionSprite: {fileID: 0}
   swordSprite: {fileID: 0}
@@ -14161,7 +14161,7 @@ MonoBehaviour:
   priority: 1
   blendDistance: 0
   weight: 1
-  sharedProfile: {fileID: 11400000, guid: bffc1dc1e00d820418e292a3a0c1f325, type: 2}
+  sharedProfile: {fileID: 11400000, guid: 30efc7cf415405348a435a3b353f0857, type: 2}
 --- !u!1 &1758659917
 GameObject:
   m_ObjectHideFlags: 0
