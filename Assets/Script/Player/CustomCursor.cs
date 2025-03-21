@@ -5,12 +5,10 @@ using UnityEngine.UI;
 public class CustomCursor : MonoBehaviour
 {
     public Image cursorRenderer;
-    private Material customCursorMaterial;
 
     public void Init()
     {
         Cursor.visible = false;
-        customCursorMaterial = cursorRenderer.material;
     }
 
     private void Update()
