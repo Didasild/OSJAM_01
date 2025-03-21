@@ -21,5 +21,6 @@ namespace Dida.Rendering
     public sealed class GridAmbianceSettings : VolumeComponent
     {
         public ClampedFloatParameter GridDistortion = new ClampedFloatParameter(0f, 0f, 1f);
+        public ClampedFloatParameter GridGlitch = new ClampedFloatParameter(0f, 0f, 2f);
     }
 }

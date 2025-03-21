@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 65a872e1dcfecf647a3aac9b74127784
+guid: b0d3d74a641f2ae40a36e2184ccda5be
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -4932847505461305618
-    second: BaseUI_Color1_0
+      213: 8843044983698860042
+    second: CursorTest03_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -24,7 +24,7 @@ TextureImporter:
     heightScale: 0.25
     normalMapFilter: 0
     flipGreenChannel: 0
-  isReadable: 0
+  isReadable: 1
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
   vTOnly: 0
@@ -40,16 +40,16 @@ TextureImporter:
     filterMode: 0
     aniso: 1
     mipBias: 0
-    wrapU: 1
-    wrapV: 1
-    wrapW: 1
+    wrapU: 0
+    wrapV: 0
+    wrapW: 0
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
   spriteMode: 1
   spriteExtrude: 1
   spriteMeshType: 1
-  alignment: 0
+  alignment: 1
   spritePivot: {x: 0.5, y: 0.5}
   spritePixelsToUnits: 100
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
@@ -72,22 +72,9 @@ TextureImporter:
   platformSettings:
   - serializedVersion: 4
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 32
+    maxTextureSize: 64
     resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    ignorePlatformSupport: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 4
-    buildTarget: Win64
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
+    textureFormat: 4
     textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 0
@@ -109,40 +96,38 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 4
-    buildTarget: WebGL
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    ignorePlatformSupport: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: BaseUI_Color1_0
+      name: CursorTest03_0
       rect:
         serializedVersion: 2
         x: 0
-        y: 0
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        y: 12
+        width: 37
+        height: 45
+      alignment: 1
+      pivot: {x: 0, y: 1}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
-      physicsShape: []
-      tessellationDetail: -1
+      physicsShape:
+      - - {x: -9.5, y: -21.5}
+        - {x: 0.5, y: -19.5}
+        - {x: 11.5, y: -12.5}
+        - {x: 18.5, y: -6.5}
+        - {x: 18.5, y: -1.5}
+        - {x: 4.5, y: 11.5}
+        - {x: -12.5, y: 22.5}
+        - {x: -18.5, y: 22.5}
+        - {x: -18.5, y: 2.5}
+        - {x: -15.5, y: -20.5}
+        - {x: -13.5, y: -22.5}
+      tessellationDetail: 0
       bones: []
-      spriteID: eee9ec144510b8bb0800000000000000
-      internalID: -4932847505461305618
+      spriteID: a08ab2a6f8ec8ba70800000000000000
+      internalID: 8843044983698860042
       vertices: []
       indices: 
       edges: []
@@ -151,8 +136,8 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 5e97eb03825dee720800000000000000
-    internalID: 0
+    spriteID: 461b09a2ce085974087d613dc61d3a59
+    internalID: -353887916
     vertices: []
     indices: 
     edges: []
@@ -161,7 +146,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      BaseUI_Color1_0: -4932847505461305618
+      CursorTest03_0: 8843044983698860042
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

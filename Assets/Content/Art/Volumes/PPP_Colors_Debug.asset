@@ -1,5 +1,41 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-8276270812174985254
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 0}
+  m_Name: GridSettings
+  m_EditorClassIdentifier: Assembly-CSharp:Dida.Rendering:GridSettings
+  active: 1
+  <displayName>k__BackingField: 
+  GridDistortion:
+    m_OverrideState: 1
+    m_Value: 0.75
+--- !u!114 &-4251869378844642656
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 0}
+  m_Name: GridAmbianceSettings
+  m_EditorClassIdentifier: Assembly-CSharp:Dida.Rendering:GridAmbianceSettings
+  active: 1
+  GridDistortion:
+    m_OverrideState: 1
+    m_Value: 0.75
+  GridGlitch:
+    m_OverrideState: 0
+    m_Value: 0
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10,12 +46,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d7fd9488000d3734a9e00ee676215985, type: 3}
-  m_Name: PPP_Colors_BiomeForest
+  m_Name: PPP_Colors_Debug
   m_EditorClassIdentifier: 
   components:
   - {fileID: 4915069371588200835}
-  - {fileID: 8498022337032358586}
-  - {fileID: 3284666400028844138}
 --- !u!114 &953869944089701943
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -50,25 +84,6 @@ MonoBehaviour:
   ExterColor:
     m_OverrideState: 0
     m_Value: {r: 0, g: 0, b: 0, a: 1}
---- !u!114 &3284666400028844138
-MonoBehaviour:
-  m_ObjectHideFlags: 3
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 0}
-  m_Name: GridAmbianceSettings
-  m_EditorClassIdentifier: Assembly-CSharp:Dida.Rendering:GridAmbianceSettings
-  active: 1
-  GridDistortion:
-    m_OverrideState: 1
-    m_Value: 0
-  GridGlitch:
-    m_OverrideState: 1
-    m_Value: 2
 --- !u!114 &4915069371588200835
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -84,26 +99,26 @@ MonoBehaviour:
   active: 1
   Color1:
     m_OverrideState: 1
-    m_Value: {r: 0.57254905, g: 0.9294118, b: 0.5803922, a: 1}
+    m_Value: {r: 1, g: 0, b: 0, a: 1}
   Color2:
     m_OverrideState: 1
-    m_Value: {r: 0, g: 0.43137258, b: 0.2627451, a: 1}
+    m_Value: {r: 0, g: 1, b: 0, a: 1}
   Color3:
     m_OverrideState: 1
-    m_Value: {r: 0.9215687, g: 0.61960787, b: 0, a: 1}
+    m_Value: {r: 0, g: 0, b: 1, a: 1}
   Color4:
     m_OverrideState: 1
-    m_Value: {r: 0.32941177, g: 0.49803925, b: 0.43921572, a: 1}
+    m_Value: {r: 0.6698113, g: 0, b: 0, a: 1}
   Color5:
     m_OverrideState: 1
-    m_Value: {r: 0, g: 0.27058825, b: 0.19607845, a: 1}
+    m_Value: {r: 0, g: 0.4433962, b: 0, a: 1}
   Color6:
     m_OverrideState: 1
-    m_Value: {r: 0, g: 0, b: 0, a: 1}
+    m_Value: {r: 0, g: 0, b: 0.3679245, a: 1}
   ExterColor:
     m_OverrideState: 1
     m_Value: {r: 0, g: 0, b: 0, a: 0.2509804}
---- !u!114 &8498022337032358586
+--- !u!114 &7586662007989637808
 MonoBehaviour:
   m_ObjectHideFlags: 3
   m_CorrespondingSourceObject: {fileID: 0}
@@ -112,25 +127,32 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 899c54efeace73346a0a16faa3afe726, type: 3}
-  m_Name: Vignette
-  m_EditorClassIdentifier: 
+  m_Script: {fileID: 0}
+  m_Name: GridAmbianceSettings
+  m_EditorClassIdentifier: Assembly-CSharp:Dida.Rendering:GridAmbianceSettings
   active: 1
-  color:
+  GridDistortion:
     m_OverrideState: 1
-    m_Value: {r: 0.052114137, g: 0.06908565, b: 0.5345911, a: 1}
-  center:
+    m_Value: 0.75
+--- !u!114 &8011573967746841218
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 0}
+  m_Name: GridAmbianceSettings
+  m_EditorClassIdentifier: Assembly-CSharp:Dida.Rendering:GridAmbianceSettings
+  active: 1
+  GridDistortion:
     m_OverrideState: 1
-    m_Value: {x: 0.5, y: 0.5}
-  intensity:
-    m_OverrideState: 1
-    m_Value: 0.321
-  smoothness:
-    m_OverrideState: 1
-    m_Value: 0.216
-  rounded:
-    m_OverrideState: 1
-    m_Value: 1
+    m_Value: 0.75
+  GridGlitch:
+    m_OverrideState: 0
+    m_Value: 0
 --- !u!114 &8666805865643500176
 MonoBehaviour:
   m_ObjectHideFlags: 3

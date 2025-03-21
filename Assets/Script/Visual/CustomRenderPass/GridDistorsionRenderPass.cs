@@ -8,9 +8,9 @@ namespace Dida.Rendering
     public class GridRenderPass : ScriptableRenderPass
     {
         #region CACHED PROPERTIES IDs
-
-        //private static readonly int MY_SHADER_PROP = Shader.PropertyToID("_ExterAlpha");
-        private static readonly int MY_SHADER_DISTORSION_INTENSITY = Shader.PropertyToID("_DistorsionIntensity");
+        
+        private static readonly int SHADER_DISTORSION_INTENSITY = Shader.PropertyToID("_DistorsionIntensity");
+        private static readonly int SHADER_GRID_GLITCH_INTENSITY = Shader.PropertyToID("_GridGlitchIntensity");
 
         #endregion CACHED PROPERTIES IDs
 
@@ -18,7 +18,8 @@ namespace Dida.Rendering
         {
             GridAmbianceSettings gridAmbianceSettings = VolumeManager.instance.stack.GetComponent<GridAmbianceSettings>();
                 
-            Shader.SetGlobalFloat(MY_SHADER_DISTORSION_INTENSITY, gridAmbianceSettings.GridDistortion.value);
+            Shader.SetGlobalFloat(SHADER_DISTORSION_INTENSITY, gridAmbianceSettings.GridDistortion.value);
+            Shader.SetGlobalFloat(SHADER_GRID_GLITCH_INTENSITY, gridAmbianceSettings.GridGlitch.value);
         }
     }
 }
