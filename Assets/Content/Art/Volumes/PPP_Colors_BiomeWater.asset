@@ -163,10 +163,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   components:
   - {fileID: 4915069371588200835}
-  - {fileID: 6594305020744943990}
   - {fileID: 8498022337032358586}
   - {fileID: -8521342318712305829}
   - {fileID: -5329571970690834917}
+  - {fileID: 1693985349304925702}
 --- !u!114 &953869944089701943
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -201,6 +201,25 @@ MonoBehaviour:
   ExterColor:
     m_OverrideState: 0
     m_Value: {r: 0, g: 0, b: 0, a: 1}
+--- !u!114 &1693985349304925702
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 0}
+  m_Name: GridAmbianceSettings
+  m_EditorClassIdentifier: Assembly-CSharp:Dida.Rendering:GridAmbianceSettings
+  active: 1
+  GridDistortion:
+    m_OverrideState: 1
+    m_Value: 0.75
+  GridGlitch:
+    m_OverrideState: 0
+    m_Value: 0
 --- !u!114 &4915069371588200835
 MonoBehaviour:
   m_ObjectHideFlags: 3
