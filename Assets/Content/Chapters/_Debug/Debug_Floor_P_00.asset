@@ -10,21 +10,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d6b7aef4937d0054da1f650a1766cb15, type: 3}
-  m_Name: Chapter1_Floor_L_SHI_00
+  m_Name: Debug_Floor_P_00
   m_EditorClassIdentifier: 
-  proceduralFloor: 0
+  proceduralFloor: 1
   floorBaseVolumeProfile: {fileID: 11400000, guid: d252c52afd5c5ff47984d4f563ce4ade, type: 2}
   minGridSize: {x: 2, y: 2}
   maxGridSize: {x: 4, y: 4}
-  roomSettingsList: []
-  loadedRoomDatas:
-  - startRoom: 1
-    initRoomSettings: {fileID: 11400000, guid: 6c376ee1e8ea45a4488360da3d24f8cb, type: 2}
-    currentRoomState: 1
-    roomPosition: {x: 0, y: 0}
-    roomCondition: 0
-  - startRoom: 0
-    initRoomSettings: {fileID: 11400000, guid: 60ff1f7949eeb6142b28627fc63d796b, type: 2}
-    currentRoomState: 0
-    roomPosition: {x: 1, y: 0}
-    roomCondition: 0
+  roomSettingsList:
+  - {fileID: 11400000, guid: bee70c05c7cd54143b2b797863000255, type: 2}
+  - {fileID: 11400000, guid: bee70c05c7cd54143b2b797863000255, type: 2}
+  - {fileID: 11400000, guid: bee70c05c7cd54143b2b797863000255, type: 2}
+  - {fileID: 11400000, guid: bee70c05c7cd54143b2b797863000255, type: 2}
+  - {fileID: 11400000, guid: bee70c05c7cd54143b2b797863000255, type: 2}
+  - {fileID: 11400000, guid: bee70c05c7cd54143b2b797863000255, type: 2}
+  loadedRoomDatas: []

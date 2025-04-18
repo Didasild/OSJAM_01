@@ -2487,8 +2487,8 @@ MonoBehaviour:
   currentGameState: 0
   currentChapter: 2
   chaptersList:
-  - {fileID: 11400000, guid: b144a2ecda7de4844b459aa018dcbe47, type: 2}
   - {fileID: 11400000, guid: 24d5c5240a1c1934188ccdc42deb809a, type: 2}
+  - {fileID: 11400000, guid: b144a2ecda7de4844b459aa018dcbe47, type: 2}
   - {fileID: 11400000, guid: b56d33571110ddb409192cb3c02e12fd, type: 2}
   currentChapterSettings: {fileID: 0}
   floorLevelText: {fileID: 789845775}
@@ -4116,6 +4116,7 @@ GameObject:
   m_Component:
   - component: {fileID: 660007368}
   - component: {fileID: 660007369}
+  - component: {fileID: 660007373}
   - component: {fileID: 660007371}
   - component: {fileID: 660007370}
   - component: {fileID: 660007372}
@@ -4160,7 +4161,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   roomPrefab: {fileID: 7399068105048544342, guid: 199e0e52c9943d54e968ef4dfb638015, type: 3}
   roomContainer: {fileID: 1950187531}
-  roomSize: 32
+  roomSize: 33
   currentFloorSetting: {fileID: 0}
   floorSettingsList: []
   currentRoom: {fileID: 0}
@@ -4233,6 +4234,21 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!114 &660007373
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 660007367}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7c08edbffa65d3e4e88419fc038d2d09, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  roomPrefab: {fileID: 7399068105048544342, guid: 199e0e52c9943d54e968ef4dfb638015, type: 3}
+  roomContainer: {fileID: 1950187531}
+  roomSize: 33
 --- !u!1 &691876061
 GameObject:
   m_ObjectHideFlags: 0

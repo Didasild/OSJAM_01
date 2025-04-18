@@ -33,7 +33,7 @@ public class DungeonManager : MonoBehaviour
     [NaughtyAttributes.ReadOnly]
     public RoomData currentRoom;
     [NaughtyAttributes.ReadOnly]
-    [SerializeField] private List<RoomData> roomList = new List<RoomData> ();
+    public List<RoomData> roomList = new List<RoomData> ();
     //Private Room Settings
     private RoomSettings[] _roomSettingsList;
 
@@ -48,6 +48,7 @@ public class DungeonManager : MonoBehaviour
     
     //private RoomVisualManager _roomVisualManager;
     private VisualManager _visualManager;
+    private Minimap _minimap;
     #endregion
 
     #region INIT
@@ -55,44 +56,21 @@ public class DungeonManager : MonoBehaviour
     public void Init()
     {
         _visualManager = GameManager.visualManager;
+        _minimap = gameObject.GetComponent<Minimap>();
+        _minimap.Init();
     }
     #endregion
 
     #region FLOOR GENERATION
     public void GenerateProceduralFloor(FloorSettings floorSetting)
     {
-        Vector2Int floorSize = floorSetting.GetProceduralFloorSize();
         _roomSettingsList = currentFloorSetting.roomSettingsList;
-
+        
         ClearFloor();
-
-        // Calcul du décalage pour centrer la grille
-        Vector3 offset = new Vector3(
-            -(floorSize.x * roomSize) / 2.0f + (roomSize / 2.0f), // Décalage X
-            -(floorSize.y * roomSize) / 2.0f + (roomSize / 2.0f), // Décalage Y
-            0 // Z reste constant
-        );
-
+        _minimap.GenerateMinimap(_roomSettingsList, floorSetting);
         List<RoomSettings> availableRoomList = new List<RoomSettings>(_roomSettingsList);
-        for (int y = 0; y < floorSize.y; y++)
-        {
-            for (int x = 0; x < floorSize.x; x++)
-            {
-                // Calculer la position sur la grille
-                Vector2Int gridPosition = new Vector2Int(x, y);
+        Debug.Log(availableRoomList.Count);
 
-                // Instancier le GameObject room
-                RoomData roomData = Instantiate(roomPrefab, roomContainer);
-                if (roomData != null)
-                {
-                    roomData.Initialize(gridPosition, RoomCompletionCondition.None, roomSize, offset); // Initialisation avec la position
-                    roomList.Add(roomData); // Ajouter � la liste
-                    roomData.transform.SetParent(roomContainer);
-                }
-                // Nommer la room pour faciliter le debug
-                roomData.name = $"Room_{x}_{y}";
-            }
-        }
         GiveNeighbors();
         AssignRoomSettings(roomList, availableRoomList);
     }
