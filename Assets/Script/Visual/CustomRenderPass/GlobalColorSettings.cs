@@ -5,7 +5,7 @@ using UnityEngine.Serialization;
 
 namespace Dida.Rendering
 {
-    [Serializable, VolumeComponentMenu("Visual Settings")]
+    [Serializable, VolumeComponentMenu("Visual Settings/Colors")]
     public sealed class GlobalColorSettings : VolumeComponent
     {
         public ColorParameter Color1 = new ColorParameter(Color.black, false, false, true);
@@ -16,11 +16,5 @@ namespace Dida.Rendering
         public ColorParameter Color6 = new ColorParameter(Color.black, false, false, true);
         
         public ColorParameter ExterColor = new(Color.black, false, true, true);
-    }
-
-    public sealed class GridAmbianceSettings : VolumeComponent
-    {
-        public ClampedFloatParameter GridDistortion = new ClampedFloatParameter(0f, 0f, 1f);
-        public ClampedFloatParameter GridGlitch = new ClampedFloatParameter(0f, 0f, 2f);
     }
 }

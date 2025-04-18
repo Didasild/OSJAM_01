@@ -111,6 +111,25 @@ MonoBehaviour:
   scale:
     m_OverrideState: 0
     m_Value: 0.99
+--- !u!114 &-5323135493694648360
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 0}
+  m_Name: GridAmbianceSettings
+  m_EditorClassIdentifier: Assembly-CSharp:Dida.Rendering:GridAmbianceSettings
+  active: 1
+  GridDistortion:
+    m_OverrideState: 1
+    m_Value: 0.75
+  GridGlitch:
+    m_OverrideState: 0
+    m_Value: 0
 --- !u!114 &-5238848257485957135
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -149,6 +168,25 @@ MonoBehaviour:
   GridGlitch:
     m_OverrideState: 0
     m_Value: 0
+--- !u!114 &-2488464366546754399
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 0}
+  m_Name: GridAmbianceSettings
+  m_EditorClassIdentifier: Assembly-CSharp:Dida.Rendering:GridAmbianceSettings
+  active: 1
+  GridDistortion:
+    m_OverrideState: 1
+    m_Value: 0.75
+  GridGlitch:
+    m_OverrideState: 0
+    m_Value: 0
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -166,7 +204,7 @@ MonoBehaviour:
   - {fileID: 8498022337032358586}
   - {fileID: -8521342318712305829}
   - {fileID: -5329571970690834917}
-  - {fileID: 1693985349304925702}
+  - {fileID: 5130235397535057294}
 --- !u!114 &953869944089701943
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -254,6 +292,25 @@ MonoBehaviour:
   ExterColor:
     m_OverrideState: 1
     m_Value: {r: 0, g: 0, b: 0, a: 0.2509804}
+--- !u!114 &5130235397535057294
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 82efc21f1ea5dcf4d820501583c86e78, type: 3}
+  m_Name: GridAmbianceSettings
+  m_EditorClassIdentifier: 
+  active: 1
+  GridDistortion:
+    m_OverrideState: 1
+    m_Value: 0.75
+  GridGlitch:
+    m_OverrideState: 1
+    m_Value: 0
 --- !u!114 &6594305020744943990
 MonoBehaviour:
   m_ObjectHideFlags: 3

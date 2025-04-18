@@ -15,7 +15,7 @@ MonoBehaviour:
   proceduralFloor: 1
   floorBaseVolumeProfile: {fileID: 11400000, guid: d252c52afd5c5ff47984d4f563ce4ade, type: 2}
   minGridSize: {x: 2, y: 2}
-  maxGridSize: {x: 4, y: 4}
+  maxGridSize: {x: 2, y: 2}
   roomSettingsList:
   - {fileID: 11400000, guid: bee70c05c7cd54143b2b797863000255, type: 2}
   - {fileID: 11400000, guid: bee70c05c7cd54143b2b797863000255, type: 2}
