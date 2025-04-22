@@ -67,7 +67,7 @@ public class DungeonManager : MonoBehaviour
         _roomSettingsList = currentFloorSetting.roomSettingsList;
         
         ClearFloor();
-        _minimap.GenerateMinimap(_roomSettingsList, floorSetting);
+        _minimap.GenerateProceduralMinimap(_roomSettingsList, floorSetting);
         List<RoomSettings> availableRoomList = new List<RoomSettings>(_roomSettingsList);
         Debug.Log(availableRoomList.Count);
 
@@ -142,7 +142,7 @@ public class DungeonManager : MonoBehaviour
             roomData.transform.SetParent(roomContainer);
             roomData.name = $"Room_"+ loadedRoomData.roomPosition;
             
-            roomData.Initialize(loadedRoomData.roomPosition, loadedRoomData.roomCondition, roomSize);
+            roomData.Initialize(loadedRoomData.roomPosition, loadedRoomData.roomCondition, _minimap, roomSize);
             roomData.startRoom = loadedRoomData.startRoom;
             roomData.initRoomSettings = loadedRoomData.initRoomSettings;
             roomData.InitializeRoomType();

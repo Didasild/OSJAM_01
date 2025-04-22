@@ -16,7 +16,7 @@ public class Minimap : MonoBehaviour
         _floorManager = GameManager.Instance.floorManager;
     }
 
-    public void GenerateMinimap(RoomSettings[] _roomSettingsList, FloorSettings floorSetting)
+    public void GenerateProceduralMinimap(RoomSettings[] _roomSettingsList, FloorSettings floorSetting)
     {
         Vector2Int floorSize = floorSetting.GetProceduralFloorSize();
         // Calcul du décalage pour centrer la grille
@@ -37,7 +37,7 @@ public class Minimap : MonoBehaviour
                 RoomData roomData = Instantiate(roomPrefab, roomContainer);
                 if (roomData != null)
                 {
-                    roomData.Initialize(gridPosition, RoomCompletionCondition.None, roomSize, offset); // Initialisation avec la position
+                    roomData.Initialize(gridPosition, RoomCompletionCondition.None, this, roomSize, offset); // Initialisation avec la position
                     _floorManager.roomList.Add(roomData);
                     roomData.transform.SetParent(roomContainer);
                 }
@@ -46,6 +46,11 @@ public class Minimap : MonoBehaviour
                 roomData.name = $"Room_{x}_{y}";
             }
         }
+    }
+
+    public void SetRoomPosition(Vector2Int position)
+    {
+        
     }
     
     

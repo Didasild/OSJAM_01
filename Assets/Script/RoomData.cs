@@ -41,17 +41,40 @@ public class RoomData : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     public Image roomStateVisual;
     public Image roomSelectedVisual;
     
-    private DungeonManager _dungeonManager;
+    private DungeonManager _floorManager;
+    private Minimap _minimap;
     //private RoomVisualManager _roomVisualManager;
     private VisualManager _visualManager;
     #endregion
 
     #region INIT
-    public void Initialize(Vector2Int position, RoomCompletionCondition newRoomCondition, float roomSize = 1.0f,  Vector3 offset = default)
+
+    public void Initialize(Vector2Int position, RoomCompletionCondition newRoomCondition, Minimap minimap, float roomSize = 1.0f,  Vector3 offset = default)
     {
+        _minimap = minimap;
         roomPosition = position;
         roomCondition = newRoomCondition;
+        
+        //Setup le visuel
+        SetRoomPosition(position, roomSize, offset);
 
+        //Setup le visuel
+        _visualManager = GameManager.visualManager;
+        roomStateVisual.sprite = _visualManager.GetRoomStateVisual(RoomState.FogOfWar);
+        
+        //Assigne le dungeon manager
+        _floorManager = GameManager.Instance.floorManager;
+        
+    }
+    public void InitializeRoomType()
+    {
+        currentRoomType = initRoomSettings.roomType;
+        roomTypeVisual.sprite = _visualManager.GetRoomTypeVisual(RoomType.Base);
+    }
+
+    //APPELER DIRECTEMENT DEPUIS LE DUNGEON MANAGER? Demander a Guillaume 
+    private void SetRoomPosition(Vector2Int position, float roomSize, Vector3 offset = default)
+    {
         // Calculez la position dans le monde
         Vector3 worldPosition = new Vector3(
             position.x * roomSize,
@@ -61,19 +84,6 @@ public class RoomData : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 
         // Placez le GameObject à cette position
         transform.localPosition = worldPosition;
-
-        //Setup le visuel
-        _visualManager = GameManager.visualManager;
-        roomStateVisual.sprite = _visualManager.GetRoomStateVisual(RoomState.FogOfWar);
-        
-        //Assigne le dungeon manager
-        _dungeonManager = GameManager.Instance.floorManager;
-        
-    }
-    public void InitializeRoomType()
-    {
-        currentRoomType = initRoomSettings.roomType;
-        roomTypeVisual.sprite = _visualManager.GetRoomTypeVisual(RoomType.Base);
     }
     #endregion INIT
 
@@ -96,7 +106,7 @@ public class RoomData : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
                 CompleteRoomState();
                 break;
         }
-        _dungeonManager.UpdateButtonStates();
+        _floorManager.UpdateButtonStates();
     }
 
     private void FogOfWarRoomState()
@@ -136,13 +146,13 @@ public class RoomData : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 
     public void OnPointerClick(PointerEventData eventData)
     {
-        if (currentRoomState == RoomState.FogOfWar || _dungeonManager.currentRoom == this || _dungeonManager.currentRoom.currentRoomState == RoomState.Started)
+        if (currentRoomState == RoomState.FogOfWar || _floorManager.currentRoom == this || _floorManager.currentRoom.currentRoomState == RoomState.Started)
         {
             return;
         }
         else
         {
-            _dungeonManager.ChangeRoomMinimapIn(this);
+            _floorManager.ChangeRoomMinimapIn(this);
         }
 
     }
