@@ -32,7 +32,7 @@ public class GameManager : MonoBehaviour
     public RoomSettings currentRoomSettings;
 
     [Header("MANAGER REFERENCES")]
-    public DungeonManager floorManager;
+    public FloorManager floorManager;
     public GridManager gridManager;
 
     [Header("REFERENCES")]

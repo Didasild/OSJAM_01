@@ -33,7 +33,7 @@ public class VisualManager : MonoBehaviour
     
     [Header("GRID / ROOM TRANSITION")]
     public GameObject grid;
-    [FormerlySerializedAs("grindIndicatorParent")] public GameObject gridIndicatorParent;
+    public GameObject gridIndicatorParent;
     public GameObject roomParent;
     public GameObject roomID_Raw;
     public GameObject roomID_Col;
@@ -431,7 +431,6 @@ public class VisualManager : MonoBehaviour
         return DOTween.To(getter, setter, endValue, duration);
     }
     #endregion SET ROOM MOVEMENT
-    
     
     #region AMBIANCE FEEDBACKS
     public void UpdateRoomAmbiance(RoomData roomData)

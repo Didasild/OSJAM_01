@@ -3,13 +3,12 @@ using UnityEngine;
 
 public class Minimap : MonoBehaviour
 {
-    private DungeonManager _floorManager;
+    private FloorManager _floorManager;
     
     [Header("GENERAL SETTINGS")]
     public RoomData roomPrefab;
     public Transform roomContainer;
     public float roomSize;
-    
     
     public void Init()
     {
@@ -19,12 +18,6 @@ public class Minimap : MonoBehaviour
     public void GenerateProceduralMinimap(RoomSettings[] _roomSettingsList, FloorSettings floorSetting)
     {
         Vector2Int floorSize = floorSetting.GetProceduralFloorSize();
-        // Calcul du décalage pour centrer la grille
-        Vector3 offset = new Vector3(
-            -(floorSize.x * roomSize) / 2.0f + (roomSize / 2.0f), // Décalage X
-            -(floorSize.y * roomSize) / 2.0f + (roomSize / 2.0f), // Décalage Y
-            0 // Z reste constant
-        );
         
         for (int y = 0; y < floorSize.y; y++)
         {
@@ -37,7 +30,8 @@ public class Minimap : MonoBehaviour
                 RoomData roomData = Instantiate(roomPrefab, roomContainer);
                 if (roomData != null)
                 {
-                    roomData.Initialize(gridPosition, RoomCompletionCondition.None, this, roomSize, offset); // Initialisation avec la position
+                    roomData.Initialize(gridPosition, RoomCompletionCondition.None, this);
+                    SetRoomPosition(roomData, gridPosition);
                     _floorManager.roomList.Add(roomData);
                     roomData.transform.SetParent(roomContainer);
                 }
@@ -48,10 +42,15 @@ public class Minimap : MonoBehaviour
         }
     }
 
-    public void SetRoomPosition(Vector2Int position)
+    public void SetRoomPosition(RoomData roomData, Vector2Int position)
     {
+        roomData.transform.SetParent(roomContainer);
+        roomData.roomPosition = position;
         
+        // Calculez la position dans le monde
+        Vector3 worldPosition = new Vector3(position.x * roomSize, position.y * roomSize, 0);
+
+        // Placez le GameObject à cette position
+        roomData.transform.localPosition = worldPosition;
     }
-    
-    
 }

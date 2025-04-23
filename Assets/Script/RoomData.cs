@@ -41,7 +41,7 @@ public class RoomData : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     public Image roomStateVisual;
     public Image roomSelectedVisual;
     
-    private DungeonManager _floorManager;
+    private FloorManager _floorManager;
     private Minimap _minimap;
     //private RoomVisualManager _roomVisualManager;
     private VisualManager _visualManager;
@@ -49,41 +49,20 @@ public class RoomData : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 
     #region INIT
 
-    public void Initialize(Vector2Int position, RoomCompletionCondition newRoomCondition, Minimap minimap, float roomSize = 1.0f,  Vector3 offset = default)
+    public void Initialize(Vector2Int position, RoomCompletionCondition newRoomCondition, Minimap minimap)
     {
         _minimap = minimap;
-        roomPosition = position;
         roomCondition = newRoomCondition;
-        
-        //Setup le visuel
-        SetRoomPosition(position, roomSize, offset);
+        _floorManager = GameManager.Instance.floorManager;
 
         //Setup le visuel
         _visualManager = GameManager.visualManager;
         roomStateVisual.sprite = _visualManager.GetRoomStateVisual(RoomState.FogOfWar);
-        
-        //Assigne le dungeon manager
-        _floorManager = GameManager.Instance.floorManager;
-        
     }
     public void InitializeRoomType()
     {
         currentRoomType = initRoomSettings.roomType;
         roomTypeVisual.sprite = _visualManager.GetRoomTypeVisual(RoomType.Base);
-    }
-
-    //APPELER DIRECTEMENT DEPUIS LE DUNGEON MANAGER? Demander a Guillaume 
-    private void SetRoomPosition(Vector2Int position, float roomSize, Vector3 offset = default)
-    {
-        // Calculez la position dans le monde
-        Vector3 worldPosition = new Vector3(
-            position.x * roomSize,
-            position.y * roomSize,
-            0
-        ) + offset; // Ajoutez le décalage global pour centrer la grille
-
-        // Placez le GameObject à cette position
-        transform.localPosition = worldPosition;
     }
     #endregion INIT
 
