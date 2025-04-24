@@ -20,7 +20,6 @@ public class FloorManager : MonoBehaviour
     #region PARAMETERS
     [Header("GENERAL SETTINGS")]
     public RoomData roomPrefab;
-    public Transform roomContainer;
 
     [Header("FLOOR SETTINGS")]
     [NaughtyAttributes.ReadOnly]
@@ -63,15 +62,38 @@ public class FloorManager : MonoBehaviour
         _roomSettingsList = currentFloorSetting.roomSettingsList;
         
         ClearFloor();
-        _minimap.GenerateProceduralMinimap(_roomSettingsList, floorSetting);
+        
+        //Generate Room in position
+        Vector2Int floorSize = floorSetting.GetProceduralFloorSize();
+        for (int y = 0; y < floorSize.y; y++)
+        {
+            for (int x = 0; x < floorSize.x; x++)
+            {
+                // Calculer la position sur la grille
+                Vector2Int gridPosition = new Vector2Int(x, y);
+
+                // Instancier le GameObject room
+                RoomData roomData = Instantiate(roomPrefab);
+                if (roomData != null)
+                {
+                    roomData.Initialize(gridPosition, RoomCompletionCondition.None, _minimap);
+                    roomList.Add(roomData);
+                    _minimap.SetRoomPosition(roomData, gridPosition);
+                }
+                
+                // Nommer la room pour faciliter le debug
+                roomData.name = $"Room_{x}_{y}";
+            }
+        }
+        
         List<RoomSettings> availableRoomList = new List<RoomSettings>(_roomSettingsList);
         Debug.Log(availableRoomList.Count);
 
         GiveNeighbors();
-        AssignRoomSettings(roomList, availableRoomList);
+        AssignRoomSettings(availableRoomList);
     }
 
-    private void AssignRoomSettings(List<RoomData> roomList, List<RoomSettings> availableRoomList)
+    private void AssignRoomSettings(List<RoomSettings> availableRoomList)
     {
         if (roomList.Count > availableRoomList.Count)
         {
@@ -133,7 +155,7 @@ public class FloorManager : MonoBehaviour
         ClearFloor();
         foreach (FloorSettings.LoadedRoomData loadedRoomData in floorSetting.loadedRoomDatas)
         {
-            RoomData roomData = Instantiate(roomPrefab, roomContainer);
+            RoomData roomData = Instantiate(roomPrefab);
             roomList.Add(roomData);
             
             roomData.Initialize(loadedRoomData.roomPosition, loadedRoomData.roomCondition, _minimap);
@@ -193,7 +215,7 @@ public class FloorManager : MonoBehaviour
     
     private RoomData FindRoomAtPosition(Vector2Int position)
     {
-        // Cherche la room correspondant � la position donn�e
+        // Cherche la room correspondant à la position donnée
         return roomList.Find(r => r.roomPosition == position);
     }
     
@@ -214,7 +236,7 @@ public class FloorManager : MonoBehaviour
         //La génère
         GameManager.Instance.ChangeRoom(roomToInstanciate);
 
-        //Update le visuel de la minimap
+        //Update l'ambiance
         _visualManager.UpdateRoomAmbiance(roomToInstanciate);
         _visualManager.UpdateRoomID(roomToInstanciate);
         
