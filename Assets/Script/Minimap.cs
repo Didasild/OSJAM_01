@@ -8,7 +8,6 @@ public class Minimap : MonoBehaviour
     private VisualManager _visualManager;
     
     [Header("GENERAL SETTINGS")]
-    public RoomData roomPrefab;
     public Transform roomContainer;
     public float roomSize;
     
