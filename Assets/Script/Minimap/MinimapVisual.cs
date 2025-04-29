@@ -1,32 +1,15 @@
 using System;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class Minimap : MonoBehaviour
+public class MinimapVisual : MonoBehaviour
 {
-    private FloorManager _floorManager;
-    private VisualManager _visualManager;
+    Minimap _minimap;
+    VisualManager _visualManager;
     
-    [Header("GENERAL SETTINGS")]
-    public Transform roomContainer;
-    public float roomSize;
     
     public void Init()
     {
-        _floorManager = GameManager.Instance.floorManager;
         _visualManager = GameManager.visualManager;
-    }
-
-    public void SetRoomPosition(RoomData roomData, Vector2Int position)
-    {
-        roomData.transform.SetParent(roomContainer);
-        roomData.roomPosition = position;
-        
-        // Calculez la position dans le monde
-        Vector3 worldPosition = new Vector3(position.x * roomSize, position.y * roomSize, 0);
-
-        // Placez le GameObject à cette position
-        roomData.transform.localPosition = worldPosition;
     }
     
     // A METTRE DANS UNE SCRIPT MINIMAP VISUAL
@@ -36,13 +19,13 @@ public class Minimap : MonoBehaviour
         switch (roomState)
         {
             case RoomState.FogOfWar:
-                roomStateVisual = _visualManager.GetSprite("TBD");
+                roomStateVisual = _visualManager.GetSprite("Cell_Cover");
                 break;
             case RoomState.Started:
-                roomStateVisual = _visualManager.GetSprite("TBD");
+                roomStateVisual = _visualManager.GetSprite("Cell_State_Clicked");
                 break;
             case RoomState.Complete:
-                roomStateVisual = _visualManager.GetSprite("TBD");
+                roomStateVisual = _visualManager.GetSprite("Cell_Empty");
                 break;
             default:
                 throw new ArgumentOutOfRangeException(nameof(roomState), roomState, null);
@@ -58,7 +41,7 @@ public class Minimap : MonoBehaviour
             case RoomType.Base:
                 return null;
             case RoomType.Stair:
-                roomTypeVisual = _visualManager.GetSprite("TBD");
+                roomTypeVisual = _visualManager.GetSprite("Cell_Item_Sword");
                 break;
             case RoomType.Shop:
                 break;
@@ -75,12 +58,13 @@ public class Minimap : MonoBehaviour
         return roomTypeVisual;
     }
     
+    //DESACTIVER LE GAMEOBJECT A LA PLACE
     public Sprite GetSelectedVisual(bool isSelected)
     {
         Sprite roomSelectedVisual = null;
         if (isSelected)
         {
-            roomSelectedVisual = _visualManager.GetSprite("TBD");
+            roomSelectedVisual = _visualManager.GetSprite("Cell_State_Flag");
         }
         return roomSelectedVisual;
     }

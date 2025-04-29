@@ -76,7 +76,7 @@ public class RoomEditorObject : MonoBehaviour
         }
         noRoomSettingsVisual.SetActive(roomSettings == null);
         
-        _spriteRenderer.sprite = _visualManager.GetRoomStateVisual(roomState);
+        _spriteRenderer.sprite = _visualManager.minimapVisual.GetRoomStateVisual(roomState);
         
         isStartRoomVisual.SetActive(isStartRoom);
     }

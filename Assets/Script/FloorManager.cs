@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Serialization;
 using Random = UnityEngine.Random;
 
 #region ENUMS
@@ -22,6 +23,7 @@ public class FloorManager : MonoBehaviour
     public RoomData roomPrefab;
 
     [Header("FLOOR SETTINGS")]
+    public Minimap minimap;
     [NaughtyAttributes.ReadOnly]
     public FloorSettings currentFloorSetting;
     public FloorSettings[] floorSettingsList;
@@ -44,15 +46,15 @@ public class FloorManager : MonoBehaviour
     public TMP_Text roomNameDebugText;
     
     private VisualManager _visualManager;
-    private Minimap _minimap;
+    
+
     #endregion
 
     #region INIT
     public void Init()
     {
         _visualManager = GameManager.visualManager;
-        _minimap = gameObject.GetComponent<Minimap>();
-        _minimap.Init();
+        minimap.Init();
     }
     #endregion
 
@@ -76,9 +78,9 @@ public class FloorManager : MonoBehaviour
                 RoomData roomData = Instantiate(roomPrefab);
                 if (roomData != null)
                 {
-                    roomData.Initialize(gridPosition, RoomCompletionCondition.None, _minimap);
+                    roomData.Initialize(gridPosition, RoomCompletionCondition.None, minimap);
                     roomList.Add(roomData);
-                    _minimap.SetRoomPosition(roomData, gridPosition);
+                    minimap.SetRoomPosition(roomData, gridPosition);
                 }
                 
                 // Nommer la room pour faciliter le debug
@@ -158,8 +160,8 @@ public class FloorManager : MonoBehaviour
             RoomData roomData = Instantiate(roomPrefab);
             roomList.Add(roomData);
             
-            roomData.Initialize(loadedRoomData.roomPosition, loadedRoomData.roomCondition, _minimap);
-            _minimap.SetRoomPosition(roomData, loadedRoomData.roomPosition);
+            roomData.Initialize(loadedRoomData.roomPosition, loadedRoomData.roomCondition, minimap);
+            minimap.SetRoomPosition(roomData, loadedRoomData.roomPosition);
             roomData.name = $"Room_"+ loadedRoomData.roomPosition;
             
             roomData.startRoom = loadedRoomData.startRoom;
@@ -241,7 +243,7 @@ public class FloorManager : MonoBehaviour
         _visualManager.UpdateRoomID(roomToInstanciate);
         
         //minimap to move
-        roomToInstanciate.roomSelectedVisual.sprite = _visualManager.GetSelectedVisual(true);
+        roomToInstanciate.roomSelectedVisual.sprite = _visualManager.minimapVisual.GetSelectedVisual(true);
 
         //Update les boutons
         UpdateButtonStates();
@@ -284,24 +286,18 @@ public class FloorManager : MonoBehaviour
                 throw new ArgumentOutOfRangeException(nameof(direction), direction, null);
         }
     }
-
-    public void ChangeRoomMinimapIn(RoomData nextRoom)
-    {
-        ChangeRoomIn();
-        InitRoomTransition(nextRoom);
-    }
     
-    private void InitRoomTransition(RoomData nextRoom)
+    public void InitRoomTransition(RoomData nextRoom)
     {
         _visualManager.UpdateRoomAmbiance(nextRoom);
         Vector2Int roomDirection = GetNextRoomDirection(nextRoom.roomPosition);
         _visualManager.RoomOffsetTransition(roomDirection, nextRoom);
     }
 
-    private void ChangeRoomIn()
+    public void ChangeRoomIn()
     {
         SaveRoomData();
-        currentRoom.roomSelectedVisual.sprite = _visualManager.GetSelectedVisual(false);
+        currentRoom.roomSelectedVisual.sprite = _visualManager.minimapVisual.GetSelectedVisual(false);
         DisableButtons();
     }
 
@@ -310,7 +306,7 @@ public class FloorManager : MonoBehaviour
         currentRoom = nextRoom;
         GameManager.Instance.ChangeRoom(nextRoom);
         
-        currentRoom.roomSelectedVisual.sprite = _visualManager.GetSelectedVisual(true);
+        currentRoom.roomSelectedVisual.sprite = _visualManager.minimapVisual.GetSelectedVisual(true);
         
         UpdateButtonStates();
         UpdateRoomDebugName();

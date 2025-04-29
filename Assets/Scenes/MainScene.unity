@@ -2251,7 +2251,7 @@ GameObject:
   - component: {fileID: 325545206}
   - component: {fileID: 325545207}
   m_Layer: 0
-  m_Name: VOLUME
+  m_Name: AMBIANCE_CONTROLLER
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2265,15 +2265,15 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 325545205}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.3407254, y: 1.0518745, z: -0.056315802}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -2.0089157, y: 1.6080456, z: -0.029381625}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1687622997}
   - {fileID: 1527443214}
   - {fileID: 1593195241}
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 936060483}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &325545207
 MonoBehaviour:
@@ -2449,7 +2449,7 @@ GameObject:
   - component: {fileID: 348095976}
   - component: {fileID: 348095977}
   m_Layer: 0
-  m_Name: GAME_MANAGER
+  m_Name: _GAME_MANAGER
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2470,6 +2470,7 @@ Transform:
   m_Children:
   - {fileID: 660007368}
   - {fileID: 712061423}
+  - {fileID: 1365082115}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &348095977
@@ -4116,7 +4117,6 @@ GameObject:
   m_Component:
   - component: {fileID: 660007368}
   - component: {fileID: 660007369}
-  - component: {fileID: 660007373}
   - component: {fileID: 660007371}
   - component: {fileID: 660007370}
   - component: {fileID: 660007372}
@@ -4160,8 +4160,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   roomPrefab: {fileID: 7399068105048544342, guid: 199e0e52c9943d54e968ef4dfb638015, type: 3}
-  roomContainer: {fileID: 1950187531}
-  roomSize: 33
   currentFloorSetting: {fileID: 0}
   floorSettingsList: []
   currentRoom: {fileID: 0}
@@ -4234,21 +4232,6 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
---- !u!114 &660007373
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 660007367}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7c08edbffa65d3e4e88419fc038d2d09, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  roomPrefab: {fileID: 7399068105048544342, guid: 199e0e52c9943d54e968ef4dfb638015, type: 3}
-  roomContainer: {fileID: 1950187531}
-  roomSize: 33
 --- !u!1 &691876061
 GameObject:
   m_ObjectHideFlags: 0
@@ -6331,6 +6314,7 @@ MonoBehaviour:
   mineSwordedAnimation: {fileID: 2848005772284224300, guid: 229ef30d1439cd649a956d38120a0580, type: 3}
   plantedSwordAnimation: {fileID: 6271478425686541969, guid: 9819873197c9915408555a501a962d53, type: 3}
   flagInAnimation: {fileID: 1499444410457814521, guid: f7ef07e33d9da144989b5eafc0036a21, type: 3}
+  minimapVisual: {fileID: 1950187532}
   roomFoWSprite: {fileID: 21300000, guid: 264bd4a4bb254b0428fb3d0d65d0119e, type: 3}
   roomStartedSprite: {fileID: 21300000, guid: 37bfd3aee90f3824188408f4d247021e, type: 3}
   roomCompleteSprite: {fileID: 21300000, guid: 53ff0180f4371724ab172385a7ee14c1, type: 3}
@@ -6360,7 +6344,8 @@ Transform:
   m_LocalPosition: {x: 0.6681903, y: -0.55617106, z: -0.026934177}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 325545206}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &976356565
@@ -8518,6 +8503,7 @@ RectTransform:
   - {fileID: 976356566}
   - {fileID: 1397371272}
   - {fileID: 933600642}
+  - {fileID: 1386976976}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -8684,7 +8670,7 @@ Transform:
   m_Children:
   - {fileID: 519420032}
   - {fileID: 1661280051}
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 348095976}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1365082116
 MonoBehaviour:
@@ -8699,6 +8685,41 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cursorRenderer: {fileID: 933600643}
+--- !u!1 &1386976975
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1386976976}
+  m_Layer: 5
+  m_Name: MINIMAP
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1386976976
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1386976975}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1336173534}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1397371271
 GameObject:
   m_ObjectHideFlags: 0
@@ -10942,8 +10963,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1950187531}
+  - component: {fileID: 1950187533}
+  - component: {fileID: 1950187532}
   m_Layer: 0
-  m_Name: Room_Container
+  m_Name: MINIMAP
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -10968,6 +10991,31 @@ RectTransform:
   m_AnchoredPosition: {x: -550, y: -50}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0, y: 0}
+--- !u!114 &1950187532
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1950187530}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d62af5b12c090a44885472ebcb0b4670, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1950187533
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1950187530}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7c08edbffa65d3e4e88419fc038d2d09, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  roomSize: 33
 --- !u!1 &1957584732
 GameObject:
   m_ObjectHideFlags: 0
@@ -12372,6 +12420,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: GodRays_ForestBiome
       objectReference: {fileID: 0}
+    - target: {fileID: 3672178514029158548, guid: 84f8a1e8a1c1238479ea770c23db5f64, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6289624275885650856, guid: 84f8a1e8a1c1238479ea770c23db5f64, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -12619,10 +12671,8 @@ PrefabInstance:
 SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
-  - {fileID: 325545206}
-  - {fileID: 1365082115}
-  - {fileID: 936060483}
   - {fileID: 348095976}
+  - {fileID: 936060483}
   - {fileID: 1336173534}
   - {fileID: 534226823}
   - {fileID: 67883312}

@@ -57,12 +57,12 @@ public class RoomData : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 
         //Setup le visuel
         _visualManager = GameManager.visualManager;
-        roomStateVisual.sprite = _visualManager.GetRoomStateVisual(RoomState.FogOfWar);
+        roomStateVisual.sprite = _visualManager.minimapVisual.GetRoomStateVisual(RoomState.FogOfWar);
     }
     public void InitializeRoomType()
     {
         currentRoomType = initRoomSettings.roomType;
-        roomTypeVisual.sprite = _visualManager.GetRoomTypeVisual(RoomType.Base);
+        roomTypeVisual.sprite = _visualManager.minimapVisual.GetRoomTypeVisual(RoomType.Base);
     }
     #endregion INIT
 
@@ -71,7 +71,7 @@ public class RoomData : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     {
         currentRoomState = newRoomState;
         //Update le visuel de la room
-        roomStateVisual.sprite = GameManager.visualManager.GetRoomStateVisual(currentRoomState);
+        roomStateVisual.sprite = GameManager.visualManager.minimapVisual.GetRoomStateVisual(currentRoomState);
 
         switch (currentRoomState)
         {
@@ -107,7 +107,7 @@ public class RoomData : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
             roomTypeVisualColor.a = 1;
             roomTypeVisual.color = roomTypeVisualColor;
         }
-        roomTypeVisual.sprite = _visualManager.GetRoomTypeVisual(currentRoomType);
+        roomTypeVisual.sprite = _visualManager.minimapVisual.GetRoomTypeVisual(currentRoomType);
     }
     #endregion ROOM STATE
 
@@ -131,7 +131,7 @@ public class RoomData : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
         }
         else
         {
-            _floorManager.ChangeRoomMinimapIn(this);
+            _floorManager.minimap.ChangeOnClickIn(this);
         }
 
     }

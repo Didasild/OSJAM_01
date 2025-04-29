@@ -45,7 +45,8 @@ public class VisualManager : MonoBehaviour
     public GameObject plantedSwordAnimation;
     public GameObject flagInAnimation;
     
-    [Header("_______MINIMAP ROOM STATE VISUAL")]
+    [Header("_______MINIMAP")]
+    public MinimapVisual minimapVisual;
     public Sprite roomFoWSprite;
     public Sprite roomStartedSprite;
     public Sprite roomCompleteSprite;
@@ -114,7 +115,6 @@ public class VisualManager : MonoBehaviour
         centralFeedbackController.Init(this);
         fullScreenFeedbackController.Init(this);
         shakeCamController.Init();
-        
         roomAmbianceController.Init();
     }
     
@@ -231,60 +231,60 @@ public class VisualManager : MonoBehaviour
     #endregion
     
     #region GET ROOM FUNCTIONS
-    public Sprite GetRoomStateVisual(RoomState roomState)
-    {
-        Sprite roomStateVisual = null;
-        switch (roomState)
-        {
-            case RoomState.FogOfWar:
-                roomStateVisual = roomFoWSprite;
-                break;
-            case RoomState.Started:
-                roomStateVisual = roomStartedSprite;
-                break;
-            case RoomState.Complete:
-                roomStateVisual = roomCompleteSprite;
-                break;
-            default:
-                throw new ArgumentOutOfRangeException(nameof(roomState), roomState, null);
-        }
-        return roomStateVisual;
-    }
+    // public Sprite GetRoomStateVisual(RoomState roomState)
+    // {
+    //     Sprite roomStateVisual = null;
+    //     switch (roomState)
+    //     {
+    //         case RoomState.FogOfWar:
+    //             roomStateVisual = roomFoWSprite;
+    //             break;
+    //         case RoomState.Started:
+    //             roomStateVisual = roomStartedSprite;
+    //             break;
+    //         case RoomState.Complete:
+    //             roomStateVisual = roomCompleteSprite;
+    //             break;
+    //         default:
+    //             throw new ArgumentOutOfRangeException(nameof(roomState), roomState, null);
+    //     }
+    //     return roomStateVisual;
+    // }
 
-    public Sprite GetRoomTypeVisual(RoomType roomType)
-    {
-        Sprite roomTypeVisual = null;
-        switch (roomType)
-        {
-            case RoomType.Base:
-                return null;
-            case RoomType.Stair:
-                roomTypeVisual = roomTypeStairSprite;
-                break;
-            case RoomType.Shop:
-                break;
-            case RoomType.Sword:
-                break;
-            case RoomType.Potion:
-                break;
-            case RoomType.Boss:
-                break;
-            default:
-                throw new ArgumentOutOfRangeException(nameof(roomType), roomType, null);
-        }
-
-        return roomTypeVisual;
-    }
+    // public Sprite GetRoomTypeVisual(RoomType roomType)
+    // {
+    //     Sprite roomTypeVisual = null;
+    //     switch (roomType)
+    //     {
+    //         case RoomType.Base:
+    //             return null;
+    //         case RoomType.Stair:
+    //             roomTypeVisual = roomTypeStairSprite;
+    //             break;
+    //         case RoomType.Shop:
+    //             break;
+    //         case RoomType.Sword:
+    //             break;
+    //         case RoomType.Potion:
+    //             break;
+    //         case RoomType.Boss:
+    //             break;
+    //         default:
+    //             throw new ArgumentOutOfRangeException(nameof(roomType), roomType, null);
+    //     }
+    //
+    //     return roomTypeVisual;
+    // }
     
-    public Sprite GetSelectedVisual(bool isSelected)
-    {
-        Sprite roomSelectedVisual = null;
-        if (isSelected)
-        {
-            roomSelectedVisual = roomSelectedSprite;
-        }
-        return roomSelectedVisual;
-    }
+    // public Sprite GetSelectedVisual(bool isSelected)
+    // {
+    //     Sprite roomSelectedVisual = null;
+    //     if (isSelected)
+    //     {
+    //         roomSelectedVisual = roomSelectedSprite;
+    //     }
+    //     return roomSelectedVisual;
+    // }
     #endregion GET ROOM FUNCTIONS
 
     #region FEEDBACKS
