@@ -243,8 +243,8 @@ public class FloorManager : MonoBehaviour
         _visualManager.UpdateRoomID(roomToInstanciate);
         
         //minimap to move
-        roomToInstanciate.roomSelectedVisual.sprite = _visualManager.minimapVisual.GetSelectedVisual(true);
-
+        _visualManager.minimapVisual.ActiveSelectedVisual(roomToInstanciate, true);
+        
         //Update les boutons
         UpdateButtonStates();
         UpdateRoomDebugName();
@@ -297,7 +297,7 @@ public class FloorManager : MonoBehaviour
     public void ChangeRoomIn()
     {
         SaveRoomData();
-        currentRoom.roomSelectedVisual.sprite = _visualManager.minimapVisual.GetSelectedVisual(false);
+        _visualManager.minimapVisual.ActiveSelectedVisual(currentRoom, false);
         DisableButtons();
     }
 
@@ -306,7 +306,7 @@ public class FloorManager : MonoBehaviour
         currentRoom = nextRoom;
         GameManager.Instance.ChangeRoom(nextRoom);
         
-        currentRoom.roomSelectedVisual.sprite = _visualManager.minimapVisual.GetSelectedVisual(true);
+        _visualManager.minimapVisual.ActiveSelectedVisual(currentRoom, true);
         
         UpdateButtonStates();
         UpdateRoomDebugName();

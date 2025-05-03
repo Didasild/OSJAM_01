@@ -11,7 +11,7 @@ public class CustomCursor : MonoBehaviour
         Cursor.visible = false;
     }
 
-    private void Update()
+    private void FixedUpdate()
     {
         Vector2 mousePosition = Input.mousePosition;
         cursorRenderer.transform.position = mousePosition;

@@ -57,15 +57,9 @@ public class MinimapVisual : MonoBehaviour
 
         return roomTypeVisual;
     }
-    
-    //DESACTIVER LE GAMEOBJECT A LA PLACE
-    public Sprite GetSelectedVisual(bool isSelected)
+
+    public void ActiveSelectedVisual(RoomData roomData,bool isSelected)
     {
-        Sprite roomSelectedVisual = null;
-        if (isSelected)
-        {
-            roomSelectedVisual = _visualManager.GetSprite("Cell_State_Flag");
-        }
-        return roomSelectedVisual;
+        roomData.roomSelectedVisual.gameObject.SetActive(isSelected);
     }
 }
