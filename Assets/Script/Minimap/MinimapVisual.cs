@@ -15,8 +15,7 @@ public class MinimapVisual : MonoBehaviour
     {
         _visualManager = GameManager.visualManager;
     }
-    
-    // A METTRE DANS UNE SCRIPT MINIMAP VISUAL
+
     public Sprite GetRoomStateVisual(RoomState roomState)
     {
         Sprite roomStateVisual = null;
