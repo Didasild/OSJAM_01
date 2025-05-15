@@ -7,6 +7,7 @@ public class Minimap : MonoBehaviour
     private FloorManager _floorManager;
     private VisualManager _visualManager;
     private MinimapVisual _minimapVisual;
+    public Transform minimapContent;
     
     [Header("GENERAL SETTINGS")]
     public float roomSize;
@@ -22,7 +23,7 @@ public class Minimap : MonoBehaviour
 
     public void SetRoomPosition(RoomData roomData, Vector2Int position)
     {
-        roomData.transform.SetParent(transform);
+        roomData.transform.SetParent(minimapContent);
         roomData.roomPosition = position;
         
         // Calculez la position dans le monde
