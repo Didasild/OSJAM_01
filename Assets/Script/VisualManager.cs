@@ -47,15 +47,6 @@ public class VisualManager : MonoBehaviour
     
     [Header("_______MINIMAP")]
     public MinimapVisual minimapVisual;
-    public Sprite roomFoWSprite;
-    public Sprite roomStartedSprite;
-    public Sprite roomCompleteSprite;
-    public Sprite roomSelectedSprite;
-    
-    [Header("_______MINIMAP ROOM TYPE VISUAL")]
-    public Sprite roomTypeStairSprite;
-    public Sprite roomTypeShopSprite;
-    public Sprite roomTypeBossSprite;
     
     private VolumeProfile _roomMainProfile;
     private GlobalColorSettings _roomTransitionGlobalColorSettings;

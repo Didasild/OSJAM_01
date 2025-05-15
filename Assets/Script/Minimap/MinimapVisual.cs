@@ -5,6 +5,10 @@ public class MinimapVisual : MonoBehaviour
 {
     Minimap _minimap;
     VisualManager _visualManager;
+    public Transform fowTransform;
+    public Transform startedTransform;
+    public Transform completedTransform;
+    public Transform selectedRoom;
     
     
     public void Init()
@@ -19,18 +23,38 @@ public class MinimapVisual : MonoBehaviour
         switch (roomState)
         {
             case RoomState.FogOfWar:
-                roomStateVisual = _visualManager.GetSprite("Cell_Cover");
+                roomStateVisual = _visualManager.GetSprite("MM_RoomFoW");
                 break;
             case RoomState.Started:
-                roomStateVisual = _visualManager.GetSprite("Cell_State_Clicked");
+                roomStateVisual = _visualManager.GetSprite("MM_RoomStarted");
                 break;
             case RoomState.Complete:
-                roomStateVisual = _visualManager.GetSprite("Cell_Empty");
+                roomStateVisual = _visualManager.GetSprite("MM_RoomComplete");
                 break;
             default:
                 throw new ArgumentOutOfRangeException(nameof(roomState), roomState, null);
         }
         return roomStateVisual;
+    }
+
+    public Transform GetRoomNewParent(RoomState roomState)
+    {
+        Transform roomNewParent = null;
+        switch (roomState)
+        {
+            case RoomState.FogOfWar:
+                roomNewParent = fowTransform;
+                break;
+            case RoomState.Started:
+                roomNewParent = startedTransform;
+                break;
+            case RoomState.Complete:
+                roomNewParent = completedTransform;
+                break;
+            default:
+                throw new ArgumentOutOfRangeException(nameof(roomState), roomState, null);
+        }
+        return roomNewParent;
     }
 
     public Sprite GetRoomTypeVisual(RoomType roomType)
@@ -61,5 +85,14 @@ public class MinimapVisual : MonoBehaviour
     public void ActiveSelectedVisual(RoomData roomData,bool isSelected)
     {
         roomData.roomSelectedVisual.gameObject.SetActive(isSelected);
+        if (isSelected)
+        {
+            roomData.transform.SetParent(selectedRoom);
+        }
+        else
+        {
+            roomData.transform.SetParent(GetRoomNewParent(roomData.currentRoomState));
+        }
+
     }
 }

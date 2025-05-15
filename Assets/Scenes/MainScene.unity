@@ -1763,11 +1763,11 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children: []
-  m_Father: {fileID: 326441406}
+  m_Father: {fileID: 1950187531}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 1, y: 0}
   m_SizeDelta: {x: 1024, y: 1024}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &260487365
@@ -2577,6 +2577,41 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 313536646}
   m_CullTransparentMesh: 1
+--- !u!1 &317588658
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 317588659}
+  m_Layer: 0
+  m_Name: StartedRoom
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &317588659
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 317588658}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1950187531}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &325545205
 GameObject:
   m_ObjectHideFlags: 0
@@ -2659,7 +2694,6 @@ RectTransform:
   m_Children:
   - {fileID: 104099535}
   - {fileID: 5836683}
-  - {fileID: 260487364}
   - {fileID: 1950187531}
   m_Father: {fileID: 1515979098}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -6746,14 +6780,7 @@ MonoBehaviour:
   mineSwordedAnimation: {fileID: 2848005772284224300, guid: 229ef30d1439cd649a956d38120a0580, type: 3}
   plantedSwordAnimation: {fileID: 6271478425686541969, guid: 9819873197c9915408555a501a962d53, type: 3}
   flagInAnimation: {fileID: 1499444410457814521, guid: f7ef07e33d9da144989b5eafc0036a21, type: 3}
-  minimapVisual: {fileID: 0}
-  roomFoWSprite: {fileID: 21300000, guid: 264bd4a4bb254b0428fb3d0d65d0119e, type: 3}
-  roomStartedSprite: {fileID: 21300000, guid: 37bfd3aee90f3824188408f4d247021e, type: 3}
-  roomCompleteSprite: {fileID: 21300000, guid: 53ff0180f4371724ab172385a7ee14c1, type: 3}
-  roomSelectedSprite: {fileID: 21300000, guid: d2c0d4c9ed9682944a1d6e6857a66f66, type: 3}
-  roomTypeStairSprite: {fileID: 21300000, guid: 2436d20cf76679d4fb57637926f38423, type: 3}
-  roomTypeShopSprite: {fileID: 21300000, guid: d2c0d4c9ed9682944a1d6e6857a66f66, type: 3}
-  roomTypeBossSprite: {fileID: 21300000, guid: d2c0d4c9ed9682944a1d6e6857a66f66, type: 3}
+  minimapVisual: {fileID: 1757400706}
   globalColorSettings: {fileID: 0}
   inEditorScene: 0
   potionSprite: {fileID: 0}
@@ -8780,6 +8807,41 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1241197190}
   m_CullTransparentMesh: 1
+--- !u!1 &1249611029
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1249611030}
+  m_Layer: 0
+  m_Name: SelectedRoom
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1249611030
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1249611029}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1950187531}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1263758071
 GameObject:
   m_ObjectHideFlags: 0
@@ -9120,6 +9182,41 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!1 &1355369146
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1355369147}
+  m_Layer: 0
+  m_Name: FoWRoom
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1355369147
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1355369146}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1950187531}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1361679736
 GameObject:
   m_ObjectHideFlags: 0
@@ -9814,6 +9911,41 @@ MonoBehaviour:
   blendDistance: 0
   weight: 0
   sharedProfile: {fileID: 11400000, guid: f960d3a2b6cb45e49beca222d62f765f, type: 2}
+--- !u!1 &1539276829
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1539276830}
+  m_Layer: 0
+  m_Name: CompletedRoom
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1539276830
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1539276829}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1950187531}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1542727835
 GameObject:
   m_ObjectHideFlags: 0
@@ -10337,6 +10469,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d62af5b12c090a44885472ebcb0b4670, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fowTransform: {fileID: 1355369147}
+  startedTransform: {fileID: 317588659}
+  completedTransform: {fileID: 1539276830}
+  selectedRoom: {fileID: 1249611030}
 --- !u!114 &1757400707
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10350,7 +10486,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   minimapContent: {fileID: 1950187531}
-  roomSize: 33
+  roomSize: 32
 --- !u!1 &1758659917
 GameObject:
   m_ObjectHideFlags: 0
@@ -11695,7 +11831,12 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 260487364}
+  - {fileID: 1355369147}
+  - {fileID: 317588659}
+  - {fileID: 1539276830}
+  - {fileID: 1249611030}
   m_Father: {fileID: 326441406}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
