@@ -148,6 +148,7 @@ public class FloorManager : MonoBehaviour
         currentRoom = selectedRoomData;
 
         InstanciateFirstRoom(currentRoom);
+        minimap.FocusOnSelectedRoom(currentRoom);
     }
     #endregion PROCEDRUAL GENERATION
 
@@ -171,6 +172,8 @@ public class FloorManager : MonoBehaviour
         GiveNeighbors();
         currentRoom = FindStartRoom();
         InstanciateFirstRoom(currentRoom);
+        
+        minimap.FocusOnSelectedRoom(currentRoom);
     }
 
     private RoomData FindStartRoom()
@@ -292,6 +295,7 @@ public class FloorManager : MonoBehaviour
         _visualManager.UpdateRoomAmbiance(nextRoom);
         Vector2Int roomDirection = GetNextRoomDirection(nextRoom.roomPosition);
         _visualManager.RoomOffsetTransition(roomDirection, nextRoom);
+        minimap.FocusOnSelectedRoom(nextRoom);
     }
 
     public void ChangeRoomIn()

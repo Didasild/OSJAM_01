@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using DG.Tweening;
 using UnityEngine;
 
 public class Minimap : MonoBehaviour
@@ -7,10 +8,15 @@ public class Minimap : MonoBehaviour
     private FloorManager _floorManager;
     private VisualManager _visualManager;
     private MinimapVisual _minimapVisual;
-    public Transform minimapContent;
+    public RectTransform minimapContentTransform;
     
     [Header("GENERAL SETTINGS")]
     public float roomSize;
+
+    [Header("FOCUS BUTTON SETTINGS")] 
+    public float lerpDuration = 0.3f;
+    public Ease lerpEase = Ease.OutQuad;
+    
     
     public void Init()
     {
@@ -37,5 +43,23 @@ public class Minimap : MonoBehaviour
     {
         _floorManager.ChangeRoomIn();
         _floorManager.InitRoomTransition(nextRoom);
+    }
+    
+    public void FocusOnSelectedRoom(RoomData selectedRoomData)
+    {
+        Vector2Int selectedRoomPosition = selectedRoomData.roomPosition;
+        Vector2 targetPosition = new Vector2(-selectedRoomPosition.x * roomSize, -selectedRoomPosition.y * roomSize);
+
+        // Annule tout tween précédent sur ce RectTransform si nécessaire
+        minimapContentTransform.DOKill();
+
+        // Lance le tween
+        minimapContentTransform.DOAnchorPos(targetPosition, lerpDuration)
+            .SetEase(lerpEase);
+    }
+    
+    public void OnFocusButtonClicked()
+    {
+        FocusOnSelectedRoom(_floorManager.currentRoom);
     }
 }
