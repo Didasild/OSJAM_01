@@ -228,7 +228,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 326441406}
+  m_Father: {fileID: 1515979098}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
@@ -2771,7 +2771,6 @@ RectTransform:
   - {fileID: 104099535}
   - {fileID: 357166689}
   - {fileID: 828548916}
-  - {fileID: 5836683}
   m_Father: {fileID: 1515979098}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
@@ -10166,6 +10165,7 @@ MonoBehaviour:
   swordCounterText: {fileID: 1241197192}
   clicCounter: 0
   mousePosition: {x: 0, y: 0}
+  cursorScript: {fileID: 0}
   IsOverConditions:
   - cellState: 1
     cellType: 2
@@ -10584,6 +10584,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 326441406}
+  - {fileID: 5836683}
   - {fileID: 1995768149}
   m_Father: {fileID: 946316664}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
