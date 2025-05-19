@@ -3,6 +3,7 @@ using UnityEngine.EventSystems;
 using UnityEngine.Serialization;
 using UnityEngine.UI;
 using NaughtyAttributes;
+using TMPro;
 
 #region ENUMS
 public enum RoomState
@@ -41,8 +42,12 @@ public class RoomData : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     public Image roomStateVisual;
     public Image roomSelectedVisual;
     
+    [Header("TOOLTIP")]
+    public string tooltiGoToText;
+    
     private FloorManager _floorManager;
     private Minimap _minimap;
+
     //private RoomVisualManager _roomVisualManager;
     private VisualManager _visualManager;
     #endregion
@@ -116,12 +121,19 @@ public class RoomData : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     //Click sur la minimap
     public void OnPointerEnter(PointerEventData eventData)
     {
-        
+        if (currentRoomState == RoomState.FogOfWar || _floorManager.currentRoom == this || _floorManager.currentRoom.currentRoomState == RoomState.Started)
+        {
+            return;
+        }
+        else
+        {
+            TooltipSystem.ShowTooltip(tooltiGoToText);
+        }
     }
 
     public void OnPointerExit(PointerEventData eventData)
     {
-        
+        TooltipSystem.HideTooltip();
     }
 
     public void OnPointerClick(PointerEventData eventData)

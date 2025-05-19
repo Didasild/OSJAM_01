@@ -27,7 +27,7 @@ public class Player : MonoBehaviour
     [ReadOnly] public int clicCounter;
     [ReadOnly] public Vector2 mousePosition;
     
-    private CustomCursor cursorScript;
+    [HideInInspector] public CustomCursor cursorScript;
     
     [Serializable]
     public struct IsOverCondition

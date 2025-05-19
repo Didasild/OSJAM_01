@@ -9,7 +9,10 @@ public class TooltipTrigger : MonoBehaviour, IPointerEnterHandler, IPointerExitH
 
     public void OnPointerEnter(PointerEventData eventData)
     {
-        TooltipSystem.ShowTooltip(tooltipText);
+        if (tooltipText != "")
+        {
+            TooltipSystem.ShowTooltip(tooltipText);
+        }
     }
 
     public void OnPointerExit(PointerEventData eventData)
