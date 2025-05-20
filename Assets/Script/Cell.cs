@@ -614,6 +614,25 @@ public class Cell : MonoBehaviour
         }
         return numberOfState;
     }
+
+    public bool CanRevealNeighbors()
+    {
+        if (currentState != CellState.Reveal || currentType != CellType.Hint)
+        {
+            return false;
+        }
+        
+        //Récupère le nombre de drapeaux et de mines autour
+        int neighborsFlagged = GetNeighborsState(CellState.Flag);
+        int neighborsMine = GetNeighborsType(CellType.Mine);
+        int neighborsState = GetNeighborsState(CellState.Cover) + GetNeighborsState(CellState.Clicked);
+        if (currentType == CellType.Hint && neighborsFlagged == neighborsMine && neighborsState > 0)
+        {
+            return true;
+        }
+
+        return false;
+    }
     #endregion
 
 }

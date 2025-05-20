@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 5177362945753737555}
   - component: {fileID: 195291861368971202}
   - component: {fileID: 4773452820061257321}
+  - component: {fileID: 2182964922072029152}
   m_Layer: 5
   m_Name: ChangeRoomButton
   m_TagString: Untagged
@@ -146,3 +147,16 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &2182964922072029152
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9172855607629359649}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: caace0699d6b8d343a6adb633564479f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tooltipText: 

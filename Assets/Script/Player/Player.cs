@@ -57,7 +57,7 @@ public class Player : MonoBehaviour
         // Convertit la position de la souris en coordonn�es du monde
         mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 
-        // Effectue un raycast � la position de la souris
+        // Effectue un raycast à la position de la souris
         RaycastHit2D hit = Physics2D.Raycast(mousePosition, Vector2.zero);
 
         if (hit.collider != null)
@@ -68,9 +68,13 @@ public class Player : MonoBehaviour
                 if (_previousCell != null && _previousCell != cellOver)
                 {
                     _previousCell.IsOver(false);
+                    OverOffNeighborsCells(_previousCell);
                 }
                 cellOver.IsOver(true);
                 _previousCell = cellOver;
+                OverRevealablNeighborsCells(cellOver);
+                
+                cursorScript.tooltipSystem.CheckCellTooltip(cellOver);
             }
         }
         else
@@ -79,6 +83,7 @@ public class Player : MonoBehaviour
             {
                 _previousCell.IsOver(false);
                 _previousCell = null;
+                TooltipSystem.HideTooltip();
             }
         }
         if (cellOver == null || GameManager.Instance.currentGameState != GameState.InGame)
@@ -184,17 +189,44 @@ public class Player : MonoBehaviour
         #endregion
     }
 
+    #region OVER METHODS
+
+    private void OverRevealablNeighborsCells(Cell cellTarget)
+    {
+        List<Cell> neighborsToReveal = new List<Cell>();
+        if (cellTarget.CanRevealNeighbors())
+        {
+            foreach (Cell cell in cellTarget.neighborsCellList)
+            {
+                if (cell.currentState == CellState.Cover)
+                {
+                    neighborsToReveal.Add(cell);
+                }
+            }
+        }
+
+        foreach (Cell cell in neighborsToReveal)
+        {
+            cell.IsOver(true);
+        }
+    }
+
+    private void OverOffNeighborsCells(Cell cellTarget)
+    {
+        foreach (Cell cell in cellTarget.neighborsCellList)
+        {
+            cell.IsOver(false);
+        }
+    }
+
+    #endregion OVER METHODS
+
     #region CLICK METHODS
     private void ClickOnRevealHintCell(Cell cellClicked)
     {
         int mineExploded = 0;
 
-        //R�cup�re le nombre de drapeaux et de mines autour
-        int neighborsFlagged = cellClicked.GetNeighborsState(CellState.Flag);
-        int neighborsMine = cellClicked.GetNeighborsType(CellType.Mine);
-
-        //Reveal les case couverte autour
-        if (cellClicked.currentType == CellType.Hint && neighborsFlagged == neighborsMine)
+        if (cellClicked.CanRevealNeighbors())
         {
             foreach (Cell neighborsCell in cellClicked.neighborsCellList)
             {
@@ -218,7 +250,9 @@ public class Player : MonoBehaviour
                     }
                 }
             }
+            OverOffNeighborsCells(cellClicked);
         }
+        
         //Passe en state Clicked les cellules couvertes
         else
         {
