@@ -11,12 +11,12 @@ public class TooltipTrigger : MonoBehaviour, IPointerEnterHandler, IPointerExitH
     {
         if (tooltipText != "")
         {
-            TooltipSystem.ShowTooltip(tooltipText);
+            TooltipController.ShowTooltip(tooltipText);
         }
     }
 
     public void OnPointerExit(PointerEventData eventData)
     {
-        TooltipSystem.HideTooltip();
+        TooltipController.HideTooltip();
     }
 }

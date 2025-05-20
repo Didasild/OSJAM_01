@@ -76,7 +76,7 @@ public class Player : MonoBehaviour
                 cellOver.IsOver(true);
                 OverRevealablNeighborsCells(cellOver);
                 
-                cursorScript.tooltipSystem.CheckCellTooltip(cellOver);
+                cursorScript.tooltipController.CheckCellTooltip(cellOver);
             }
         }
         else
@@ -86,7 +86,7 @@ public class Player : MonoBehaviour
                 _previousCell.IsOver(false);
                 _previousCell = null;
                 
-                TooltipSystem.HideTooltip();
+                TooltipController.HideTooltip();
             }
         }
         if (cellOver == null || GameManager.Instance.currentGameState != GameState.InGame)

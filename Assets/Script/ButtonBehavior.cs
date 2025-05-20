@@ -7,6 +7,6 @@ public class ButtonBehavior : MonoBehaviour
     public void OnButtonClick()
     {
         GameManager.Instance.floorManager.ChangeRoomDirection(buttonDirection);
-        TooltipSystem.HideTooltip();
+        TooltipController.HideTooltip();
     }
 }

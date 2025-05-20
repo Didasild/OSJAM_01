@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
-public class TooltipSystem : MonoBehaviour
+public class TooltipController : MonoBehaviour
 {
-    public static TooltipSystem Instance;
+    public static TooltipController Instance;
 
     public GameObject tooltipPanel;
     public TextMeshProUGUI tooltipText;

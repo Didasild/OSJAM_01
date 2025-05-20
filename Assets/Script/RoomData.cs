@@ -129,14 +129,14 @@ public class RoomData : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
         else
         {
             roomOverVisual.gameObject.SetActive(true);
-            TooltipSystem.ShowTooltip(tooltiGoToText);
+            TooltipController.ShowTooltip(tooltiGoToText);
         }
     }
 
     public void OnPointerExit(PointerEventData eventData)
     {
         roomOverVisual.gameObject.SetActive(false);
-        TooltipSystem.HideTooltip();
+        TooltipController.HideTooltip();
     }
 
     public void OnPointerClick(PointerEventData eventData)

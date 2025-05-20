@@ -5,20 +5,20 @@ using UnityEngine.UI;
 public class CustomCursor : MonoBehaviour
 {
     public Image cursorRenderer;
-    public TooltipSystem tooltipSystem;
+    [FormerlySerializedAs("tooltipSystem")] public TooltipController tooltipController;
 
     public void Init()
     {
         Cursor.visible = false;
         
-        tooltipSystem = gameObject.GetComponent<TooltipSystem>();
-        if (tooltipSystem != null)
+        tooltipController = gameObject.GetComponent<TooltipController>();
+        if (tooltipController != null)
         {
-            tooltipSystem.Init();
+            tooltipController.Init();
         }
         else
         {
-            Debug.LogWarning("CustomCursor could not find TooltipSystem");
+            Debug.LogWarning("CustomCursor could not find TooltipController");
         }
 
     }
