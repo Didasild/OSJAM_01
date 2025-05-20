@@ -70,8 +70,10 @@ public class Player : MonoBehaviour
                     _previousCell.IsOver(false);
                     OverOffNeighborsCells(_previousCell);
                 }
-                cellOver.IsOver(true);
+
                 _previousCell = cellOver;
+                
+                cellOver.IsOver(true);
                 OverRevealablNeighborsCells(cellOver);
                 
                 cursorScript.tooltipSystem.CheckCellTooltip(cellOver);
@@ -83,6 +85,7 @@ public class Player : MonoBehaviour
             {
                 _previousCell.IsOver(false);
                 _previousCell = null;
+                
                 TooltipSystem.HideTooltip();
             }
         }
