@@ -11,14 +11,18 @@ public class RoomAmbianceController : MonoBehaviour
     public float visualTransitionDuration;
     
     private GameManager _gameManager;
+    private VisualManager _visualManager;
     private VolumeProfile _roomMainProfile;
     private GlobalColorSettings _roomTransitionGlobalColorSettings;
+    private TextController _textController;
     
     private Tweener _currentWeightTween;
 
-    public void Init()
+    public void Init(VisualManager manager)
     {
+        _visualManager = manager;
         _gameManager = GameManager.Instance;
+        _textController = manager.textController;
     }
     
     public void TransitionVolume(VolumeProfile roomProfile)
@@ -63,5 +67,6 @@ public class RoomAmbianceController : MonoBehaviour
         mainColorsVolume.profile = null;
         mainColorsVolume.profile = transitionColorsVolume.profile;
         transitionColorsVolume.weight = 0;
+        _textController.UpdateTextColors();
     }
 }

@@ -640,6 +640,7 @@ GameObject:
   m_Component:
   - component: {fileID: 104099535}
   - component: {fileID: 104099537}
+  - component: {fileID: 104099538}
   - component: {fileID: 104099536}
   m_Layer: 5
   m_Name: Text (TMP)
@@ -696,8 +697,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+    rgba: 4278190335
+  m_fontColor: {r: 1, g: 0, b: 0, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -766,6 +767,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 104099534}
   m_CullTransparentMesh: 1
+--- !u!114 &104099538
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 104099534}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 146b087a196c25b44adf37d1c0b44589, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  colorIndex: 1
 --- !u!1001 &107041874
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7437,6 +7451,7 @@ GameObject:
   m_Component:
   - component: {fileID: 936060483}
   - component: {fileID: 936060482}
+  - component: {fileID: 936060484}
   m_Layer: 0
   m_Name: VISUAL_MANAGER
   m_TagString: Untagged
@@ -7459,6 +7474,7 @@ MonoBehaviour:
   spriteAtlas: {fileID: 100100200, guid: b4abebcd77df7d440800899c5f4c5f7d, type: 3}
   sprites: []
   roomAmbianceController: {fileID: 325545207}
+  textController: {fileID: 936060484}
   shakeCamController: {fileID: 519420033}
   centralFeedbackController: {fileID: 89334859}
   fullScreenFeedbackController: {fileID: 749521842}
@@ -7505,6 +7521,20 @@ Transform:
   - {fileID: 325545206}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &936060484
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 936060481}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 92d5082b6eb847444bb8af7f594b9a4f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tmpTexts: []
+  visualManager: {fileID: 0}
 --- !u!1 &939809145
 GameObject:
   m_ObjectHideFlags: 0
@@ -7515,6 +7545,7 @@ GameObject:
   m_Component:
   - component: {fileID: 939809146}
   - component: {fileID: 939809148}
+  - component: {fileID: 939809149}
   - component: {fileID: 939809147}
   m_Layer: 5
   m_Name: Text (TMP)
@@ -7641,6 +7672,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 939809145}
   m_CullTransparentMesh: 1
+--- !u!114 &939809149
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 939809145}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 146b087a196c25b44adf37d1c0b44589, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  colorIndex: 3
 --- !u!1 &946316663
 GameObject:
   m_ObjectHideFlags: 0

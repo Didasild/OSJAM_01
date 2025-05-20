@@ -18,9 +18,11 @@ public class VisualManager : MonoBehaviour
     public SpriteAtlas spriteAtlas;
     private readonly Dictionary<string, Sprite> spriteDictionary = new Dictionary<string, Sprite>();
     [ReadOnly] public Sprite[] sprites;
+
     
     [Header("VISUAL CONTROLLERS")]
     public RoomAmbianceController roomAmbianceController;
+    public TextController textController;
     
     [Header("FEEDBACKS CONTROLLERS")]
     public ShakeCamController shakeCamController;
@@ -105,8 +107,9 @@ public class VisualManager : MonoBehaviour
         
         centralFeedbackController.Init(this);
         fullScreenFeedbackController.Init(this);
+        textController.Init(this);
         shakeCamController.Init();
-        roomAmbianceController.Init();
+        roomAmbianceController.Init(this);
     }
     
     private void LoadSprites()
