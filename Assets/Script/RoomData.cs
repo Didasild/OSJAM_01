@@ -41,6 +41,7 @@ public class RoomData : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     public Image roomTypeVisual;
     public Image roomStateVisual;
     public Image roomSelectedVisual;
+    public Image roomOverVisual;
     
     [Header("TOOLTIP")]
     public string tooltiGoToText;
@@ -127,12 +128,14 @@ public class RoomData : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
         }
         else
         {
+            roomOverVisual.gameObject.SetActive(true);
             TooltipSystem.ShowTooltip(tooltiGoToText);
         }
     }
 
     public void OnPointerExit(PointerEventData eventData)
     {
+        roomOverVisual.gameObject.SetActive(false);
         TooltipSystem.HideTooltip();
     }
 
