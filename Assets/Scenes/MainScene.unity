@@ -10269,7 +10269,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cursorRenderer: {fileID: 933600643}
-  tooltipSystem: {fileID: 1365082117}
+  tooltipController: {fileID: 1365082117}
 --- !u!114 &1365082117
 MonoBehaviour:
   m_ObjectHideFlags: 0
