@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d6b7aef4937d0054da1f650a1766cb15, type: 3}
+  m_Name: Debug_Floor_L_NPC_00
+  m_EditorClassIdentifier: 
+  proceduralFloor: 0
+  floorBaseVolumeProfile: {fileID: 11400000, guid: fadeb7ff8ece8d8499d76cc30a4a8d36, type: 2}
+  minGridSize: {x: 2, y: 2}
+  maxGridSize: {x: 4, y: 4}
+  roomSettingsList: []
+  loadedRoomDatas:
+  - startRoom: 1
+    initRoomSettings: {fileID: 11400000, guid: 217f3bf9ea452f44f9d38c568aa49af6, type: 2}
+    currentRoomState: 0
+    roomPosition: {x: 0, y: 0}
+    roomCondition: 0

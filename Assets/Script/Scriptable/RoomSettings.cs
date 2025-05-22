@@ -10,7 +10,8 @@ public enum RoomType
     Shop,
     Sword,
     Potion,
-    Boss
+    Boss,
+    NPC
 }
 
 public enum GenerationType
