@@ -22,7 +22,7 @@ public class RoomEditorObject : MonoBehaviour
     private bool isSelected;
     private SpriteRenderer _spriteRenderer;
     private FloorEditor _floorEditor;
-    private VisualManager _visualManager;
+    private VisualEditorManager _visualManager;
 
     private void OnValidate()
     {
@@ -43,7 +43,7 @@ public class RoomEditorObject : MonoBehaviour
     public void Init(FloorEditor floorEditor, RoomSettings roomSettings, Vector2Int roomPosition, RoomState newRoomState, bool isStartRoom)
     {
         _floorEditor = floorEditor;
-        _visualManager = floorEditor.visualManager;
+        _visualManager = floorEditor.visualEditorManager;
         this.roomSettings = roomSettings;
         this.roomPosition = roomPosition;
         this.isStartRoom = isStartRoom;
@@ -76,7 +76,7 @@ public class RoomEditorObject : MonoBehaviour
         }
         noRoomSettingsVisual.SetActive(roomSettings == null);
         
-        _spriteRenderer.sprite = _visualManager.minimapVisual.GetRoomStateVisual(roomState);
+        _spriteRenderer.sprite = _visualManager.GetRoomSprite(roomState);
         
         isStartRoomVisual.SetActive(isStartRoom);
     }

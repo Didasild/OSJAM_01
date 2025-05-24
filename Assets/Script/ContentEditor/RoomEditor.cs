@@ -39,7 +39,7 @@ public class RoomEditor : MonoBehaviour
     [Header("____DEBUG")]
     public float cellSpacing = 1.0f;                  // Espacement entre les cellules
     public GameObject cellPrefab;                   // Prefab de la cellule
-    [FormerlySerializedAs("cellVisualManager")] public VisualManager visualManager;
+    public VisualEditorManager visualManager;
     [ReadOnly] public List<CellEditor> selectedCells;
     [ReadOnly] public List<CellEditor> cells;
     public string roomSaveString;

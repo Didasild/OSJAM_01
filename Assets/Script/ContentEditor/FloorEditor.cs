@@ -29,7 +29,7 @@ public class FloorEditor : MonoBehaviour
     
     [Header("____SETUP")]
     public RoomEditor roomEditor;
-    public VisualManager visualManager;
+    public VisualEditorManager visualEditorManager;
     public RoomEditorObject roomEditorObjectPrefab;
     public float roomOffset;
 

@@ -36,7 +36,7 @@ public class CellEditor : MonoBehaviour
     public Vector2Int cellPosition; // La position dans la grille
     
     //PRIVATE
-    private VisualManager _visualManager;
+    private VisualEditorManager _visualManager;
     #endregion VARIABLES
 
     #region "ON" FUNCTIONS
@@ -58,7 +58,7 @@ public class CellEditor : MonoBehaviour
     #endregion "ON" FUNCTIONS
 
     #region INIT
-    public void Initialize(VisualManager visualManager)
+    public void Initialize(VisualEditorManager visualManager)
     {
         gameObject.name = $"Cell ({cellState}, {cellType})";
         _visualManager = visualManager;
@@ -136,7 +136,7 @@ public class CellEditor : MonoBehaviour
                 cellTypeVisual.sprite = _visualManager.mineIconSprite;
                 break;
             case CellType.Gate:
-                cellTypeVisual.sprite = _visualManager.stairType;
+                cellTypeVisual.sprite = _visualManager.stairSprite;
                 break;
             case CellType.Hint:
 
