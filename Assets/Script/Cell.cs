@@ -626,7 +626,9 @@ public class Cell : MonoBehaviour
         //Récupère le nombre de drapeaux et de mines autour
         int neighborsFlagged = GetNeighborsState(CellState.Flag);
         int neighborsMine = GetNeighborsType(CellType.Mine);
+        
         int neighborsState = GetNeighborsState(CellState.Cover) + GetNeighborsState(CellState.Clicked);
+        
         if (currentType == CellType.Hint && neighborsFlagged == neighborsMine && neighborsState > 0)
         {
             return true;
