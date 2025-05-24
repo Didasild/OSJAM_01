@@ -331,6 +331,12 @@ public class Cell : MonoBehaviour
             case CellType.Item:
                 ItemType();
                 break;
+            
+            case CellType.Npc:
+                break;
+            
+            default:
+                throw new ArgumentOutOfRangeException("Invalid cell type");
         }
         
         UpdateOverableBool();

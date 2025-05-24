@@ -7496,15 +7496,6 @@ MonoBehaviour:
   flagInAnimation: {fileID: 1499444410457814521, guid: f7ef07e33d9da144989b5eafc0036a21, type: 3}
   minimapVisual: {fileID: 1757400706}
   globalColorSettings: {fileID: 0}
-  inEditorScene: 0
-  potionSprite: {fileID: 0}
-  swordSprite: {fileID: 0}
-  flagSprite: {fileID: 0}
-  plantedSwordSprite: {fileID: 0}
-  stairType: {fileID: 0}
-  coverSprite: {fileID: 0}
-  revealSprite: {fileID: 0}
-  mineIconSprite: {fileID: 0}
 --- !u!4 &936060483
 Transform:
   m_ObjectHideFlags: 0
@@ -10219,6 +10210,10 @@ MonoBehaviour:
     cellType: 1
   - cellState: 0
     cellType: 0
+  - cellState: 0
+    cellType: 4
+  - cellState: 0
+    cellType: 3
   - cellState: 1
     cellType: 4
   - cellState: 1
