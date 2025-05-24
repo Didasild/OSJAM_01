@@ -304,6 +304,7 @@ public class GridManager : MonoBehaviour
             "Ga" => CellType.Gate,
             "It" => CellType.Item,
             "No" => CellType.None,
+            "Np" => CellType.Npc,
             _ => throw new ArgumentException($"Abréviation inconnue : {abbreviation}")
         };
     }
