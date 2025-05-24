@@ -17589,7 +17589,7 @@ MonoBehaviour:
   - {fileID: 1660512395}
   - {fileID: 854449701}
   - {fileID: 1950003118}
-  isSelected: 1
+  isSelected: 0
   cellPosition: {x: 0, y: 0}
 --- !u!4 &539410893
 Transform:

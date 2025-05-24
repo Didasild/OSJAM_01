@@ -21,7 +21,6 @@ public class FullScreenFeedbackController : MonoBehaviour
     }
     public void HitFeedback()
     {
-        Debug.Log("Hit Feedback");
         _fullScreenMaterial.SetFloat(_spikeDissolve, 0);
         _visualManager.FadeProperty(_fullScreenMaterial, _spikeDissolve, 0.5f, 0.05f, 0f, Ease.OutBounce);
         _visualManager.FadeProperty(_fullScreenMaterial, _spikeDissolve, 0f, 1f, 0.05f);
