@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Debug_Floor_L_SHI_00
   m_EditorClassIdentifier: 
   proceduralFloor: 0
-  floorBaseVolumeProfile: {fileID: 11400000, guid: fadeb7ff8ece8d8499d76cc30a4a8d36, type: 2}
+  floorBaseVolumeProfile: {fileID: 11400000, guid: d252c52afd5c5ff47984d4f563ce4ade, type: 2}
   minGridSize: {x: 2, y: 2}
   maxGridSize: {x: 4, y: 4}
   roomSettingsList: []
@@ -24,7 +24,7 @@ MonoBehaviour:
     roomPosition: {x: 1, y: 0}
     roomCondition: 0
   - startRoom: 0
-    initRoomSettings: {fileID: 11400000, guid: d69055cab6f0778419223d81d87579d1, type: 2}
+    initRoomSettings: {fileID: 11400000, guid: 99e807077f94a4b45a4f451e8cff396b, type: 2}
     currentRoomState: 0
     roomPosition: {x: 1, y: 1}
     roomCondition: 0

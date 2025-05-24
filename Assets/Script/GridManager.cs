@@ -67,7 +67,7 @@ public class GridManager : MonoBehaviour
             Cell cellToDefine = cell.GetComponent<Cell>();
             cellToDefine.ChangeType(CellType.Empty);
         }
-        //Set mines
+        //Set mines et les none
         SetCellType(GameManager.Instance.currentRoomSettings.roomPourcentageOfMine, CellType.Mine, cellList);
         SetCellType(GameManager.Instance.currentRoomSettings.roomPourcentageOfNone, CellType.None, cellList);
 

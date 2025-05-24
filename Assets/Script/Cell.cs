@@ -353,6 +353,7 @@ public class Cell : MonoBehaviour
         
         cellEmpty.SetActive(false);
         cellCover.SetActive(false);
+        cellOutline.SetActive(false);
         
         //ATTENTION QUAND JE FERAIS LE POOL IL FAUT CHANGER CA
         Destroy(_collider);
