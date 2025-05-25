@@ -129,7 +129,7 @@ public class RoomData : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
         else
         {
             roomOverVisual.gameObject.SetActive(true);
-            TooltipController.ShowTooltip(tooltiGoToText);
+            TooltipController.ShowTooltip(tooltiGoToText + roomPosition);
         }
     }
 
