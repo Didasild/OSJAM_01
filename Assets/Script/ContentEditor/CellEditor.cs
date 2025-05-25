@@ -16,6 +16,10 @@ public class CellEditor : MonoBehaviour
     public ItemTypeEnum itemType;
     public bool proceduralCell;
     
+    [Header("NPC PARAMETERS")]
+    public NPCSettings npcSettings;
+    public DialogSequence dialogSequenceOverride;
+    
     [Header("DEBUG / SETUP")]
     public bool showSetupElements = false;
     [ShowIf("showSetupElements")] public SpriteRenderer cellStateVisual;
@@ -143,6 +147,9 @@ public class CellEditor : MonoBehaviour
                 break;
             case CellType.Item:
                 UpdateItemVisual(itemType);
+                break;
+            case CellType.Npc:
+                cellTypeVisual.sprite = _visualManager.npcSprite;
                 break;
         }
 

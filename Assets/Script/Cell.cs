@@ -114,7 +114,7 @@ public class Cell : MonoBehaviour
                 numberOfNeighborsMine += 1;
             }
         }
-        if (currentType == CellType.Mine || currentType == CellType.Item || currentType == CellType.Gate)
+        if (currentType == CellType.Mine || currentType == CellType.Item || currentType == CellType.Gate || currentType == CellType.Npc)
         {
             numberVisual.sprite = null;
         }
@@ -333,6 +333,7 @@ public class Cell : MonoBehaviour
                 break;
             
             case CellType.Npc:
+                NpcType();
                 break;
             
             default:
@@ -381,6 +382,12 @@ public class Cell : MonoBehaviour
     }
 
     private void ItemType()
+    {
+        cellEmpty.SetActive(true);
+        typeVisual.sprite = _visualManager.GetCellTypeVisual(currentType);
+    }
+
+    private void NpcType()
     {
         cellEmpty.SetActive(true);
         typeVisual.sprite = _visualManager.GetCellTypeVisual(currentType);

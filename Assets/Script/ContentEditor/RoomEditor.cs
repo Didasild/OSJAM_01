@@ -162,12 +162,7 @@ public class RoomEditor : MonoBehaviour
                 itemRanges  = new List<RoomSettings.ItemRange>();
                 foreach (var itemRange in roomSettingsToLoad.itemRanges)
                 {
-                   itemRanges.Add(new RoomSettings.ItemRange
-                   {
-                       itemType = itemRange.itemType,
-                       min = itemRange.min,
-                       max = itemRange.max,
-                   });
+                   itemRanges.Add(new RoomSettings.ItemRange {itemType = itemRange.itemType, min = itemRange.min, max = itemRange.max});
                 }
                 haveStair = roomSettingsToLoad.haveStair;
                 pourcentageOfRandomMine = roomSettingsToLoad.roomPourcentageOfMine;
@@ -180,6 +175,19 @@ public class RoomEditor : MonoBehaviour
             {
                 cellEditor.cellPosition = new Vector2Int(row, col);
                 cellEditor.Initialize(visualManager);
+            }
+
+            if (cellEditor.cellType == CellType.Npc)
+            {
+                foreach (var npcData in roomSettingsToLoad.npcDatas)
+                {
+                    if (npcData.npcPosition == cellEditor.cellPosition)
+                    {
+                        cellEditor.npcSettings = npcData.npcSettings;
+                        cellEditor.dialogSequenceOverride = npcData.dialogSequenceOverride;
+                        break;
+                    }
+                }
             }
             
             //Update les infos de save de l'inspector
@@ -465,32 +473,7 @@ public class RoomEditor : MonoBehaviour
         GenerateHintCells();
         ClearCellsData();
         SetRoomSetting(roomSettingsToSave);
-        // A CHECK ET DELETE
-        // roomSettingsToSave.mandatory = isMandatory;
-        // roomSettingsToSave.roomType = roomType;
-        // roomSettingsToSave.roomIDString = SaveRoomString();
-        // roomSettingsToLoad.proceduralRoom = false;
-        // if (isRoomSemiProcedural())
-        // {
-        //     roomSettingsToSave.haveProceduralCells = true;
-        //     roomSettingsToSave.haveStair = haveStair;
-        //     roomSettingsToSave.roomPourcentageOfMine = pourcentageOfRandomMine;
-        //     // Copie profonde de la liste itemRanges
-        //     roomSettingsToSave.itemRanges = new List<RoomSettings.ItemRange>();
-        //     foreach (var itemRange in itemRanges)
-        //     {
-        //         roomSettingsToSave.itemRanges.Add(new RoomSettings.ItemRange
-        //         {
-        //             itemType = itemRange.itemType,
-        //             min = itemRange.min,
-        //             max = itemRange.max
-        //         });
-        //     }
-        // }
-        // else
-        // {
-        //     roomSettingsToSave.haveProceduralCells = false;
-        // }
+
         EditorUtility.FocusProjectWindow();
         EditorUtility.SetDirty(roomSettingsToSave);
     }
@@ -548,19 +531,23 @@ public class RoomEditor : MonoBehaviour
             roomSettings.itemRanges = new List<RoomSettings.ItemRange>();
             foreach (var itemRange in itemRanges)
             {
-                roomSettings.itemRanges.Add(new RoomSettings.ItemRange
-                {
-                    itemType = itemRange.itemType,
-                    min = itemRange.min,
-                    max = itemRange.max
-                });
+                roomSettings.itemRanges.Add(new RoomSettings.ItemRange { itemType = itemRange.itemType, min = itemRange.min, max = itemRange.max });
             }
         }
         else
         {
             roomSettings.haveProceduralCells = false;
         }
-        
+
+        if (!containNpc()) return;
+        roomSettings.npcDatas = new List<RoomSettings.NpcData>();
+        foreach (CellEditor cell in cells)
+        {
+            if (cell.cellType == CellType.Npc)
+            {
+                roomSettings.npcDatas.Add(new RoomSettings.NpcData {npcPosition = cell.cellPosition, npcSettings = cell.npcSettings, dialogSequenceOverride = cell.dialogSequenceOverride});
+            }
+        }
     }
     #endregion SAVE FUNCTIONS
 
@@ -731,13 +718,27 @@ public class RoomEditor : MonoBehaviour
         bool roomSemiProcedural = false;
         foreach (CellEditor cell in cells)
         {
-            if (cell.proceduralCell == true)
+            if (cell.proceduralCell)
             {
                 roomSemiProcedural = true;
                 break;
             }
         }
         return roomSemiProcedural;
+    }
+
+    private bool containNpc()
+    {
+        bool npcCell = false;
+        foreach (CellEditor cell in cells)
+        {
+            if (cell.cellType == CellType.Npc)
+            {
+                npcCell = true;
+                break;
+            }
+        }
+        return npcCell;
     }
     #endregion EDITOR FUNCTIONS
 }

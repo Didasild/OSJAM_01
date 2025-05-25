@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections.Generic;
+using NaughtyAttributes;
 using UnityEngine.Rendering;
 using UnityEngine.Serialization;
 
@@ -59,6 +60,15 @@ public class RoomSettings : ScriptableObject
         public int max;
     }
     public List<ItemRange> itemRanges;
+    
+    [System.Serializable]
+    public struct NpcData
+    {
+        public Vector2Int npcPosition;
+        public NPCSettings npcSettings;
+        public DialogSequence dialogSequenceOverride;
+    }
+    public List<NpcData> npcDatas;
     #endregion
 
     #region PROCEDURAL GET INFOS

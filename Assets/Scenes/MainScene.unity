@@ -10202,8 +10202,6 @@ MonoBehaviour:
   mousePosition: {x: 0, y: 0}
   cursorScript: {fileID: 0}
   IsOverConditions:
-  - cellState: 1
-    cellType: 2
   - cellState: 0
     cellType: 2
   - cellState: 0
@@ -10214,10 +10212,16 @@ MonoBehaviour:
     cellType: 4
   - cellState: 0
     cellType: 3
+  - cellState: 0
+    cellType: 6
   - cellState: 1
     cellType: 4
   - cellState: 1
     cellType: 3
+  - cellState: 1
+    cellType: 6
+  - cellState: 1
+    cellType: 2
   - cellState: 4
     cellType: 1
   - cellState: 4
@@ -10226,6 +10230,8 @@ MonoBehaviour:
     cellType: 0
   - cellState: 4
     cellType: 4
+  - cellState: 4
+    cellType: 6
   - cellState: 5
     cellType: 0
   - cellState: 5
@@ -10234,6 +10240,8 @@ MonoBehaviour:
     cellType: 2
   - cellState: 5
     cellType: 4
+  - cellState: 5
+    cellType: 6
   cellOver: {fileID: 0}
 --- !u!4 &1365082115
 Transform:

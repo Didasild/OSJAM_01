@@ -9,6 +9,7 @@ public class RoomSettingsInspector : Editor
     #region VARIABLES
     // Serialized Properties
     SerializedProperty itemGenerationProperty;
+    SerializedProperty npcDataProperty;
     
     //Bool Sections
     private bool _debugSection;
@@ -26,6 +27,7 @@ public class RoomSettingsInspector : Editor
     void OnEnable()
     {
         itemGenerationProperty = serializedObject.FindProperty("itemRanges");
+        npcDataProperty = serializedObject.FindProperty("npcDatas");
     }
     public override void OnInspectorGUI()
     {
@@ -69,10 +71,18 @@ public class RoomSettingsInspector : Editor
                 _roomSettings.roomIDString = EditorGUILayout.TextField("Room ID String", _roomSettings.roomIDString);
                 _roomSettings.haveProceduralCells = EditorGUILayout.Toggle("Have Procedural Cells", _roomSettings.haveProceduralCells);
             }
+            
             GUI.enabled = false;
             EditorGUILayout.TextField("VISUAL SETTINGS", centeredStyle);
             GUI.enabled = true;
             _roomSettings.roomVolumeProfile = (VolumeProfile)EditorGUILayout.ObjectField("Room Color Palette", _roomSettings.roomVolumeProfile, typeof(VolumeProfile), false);
+            EditorGUILayout.Space(_smallSpacing);
+            
+            GUI.enabled = false;
+            EditorGUILayout.TextField("NPC SETTINGS", centeredStyle);
+            GUI.enabled = true;
+            EditorGUILayout.LabelField("NPC SETTINGS", EditorStyles.boldLabel);
+            EditorGUILayout.PropertyField(npcDataProperty);
             EditorGUILayout.Space(_smallSpacing);
         }
         #endregion GENERAL

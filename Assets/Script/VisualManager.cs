@@ -129,6 +129,11 @@ public class VisualManager : MonoBehaviour
         {
             cellTypeVisual = GetSprite("Cell_Type_Stair");
         }
+
+        if (cellType == CellType.Npc)
+        {
+            cellTypeVisual = GetSprite("Cell_Type_Npc");
+        }
         return cellTypeVisual;
     }
 

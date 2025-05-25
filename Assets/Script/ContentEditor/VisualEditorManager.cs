@@ -15,6 +15,7 @@ public class VisualEditorManager : VisualManager
     public Sprite flagSprite;
     public Sprite plantedSwordSprite;
     public Sprite stairSprite;
+    public Sprite npcSprite;
 
     [Header("FLOOR EDITOR VISUAL")] 
     public Sprite fowRoom;
