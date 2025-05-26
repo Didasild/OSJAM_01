@@ -114,7 +114,7 @@ public class Cell : MonoBehaviour
                 numberOfNeighborsMine += 1;
             }
         }
-        if (currentType == CellType.Mine || currentType == CellType.Item || currentType == CellType.Gate)
+        if (currentType == CellType.Mine || currentType == CellType.Item || currentType == CellType.Gate || currentType == CellType.Npc)
         {
             numberVisual.sprite = null;
         }
@@ -331,6 +331,13 @@ public class Cell : MonoBehaviour
             case CellType.Item:
                 ItemType();
                 break;
+            
+            case CellType.Npc:
+                NpcType();
+                break;
+            
+            default:
+                throw new ArgumentOutOfRangeException("Invalid cell type");
         }
         
         UpdateOverableBool();
@@ -353,6 +360,7 @@ public class Cell : MonoBehaviour
         
         cellEmpty.SetActive(false);
         cellCover.SetActive(false);
+        cellOutline.SetActive(false);
         
         //ATTENTION QUAND JE FERAIS LE POOL IL FAUT CHANGER CA
         Destroy(_collider);
@@ -374,6 +382,12 @@ public class Cell : MonoBehaviour
     }
 
     private void ItemType()
+    {
+        cellEmpty.SetActive(true);
+        typeVisual.sprite = _visualManager.GetCellTypeVisual(currentType);
+    }
+
+    private void NpcType()
     {
         cellEmpty.SetActive(true);
         typeVisual.sprite = _visualManager.GetCellTypeVisual(currentType);
@@ -625,7 +639,9 @@ public class Cell : MonoBehaviour
         //Récupère le nombre de drapeaux et de mines autour
         int neighborsFlagged = GetNeighborsState(CellState.Flag);
         int neighborsMine = GetNeighborsType(CellType.Mine);
+        
         int neighborsState = GetNeighborsState(CellState.Cover) + GetNeighborsState(CellState.Clicked);
+        
         if (currentType == CellType.Hint && neighborsFlagged == neighborsMine && neighborsState > 0)
         {
             return true;

@@ -64,27 +64,6 @@ public class VisualManager : MonoBehaviour
     
     private Tweener _currentWeightTween;
     private bool _roomTransitionComplete;
-
-    #region EDITOR ONLY PARAMETERS
-    [Header("_______EDITOR")] 
-    public bool inEditorScene;
-    [Header("_______CELL VISUAL")]
-    [Header("ITEMS VISUAL")]
-    [ShowIf("inEditorScene")] public Sprite potionSprite;
-    [ShowIf("inEditorScene")] public Sprite swordSprite;
-
-    [Header("CELL STATE VISUAL")]
-    [ShowIf("inEditorScene")]public Sprite flagSprite;
-    [ShowIf("inEditorScene")]public Sprite plantedSwordSprite;
-
-    [Header("CELL TYPE VISUAL")]
-    [ShowIf("inEditorScene")]public Sprite stairType;
-    
-    [Header("_______CELL EDITOR VISUAL")] 
-    [ShowIf("inEditorScene")] public Sprite coverSprite;
-    [ShowIf("inEditorScene")] public Sprite revealSprite;
-    [ShowIf("inEditorScene")] public Sprite mineIconSprite;
-    #endregion EDITOR ONLY PARAMETERS
     #endregion
 
     #region INIT
@@ -112,6 +91,7 @@ public class VisualManager : MonoBehaviour
         roomAmbianceController.Init(this);
     }
     
+    [Button]
     private void LoadSprites()
     {
         sprites = new Sprite[spriteAtlas.spriteCount];
@@ -148,6 +128,11 @@ public class VisualManager : MonoBehaviour
         if (cellType == CellType.Gate)
         {
             cellTypeVisual = GetSprite("Cell_Type_Stair");
+        }
+
+        if (cellType == CellType.Npc)
+        {
+            cellTypeVisual = GetSprite("Cell_Type_Npc");
         }
         return cellTypeVisual;
     }

@@ -14,13 +14,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   proceduralRoom: 1
   mandatory: 0
+  isFoW: 0
   roomType: 0
+  roomVolumeProfile: {fileID: 0}
   roomIDString: 
   haveProceduralCells: 0
-  minRoomSize: {x: 5, y: 5}
+  minRoomSize: {x: 7, y: 7}
   maxRoomSize: {x: 10, y: 10}
   roomPourcentageOfMine: 13
-  roomPourcentageOfNone: 0
+  roomPourcentageOfNone: 15
   haveStair: 0
   itemRanges:
   - itemType: 1
