@@ -109,7 +109,6 @@ public class Player : MonoBehaviour
             {
                 ClickOnRevealHintCell(_cellClicked);
             }
-
             if (_cellClicked.currentState == CellState.Cover)
             {
                 ClickOnCoverCell(_cellClicked);
@@ -129,6 +128,10 @@ public class Player : MonoBehaviour
             else if (_cellClicked.currentItemType == ItemTypeEnum.Sword)
             {
                 ClickOnItemCell(_cellClicked, ItemTypeEnum.Sword);
+            }
+            else if (_cellClicked.currentType == CellType.Npc)
+            {
+                ClickOnNPCCell(_cellClicked);
             }
             //Update le compteur de mines restantes
             _gridManager.UpdateMineCounter();
@@ -321,6 +324,18 @@ public class Player : MonoBehaviour
         cellClicked.ChangeType(CellType.Empty);
         cellClicked.ChangeItemType(ItemTypeEnum.None);
         cellClicked.UpdateRegardingNeighbors();
+    }
+
+    private void ClickOnNPCCell(Cell cellClicked)
+    {
+        foreach (RoomSettings.NpcData npcData in GameManager.Instance.currentRoomSettings.npcDatas)
+        {
+            if (npcData.npcPosition == cellClicked._cellPosition)
+            {
+                GameManager.Instance.Dialog.StartDialogSequence(npcData.npcSettings);
+                return;
+            }
+        }
     }
 
     private void SwitchCellsToClickedState()

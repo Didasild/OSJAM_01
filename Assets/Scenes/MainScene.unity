@@ -4112,6 +4112,7 @@ GameObject:
   m_Component:
   - component: {fileID: 494901397}
   - component: {fileID: 494901398}
+  - component: {fileID: 494901399}
   m_Layer: 0
   m_Name: DialogBox
   m_TagString: Untagged
@@ -4153,6 +4154,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: faeb33b19be4b0b44a57f82f23ea2a0e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _dialogVisual: {fileID: 494901399}
+--- !u!114 &494901399
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 494901396}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 03f8bde705f9c83418c6df481d9eccab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  characterName: {fileID: 606272048}
+  dialogText: {fileID: 503166839}
 --- !u!1 &503166837
 GameObject:
   m_ObjectHideFlags: 0
@@ -4188,8 +4204,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 40, y: -5}
-  m_SizeDelta: {x: 555, y: 50}
+  m_AnchoredPosition: {x: 40, y: 1.6163}
+  m_SizeDelta: {x: 555, y: 63.2326}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &503166839
 MonoBehaviour:
@@ -4211,8 +4227,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: LOREM IPSUM DOLOR SIT AMET, CONSECTETUER ADIPISCING ELIT. SED NON RISUS.
-    SUSPENDISSE LECTUS TORTOR, DIGNISSIM SIT AMET, ADIPISCING NEC, ULTRICIES SED,
+  m_text: 'LOREM IPSUM DOLOR SIT AMET, CONSECTETUER ADIPISCING ELIT. SED NON RISUS.
+    SUSPENDISSE LECTUS TORTOR, DIGNISSIM SIT AMET, ADIPISCING NEC, '
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 0e182ac2fc51c2f4fb9f8dc5bc1d89b7, type: 2}
   m_sharedMaterial: {fileID: -8865066032074193363, guid: 0e182ac2fc51c2f4fb9f8dc5bc1d89b7, type: 2}
@@ -4245,9 +4261,9 @@ MonoBehaviour:
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
-  m_fontStyle: 0
+  m_fontStyle: 1
   m_HorizontalAlignment: 1
-  m_VerticalAlignment: 256
+  m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
   m_wordSpacing: 0
@@ -5017,8 +5033,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 260, y: 40}
-  m_SizeDelta: {x: 400, y: 50}
+  m_AnchoredPosition: {x: 265.64575, y: 40}
+  m_SizeDelta: {x: 388.7086, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &606272047
 MonoBehaviour:
@@ -5053,7 +5069,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: ' Character Name'
+  m_text: J
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: b73111e90464b4448b0c23e6cb54ad61, type: 2}
   m_sharedMaterial: {fileID: 6342534701799547323, guid: b73111e90464b4448b0c23e6cb54ad61, type: 2}

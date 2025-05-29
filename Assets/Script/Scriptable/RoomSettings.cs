@@ -66,7 +66,6 @@ public class RoomSettings : ScriptableObject
     {
         public Vector2Int npcPosition;
         public NPCSettings npcSettings;
-        public DialogSequence dialogSequenceOverride;
     }
     public List<NpcData> npcDatas;
     #endregion

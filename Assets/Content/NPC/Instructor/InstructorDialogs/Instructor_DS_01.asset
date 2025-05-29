@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: Instructor_DS_01
   m_EditorClassIdentifier: 
   dialogSequence:
-  - Hello you!
-  - I'm your instructor!
-  - Good Bye...
+  - HELLO YOU!
+  - I'M YOUR INSTRUCTOR
+  - GOOD BYE...
