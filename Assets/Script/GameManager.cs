@@ -43,7 +43,7 @@ public class GameManager : MonoBehaviour
     [FormerlySerializedAs("_CellVisualManager")] [SerializeField] private VisualManager _visualManager;
     
 
-    //Singleton
+    //GETTER
     private static GameManager _instance;
     public static GameManager Instance => _instance;
     public static VisualManager visualManager => _instance._visualManager;
@@ -58,7 +58,6 @@ public class GameManager : MonoBehaviour
     {
         _instance = this;
         
-        //roomVisualManager.Init();
         visualManager.Init(this);
         _player.Init(this);
         _dialog.Init(this);
@@ -145,6 +144,7 @@ public class GameManager : MonoBehaviour
     #endregion GAME STATE
 
     #region ROOM AND FLOOR MANAGEMENT
+    //A DÉPLACER DANS FLOOR MANAGER
     public void ChangeRoom(RoomData roomData)
     {
         currentRoomSettings = roomData.initRoomSettings;
