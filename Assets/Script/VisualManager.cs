@@ -67,7 +67,7 @@ public class VisualManager : MonoBehaviour
     #endregion
 
     #region INIT
-    public void Init()
+    public void Init(GameManager manager)
     {
         if (mainColorsVolume.profile.TryGet(out globalColorSettings)) { }
         LoadSprites();
@@ -80,8 +80,8 @@ public class VisualManager : MonoBehaviour
         _roomIDRawRenderer = roomID_Raw.GetComponent<SpriteRenderer>();
         _roomIDColRenderer = roomID_Col.GetComponent<SpriteRenderer>();
         
-        _gameManager = GameManager.Instance;
-        _gridManager = GameManager.Instance.gridManager;
+        _gameManager = manager;
+        _gridManager = manager.gridManager;
         DOTween.SetTweensCapacity(1000, 500);
         
         centralFeedbackController.Init(this);

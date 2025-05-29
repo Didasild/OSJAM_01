@@ -37,14 +37,19 @@ public class GameManager : MonoBehaviour
 
     [Header("REFERENCES")]
     public GameObject endScreenUI;
-    public Player player;
+    
+    [SerializeField] private Player _player;
+    [SerializeField] private Dialog _dialog;
+    [FormerlySerializedAs("_CellVisualManager")] [SerializeField] private VisualManager _visualManager;
+    
 
     //Singleton
     private static GameManager _instance;
     public static GameManager Instance => _instance;
-    [FormerlySerializedAs("_CellVisualManager")] [SerializeField] private VisualManager _visualManager;
     public static VisualManager visualManager => _instance._visualManager;
-    
+    public Player Player => _player;
+    public Dialog Dialog => _dialog;
+
     
     #endregion PARAMETERS
 
@@ -54,9 +59,9 @@ public class GameManager : MonoBehaviour
         _instance = this;
         
         //roomVisualManager.Init();
-        visualManager.Init();
-        
-        player.Init();
+        visualManager.Init(this);
+        _player.Init(this);
+        _dialog.Init(this);
         floorManager.Init();
     }
 
@@ -115,8 +120,8 @@ public class GameManager : MonoBehaviour
             }
             
             //Reset les data
-            player.ResetHealthPoint();
-            player.ResetClickCounter();
+            _player.ResetHealthPoint();
+            _player.ResetClickCounter();
         }
         else
         {

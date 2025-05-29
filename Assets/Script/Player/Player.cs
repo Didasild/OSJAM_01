@@ -27,7 +27,7 @@ public class Player : MonoBehaviour
     [ReadOnly] public int clicCounter;
     [ReadOnly] public Vector2 mousePosition;
     
-    [HideInInspector] public CustomCursor cursorScript;
+    [HideInInspector] private CustomCursor _cursorScript;
     
     [Serializable]
     public struct IsOverCondition
@@ -45,12 +45,12 @@ public class Player : MonoBehaviour
     private GridManager _gridManager;
     #endregion
 
-    public void Init()
+    public void Init(GameManager manager)
     {
-        _gridManager = GameManager.Instance.gridManager;
+        _gridManager = manager.gridManager;
         
-        cursorScript = gameObject.GetComponent<CustomCursor>();
-        cursorScript.Init();
+        _cursorScript = gameObject.GetComponent<CustomCursor>();
+        _cursorScript.Init();
     }
     private void Update()
     {
@@ -76,7 +76,7 @@ public class Player : MonoBehaviour
                 cellOver.IsOver(true);
                 OverRevealablNeighborsCells(cellOver);
                 
-                cursorScript.tooltipController.CheckCellTooltip(cellOver);
+                _cursorScript.tooltipController.CheckCellTooltip(cellOver);
             }
         }
         else

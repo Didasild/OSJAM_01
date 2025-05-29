@@ -84,7 +84,7 @@ public class Cell : MonoBehaviour
     public void Initialize(Vector2Int cellPosition)
     {
         _gameManager = GameManager.Instance;
-        _player = _gameManager.player;
+        _player = _gameManager.Player;
         
         _visualManager = GameManager.visualManager;
         
@@ -511,7 +511,7 @@ public class Cell : MonoBehaviour
     }
     public void MineExplosion()
     {
-        GameManager.Instance.player.DecreaseHealth(1);
+        GameManager.Instance.Player.DecreaseHealth(1);
         _visualManager.PlayHitFeedbacks();
         StartCoroutine(CO_MineDestruction(_visualManager.mineExplosionAnimation, 1.4f));
     }
