@@ -41,7 +41,15 @@ public class Dialog : MonoBehaviour
 
     private void UpdateDialogText(string dialogText)
     {
-        _dialogVisual.dialogText.text = dialogText;
+        if (dialogText != null)
+        {
+            _dialogVisual.dialogText.text = dialogText;
+        }
+        else
+        {
+            Debug.LogError("Dialog is null");
+        }
+
     }
 
     private void ClearDialogBox()
