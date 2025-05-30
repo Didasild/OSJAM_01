@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using NaughtyAttributes;
 using UnityEngine.Serialization;
 
 #region ENUMS
@@ -17,32 +18,25 @@ public class GameManager : MonoBehaviour
 {
     #region PARAMETERS
     [Header("INFORMATIONS STATE")]
-    [NaughtyAttributes.ReadOnly]
-    public GameState currentGameState;
+    [ReadOnly] public GameState currentGameState;
     public Chapters currentChapter;
     public List<ChapterSettings> chaptersList = new List<ChapterSettings>();
-    [NaughtyAttributes.ReadOnly]
-    public ChapterSettings currentChapterSettings;
+    [ReadOnly] public ChapterSettings currentChapterSettings;
 
     [Header("FLOOR ELEMENTS")]
     public TMP_Text floorLevelText;
-    [NaughtyAttributes.ReadOnly]
-    public int currentFloorLevel;
-    [NaughtyAttributes.ReadOnly]
-    public RoomSettings currentRoomSettings;
+    [ReadOnly] public int currentFloorLevel;
+    [ReadOnly] public RoomSettings currentRoomSettings;
 
     [Header("MANAGER REFERENCES")]
     [SerializeField] private FloorManager _floorManager;
     [SerializeField] private GridManager _gridManager;
+    [SerializeField] private VisualManager _visualManager;
     [SerializeField] private Player _player;
     [SerializeField] private Dialog _dialog;
 
-    [Header("REFERENCES")]
+    [Header("UI REFERENCES")]
     public GameObject endScreenUI;
-    
-
-    [FormerlySerializedAs("_CellVisualManager")] [SerializeField] private VisualManager _visualManager;
-    
 
     //GETTER
     private static GameManager _instance;
