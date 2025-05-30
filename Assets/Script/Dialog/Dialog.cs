@@ -87,6 +87,11 @@ public class Dialog : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, 
         _dialogVisual.dialogText.text = "";
         _dialogVisual.characterName.text = "";
     }
+
+    public void DebugTypeWriterEvents()
+    {
+        Debug.Log("DebugTypeWriterEvents");
+    }
     #endregion METHODS
     
     #region POINTER
