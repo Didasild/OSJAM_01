@@ -12,16 +12,15 @@ public class NPCSettings : ScriptableObject
         DialogSequence dialogSequence;
     }
     List<DialogStates> dialogStates;
-    
-    
-    public string npcName;
-    public string npcDescription;
     public enum NPCState
     {
         active,
         inactive,
         waitingForTrigger,
     }
+    
+    public string npcName;
+    public string npcDescription;
     
     [HideInInspector] public Sprite npcGridCustomIcon;
     [HideInInspector] public Image npcDialogBoxImage;
@@ -30,7 +29,7 @@ public class NPCSettings : ScriptableObject
 
     public DialogSequence GetDialogSequence()
     {
-        DialogSequence sequence = new DialogSequence();
+        DialogSequence sequence = CreateInstance<DialogSequence>();
         sequence = baseDialogSequence;
         return sequence;
     }

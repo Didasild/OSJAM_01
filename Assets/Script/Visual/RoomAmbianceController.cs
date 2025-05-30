@@ -36,9 +36,9 @@ public class RoomAmbianceController : MonoBehaviour
             }
             transitionColorsVolume.profile = roomProfile;
         }
-        else if (_gameManager.floorManager.currentFloorSetting.floorBaseVolumeProfile != null)
+        else if (_gameManager.FloorManager.currentFloorSetting.floorBaseVolumeProfile != null)
         {
-            transitionColorsVolume.profile = _gameManager.floorManager.currentFloorSetting.floorBaseVolumeProfile;
+            transitionColorsVolume.profile = _gameManager.FloorManager.currentFloorSetting.floorBaseVolumeProfile;
         }
         else
         {

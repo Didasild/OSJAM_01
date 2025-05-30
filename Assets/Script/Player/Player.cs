@@ -47,7 +47,7 @@ public class Player : MonoBehaviour
 
     public void Init(GameManager manager)
     {
-        _gridManager = manager.gridManager;
+        _gridManager = manager.GridManager;
         
         _cursorScript = gameObject.GetComponent<CustomCursor>();
         _cursorScript.Init();
@@ -135,7 +135,7 @@ public class Player : MonoBehaviour
             }
             //Update le compteur de mines restantes
             _gridManager.UpdateMineCounter();
-            _gridManager.CheckRoomCompletion(GameManager.Instance.floorManager.currentRoom.roomCondition);
+            _gridManager.CheckRoomCompletion(GameManager.Instance.FloorManager.currentRoom.roomCondition);
             ResetClickedState();
         }
 

@@ -274,7 +274,7 @@ public class GridManager : MonoBehaviour
         }
         cellMineList = GetCellsByType(CellType.Mine);
         SetCellsVisuals();
-        GameManager.visualManager.ActiveListOfCells(timeBetweenApparition, GameManager.Instance.floorManager.currentRoom.currentRoomState);
+        GameManager.visualManager.ActiveListOfCells(timeBetweenApparition, GameManager.Instance.FloorManager.currentRoom.currentRoomState);
     }
 
     public static CellState GetStateFromAbbreviation(string abbreviation)
@@ -392,7 +392,7 @@ public class GridManager : MonoBehaviour
     #region ROOM COMPLETION CHECK
     public void CheckRoomCompletion(RoomCompletionCondition roomCondition)
     {
-        if (GameManager.Instance.floorManager.currentRoom.currentRoomState == RoomState.Complete)
+        if (GameManager.Instance.FloorManager.currentRoom.currentRoomState == RoomState.Complete)
         {
             return;
         }
@@ -410,7 +410,7 @@ public class GridManager : MonoBehaviour
 
         if (switchToComplete)
         {
-            GameManager.Instance.floorManager.currentRoom.ChangeRoomSate(RoomState.Complete);
+            GameManager.Instance.FloorManager.currentRoom.ChangeRoomSate(RoomState.Complete);
             GameManager.visualManager.PlayRoomCompletionFeedbacks();
         }
     }

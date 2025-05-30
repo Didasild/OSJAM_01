@@ -28,4 +28,3 @@ MonoBehaviour:
   npcDatas:
   - npcPosition: {x: 6, y: 8}
     npcSettings: {fileID: 11400000, guid: 4d766cc141d32da468f8514e55e87825, type: 2}
-    dialogSequenceOverride: {fileID: 0}

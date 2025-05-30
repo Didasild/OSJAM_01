@@ -352,7 +352,7 @@ public class FloorManager : MonoBehaviour
     #region UTILITARY FUNCTIONS
     private void SaveRoomData()
     {
-        currentRoom.roomSavedString = GameManager.Instance.gridManager.SaveGridString();
+        currentRoom.roomSavedString = GameManager.Instance.GridManager.SaveGridString();
     }
 
     private Vector2Int GetNextRoomDirection(Vector2Int nextRoomPosition)

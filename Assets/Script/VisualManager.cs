@@ -81,7 +81,7 @@ public class VisualManager : MonoBehaviour
         _roomIDColRenderer = roomID_Col.GetComponent<SpriteRenderer>();
         
         _gameManager = manager;
-        _gridManager = manager.gridManager;
+        _gridManager = manager.GridManager;
         DOTween.SetTweensCapacity(1000, 500);
         
         centralFeedbackController.Init(this);
@@ -497,7 +497,7 @@ public class VisualManager : MonoBehaviour
         
         _RoomParentOffsetScript.ResetOffset();
         
-        GameManager.Instance.floorManager.ChangeRoomOut(nextRoom);
+        GameManager.Instance.FloorManager.ChangeRoomOut(nextRoom);
     }
 
     public void UpdateRoomID(RoomData roomData)

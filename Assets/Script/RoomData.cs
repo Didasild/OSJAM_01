@@ -44,7 +44,7 @@ public class RoomData : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     public Image roomOverVisual;
     
     [Header("TOOLTIP")]
-    public string tooltiGoToText;
+    public string tooltipGoToText;
     
     private FloorManager _floorManager;
     private Minimap _minimap;
@@ -59,7 +59,7 @@ public class RoomData : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     {
         _minimap = minimap;
         roomCondition = newRoomCondition;
-        _floorManager = GameManager.Instance.floorManager;
+        _floorManager = GameManager.Instance.FloorManager;
 
         //Setup le visuel
         _visualManager = GameManager.visualManager;
@@ -129,7 +129,7 @@ public class RoomData : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
         else
         {
             roomOverVisual.gameObject.SetActive(true);
-            TooltipController.ShowTooltip(tooltiGoToText + roomPosition);
+            TooltipController.ShowTooltip(tooltipGoToText + roomPosition);
         }
     }
 
@@ -149,7 +149,6 @@ public class RoomData : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
         {
             _floorManager.minimap.ChangeOnClickIn(this);
         }
-
     }
     #endregion POINTER
 }
