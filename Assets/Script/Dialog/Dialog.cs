@@ -6,8 +6,6 @@ public class Dialog : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, 
     #region FIELDS
     private GameManager _gameManager;
     [SerializeField] private DialogVisual _dialogVisual;
-
-    
     private RoomSettings _currentRoomSettings;
     private DialogSequence _currentDialogSequence;
     private int currentSequenceIndex;

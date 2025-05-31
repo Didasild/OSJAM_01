@@ -81,6 +81,7 @@ public class Player : MonoBehaviour
         }
         else
         {
+            cellOver = null;
             if (_previousCell != null)
             {
                 _previousCell.IsOver(false);

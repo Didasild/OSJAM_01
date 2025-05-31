@@ -5,13 +5,13 @@ using UnityEngine.UIElements;
 [CreateAssetMenu(fileName = "NPC", menuName = "MineCrawler/NPC")]
 public class NPCSettings : ScriptableObject
 {
+    //A deplacer un script plus macro
     [System.Serializable]
     public struct DialogStates
     {
         NPCState npcState;
         DialogSequence dialogSequence;
     }
-    List<DialogStates> dialogStates;
     public enum NPCState
     {
         active,
@@ -19,6 +19,7 @@ public class NPCSettings : ScriptableObject
         waitingForTrigger,
     }
     
+    List<DialogStates> dialogStates;
     public string npcName;
     public string npcDescription;
     public DialogSequence selectedSequence;
