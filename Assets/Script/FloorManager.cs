@@ -301,6 +301,7 @@ public class FloorManager : MonoBehaviour
     public void ChangeRoomIn()
     {
         SaveRoomData();
+        GameManager.Instance.Dialog.ClearDialogBox();
         _visualManager.minimapVisual.ActiveSelectedVisual(currentRoom, false);
         DisableButtons();
     }

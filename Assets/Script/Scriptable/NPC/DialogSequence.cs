@@ -5,5 +5,5 @@ using UnityEngine.Serialization;
 [CreateAssetMenu(fileName = "DialogSequence", menuName = "MineCrawler/DialogSequence")]
 public class DialogSequence : ScriptableObject
 {
-    public List<string> sequence;
+    public List<string> sentences;
 }

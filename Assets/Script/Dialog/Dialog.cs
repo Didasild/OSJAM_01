@@ -6,6 +6,8 @@ public class Dialog : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, 
     #region FIELDS
     private GameManager _gameManager;
     [SerializeField] private DialogVisual _dialogVisual;
+
+    
     private RoomSettings _currentRoomSettings;
     private DialogSequence _currentDialogSequence;
     private int currentSequenceIndex;
@@ -30,15 +32,15 @@ public class Dialog : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, 
     {
         _currentDialogSequence = npcSettings.GetDialogSequence();
         UpdateCharacterName(npcSettings.npcName);
-        if (_currentDialogSequence.sequence.Count > 0)
+        if (_currentDialogSequence.sentences.Count > 0)
         {
             currentSequenceIndex = 0;
             dialogStarted = true;
-            UpdateDialogText(_currentDialogSequence.sequence[0]);
+            UpdateDialogText(_currentDialogSequence.sentences[0]);
         }
         else
         {
-            Debug.LogError("No sequence in the DialogSequence: " + _currentDialogSequence.name);
+            Debug.LogError("No sentences in the DialogSequence: " + _currentDialogSequence.name);
         }
     }
 
@@ -47,9 +49,9 @@ public class Dialog : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, 
         if (_currentDialogSequence != null)
         {
             currentSequenceIndex++;
-            if (currentSequenceIndex < _currentDialogSequence.sequence.Count)
+            if (currentSequenceIndex < _currentDialogSequence.sentences.Count)
             {
-                UpdateDialogText(_currentDialogSequence.sequence[currentSequenceIndex]);
+                UpdateDialogText(_currentDialogSequence.sentences[currentSequenceIndex]);
             }
             else
             {
@@ -82,27 +84,26 @@ public class Dialog : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, 
         }
     }
 
-    private void ClearDialogBox()
+    public void ClearDialogBox()
     {
         _dialogVisual.dialogText.text = "";
         _dialogVisual.characterName.text = "";
-    }
-
-    public void DebugTypeWriterEvents()
-    {
-        Debug.Log("DebugTypeWriterEvents");
+        _dialogVisual.DialogBubbleFeedback.ResetBubbleSize();
     }
     #endregion METHODS
     
     #region POINTER
     public void OnPointerEnter(PointerEventData eventData)
     {
-
+        if (dialogStarted)
+        {
+            TooltipController.ShowTooltip("NEXT.");
+        }
     }
 
     public void OnPointerExit(PointerEventData eventData)
     {
-
+        TooltipController.HideTooltip();
     }
 
     public void OnPointerClick(PointerEventData eventData)

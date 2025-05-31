@@ -21,6 +21,7 @@ public class NPCSettings : ScriptableObject
     
     public string npcName;
     public string npcDescription;
+    public DialogSequence selectedSequence;
     
     [HideInInspector] public Sprite npcGridCustomIcon;
     [HideInInspector] public Image npcDialogBoxImage;
@@ -29,8 +30,7 @@ public class NPCSettings : ScriptableObject
 
     public DialogSequence GetDialogSequence()
     {
-        DialogSequence sequence = CreateInstance<DialogSequence>();
-        sequence = baseDialogSequence;
-        return sequence;
+        selectedSequence = baseDialogSequence;
+        return selectedSequence;
     }
 }

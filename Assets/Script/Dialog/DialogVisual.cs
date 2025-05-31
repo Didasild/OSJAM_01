@@ -9,10 +9,14 @@ public class DialogVisual : MonoBehaviour
     #endregion FIELDS
     
     private Dialog _dialog;
+    [SerializeField] private DialogBubbleFeedback _dialogBubbleFeedback;
+    
+    public DialogBubbleFeedback DialogBubbleFeedback => _dialogBubbleFeedback;
     
     public void Init(Dialog dialog)
     {
         _dialog = dialog;
+        _dialogBubbleFeedback.Init(this);
     }
     
 }

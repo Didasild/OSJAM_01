@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b61542930edea04bb8ff18f6eb44214, type: 3}
   m_Name: Instructor_DS_02
   m_EditorClassIdentifier: 
-  dialogSequence:
-  - Test Dialog Sequence 2
-  - Oui oui
-  - Ceci est un override
+  sentences:
+  - HELLO, I'M YOUR INSTRCUTOR NICE TO MEET YOU
+  - BLALBLA1
+  - BLALBLA2
