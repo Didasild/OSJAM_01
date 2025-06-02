@@ -87,16 +87,16 @@ public class Cell : MonoBehaviour
         _gameManager = GameManager.Instance;
         _player = _gameManager.Player;
         _visualManager = GameManager.visualManager;
-
+        
+        _collider = GetComponent<Collider2D>();
+        
+        _cellPosition = cellPosition;
+        
         if (currentType == CellType.Npc)
         {
             npc = new NPC();
             npc.Init(GetNPCSettings());
         }
-        
-        _collider = GetComponent<Collider2D>();
-        
-        _cellPosition = cellPosition;
         
         ChangeState(currentState);
 
@@ -160,7 +160,6 @@ public class Cell : MonoBehaviour
             cellCover.SetActive(false);
         }
         
-        //Update le reste du visuel selon le type et l'état
         stateVisual.sprite = _visualManager.GetCellStateVisual(currentState);
         typeVisual.sprite = _visualManager.GetCellTypeVisual(currentType);
         itemVisual.sprite = _visualManager.GetCellItemVisuel(currentItemType);

@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
@@ -7,9 +8,10 @@ public class Dialog : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, 
     private GameManager _gameManager;
     [SerializeField] private DialogVisual _dialogVisual;
     private RoomSettings _currentRoomSettings;
-    private DialogSequence _currentDialogSequence;
+    private List<string> _currentDialogSequence;
     private int currentSequenceIndex;
     private bool dialogStarted;
+    private NPC _currentNPC;
     #endregion
     
     public void Init(GameManager manager)
@@ -28,18 +30,19 @@ public class Dialog : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, 
     #region METHODS
     public void StartDialogSequence(NPC npc)
     {
+        _currentNPC = npc;
         NPCSettings npcSettings = npc.npcSettings;
         _currentDialogSequence = npcSettings.GetDialogSequence(npc.currentNPCState);
         UpdateCharacterName(npcSettings.npcName);
-        if (_currentDialogSequence.sentences.Count > 0)
+        if (_currentDialogSequence.Count > 0)
         {
             currentSequenceIndex = 0;
             dialogStarted = true;
-            UpdateDialogText(_currentDialogSequence.sentences[0]);
+            UpdateDialogText(_currentDialogSequence[0]);
         }
         else
         {
-            Debug.LogError("No sentences in the DialogSequence: " + _currentDialogSequence.name);
+            Debug.LogError("No sentences in the DialogPull:" );
         }
     }
 
@@ -48,12 +51,15 @@ public class Dialog : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, 
         if (_currentDialogSequence != null)
         {
             currentSequenceIndex++;
-            if (currentSequenceIndex < _currentDialogSequence.sentences.Count)
+            if (currentSequenceIndex < _currentDialogSequence.Count)
             {
-                UpdateDialogText(_currentDialogSequence.sentences[currentSequenceIndex]);
+                UpdateDialogText(_currentDialogSequence[currentSequenceIndex]);
             }
             else
             {
+                //A DEVELOPPER QUAND NECESSAIRE
+                _currentNPC.ChangeNpcState(DialogUtils.NPCState.inactive);
+                
                 ClearDialogBox();
                 dialogStarted = false;
                 currentSequenceIndex = 0;
@@ -62,7 +68,7 @@ public class Dialog : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, 
         else
         {
             ClearDialogBox();
-            Debug.Log("DialogSequence is null");
+            Debug.Log("DialogPull is null");
         }
     }
 

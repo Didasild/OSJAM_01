@@ -10,9 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4b61542930edea04bb8ff18f6eb44214, type: 3}
-  m_Name: Instructor_DS_01
+  m_Name: instructor_Debug01_Inactive
   m_EditorClassIdentifier: 
-  sentences:
-  - HELLO, I'M YOUR INSTRCUTOR NICE TO MEET YOU
-  - BLALBLA1
-  - BLALBLA2
+  totalWeight: 20
+  dialogPull:
+  - sentences:
+    - WHAT AGAIN?
+    - YOU WANT MY PICTURE?
+    weight: 10
+  - sentences:
+    - SEE YOU LATER!
+    - ...
+    weight: 10

@@ -4113,6 +4113,7 @@ GameObject:
   - component: {fileID: 494901397}
   - component: {fileID: 494901398}
   - component: {fileID: 494901399}
+  - component: {fileID: 494901400}
   m_Layer: 0
   m_Name: DialogBox
   m_TagString: Untagged
@@ -4170,6 +4171,14 @@ MonoBehaviour:
   characterName: {fileID: 606272048}
   dialogText: {fileID: 503166839}
   _dialogBubbleFeedback: {fileID: 1954093030}
+--- !u!222 &494901400
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 494901396}
+  m_CullTransparentMesh: 1
 --- !u!1 &503166837
 GameObject:
   m_ObjectHideFlags: 0
@@ -4369,7 +4378,7 @@ MonoBehaviour:
   waitForNormalChars: 0.03
   waitLong: 0.6
   waitMiddle: 0.2
-  avoidMultiplePunctuactionWait: 0
+  avoidMultiplePunctuactionWait: 1
   waitForNewLines: 1
   waitForLastCharacter: 1
   useTypewriterWaitForDisappearances: 1

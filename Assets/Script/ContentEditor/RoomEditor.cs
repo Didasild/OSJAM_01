@@ -184,7 +184,7 @@ public class RoomEditor : MonoBehaviour
                     if (npcData.npcPosition == cellEditor.cellPosition)
                     {
                         cellEditor.npcSettings = npcData.npcSettings;
-                        //cellEditor.dialogSequenceOverride = npcData.dialogSequenceOverride;
+                        //cellEditor.dialogPullOverride = npcData.dialogPullOverride;
                         break;
                     }
                 }

@@ -1,10 +1,12 @@
 
+using System.Collections.Generic;
+
 public class NPC
 {
     #region FIELDS
     public DialogUtils.NPCState currentNPCState;
     public NPCSettings npcSettings;
-    public DialogSequence currentDialogSequence;
+    public List<string> CurrentDialogSequence;
 
     #endregion FIELDS
 
@@ -12,7 +14,7 @@ public class NPC
     {
         npcSettings = associatedNpcSettings;
         currentNPCState = npcSettings.baseNPCState;
-        currentDialogSequence = npcSettings.GetDialogSequence(currentNPCState);
+        CurrentDialogSequence = npcSettings.GetDialogSequence(currentNPCState);
     }
     
     #region STATE
@@ -34,9 +36,7 @@ public class NPC
             case DialogUtils.NPCState.waitingForTrigger:
                 
                 break;
-            
         }
-        npcSettings.GetDialogSequence(currentNPCState);
     }
 
     private void NoneNpcState()

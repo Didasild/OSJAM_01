@@ -12,7 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 34b703c7a33a4e14599eae68c269bba3, type: 3}
   m_Name: NPC_Instructor
   m_EditorClassIdentifier: 
-  npcName: Jo Mik
-  npcDescription: Insctructor
-  npcGridCustomIcon: {fileID: 0}
-  baseDialogSequence: {fileID: 11400000, guid: 51047408470836d478f45b33a1dd81c8, type: 2}
+  npcName: Instructor
+  npcDescription: Jo Mik
+  baseNPCState: 2
+  dialogPulls:
+  - RelatedNpcState: 1
+    DialogPull: {fileID: 11400000, guid: 51047408470836d478f45b33a1dd81c8, type: 2}
+  - RelatedNpcState: 2
+    DialogPull: {fileID: 11400000, guid: ffc6b5de35ebf444581d15bc2261daae, type: 2}

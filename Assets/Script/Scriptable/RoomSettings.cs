@@ -59,9 +59,6 @@ public class RoomSettings : ScriptableObject
         public int max;
     }
     public List<ItemRange> itemRanges;
-    
-
-
     public List<DialogUtils.NpcData> npcDatas;
     #endregion
 
