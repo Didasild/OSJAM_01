@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: TestExter
+  m_Name: ExterColor
   m_Shader: {fileID: -6465566751694194690, guid: c8517f73d9438944c831632836ef5e8d, type: 3}
   m_Parent: {fileID: -876546973899608171, guid: c8517f73d9438944c831632836ef5e8d, type: 3}
   m_ModifiedSerializedProperties: 0

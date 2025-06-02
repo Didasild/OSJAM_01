@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   npcName: Instructor
   npcDescription: Jo Mik
-  baseNPCState: 2
+  baseNPCState: 1
   dialogPulls:
   - RelatedNpcState: 1
     DialogPull: {fileID: 11400000, guid: 51047408470836d478f45b33a1dd81c8, type: 2}
