@@ -43,6 +43,7 @@ public class Cell : MonoBehaviour
     [ReadOnly] public CellState currentState;
     [ReadOnly] public CellType currentType;
     [ReadOnly] public ItemTypeEnum currentItemType;
+    [ReadOnly] public NPC npc;
     [ReadOnly] public Vector2Int _cellPosition;
     [ReadOnly] public List<Cell> neighborsCellList = new List<Cell>(); //Liste des voisins de la cellule
     [ReadOnly] public int numberOfNeighborsMine;
@@ -85,8 +86,13 @@ public class Cell : MonoBehaviour
     {
         _gameManager = GameManager.Instance;
         _player = _gameManager.Player;
-        
         _visualManager = GameManager.visualManager;
+
+        if (currentType == CellType.Npc)
+        {
+            npc = new NPC();
+            npc.Init(GetNPCSettings());
+        }
         
         _collider = GetComponent<Collider2D>();
         
@@ -158,6 +164,20 @@ public class Cell : MonoBehaviour
         stateVisual.sprite = _visualManager.GetCellStateVisual(currentState);
         typeVisual.sprite = _visualManager.GetCellTypeVisual(currentType);
         itemVisual.sprite = _visualManager.GetCellItemVisuel(currentItemType);
+    }
+
+    // A VOIR POUR PLACER A UN MEILLEUR ENDROIT
+    private NPCSettings GetNPCSettings()
+    {
+        foreach (DialogUtils.NpcData npcData in GameManager.Instance.currentRoomSettings.npcDatas)
+        {
+            if (npcData.npcPosition == _cellPosition)
+            {
+                return npcData.npcSettings;
+            }
+        }
+        Debug.LogError("NPC settings not found");
+        return null;
     }
     #endregion
 
@@ -433,7 +453,7 @@ public class Cell : MonoBehaviour
         itemVisual.sprite = _visualManager.GetCellItemVisuel(currentItemType);
     }
 
-    #endregion
+    #endregion ITEM TYPE
     
     #region ANIMATIONS
     private void InstantiateAnimation(GameObject animPrefab)

@@ -27,7 +27,7 @@ public class Player : MonoBehaviour
     [ReadOnly] public int clicCounter;
     [ReadOnly] public Vector2 mousePosition;
     
-    [HideInInspector] private CustomCursor _cursorScript;
+    private CustomCursor _cursorScript;
     
     [Serializable]
     public struct IsOverCondition
@@ -329,14 +329,16 @@ public class Player : MonoBehaviour
 
     private void ClickOnNPCCell(Cell cellClicked)
     {
-        foreach (RoomSettings.NpcData npcData in GameManager.Instance.currentRoomSettings.npcDatas)
-        {
-            if (npcData.npcPosition == cellClicked._cellPosition)
-            {
-                GameManager.Instance.Dialog.StartDialogSequence(npcData.npcSettings);
-                return;
-            }
-        }
+        GameManager.Instance.Dialog.StartDialogSequence(cellClicked.npc);
+        /// A SUPPRIMER SI VALIDER
+        // foreach (RoomSettings.NpcData npcData in GameManager.Instance.currentRoomSettings.npcDatas)
+        // {
+        //     if (npcData.npcPosition == cellClicked._cellPosition)
+        //     {
+        //         GameManager.Instance.Dialog.StartDialogSequence(npcData.npcSettings);
+        //         return;
+        //     }
+        // }
     }
 
     private void SwitchCellsToClickedState()

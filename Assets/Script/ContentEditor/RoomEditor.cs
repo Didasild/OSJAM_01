@@ -540,12 +540,12 @@ public class RoomEditor : MonoBehaviour
         }
 
         if (!containNpc()) return;
-        roomSettings.npcDatas = new List<RoomSettings.NpcData>();
+        roomSettings.npcDatas = new List<DialogUtils.NpcData>();
         foreach (CellEditor cell in cells)
         {
             if (cell.cellType == CellType.Npc)
             {
-                roomSettings.npcDatas.Add(new RoomSettings.NpcData {npcPosition = cell.cellPosition, npcSettings = cell.npcSettings});
+                roomSettings.npcDatas.Add(new DialogUtils.NpcData {npcPosition = cell.cellPosition, npcSettings = cell.npcSettings});
             }
         }
     }

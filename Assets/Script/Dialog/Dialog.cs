@@ -26,9 +26,10 @@ public class Dialog : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, 
     }
 
     #region METHODS
-    public void StartDialogSequence(NPCSettings npcSettings)
+    public void StartDialogSequence(NPC npc)
     {
-        _currentDialogSequence = npcSettings.GetDialogSequence();
+        NPCSettings npcSettings = npc.npcSettings;
+        _currentDialogSequence = npcSettings.GetDialogSequence(npc.currentNPCState);
         UpdateCharacterName(npcSettings.npcName);
         if (_currentDialogSequence.sentences.Count > 0)
         {

@@ -60,13 +60,9 @@ public class RoomSettings : ScriptableObject
     }
     public List<ItemRange> itemRanges;
     
-    [System.Serializable]
-    public struct NpcData
-    {
-        public Vector2Int npcPosition;
-        public NPCSettings npcSettings;
-    }
-    public List<NpcData> npcDatas;
+
+
+    public List<DialogUtils.NpcData> npcDatas;
     #endregion
 
     #region PROCEDURAL GET INFOS
