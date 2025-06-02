@@ -129,10 +129,23 @@ public class VisualManager : MonoBehaviour
         {
             cellTypeVisual = GetSprite("Cell_Type_Stair");
         }
-
-        if (cellType == CellType.Npc)
+        else if (cellType == CellType.Npc)
         {
-            cellTypeVisual = GetSprite("Cell_Type_Npc");
+            cellTypeVisual = GetSprite("Cell_Type_Npc_Active");
+        }
+        return cellTypeVisual;
+    }
+
+    public Sprite GetNpcStateVisual(DialogUtils.NPCState npcState)
+    {
+        Sprite cellTypeVisual = null;
+        if (npcState == DialogUtils.NPCState.active)
+        {
+            cellTypeVisual = GetSprite("Cell_Type_Npc_Active");
+        }
+        else if (npcState == DialogUtils.NPCState.inactive)
+        {
+            cellTypeVisual = GetSprite("Cell_Type_Npc_Inactive");
         }
         return cellTypeVisual;
     }

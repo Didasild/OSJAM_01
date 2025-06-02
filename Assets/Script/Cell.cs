@@ -70,7 +70,7 @@ public class Cell : MonoBehaviour
 
     private Collider2D _collider;
 
-    private float CellRevealDuration = 0.5f * 0.3f;
+    private float _cellRevealDuration = 0.5f * 0.3f;
     
     private GameManager _gameManager;
     private Player _player;
@@ -94,13 +94,19 @@ public class Cell : MonoBehaviour
         
         if (currentType == CellType.Npc)
         {
-            npc = new NPC();
-            npc.Init(GetNPCSettings());
+            InitNpc();
         }
         
         ChangeState(currentState);
 
         gameObject.SetActive(false);
+    }
+
+    private void InitNpc()
+    {
+        npc = new NPC();
+        npc.Init(GetNpcSettings(),this);
+        typeVisual.sprite = _visualManager.GetNpcStateVisual(npc._currentNpcState);
     }
     
     //Update le visual de la cellule
@@ -166,7 +172,7 @@ public class Cell : MonoBehaviour
     }
 
     // A VOIR POUR PLACER A UN MEILLEUR ENDROIT
-    private NPCSettings GetNPCSettings()
+    private NPCSettings GetNpcSettings()
     {
         foreach (DialogUtils.NpcData npcData in GameManager.Instance.currentRoomSettings.npcDatas)
         {
@@ -294,7 +300,7 @@ public class Cell : MonoBehaviour
         {
             cellCover.transform.DOKill();
             cellCover.transform.localScale = Vector3.one;
-            cellCover.transform.DOScale(0f, CellRevealDuration) // Bump rapide
+            cellCover.transform.DOScale(0f, _cellRevealDuration) // Bump rapide
                 .SetEase(Ease.InBack)
                 .OnComplete(() => cellCover.SetActive(false));
         }
@@ -409,7 +415,7 @@ public class Cell : MonoBehaviour
     private void NpcType()
     {
         cellEmpty.SetActive(true);
-        typeVisual.sprite = _visualManager.GetCellTypeVisual(currentType);
+        typeVisual.sprite = _visualManager.GetNpcStateVisual(npc._currentNpcState);
     }
     #endregion
 

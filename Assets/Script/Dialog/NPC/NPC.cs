@@ -4,25 +4,26 @@ using System.Collections.Generic;
 public class NPC
 {
     #region FIELDS
-    public DialogUtils.NPCState currentNPCState;
     public NPCSettings npcSettings;
-    public List<string> CurrentDialogSequence;
-
+    public List<string> currentDialogSequence;
+    public DialogUtils.NPCState _currentNpcState;
+    private Cell _currentCell;
     #endregion FIELDS
 
-    public void Init(NPCSettings associatedNpcSettings)
+    public void Init(NPCSettings associatedNpcSettings, Cell associatedCell)
     {
+        _currentCell = associatedCell;
         npcSettings = associatedNpcSettings;
-        currentNPCState = npcSettings.baseNPCState;
-        CurrentDialogSequence = npcSettings.GetDialogSequence(currentNPCState);
+        _currentNpcState = npcSettings.baseNPCState;
+        currentDialogSequence = npcSettings.GetDialogSequence(_currentNpcState);
     }
     
     #region STATE
     public void ChangeNpcState(DialogUtils.NPCState newState)
     {
-        currentNPCState = newState;
+        _currentNpcState = newState;
 
-        switch (currentNPCState)
+        switch (_currentNpcState)
         {
             case DialogUtils.NPCState.none:
                 NoneNpcState();
@@ -31,12 +32,14 @@ public class NPC
                 ActiveNpcState();
                 break;
             case DialogUtils.NPCState.inactive:
-                
+                InactiveNpcState();
                 break;
             case DialogUtils.NPCState.waitingForTrigger:
-                
+                WaitingForTriggerState();
                 break;
         }
+        currentDialogSequence = npcSettings.GetDialogSequence(_currentNpcState);
+        _currentCell.typeVisual.sprite = GameManager.visualManager.GetNpcStateVisual(_currentNpcState);
     }
 
     private void NoneNpcState()
@@ -46,10 +49,15 @@ public class NPC
 
     private void ActiveNpcState()
     {
-        
+
     }
 
     private void InactiveNpcState()
+    {
+        
+    }
+
+    private void WaitingForTriggerState()
     {
         
     }

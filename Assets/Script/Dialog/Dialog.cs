@@ -32,7 +32,7 @@ public class Dialog : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, 
     {
         _currentNPC = npc;
         NPCSettings npcSettings = npc.npcSettings;
-        _currentDialogSequence = npcSettings.GetDialogSequence(npc.currentNPCState);
+        _currentDialogSequence = npc.currentDialogSequence;
         UpdateCharacterName(npcSettings.npcName);
         if (_currentDialogSequence.Count > 0)
         {
@@ -57,12 +57,7 @@ public class Dialog : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, 
             }
             else
             {
-                //A DEVELOPPER QUAND NECESSAIRE
-                _currentNPC.ChangeNpcState(DialogUtils.NPCState.inactive);
-                
-                ClearDialogBox();
-                dialogStarted = false;
-                currentSequenceIndex = 0;
+                EndDialog();
             }
         }
         else
@@ -70,6 +65,16 @@ public class Dialog : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, 
             ClearDialogBox();
             Debug.Log("DialogPull is null");
         }
+    }
+
+    private void EndDialog()
+    {
+        //A DEVELOPPER QUAND NECESSAIRE ET PLACE AILLEURS POTENTIELLEMENT
+        _currentNPC.ChangeNpcState(DialogUtils.NPCState.inactive);
+                
+        ClearDialogBox();
+        dialogStarted = false;
+        currentSequenceIndex = 0;
     }
 
     private void UpdateCharacterName(string characterName)
