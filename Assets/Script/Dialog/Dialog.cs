@@ -36,7 +36,7 @@ public class Dialog : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, 
         dialogContainer.SetActive(true);
         _dialogVisual.DialogApparition();
         _currentNPC = npc;
-        DOVirtual.DelayedCall(_dialogVisual.transitionDuration, () =>
+        DOVirtual.DelayedCall(_dialogVisual.uiTransition.transitionDuration, () =>
         {
             DisplayDialogSequence(npc);
         });
