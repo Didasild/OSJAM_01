@@ -4172,10 +4172,10 @@ MonoBehaviour:
   dialogText: {fileID: 503166839}
   _dialogBubbleFeedback: {fileID: 1954093030}
   _propertyBlock: {fileID: 1421313504}
-  mainBaseMaterial: {fileID: 0}
-  mainAnimatedMaterial: {fileID: 0}
-  secondaryBaseMaterial: {fileID: 0}
-  secondaryAnimatedMaterial: {fileID: 0}
+  mainBaseMaterial: {fileID: 2100000, guid: 0e471da962fb7fa47b5cbe7473da469a, type: 2}
+  mainAnimatedMaterial: {fileID: 2100000, guid: 18a6d91bed95a9846923d2f6e00d1081, type: 2}
+  secondaryBaseMaterial: {fileID: 2100000, guid: e56e8438d50cede43a1cc48e16fb560d, type: 2}
+  secondaryAnimatedMaterial: {fileID: 2100000, guid: e9777b6653763ba4bbae19e7306975b4, type: 2}
   mainShaderObjects: []
   secondaryShaderObjects: []
 --- !u!222 &494901400
