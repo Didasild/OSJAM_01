@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using DG.Tweening;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
@@ -6,6 +7,7 @@ public class Dialog : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, 
 {
     #region FIELDS
     private GameManager _gameManager;
+    public GameObject dialogContainer;
     [SerializeField] private DialogVisual _dialogVisual;
     private RoomSettings _currentRoomSettings;
     private List<string> _currentDialogSequence;
@@ -30,7 +32,18 @@ public class Dialog : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, 
     #region METHODS
     public void StartDialogSequence(NPC npc)
     {
+        ClearDialogBox();
+        dialogContainer.SetActive(true);
+        _dialogVisual.DialogApparition();
         _currentNPC = npc;
+        DOVirtual.DelayedCall(_dialogVisual.transitionDuration, () =>
+        {
+            DisplayDialogSequence(npc);
+        });
+    }
+
+    private void DisplayDialogSequence(NPC npc)
+    {
         NPCSettings npcSettings = npc.npcSettings;
         _currentDialogSequence = npc.currentDialogSequence;
         UpdateCharacterName(npcSettings.npcName);
@@ -96,6 +109,7 @@ public class Dialog : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, 
 
     public void ClearDialogBox()
     {
+        dialogContainer.SetActive(false);
         _dialogVisual.dialogText.text = "";
         _dialogVisual.characterName.text = "";
         _dialogVisual.DialogBubbleFeedback.ResetBubbleSize();

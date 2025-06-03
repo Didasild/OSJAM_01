@@ -28,6 +28,7 @@ public class VisualManager : MonoBehaviour
     public ShakeCamController shakeCamController;
     public CentralFeedbackController centralFeedbackController;
     public FullScreenFeedbackController fullScreenFeedbackController;
+    private UiTransition _uiTransition;
 
     [Header("AMBIANCE / POST PROCESS")]
     public Volume mainColorsVolume;
@@ -64,6 +65,8 @@ public class VisualManager : MonoBehaviour
     
     private Tweener _currentWeightTween;
     private bool _roomTransitionComplete;
+    
+    public UiTransition UITransition => _uiTransition;
     #endregion
 
     #region INIT
@@ -89,6 +92,8 @@ public class VisualManager : MonoBehaviour
         textController.Init(this);
         shakeCamController.Init();
         roomAmbianceController.Init(this);
+        //Voir pour améliorer ça
+        _uiTransition = gameObject.AddComponent<UiTransition>();
     }
     
     [Button]
