@@ -4171,6 +4171,7 @@ MonoBehaviour:
   characterName: {fileID: 606272048}
   dialogText: {fileID: 503166839}
   _dialogBubbleFeedback: {fileID: 1954093030}
+  _propertyBlock: {fileID: 1421313504}
 --- !u!222 &494901400
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -11387,6 +11388,7 @@ GameObject:
   - component: {fileID: 1421313501}
   - component: {fileID: 1421313503}
   - component: {fileID: 1421313502}
+  - component: {fileID: 1421313504}
   m_Layer: 0
   m_Name: MainBox_01
   m_TagString: Untagged
@@ -11451,6 +11453,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1421313500}
   m_CullTransparentMesh: 1
+--- !u!114 &1421313504
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1421313500}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 11380f1cde7f627479f03612b757f79b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  propertyName: _AnimationTransition
+  animationSpeed: 1
 --- !u!1001 &1436308291
 PrefabInstance:
   m_ObjectHideFlags: 0

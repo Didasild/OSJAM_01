@@ -1,3 +1,4 @@
+using NaughtyAttributes;
 using TMPro;
 using UnityEngine;
 
@@ -10,6 +11,7 @@ public class DialogVisual : MonoBehaviour
     
     private Dialog _dialog;
     [SerializeField] private DialogBubbleFeedback _dialogBubbleFeedback;
+    [SerializeField] private TransitionPropertyBlock _propertyBlock;
     
     public DialogBubbleFeedback DialogBubbleFeedback => _dialogBubbleFeedback;
     
@@ -17,6 +19,13 @@ public class DialogVisual : MonoBehaviour
     {
         _dialog = dialog;
         _dialogBubbleFeedback.Init(this);
+        _propertyBlock.Init();
+    }
+
+    [Button]
+    private void DialogApparition()
+    {
+        _propertyBlock.AnimateTransition();
     }
     
 }
