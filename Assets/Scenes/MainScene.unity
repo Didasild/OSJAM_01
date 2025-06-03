@@ -4172,6 +4172,12 @@ MonoBehaviour:
   dialogText: {fileID: 503166839}
   _dialogBubbleFeedback: {fileID: 1954093030}
   _propertyBlock: {fileID: 1421313504}
+  mainBaseMaterial: {fileID: 0}
+  mainAnimatedMaterial: {fileID: 0}
+  secondaryBaseMaterial: {fileID: 0}
+  secondaryAnimatedMaterial: {fileID: 0}
+  mainShaderObjects: []
+  secondaryShaderObjects: []
 --- !u!222 &494901400
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -11465,8 +11471,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 11380f1cde7f627479f03612b757f79b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  baseMaterial: {fileID: 2100000, guid: 0e471da962fb7fa47b5cbe7473da469a, type: 2}
+  animatedMaterial: {fileID: 2100000, guid: 18a6d91bed95a9846923d2f6e00d1081, type: 2}
+  animationDuration: 2
   propertyName: _AnimationTransition
-  animationSpeed: 1
 --- !u!1001 &1436308291
 PrefabInstance:
   m_ObjectHideFlags: 0

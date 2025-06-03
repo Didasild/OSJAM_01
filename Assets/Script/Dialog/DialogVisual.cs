@@ -1,6 +1,8 @@
+using System.Collections.Generic;
 using NaughtyAttributes;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class DialogVisual : MonoBehaviour
 {
@@ -13,6 +15,15 @@ public class DialogVisual : MonoBehaviour
     [SerializeField] private DialogBubbleFeedback _dialogBubbleFeedback;
     [SerializeField] private TransitionPropertyBlock _propertyBlock;
     
+    [Header("MATERIALS")]
+    [SerializeField] private Material mainBaseMaterial;
+    [SerializeField] private Material mainAnimatedMaterial;
+    [SerializeField] private Material secondaryBaseMaterial;
+    [SerializeField] private Material secondaryAnimatedMaterial;
+
+    [Header("LISTE UI ELEMENTS")]
+    public List<Image> mainShaderObjects;
+    public List<Image> secondaryShaderObjects;
     public DialogBubbleFeedback DialogBubbleFeedback => _dialogBubbleFeedback;
     
     public void Init(Dialog dialog)
