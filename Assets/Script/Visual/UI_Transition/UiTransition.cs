@@ -2,11 +2,12 @@ using System.Collections.Generic;
 using DG.Tweening;
 using UnityEngine;
 using UnityEngine.UI;
+using NaughtyAttributes;
 
 public class UiTransition : MonoBehaviour
 {
     [Header("FIELDS")]
-    public float transitionDuration;
+    public float transitionDuration = 0.6f;
 
     [SerializeField] private float startAnimation = 0.8f;
     [SerializeField] private float endAnimation = 1f;
@@ -21,7 +22,7 @@ public class UiTransition : MonoBehaviour
     [Header("LISTE UI ELEMENTS")]
     public List<Image> mainShaderImages;
     public List<Image> secondaryShaderImages;
-
+    
     public void StartTransition(bool isAppear = true)
     {
         foreach (Image image in mainShaderImages)
@@ -34,7 +35,6 @@ public class UiTransition : MonoBehaviour
             AnimateTransition(image, secondaryBaseMaterial, secondaryAnimatedMaterial, isAppear);
         }
     }
-    
     private void AnimateTransition(Image image, Material baseMaterial, Material animatedMaterial, bool isAppear = true)
     {
         float startpoint = 0;

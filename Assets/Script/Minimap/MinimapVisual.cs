@@ -1,19 +1,29 @@
 using System;
+using DG.Tweening;
+using NaughtyAttributes;
 using UnityEngine;
 
 public class MinimapVisual : MonoBehaviour
 {
-    Minimap _minimap;
-    VisualManager _visualManager;
+    [Header("ROOM TRANSFORM")]
     public Transform fowTransform;
     public Transform startedTransform;
     public Transform completedTransform;
     public Transform selectedRoom;
     
+    [Header("CONTAINER")]
+    public GameObject minimapContainer;
+    public GameObject minimapContent;
+    
+    private Minimap _minimap;
+    private VisualManager _visualManager;
+    private UiTransition _uiTransition;
+    
     
     public void Init()
     {
         _visualManager = GameManager.visualManager;
+        _uiTransition = GetComponent<UiTransition>();
     }
 
     public Sprite GetRoomStateVisual(RoomState roomState)
@@ -80,7 +90,6 @@ public class MinimapVisual : MonoBehaviour
 
         return roomTypeVisual;
     }
-
     public void ActiveSelectedVisual(RoomData roomData,bool isSelected)
     {
         roomData.roomSelectedVisual.gameObject.SetActive(isSelected);
@@ -92,6 +101,26 @@ public class MinimapVisual : MonoBehaviour
         {
             roomData.transform.SetParent(GetRoomNewParent(roomData.currentRoomState));
         }
+    }
+    
+    [Button]
+    public void MinimapAppear()
+    {
+        minimapContainer.SetActive(true);
+        _uiTransition.StartTransition();
+        DOVirtual.DelayedCall(_uiTransition.transitionDuration / 1.5f, () =>
+        {
+            minimapContent.SetActive(true);
+        });
+    }
 
+    public void MinimapDisappear()
+    {
+        minimapContent.SetActive(false);
+        _uiTransition.StartTransition(false);
+        DOVirtual.DelayedCall(_uiTransition.transitionDuration, () =>
+        {
+            minimapContainer.SetActive(false);
+        });
     }
 }

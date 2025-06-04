@@ -17,7 +17,6 @@ public class Minimap : MonoBehaviour
     public float lerpDuration = 0.3f;
     public Ease lerpEase = Ease.OutQuad;
     
-    
     public void Init()
     {
         _floorManager = GameManager.Instance.FloorManager;
@@ -60,6 +59,7 @@ public class Minimap : MonoBehaviour
     
     public void OnFocusButtonClicked()
     {
+        
         FocusOnSelectedRoom(_floorManager.currentRoom);
     }
 }
