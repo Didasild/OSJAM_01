@@ -25,10 +25,14 @@ public class DialogVisual : MonoBehaviour
         _dialogBubbleFeedback.Init(this);
         uiTransition = gameObject.GetComponent<UiTransition>();
     }
-
-    [Button]
+    
     public void DialogApparition()
     {
         uiTransition.StartTransition();
+    }
+
+    public void DialogDisparition()
+    {
+        uiTransition.StartTransition(false);
     }
 }

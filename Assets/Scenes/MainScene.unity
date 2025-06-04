@@ -4152,6 +4152,7 @@ GameObject:
   - component: {fileID: 494901398}
   - component: {fileID: 494901399}
   - component: {fileID: 494901400}
+  - component: {fileID: 494901401}
   m_Layer: 0
   m_Name: DialogBox
   m_TagString: Untagged
@@ -4207,21 +4208,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   characterName: {fileID: 606272048}
   dialogText: {fileID: 503166839}
-  transitionDuration: 1.5
   _dialogBubbleFeedback: {fileID: 1954093030}
-  mainBaseMaterial: {fileID: 2100000, guid: 0e471da962fb7fa47b5cbe7473da469a, type: 2}
-  mainAnimatedMaterial: {fileID: 2100000, guid: 18a6d91bed95a9846923d2f6e00d1081, type: 2}
-  secondaryBaseMaterial: {fileID: 2100000, guid: e56e8438d50cede43a1cc48e16fb560d, type: 2}
-  secondaryAnimatedMaterial: {fileID: 2100000, guid: e9777b6653763ba4bbae19e7306975b4, type: 2}
-  property: _AnimationTransition
-  mainShaderImages:
-  - {fileID: 1264544419}
-  - {fileID: 1954093031}
-  - {fileID: 1791651809}
-  - {fileID: 1421313502}
-  secondaryShaderImages:
-  - {fileID: 289532308}
-  - {fileID: 95813414}
+  uiTransition: {fileID: 0}
 --- !u!222 &494901400
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -4230,6 +4218,33 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 494901396}
   m_CullTransparentMesh: 1
+--- !u!114 &494901401
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 494901396}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 11380f1cde7f627479f03612b757f79b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  transitionDuration: 0.6
+  startAnimation: 0.8
+  endAnimation: 1
+  mainBaseMaterial: {fileID: 2100000, guid: 0e471da962fb7fa47b5cbe7473da469a, type: 2}
+  mainAnimatedMaterial: {fileID: 2100000, guid: 18a6d91bed95a9846923d2f6e00d1081, type: 2}
+  secondaryBaseMaterial: {fileID: 2100000, guid: e56e8438d50cede43a1cc48e16fb560d, type: 2}
+  secondaryAnimatedMaterial: {fileID: 2100000, guid: e9777b6653763ba4bbae19e7306975b4, type: 2}
+  mainShaderImages:
+  - {fileID: 1264544419}
+  - {fileID: 1954093031}
+  - {fileID: 1791651809}
+  - {fileID: 1421313502}
+  secondaryShaderImages:
+  - {fileID: 289532308}
+  - {fileID: 95813414}
 --- !u!1 &503166837
 GameObject:
   m_ObjectHideFlags: 0
@@ -11515,6 +11530,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 11380f1cde7f627479f03612b757f79b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  transitionDuration: 0
+  startAnimation: 0.8
+  endAnimation: 1
+  mainBaseMaterial: {fileID: 0}
+  mainAnimatedMaterial: {fileID: 0}
+  secondaryBaseMaterial: {fileID: 0}
+  secondaryAnimatedMaterial: {fileID: 0}
+  mainShaderImages: []
+  secondaryShaderImages: []
 --- !u!1001 &1436308291
 PrefabInstance:
   m_ObjectHideFlags: 0

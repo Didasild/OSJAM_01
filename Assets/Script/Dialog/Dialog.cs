@@ -36,7 +36,7 @@ public class Dialog : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, 
         dialogContainer.SetActive(true);
         _dialogVisual.DialogApparition();
         _currentNPC = npc;
-        DOVirtual.DelayedCall(_dialogVisual.uiTransition.transitionDuration, () =>
+        DOVirtual.DelayedCall(_dialogVisual.uiTransition.transitionDuration/1.5f, () =>
         {
             DisplayDialogSequence(npc);
         });
@@ -82,12 +82,15 @@ public class Dialog : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, 
 
     private void EndDialog()
     {
-        //A DEVELOPPER QUAND NECESSAIRE ET PLACE AILLEURS POTENTIELLEMENT
-        _currentNPC.ChangeNpcState(DialogUtils.NPCState.inactive);
-                
-        ClearDialogBox();
         dialogStarted = false;
         currentSequenceIndex = 0;
+        //A DEVELOPPER QUAND NECESSAIRE ET PLACE AILLEURS POTENTIELLEMENT
+        _currentNPC.ChangeNpcState(DialogUtils.NPCState.inactive);
+        _dialogVisual.DialogDisparition();
+        DOVirtual.DelayedCall(_dialogVisual.uiTransition.transitionDuration/1.5f, () =>
+        {
+            ClearDialogBox();
+        });
     }
 
     private void UpdateCharacterName(string characterName)

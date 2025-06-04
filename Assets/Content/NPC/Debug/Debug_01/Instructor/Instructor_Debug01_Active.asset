@@ -15,7 +15,7 @@ MonoBehaviour:
   totalWeight: 10
   dialogPull:
   - sentences:
-    - HELLO IM YOUR INSTRUCTOR
-    - NICE TO MEET YOU
-    - SEE YOU LATER
+    - HELLO IM YOUR INSTRUCTOR.
+    - NICE TO MEET YOU.
+    - SEE YOU LATER.
     weight: 10

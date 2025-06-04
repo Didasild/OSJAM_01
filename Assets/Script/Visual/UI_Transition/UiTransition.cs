@@ -7,7 +7,10 @@ public class UiTransition : MonoBehaviour
 {
     [Header("FIELDS")]
     public float transitionDuration;
-    [SerializeField] private string property = "_AnimationTransition";
+
+    [SerializeField] private float startAnimation = 0.8f;
+    [SerializeField] private float endAnimation = 1f;
+    private string property = "_AnimationTransition";
     
     [Header("MATERIALS")]
     [SerializeField] private Material mainBaseMaterial;
@@ -19,28 +22,39 @@ public class UiTransition : MonoBehaviour
     public List<Image> mainShaderImages;
     public List<Image> secondaryShaderImages;
 
-    public void StartTransition()
+    public void StartTransition(bool isAppear = true)
     {
         foreach (Image image in mainShaderImages)
         {
-            AnimateTransition(image, mainBaseMaterial, mainAnimatedMaterial, property, transitionDuration);
+            AnimateTransition(image, mainBaseMaterial, mainAnimatedMaterial, isAppear);
         }
 
         foreach (Image image in secondaryShaderImages)
         {
-            AnimateTransition(image, secondaryBaseMaterial, secondaryAnimatedMaterial, property, transitionDuration);
+            AnimateTransition(image, secondaryBaseMaterial, secondaryAnimatedMaterial, isAppear);
         }
     }
     
-    private void AnimateTransition(Image image, Material baseMaterial, Material animatedMaterial, string propertyName, float animationDuration = 1f)
+    private void AnimateTransition(Image image, Material baseMaterial, Material animatedMaterial, bool isAppear = true)
     {
+        float startpoint = 0;
+        float endpoint = 0;
+        if (isAppear)
+        {
+            startpoint = startAnimation;
+            endpoint = endAnimation;
+        }
+        else
+        {
+            startpoint = endAnimation;
+            endpoint = startAnimation;
+        }
         image.material = animatedMaterial;
-        animatedMaterial.SetFloat(propertyName, 0f);
-
-        // Animate property from 0 to 2
-        DOTween.To(() => animatedMaterial.GetFloat(propertyName),
-                x => animatedMaterial.SetFloat(propertyName, x),
-                1.10f, animationDuration)
+        animatedMaterial.SetFloat(property, startpoint);
+        
+        DOTween.To(() => animatedMaterial.GetFloat(property),
+                x => animatedMaterial.SetFloat(property, x),
+                endpoint, transitionDuration)
             .SetEase(Ease.InOutQuad)
             .OnComplete(() =>
             {
