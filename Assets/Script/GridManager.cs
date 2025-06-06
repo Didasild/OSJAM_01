@@ -222,7 +222,7 @@ public class GridManager : MonoBehaviour
             int col = int.Parse(cellInfo[1]);
             string stateAbbreviation = cellInfo[2];
             string typeAbbreviation = cellInfo[3];
-            string itemTypeAbbreviation = cellInfo[4];
+            string secondTypeAbbreviation = cellInfo[4];
             
             // Vérifie s'il y a un flag procédural (6e élément dans le tableau)
             bool isProcedural = cellInfo.Length > 5 && cellInfo[5] == "Pr";
@@ -235,7 +235,16 @@ public class GridManager : MonoBehaviour
             // Convertir les abréviations en valeurs d'enum
             CellState state = GetStateFromAbbreviation(stateAbbreviation);
             CellType type = GetTypeFromAbbreviation(typeAbbreviation);
-            ItemTypeEnum itemType = GetItemTypeFromAbbreviation(itemTypeAbbreviation);
+            ItemTypeEnum itemType;
+            if (type == CellType.Npc)
+            {
+                DialogUtils.NPCState npcState = GetNPCStateFromAbbreviation(secondTypeAbbreviation);
+                itemType = GetItemTypeFromAbbreviation("No");
+            }
+            else
+            {
+                itemType = GetItemTypeFromAbbreviation(secondTypeAbbreviation);
+            }
 
             if (type != CellType.None)
             {
@@ -318,6 +327,19 @@ public class GridManager : MonoBehaviour
         };
     }
 
+    public DialogUtils.NPCState GetNPCStateFromAbbreviation(string abbreviation)
+    {
+        if (int.TryParse(abbreviation, out int intValue))
+        {
+            if (Enum.IsDefined(typeof(DialogUtils.NPCState), intValue))
+            {
+                return (DialogUtils.NPCState)intValue;
+            }
+            throw new ArgumentException($"Valeur non définie pour NPCState : {intValue}");
+        }
+        throw new ArgumentException($"Abréviation non numérique : {abbreviation}");
+    }
+
     #endregion LOADED ROOM GENERATION
 
     #region COMMON GENERATION FONCTIONS
@@ -361,10 +383,21 @@ public class GridManager : MonoBehaviour
             // �tat de la cellule (par exemple "em" pour Empty, "co" pour Cover)
             string state = cell.currentState.ToString().Substring(0, 2);
             string type = cell.currentType.ToString().Substring(0, 2);
-            string itemType = cell.currentItemType.ToString().Substring(0, 2);
-
+            string secondType = new string("");
+            if (cell.currentType == CellType.Item)
+            {
+                secondType = cell.currentItemType.ToString().Substring(0, 2);
+            }
+            else if (cell.currentType == CellType.Npc)
+            {
+                //secondType = ((int)cell.npc._currentNpcState).ToString();
+            }
+            else
+            {
+                secondType = cell.currentItemType.ToString().Substring(0, 2);
+            }
             // Ajouter � la cha�ne sous forme : x_y_state|
-            gridStringBuilder.Append($"{x}_{y}_{state}_{type}_{itemType}|");
+            gridStringBuilder.Append($"{x}_{y}_{state}_{type}_{secondType}|");
         }
         // Retirer le dernier caractère "|" pour une chaine propre
         if (gridStringBuilder.Length > 0)

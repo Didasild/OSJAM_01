@@ -4,7 +4,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using NaughtyAttributes;
 using DG.Tweening;
-    
+using UnityEngine.Serialization;
+
 #region ENUMS
 public enum CellState
 {
@@ -42,7 +43,7 @@ public class Cell : MonoBehaviour
     [Header("CELL INFORMATIONS")]
     [ReadOnly] public CellState currentState;
     [ReadOnly] public CellType currentType;
-    [ReadOnly] public ItemTypeEnum currentItemType;
+    [FormerlySerializedAs("currentSecondType")] [ReadOnly] public ItemTypeEnum currentItemType;
     [ReadOnly] public NPC npc;
     [ReadOnly] public Vector2Int _cellPosition;
     [ReadOnly] public List<Cell> neighborsCellList = new List<Cell>(); //Liste des voisins de la cellule
@@ -82,7 +83,7 @@ public class Cell : MonoBehaviour
     #endregion
 
     #region INIT
-    public void Initialize(Vector2Int cellPosition)
+    public void Initialize(Vector2Int cellPosition, DialogUtils.NPCState npcState = DialogUtils.NPCState.none)
     {
         _gameManager = GameManager.Instance;
         _player = _gameManager.Player;
@@ -94,7 +95,7 @@ public class Cell : MonoBehaviour
         
         if (currentType == CellType.Npc)
         {
-            InitNpc();
+            InitNpc(npcState);
         }
         
         ChangeState(currentState);
@@ -102,10 +103,11 @@ public class Cell : MonoBehaviour
         gameObject.SetActive(false);
     }
 
-    private void InitNpc()
+    private void InitNpc(DialogUtils.NPCState npcState)
     {
         npc = new NPC();
         npc.Init(GetNpcSettings(),this);
+        npc._currentNpcState = npcState;
         typeVisual.sprite = _visualManager.GetNpcStateVisual(npc._currentNpcState);
     }
     
