@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4b61542930edea04bb8ff18f6eb44214, type: 3}
+  m_Name: Intro_01_Active
+  m_EditorClassIdentifier: 
+  totalWeight: 10
+  dialogPull:
+  - sentences:
+    - SYSTEM BOOT COMPLETE.
+    - "OPERATOR DETECTED\u2026 MISMATCH WITH ARCHIVED PROFILE."
+    - "YOU\u2019RE NOT WHO I WAS EXPECTING."
+    - ...OVERRIDE ACCEPTED.
+    - "HI. I\u2019M C.A.L.L. COMPANION AI FOR LONG-TERM LONELINESS."
+    - I WAS DESIGNED TO GUIDE, SUPPORT, AND OCCASIONALLY ARGUE WITH YOU.
+    - "DON\u2019T WORRY. I\u2019VE HAD... A LOT OF TIME TO PRACTICE."
+    - "YOU AND ME NOW \u2014 AGAINST WHATEVER\u2019S STILL OUT THERE."
+    - "AND HEY \u2014 TRY NOT TO DIE TOO FAST. I GET BORED EASILY."
+    weight: 10

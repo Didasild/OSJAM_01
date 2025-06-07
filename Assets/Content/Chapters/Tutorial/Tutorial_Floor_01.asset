@@ -13,8 +13,10 @@ MonoBehaviour:
   m_Name: Tutorial_Floor_01
   m_EditorClassIdentifier: 
   proceduralFloor: 1
+  floorBaseVolumeProfile: {fileID: 0}
   minGridSize: {x: 1, y: 2}
   maxGridSize: {x: 1, y: 2}
   roomSettingsList:
   - {fileID: 11400000, guid: 156407c483b78ed44955b3848e43d64c, type: 2}
   - {fileID: 11400000, guid: d69055cab6f0778419223d81d87579d1, type: 2}
+  loadedRoomDatas: []

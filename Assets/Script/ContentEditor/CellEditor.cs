@@ -18,7 +18,6 @@ public class CellEditor : MonoBehaviour
     
     [Header("NPC PARAMETERS")]
     public NPCSettings npcSettings;
-    [FormerlySerializedAs("dialogSequenceOverride")] public DialogPull dialogPullOverride;
     
     [Header("DEBUG / SETUP")]
     public bool showSetupElements = false;

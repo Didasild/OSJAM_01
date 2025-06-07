@@ -1,0 +1,49 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4b61542930edea04bb8ff18f6eb44214, type: 3}
+  m_Name: Intro_01_Inactive
+  m_EditorClassIdentifier: 
+  totalWeight: 95
+  dialogPull:
+  - sentences:
+    - STILL ADJUSTING TO HAVING A NEW OPERATOR.
+    weight: 10
+  - sentences:
+    - "I\u2019M YOUR CO-PILOT. I\u2019M NOT GOING ANYWHERE."
+    weight: 10
+  - sentences:
+    - "PRACTICE MAKES PERFECT. I\u2019M STILL PRACTICING."
+    weight: 10
+  - sentences:
+    - "YOU\u2019RE NOT THE ONE I EXPECTED, BUT YOU\u2019RE HERE NOW."
+    weight: 5
+  - sentences:
+    - "OPERATOR, IF YOU\u2019RE LISTENING\u2014GOOD."
+    - "WE\u2019VE GOT A LONG WAY AHEAD."
+    weight: 10
+  - sentences:
+    - "I\u2019M DESIGNED TO GUIDE. I HOPE I\u2019M GOOD AT IT."
+    weight: 10
+  - sentences:
+    - "YOU AND ME \u2014 A TEAM, WHETHER WE LIKE IT OR NOT."
+    weight: 10
+  - sentences:
+    - "I\u2019VE HAD A LOT OF TIME TO GET THIS RIGHT."
+    - "LET\u2019S SEE IF YOU CAN KEEP UP."
+    weight: 10
+  - sentences:
+    - TRY NOT TO MESS UP TOO BADLY, ALRIGHT?
+    weight: 10
+  - sentences:
+    - "YOU MIGHT BE NEW, BUT I\u2019M HERE."
+    - "WE\u2019LL FIGURE THIS OUT \u2014 EVENTUALLY."
+    weight: 10

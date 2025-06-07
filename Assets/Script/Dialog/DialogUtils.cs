@@ -3,7 +3,6 @@ using UnityEngine;
 
 public class DialogUtils
 {
-    //A deplacer un script plus macro
     [System.Serializable]
     public struct DialogStates
     {
@@ -32,5 +31,16 @@ public class DialogUtils
         WaitingForTrigger = 3,
     }
     
-    
+    public static NPCSettings GetNpcSettings(Vector2Int cellPosition)
+    {
+        foreach (NpcData npcData in GameManager.Instance.currentRoomSettings.npcDatas)
+        {
+            if (npcData.npcPosition == cellPosition)
+            {
+                return npcData.npcSettings;
+            }
+        }
+        Debug.LogError("NPC settings not found");
+        return null;
+    }
 }

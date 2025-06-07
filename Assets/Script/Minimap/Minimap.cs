@@ -59,7 +59,6 @@ public class Minimap : MonoBehaviour
     
     public void OnFocusButtonClicked()
     {
-        
         FocusOnSelectedRoom(_floorManager.currentRoom);
     }
 }

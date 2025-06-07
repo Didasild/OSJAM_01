@@ -106,7 +106,7 @@ public class Cell : MonoBehaviour
     private void InitNpc(DialogUtils.NPCState npcState)
     {
         npc = new NPC();
-        npc.Init(GetNpcSettings(),this);
+        npc.Init(DialogUtils.GetNpcSettings(_cellPosition),this);
         npc.ChangeNpcState(npcState);
     }
     
@@ -172,19 +172,7 @@ public class Cell : MonoBehaviour
         itemVisual.sprite = _visualManager.GetCellItemVisuel(currentItemType);
     }
 
-    // A VOIR POUR PLACER A UN MEILLEUR ENDROIT
-    private NPCSettings GetNpcSettings()
-    {
-        foreach (DialogUtils.NpcData npcData in GameManager.Instance.currentRoomSettings.npcDatas)
-        {
-            if (npcData.npcPosition == _cellPosition)
-            {
-                return npcData.npcSettings;
-            }
-        }
-        Debug.LogError("NPC settings not found");
-        return null;
-    }
+
     #endregion
 
     #region CELL STATE
@@ -416,7 +404,6 @@ public class Cell : MonoBehaviour
     private void NpcType()
     {
         cellEmpty.SetActive(true);
-        //typeVisual.sprite = _visualManager.GetNpcStateVisual(npc._currentNpcState);
     }
     #endregion
 

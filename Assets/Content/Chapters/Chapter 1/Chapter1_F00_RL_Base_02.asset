@@ -17,7 +17,7 @@ MonoBehaviour:
   isFoW: 1
   roomType: 0
   roomVolumeProfile: {fileID: 11400000, guid: 0ce13a893c5a2064087cc0840ece5c88, type: 2}
-  roomIDString: 4_2_Co_Em_No|0_6_In_No_No|2_5_Co_Hi_No|3_14_In_No_No|2_13_Co_Em_No|2_10_Co_Em_No|2_8_Co_Mi_No|3_2_Co_Em_No|1_7_Co_Hi_No|0_0_In_No_No|2_11_Co_Em_No|0_13_Co_Hi_No|0_7_In_No_No|2_3_Co_Hi_No|0_9_Co_Em_No|1_0_Re_Em_No|2_1_Co_Em_No|3_5_Co_Hi_No|2_7_Co_Hi_No|0_12_Co_Mi_No|4_9_Co_Em_No|3_11_Co_Hi_No|3_8_Co_Hi_No|0_8_In_No_No|3_1_In_No_No|1_11_Co_Hi_No|1_9_Co_Hi_No|2_14_In_No_No|3_12_Co_Hi_No|4_1_In_No_No|1_10_Co_Em_No|4_13_Co_Hi_No|0_10_Co_Em_No|2_12_Co_Em_No|2_0_Re_Em_No|1_3_Co_Hi_No|4_0_In_No_No|3_7_Co_Hi_No|2_2_Co_Em_No|4_10_Co_Em_No|0_14_In_No_No|4_8_In_No_No|2_9_Co_Hi_No|1_2_Co_Em_No|3_10_Co_Em_No|3_3_Co_Hi_No|4_6_In_No_No|4_12_Co_Mi_No|4_5_In_No_No|0_11_Co_Hi_No|2_4_Co_Mi_No|1_5_Co_Hi_No|3_6_Co_Em_No|0_3_Co_Em_No|3_4_Co_Hi_No|0_2_Co_Em_No|0_1_In_No_No|1_8_Co_Hi_No|1_13_Co_Hi_No|4_4_Co_Em_No|4_7_In_No_No|3_0_Re_Em_No|1_14_In_No_No|1_6_Co_Em_No|0_5_In_No_No|1_12_Co_Hi_No|0_4_Co_Em_No|3_9_Co_Hi_No|4_11_Co_Hi_No|4_14_In_No_No|2_6_Co_Em_No|4_3_Co_Em_No|3_13_Co_Hi_No|1_1_In_No_No|1_4_Co_Hi_No
+  roomIDString: 4_2_Co_Em_No|0_6_In_No_No|2_5_Co_Hi_No|3_14_In_No_No|2_13_Co_Em_No|2_10_Co_Em_No|2_8_Co_Mi_No|3_2_Co_Em_No|1_7_Co_Hi_No|0_0_In_No_No|2_11_Co_Em_No|0_13_Co_Hi_No|0_7_In_No_No|2_3_Co_Hi_No|0_9_Co_Em_No|1_0_Re_Em_No|2_1_Co_Em_No|3_5_Co_Hi_No|2_7_Co_Hi_No|0_12_Co_Mi_No|4_9_Co_Em_No|3_11_Co_Hi_No|3_8_Co_Hi_No|0_8_In_No_No|3_1_In_No_No|1_11_Co_Hi_No|1_9_Co_Hi_No|2_14_In_No_No|3_12_Co_Hi_No|4_1_In_No_No|1_10_Co_Em_No|4_13_Co_Hi_No|0_10_Co_Em_No|2_12_Co_Em_No|2_0_Re_Np_1|1_3_Co_Hi_No|4_0_In_No_No|3_7_Co_Hi_No|2_2_Co_Em_No|4_10_Co_Em_No|0_14_In_No_No|4_8_In_No_No|2_9_Co_Hi_No|1_2_Co_Em_No|3_10_Co_Em_No|3_3_Co_Hi_No|4_6_In_No_No|4_12_Co_Mi_No|4_5_In_No_No|0_11_Co_Hi_No|2_4_Co_Mi_No|1_5_Co_Hi_No|3_6_Co_Em_No|0_3_Co_Em_No|3_4_Co_Hi_No|0_2_Co_Em_No|0_1_In_No_No|1_8_Co_Hi_No|1_13_Co_Hi_No|4_4_Co_Em_No|4_7_In_No_No|3_0_Re_Em_No|1_14_In_No_No|1_6_Co_Em_No|0_5_In_No_No|1_12_Co_Hi_No|0_4_Co_Em_No|3_9_Co_Hi_No|4_11_Co_Hi_No|4_14_In_No_No|2_6_Co_Em_No|4_3_Co_Em_No|3_13_Co_Hi_No|1_1_In_No_No|1_4_Co_Hi_No|5_2_In_No_No|5_9_In_No_No|5_1_In_No_No|5_13_In_No_No|5_0_In_No_No|5_10_In_No_No|5_8_In_No_No|5_6_In_No_No|5_12_In_No_No|5_5_In_No_No|5_4_In_No_No|5_7_In_No_No|5_11_In_No_No|5_14_In_No_No|5_3_In_No_No|6_2_In_No_No|6_9_In_No_No|6_1_In_No_No|6_13_In_No_No|6_0_In_No_No|6_10_In_No_No|6_8_In_No_No|6_6_In_No_No|6_12_In_No_No|6_5_In_No_No|6_4_In_No_No|6_7_In_No_No|6_11_In_No_No|6_14_In_No_No|6_3_In_No_No
   haveProceduralCells: 0
   minRoomSize: {x: 5, y: 5}
   maxRoomSize: {x: 10, y: 10}
@@ -25,4 +25,6 @@ MonoBehaviour:
   roomPourcentageOfNone: 5
   haveStair: 0
   itemRanges: []
-  npcDatas: []
+  npcDatas:
+  - npcPosition: {x: 2, y: 0}
+    npcSettings: {fileID: 11400000, guid: 4665b59118b600948a95fb927a95d5f8, type: 2}

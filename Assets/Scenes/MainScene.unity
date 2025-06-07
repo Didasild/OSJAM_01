@@ -4390,8 +4390,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 13
-  m_fontSizeBase: 13
+  m_fontSize: 14
+  m_fontSizeBase: 14
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -4499,7 +4499,7 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   waitForNormalChars: 0.03
-  waitLong: 0.6
+  waitLong: 0.3
   waitMiddle: 0.2
   avoidMultiplePunctuactionWait: 1
   waitForNewLines: 1
@@ -5531,8 +5531,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   waitForNormalChars: 0.03
-  waitLong: 0.6
-  waitMiddle: 0.2
+  waitLong: 0.03
+  waitMiddle: 0.03
   avoidMultiplePunctuactionWait: 1
   waitForNewLines: 1
   waitForLastCharacter: 1

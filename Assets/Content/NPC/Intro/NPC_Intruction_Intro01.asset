@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 34b703c7a33a4e14599eae68c269bba3, type: 3}
+  m_Name: NPC_Intruction_Intro01
+  m_EditorClassIdentifier: 
+  npcName: C.A.L.L.
+  npcDescription: Companion AI for Long-term Loneliness
+  baseNPCState: 1
+  dialogPulls:
+  - RelatedNpcState: 1
+    DialogPull: {fileID: 11400000, guid: 0a78f64b034968d45be05e27a6b3e14a, type: 2}
+  - RelatedNpcState: 2
+    DialogPull: {fileID: 11400000, guid: b6df37732f2446845b62d19a65e138a7, type: 2}
