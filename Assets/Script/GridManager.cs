@@ -25,7 +25,7 @@ public class GridManager : MonoBehaviour
     public int numberOfMineLeft;
     [NaughtyAttributes.ReadOnly]
     public int theoricalMineLeft;
-    #endregion
+    #endregion PARAMETERS
     
     #region PROCEDURAL GRID GENERATION
     public void GenerateGrid(Vector2Int gridSize)
@@ -340,11 +340,9 @@ public class GridManager : MonoBehaviour
         }
         throw new ArgumentException($"Abréviation non numérique : {abbreviation}");
     }
-
     #endregion LOADED ROOM GENERATION
 
     #region COMMON GENERATION FONCTIONS
-
     public static Vector2 GetRoomOffset(float cellSize, Vector2Int gridSize)
     {
         // Calcul de l'offset pour centrer la grille
