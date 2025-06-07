@@ -136,7 +136,7 @@ public class RoomEditor : MonoBehaviour
             int col = int.Parse(cellInfo[1]);
             string stateAbbreviation = cellInfo[2];
             string typeAbbreviation = cellInfo[3];
-            string itemTypeAbbreviation = cellInfo[4];
+            string secondType = cellInfo[4];
             
             // Vérifie s'il y a un flag procédural (6e élément dans le tableau)
             bool isProcedural = cellInfo.Length > 5 && cellInfo[5] == "Pr";
@@ -154,7 +154,11 @@ public class RoomEditor : MonoBehaviour
             // Convertir les abréviations en valeurs d'enum
             CellState state = GridManager.GetStateFromAbbreviation(stateAbbreviation);
             CellType type = GridManager.GetTypeFromAbbreviation(typeAbbreviation);
-            ItemTypeEnum itemType = GridManager.GetItemTypeFromAbbreviation(itemTypeAbbreviation);
+            ItemTypeEnum itemType = ItemTypeEnum.None;
+            if (type == CellType.Item)
+            {
+                itemType = GridManager.GetItemTypeFromAbbreviation(secondType);
+            }
 
             if (isProcedural)
             {
@@ -490,17 +494,30 @@ public class RoomEditor : MonoBehaviour
             // �tat de la cellule (par exemple "em" pour Empty, "co" pour Cover)
             string state = cell.cellState.ToString().Substring(0, 2);
             string type = cell.cellType.ToString().Substring(0, 2);
-            string itemType = cell.itemType.ToString().Substring(0, 2);
+            string secondType = new string("");
+            if (cell.cellType == CellType.Item)
+            {
+                secondType = cell.itemType.ToString().Substring(0, 2);
+            }
+            else if (cell.cellType == CellType.Npc)
+            {
+                secondType = ((int)cell.npcSettings.baseNPCState).ToString();
+            }
+            else
+            {
+                secondType = "No";
+            }
+            
             if (cell.proceduralCell)
             {
                 string proceduralString = "Pr";
                 // Ajouter à la chaine sous forme : x_y_state|
-                gridStringBuilder.Append($"{x}_{y}_{state}_{type}_{itemType}_{proceduralString}|");
+                gridStringBuilder.Append($"{x}_{y}_{state}_{type}_{secondType}_{proceduralString}|");
             }
             else
             {
                 // Ajouter à la chaine sous forme : x_y_state|
-                gridStringBuilder.Append($"{x}_{y}_{state}_{type}_{itemType}|");
+                gridStringBuilder.Append($"{x}_{y}_{state}_{type}_{secondType}|");
             }
         }
         // Retirer le dernier caractère "|" pour une cha�ne propre

@@ -23,7 +23,6 @@ public class NPCSettings : ScriptableObject
                 return pull.DialogPull.GetSentences();
             }
         }
-
         Debug.LogWarning($"No DialogPull found for state: {npcState}");
         return null; // Ou une séquence par défaut si tu préfères
     }

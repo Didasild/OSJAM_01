@@ -1,5 +1,6 @@
 
 using System.Collections.Generic;
+using UnityEngine;
 
 public class NPC
 {
@@ -25,16 +26,16 @@ public class NPC
 
         switch (_currentNpcState)
         {
-            case DialogUtils.NPCState.none:
+            case DialogUtils.NPCState.None:
                 NoneNpcState();
                 break;
-            case DialogUtils.NPCState.active:
+            case DialogUtils.NPCState.Active:
                 ActiveNpcState();
                 break;
-            case DialogUtils.NPCState.inactive:
+            case DialogUtils.NPCState.Inactive:
                 InactiveNpcState();
                 break;
-            case DialogUtils.NPCState.waitingForTrigger:
+            case DialogUtils.NPCState.WaitingForTrigger:
                 WaitingForTriggerState();
                 break;
         }

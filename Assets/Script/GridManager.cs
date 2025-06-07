@@ -64,7 +64,7 @@ public class GridManager : MonoBehaviour
             Cell cellToDefine = cell.GetComponent<Cell>();
             cellToDefine.ChangeType(CellType.Empty);
         }
-        //Set mines et les none
+        //Set mines et les None
         SetCellType(GameManager.Instance.currentRoomSettings.roomPourcentageOfMine, CellType.Mine, cellList);
         SetCellType(GameManager.Instance.currentRoomSettings.roomPourcentageOfNone, CellType.None, cellList);
 
@@ -236,9 +236,10 @@ public class GridManager : MonoBehaviour
             CellState state = GetStateFromAbbreviation(stateAbbreviation);
             CellType type = GetTypeFromAbbreviation(typeAbbreviation);
             ItemTypeEnum itemType;
+            DialogUtils.NPCState npcState = DialogUtils.NPCState.None;
             if (type == CellType.Npc)
             {
-                DialogUtils.NPCState npcState = GetNPCStateFromAbbreviation(secondTypeAbbreviation);
+                npcState = GetNPCStateFromAbbreviation(secondTypeAbbreviation);
                 itemType = GetItemTypeFromAbbreviation("No");
             }
             else
@@ -262,7 +263,7 @@ public class GridManager : MonoBehaviour
                 newCell.currentType = type;
                 newCell.currentItemType = itemType;
 
-                newCell.Initialize(new Vector2Int(row, col)); // Initialisation avec les bonnes coordonnées et le bon état
+                newCell.Initialize(new Vector2Int(row, col), npcState); // Initialisation avec les bonnes coordonnées et le bon état
             }
         }
 
@@ -327,7 +328,7 @@ public class GridManager : MonoBehaviour
         };
     }
 
-    public DialogUtils.NPCState GetNPCStateFromAbbreviation(string abbreviation)
+    private DialogUtils.NPCState GetNPCStateFromAbbreviation(string abbreviation)
     {
         if (int.TryParse(abbreviation, out int intValue))
         {
@@ -376,11 +377,9 @@ public class GridManager : MonoBehaviour
 
         foreach (Cell cell in cellList)
         {
-            // Coordonn�es de la cellule
             int x = cell._cellPosition.x;
             int y = cell._cellPosition.y;
-
-            // �tat de la cellule (par exemple "em" pour Empty, "co" pour Cover)
+            
             string state = cell.currentState.ToString().Substring(0, 2);
             string type = cell.currentType.ToString().Substring(0, 2);
             string secondType = new string("");
@@ -390,13 +389,12 @@ public class GridManager : MonoBehaviour
             }
             else if (cell.currentType == CellType.Npc)
             {
-                //secondType = ((int)cell.npc._currentNpcState).ToString();
+                secondType = ((int)cell.npc._currentNpcState).ToString();
             }
             else
             {
                 secondType = cell.currentItemType.ToString().Substring(0, 2);
             }
-            // Ajouter � la cha�ne sous forme : x_y_state|
             gridStringBuilder.Append($"{x}_{y}_{state}_{type}_{secondType}|");
         }
         // Retirer le dernier caractère "|" pour une chaine propre

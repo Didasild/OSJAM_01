@@ -83,7 +83,7 @@ public class Cell : MonoBehaviour
     #endregion
 
     #region INIT
-    public void Initialize(Vector2Int cellPosition, DialogUtils.NPCState npcState = DialogUtils.NPCState.none)
+    public void Initialize(Vector2Int cellPosition, DialogUtils.NPCState npcState = DialogUtils.NPCState.None)
     {
         _gameManager = GameManager.Instance;
         _player = _gameManager.Player;
@@ -93,12 +93,12 @@ public class Cell : MonoBehaviour
         
         _cellPosition = cellPosition;
         
+        ChangeState(currentState);
+        
         if (currentType == CellType.Npc)
         {
             InitNpc(npcState);
         }
-        
-        ChangeState(currentState);
 
         gameObject.SetActive(false);
     }
@@ -107,8 +107,7 @@ public class Cell : MonoBehaviour
     {
         npc = new NPC();
         npc.Init(GetNpcSettings(),this);
-        npc._currentNpcState = npcState;
-        typeVisual.sprite = _visualManager.GetNpcStateVisual(npc._currentNpcState);
+        npc.ChangeNpcState(npcState);
     }
     
     //Update le visual de la cellule
@@ -169,7 +168,7 @@ public class Cell : MonoBehaviour
         }
         
         stateVisual.sprite = _visualManager.GetCellStateVisual(currentState);
-        typeVisual.sprite = _visualManager.GetCellTypeVisual(currentType);
+        typeVisual.sprite = _visualManager.GetCellTypeVisual(this);
         itemVisual.sprite = _visualManager.GetCellItemVisuel(currentItemType);
     }
 
@@ -375,7 +374,7 @@ public class Cell : MonoBehaviour
         if (updateVisual)
         {
             cellEmpty.SetActive(true);
-            typeVisual.sprite = _visualManager.GetCellTypeVisual(currentType);
+            typeVisual.sprite = _visualManager.GetCellTypeVisual(this);
         }
     }
     private void NoneType()
@@ -394,30 +393,30 @@ public class Cell : MonoBehaviour
     }
     private void MineType()
     {
-        typeVisual.sprite = _visualManager.GetCellTypeVisual(currentType);
+        typeVisual.sprite = _visualManager.GetCellTypeVisual(this);
     }
     private void HintType()
     {
         cellEmpty.SetActive(true);
-        typeVisual.sprite = _visualManager.GetCellTypeVisual(currentType);
+        typeVisual.sprite = _visualManager.GetCellTypeVisual(this);
     }
 
     private void GateType()
     {
         cellEmpty.SetActive(false);
-        typeVisual.sprite = _visualManager.GetCellTypeVisual(currentType);
+        typeVisual.sprite = _visualManager.GetCellTypeVisual(this);
     }
 
     private void ItemType()
     {
         cellEmpty.SetActive(true);
-        typeVisual.sprite = _visualManager.GetCellTypeVisual(currentType);
+        typeVisual.sprite = _visualManager.GetCellTypeVisual(this);
     }
 
     private void NpcType()
     {
         cellEmpty.SetActive(true);
-        typeVisual.sprite = _visualManager.GetNpcStateVisual(npc._currentNpcState);
+        //typeVisual.sprite = _visualManager.GetNpcStateVisual(npc._currentNpcState);
     }
     #endregion
 

@@ -465,7 +465,7 @@ MonoBehaviour:
   itemType: 0
   proceduralCell: 0
   npcSettings: {fileID: 0}
-  dialogSequenceOverride: {fileID: 0}
+  dialogPullOverride: {fileID: 0}
   showSetupElements: 0
   cellStateVisual: {fileID: 3126336701650697365}
   cellTypeVisual: {fileID: 7487232728163872945}

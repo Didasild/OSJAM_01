@@ -26,10 +26,10 @@ public class DialogUtils
     }
     public enum NPCState
     {
-        none,
-        active,
-        inactive,
-        waitingForTrigger,
+        None = 0,
+        Active = 1,
+        Inactive = 2,
+        WaitingForTrigger = 3,
     }
     
     

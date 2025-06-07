@@ -127,8 +127,9 @@ public class VisualManager : MonoBehaviour
     
     #region GET CELLS VISUALS
    
-    public Sprite GetCellTypeVisual(CellType cellType)
+    public Sprite GetCellTypeVisual(Cell cell)
     {
+        CellType cellType = cell.currentType;
         Sprite cellTypeVisual = null;
         if (cellType == CellType.Gate)
         {
@@ -136,7 +137,7 @@ public class VisualManager : MonoBehaviour
         }
         else if (cellType == CellType.Npc)
         {
-            cellTypeVisual = GetSprite("Cell_Type_Npc_Active");
+            cellTypeVisual = GetNpcStateVisual(cell.npc._currentNpcState);
         }
         return cellTypeVisual;
     }
@@ -144,11 +145,11 @@ public class VisualManager : MonoBehaviour
     public Sprite GetNpcStateVisual(DialogUtils.NPCState npcState)
     {
         Sprite cellTypeVisual = null;
-        if (npcState == DialogUtils.NPCState.active)
+        if (npcState == DialogUtils.NPCState.Active)
         {
             cellTypeVisual = GetSprite("Cell_Type_Npc_Active");
         }
-        else if (npcState == DialogUtils.NPCState.inactive)
+        else if (npcState == DialogUtils.NPCState.Inactive)
         {
             cellTypeVisual = GetSprite("Cell_Type_Npc_Inactive");
         }
