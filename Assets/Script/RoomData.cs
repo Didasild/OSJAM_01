@@ -12,11 +12,8 @@ public enum RoomState
     Started,
     Complete
 }
-public enum RoomCompletionCondition
-{
-    None,
-    FlaggedAllMine,
-}
+
+
 #endregion ENUMS
 
 public class RoomData : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerClickHandler
@@ -29,7 +26,7 @@ public class RoomData : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     [ReadOnly] public string roomSavedString;
     [ReadOnly] public Vector2Int roomPosition;
     [ReadOnly] public bool startRoom;
-    [ReadOnly] public RoomCompletionCondition roomCondition;
+    [ReadOnly] public RoomCompletion.RoomCompletionConditions roomConditions;
 
     [Header("NEIGHBORS")]
     [ReadOnly] public RoomData roomUp;
@@ -55,10 +52,10 @@ public class RoomData : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 
     #region INIT
 
-    public void Initialize(Vector2Int position, RoomCompletionCondition newRoomCondition, Minimap minimap)
+    public void Initialize(Vector2Int position, RoomCompletion.RoomCompletionConditions newRoomCondition, Minimap minimap)
     {
         _minimap = minimap;
-        roomCondition = newRoomCondition;
+        roomConditions = newRoomCondition;
         _floorManager = GameManager.Instance.FloorManager;
 
         //Setup le visuel

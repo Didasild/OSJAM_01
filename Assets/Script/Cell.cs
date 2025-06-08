@@ -260,7 +260,7 @@ public class Cell : MonoBehaviour
         _visualManager.PlayCellRevealFeedbacks();
 
         _player.IncreaseMana();
-        _gameManager.GridManager.CheckRoomCompletion(_gameManager.FloorManager.currentRoom.roomCondition);
+        _gameManager.GridManager.RoomCompletion.CheckRoomCompletion(_gameManager.FloorManager.currentRoom.roomConditions);
     }
 
     private void RevealNeighbors()
@@ -567,7 +567,7 @@ public class Cell : MonoBehaviour
         yield return new WaitForSeconds(animDuration);
         DestroyAnimationPrefab();
         ChangeState(cellNewState);
-        _gameManager.GridManager.CheckRoomCompletion(GameManager.Instance.FloorManager.currentRoom.roomCondition);
+        _gameManager.GridManager.RoomCompletion.CheckRoomCompletion(GameManager.Instance.FloorManager.currentRoom.roomConditions);
     }
     #endregion
 

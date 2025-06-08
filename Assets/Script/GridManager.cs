@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.PlayerLoop;
 
 public class GridManager : MonoBehaviour
 {
@@ -25,7 +26,16 @@ public class GridManager : MonoBehaviour
     public int numberOfMineLeft;
     [NaughtyAttributes.ReadOnly]
     public int theoricalMineLeft;
+    
+    private RoomCompletion _roomCompletion;
+    public RoomCompletion RoomCompletion => _roomCompletion;
     #endregion PARAMETERS
+
+    public void Init()
+    {
+        _roomCompletion = new RoomCompletion();
+        _roomCompletion.Init(this);
+    }
     
     #region PROCEDURAL GRID GENERATION
     public void GenerateGrid(Vector2Int gridSize)
@@ -417,49 +427,6 @@ public class GridManager : MonoBehaviour
         cellProceduralList = new List<Cell>();
     }
     #endregion COMMON GENERATION FONCTIONS
-
-    #region ROOM COMPLETION CHECK
-    public void CheckRoomCompletion(RoomCompletionCondition roomCondition)
-    {
-        if (GameManager.Instance.FloorManager.currentRoom.currentRoomState == RoomState.Complete)
-        {
-            return;
-        }
-        bool switchToComplete = false;
-        switch (roomCondition)
-        {
-            case RoomCompletionCondition.FlaggedAllMine:
-                switchToComplete = FlaggedAllMineCondition();
-                break;
-            
-            default:
-                switchToComplete = FlaggedAllMineCondition();
-                break;
-        }
-
-        if (switchToComplete)
-        {
-            GameManager.Instance.FloorManager.currentRoom.ChangeRoomSate(RoomState.Complete);
-            GameManager.visualManager.PlayRoomCompletionFeedbacks();
-        }
-    }
-
-    private bool FlaggedAllMineCondition()
-    {
-        if (GetCellsByState(CellState.Flag).Count != GetCellsByType(CellType.Mine).Count || GetCellsByState(CellState.Cover).Count != 0)
-        {
-            return false;
-        }
-        foreach (Cell mineCell in GetCellsByType(CellType.Mine))
-        {
-            if (mineCell.currentState != CellState.Flag)
-            {
-                return false;
-            }
-        }
-        return true;
-    }
-    #endregion
     
     #region GET GRID INFORMATIONS
     public List<Cell> GetCellsByType(CellType typeOfCellWanted)

@@ -46,7 +46,6 @@ public class FloorManager : MonoBehaviour
     public TMP_Text roomNameDebugText;
     
     private VisualManager _visualManager;
-    
 
     #endregion
 
@@ -78,7 +77,7 @@ public class FloorManager : MonoBehaviour
                 RoomData roomData = Instantiate(roomPrefab);
                 if (roomData != null)
                 {
-                    roomData.Initialize(gridPosition, RoomCompletionCondition.None, minimap);
+                    roomData.Initialize(gridPosition, RoomCompletion.RoomCompletionConditions.Default, minimap);
                     roomList.Add(roomData);
                     minimap.SetRoomPosition(roomData, gridPosition);
                 }

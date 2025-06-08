@@ -11,7 +11,7 @@ public class RoomEditorObject : MonoBehaviour
     public Vector2Int roomPosition;
     public RoomState roomState;
     public RoomSettings roomSettings;
-    public RoomCompletionCondition roomCondition;
+    public RoomCompletion.RoomCompletionConditions roomCondition;
     
     [Header("DEBUG / SETUP")]
     public bool showSetupElements = false;

@@ -39,7 +39,7 @@ public class FloorSettings : ScriptableObject
         public RoomSettings initRoomSettings;
         public RoomState currentRoomState;
         public Vector2Int roomPosition;
-        public RoomCompletionCondition roomCondition;
+        public RoomCompletion.RoomCompletionConditions roomCondition;
     }
     #endregion
 

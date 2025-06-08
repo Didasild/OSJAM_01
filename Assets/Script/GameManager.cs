@@ -59,6 +59,7 @@ public class GameManager : MonoBehaviour
         _player.Init(this);
         _dialog.Init(this);
         _floorManager.Init();
+        _gridManager.Init();
     }
 
     public void Start()
