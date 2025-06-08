@@ -55,7 +55,7 @@ public class NPC
 
     private void InactiveNpcState()
     {
-        
+        GameManager.Instance.GridManager.RoomCompletion.CheckRoomCompletion(GameManager.Instance.FloorManager.currentRoom.roomConditions);
     }
 
     private void WaitingForTriggerState()

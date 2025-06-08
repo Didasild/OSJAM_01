@@ -84,6 +84,7 @@ public class Dialog : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, 
     {
         dialogStarted = false;
         currentSequenceIndex = 0;
+        
         //A DEVELOPPER QUAND NECESSAIRE ET PLACE AILLEURS POTENTIELLEMENT
         _currentNPC.ChangeNpcState(DialogUtils.NPCState.Inactive);
         _dialogVisual.DialogDisparition();

@@ -22,9 +22,9 @@ MonoBehaviour:
     initRoomSettings: {fileID: 11400000, guid: 6c376ee1e8ea45a4488360da3d24f8cb, type: 2}
     currentRoomState: 1
     roomPosition: {x: 0, y: 0}
-    roomCondition: 0
+    roomCondition: -1
   - startRoom: 0
     initRoomSettings: {fileID: 11400000, guid: 60ff1f7949eeb6142b28627fc63d796b, type: 2}
     currentRoomState: 0
     roomPosition: {x: 1, y: 0}
-    roomCondition: 0
+    roomCondition: -1

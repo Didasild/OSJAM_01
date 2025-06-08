@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class RoomCompletion
@@ -11,16 +12,25 @@ public class RoomCompletion
         ToNameTestCondition = 1 << 2,    // 4
     }
     
+    private List<Cell> npcList;
+    
     private GridManager _gridManager;
     
     public void Init(GridManager gridManager)
     {
         _gridManager = gridManager;
+        npcList = new List<Cell>();
     }
     
     public void CheckRoomCompletion(RoomCompletionConditions roomConditions)
     {
         if (GameManager.Instance.FloorManager.currentRoom.currentRoomState == RoomState.Complete)
+        {
+            return;
+        }
+
+        //DEFAULT CONDITION DEFINITION
+        if (roomConditions.HasFlag(RoomCompletionConditions.Default) && !FlaggedAllMineCondition())
         {
             return;
         }
@@ -35,6 +45,27 @@ public class RoomCompletion
         }
         
         RoomCompleted();
+    }
+    
+    private bool NoActiveNpcCondition()
+    {
+        if (npcList.Count == 0)
+        {
+            npcList = _gridManager.GetCellsByType(CellType.Npc);
+        }
+        foreach (Cell cell in npcList)
+        {
+            if (cell == null || cell.npc == null)
+            {
+                return false;
+            }
+            if (cell.npc._currentNpcState == DialogUtils.NPCState.Active)
+            {
+                return false;
+            }
+        }
+        npcList = _gridManager.GetCellsByType(CellType.Npc);
+        return true;
     }
 
     private bool FlaggedAllMineCondition()
@@ -53,16 +84,11 @@ public class RoomCompletion
         return true;
     }
 
-    private bool NoActiveNpcCondition()
-    {
-        //TO DO
-        return true;
-    }
-
     private void RoomCompleted()
     {
         GameManager.Instance.FloorManager.currentRoom.ChangeRoomSate(RoomState.Complete);
         GameManager.visualManager.PlayRoomCompletionFeedbacks();
+        npcList.Clear();
     }
     
 }
