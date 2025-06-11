@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class DialogUtils
 {
@@ -14,7 +15,7 @@ public class DialogUtils
     public struct NpcData
     {
         public Vector2Int npcPosition;
-        public NPCSettings npcSettings;
+        public NpcDialogsSettings npcDialogsSettings;
     }
     
     [System.Serializable]
@@ -31,13 +32,13 @@ public class DialogUtils
         WaitingForTrigger = 3,
     }
     
-    public static NPCSettings GetNpcSettings(Vector2Int cellPosition)
+    public static NpcDialogsSettings GetNpcSettings(Vector2Int cellPosition)
     {
         foreach (NpcData npcData in GameManager.Instance.currentRoomSettings.npcDatas)
         {
             if (npcData.npcPosition == cellPosition)
             {
-                return npcData.npcSettings;
+                return npcData.npcDialogsSettings;
             }
         }
         Debug.LogError("NPC settings not found");

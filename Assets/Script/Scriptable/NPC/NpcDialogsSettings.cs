@@ -2,17 +2,15 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UIElements;
 
-[CreateAssetMenu(fileName = "NPC", menuName = "MineCrawler/NPC")]
-public class NPCSettings : ScriptableObject
+[CreateAssetMenu(fileName = "DS", menuName = "MineCrawler/DialogSettings")]
+public class NpcDialogsSettings : ScriptableObject
 {
     List<DialogUtils.DialogStates> dialogStates;
-    public string npcName;
-    public string npcDescription;
+    public NpcSettings npcSettings;
     public DialogUtils.NPCState baseNPCState;
     public List<DialogUtils.DialogPullStates> dialogPulls;
     
     private DialogPull _selectedPull;
-    [HideInInspector] public Image npcDialogBoxImage;
 
     public List<string> GetDialogSequence(DialogUtils.NPCState npcState)
     {

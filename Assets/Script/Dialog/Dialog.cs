@@ -44,9 +44,9 @@ public class Dialog : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, 
 
     private void DisplayDialogSequence(NPC npc)
     {
-        NPCSettings npcSettings = npc.npcSettings;
+        NpcDialogsSettings npcDialogsSettings = npc.NpcDialogsSettings;
         _currentDialogSequence = npc.currentDialogSequence;
-        UpdateCharacterName(npcSettings.npcName);
+        UpdateCharacterName(npcDialogsSettings.npcSettings.npcName);
         if (_currentDialogSequence.Count > 0)
         {
             currentSequenceIndex = 0;

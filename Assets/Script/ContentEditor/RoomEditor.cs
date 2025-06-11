@@ -186,7 +186,7 @@ public class RoomEditor : MonoBehaviour
                 {
                     if (npcData.npcPosition == cellEditor.cellPosition)
                     {
-                        cellEditor.npcSettings = npcData.npcSettings;
+                        cellEditor.npcDialogsSettings = npcData.npcDialogsSettings;
                         //cellEditor.dialogPullOverride = npcData.dialogPullOverride;
                         break;
                     }
@@ -500,7 +500,7 @@ public class RoomEditor : MonoBehaviour
             }
             else if (cell.cellType == CellType.Npc)
             {
-                secondType = ((int)cell.npcSettings.baseNPCState).ToString();
+                secondType = ((int)cell.npcDialogsSettings.baseNPCState).ToString();
             }
             else
             {
@@ -561,7 +561,7 @@ public class RoomEditor : MonoBehaviour
         {
             if (cell.cellType == CellType.Npc)
             {
-                roomSettings.npcDatas.Add(new DialogUtils.NpcData {npcPosition = cell.cellPosition, npcSettings = cell.npcSettings});
+                roomSettings.npcDatas.Add(new DialogUtils.NpcData {npcPosition = cell.cellPosition, npcDialogsSettings = cell.npcDialogsSettings});
             }
         }
     }

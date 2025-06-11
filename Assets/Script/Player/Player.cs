@@ -335,7 +335,7 @@ public class Player : MonoBehaviour
         // {
         //     if (npcData.npcPosition == cellClicked._cellPosition)
         //     {
-        //         GameManager.Instance.Dialog.StartDialogSequence(npcData.npcSettings);
+        //         GameManager.Instance.Dialog.StartDialogSequence(npcData.npcDialogsSettings);
         //         return;
         //     }
         // }

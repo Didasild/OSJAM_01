@@ -16,7 +16,7 @@ public enum GameState
 
 public class GameManager : MonoBehaviour
 {
-    #region PARAMETERS
+    #region FIELDS
     [Header("INFORMATIONS STATE")]
     [ReadOnly] public GameState currentGameState;
     public Chapters currentChapter;
@@ -46,9 +46,7 @@ public class GameManager : MonoBehaviour
     public Dialog Dialog => _dialog;
     public FloorManager FloorManager => _floorManager;
     public GridManager GridManager => _gridManager;
-
-    
-    #endregion PARAMETERS
+    #endregion FIELDS
 
     #region INIT
     private void Awake()

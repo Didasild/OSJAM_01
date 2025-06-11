@@ -5,18 +5,18 @@ using UnityEngine;
 public class NPC
 {
     #region FIELDS
-    public NPCSettings npcSettings;
+    public NpcDialogsSettings NpcDialogsSettings;
     public List<string> currentDialogSequence;
     public DialogUtils.NPCState _currentNpcState;
     private Cell _currentCell;
     #endregion FIELDS
 
-    public void Init(NPCSettings associatedNpcSettings, Cell associatedCell)
+    public void Init(NpcDialogsSettings associatedNpcDialogsSettings, Cell associatedCell)
     {
         _currentCell = associatedCell;
-        npcSettings = associatedNpcSettings;
-        _currentNpcState = npcSettings.baseNPCState;
-        currentDialogSequence = npcSettings.GetDialogSequence(_currentNpcState);
+        NpcDialogsSettings = associatedNpcDialogsSettings;
+        _currentNpcState = NpcDialogsSettings.baseNPCState;
+        currentDialogSequence = NpcDialogsSettings.GetDialogSequence(_currentNpcState);
     }
     
     #region STATE
@@ -39,7 +39,7 @@ public class NPC
                 WaitingForTriggerState();
                 break;
         }
-        currentDialogSequence = npcSettings.GetDialogSequence(_currentNpcState);
+        currentDialogSequence = NpcDialogsSettings.GetDialogSequence(_currentNpcState);
         _currentCell.typeVisual.sprite = GameManager.visualManager.GetNpcStateVisual(_currentNpcState);
     }
 

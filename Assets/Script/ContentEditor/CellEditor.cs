@@ -4,6 +4,7 @@ using NaughtyAttributes;
 using TMPro;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 [ExecuteInEditMode]
 public class CellEditor : MonoBehaviour
@@ -15,8 +16,8 @@ public class CellEditor : MonoBehaviour
     public ItemTypeEnum itemType;
     public bool proceduralCell;
     
-    [Header("NPC PARAMETERS")]
-    public NPCSettings npcSettings;
+    [FormerlySerializedAs("npcSettings")] [Header("NPC PARAMETERS")]
+    public NpcDialogsSettings npcDialogsSettings;
     
     [Header("DEBUG / SETUP")]
     public bool showSetupElements = false;
