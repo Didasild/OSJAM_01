@@ -12,8 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 34b703c7a33a4e14599eae68c269bba3, type: 3}
   m_Name: DS_InstructorTest
   m_EditorClassIdentifier: 
-  npcName: C.A.L.L.
-  npcDescription: Companion AI for Long-term Loneliness
+  npcSettings: {fileID: 11400000, guid: 4791684ff94ddcb4eb806faf9940b8a4, type: 2}
   baseNPCState: 1
   dialogPulls:
   - RelatedNpcState: 1

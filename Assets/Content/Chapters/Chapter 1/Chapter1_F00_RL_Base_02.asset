@@ -27,4 +27,4 @@ MonoBehaviour:
   itemRanges: []
   npcDatas:
   - npcPosition: {x: 2, y: 0}
-    npcSettings: {fileID: 11400000, guid: 4665b59118b600948a95fb927a95d5f8, type: 2}
+    npcDialogsSettings: {fileID: 11400000, guid: 4665b59118b600948a95fb927a95d5f8, type: 2}
