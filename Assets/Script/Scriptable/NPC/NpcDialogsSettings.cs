@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UIElements;
 
-[CreateAssetMenu(fileName = "DS", menuName = "MineCrawler/DialogSettings")]
+[CreateAssetMenu(fileName = "DialogSettings", menuName = "MineCrawler/DialogSettings")]
 public class NpcDialogsSettings : ScriptableObject
 {
     List<DialogUtils.DialogStates> dialogStates;
@@ -22,6 +22,6 @@ public class NpcDialogsSettings : ScriptableObject
             }
         }
         Debug.LogWarning($"No DialogPull found for state: {npcState}");
-        return null; // Ou une séquence par défaut si tu préfères
+        return null;
     }
 }

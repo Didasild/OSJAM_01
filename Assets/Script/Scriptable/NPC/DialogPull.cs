@@ -1,7 +1,6 @@
 using System.Collections.Generic;
 using NaughtyAttributes;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 [CreateAssetMenu(fileName = "DialogPull", menuName = "MineCrawler/DialogPull")]
 public class DialogPull : ScriptableObject
@@ -15,7 +14,6 @@ public class DialogPull : ScriptableObject
         public List<string> sentences;
         public int weight;
     }
-
     public List<DialogWeightedSequence> dialogPull;
 
     public List<string> GetSentences()
@@ -35,7 +33,7 @@ public class DialogPull : ScriptableObject
         Debug.LogError("No sentences found");
         return dialogPull[0].sentences;
     }
-
+    
     #region EDITOR
     private void OnValidate()
     {
@@ -51,7 +49,7 @@ public class DialogPull : ScriptableObject
         }
 
 #if UNITY_EDITOR
-        UnityEditor.EditorUtility.SetDirty(this); // Marque comme modifié
+        UnityEditor.EditorUtility.SetDirty(this);
 #endif
     }
     #endregion EDITOR
