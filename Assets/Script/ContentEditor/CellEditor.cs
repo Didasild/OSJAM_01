@@ -1,10 +1,9 @@
-using System.Collections;
+#if UNITY_EDITOR
 using System.Collections.Generic;
 using NaughtyAttributes;
 using TMPro;
 using UnityEditor;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 [ExecuteInEditMode]
 public class CellEditor : MonoBehaviour
@@ -259,5 +258,5 @@ public class CellEditor : MonoBehaviour
     }
     #endregion VISUAL FUNCTIONS
 
-
 }
+#endif

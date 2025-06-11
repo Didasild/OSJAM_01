@@ -1,8 +1,8 @@
 using System.Collections.Generic;
 using NaughtyAttributes;
+#if UNITY_EDITOR
 using UnityEditor;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 [ExecuteInEditMode]
 public class RoomEditorObject : MonoBehaviour
@@ -105,3 +105,4 @@ public class RoomEditorObject : MonoBehaviour
         _floorEditor.UpdateSelectedVisual();
     }
 }
+#endif

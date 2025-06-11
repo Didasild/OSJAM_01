@@ -1,11 +1,10 @@
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using NaughtyAttributes;
+#if UNITY_EDITOR
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.Rendering;
-using UnityEngine.Serialization;
 
 
 [ExecuteInEditMode]
@@ -759,3 +758,4 @@ public class RoomEditor : MonoBehaviour
     }
     #endregion EDITOR FUNCTIONS
 }
+#endif

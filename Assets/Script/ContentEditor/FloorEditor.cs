@@ -1,9 +1,8 @@
+#if UNITY_EDITOR
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.Rendering;
-using UnityEngine.Serialization;
-
 [ExecuteInEditMode]
 public class FloorEditor : MonoBehaviour
 {
@@ -277,3 +276,4 @@ public class FloorEditor : MonoBehaviour
     }
     #endregion DEBUG
 }
+#endif
