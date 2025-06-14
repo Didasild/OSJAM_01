@@ -1,19 +1,23 @@
 using System.Collections.Generic;
 using DG.Tweening;
+using Febucci.UI;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.Serialization;
 
 public class Dialog : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerClickHandler
 {
     #region FIELDS
     private GameManager _gameManager;
     public GameObject dialogContainer;
+    public GameObject dialogArrow;
     [SerializeField] private DialogVisual _dialogVisual;
     private RoomSettings _currentRoomSettings;
     private List<string> _currentDialogSequence;
     private int currentSequenceIndex;
     private bool dialogStarted;
     private NPC _currentNPC;
+    public TextAnimatorPlayer textAnimatorPlayer;
     #endregion
     
     public void Init(GameManager manager)
@@ -34,9 +38,9 @@ public class Dialog : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, 
     {
         ClearDialogBox();
         dialogContainer.SetActive(true);
-        _dialogVisual.DialogApparition();
+        _dialogVisual.DialogApparition(npc.NpcDialogsSettings.npcSettings.npcImage);
         _currentNPC = npc;
-        DOVirtual.DelayedCall(_dialogVisual.uiTransition.transitionDuration/1.5f, () =>
+        DOVirtual.DelayedCall(_dialogVisual.uiDialogBoxTransition.transitionDuration/1.5f, () =>
         {
             DisplayDialogSequence(npc);
         });
@@ -67,6 +71,7 @@ public class Dialog : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, 
             if (currentSequenceIndex < _currentDialogSequence.Count)
             {
                 UpdateDialogText(_currentDialogSequence[currentSequenceIndex]);
+                dialogArrow.SetActive(false);
             }
             else
             {
@@ -88,12 +93,16 @@ public class Dialog : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, 
         //A DEVELOPPER QUAND NECESSAIRE ET PLACE AILLEURS POTENTIELLEMENT
         _currentNPC.ChangeNpcState(DialogUtils.NPCState.Inactive);
         _dialogVisual.DialogDisparition();
-        DOVirtual.DelayedCall(_dialogVisual.uiTransition.transitionDuration/1.5f, () =>
+        DOVirtual.DelayedCall(_dialogVisual.uiDialogBoxTransition.transitionDuration/1.5f, () =>
         {
             ClearDialogBox();
         });
     }
+    #endregion METHODS
+    
+    #region VISUAL METHODS TO MOVE
 
+    //A BOUGER DANS DIALOG VISUAL
     private void UpdateCharacterName(string characterName)
     {
         _dialogVisual.characterName.text = characterName;
@@ -114,11 +123,12 @@ public class Dialog : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, 
     public void ClearDialogBox()
     {
         dialogContainer.SetActive(false);
+        dialogArrow.SetActive(false);
         _dialogVisual.dialogText.text = "";
         _dialogVisual.characterName.text = "";
         _dialogVisual.DialogBubbleFeedback.ResetBubbleSize();
     }
-    #endregion METHODS
+    #endregion VISUAL METHODS
     
     #region POINTER
     public void OnPointerEnter(PointerEventData eventData)
@@ -136,7 +146,11 @@ public class Dialog : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, 
 
     public void OnPointerClick(PointerEventData eventData)
     {
-        if (dialogStarted)
+        if (textAnimatorPlayer.IsPlaying)
+        {
+            textAnimatorPlayer.SkipTypewriter();
+        }
+        else if (dialogStarted)
         {
             GoToNextSentence();
         }
