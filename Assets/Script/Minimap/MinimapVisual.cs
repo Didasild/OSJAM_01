@@ -103,7 +103,6 @@ public class MinimapVisual : MonoBehaviour
         }
     }
     
-    [Button]
     public void MinimapAppear()
     {
         minimapContainer.SetActive(true);
