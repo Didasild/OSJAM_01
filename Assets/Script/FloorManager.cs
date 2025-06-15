@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using TMPro;
 using UnityEngine;
-using UnityEngine.Serialization;
 using Random = UnityEngine.Random;
 
 #region ENUMS
@@ -57,7 +56,7 @@ public class FloorManager : MonoBehaviour
     }
     #endregion
 
-    #region FLOOR GENERATION
+    #region PROCEDRUAL GENERATION
     public void GenerateProceduralFloor(FloorSettings floorSetting)
     {
         _roomSettingsList = currentFloorSetting.roomSettingsList;
@@ -209,7 +208,7 @@ public class FloorManager : MonoBehaviour
         {
             Vector2Int position = room.roomPosition;
 
-            // Cherche les voisins
+            // Search Neighbors
             room.roomUp = FindRoomAtPosition(position + Vector2Int.up);
             room.roomDown = FindRoomAtPosition(position + Vector2Int.down);
             room.roomLeft = FindRoomAtPosition(position + Vector2Int.left);
@@ -219,7 +218,6 @@ public class FloorManager : MonoBehaviour
     
     private RoomData FindRoomAtPosition(Vector2Int position)
     {
-        // Cherche la room correspondant à la position donnée
         return roomList.Find(r => r.roomPosition == position);
     }
     
@@ -237,17 +235,16 @@ public class FloorManager : MonoBehaviour
 
     private void InstanciateFirstRoom(RoomData roomToInstanciate)
     {
-        //La génère
         GameManager.Instance.ChangeRoom(roomToInstanciate);
 
-        //Update l'ambiance
+        //Update Ambiance
         _visualManager.UpdateRoomAmbiance(roomToInstanciate);
         _visualManager.UpdateRoomID(roomToInstanciate);
         
         //minimap to move
         _visualManager.minimapVisual.ActiveSelectedVisual(roomToInstanciate, true);
         
-        //Update les boutons
+        //Update Buttons
         UpdateButtonStates();
         UpdateRoomDebugName();
     }
@@ -300,7 +297,7 @@ public class FloorManager : MonoBehaviour
     public void ChangeRoomIn()
     {
         SaveRoomData();
-        GameManager.Instance.Dialog.ClearDialogBox();
+        GameManager.Instance.Dialog.DialogVisual.ClearDialogBox();
         _visualManager.minimapVisual.ActiveSelectedVisual(currentRoom, false);
         DisableButtons();
     }

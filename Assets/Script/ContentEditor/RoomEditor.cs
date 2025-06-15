@@ -1,7 +1,7 @@
+#if UNITY_EDITOR
 using System;
 using System.Collections.Generic;
 using NaughtyAttributes;
-#if UNITY_EDITOR
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.Rendering;

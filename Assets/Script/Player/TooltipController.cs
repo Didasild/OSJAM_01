@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class TooltipController : MonoBehaviour
 {
-    public static TooltipController Instance;
+    private static TooltipController Instance;
 
     public GameObject tooltipPanel;
     public TextMeshProUGUI tooltipText;

@@ -12,6 +12,8 @@ public class DialogVisual : MonoBehaviour
     #region FIELDS
     public TMP_Text characterName;
     public TMP_Text dialogText;
+    public GameObject dialogContainer;
+    public GameObject dialogArrow;
     public GameObject portraitBox;
     public GameObject portraitMask;
     #endregion FIELDS
@@ -65,5 +67,31 @@ public class DialogVisual : MonoBehaviour
         portraitMask.SetActive(false);
         uiPortraitTransition.StartTransition(false);
         DOVirtual.DelayedCall(uiPortraitTransition.transitionDuration, () => portraitBox.SetActive(false));
+    }
+    
+    public void UpdateCharacterName(string newName)
+    {
+        characterName.text = newName;
+    }
+    
+    public void UpdateDialogText(string newText)
+    {
+        if (newText != null)
+        {
+            dialogText.text = newText;
+        }
+        else
+        {
+            Debug.LogError("Dialog is null");
+        }
+    }
+    
+    public void ClearDialogBox()
+    {
+        dialogContainer.SetActive(false);
+        dialogArrow.SetActive(false);
+        dialogText.text = "";
+        characterName.text = "";
+        DialogBubbleFeedback.ResetBubbleSize();
     }
 }

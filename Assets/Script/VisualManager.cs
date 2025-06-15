@@ -28,7 +28,6 @@ public class VisualManager : MonoBehaviour
     public ShakeCamController shakeCamController;
     public CentralFeedbackController centralFeedbackController;
     public FullScreenFeedbackController fullScreenFeedbackController;
-    private UiTransition _uiTransition;
 
     [Header("AMBIANCE / POST PROCESS")]
     public Volume mainColorsVolume;
@@ -66,7 +65,6 @@ public class VisualManager : MonoBehaviour
     private Tweener _currentWeightTween;
     private bool _roomTransitionComplete;
     
-    public UiTransition UITransition => _uiTransition;
     #endregion
 
     #region INIT
@@ -92,8 +90,6 @@ public class VisualManager : MonoBehaviour
         textController.Init(this);
         shakeCamController.Init();
         roomAmbianceController.Init(this);
-        //Voir pour améliorer ça
-        _uiTransition = gameObject.AddComponent<UiTransition>();
     }
     
     [Button]
@@ -227,63 +223,6 @@ public class VisualManager : MonoBehaviour
         return returnedColor;
     }
     #endregion
-    
-    #region GET ROOM FUNCTIONS
-    // public Sprite GetRoomStateVisual(RoomState roomState)
-    // {
-    //     Sprite roomStateVisual = null;
-    //     switch (roomState)
-    //     {
-    //         case RoomState.FogOfWar:
-    //             roomStateVisual = roomFoWSprite;
-    //             break;
-    //         case RoomState.Started:
-    //             roomStateVisual = roomStartedSprite;
-    //             break;
-    //         case RoomState.Complete:
-    //             roomStateVisual = roomCompleteSprite;
-    //             break;
-    //         default:
-    //             throw new ArgumentOutOfRangeException(nameof(roomState), roomState, null);
-    //     }
-    //     return roomStateVisual;
-    // }
-
-    // public Sprite GetRoomTypeVisual(RoomType roomType)
-    // {
-    //     Sprite roomTypeVisual = null;
-    //     switch (roomType)
-    //     {
-    //         case RoomType.Base:
-    //             return null;
-    //         case RoomType.Stair:
-    //             roomTypeVisual = roomTypeStairSprite;
-    //             break;
-    //         case RoomType.Shop:
-    //             break;
-    //         case RoomType.Sword:
-    //             break;
-    //         case RoomType.Potion:
-    //             break;
-    //         case RoomType.Boss:
-    //             break;
-    //         default:
-    //             throw new ArgumentOutOfRangeException(nameof(roomType), roomType, null);
-    //     }
-    //
-    //     return roomTypeVisual;
-    // }
-    
-    // public Sprite GetSelectedVisual(bool isSelected)
-    // {
-    //     Sprite roomSelectedVisual = null;
-    //     if (isSelected)
-    //     {
-    //         roomSelectedVisual = roomSelectedSprite;
-    //     }
-    //     return roomSelectedVisual;
-    // }
-    #endregion GET ROOM FUNCTIONS
 
     #region FEEDBACKS
     //Central feedbacks
