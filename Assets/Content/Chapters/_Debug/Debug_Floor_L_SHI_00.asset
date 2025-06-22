@@ -22,44 +22,53 @@ MonoBehaviour:
     initRoomSettings: {fileID: 11400000, guid: 6c376ee1e8ea45a4488360da3d24f8cb, type: 2}
     currentRoomState: 0
     roomPosition: {x: 0, y: 0}
-    roomCondition: 3
+    roomCompletion: 3
+    roomUnlock: 1
   - startRoom: 0
     initRoomSettings: {fileID: 11400000, guid: 217f3bf9ea452f44f9d38c568aa49af6, type: 2}
     currentRoomState: 0
     roomPosition: {x: 1, y: 1}
-    roomCondition: 3
+    roomCompletion: 3
+    roomUnlock: 3
   - startRoom: 0
     initRoomSettings: {fileID: 11400000, guid: 3de9fbd7fdca9b24582857244631451d, type: 2}
     currentRoomState: 0
     roomPosition: {x: 3, y: 0}
-    roomCondition: 0
+    roomCompletion: 0
+    roomUnlock: 0
   - startRoom: 0
     initRoomSettings: {fileID: 11400000, guid: 43528039599fd934aa033056c8ae0290, type: 2}
     currentRoomState: 0
     roomPosition: {x: 3, y: 1}
-    roomCondition: 0
+    roomCompletion: 0
+    roomUnlock: 0
   - startRoom: 0
     initRoomSettings: {fileID: 11400000, guid: 20a5d6c7151eedd4088b1c893f392d94, type: 2}
     currentRoomState: 0
     roomPosition: {x: 2, y: 1}
-    roomCondition: 0
+    roomCompletion: 0
+    roomUnlock: 0
   - startRoom: 0
     initRoomSettings: {fileID: 11400000, guid: e8c958edb868227449c543db67875966, type: 2}
     currentRoomState: 0
     roomPosition: {x: 1, y: 2}
-    roomCondition: 0
+    roomCompletion: 0
+    roomUnlock: 0
   - startRoom: 0
     initRoomSettings: {fileID: 11400000, guid: 2eebcb769bea22a4489e34f7d6f3a10a, type: 2}
     currentRoomState: 0
     roomPosition: {x: 2, y: 2}
-    roomCondition: 0
+    roomCompletion: 0
+    roomUnlock: 0
   - startRoom: 0
     initRoomSettings: {fileID: 11400000, guid: 156407c483b78ed44955b3848e43d64c, type: 2}
     currentRoomState: 0
     roomPosition: {x: 3, y: 2}
-    roomCondition: 0
+    roomCompletion: 0
+    roomUnlock: 0
   - startRoom: 1
     initRoomSettings: {fileID: 11400000, guid: 3874eaf7b7f24ec43b073b2be72ed74b, type: 2}
     currentRoomState: 0
     roomPosition: {x: 0, y: 1}
-    roomCondition: 0
+    roomCompletion: 0
+    roomUnlock: 0

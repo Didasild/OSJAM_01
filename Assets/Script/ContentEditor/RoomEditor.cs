@@ -31,7 +31,7 @@ public class RoomEditor : MonoBehaviour
     public CellSelectionConditions cellSelectionConditions;
     public CellsTypeChange cellsTypeChange;
     public CellsStateChange cellsStateChange;
-    public List<RoomSettings.ItemRange> itemRanges;
+    public List<ItemRange> itemRanges;
     public bool haveStair;
     public int pourcentageOfRandomMine;
     
@@ -162,10 +162,10 @@ public class RoomEditor : MonoBehaviour
             if (isProcedural)
             {
                 cellEditor.proceduralCell = true;
-                itemRanges  = new List<RoomSettings.ItemRange>();
+                itemRanges  = new List<ItemRange>();
                 foreach (var itemRange in roomSettingsToLoad.itemRanges)
                 {
-                   itemRanges.Add(new RoomSettings.ItemRange {itemType = itemRange.itemType, min = itemRange.min, max = itemRange.max});
+                   itemRanges.Add(new ItemRange {itemType = itemRange.itemType, min = itemRange.min, max = itemRange.max});
                 }
                 haveStair = roomSettingsToLoad.haveStair;
                 pourcentageOfRandomMine = roomSettingsToLoad.roomPourcentageOfMine;
@@ -544,10 +544,10 @@ public class RoomEditor : MonoBehaviour
             roomSettings.haveStair = haveStair;
             roomSettings.roomPourcentageOfMine = pourcentageOfRandomMine;
             // Copie profonde de la liste itemRanges
-            roomSettings.itemRanges = new List<RoomSettings.ItemRange>();
+            roomSettings.itemRanges = new List<ItemRange>();
             foreach (var itemRange in itemRanges)
             {
-                roomSettings.itemRanges.Add(new RoomSettings.ItemRange { itemType = itemRange.itemType, min = itemRange.min, max = itemRange.max });
+                roomSettings.itemRanges.Add(new ItemRange { itemType = itemRange.itemType, min = itemRange.min, max = itemRange.max });
             }
         }
         else

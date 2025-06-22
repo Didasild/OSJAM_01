@@ -159,7 +159,7 @@ public class FloorManager : MonoBehaviour
             RoomData roomData = Instantiate(roomPrefab);
             roomList.Add(roomData);
             
-            roomData.Initialize(loadedRoomData.roomPosition, loadedRoomData.roomCondition, minimap);
+            roomData.Initialize(loadedRoomData.roomPosition, loadedRoomData.roomCompletion, minimap);
             minimap.SetRoomPosition(roomData, loadedRoomData.roomPosition);
             roomData.name = $"Room_"+ loadedRoomData.roomPosition;
             

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using NaughtyAttributes;
 using UnityEngine.Rendering;
+using UnityEngine.Serialization;
 using Random = UnityEngine.Random;
 
 public enum FloorType
@@ -39,7 +40,8 @@ public class FloorSettings : ScriptableObject
         public RoomSettings initRoomSettings;
         public RoomState currentRoomState;
         public Vector2Int roomPosition;
-        public RoomCompletion.RoomCompletionConditions roomCondition;
+        public RoomCompletion.RoomCompletionConditions roomCompletion;
+        public RoomCompletion.RoomCompletionConditions roomUnlock;
     }
     #endregion
 

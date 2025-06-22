@@ -144,7 +144,8 @@ public class FloorEditor : MonoBehaviour
             newRoomData.initRoomSettings = roomEditorObject.roomSettings;
             newRoomData.currentRoomState = roomEditorObject.roomState;
             newRoomData.roomPosition = roomEditorObject.roomPosition;
-            newRoomData.roomCondition = roomEditorObject.roomCondition;
+            newRoomData.roomCompletion = roomEditorObject.roomCompletion;
+            newRoomData.roomUnlock = roomEditorObject.roomUnlock;
             
             floorSettings.loadedRoomDatas.Add(newRoomData);
         }
@@ -269,6 +270,7 @@ public class FloorEditor : MonoBehaviour
         gameObject.SetActive(true);
     }
     #endregion FUNCTIONS
+    
     #region DEBUG
     public void LoadFloor()
     {

@@ -21,6 +21,14 @@ public enum GenerationType
     RL,
 }
 
+[System.Serializable]
+public struct ItemRange
+{
+    public ItemTypeEnum itemType;
+    public int min;
+    public int max;
+}
+
 [CreateAssetMenu(fileName = "RoomSettings", menuName = "MineCrawler/RoomSettings")]
 
 public class RoomSettings : ScriptableObject
@@ -38,7 +46,7 @@ public class RoomSettings : ScriptableObject
     public VolumeProfile roomVolumeProfile;
 
     [Header("________LOADED GRID SETTINGS")]
-    [FormerlySerializedAs("roomLoadString")] public string roomIDString; // USE ONLY FOR FIRST GENERATION NEVER CHANGE
+    public string roomIDString; // USE ONLY FOR FIRST GENERATION NEVER CHANGE
     public bool haveProceduralCells;
 
     [Header("________PROCEDURAL GRID SETTINGS")]
@@ -50,14 +58,7 @@ public class RoomSettings : ScriptableObject
     public int roomPourcentageOfMine = 5;
     public int roomPourcentageOfNone = 5;
     public bool haveStair;
-    
-    [System.Serializable]
-    public struct ItemRange
-    {
-        public ItemTypeEnum itemType;
-        public int min;
-        public int max;
-    }
+
     public List<ItemRange> itemRanges;
     public List<DialogUtils.NpcData> npcDatas;
     #endregion

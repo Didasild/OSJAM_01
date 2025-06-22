@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using NaughtyAttributes;
+using UnityEngine.Serialization;
 #if UNITY_EDITOR
 using UnityEditor;
 using UnityEngine;
@@ -11,7 +12,8 @@ public class RoomEditorObject : MonoBehaviour
     public Vector2Int roomPosition;
     public RoomState roomState;
     public RoomSettings roomSettings;
-    public RoomCompletion.RoomCompletionConditions roomCondition;
+    public RoomCompletion.RoomCompletionConditions roomCompletion;
+    public RoomCompletion.RoomCompletionConditions roomUnlock;
     
     [Header("DEBUG / SETUP")]
     public bool showSetupElements = false;

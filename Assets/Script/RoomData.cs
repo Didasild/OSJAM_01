@@ -45,8 +45,7 @@ public class RoomData : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     
     private FloorManager _floorManager;
     private Minimap _minimap;
-
-    //private RoomVisualManager _roomVisualManager;
+    
     private VisualManager _visualManager;
     #endregion
 
