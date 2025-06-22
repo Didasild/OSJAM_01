@@ -230,7 +230,7 @@ public class VisualManager : MonoBehaviour
     {
         centralFeedbackController.CellRevealFeedbackIn();
     }
-    public void PlayRoomCompletionFeedbacks()
+    public void PlayRoomUnlockFeedbacks()
     {
         centralFeedbackController.RoomCompletionFeedback();
     }
@@ -398,6 +398,7 @@ public class VisualManager : MonoBehaviour
         {
             StartCoroutine(CO_ActiveCellsWithDelay(timeBetweenApparition));
         }
+        _gridManager.isGeneratingRoom = false;
     }
 
     private IEnumerator CO_ActiveCellsWithDelay(float timeBetweenApparition)

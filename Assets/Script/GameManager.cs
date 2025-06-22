@@ -151,12 +151,12 @@ public class GameManager : MonoBehaviour
         else if (currentRoomSettings.proceduralRoom)
         {
             GridManager.GenerateGrid(currentRoomSettings.GetRoomSize());
-            roomData.ChangeRoomSate(RoomState.Started);
+            roomData.ChangeRoomSate(RoomState.StartedLock);
         }
         else
         {
             GridManager.LoadRoomFromString(currentRoomSettings.roomIDString, currentRoomSettings.GetRoomSizeFromString(currentRoomSettings.roomIDString), currentRoomSettings.haveProceduralCells);
-            roomData.ChangeRoomSate(RoomState.Started);
+            roomData.ChangeRoomSate(RoomState.StartedLock);
         }
     }
 

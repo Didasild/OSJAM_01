@@ -13,6 +13,7 @@ public class RoomCompletion
     }
     
     private List<Cell> npcList;
+    private bool rooomFirstTimeUnlocked;
     
     private GridManager _gridManager;
     
@@ -22,37 +23,61 @@ public class RoomCompletion
         npcList = new List<Cell>();
     }
     
-    public void CheckRoomCompletion(RoomCompletionConditions roomConditions)
+    public void CheckRoomCompletion(RoomCompletionConditions roomConditions, RoomCompletionConditions roomUnlockedConditions)
     {
+        if (GameManager.Instance.GridManager.isGeneratingRoom)
+        {
+            return;
+        }
+        
         if (GameManager.Instance.FloorManager.currentRoom.currentRoomState == RoomState.Complete)
         {
             return;
         }
+        
+        if (CheckCondition(roomUnlockedConditions) == false)
+        {
+            rooomFirstTimeUnlocked = false;
+            return;
+        }
 
-        //DEFAULT CONDITION DEFINITION
-        if (roomConditions.HasFlag(RoomCompletionConditions.Default) && !FlaggedAllMineCondition())
+        if (rooomFirstTimeUnlocked == false)
+        {
+            RoomUnlocked();
+        }
+
+        if (CheckCondition(roomConditions) == false)
         {
             return;
         }
-        
-        if (roomConditions.HasFlag(RoomCompletionConditions.NoActiveNpc) && !NoActiveNpcCondition())
-        {
-            return;
-        }
-        if (roomConditions.HasFlag(RoomCompletionConditions.FlaggedAllMine) && !FlaggedAllMineCondition())
-        {
-            return;
-        }
-        
         RoomCompleted();
+    }
+    
+    private bool CheckCondition(RoomCompletionConditions conditions)
+    {
+        if (conditions.HasFlag(RoomCompletionConditions.Default) && !FlaggedAllMineCondition())
+        {
+            return false;
+        }
+        
+        if (conditions.HasFlag(RoomCompletionConditions.FlaggedAllMine) && !FlaggedAllMineCondition())
+        {
+            return false;
+        }
+
+        if (conditions.HasFlag(RoomCompletionConditions.NoActiveNpc) && !NoActiveNpcCondition())
+        {
+            return false;
+        }
+        
+        //OTHER CONDITIONS
+        
+        return true;
     }
     
     private bool NoActiveNpcCondition()
     {
-        if (npcList.Count == 0)
-        {
-            npcList = _gridManager.GetCellsByType(CellType.Npc);
-        }
+        npcList = _gridManager.GetCellsByType(CellType.Npc);
         foreach (Cell cell in npcList)
         {
             if (cell == null || cell.npc == null)
@@ -64,7 +89,6 @@ public class RoomCompletion
                 return false;
             }
         }
-        npcList = _gridManager.GetCellsByType(CellType.Npc);
         return true;
     }
 
@@ -87,8 +111,14 @@ public class RoomCompletion
     private void RoomCompleted()
     {
         GameManager.Instance.FloorManager.currentRoom.ChangeRoomSate(RoomState.Complete);
-        GameManager.visualManager.PlayRoomCompletionFeedbacks();
         npcList.Clear();
+    }
+
+    private void RoomUnlocked()
+    {
+        rooomFirstTimeUnlocked = true;
+        GameManager.Instance.FloorManager.currentRoom.ChangeRoomSate(RoomState.StartedUnlock);
+        GameManager.visualManager.PlayRoomUnlockFeedbacks();
     }
     
 }

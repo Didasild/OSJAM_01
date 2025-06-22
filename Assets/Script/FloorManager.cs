@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using NaughtyAttributes;
 using TMPro;
 using UnityEngine;
 using Random = UnityEngine.Random;
@@ -23,14 +24,15 @@ public class FloorManager : MonoBehaviour
 
     [Header("FLOOR SETTINGS")]
     public Minimap minimap;
-    [NaughtyAttributes.ReadOnly]
+    [ReadOnly]
     public FloorSettings currentFloorSetting;
     public FloorSettings[] floorSettingsList;
 
     [Header("ROOM SETTINGS")]
-    [NaughtyAttributes.ReadOnly]
+    [ReadOnly]
     public RoomData currentRoom;
-    [NaughtyAttributes.ReadOnly]
+    [ReadOnly]
+    public RoomState currentRoomState;
     public List<RoomData> roomList = new List<RoomData> ();
     //Private Room Settings
     private RoomSettings[] _roomSettingsList;
@@ -45,8 +47,12 @@ public class FloorManager : MonoBehaviour
     public TMP_Text roomNameDebugText;
     
     private VisualManager _visualManager;
-
     #endregion
+
+    public void Update()
+    {
+        currentRoomState = currentRoom.currentRoomState;
+    }
 
     #region INIT
     public void Init()
@@ -76,7 +82,7 @@ public class FloorManager : MonoBehaviour
                 RoomData roomData = Instantiate(roomPrefab);
                 if (roomData != null)
                 {
-                    roomData.Initialize(gridPosition, RoomCompletion.RoomCompletionConditions.Default, minimap);
+                    roomData.Initialize(gridPosition, RoomCompletion.RoomCompletionConditions.Default, RoomCompletion.RoomCompletionConditions.Default , minimap);
                     roomList.Add(roomData);
                     minimap.SetRoomPosition(roomData, gridPosition);
                 }
@@ -159,7 +165,7 @@ public class FloorManager : MonoBehaviour
             RoomData roomData = Instantiate(roomPrefab);
             roomList.Add(roomData);
             
-            roomData.Initialize(loadedRoomData.roomPosition, loadedRoomData.roomCompletion, minimap);
+            roomData.Initialize(loadedRoomData.roomPosition, loadedRoomData.roomCompletion, loadedRoomData.roomUnlock, minimap);
             minimap.SetRoomPosition(roomData, loadedRoomData.roomPosition);
             roomData.name = $"Room_"+ loadedRoomData.roomPosition;
             
@@ -331,11 +337,17 @@ public class FloorManager : MonoBehaviour
                 buttonUp.SetActive(currentRoom.roomUp != null);
                 buttonDown.SetActive(currentRoom.roomDown != null);
                 break;
-            case RoomState.Started:
+            case RoomState.StartedLock:
                 buttonRight.SetActive(false);
                 buttonLeft.SetActive(false);
                 buttonUp.SetActive(false);
                 buttonDown.SetActive(false);
+                break;
+            case RoomState.StartedUnlock:
+                buttonRight.SetActive(currentRoom.roomRight != null);
+                buttonLeft.SetActive(currentRoom.roomLeft != null);
+                buttonUp.SetActive(currentRoom.roomUp != null);
+                buttonDown.SetActive(currentRoom.roomDown != null);
                 break;
             case RoomState.FogOfWar:
                 break;
@@ -369,6 +381,5 @@ public class FloorManager : MonoBehaviour
         roomNameDebugText.text = currentRoom.initRoomSettings.name;
     }
     #endregion DEBUG
-
-
+    
 }

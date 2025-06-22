@@ -30,7 +30,7 @@ public class VisualEditorManager : VisualManager
     {
         switch (roomState)
         {
-            case RoomState.Started:
+            case RoomState.StartedLock:
                 return startedRoom;
             case RoomState.Complete:
                 return completedRoom;

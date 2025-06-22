@@ -1,7 +1,6 @@
+#if UNITY_EDITOR
 using System.Collections.Generic;
 using NaughtyAttributes;
-using UnityEngine.Serialization;
-#if UNITY_EDITOR
 using UnityEditor;
 using UnityEngine;
 

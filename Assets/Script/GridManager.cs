@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using TMPro;
+using Unity.Collections;
 using UnityEngine;
 
 public class GridManager : MonoBehaviour
@@ -12,21 +13,20 @@ public class GridManager : MonoBehaviour
     public float timeBetweenApparition = 0.1f;
 
     [Header("GRID INFORMATIONS")]
-    [NaughtyAttributes.ReadOnly]
-    public List<Cell> cellList = new List<Cell>(); //Liste des cellules de la grid
-    [NaughtyAttributes.ReadOnly]
-    public List<Cell> cellMineList = new List<Cell>(); //Liste de mines de la grid
-    [NaughtyAttributes.ReadOnly]
-    public List<Cell> cellProceduralList = new List<Cell>();
+    [ReadOnly] public List<Cell> cellList = new List<Cell>(); //Liste des cellules de la grid
+    [ReadOnly] public List<Cell> cellMineList = new List<Cell>(); //Liste de mines de la grid
+    [ReadOnly] public List<Cell> cellProceduralList = new List<Cell>();
+    [ReadOnly] public bool isGeneratingRoom = false;
 
     [Header("MINE LEFT")]
     public TMP_Text theoricalMineLeftText;
-    [NaughtyAttributes.ReadOnly]
+    [ReadOnly]
     public int numberOfMineLeft;
-    [NaughtyAttributes.ReadOnly]
+    [ReadOnly]
     public int theoricalMineLeft;
     
     private RoomCompletion _roomCompletion;
+
     public RoomCompletion RoomCompletion => _roomCompletion;
     #endregion PARAMETERS
 
@@ -44,9 +44,9 @@ public class GridManager : MonoBehaviour
             Debug.LogError("Prefab de cellule non assign� !");
             return;
         }
-
-        // Efface les anciennes cellules si la grille est reg�n�r�e
+        
         ClearRoom();
+        isGeneratingRoom = true;
 
         // Parcourir les lignes et colonnes pour g�n�rer la grille
         for (int row = 0; row < gridSize.y; row++)
@@ -214,8 +214,9 @@ public class GridManager : MonoBehaviour
             Debug.LogError("Room String est vide !");
             return;
         }
-        // Efface l'ancienne grille
+        
         ClearRoom();
+        isGeneratingRoom = true;
 
         // Divise le string en segments pour chaque cellule
         string[] cellDataArray = roomString.Split('|');

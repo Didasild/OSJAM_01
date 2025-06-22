@@ -9,7 +9,8 @@ using TMPro;
 public enum RoomState
 {
     FogOfWar,
-    Started,
+    StartedLock,
+    StartedUnlock,
     Complete
 }
 
@@ -27,6 +28,8 @@ public class RoomData : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     [ReadOnly] public Vector2Int roomPosition;
     [ReadOnly] public bool startRoom;
     [ReadOnly] public RoomCompletion.RoomCompletionConditions roomConditions;
+    [ReadOnly] public RoomCompletion.RoomCompletionConditions roomUnlockConditions;
+    
 
     [Header("NEIGHBORS")]
     [ReadOnly] public RoomData roomUp;
@@ -51,10 +54,11 @@ public class RoomData : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 
     #region INIT
 
-    public void Initialize(Vector2Int position, RoomCompletion.RoomCompletionConditions newRoomCondition, Minimap minimap)
+    public void Initialize(Vector2Int position, RoomCompletion.RoomCompletionConditions newRoomCondition, RoomCompletion.RoomCompletionConditions newRoomUnlockConditions, Minimap minimap)
     {
         _minimap = minimap;
         roomConditions = newRoomCondition;
+        roomUnlockConditions = newRoomUnlockConditions;
         _floorManager = GameManager.Instance.FloorManager;
 
         //Setup le visuel
@@ -81,8 +85,11 @@ public class RoomData : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
             case RoomState.FogOfWar:
                 FogOfWarRoomState();
                 break;
-            case RoomState.Started:
-                StartedRoomState();
+            case RoomState.StartedLock:
+                StartedLockRoomState();
+                break;
+            case RoomState.StartedUnlock:
+                StartedUnLockRoomState();
                 break;
             case RoomState.Complete:
                 CompleteRoomState();
@@ -96,7 +103,12 @@ public class RoomData : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 
     }
 
-    private void StartedRoomState()
+    private void StartedLockRoomState()
+    {
+        
+    }
+    
+    private void StartedUnLockRoomState()
     {
         
     }
@@ -118,7 +130,7 @@ public class RoomData : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     //Click sur la minimap
     public void OnPointerEnter(PointerEventData eventData)
     {
-        if (currentRoomState == RoomState.FogOfWar || _floorManager.currentRoom == this || _floorManager.currentRoom.currentRoomState == RoomState.Started)
+        if (currentRoomState == RoomState.FogOfWar || _floorManager.currentRoom == this || _floorManager.currentRoom.currentRoomState == RoomState.StartedLock)
         {
             return;
         }
@@ -137,7 +149,7 @@ public class RoomData : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 
     public void OnPointerClick(PointerEventData eventData)
     {
-        if (currentRoomState == RoomState.FogOfWar || _floorManager.currentRoom == this || _floorManager.currentRoom.currentRoomState == RoomState.Started)
+        if (currentRoomState == RoomState.FogOfWar || _floorManager.currentRoom == this || _floorManager.currentRoom.currentRoomState == RoomState.StartedLock)
         {
             return;
         }

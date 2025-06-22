@@ -34,14 +34,17 @@ public class MinimapVisual : MonoBehaviour
             case RoomState.FogOfWar:
                 roomStateVisual = _visualManager.GetSprite("MM_RoomFoW");
                 break;
-            case RoomState.Started:
+            case RoomState.StartedLock:
+                roomStateVisual = _visualManager.GetSprite("MM_RoomStarted");
+                break;
+            case RoomState.StartedUnlock:
                 roomStateVisual = _visualManager.GetSprite("MM_RoomStarted");
                 break;
             case RoomState.Complete:
                 roomStateVisual = _visualManager.GetSprite("MM_RoomComplete");
                 break;
             default:
-                throw new ArgumentOutOfRangeException(nameof(roomState), roomState, null);
+                throw new ArgumentOutOfRangeException(nameof(roomState), roomState, $"Unhandled RoomState in GetRoomStateVisual: {roomState}");
         }
         return roomStateVisual;
     }
@@ -54,7 +57,10 @@ public class MinimapVisual : MonoBehaviour
             case RoomState.FogOfWar:
                 roomNewParent = fowTransform;
                 break;
-            case RoomState.Started:
+            case RoomState.StartedLock:
+                roomNewParent = startedTransform;
+                break;
+            case RoomState.StartedUnlock:
                 roomNewParent = startedTransform;
                 break;
             case RoomState.Complete:
