@@ -23,12 +23,12 @@ public class VisualManager : MonoBehaviour
     [Header("VISUAL CONTROLLERS")]
     public RoomAmbianceController roomAmbianceController;
     public TextController textController;
+    public RoomTransitionController roomTransitionController;
     
     [Header("FEEDBACKS CONTROLLERS")]
     public ShakeCamController shakeCamController;
     public CentralFeedbackController centralFeedbackController;
     public FullScreenFeedbackController fullScreenFeedbackController;
-    [FormerlySerializedAs("roomMovementController")] public RoomTransitionController roomTransitionController;
 
     [Header("AMBIANCE / POST PROCESS")]
     public Volume mainColorsVolume;
@@ -39,7 +39,6 @@ public class VisualManager : MonoBehaviour
     public GameObject roomID_Col;
 
     [Header("_______CELL ANIMATIONS")] 
-    public List<GameObject> animationPrefabs;
     public GameObject mineExplosionAnimation;
     public GameObject mineSwordedAnimation;
     public GameObject plantedSwordAnimation;
@@ -48,11 +47,9 @@ public class VisualManager : MonoBehaviour
     [Header("_______MINIMAP")]
     public MinimapVisual minimapVisual;
     
-    private VolumeProfile _roomMainProfile;
     private GlobalColorSettings _roomTransitionGlobalColorSettings;
     [FormerlySerializedAs("visualSettings")] [HideInInspector] public GlobalColorSettings globalColorSettings;
     private GridManager _gridManager;
-    private GameManager _gameManager;
     
     private SpriteRenderer _roomIDRawRenderer;
     private SpriteRenderer _roomIDColRenderer;
@@ -67,12 +64,9 @@ public class VisualManager : MonoBehaviour
         if (mainColorsVolume.profile.TryGet(out globalColorSettings)) { }
         LoadSprites();
         
-        _roomMainProfile = mainColorsVolume.profile;
-        
         _roomIDRawRenderer = roomID_Raw.GetComponent<SpriteRenderer>();
         _roomIDColRenderer = roomID_Col.GetComponent<SpriteRenderer>();
         
-        _gameManager = manager;
         _gridManager = manager.GridManager;
         DOTween.SetTweensCapacity(1000, 500);
         
@@ -249,14 +243,20 @@ public class VisualManager : MonoBehaviour
     {
         targetMaterial.SetFloat(propertyID, targetValue);
     }
-    #endregion FEEDBACKS
     
-    #region ROOM TRANSITION
     public void UpdateRoomAmbiance(RoomData roomData)
     {
         roomAmbianceController.TransitionVolume(roomData.initRoomSettings.roomVolumeProfile);
     }
     
+    public void UpdateRoomID(RoomData roomData)
+    {
+        _roomIDRawRenderer.sprite = GetSprite(roomData.roomPosition.x.ToString() + "b");
+        _roomIDColRenderer.sprite = GetSprite(roomData.roomPosition.y.ToString() + "b");
+    }
+    #endregion FEEDBACKS
+    
+    #region ROOM TRANSITION
     public void ActiveListOfCells(float timeBetweenApparition, RoomState roomState)
     {
         if (roomState != RoomState.FogOfWar)
@@ -324,12 +324,5 @@ public class VisualManager : MonoBehaviour
             yield return new WaitForSecondsRealtime(timeBetweenApparition); // Délai entre les groupes
         }
     }
-
-    public void UpdateRoomID(RoomData roomData)
-    {
-        _roomIDRawRenderer.sprite = GetSprite(roomData.roomPosition.x.ToString() + "b");
-        _roomIDColRenderer.sprite = GetSprite(roomData.roomPosition.y.ToString() + "b");
-    }
-
     #endregion
 }
