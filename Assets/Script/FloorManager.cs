@@ -297,7 +297,7 @@ public class FloorManager : MonoBehaviour
     {
         _visualManager.UpdateRoomAmbiance(nextRoom);
         Vector2Int roomDirection = GetNextRoomDirection(nextRoom.roomPosition);
-        _visualManager.RoomOffsetTransition(roomDirection, nextRoom);
+        _visualManager.roomTransitionController.RoomOffsetTransition(roomDirection, nextRoom);
         minimap.FocusOnSelectedRoom(nextRoom);
     }
 
