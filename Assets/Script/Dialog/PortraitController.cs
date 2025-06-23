@@ -14,7 +14,6 @@ public class PortraitController : MonoBehaviour
     private static readonly int AlphaTransition = Shader.PropertyToID("_AlphaTransition");
     private static readonly int MainTex = Shader.PropertyToID("_MainTex");
     
-    
     public void InitMaterial(Sprite texture)
     {
         _material = GetComponent<Graphic>().materialForRendering;

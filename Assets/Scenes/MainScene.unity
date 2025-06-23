@@ -6279,6 +6279,7 @@ MonoBehaviour:
   currentFloorSetting: {fileID: 0}
   floorSettingsList: []
   currentRoom: {fileID: 0}
+  currentRoomState: 0
   roomList: []
   buttonRight: {fileID: 1641184622}
   buttonLeft: {fileID: 329430831}
@@ -6631,6 +6632,7 @@ MonoBehaviour:
   cellList: []
   cellMineList: []
   cellProceduralList: []
+  isGeneratingRoom: 0
   theoricalMineLeftText: {fileID: 2143294031}
   numberOfMineLeft: 0
   theoricalMineLeft: 0
@@ -11648,6 +11650,7 @@ GameObject:
   - component: {fileID: 1365082114}
   - component: {fileID: 1365082116}
   - component: {fileID: 1365082117}
+  - component: {fileID: 1365082118}
   m_Layer: 0
   m_Name: PLAYER
   m_TagString: Player
@@ -11667,15 +11670,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0f1f80cf67850ee4997e6f7b242ea058, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  initialHealthPoints: 3
-  healthPointText: {fileID: 1131021739}
   initialManaPoints: 10
   maxManaPoints: 100
   manaPointText: {fileID: 280205485}
   initialSwordCounter: 0
   swordCounterText: {fileID: 1241197192}
-  clicCounter: 0
-  mousePosition: {x: 0, y: 0}
   IsOverConditions:
   - cellState: 0
     cellType: 2
@@ -11772,6 +11771,21 @@ MonoBehaviour:
   - cellType: 3
     cellState: 1
     tooltipText: GO TO.
+--- !u!114 &1365082118
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1365082113}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f6d42d85c87689d4dad550725cc17acb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  initialHealthPoints: 3
+  maxHealthPoints: 3
+  healthPointText: {fileID: 1131021739}
 --- !u!1 &1388075605
 GameObject:
   m_ObjectHideFlags: 0

@@ -7,12 +7,6 @@ using NaughtyAttributes;
 public class Player : MonoBehaviour
 {
     #region PARAMETERS
-    [Header("HEALTH")]
-    public int initialHealthPoints = 3;
-    public TMP_Text healthPointText;
-    private int _healthPoints;
-    private Health _health;
-
     [Header("MANA")]
     public int initialManaPoints = 10;
     public int maxManaPoints = 100;
@@ -24,10 +18,10 @@ public class Player : MonoBehaviour
     public TMP_Text swordCounterText;
     private int _swordCounter;
     
-    
     private int clicCounter;
     private Vector2 _mousePosition;
     
+    private Health _health;
     private CustomCursor _cursorScript;
     public Health Health => _health;
     public Vector2 MousePosition => _mousePosition;
