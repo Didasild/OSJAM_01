@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using DG.Tweening;
 using NaughtyAttributes;
 using TMPro;
 using UnityEngine;
@@ -303,7 +304,7 @@ public class FloorManager : MonoBehaviour
     public void ChangeRoomIn()
     {
         SaveRoomData();
-        GameManager.Instance.Dialog.DialogVisual.ClearDialogBox();
+        GameManager.Instance.Dialog.DialogVisual.DialogDisparition();
         _visualManager.minimapVisual.ActiveSelectedVisual(currentRoom, false);
         DisableButtons();
     }

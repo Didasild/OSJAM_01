@@ -524,8 +524,7 @@ public class Cell : MonoBehaviour
     }
     public void MineExplosion()
     {
-        GameManager.Instance.Player.DecreaseHealth(1);
-        _visualManager.PlayHitFeedbacks();
+        GameManager.Instance.Player.Health.DecreaseHealth(1);
         StartCoroutine(CO_MineDestruction(_visualManager.mineExplosionAnimation, 1.4f));
     }
     private IEnumerator CO_MineDestruction(GameObject mineAnimType, float animDuration)

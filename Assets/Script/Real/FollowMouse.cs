@@ -22,7 +22,7 @@ public class FollowMouse : MonoBehaviour
 
     void Update()
     {
-        currentMousePos = player.mousePosition;
+        currentMousePos = player.MousePosition;
         
         // Appliquer les contraintes
         float newX = followX ? Mathf.Clamp(currentMousePos.x, minMaxXPos.x, minMaxXPos.y) : transform.position.x;

@@ -1,3 +1,4 @@
+using NaughtyAttributes;
 using UnityEngine;
 
 public class DialogUtils
@@ -20,7 +21,7 @@ public class DialogUtils
     public struct DialogPullStates
     {
         public NPCState RelatedNpcState;
-        public DialogPull DialogPull;
+        [Expandable] public DialogPull DialogPull;
     }
     public enum NPCState
     {

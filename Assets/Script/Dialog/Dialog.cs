@@ -97,10 +97,6 @@ public class Dialog : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, 
         //A DEVELOPPER QUAND NECESSAIRE ET PLACE AILLEURS POTENTIELLEMENT
         _currentNPC.ChangeNpcState(DialogUtils.NPCState.Inactive);
         _dialogVisual.DialogDisparition();
-        DOVirtual.DelayedCall(_dialogVisual.uiDialogBoxTransition.transitionDuration/1.5f, () =>
-        {
-            _dialogVisual.ClearDialogBox();
-        });
     }
     #endregion METHODS
     

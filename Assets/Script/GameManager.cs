@@ -115,7 +115,7 @@ public class GameManager : MonoBehaviour
             }
             
             //Reset les data
-            _player.ResetHealthPoint();
+            _player.Health.ResetHealthPoint();
             _player.ResetClickCounter();
         }
         else

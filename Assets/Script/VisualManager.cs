@@ -241,9 +241,8 @@ public class VisualManager : MonoBehaviour
         fullScreenFeedbackController.HitFeedback();
         shakeCamController.littleShakeCamera();
     }
-    #endregion FEEDBACKS
-
-    #region FEEDBACKS UTILS
+    
+    //UTILS
     public void FadeProperty(Material targetMaterial, string propertyID, float targetValue, float duration,  float delay = 0, Ease ease = Ease.Linear, bool resetProperty = false)
     {
         Tween tween = targetMaterial.DOFloat(targetValue, propertyID, duration)
@@ -258,7 +257,7 @@ public class VisualManager : MonoBehaviour
     {
         targetMaterial.SetFloat(propertyID, targetValue);
     }
-    #endregion FEEDBACKS UTILS
+    #endregion FEEDBACKS
     
     #region ROOM TRANSITION
 
@@ -329,8 +328,7 @@ public class VisualManager : MonoBehaviour
         int absLoops = Mathf.Abs(targetValue);
         float finalTarget = targetValue > 0 ? 1f : -1f;
         Sequence seq = DOTween.Sequence();
-
-        // Variable locale pour animer la valeur
+        
         float animValue = 0f;
 
         // Tweens intermédiaires
@@ -369,12 +367,10 @@ public class VisualManager : MonoBehaviour
     }
     #endregion SET ROOM MOVEMENT
     
-    #region AMBIANCE FEEDBACKS
     public void UpdateRoomAmbiance(RoomData roomData)
     {
         roomAmbianceController.TransitionVolume(roomData.initRoomSettings.roomVolumeProfile);
     }
-    #endregion SET ROOM MOVEMENT
     
     public void ActiveListOfCells(float timeBetweenApparition, RoomState roomState)
     {

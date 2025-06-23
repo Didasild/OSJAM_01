@@ -11,6 +11,7 @@ public class Player : MonoBehaviour
     public int initialHealthPoints = 3;
     public TMP_Text healthPointText;
     private int _healthPoints;
+    private Health _health;
 
     [Header("MANA")]
     public int initialManaPoints = 10;
@@ -22,12 +23,14 @@ public class Player : MonoBehaviour
     public int initialSwordCounter;
     public TMP_Text swordCounterText;
     private int _swordCounter;
-
-    [Header("INFOS / SETUP")]
-    [ReadOnly] public int clicCounter;
-    [ReadOnly] public Vector2 mousePosition;
+    
+    
+    private int clicCounter;
+    private Vector2 _mousePosition;
     
     private CustomCursor _cursorScript;
+    public Health Health => _health;
+    public Vector2 MousePosition => _mousePosition;
     
     [Serializable]
     public struct IsOverCondition
@@ -51,14 +54,17 @@ public class Player : MonoBehaviour
         
         _cursorScript = gameObject.GetComponent<CustomCursor>();
         _cursorScript.Init();
+        
+        _health = gameObject.GetComponent<Health>();
+        _health.Init(this, GameManager.visualManager);
     }
     private void Update()
     {
         // Convertit la position de la souris en coordonn�es du monde
-        mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        _mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 
         // Effectue un raycast à la position de la souris
-        RaycastHit2D hit = Physics2D.Raycast(mousePosition, Vector2.zero);
+        RaycastHit2D hit = Physics2D.Raycast(_mousePosition, Vector2.zero);
 
         if (hit.collider != null)
         {
@@ -315,7 +321,7 @@ public class Player : MonoBehaviour
     {
         if (itemType == ItemTypeEnum.Potion)
         {
-            IncreaseHealth(1);
+            _health.IncreaseHealth(1);
         }
         else if (itemType == ItemTypeEnum.Sword) 
         {
@@ -368,30 +374,7 @@ public class Player : MonoBehaviour
         }
     }
     #endregion
-
-    #region HEALTH
-    public void ResetHealthPoint()
-    {
-        _healthPoints = initialHealthPoints;
-        healthPointText.text = _healthPoints.ToString();
-    }
-
-    public void DecreaseHealth(int damage)
-    {
-        _healthPoints -= damage;
-        healthPointText.text = _healthPoints.ToString();
-        if (_healthPoints <= 0)
-        {
-            GameManager.Instance.ChangeGameState(GameState.Lose);
-        }
-    }
-
-    private void IncreaseHealth(int heal)
-    {
-        _healthPoints += heal;
-        healthPointText.text = _healthPoints.ToString();
-    }
-    #endregion
+    
 
     #region MANA
     public void IncreaseMana(int manaIncrease = 1)

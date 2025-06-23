@@ -49,6 +49,7 @@ public class DialogVisual : MonoBehaviour
     {
         uiDialogBoxTransition.StartTransition(false);
         _portraitController.StartTransition(false);
+        DOVirtual.DelayedCall(uiDialogBoxTransition.transitionDuration/1.5f, ClearDialogBox);
         DOVirtual.DelayedCall(uiDialogBoxTransition.transitionDuration, PortraitDisparition);
     }
 
