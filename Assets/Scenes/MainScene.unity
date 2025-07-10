@@ -8608,6 +8608,7 @@ GameObject:
   m_Component:
   - component: {fileID: 936060483}
   - component: {fileID: 936060482}
+  - component: {fileID: 936060485}
   - component: {fileID: 936060484}
   m_Layer: 0
   m_Name: VISUAL_MANAGER
@@ -8635,11 +8636,9 @@ MonoBehaviour:
   shakeCamController: {fileID: 519420033}
   centralFeedbackController: {fileID: 89334859}
   fullScreenFeedbackController: {fileID: 749521842}
+  roomTransitionController: {fileID: 936060485}
   mainColorsVolume: {fileID: 1687622998}
-  visualTransitionDuration: 0.3
-  grid: {fileID: 2059163338}
-  gridIndicatorParent: {fileID: 784323922}
-  roomParent: {fileID: 712061422}
+  roomTransitionDuration: 0.3
   roomID_Raw: {fileID: 1018615614}
   roomID_Col: {fileID: 82313152}
   animationPrefabs:
@@ -8662,7 +8661,7 @@ Transform:
   m_GameObject: {fileID: 936060481}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.6681903, y: -0.55617106, z: -0.026934177}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -8683,6 +8682,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tmpTexts: []
   visualManager: {fileID: 0}
+--- !u!114 &936060485
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 936060481}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 13b1c2422be975446a42389ab115b575, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  grid: {fileID: 2059163338}
+  gridIndicatorParent: {fileID: 784323922}
+  roomParent: {fileID: 712061422}
 --- !u!1 &939809145
 GameObject:
   m_ObjectHideFlags: 0
@@ -11651,6 +11665,7 @@ GameObject:
   - component: {fileID: 1365082118}
   - component: {fileID: 1365082116}
   - component: {fileID: 1365082117}
+  - component: {fileID: 1365082118}
   m_Layer: 0
   m_Name: PLAYER
   m_TagString: Player
@@ -11670,8 +11685,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0f1f80cf67850ee4997e6f7b242ea058, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  initialHealthPoints: 3
-  healthPointText: {fileID: 1131021739}
   initialManaPoints: 10
   maxManaPoints: 100
   manaPointText: {fileID: 280205485}

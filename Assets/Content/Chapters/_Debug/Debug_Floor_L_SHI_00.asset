@@ -29,7 +29,7 @@ MonoBehaviour:
     currentRoomState: 0
     roomPosition: {x: 1, y: 1}
     roomCompletion: 3
-    roomUnlock: 3
+    roomUnlock: 1
   - startRoom: 0
     initRoomSettings: {fileID: 11400000, guid: 3de9fbd7fdca9b24582857244631451d, type: 2}
     currentRoomState: 0

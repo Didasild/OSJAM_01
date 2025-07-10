@@ -42,15 +42,14 @@ public class DialogVisual : MonoBehaviour
     {
         portraitBox.SetActive(false);
         uiDialogBoxTransition.StartTransition();
-        DOVirtual.DelayedCall(uiDialogBoxTransition.transitionDuration, () => PortraitApparition(npcTexture));
+        DOVirtual.DelayedCall(uiDialogBoxTransition.transitionDuration, () => PortraitApparition(npcTexture), false);
     }
 
     public void DialogDisparition()
     {
         uiDialogBoxTransition.StartTransition(false);
-        _portraitController.StartTransition(false);
-        DOVirtual.DelayedCall(uiDialogBoxTransition.transitionDuration/1.5f, ClearDialogBox);
-        DOVirtual.DelayedCall(uiDialogBoxTransition.transitionDuration, PortraitDisparition);
+        DOVirtual.DelayedCall(uiDialogBoxTransition.transitionDuration, ClearDialogBox, false);
+        DOVirtual.DelayedCall(uiDialogBoxTransition.transitionDuration, PortraitDisparition, false);
     }
 
     private void PortraitApparition(Sprite npcTexture)
@@ -67,7 +66,7 @@ public class DialogVisual : MonoBehaviour
     {
         portraitMask.SetActive(false);
         uiPortraitTransition.StartTransition(false);
-        DOVirtual.DelayedCall(uiPortraitTransition.transitionDuration, () => portraitBox.SetActive(false));
+        DOVirtual.DelayedCall(uiPortraitTransition.transitionDuration, () => portraitBox.SetActive(false), false);
     }
     
     public void UpdateCharacterName(string newName)
@@ -89,6 +88,7 @@ public class DialogVisual : MonoBehaviour
     
     public void ClearDialogBox()
     {
+        portraitMask.SetActive(false);
         dialogContainer.SetActive(false);
         dialogArrow.SetActive(false);
         dialogText.text = "";
