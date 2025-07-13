@@ -15,7 +15,6 @@ MonoBehaviour:
   components:
   - {fileID: 4915069371588200835}
   - {fileID: 8498022337032358586}
-  - {fileID: 3284666400028844138}
 --- !u!114 &953869944089701943
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -99,7 +98,7 @@ MonoBehaviour:
     m_Value: {r: 0, g: 0.27058825, b: 0.19607845, a: 1}
   Color6:
     m_OverrideState: 1
-    m_Value: {r: 0, g: 0, b: 0, a: 1}
+    m_Value: {r: 0, g: 0.066037714, b: 0.04785342, a: 1}
   ExterColor:
     m_OverrideState: 1
     m_Value: {r: 0, g: 0, b: 0, a: 0.2509804}

@@ -95,7 +95,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c5e1dc532bcb41949b58bc4f2abfbb7e, type: 3}
   m_Name: LensDistortion
   m_EditorClassIdentifier: 
-  active: 1
+  active: 0
   intensity:
     m_OverrideState: 1
     m_Value: 0.13
@@ -109,7 +109,7 @@ MonoBehaviour:
     m_OverrideState: 0
     m_Value: {x: 0.5, y: 0.5}
   scale:
-    m_OverrideState: 0
+    m_OverrideState: 1
     m_Value: 0.99
 --- !u!114 &-5323135493694648360
 MonoBehaviour:
@@ -273,10 +273,10 @@ MonoBehaviour:
   active: 1
   Color1:
     m_OverrideState: 1
-    m_Value: {r: 0.16509432, g: 0.7970032, b: 1, a: 1}
+    m_Value: {r: 0.16470587, g: 0.941828, b: 1, a: 1}
   Color2:
     m_OverrideState: 1
-    m_Value: {r: 0, g: 0.24712636, b: 0.3773585, a: 1}
+    m_Value: {r: 0, g: 0.16280302, b: 0.3764706, a: 1}
   Color3:
     m_OverrideState: 1
     m_Value: {r: 0.87506455, g: 0.58775365, b: 0.9811321, a: 1}
@@ -285,10 +285,10 @@ MonoBehaviour:
     m_Value: {r: 0.1792453, g: 0.6736139, b: 0.7169812, a: 1}
   Color5:
     m_OverrideState: 1
-    m_Value: {r: 0, g: 0.38367835, b: 0.46226418, a: 1}
+    m_Value: {r: 0, g: 0.25077048, b: 0.4627451, a: 1}
   Color6:
     m_OverrideState: 1
-    m_Value: {r: 0, g: 0, b: 0, a: 1}
+    m_Value: {r: 0, g: 0.039474744, b: 0.11372549, a: 1}
   ExterColor:
     m_OverrideState: 1
     m_Value: {r: 0, g: 0, b: 0, a: 0.2509804}
