@@ -1,26 +1,35 @@
 using NaughtyAttributes;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class TextController : MonoBehaviour
 {
-    [ReadOnly] public TextColorUpdate[] tmpTexts;
+    [ReadOnly] public TextColorUpdate[] tmpColoredTexts;
+    [ReadOnly] public CurvedText[] tmpCurvedTexts;
     [HideInInspector] public VisualManager visualManager;
     
     public void Init(VisualManager manager)
     {
         visualManager = manager;
-        tmpTexts = FindObjectsByType<TextColorUpdate>(FindObjectsSortMode.None);
-        foreach (TextColorUpdate textColorScript in tmpTexts)
+        tmpColoredTexts = FindObjectsByType<TextColorUpdate>(FindObjectsSortMode.None);
+        tmpCurvedTexts = FindObjectsByType<CurvedText>(FindObjectsSortMode.None);
+        foreach (TextColorUpdate textColorScript in tmpColoredTexts)
         {
             textColorScript.Init(this);
         }
+
+        foreach (CurvedText curvedTextScript in tmpCurvedTexts)
+        {
+            curvedTextScript.Init(this);
+        }
     }
 
-    public void UpdateTextColors()
+    
+    public void UpdateTextColors(float transitionDuration)
     {
-        foreach (TextColorUpdate textColorScript in tmpTexts)
+        foreach (TextColorUpdate textColorScript in tmpColoredTexts)
         {
-            textColorScript.UpdateTextColor();
+            textColorScript.UpdateTextColor(transitionDuration);
         }
     }
 }

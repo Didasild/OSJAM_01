@@ -123,10 +123,10 @@ MonoBehaviour:
     m_Value: {r: 0.5188679, g: 0.5188679, b: 0.5188679, a: 1}
   Color5:
     m_OverrideState: 1
-    m_Value: {r: 0.8962264, g: 0.8962264, b: 0.8962264, a: 1}
+    m_Value: {r: 1, g: 1, b: 1, a: 1}
   Color6:
     m_OverrideState: 1
-    m_Value: {r: 0.4811321, g: 0.4811321, b: 0.4811321, a: 1}
+    m_Value: {r: 0.8113208, g: 0.8113208, b: 0.8113208, a: 1}
   ExterColor:
     m_OverrideState: 1
     m_Value: {r: 0, g: 0, b: 0, a: 0.18039216}

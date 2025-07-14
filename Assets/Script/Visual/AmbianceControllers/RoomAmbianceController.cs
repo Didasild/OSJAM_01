@@ -27,7 +27,6 @@ public class RoomAmbianceController : MonoBehaviour
     
     public void TransitionVolume(VolumeProfile roomProfile)
     {
-        //Check le volume a récup
         if (roomProfile != null)
         {
             if (roomProfile == _roomMainProfile)
@@ -49,9 +48,11 @@ public class RoomAmbianceController : MonoBehaviour
             transitionColorsVolume.profile = _gameManager.currentChapterSettings.chapterDefaultColorsVolume;
         }
         
-        // Si un tween est déjà en cours, on l'annule
+        //Texts Color Transition
+        _textController.UpdateTextColors(visualTransitionDuration);
+        
         _currentWeightTween?.Kill();
-        //Fait la transition si le volume est bon
+        //Texts Volume Transition
         _currentWeightTween = DOWeight(transitionColorsVolume, 1f, visualTransitionDuration)
             .SetEase(Ease.Linear)
             .OnComplete(UpdateVolumeProfile);
@@ -67,6 +68,5 @@ public class RoomAmbianceController : MonoBehaviour
         mainColorsVolume.profile = null;
         mainColorsVolume.profile = transitionColorsVolume.profile;
         transitionColorsVolume.weight = 0;
-        _textController.UpdateTextColors();
     }
 }

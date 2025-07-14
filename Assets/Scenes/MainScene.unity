@@ -3348,7 +3348,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 705795834}
   m_Direction: 0
   m_Value: 1
-  m_Size: 0.4296875
+  m_Size: 0.21484375
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -8034,8 +8034,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 185661101}
   m_HandleRect: {fileID: 185661100}
   m_Direction: 2
-  m_Value: 0.3490703
-  m_Size: 0.1796875
+  m_Value: 0
+  m_Size: 0.08984375
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -8650,6 +8650,7 @@ GameObject:
   - component: {fileID: 883854819}
   - component: {fileID: 883854818}
   - component: {fileID: 883854817}
+  - component: {fileID: 883854820}
   m_Layer: 0
   m_Name: SystemIntegrity
   m_TagString: Untagged
@@ -8673,8 +8674,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -224, y: 224}
-  m_SizeDelta: {x: 400, y: 25}
+  m_AnchoredPosition: {x: -221, y: 304}
+  m_SizeDelta: {x: 400, y: 22.3721}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &883854817
 MonoBehaviour:
@@ -8709,7 +8710,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: System Integrity
+  m_text: 'System Integrity    System Integrity '
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: b73111e90464b4448b0c23e6cb54ad61, type: 2}
   m_sharedMaterial: {fileID: 6342534701799547323, guid: b73111e90464b4448b0c23e6cb54ad61, type: 2}
@@ -8774,7 +8775,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_margin: {x: 0, y: 0, z: 0, w: -26.897888}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -8788,6 +8789,23 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 883854815}
   m_CullTransparentMesh: 1
+--- !u!114 &883854820
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 883854815}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b4224989068820b47a7ac58e430a8977, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  curve: 61
+  spacing: 13
+  flatnessThreshold: 5000
+  angularOffset: -337.28143
+  angularSpeed: 5
 --- !u!1 &895585490
 GameObject:
   m_ObjectHideFlags: 0
@@ -8979,7 +8997,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92d5082b6eb847444bb8af7f594b9a4f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tmpTexts: []
+  tmpColoredTexts: []
+  tmpCurvedTexts: []
   visualManager: {fileID: 0}
 --- !u!114 &936060485
 MonoBehaviour:
@@ -12264,9 +12283,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f6d42d85c87689d4dad550725cc17acb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  initialHealthPoints: 3
+  _currentHealth: 0
   maxHealthPoints: 3
-  healthPointText: {fileID: 1131021739}
+  healthBar: {fileID: 866270814}
 --- !u!1 &1388075605
 GameObject:
   m_ObjectHideFlags: 0
@@ -15346,7 +15365,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -292, y: 126.780945}
+  m_AnchoredPosition: {x: -292, y: 419.99997}
   m_SizeDelta: {x: 1024, y: 1024}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1954093029

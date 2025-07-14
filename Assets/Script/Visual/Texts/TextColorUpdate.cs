@@ -15,22 +15,26 @@ public class TextColorUpdate : MonoBehaviour
     {
         text = GetComponent<TMP_Text>();
         _textController = textController;
-        UpdateTextColor();
+        UpdateTextColor(0f);
     }
     
-    public void UpdateTextColor()
+    public void UpdateTextColor(float transitionDuration)
     {
-        if (!_textController.visualManager.mainColorsVolume.profile.TryGet<GlobalColorSettings>(out var colorSettings))
+        if (!_textController.visualManager.roomAmbianceController.transitionColorsVolume.profile.TryGet<GlobalColorSettings>(out var colorSettings))
             return;
-        text.color = colorIndex switch
+        
+        Color targetColor = text.color;
+        
+        switch (colorIndex)
         {
-            1 => colorSettings.Color1.value,
-            2 => colorSettings.Color2.value,
-            3 => colorSettings.Color3.value,
-            4 => colorSettings.Color4.value,
-            5 => colorSettings.Color5.value,
-            6 => colorSettings.Color6.value,
-            _ => text.color
-        };
+            case 1: targetColor = colorSettings.Color1.value; break;
+            case 2: targetColor = colorSettings.Color2.value; break;
+            case 3: targetColor = colorSettings.Color3.value; break;
+            case 4: targetColor = colorSettings.Color4.value; break;
+            case 5: targetColor = colorSettings.Color5.value; break;
+            case 6: targetColor = colorSettings.Color6.value; break;
+        }
+        text.DOKill();
+        text.DOColor(targetColor, transitionDuration);
     }
 }
