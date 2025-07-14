@@ -257,7 +257,7 @@ public class Cell : MonoBehaviour
         
         RevealAndDisableCover();
         stateVisual.sprite = _visualManager.GetCellStateVisual(currentState);
-        _visualManager.PlayCellRevealFeedbacks();
+        _visualManager.centralFeedbackController.CellRevealFeedbackIn();
 
         _player.IncreaseMana();
         _gameManager.GridManager.RoomCompletion.CheckRoomCompletion(_gameManager.FloorManager.currentRoom.roomConditions, _gameManager.FloorManager.currentRoom.roomUnlockConditions);

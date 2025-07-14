@@ -211,23 +211,6 @@ public class VisualManager : MonoBehaviour
     #endregion
 
     #region FEEDBACKS
-    //Central feedbacks
-    public void PlayCellRevealFeedbacks()
-    {
-        centralFeedbackController.CellRevealFeedbackIn();
-    }
-    public void PlayRoomUnlockFeedbacks()
-    {
-        centralFeedbackController.RoomCompletionFeedback();
-    }
-    
-    //FullScreenFeedbacks
-    public void PlayHitFeedbacks()
-    {
-        fullScreenFeedbackController.HitFeedback();
-        shakeCamController.littleShakeCamera();
-    }
-    
     //UTILS
     public void FadeProperty(Material targetMaterial, string propertyID, float targetValue, float duration,  float delay = 0, Ease ease = Ease.Linear, bool resetProperty = false)
     {

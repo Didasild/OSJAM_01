@@ -39,7 +39,6 @@ Material:
     m_Ints: []
     m_Floats:
     - _Dissolve: 0.124
-    - _SpikeDensity: 8
     - _SpikeDissolve: 0
     m_Colors: []
   m_BuildTextureStacks: []

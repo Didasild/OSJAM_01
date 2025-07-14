@@ -10,6 +10,7 @@ public class FullScreenFeedbackController : MonoBehaviour
 
     private string _spikeDissolve;
     private string _spikeDensity;
+    private string _spikePulse;
     
     public void Init(VisualManager visualManager)
     {
@@ -18,11 +19,19 @@ public class FullScreenFeedbackController : MonoBehaviour
         
         _spikeDissolve = "_SpikeDissolve";
         _spikeDensity = "_SpikeDensity";
+        _spikePulse = "_SpikePulse";
     }
+    
     public void HitFeedback()
     {
         _fullScreenMaterial.SetFloat(_spikeDissolve, 0);
         _visualManager.FadeProperty(_fullScreenMaterial, _spikeDissolve, 0.5f, 0.05f, 0f, Ease.OutBounce);
         _visualManager.FadeProperty(_fullScreenMaterial, _spikeDissolve, 0f, 1f, 0.05f);
     }
+
+    public void LowLifeFeedback(bool enable)
+    {
+        _fullScreenMaterial.SetFloat(_spikePulse, enable ? 1 : 0);
+    }
+    
 }

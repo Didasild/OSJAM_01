@@ -8,12 +8,14 @@ public class Health : MonoBehaviour
     private static readonly int MaxHealth = Shader.PropertyToID("_MaxHealth");
     private static readonly int CurrentHealth = Shader.PropertyToID("_CurrentHealth");
 
+    #region FIELDS
     [Header("HEALTH")]
     [ReadOnly][SerializeField] private int _currentHealth;
     [ReadOnly][SerializeField] private int maxHealthPoints = 3;
     
     [Header("VISUAL")]
     [SerializeField] private Image healthBar;
+    #endregion
 
     private Material _healthBarMaterial;
     private Player _player;
@@ -33,6 +35,7 @@ public class Health : MonoBehaviour
     {
         _currentHealth = maxHealthPoints;
         UpdateHealthPointVisual(_currentHealth);
+        CheckCurrentLifeActions();
     }
 
     public void DecreaseHealth(int damage)
@@ -40,12 +43,10 @@ public class Health : MonoBehaviour
         _currentHealth -= damage;
         UpdateHealthPointVisual(_currentHealth, false);
         
-        _visualManager.PlayHitFeedbacks();
+        _visualManager.fullScreenFeedbackController.HitFeedback();
+        _visualManager.shakeCamController.littleShakeCamera();
         
-        if (_currentHealth <= 0)
-        {
-            GameManager.Instance.ChangeGameState(GameState.Lose);
-        }
+        CheckCurrentLifeActions();
     }
 
     public void IncreaseHealth(int heal)
@@ -55,6 +56,8 @@ public class Health : MonoBehaviour
             return;
         }
         _currentHealth += heal;
+        
+        CheckCurrentLifeActions();
         UpdateHealthPointVisual(_currentHealth);
     }
 
@@ -81,6 +84,23 @@ public class Health : MonoBehaviour
         if (_healthBarMaterial.HasProperty(MaxHealth))
         {
             _healthBarMaterial.SetFloat(MaxHealth, newMaxHealth);
+        }
+    }
+
+    private void CheckCurrentLifeActions()
+    {
+        switch (_currentHealth)
+        {
+            case > 1:
+                _visualManager.fullScreenFeedbackController.LowLifeFeedback(false);
+                break;
+            case 1:
+                _visualManager.fullScreenFeedbackController.LowLifeFeedback(true);
+                break;
+            case <= 0:
+                _visualManager.fullScreenFeedbackController.LowLifeFeedback(false);
+                GameManager.Instance.ChangeGameState(GameState.Lose);
+                break;
         }
     }
 }
