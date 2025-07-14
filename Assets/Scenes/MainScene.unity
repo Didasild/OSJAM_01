@@ -3348,7 +3348,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 705795834}
   m_Direction: 0
   m_Value: 0.9999999
-  m_Size: 0.21484685
+  m_Size: 0.21484351
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -5082,7 +5082,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a79441f348de89743a2939f4d699eac1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_RenderShadows: 1
+  m_RenderShadows: 0
   m_RequiresDepthTextureOption: 2
   m_RequiresOpaqueTextureOption: 2
   m_CameraType: 0
@@ -5094,7 +5094,7 @@ MonoBehaviour:
   m_VolumeTrigger: {fileID: 0}
   m_VolumeFrameworkUpdateModeOption: 2
   m_RenderPostProcessing: 1
-  m_Antialiasing: 0
+  m_Antialiasing: 2
   m_AntialiasingQuality: 2
   m_StopNaN: 0
   m_Dithering: 0
@@ -13596,7 +13596,7 @@ MonoBehaviour:
   priority: 1
   blendDistance: 0
   weight: 1
-  sharedProfile: {fileID: 11400000, guid: 0ce13a893c5a2064087cc0840ece5c88, type: 2}
+  sharedProfile: {fileID: 11400000, guid: bffc1dc1e00d820418e292a3a0c1f325, type: 2}
 --- !u!1 &1701286252
 GameObject:
   m_ObjectHideFlags: 0

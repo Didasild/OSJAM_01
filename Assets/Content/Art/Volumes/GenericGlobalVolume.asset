@@ -94,8 +94,8 @@ MonoBehaviour:
     m_OverrideState: 0
     m_Value: 0
   GridGlitch:
-    m_OverrideState: 1
-    m_Value: 2
+    m_OverrideState: 0
+    m_Value: 0
 --- !u!114 &8666805865643500176
 MonoBehaviour:
   m_ObjectHideFlags: 3
