@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using NaughtyAttributes;
 using UnityEngine.Rendering;
-using UnityEngine.Serialization;
 using Random = UnityEngine.Random;
 
 public enum FloorType
@@ -33,6 +32,10 @@ public class FloorSettings : ScriptableObject
     
     [Header("________LOADED FLOOR SETTINGS")]
     public List<LoadedRoomData> loadedRoomDatas;
+    
+    [Header("________OBJECTIVES")]
+    public List<FloorObjectives> floorObjectivesList;
+    
     [Serializable]
     public struct LoadedRoomData
     {
@@ -42,6 +45,12 @@ public class FloorSettings : ScriptableObject
         public Vector2Int roomPosition;
         public RoomCompletion.RoomCompletionConditions roomCompletion;
         public RoomCompletion.RoomCompletionConditions roomUnlock;
+    }
+    
+    [Serializable]
+    public struct FloorObjectives
+    {
+        public List<Vector2Int> roomPosition;
     }
     #endregion
 

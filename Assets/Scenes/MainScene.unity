@@ -3251,8 +3251,8 @@ MonoBehaviour:
   currentGameState: 0
   currentChapter: 2
   chaptersList:
-  - {fileID: 11400000, guid: b144a2ecda7de4844b459aa018dcbe47, type: 2}
   - {fileID: 11400000, guid: 24d5c5240a1c1934188ccdc42deb809a, type: 2}
+  - {fileID: 11400000, guid: b144a2ecda7de4844b459aa018dcbe47, type: 2}
   - {fileID: 11400000, guid: b56d33571110ddb409192cb3c02e12fd, type: 2}
   currentChapterSettings: {fileID: 0}
   floorLevelText: {fileID: 789845775}
@@ -3347,8 +3347,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 705795835}
   m_HandleRect: {fileID: 705795834}
   m_Direction: 0
-  m_Value: 0.9999999
-  m_Size: 0.21484351
+  m_Value: 1.0000001
+  m_Size: 0.4296875
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -6245,6 +6245,7 @@ GameObject:
   m_Component:
   - component: {fileID: 660007368}
   - component: {fileID: 660007369}
+  - component: {fileID: 660007373}
   - component: {fileID: 660007371}
   - component: {fileID: 660007370}
   - component: {fileID: 660007372}
@@ -6287,6 +6288,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   roomPrefab: {fileID: 7399068105048544342, guid: 199e0e52c9943d54e968ef4dfb638015, type: 3}
+  floorObjectives: {fileID: 660007373}
   minimap: {fileID: 1757400707}
   currentFloorSetting: {fileID: 0}
   floorSettingsList: []
@@ -6361,6 +6363,18 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!114 &660007373
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 660007367}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 87ea96589b0296048a8665cbb7b255f2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &679404220
 GameObject:
   m_ObjectHideFlags: 0
@@ -8035,7 +8049,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 185661100}
   m_Direction: 2
   m_Value: 0
-  m_Size: 0.08984375
+  m_Size: 0.1796875
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -15365,7 +15379,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -291.99994, y: 420}
+  m_AnchoredPosition: {x: -292.00006, y: 420}
   m_SizeDelta: {x: 1024, y: 1024}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1954093029

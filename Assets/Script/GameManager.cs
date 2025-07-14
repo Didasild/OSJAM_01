@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using NaughtyAttributes;
-using UnityEngine.Serialization;
 
 #region ENUMS
 public enum GameState
@@ -181,7 +180,6 @@ public class GameManager : MonoBehaviour
         {
             FloorManager.LoadFloor(FloorManager.currentFloorSetting);
         }
-
     }
     #endregion ROOM AND FLOOR MANAGEMENT
 }

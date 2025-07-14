@@ -1,8 +1,6 @@
 using DG.Tweening;
 using NaughtyAttributes;
-using TMPro;
 using UnityEngine;
-using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 public class Health : MonoBehaviour

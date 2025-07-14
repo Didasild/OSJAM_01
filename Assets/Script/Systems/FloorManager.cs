@@ -22,20 +22,18 @@ public class FloorManager : MonoBehaviour
     #region PARAMETERS
     [Header("GENERAL SETTINGS")]
     public RoomData roomPrefab;
+    public FloorObjectives floorObjectives;
 
     [Header("FLOOR SETTINGS")]
     public Minimap minimap;
-    [ReadOnly]
-    public FloorSettings currentFloorSetting;
+    [ReadOnly] public FloorSettings currentFloorSetting;
     public FloorSettings[] floorSettingsList;
 
     [Header("ROOM SETTINGS")]
-    [ReadOnly]
-    public RoomData currentRoom;
-    [ReadOnly]
-    public RoomState currentRoomState;
+    [ReadOnly] public RoomData currentRoom;
+    [ReadOnly] public RoomState currentRoomState;
     public List<RoomData> roomList = new List<RoomData> ();
-    //Private Room Settings
+    
     private RoomSettings[] _roomSettingsList;
 
     [Header("BUTTONS")]
@@ -60,6 +58,7 @@ public class FloorManager : MonoBehaviour
     {
         _visualManager = GameManager.visualManager;
         minimap.Init();
+        floorObjectives.Init(this);
     }
     #endregion
 

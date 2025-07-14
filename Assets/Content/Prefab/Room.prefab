@@ -220,6 +220,7 @@ MonoBehaviour:
   roomStateVisual: {fileID: 6973913055075758501}
   roomSelectedVisual: {fileID: 197644689079975142}
   roomOverVisual: {fileID: 242276974721106816}
+  roomObjectiveVisual: {fileID: 6530013895164384605}
   tooltipGoToText: 'GO TO: '
 --- !u!1 &6133602773320542289
 GameObject:
