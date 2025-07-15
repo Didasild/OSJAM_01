@@ -3348,7 +3348,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 705795834}
   m_Direction: 0
   m_Value: 1.0000001
-  m_Size: 0.4296875
+  m_Size: 0.21484399
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -8049,7 +8049,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 185661100}
   m_Direction: 2
   m_Value: 0
-  m_Size: 0.1796875
+  m_Size: 0.08984375
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -13610,7 +13610,7 @@ MonoBehaviour:
   priority: 1
   blendDistance: 0
   weight: 1
-  sharedProfile: {fileID: 11400000, guid: bffc1dc1e00d820418e292a3a0c1f325, type: 2}
+  sharedProfile: {fileID: 11400000, guid: 0ce13a893c5a2064087cc0840ece5c88, type: 2}
 --- !u!1 &1701286252
 GameObject:
   m_ObjectHideFlags: 0

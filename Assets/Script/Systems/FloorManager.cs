@@ -358,7 +358,7 @@ public class FloorManager : MonoBehaviour
 
     #endregion CHANGE ROOM
 
-    #region UTILITARY FUNCTIONS
+    #region UTILS
     private void SaveRoomData()
     {
         currentRoom.roomSavedString = GameManager.Instance.GridManager.SaveGridString();
@@ -368,12 +368,8 @@ public class FloorManager : MonoBehaviour
     {
         return new Vector2Int(nextRoomPosition.x - currentRoom.roomPosition.x, nextRoomPosition.y - currentRoom.roomPosition.y);
     }
-
-    private float GetNextRoomDistance(Vector2Int nextRoomPosition)
-    {
-        return Vector2Int.Distance(currentRoom.roomPosition, nextRoomPosition);
-    }
-    #endregion UTILITARY FUNCTIONS
+    
+    #endregion UTILS
     
     #region DEBUG
     private void UpdateRoomDebugName()
