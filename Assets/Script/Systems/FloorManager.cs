@@ -5,6 +5,7 @@ using DG.Tweening;
 using NaughtyAttributes;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Serialization;
 using Random = UnityEngine.Random;
 
 #region ENUMS
@@ -22,7 +23,7 @@ public class FloorManager : MonoBehaviour
     #region PARAMETERS
     [Header("GENERAL SETTINGS")]
     public RoomData roomPrefab;
-    public FloorObjectives floorObjectives;
+    [FormerlySerializedAs("floorObjectives")] public FloorObjectivesController floorObjectivesController;
 
     [Header("FLOOR SETTINGS")]
     public Minimap minimap;
@@ -58,7 +59,7 @@ public class FloorManager : MonoBehaviour
     {
         _visualManager = GameManager.visualManager;
         minimap.Init();
-        floorObjectives.Init(this);
+        floorObjectivesController.Init(this);
     }
     #endregion
 
@@ -178,6 +179,7 @@ public class FloorManager : MonoBehaviour
         InstanciateFirstRoom(currentRoom);
         
         minimap.FocusOnSelectedRoom(currentRoom);
+        floorObjectivesController.SetFloorObjectives();
     }
 
     private RoomData FindStartRoom()

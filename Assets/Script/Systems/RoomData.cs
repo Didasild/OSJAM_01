@@ -120,18 +120,21 @@ public class RoomData : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
             roomTypeVisual.color = roomTypeVisualColor;
         }
         roomTypeVisual.sprite = _visualManager.minimapVisual.GetRoomTypeVisual(currentRoomType);
-        UpdateObjective(false);
+        UpdateObjective();
+        _floorManager.floorObjectivesController.CheckObjectiveCompletion();
     }
 
-    public void UpdateObjective(bool isBoolObjective)
+    public void UpdateObjective()
     {
         if (currentRoomState == RoomState.Complete)
         {
             isObjective = false;
             roomObjectiveVisual.gameObject.SetActive(false);
+            _floorManager.floorObjectivesController.CheckObjectiveCompletion();
+            return;
         }
         
-        isObjective = isBoolObjective;
+        isObjective = true;
         roomObjectiveVisual.gameObject.SetActive(isObjective);
     }
     #endregion ROOM STATE
