@@ -22,4 +22,11 @@ MonoBehaviour:
     initRoomSettings: {fileID: 11400000, guid: 217f3bf9ea452f44f9d38c568aa49af6, type: 2}
     currentRoomState: 0
     roomPosition: {x: 0, y: 0}
-    roomCondition: 0
+    roomCompletion: 0
+    roomUnlock: 0
+  objectiveGraph: {fileID: 11400000, guid: 8d393ae9232d4f643806ce1f3400a542, type: 2}
+  floorObjectivesList:
+  - roomPosition:
+    - {x: 0, y: 0}
+  - roomPosition:
+    - {x: 0, y: 0}

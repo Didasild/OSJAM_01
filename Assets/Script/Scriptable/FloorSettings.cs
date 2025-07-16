@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 using NaughtyAttributes;
+using Unity.VisualScripting;
 using UnityEngine.Rendering;
 using Random = UnityEngine.Random;
 
@@ -32,8 +33,9 @@ public class FloorSettings : ScriptableObject
     
     [Header("________LOADED FLOOR SETTINGS")]
     public List<LoadedRoomData> loadedRoomDatas;
-    
-    [Header("________OBJECTIVES")]
+
+    [Header("________OBJECTIVES")] 
+    public ScriptGraphAsset objectiveGraph;
     public List<FloorObjectives> floorObjectivesList;
     
     [Serializable]

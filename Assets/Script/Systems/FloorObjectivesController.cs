@@ -9,12 +9,14 @@ public class FloorObjectivesController : MonoBehaviour
     private List<RoomData> _currentObjectivesRooms;
     private List<Vector2Int> _currentObjectivesRoomPositions;
     private int _currentObjectivesIndex;
+    private ScriptMachine _scriptMachine;
     
     public event Action<int> OnObjectiveIndexChanged;
     
     public void Init(FloorManager floorManager)
     {
         _floorManager = floorManager;
+        _scriptMachine = GetComponent<ScriptMachine>();
     }
 
     public void SetFloorObjectives()
@@ -30,6 +32,7 @@ public class FloorObjectivesController : MonoBehaviour
         _currentObjectivesRoomPositions = GetObjectivesRoomPositions(_currentObjectivesIndex);
         _currentObjectivesRooms = GetObjectivesRooms(_floorManager.roomList);
         UpdateObjectives(_currentObjectivesRooms);
+        SetNewGraph(_floorManager.currentFloorSetting.objectiveGraph);
     }
 
     #region METHODS
@@ -90,6 +93,18 @@ public class FloorObjectivesController : MonoBehaviour
             return new List<Vector2Int>();
         }
         return _floorManager.currentFloorSetting.floorObjectivesList[objectiveIndex].roomPosition;
+    }
+    
+    private void SetNewGraph(ScriptGraphAsset newGraph)
+    {
+        if (_floorManager.currentFloorSetting.objectiveGraph != null)
+        {
+            _scriptMachine.enabled = false;
+            _scriptMachine.SetGraph(_floorManager.currentFloorSetting.objectiveGraph);
+            _scriptMachine.enabled = true;
+        }
+        Debug.LogWarning("No Objective flow in floor settings");
+
     }
     #endregion UTILS
 
