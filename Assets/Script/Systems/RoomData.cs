@@ -147,11 +147,9 @@ public class RoomData : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
         {
             return;
         }
-        else
-        {
-            roomOverVisual.gameObject.SetActive(true);
-            TooltipController.ShowTooltip(tooltipGoToText + roomPosition);
-        }
+        
+        roomOverVisual.gameObject.SetActive(true);
+        TooltipController.ShowTooltip(tooltipGoToText + roomPosition);
     }
 
     public void OnPointerExit(PointerEventData eventData)
@@ -166,10 +164,8 @@ public class RoomData : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
         {
             return;
         }
-        else
-        {
-            _floorManager.minimap.ChangeOnClickIn(this);
-        }
+
+        _floorManager.minimap.ChangeOnClickIn(this);
     }
     #endregion POINTER
 }

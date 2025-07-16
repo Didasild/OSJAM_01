@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using System;
+using Unity.VisualScripting;
 
 public class FloorObjectivesController : MonoBehaviour
 {
@@ -46,6 +47,9 @@ public class FloorObjectivesController : MonoBehaviour
 
         //Send a message to subscribers that the index change
         OnObjectiveIndexChanged?.Invoke(_currentObjectivesIndex);
+        
+        // Déclenche un event Visual Scripting (nom libre, ici "ObjectiveAdvanced")
+        CustomEvent.Trigger(gameObject, "ObjectiveIncrement", _currentObjectivesIndex);
 
         _currentObjectivesRoomPositions = GetObjectivesRoomPositions(_currentObjectivesIndex);
         _currentObjectivesRooms = GetObjectivesRooms(_floorManager.roomList);
