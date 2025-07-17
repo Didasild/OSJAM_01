@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
@@ -26,6 +27,7 @@ public class RoomData : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     [ReadOnly] public RoomCompletion.RoomCompletionConditions roomConditions;
     [ReadOnly] public RoomCompletion.RoomCompletionConditions roomUnlockConditions;
     [ReadOnly] public bool isObjective = false;
+    [ReadOnly] public List<NPC> roomNPCs = new List<NPC>();
     
 
     [Header("NEIGHBORS")]
@@ -66,6 +68,23 @@ public class RoomData : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     {
         currentRoomType = initRoomSettings.roomType;
         roomTypeVisual.sprite = _visualManager.minimapVisual.GetRoomTypeVisual(RoomType.Base);
+        InitNpcs();
+    }
+    
+    private void InitNpcs()
+    {
+        if (initRoomSettings.npcDatas == null || initRoomSettings.npcDatas.Count == 0)
+        {
+            return;
+        }
+        
+        foreach (DialogUtils.NpcData npcData in initRoomSettings.npcDatas)
+        {
+            NPC npc = new NPC();
+            npc.Init(npcData.npcDialogsSettings);
+            roomNPCs.Add(npc);
+            npc.ChangeNpcState(npcData.npcDialogsSettings.baseNPCState);
+        }
     }
     #endregion INIT
 

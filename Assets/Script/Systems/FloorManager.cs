@@ -47,11 +47,16 @@ public class FloorManager : MonoBehaviour
     [Header("DEBUG")] 
     public TMP_Text roomNameDebugText;
     
+    private bool initialized = false;
     private VisualManager _visualManager;
     #endregion
 
     public void Update()
     {
+        if (!initialized)
+        {
+            return;
+        }
         currentRoomState = currentRoom.currentRoomState;
     }
 
@@ -61,6 +66,7 @@ public class FloorManager : MonoBehaviour
         _visualManager = GameManager.visualManager;
         minimap.Init();
         floorObjectivesController.Init(this);
+        initialized = true;
     }
     #endregion
 

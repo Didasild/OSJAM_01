@@ -24,7 +24,7 @@ MonoBehaviour:
     roomPosition: {x: 0, y: 0}
     roomCompletion: 0
     roomUnlock: 0
-  objectiveGraph: {fileID: 11400000, guid: 8d393ae9232d4f643806ce1f3400a542, type: 2}
+  objectiveGraph: {fileID: 11400000, guid: fe1ba28414a58894897740586dee3cfb, type: 2}
   floorObjectivesList:
   - roomPosition:
     - {x: 0, y: 0}

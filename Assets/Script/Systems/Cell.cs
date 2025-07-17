@@ -106,7 +106,8 @@ public class Cell : MonoBehaviour
     private void InitNpc(DialogUtils.NPCState npcState)
     {
         npc = new NPC();
-        npc.Init(DialogUtils.GetNpcSettings(_cellPosition),this);
+        npc.Init(DialogUtils.GetNpcSettings(_cellPosition));
+        npc.SetCellVisual(this);
         npc.ChangeNpcState(npcState);
     }
     
