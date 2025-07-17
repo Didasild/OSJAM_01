@@ -273,7 +273,7 @@ public class GridManager : MonoBehaviour
                 newCell.currentType = type;
                 newCell.currentItemType = itemType;
 
-                newCell.Initialize(new Vector2Int(row, col), npcState); // Initialisation avec les bonnes coordonnées et le bon état
+                newCell.Initialize(new Vector2Int(row, col)); // Initialisation avec les bonnes coordonnées et le bon état
             }
         }
 

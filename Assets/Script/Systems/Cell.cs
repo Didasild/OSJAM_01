@@ -83,7 +83,7 @@ public class Cell : MonoBehaviour
     #endregion
 
     #region INIT
-    public void Initialize(Vector2Int cellPosition, DialogUtils.NPCState npcState = DialogUtils.NPCState.None)
+    public void Initialize(Vector2Int cellPosition)
     {
         _gameManager = GameManager.Instance;
         _player = _gameManager.Player;
@@ -97,18 +97,11 @@ public class Cell : MonoBehaviour
         
         if (currentType == CellType.Npc)
         {
-            InitNpc(npcState);
+            npc = _gameManager.FloorManager.currentRoom.GetNpcfromCellPosition(cellPosition);
+            npc.SetCellVisual(this);
         }
 
         gameObject.SetActive(false);
-    }
-
-    private void InitNpc(DialogUtils.NPCState npcState)
-    {
-        npc = new NPC();
-        npc.Init(DialogUtils.GetNpcSettings(_cellPosition));
-        npc.SetCellVisual(this);
-        npc.ChangeNpcState(npcState);
     }
     
     //Update le visual de la cellule

@@ -81,7 +81,7 @@ public class RoomData : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
         foreach (DialogUtils.NpcData npcData in initRoomSettings.npcDatas)
         {
             NPC npc = new NPC();
-            npc.Init(npcData.npcDialogsSettings);
+            npc.Init(npcData.npcDialogsSettings, npcData.npcPosition);
             roomNPCs.Add(npc);
             npc.ChangeNpcState(npcData.npcDialogsSettings.baseNPCState);
         }
@@ -157,6 +157,45 @@ public class RoomData : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
         roomObjectiveVisual.gameObject.SetActive(isObjective);
     }
     #endregion ROOM STATE
+
+    #region GETTER
+    //A DEPLACER DANS UN UTILS
+    public NPC GetNpcfromCellPosition(Vector2Int cellPosition)
+    {
+        if (roomNPCs == null)
+        {
+            Debug.LogWarning("No room npc found");
+            return null;
+        }
+
+        foreach (NPC roomNpc in roomNPCs)
+        {
+            if (roomNpc.currentPosition == cellPosition)
+            {
+                return roomNpc;
+            }
+        }
+        return null;
+    }
+
+    public NPC GetNpcFromDialogSettings(NpcDialogsSettings npcDialogsSettings)
+    {
+        if (roomNPCs == null)
+        {
+            Debug.LogWarning("No room npc found");
+            return null;
+        }
+        foreach (NPC roomNpc in roomNPCs)
+        {
+            if (roomNpc.NpcDialogsSettings == npcDialogsSettings)
+            {
+                return roomNpc;
+            }
+        }
+        return null;
+    }
+    #endregion GETTER
+
 
     #region POINTER
     //Click sur la minimap

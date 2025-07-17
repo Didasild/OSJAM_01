@@ -377,6 +377,18 @@ public class FloorManager : MonoBehaviour
     {
         return new Vector2Int(nextRoomPosition.x - currentRoom.roomPosition.x, nextRoomPosition.y - currentRoom.roomPosition.y);
     }
+
+    public RoomData GetRoomDataFromPosition(Vector2Int roomPosition)
+    {
+        foreach (RoomData roomData in roomList)
+        {
+            if (roomData.roomPosition == roomPosition)
+            {
+                return roomData;
+            }
+        }
+        return null;
+    }
     
     #endregion UTILS
     

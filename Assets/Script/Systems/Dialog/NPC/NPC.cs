@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using UnityEngine;
 
 public class NPC
 {
@@ -6,12 +7,13 @@ public class NPC
     public NpcDialogsSettings NpcDialogsSettings;
     public List<string> currentDialogSequence;
     public DialogUtils.NPCState _currentNpcState;
-    private Cell _currentCell;
+    public Vector2Int currentPosition;
     #endregion FIELDS
 
-    public void Init(NpcDialogsSettings associatedNpcDialogsSettings)
+    public void Init(NpcDialogsSettings associatedNpcDialogsSettings, Vector2Int npcPosition)
     {
         NpcDialogsSettings = associatedNpcDialogsSettings;
+        currentPosition = npcPosition;
         _currentNpcState = NpcDialogsSettings.baseNPCState;
         currentDialogSequence = NpcDialogsSettings.GetDialogSequence(_currentNpcState);
     }
@@ -66,4 +68,12 @@ public class NPC
         associatedCell.typeVisual.sprite = GameManager.visualManager.GetNpcStateVisual(_currentNpcState);
     }
     #endregion CELL
+
+    public void UpdateDialogSettings(NpcDialogsSettings npcDialogsSettings)
+    {
+        Debug.Log("ALLO" + currentDialogSequence);
+        NpcDialogsSettings = npcDialogsSettings;
+        currentDialogSequence = NpcDialogsSettings.GetDialogSequence(_currentNpcState);
+
+    }
 }
