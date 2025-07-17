@@ -8,6 +8,7 @@ public class NPC
     public List<string> currentDialogSequence;
     public DialogUtils.NPCState _currentNpcState;
     public Vector2Int currentPosition;
+    private Cell currentCell;
     #endregion FIELDS
 
     public void Init(NpcDialogsSettings associatedNpcDialogsSettings, Vector2Int npcPosition)
@@ -39,6 +40,10 @@ public class NPC
                 break;
         }
         currentDialogSequence = NpcDialogsSettings.GetDialogSequence(_currentNpcState);
+        if (currentCell != null)
+        {
+            SetCellVisual(currentCell);
+        }
     }
 
     private void NoneNpcState()
@@ -65,6 +70,10 @@ public class NPC
     #region CELL
     public void SetCellVisual(Cell associatedCell)
     {
+        if (currentCell == null)
+        {
+            currentCell = associatedCell;
+        }
         associatedCell.typeVisual.sprite = GameManager.visualManager.GetNpcStateVisual(_currentNpcState);
     }
     #endregion CELL
