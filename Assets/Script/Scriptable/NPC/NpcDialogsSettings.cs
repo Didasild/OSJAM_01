@@ -10,7 +10,7 @@ public class NpcDialogsSettings : ScriptableObject
     public DialogUtils.NPCState baseNPCState;
     public List<DialogUtils.DialogPullStates> dialogPulls;
     
-    private DialogPull _selectedPull;
+    private DialogPool _selectedPool;
 
     public List<string> GetDialogSequence(DialogUtils.NPCState npcState)
     {
@@ -18,7 +18,7 @@ public class NpcDialogsSettings : ScriptableObject
         {
             if (pull.RelatedNpcState == npcState)
             {
-                return pull.DialogPull.GetSentences();
+                return pull.dialogPool.GetSentences();
             }
         }
         Debug.LogWarning($"No DialogPull found for state: {npcState}");

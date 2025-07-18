@@ -1,5 +1,6 @@
 using NaughtyAttributes;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class DialogUtils
 {
@@ -7,7 +8,7 @@ public class DialogUtils
     public struct DialogStates
     {
         NPCState npcState;
-        global::DialogPull _dialogPull;
+        global::DialogPool _dialogPool;
     }
     
     [System.Serializable]
@@ -21,7 +22,7 @@ public class DialogUtils
     public struct DialogPullStates
     {
         public NPCState RelatedNpcState;
-        [Expandable] public DialogPull DialogPull;
+        [FormerlySerializedAs("DialogPull")] [Expandable] public DialogPool dialogPool;
     }
     public enum NPCState
     {

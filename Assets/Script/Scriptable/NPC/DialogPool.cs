@@ -2,8 +2,8 @@ using System.Collections.Generic;
 using NaughtyAttributes;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "DialogPull", menuName = "MineCrawler/DialogPull")]
-public class DialogPull : ScriptableObject
+[CreateAssetMenu(fileName = "DialogPool", menuName = "MineCrawler/DialogPool")]
+public class DialogPool : ScriptableObject
 {
     [SerializeField, ReadOnly]
     private int totalWeight;

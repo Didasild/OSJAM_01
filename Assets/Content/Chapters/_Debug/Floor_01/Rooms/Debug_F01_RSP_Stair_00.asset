@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e1fa203da9941e14e9ac5c76d2db6dfb, type: 3}
-  m_Name: Debug_F00_RSP_Stair_00
+  m_Name: Debug_F01_RSP_Stair_00
   m_EditorClassIdentifier: 
   proceduralRoom: 0
   mandatory: 1
