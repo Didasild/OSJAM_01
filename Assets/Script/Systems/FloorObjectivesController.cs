@@ -65,6 +65,8 @@ public class FloorObjectivesController : MonoBehaviour
         {
             roomData.UpdateObjective();
         }
+        GameManager.VisualManager.minimapVisual.MinimapAppear();
+        _floorManager.minimap.FocusOnSelectedRoom(roomDatas[0]);
     }
     #endregion METHODS
 
@@ -99,11 +101,10 @@ public class FloorObjectivesController : MonoBehaviour
         if (_floorManager.currentFloorSetting.objectiveGraph != null)
         {
             _scriptMachine.enabled = false;
-            _scriptMachine.SetGraph(_floorManager.currentFloorSetting.objectiveGraph);
+            _scriptMachine.SetGraph(newGraph);
             _scriptMachine.enabled = true;
         }
         Debug.LogWarning("No Objective flow in floor settings");
-
     }
     #endregion UTILS
 

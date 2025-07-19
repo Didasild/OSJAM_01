@@ -78,7 +78,7 @@ public class GridManager : MonoBehaviour
         SetCellType(GameManager.Instance.currentRoomSettings.roomPourcentageOfNone, CellType.None, cellList);
 
         //Setup l'animation d'apparition
-        GameManager.visualManager.ActiveListOfCells(timeBetweenApparition, RoomState.FogOfWar);
+        GameManager.VisualManager.ActiveListOfCells(timeBetweenApparition, RoomState.FogOfWar);
     }
 
     public void FirstClickGeneration(Cell cellClicked)
@@ -294,7 +294,7 @@ public class GridManager : MonoBehaviour
         }
         cellMineList = GetCellsByType(CellType.Mine);
         SetCellsVisuals();
-        GameManager.visualManager.ActiveListOfCells(timeBetweenApparition, GameManager.Instance.FloorManager.currentRoom.currentRoomState);
+        GameManager.VisualManager.ActiveListOfCells(timeBetweenApparition, GameManager.Instance.FloorManager.currentRoom.currentRoomState);
     }
 
     public static CellState GetStateFromAbbreviation(string abbreviation)

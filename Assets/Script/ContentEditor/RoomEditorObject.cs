@@ -69,7 +69,7 @@ public class RoomEditorObject : MonoBehaviour
         transform.position = new Vector3(roomPosition.x, roomPosition.y, transform.position.z);
     }
 
-    private void UpdateVisual()
+    public void UpdateVisual()
     {
         if (_spriteRenderer == null || _visualManager == null)
         {

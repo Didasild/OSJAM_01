@@ -500,6 +500,11 @@ public class RoomEditor : MonoBehaviour
             }
             else if (cell.cellType == CellType.Npc)
             {
+                if (cell.npcDialogsSettings == null)
+                {
+                    Debug.LogError("Set a dialog setting to your NPC");
+                    break;
+                }
                 secondType = ((int)cell.npcDialogsSettings.baseNPCState).ToString();
             }
             else

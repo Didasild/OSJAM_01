@@ -19,6 +19,8 @@ public class FloorEditor : MonoBehaviour
     public RoomState roomStateToLoad;
     public bool isStartRoom;
     public List<RoomEditorObject> roomEditorObjects = new List<RoomEditorObject>();
+    public RoomCompletion.RoomCompletionConditions roomCompletion;
+    public RoomCompletion.RoomCompletionConditions roomUnlock;
     
     [Header("____SAVE")]
     public FloorSettings floorToSave;
@@ -221,6 +223,7 @@ public class FloorEditor : MonoBehaviour
             {
                 selectedRoomEditorObject.roomPosition += roomDirection;
                 selectedRoomEditorObject.UpdatePosition();
+                selectedRoomEditorObject.name = $"Room {selectedRoomEditorObject.roomPosition}";
             }
             else
             {
@@ -237,6 +240,13 @@ public class FloorEditor : MonoBehaviour
             return;
         }
         selectedRoomEditorObjects[0].roomSettings = newRoomSettings;
+        selectedRoomEditorObjects[0].UpdateVisual();
+    }
+
+    public void AssigneRoomConditions()
+    {
+        selectedRoomEditorObjects[0].roomCompletion = roomCompletion;
+        selectedRoomEditorObjects[0].roomUnlock = roomUnlock;
     }
     
     public void UpdateSelectedVisual()

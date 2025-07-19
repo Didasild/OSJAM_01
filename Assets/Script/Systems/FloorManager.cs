@@ -63,7 +63,7 @@ public class FloorManager : MonoBehaviour
     #region INIT
     public void Init()
     {
-        _visualManager = GameManager.visualManager;
+        _visualManager = GameManager.VisualManager;
         minimap.Init();
         floorObjectivesController.Init(this);
         initialized = true;

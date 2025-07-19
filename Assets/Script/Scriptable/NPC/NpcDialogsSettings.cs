@@ -5,6 +5,7 @@ using UnityEngine.UIElements;
 [CreateAssetMenu(fileName = "DialogSettings", menuName = "MineCrawler/DialogSettings")]
 public class NpcDialogsSettings : ScriptableObject
 {
+    public string notes;
     List<DialogUtils.DialogStates> dialogStates;
     public NpcSettings npcSettings;
     public DialogUtils.NPCState baseNPCState;

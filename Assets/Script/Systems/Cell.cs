@@ -87,7 +87,7 @@ public class Cell : MonoBehaviour
     {
         _gameManager = GameManager.Instance;
         _player = _gameManager.Player;
-        _visualManager = GameManager.visualManager;
+        _visualManager = GameManager.VisualManager;
         
         _collider = GetComponent<Collider2D>();
         

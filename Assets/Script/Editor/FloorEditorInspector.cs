@@ -221,6 +221,20 @@ public class FloorEditorInspector : Editor
             }
             
             EditorGUILayout.Space(_smallSpacing);
+            CoreEditorUtils.DrawFoldoutEndSplitter();
+            EditorGUILayout.Space(_smallSpacing);
+            
+            GUI.enabled = false;
+            EditorGUILayout.TextField("ROOM COMPLETION CONDITIONS", centeredStyle);
+            GUI.enabled = true;
+            floorEditor.roomCompletion = (RoomCompletion.RoomCompletionConditions)EditorGUILayout.EnumFlagsField(floorEditor.roomCompletion);
+            floorEditor.roomUnlock = (RoomCompletion.RoomCompletionConditions)EditorGUILayout.EnumFlagsField(floorEditor.roomUnlock);
+            if (GUILayout.Button("ASSIGN ROOM CONDITIONS"))
+            {
+                floorEditor.AssigneRoomConditions();
+            }
+            
+            EditorGUILayout.Space(_smallSpacing);
             CoreEditorUtils.DrawSplitter();
             EditorGUILayout.Space(_smallSpacing);
         }

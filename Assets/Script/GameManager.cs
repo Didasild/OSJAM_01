@@ -40,7 +40,7 @@ public class GameManager : MonoBehaviour
     //GETTER
     private static GameManager _instance;
     public static GameManager Instance => _instance;
-    public static VisualManager visualManager => _instance._visualManager;
+    public static VisualManager VisualManager => _instance._visualManager;
     public Player Player => _player;
     public Dialog Dialog => _dialog;
     public FloorManager FloorManager => _floorManager;
@@ -52,7 +52,7 @@ public class GameManager : MonoBehaviour
     {
         _instance = this;
         
-        visualManager.Init(this);
+        VisualManager.Init(this);
         _player.Init(this);
         _dialog.Init(this);
         _floorManager.Init();

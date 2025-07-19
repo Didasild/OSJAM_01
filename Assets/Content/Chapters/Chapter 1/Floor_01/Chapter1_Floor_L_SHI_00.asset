@@ -19,12 +19,88 @@ MonoBehaviour:
   roomSettingsList: []
   loadedRoomDatas:
   - startRoom: 1
-    initRoomSettings: {fileID: 11400000, guid: 6c376ee1e8ea45a4488360da3d24f8cb, type: 2}
-    currentRoomState: 1
-    roomPosition: {x: 0, y: 0}
-    roomCondition: -1
+    initRoomSettings: {fileID: 11400000, guid: 07a308a488b558048b6a59f1e44ecf93, type: 2}
+    initRoomState: 0
+    roomPosition: {x: 0, y: 1}
+    roomCompletion: 2
+    roomUnlock: 2
   - startRoom: 0
-    initRoomSettings: {fileID: 11400000, guid: 60ff1f7949eeb6142b28627fc63d796b, type: 2}
-    currentRoomState: 0
-    roomPosition: {x: 1, y: 0}
-    roomCondition: -1
+    initRoomSettings: {fileID: 11400000, guid: 1c6a7e75f428c794cb4a3ce17ff5742d, type: 2}
+    initRoomState: 0
+    roomPosition: {x: 2, y: 1}
+    roomCompletion: 3
+    roomUnlock: 3
+  - startRoom: 0
+    initRoomSettings: {fileID: 11400000, guid: 636ccc9d179ff5248a443a434102b3f7, type: 2}
+    initRoomState: 0
+    roomPosition: {x: 2, y: 2}
+    roomCompletion: 3
+    roomUnlock: 3
+  - startRoom: 0
+    initRoomSettings: {fileID: 11400000, guid: 55c60f4a6a1016040be79f3f533b3806, type: 2}
+    initRoomState: 1
+    roomPosition: {x: 2, y: 3}
+    roomCompletion: 3
+    roomUnlock: 3
+  - startRoom: 0
+    initRoomSettings: {fileID: 0}
+    initRoomState: 1
+    roomPosition: {x: 1, y: 3}
+    roomCompletion: 0
+    roomUnlock: 0
+  - startRoom: 0
+    initRoomSettings: {fileID: 11400000, guid: c094b64811fbfc6408d16590b5fc73a4, type: 2}
+    initRoomState: 1
+    roomPosition: {x: 3, y: 3}
+    roomCompletion: 3
+    roomUnlock: 2
+  - startRoom: 0
+    initRoomSettings: {fileID: 0}
+    initRoomState: 1
+    roomPosition: {x: 4, y: 3}
+    roomCompletion: 0
+    roomUnlock: 0
+  - startRoom: 0
+    initRoomSettings: {fileID: 0}
+    initRoomState: 1
+    roomPosition: {x: 4, y: 4}
+    roomCompletion: 0
+    roomUnlock: 0
+  - startRoom: 0
+    initRoomSettings: {fileID: 0}
+    initRoomState: 1
+    roomPosition: {x: 2, y: 6}
+    roomCompletion: 0
+    roomUnlock: 0
+  - startRoom: 0
+    initRoomSettings: {fileID: 11400000, guid: 5ba2b5b033f0f29469a54bd0a8ab64a0, type: 2}
+    initRoomState: 1
+    roomPosition: {x: 2, y: 4}
+    roomCompletion: 3
+    roomUnlock: 3
+  - startRoom: 0
+    initRoomSettings: {fileID: 11400000, guid: a12d77abad7544c4bae7b8b1ba866437, type: 2}
+    initRoomState: 0
+    roomPosition: {x: 1, y: 1}
+    roomCompletion: 2
+    roomUnlock: 2
+  - startRoom: 0
+    initRoomSettings: {fileID: 0}
+    initRoomState: 1
+    roomPosition: {x: 4, y: 5}
+    roomCompletion: 0
+    roomUnlock: 0
+  - startRoom: 0
+    initRoomSettings: {fileID: 0}
+    initRoomState: 1
+    roomPosition: {x: 4, y: 6}
+    roomCompletion: 0
+    roomUnlock: 0
+  - startRoom: 0
+    initRoomSettings: {fileID: 0}
+    initRoomState: 1
+    roomPosition: {x: 3, y: 6}
+    roomCompletion: 0
+    roomUnlock: 0
+  objectiveGraph: {fileID: 0}
+  floorObjectivesList: []

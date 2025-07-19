@@ -64,9 +64,9 @@ public class RoomData : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
         roomUnlockConditions = roomData.roomUnlock;
 
         //Setup le visuel
-        _visualManager = GameManager.visualManager;
+        _visualManager = GameManager.VisualManager;
         currentRoomState = roomData.initRoomState;
-        roomStateVisual.sprite = GameManager.visualManager.minimapVisual.GetRoomStateVisual(currentRoomState);
+        roomStateVisual.sprite = GameManager.VisualManager.minimapVisual.GetRoomStateVisual(currentRoomState);
         SetColor(currentRoomState);
         // if (currentRoomState == RoomState.FogOfWar || currentRoomState == RoomState.StartedLock)
         // {
@@ -102,9 +102,9 @@ public class RoomData : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     {
         currentRoomState = newRoomState;
         //Update le visuel de la room
-        roomStateVisual.sprite = GameManager.visualManager.minimapVisual.GetRoomStateVisual(currentRoomState);
+        roomStateVisual.sprite = GameManager.VisualManager.minimapVisual.GetRoomStateVisual(currentRoomState);
         SetColor(currentRoomState);
-        gameObject.transform.SetParent(GameManager.visualManager.minimapVisual.GetRoomNewParent(currentRoomState));
+        gameObject.transform.SetParent(GameManager.VisualManager.minimapVisual.GetRoomNewParent(currentRoomState));
 
         switch (currentRoomState)
         {

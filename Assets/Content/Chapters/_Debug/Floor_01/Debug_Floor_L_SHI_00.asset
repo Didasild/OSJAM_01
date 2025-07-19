@@ -87,3 +87,5 @@ MonoBehaviour:
     - {x: 2, y: 0}
   - objectivesPositions:
     - {x: 2, y: 2}
+  - objectivesPositions:
+    - {x: 2, y: 1}

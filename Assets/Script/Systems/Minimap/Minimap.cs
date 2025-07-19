@@ -20,7 +20,7 @@ public class Minimap : MonoBehaviour
     public void Init()
     {
         _floorManager = GameManager.Instance.FloorManager;
-        _visualManager = GameManager.visualManager;
+        _visualManager = GameManager.VisualManager;
         _minimapVisual = gameObject.GetComponent<MinimapVisual>();
         
         _minimapVisual.Init();

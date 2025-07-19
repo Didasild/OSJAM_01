@@ -12,13 +12,10 @@ public enum Chapters
 [CreateAssetMenu(fileName = "ChapterSettings", menuName = "MineCrawler/ChapterSettings")]
 public class ChapterSettings : ScriptableObject
 {
-
     #region PARAMETERS
     [Header("GENERAL")]
     public Chapters chapter;
     public VolumeProfile chapterDefaultColorsVolume;
     [Expandable] public FloorSettings[] floorSettings;
-
-
     #endregion
 }

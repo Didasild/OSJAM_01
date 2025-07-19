@@ -50,7 +50,7 @@ public class Player : MonoBehaviour
         _cursorScript.Init();
         
         _health = gameObject.GetComponent<Health>();
-        _health.Init(this, GameManager.visualManager);
+        _health.Init(this, GameManager.VisualManager);
     }
     private void Update()
     {
@@ -296,7 +296,7 @@ public class Player : MonoBehaviour
         }
         if (cellClicked.currentType == CellType.Mine)
         {
-            cellClicked.MineSwordDestruction(GameManager.visualManager.mineSwordedAnimation);
+            cellClicked.MineSwordDestruction(GameManager.VisualManager.mineSwordedAnimation);
         }
         else
         {

@@ -19,12 +19,12 @@ public class MinimapVisual : MonoBehaviour
     private Minimap _minimap;
     private VisualManager _visualManager;
     private UiTransition _uiTransition;
-    private Boolean _isClose;
+    private Boolean _isClose = true;
     
     
     public void Init()
     {
-        _visualManager = GameManager.visualManager;
+        _visualManager = GameManager.VisualManager;
         _uiTransition = GetComponent<UiTransition>();
     }
 

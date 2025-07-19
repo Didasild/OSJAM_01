@@ -118,7 +118,7 @@ public class RoomCompletion
     {
         rooomFirstTimeUnlocked = true;
         GameManager.Instance.FloorManager.currentRoom.ChangeRoomSate(RoomState.StartedUnlock);
-        GameManager.visualManager.centralFeedbackController.RoomCompletionFeedback();
+        GameManager.VisualManager.centralFeedbackController.RoomCompletionFeedback();
     }
     
 }
