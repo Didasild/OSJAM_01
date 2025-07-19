@@ -39,7 +39,7 @@ Material:
     m_TexEnvs: []
     m_Ints: []
     m_Floats:
-    - _AnimationTransition: 0.17
+    - _AnimationTransition: 0.45
     - _QueueControl: 0
     m_Colors: []
   m_BuildTextureStacks: []

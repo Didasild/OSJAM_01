@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e1fa203da9941e14e9ac5c76d2db6dfb, type: 3}
+  m_Name: Chapter1_F01_RL_Base_04
+  m_EditorClassIdentifier: 
+  proceduralRoom: 0
+  mandatory: 1
+  isFoW: 1
+  roomType: 0
+  roomVolumeProfile: {fileID: 11400000, guid: de15eaa4853062b43944eabdef48ec33, type: 2}
+  roomIDString: 0_0_In_No_No|0_1_Co_Hi_No|0_2_Co_Hi_No|0_3_Co_Hi_No|0_4_In_No_No|1_0_In_No_No|1_1_Co_Mi_No|1_2_Co_Hi_No|1_3_Co_Mi_No|1_4_In_No_No|2_0_In_No_No|2_1_Co_Hi_No|2_2_Co_Hi_No|2_3_Co_Hi_No|2_4_In_No_No|3_0_In_No_No|3_1_Co_Em_No|3_2_Co_Em_No|3_3_Co_Em_No|3_4_In_No_No|4_0_Co_Hi_No|4_1_Co_Hi_No|4_2_Co_Hi_No|4_3_Co_Hi_No|4_4_Co_Hi_No|5_0_Co_Hi_No|5_1_Co_Mi_No|5_2_Co_Hi_No|5_3_Co_Mi_No|5_4_Co_Hi_No|6_0_Co_Hi_No|6_1_Co_Hi_No|6_2_Co_Hi_No|6_3_Co_Hi_No|6_4_Co_Hi_No|7_0_In_No_No|7_1_Co_Em_No|7_2_Co_Em_No|7_3_Co_Em_No|7_4_In_No_No|8_0_In_No_No|8_1_Co_Hi_No|8_2_Co_Hi_No|8_3_Co_Hi_No|8_4_In_No_No|9_0_In_No_No|9_1_Co_Hi_No|9_2_Co_Mi_No|9_3_Co_Hi_No|9_4_In_No_No|10_0_Co_Em_No|10_1_Co_Hi_No|10_2_Co_Hi_No|10_3_Co_Hi_No|10_4_Co_Em_No|11_0_Co_Em_No|11_1_Co_Em_No|11_2_Co_Em_No|11_3_Co_Em_No|11_4_Co_Em_No|12_0_Re_Em_No|12_1_Re_Em_No|12_2_Re_Em_No|12_3_Re_Em_No|12_4_Re_Em_No
+  haveProceduralCells: 0
+  minRoomSize: {x: 5, y: 5}
+  maxRoomSize: {x: 10, y: 10}
+  roomPourcentageOfMine: 5
+  roomPourcentageOfNone: 5
+  haveStair: 0
+  itemRanges: []
+  npcDatas: []

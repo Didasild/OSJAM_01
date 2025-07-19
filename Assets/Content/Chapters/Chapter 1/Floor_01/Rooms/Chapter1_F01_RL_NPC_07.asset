@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e1fa203da9941e14e9ac5c76d2db6dfb, type: 3}
+  m_Name: Chapter1_F01_RL_NPC_07
+  m_EditorClassIdentifier: 
+  proceduralRoom: 0
+  mandatory: 1
+  isFoW: 1
+  roomType: 0
+  roomVolumeProfile: {fileID: 11400000, guid: de15eaa4853062b43944eabdef48ec33, type: 2}
+  roomIDString: 0_0_In_No_No|0_1_In_No_No|0_2_Co_Em_No|0_3_Co_Em_No|0_4_Co_Em_No|0_5_Co_Em_No|0_6_In_No_No|0_7_In_No_No|1_0_In_No_No|1_1_In_No_No|1_2_Co_Hi_No|1_3_Co_Hi_No|1_4_Co_Hi_No|1_5_Co_Hi_No|1_6_In_No_No|1_7_In_No_No|2_0_In_No_No|2_1_Co_Em_No|2_2_Co_Hi_No|2_3_Co_Mi_No|2_4_Co_Mi_No|2_5_Co_Hi_No|2_6_Co_Em_No|2_7_In_No_No|3_0_Co_Hi_No|3_1_Co_Hi_No|3_2_Co_Hi_No|3_3_Co_Hi_No|3_4_Co_Hi_No|3_5_Co_Hi_No|3_6_Co_Hi_No|3_7_Co_Hi_No|4_0_Co_Mi_No|4_1_Co_Hi_No|4_2_Co_Em_No|4_3_Co_Em_No|4_4_Co_Em_No|4_5_Co_Em_No|4_6_Co_Hi_No|4_7_Co_Mi_No|5_0_Co_Hi_No|5_1_Co_Hi_No|5_2_Co_Em_No|5_3_Co_Np_1|5_4_Co_Em_No|5_5_Co_Em_No|5_6_Co_Hi_No|5_7_Co_Hi_No|6_0_Co_Mi_No|6_1_Co_Hi_No|6_2_Co_Em_No|6_3_Co_Em_No|6_4_Co_Em_No|6_5_Co_Em_No|6_6_Co_Hi_No|6_7_Co_Mi_No|7_0_Co_Hi_No|7_1_Co_Hi_No|7_2_Co_Em_No|7_3_Co_Em_No|7_4_Co_Em_No|7_5_Co_Em_No|7_6_Co_Hi_No|7_7_Co_Hi_No|8_0_In_No_No|8_1_Co_Hi_No|8_2_Co_Hi_No|8_3_Co_Hi_No|8_4_Co_Hi_No|8_5_Co_Hi_No|8_6_Co_Hi_No|8_7_In_No_No|9_0_In_No_No|9_1_In_No_No|9_2_Co_Mi_No|9_3_Co_Hi_No|9_4_Co_Hi_No|9_5_Co_Mi_No|9_6_In_No_No|9_7_In_No_No|10_0_In_No_No|10_1_In_No_No|10_2_Co_Hi_No|10_3_Co_Hi_No|10_4_Co_Hi_No|10_5_Co_Hi_No|10_6_In_No_No|10_7_In_No_No|11_0_In_No_No|11_1_In_No_No|11_2_Co_Em_No|11_3_Co_Em_No|11_4_Co_Em_No|11_5_Co_Em_No|11_6_In_No_No|11_7_In_No_No|12_0_In_No_No|12_1_In_No_No|12_2_Re_Em_No|12_3_Re_Em_No|12_4_Re_Em_No|12_5_Re_Em_No|12_6_In_No_No|12_7_In_No_No
+  haveProceduralCells: 0
+  minRoomSize: {x: 5, y: 5}
+  maxRoomSize: {x: 10, y: 10}
+  roomPourcentageOfMine: 5
+  roomPourcentageOfNone: 5
+  haveStair: 0
+  itemRanges: []
+  npcDatas:
+  - npcPosition: {x: 5, y: 3}
+    npcDialogsSettings: {fileID: 11400000, guid: 2217f2eb8199e91428a518dfcdc6c4c6, type: 2}
