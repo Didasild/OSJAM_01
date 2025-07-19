@@ -68,10 +68,6 @@ public class RoomData : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
         currentRoomState = roomData.initRoomState;
         roomStateVisual.sprite = GameManager.VisualManager.minimapVisual.GetRoomStateVisual(currentRoomState);
         SetColor(currentRoomState);
-        // if (currentRoomState == RoomState.FogOfWar || currentRoomState == RoomState.StartedLock)
-        // {
-        //     isLocked = true;
-        // }
     }
     public void InitializeRoomType()
     {
@@ -239,7 +235,6 @@ public class RoomData : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
         }
     }
     #endregion GETTER
-
 
     #region POINTER
     //Click sur la minimap
