@@ -172,7 +172,7 @@ public class RoomData : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 
     #region GETTER
     //A DEPLACER DANS UN UTILS
-    public NPC GetNpcfromCellPosition(Vector2Int cellPosition)
+    public NPC GetNpcFromCellPosition(Vector2Int cellPosition)
     {
         if (roomNPCs == null)
         {
@@ -221,6 +221,9 @@ public class RoomData : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
                 roomStateVisual.color = Color.white;
                 break;
             case RoomState.Complete:
+                roomStateVisual.color = Color.white;
+                break;
+            case RoomState.FogOfWar:
                 roomStateVisual.color = Color.white;
                 break;
         }

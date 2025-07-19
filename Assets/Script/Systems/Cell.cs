@@ -97,7 +97,7 @@ public class Cell : MonoBehaviour
         
         if (currentType == CellType.Npc)
         {
-            npc = _gameManager.FloorManager.currentRoom.GetNpcfromCellPosition(cellPosition);
+            npc = _gameManager.FloorManager.currentRoom.GetNpcFromCellPosition(cellPosition);
             npc.SetCellVisual(this);
         }
 

@@ -81,7 +81,6 @@ public class FloorObjectivesController : MonoBehaviour
                 filteredRooms.Add(room);
             }
         }
-        
         return filteredRooms;
     }
 

@@ -97,6 +97,9 @@ public class MinimapVisual : MonoBehaviour
                 break;
             case RoomType.Boss:
                 break;
+            case RoomType.NPC:
+                roomTypeVisual = _visualManager.GetSprite("Cell_Type_Npc_Inactive");
+                break;
             default:
                 throw new ArgumentOutOfRangeException(nameof(roomType), roomType, null);
         }
