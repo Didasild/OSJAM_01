@@ -8,7 +8,7 @@ public class FloorObjectivesController : MonoBehaviour
     private FloorManager _floorManager;
     private List<RoomData> _currentObjectivesRooms;
     private List<Vector2Int> _currentObjectivesRoomPositions;
-    private int _currentObjectivesIndex;
+    public int _currentObjectivesIndex;
     private ScriptMachine _scriptMachine;
     
     public event Action<int> OnObjectiveIndexChanged;
@@ -92,7 +92,7 @@ public class FloorObjectivesController : MonoBehaviour
             Debug.Log("Liste of objectives completed");
             return new List<Vector2Int>();
         }
-        return _floorManager.currentFloorSetting.floorObjectivesList[objectiveIndex].roomPosition;
+        return _floorManager.currentFloorSetting.floorObjectivesList[objectiveIndex].objectivesPositions;
     }
     
     private void SetNewGraph(ScriptGraphAsset newGraph)

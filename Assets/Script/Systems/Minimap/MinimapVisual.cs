@@ -7,6 +7,7 @@ public class MinimapVisual : MonoBehaviour
 {
     [Header("ROOM TRANSFORM")]
     public Transform fowTransform;
+    public Transform hideTransform;
     public Transform startedTransform;
     public Transform completedTransform;
     public Transform selectedRoom;
@@ -34,6 +35,9 @@ public class MinimapVisual : MonoBehaviour
             case RoomState.FogOfWar:
                 roomStateVisual = _visualManager.GetSprite("MM_RoomFoW");
                 break;
+            case RoomState.Hide:
+                roomStateVisual = _visualManager.GetSprite("MM_RoomFoW");
+                break;
             case RoomState.StartedLock:
                 roomStateVisual = _visualManager.GetSprite("MM_RoomStarted");
                 break;
@@ -56,6 +60,9 @@ public class MinimapVisual : MonoBehaviour
         {
             case RoomState.FogOfWar:
                 roomNewParent = fowTransform;
+                break;
+            case RoomState.Hide:
+                roomNewParent = hideTransform;
                 break;
             case RoomState.StartedLock:
                 roomNewParent = startedTransform;

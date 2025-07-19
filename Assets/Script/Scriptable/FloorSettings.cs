@@ -4,6 +4,7 @@ using UnityEngine;
 using NaughtyAttributes;
 using Unity.VisualScripting;
 using UnityEngine.Rendering;
+using UnityEngine.Serialization;
 using Random = UnityEngine.Random;
 
 public enum FloorType
@@ -43,7 +44,7 @@ public class FloorSettings : ScriptableObject
     {
         public bool startRoom;
         public RoomSettings initRoomSettings;
-        public RoomState currentRoomState;
+        public RoomState initRoomState;
         public Vector2Int roomPosition;
         public RoomCompletion.RoomCompletionConditions roomCompletion;
         public RoomCompletion.RoomCompletionConditions roomUnlock;
@@ -52,7 +53,7 @@ public class FloorSettings : ScriptableObject
     [Serializable]
     public struct FloorObjectives
     {
-        public List<Vector2Int> roomPosition;
+        public List<Vector2Int> objectivesPositions;
     }
     #endregion
 

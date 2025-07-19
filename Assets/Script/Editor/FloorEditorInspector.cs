@@ -72,6 +72,10 @@ public class FloorEditorInspector : Editor
             
             GUI.enabled = false;
             EditorGUILayout.TextField("EDITOR SWITCH", centeredStyle);
+            if (floorEditor.selectedRoomEditorObjects.Count > 0 && floorEditor.selectedRoomEditorObjects[0].roomSettings != null)
+            {
+                EditorGUILayout.TextField(floorEditor.selectedRoomEditorObjects[0].roomSettings.ToString(), centeredStyle);
+            }
             GUI.enabled = true;
             if (floorEditor.gameObject.activeInHierarchy && !floorEditor.roomEditor.gameObject.activeInHierarchy)
             {
@@ -103,8 +107,7 @@ public class FloorEditorInspector : Editor
             GUI.enabled = false;
             EditorGUILayout.TextField("ROOM TO GENERATE DATAS", centeredStyle);
             GUI.enabled = true;
-            floorEditor.roomSettingsToLoad =
-                (RoomSettings)EditorGUILayout.ObjectField(floorEditor.roomSettingsToLoad, typeof(RoomSettings), true);
+            floorEditor.roomSettingsToLoad = (RoomSettings)EditorGUILayout.ObjectField(floorEditor.roomSettingsToLoad, typeof(RoomSettings), true);
             EditorGUILayout.BeginHorizontal();
             floorEditor.isStartRoom = EditorGUILayout.Toggle("Is Start Room", floorEditor.isStartRoom);
             floorEditor.roomStateToLoad = (RoomState)EditorGUILayout.EnumPopup(floorEditor.roomStateToLoad);
@@ -181,6 +184,7 @@ public class FloorEditorInspector : Editor
             GUI.enabled = false;
             EditorGUILayout.TextField("MOVE SELECTED ROOM", centeredStyle);
             GUI.enabled = true;
+            EditorGUILayout.HelpBox("You can use arrow key while having the inspector selected to move rooms", MessageType.Info);
             if (GUILayout.Button("MOVE UP"))
             {
                 floorEditor.MoveSelectedRooms(Vector2Int.up);
@@ -201,6 +205,19 @@ public class FloorEditorInspector : Editor
             if (GUILayout.Button("MOVE DOWN"))
             {
                 floorEditor.MoveSelectedRooms(Vector2Int.down);
+            }
+            
+            EditorGUILayout.Space(_smallSpacing);
+            CoreEditorUtils.DrawFoldoutEndSplitter();
+            EditorGUILayout.Space(_smallSpacing);
+            
+            GUI.enabled = false;
+            EditorGUILayout.TextField("ASSIGN NEW ROOM SETTINGS", centeredStyle);
+            GUI.enabled = true;
+            floorEditor.roomSettingsToAssign = (RoomSettings)EditorGUILayout.ObjectField(floorEditor.roomSettingsToAssign, typeof(RoomSettings), true);
+            if (GUILayout.Button("ASSIGN NEW ROOM SETTINGS"))
+            {
+                floorEditor.AssignNewRoomSettings(floorEditor.roomSettingsToAssign);
             }
             
             EditorGUILayout.Space(_smallSpacing);
@@ -263,6 +280,37 @@ public class FloorEditorInspector : Editor
             
         }
         #endregion SAVE
+
+        #region METHODS
+        //MOVE WITH KEYBOARD
+        Event e = Event.current;
+
+        if (e.type == EventType.KeyDown)
+        {
+            switch (e.keyCode)
+            {
+                case KeyCode.UpArrow:
+                    floorEditor.MoveSelectedRooms(Vector2Int.up);
+                    e.Use();
+                    break;
+
+                case KeyCode.DownArrow:
+                    floorEditor.MoveSelectedRooms(Vector2Int.down);
+                    e.Use();
+                    break;
+
+                case KeyCode.LeftArrow:
+                    floorEditor.MoveSelectedRooms(Vector2Int.left);
+                    e.Use();
+                    break;
+
+                case KeyCode.RightArrow:
+                    floorEditor.MoveSelectedRooms(Vector2Int.right);
+                    e.Use();
+                    break;
+            }
+        }
+        #endregion METHODS
         
         // Applique les changements à l'objet
         serializedObject.ApplyModifiedProperties();

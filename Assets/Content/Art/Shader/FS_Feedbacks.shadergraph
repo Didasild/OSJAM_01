@@ -5646,7 +5646,7 @@
     "m_Type": "UnityEditor.ShaderGraph.Vector1MaterialSlot",
     "m_ObjectId": "a6309f3d0c0d45c9953eddbb1b6e94cd",
     "m_Id": 0,
-    "m_DisplayName": "Pulse",
+    "m_DisplayName": "SpikePulse",
     "m_SlotType": 1,
     "m_Hidden": false,
     "m_ShaderOutputName": "Out",

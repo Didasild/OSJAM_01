@@ -281,7 +281,8 @@ MonoBehaviour:
   roomPosition: {x: 0, y: 0}
   roomState: 0
   roomSettings: {fileID: 0}
-  roomCondition: 0
+  roomCompletion: 0
+  roomUnlock: 0
   showSetupElements: 1
   selectedVisual: {fileID: 8971746800379126974}
   isStartRoomVisual: {fileID: 5596397557244770935}

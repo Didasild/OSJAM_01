@@ -22,14 +22,14 @@ MonoBehaviour:
     initRoomSettings: {fileID: 11400000, guid: 6c376ee1e8ea45a4488360da3d24f8cb, type: 2}
     currentRoomState: 0
     roomPosition: {x: 0, y: 0}
-    roomCompletion: 3
-    roomUnlock: 1
+    roomCompletion: 0
+    roomUnlock: 0
   - startRoom: 0
     initRoomSettings: {fileID: 11400000, guid: 217f3bf9ea452f44f9d38c568aa49af6, type: 2}
     currentRoomState: 0
     roomPosition: {x: 1, y: 1}
-    roomCompletion: 3
-    roomUnlock: 1
+    roomCompletion: 0
+    roomUnlock: 0
   - startRoom: 0
     initRoomSettings: {fileID: 11400000, guid: 3de9fbd7fdca9b24582857244631451d, type: 2}
     currentRoomState: 0
@@ -43,9 +43,9 @@ MonoBehaviour:
     roomCompletion: 0
     roomUnlock: 0
   - startRoom: 0
-    initRoomSettings: {fileID: 11400000, guid: 20a5d6c7151eedd4088b1c893f392d94, type: 2}
+    initRoomSettings: {fileID: 11400000, guid: eecb56247d72cdf4c83c990f1b99a426, type: 2}
     currentRoomState: 0
-    roomPosition: {x: 2, y: 1}
+    roomPosition: {x: 2, y: 0}
     roomCompletion: 0
     roomUnlock: 0
   - startRoom: 0
@@ -72,10 +72,18 @@ MonoBehaviour:
     roomPosition: {x: 0, y: 1}
     roomCompletion: 0
     roomUnlock: 0
+  - startRoom: 0
+    initRoomSettings: {fileID: 11400000, guid: c2b3e719349c07b4ea7e6199ab0ae1cd, type: 2}
+    currentRoomState: 1
+    roomPosition: {x: 2, y: 1}
+    roomCompletion: 3
+    roomUnlock: 3
   objectiveGraph: {fileID: 11400000, guid: 8d393ae9232d4f643806ce1f3400a542, type: 2}
   floorObjectivesList:
-  - roomPosition:
+  - objectivesPositions:
     - {x: 0, y: 0}
     - {x: 1, y: 1}
-  - roomPosition:
-    - {x: 2, y: 2}
+  - objectivesPositions:
+    - {x: 2, y: 0}
+  - objectivesPositions:
+    - {x: 2, y: 1}

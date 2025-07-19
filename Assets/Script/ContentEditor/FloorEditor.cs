@@ -15,6 +15,7 @@ public class FloorEditor : MonoBehaviour
     public GameObject[] selectedObjects;
     public List<RoomEditorObject> selectedRoomEditorObjects;
     public RoomSettings roomSettingsToLoad;
+    public RoomSettings roomSettingsToAssign;
     public RoomState roomStateToLoad;
     public bool isStartRoom;
     public List<RoomEditorObject> roomEditorObjects = new List<RoomEditorObject>();
@@ -56,7 +57,7 @@ public class FloorEditor : MonoBehaviour
     }
     private void InstantiateRoomFromSettings(List<FloorSettings.LoadedRoomData> roomDatas, int i)
     {
-        GenerateRoom(roomDatas[i].roomPosition, InitRoomPosition(roomDatas[i].roomPosition), roomDatas[i].initRoomSettings, roomDatas[i].currentRoomState, roomDatas[i].startRoom);
+        GenerateRoom(roomDatas[i].roomPosition, InitRoomPosition(roomDatas[i].roomPosition), roomDatas[i].initRoomSettings, roomDatas[i].initRoomState, roomDatas[i].startRoom);
     }
     #endregion LOAD FLOOR
 
@@ -142,7 +143,7 @@ public class FloorEditor : MonoBehaviour
             
             newRoomData.startRoom = roomEditorObject.isStartRoom;
             newRoomData.initRoomSettings = roomEditorObject.roomSettings;
-            newRoomData.currentRoomState = roomEditorObject.roomState;
+            newRoomData.initRoomState = roomEditorObject.roomState;
             newRoomData.roomPosition = roomEditorObject.roomPosition;
             newRoomData.roomCompletion = roomEditorObject.roomCompletion;
             newRoomData.roomUnlock = roomEditorObject.roomUnlock;
@@ -150,6 +151,8 @@ public class FloorEditor : MonoBehaviour
             floorSettings.loadedRoomDatas.Add(newRoomData);
         }
     }
+
+
     #endregion SAVE FUNCTIONS
 
     #region METHODS
@@ -224,6 +227,16 @@ public class FloorEditor : MonoBehaviour
                 Debug.LogWarning("Can't move on an existing room");
             }
         }
+    }
+    
+    public void AssignNewRoomSettings(RoomSettings newRoomSettings)
+    {
+        if (newRoomSettings == null)
+        {
+            Debug.LogWarning("Can't assign a null room settings");
+            return;
+        }
+        selectedRoomEditorObjects[0].roomSettings = newRoomSettings;
     }
     
     public void UpdateSelectedVisual()

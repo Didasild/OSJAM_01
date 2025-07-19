@@ -17,6 +17,8 @@ public class VisualEditorManager : VisualManager
 
     [Header("FLOOR EDITOR VISUAL")] 
     public Sprite fowRoom;
+
+    public Sprite hideRoom;
     public Sprite startedRoom;
     public Sprite completedRoom;
     
@@ -36,6 +38,8 @@ public class VisualEditorManager : VisualManager
                 return completedRoom;
             case RoomState.FogOfWar:
                 return fowRoom;
+            case RoomState.Hide:
+                return hideRoom;
         }
         Debug.LogError("Unknown Room State : " + roomState);
         return null;

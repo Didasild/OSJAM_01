@@ -8,6 +8,7 @@ using NaughtyAttributes;
 public enum RoomState
 {
     FogOfWar,
+    Hide,
     StartedLock,
     StartedUnlock,
     Complete
@@ -53,16 +54,18 @@ public class RoomData : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 
     #region INIT
 
-    public void Initialize(Vector2Int position, RoomCompletion.RoomCompletionConditions newRoomCondition, RoomCompletion.RoomCompletionConditions newRoomUnlockConditions, Minimap minimap)
+    public void Initialize(FloorSettings.LoadedRoomData roomData, Minimap minimap)
     {
-        _minimap = minimap;
-        roomConditions = newRoomCondition;
-        roomUnlockConditions = newRoomUnlockConditions;
         _floorManager = GameManager.Instance.FloorManager;
+        _minimap = minimap;
+        roomConditions = roomData.roomCompletion;
+        roomUnlockConditions = roomData.roomUnlock;
 
         //Setup le visuel
         _visualManager = GameManager.visualManager;
-        roomStateVisual.sprite = _visualManager.minimapVisual.GetRoomStateVisual(RoomState.FogOfWar);
+        currentRoomState = roomData.initRoomState;
+        roomStateVisual.sprite = GameManager.visualManager.minimapVisual.GetRoomStateVisual(currentRoomState);
+        SetColor(currentRoomState);
     }
     public void InitializeRoomType()
     {
@@ -94,12 +97,16 @@ public class RoomData : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
         currentRoomState = newRoomState;
         //Update le visuel de la room
         roomStateVisual.sprite = GameManager.visualManager.minimapVisual.GetRoomStateVisual(currentRoomState);
+        SetColor(currentRoomState);
         gameObject.transform.SetParent(GameManager.visualManager.minimapVisual.GetRoomNewParent(currentRoomState));
 
         switch (currentRoomState)
         {
             case RoomState.FogOfWar:
                 FogOfWarRoomState();
+                break;
+            case RoomState.Hide:
+                HideRoomState();
                 break;
             case RoomState.StartedLock:
                 StartedLockRoomState();
@@ -119,14 +126,19 @@ public class RoomData : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 
     }
 
+    private void HideRoomState()
+    {
+
+    }
+
     private void StartedLockRoomState()
     {
-        
+
     }
     
     private void StartedUnLockRoomState()
     {
-        
+
     }
 
     private void CompleteRoomState()
@@ -193,6 +205,25 @@ public class RoomData : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
             }
         }
         return null;
+    }
+
+    public void SetColor(RoomState currentRoomState)
+    {
+        switch (currentRoomState)
+        {
+            case RoomState.Hide:
+                roomStateVisual.color = Color.clear;
+                break;
+            case RoomState.StartedLock:
+                roomStateVisual.color = Color.white;
+                break;
+            case RoomState.StartedUnlock:
+                roomStateVisual.color = Color.white;
+                break;
+            case RoomState.Complete:
+                roomStateVisual.color = Color.white;
+                break;
+        }
     }
     #endregion GETTER
 

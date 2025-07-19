@@ -28,7 +28,7 @@ public class Minimap : MonoBehaviour
 
     public void SetRoomPosition(RoomData roomData, Vector2Int position)
     {
-        roomData.transform.SetParent(_minimapVisual.GetRoomNewParent(RoomState.FogOfWar));
+        roomData.transform.SetParent(_minimapVisual.GetRoomNewParent(roomData.currentRoomState));
         roomData.roomPosition = position;
         
         // Calculez la position dans le monde

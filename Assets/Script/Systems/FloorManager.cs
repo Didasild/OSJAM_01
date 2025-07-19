@@ -90,7 +90,11 @@ public class FloorManager : MonoBehaviour
                 RoomData roomData = Instantiate(roomPrefab);
                 if (roomData != null)
                 {
-                    roomData.Initialize(gridPosition, RoomCompletion.RoomCompletionConditions.Default, RoomCompletion.RoomCompletionConditions.Default , minimap);
+                    FloorSettings.LoadedRoomData newRomDataInfos = new FloorSettings.LoadedRoomData();
+                    newRomDataInfos.roomPosition = gridPosition;
+                    newRomDataInfos.roomCompletion = RoomCompletion.RoomCompletionConditions.Default;
+                    newRomDataInfos.roomUnlock = RoomCompletion.RoomCompletionConditions.Default;
+                    roomData.Initialize(newRomDataInfos, minimap);
                     roomList.Add(roomData);
                     minimap.SetRoomPosition(roomData, gridPosition);
                 }
@@ -173,7 +177,7 @@ public class FloorManager : MonoBehaviour
             RoomData roomData = Instantiate(roomPrefab);
             roomList.Add(roomData);
             
-            roomData.Initialize(loadedRoomData.roomPosition, loadedRoomData.roomCompletion, loadedRoomData.roomUnlock, minimap);
+            roomData.Initialize(loadedRoomData, minimap);
             minimap.SetRoomPosition(roomData, loadedRoomData.roomPosition);
             roomData.name = $"Room_"+ loadedRoomData.roomPosition;
             
@@ -259,8 +263,8 @@ public class FloorManager : MonoBehaviour
         //minimap to move
         _visualManager.minimapVisual.ActiveSelectedVisual(roomToInstanciate, true);
         
-        //Update Buttons
-        UpdateButtonStates();
+        //Update la room
+        roomToInstanciate.ChangeRoomSate(roomToInstanciate.currentRoomState);
         UpdateRoomDebugName();
     }
 
@@ -341,10 +345,10 @@ public class FloorManager : MonoBehaviour
         switch (currentRoom.currentRoomState)
         {
             case RoomState.Complete:
-                buttonRight.SetActive(currentRoom.roomRight != null);
-                buttonLeft.SetActive(currentRoom.roomLeft != null);
-                buttonUp.SetActive(currentRoom.roomUp != null);
-                buttonDown.SetActive(currentRoom.roomDown != null);
+                buttonRight.SetActive(CheckNeighborState(currentRoom.roomRight));
+                buttonLeft.SetActive(CheckNeighborState(currentRoom.roomLeft));
+                buttonUp.SetActive(CheckNeighborState(currentRoom.roomUp));
+                buttonDown.SetActive(CheckNeighborState(currentRoom.roomDown));
                 break;
             case RoomState.StartedLock:
                 buttonRight.SetActive(false);
@@ -353,10 +357,12 @@ public class FloorManager : MonoBehaviour
                 buttonDown.SetActive(false);
                 break;
             case RoomState.StartedUnlock:
-                buttonRight.SetActive(currentRoom.roomRight != null);
-                buttonLeft.SetActive(currentRoom.roomLeft != null);
-                buttonUp.SetActive(currentRoom.roomUp != null);
-                buttonDown.SetActive(currentRoom.roomDown != null);
+                buttonRight.SetActive(CheckNeighborState(currentRoom.roomRight));
+                buttonLeft.SetActive(CheckNeighborState(currentRoom.roomLeft));
+                buttonUp.SetActive(CheckNeighborState(currentRoom.roomUp));
+                buttonDown.SetActive(CheckNeighborState(currentRoom.roomDown));
+                break;
+            case RoomState.Hide:
                 break;
             case RoomState.FogOfWar:
                 break;
@@ -377,7 +383,18 @@ public class FloorManager : MonoBehaviour
     {
         return new Vector2Int(nextRoomPosition.x - currentRoom.roomPosition.x, nextRoomPosition.y - currentRoom.roomPosition.y);
     }
-
+    
+    
+    private Boolean CheckNeighborState(RoomData neighborRoom)
+    {
+        if (neighborRoom != null && neighborRoom.currentRoomState != RoomState.Hide)
+        {
+            return true;
+        }
+        return false;
+    }
+    
+//A METTRE DANS VISUAL SCRIPTING UTILS?
     public RoomData GetRoomDataFromPosition(Vector2Int roomPosition)
     {
         foreach (RoomData roomData in roomList)
@@ -389,6 +406,7 @@ public class FloorManager : MonoBehaviour
         }
         return null;
     }
+
     
     #endregion UTILS
     
