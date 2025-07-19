@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using DG.Tweening;
 using NaughtyAttributes;
@@ -25,6 +26,7 @@ public class DialogVisual : MonoBehaviour
     [ReadOnly] public UiTransition uiDialogBoxTransition;
     private UiTransition uiPortraitTransition;
     private PortraitController _portraitController;
+    private Boolean _isClose = false;
     
     public void Init(Dialog dialog)
     {
@@ -40,6 +42,11 @@ public class DialogVisual : MonoBehaviour
     
     public void DialogApparition(Sprite npcTexture = null)
     {
+        if (!_isClose)
+        {
+            return;
+        }
+        _isClose = false;
         portraitBox.SetActive(false);
         uiDialogBoxTransition.StartTransition();
         DOVirtual.DelayedCall(uiDialogBoxTransition.transitionDuration, () => PortraitApparition(npcTexture), false);
@@ -47,6 +54,11 @@ public class DialogVisual : MonoBehaviour
 
     public void DialogDisparition()
     {
+        if (_isClose)
+        {
+            return;
+        }
+        _isClose = true;
         uiDialogBoxTransition.StartTransition(false);
         DOVirtual.DelayedCall(uiDialogBoxTransition.transitionDuration, ClearDialogBox, false);
         DOVirtual.DelayedCall(uiDialogBoxTransition.transitionDuration, PortraitDisparition, false);

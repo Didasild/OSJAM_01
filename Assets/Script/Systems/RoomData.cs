@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -29,7 +30,8 @@ public class RoomData : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     [ReadOnly] public RoomCompletion.RoomCompletionConditions roomUnlockConditions;
     [ReadOnly] public bool isObjective = false;
     [ReadOnly] public List<NPC> roomNPCs = new List<NPC>();
-    
+    [ReadOnly] public Boolean isLocked = false;
+     
 
     [Header("NEIGHBORS")]
     [ReadOnly] public RoomData roomUp;
@@ -66,6 +68,10 @@ public class RoomData : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
         currentRoomState = roomData.initRoomState;
         roomStateVisual.sprite = GameManager.visualManager.minimapVisual.GetRoomStateVisual(currentRoomState);
         SetColor(currentRoomState);
+        // if (currentRoomState == RoomState.FogOfWar || currentRoomState == RoomState.StartedLock)
+        // {
+        //     isLocked = true;
+        // }
     }
     public void InitializeRoomType()
     {
@@ -113,9 +119,11 @@ public class RoomData : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
                 break;
             case RoomState.StartedUnlock:
                 StartedUnLockRoomState();
+                _visualManager.minimapVisual.MinimapAppear();
                 break;
             case RoomState.Complete:
                 CompleteRoomState();
+                _visualManager.minimapVisual.MinimapAppear();
                 break;
         }
         _floorManager.UpdateButtonStates();
@@ -123,22 +131,23 @@ public class RoomData : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 
     private void FogOfWarRoomState()
     {
-
+        isLocked = true;
     }
 
     private void HideRoomState()
     {
-
+        isLocked = true;
     }
 
     private void StartedLockRoomState()
     {
-
+        _visualManager.minimapVisual.MinimapDisappear();
+        isLocked = true;
     }
     
     private void StartedUnLockRoomState()
     {
-
+        isLocked = false;
     }
 
     private void CompleteRoomState()
@@ -153,6 +162,7 @@ public class RoomData : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
         roomTypeVisual.sprite = _visualManager.minimapVisual.GetRoomTypeVisual(currentRoomType);
         UpdateObjective();
         _floorManager.floorObjectivesController.CheckObjectiveCompletion();
+        isLocked = false;
     }
 
     public void UpdateObjective()

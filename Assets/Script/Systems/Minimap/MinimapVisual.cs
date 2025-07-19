@@ -19,6 +19,7 @@ public class MinimapVisual : MonoBehaviour
     private Minimap _minimap;
     private VisualManager _visualManager;
     private UiTransition _uiTransition;
+    private Boolean _isClose;
     
     
     public void Init()
@@ -121,6 +122,11 @@ public class MinimapVisual : MonoBehaviour
     
     public void MinimapAppear()
     {
+        if (!_isClose)
+        {
+            return;
+        }
+        _isClose = false;
         minimapContainer.SetActive(true);
         _uiTransition.StartTransition();
         DOVirtual.DelayedCall(_uiTransition.transitionDuration / 1.5f, () =>
@@ -131,9 +137,14 @@ public class MinimapVisual : MonoBehaviour
 
     public void MinimapDisappear()
     {
+        if (_isClose)
+        {
+            return;
+        }
+        _isClose = true;
         minimapContent.SetActive(false);
         _uiTransition.StartTransition(false);
-        DOVirtual.DelayedCall(_uiTransition.transitionDuration, () =>
+        DOVirtual.DelayedCall(_uiTransition.transitionDuration / 1.5f, () =>
         {
             minimapContainer.SetActive(false);
         });
