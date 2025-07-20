@@ -26,7 +26,7 @@ public class DialogVisual : MonoBehaviour
     [ReadOnly] public UiTransition uiDialogBoxTransition;
     private UiTransition uiPortraitTransition;
     private PortraitController _portraitController;
-    private Boolean _isClose = false;
+    private Boolean _isClose;
     
     public void Init(Dialog dialog)
     {
@@ -38,6 +38,7 @@ public class DialogVisual : MonoBehaviour
         
         uiDialogBoxTransition = gameObject.GetComponent<UiTransition>();
         uiPortraitTransition = portraitBox.GetComponent<UiTransition>();
+        DialogDisparition();
     }
     
     public void DialogApparition(Sprite npcTexture = null)

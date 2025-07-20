@@ -8,6 +8,7 @@ using NaughtyAttributes;
 public enum GameState
 {
     None,
+    StartGame,
     InGame,
     Lose,
 }
@@ -61,7 +62,7 @@ public class GameManager : MonoBehaviour
 
     public void Start()
     {
-        ChangeGameState(GameState.InGame);
+        ChangeGameState(GameState.StartGame);
     }
     #endregion INIT
 
@@ -72,10 +73,10 @@ public class GameManager : MonoBehaviour
 
         switch (gameState)
         {
-            //case GameState.Start:
-            //    StartState();
-            //    break;
-
+            case GameState.StartGame:
+                StartGameState();
+                break;
+            
             case GameState.InGame:
                 InGameState();
                 break;
@@ -86,13 +87,7 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    private void LoseState()
-    {
-        endScreenUI.SetActive(true);
-        currentFloorLevel = 0;
-    }
-
-    private void InGameState()
+    private void StartGameState()
     {
         //Assigne le current chapter settings en fonction du chapter selectionné
         currentChapterSettings = chaptersList.Find(setting => setting.chapter == currentChapter);
@@ -121,6 +116,17 @@ public class GameManager : MonoBehaviour
         {
             Debug.LogError("Pas de floor dans la floor setting list du Dungeon Manager");
         }
+        ChangeGameState(GameState.InGame);
+    }
+
+    private void InGameState()
+    {
+        
+    }
+    
+    private void LoseState()
+    {
+        RestartGame();
     }
 
     public void RestartGame()
@@ -130,7 +136,7 @@ public class GameManager : MonoBehaviour
         {
             yield return new WaitForEndOfFrame();
 
-            ChangeGameState(GameState.InGame);
+            ChangeGameState(GameState.StartGame);
             currentFloorLevel = 0;
             floorLevelText.text = currentFloorLevel.ToString();
             endScreenUI.SetActive(false);
