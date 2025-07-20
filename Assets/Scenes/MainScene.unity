@@ -3249,7 +3249,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentGameState: 0
-  currentChapter: 2
+  currentChapter: 1
   chaptersList:
   - {fileID: 11400000, guid: 24d5c5240a1c1934188ccdc42deb809a, type: 2}
   - {fileID: 11400000, guid: b144a2ecda7de4844b459aa018dcbe47, type: 2}
@@ -3347,8 +3347,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 705795835}
   m_HandleRect: {fileID: 705795834}
   m_Direction: 0
-  m_Value: 0.9999999
-  m_Size: 0.21484351
+  m_Value: 1.0000001
+  m_Size: 0.21484399
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -6584,9 +6584,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _data:
-    _json: '{"nest":{"source":"Macro","macro":0,"embed":null}}'
-    _objectReferences:
-    - {fileID: 11400000, guid: 8d393ae9232d4f643806ce1f3400a542, type: 2}
+    _json: '{"nest":{"source":"Macro","macro":null,"embed":null}}'
+    _objectReferences: []
 --- !u!114 &660007375
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15704,7 +15703,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -291.99994, y: 420}
+  m_AnchoredPosition: {x: -292.00006, y: 420}
   m_SizeDelta: {x: 1024, y: 1024}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1954093029

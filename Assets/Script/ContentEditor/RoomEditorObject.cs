@@ -41,12 +41,14 @@ public class RoomEditorObject : MonoBehaviour
         // Se désabonne de l'événement de changement de sélection
         Selection.selectionChanged -= UpdateSelectionState;
     }
-    public void Init(FloorEditor floorEditor, RoomSettings roomSettings, Vector2Int roomPosition, RoomState newRoomState, bool isStartRoom)
+    public void Init(FloorEditor floorEditor, RoomSettings roomSettings, Vector2Int roomPosition, RoomState newRoomState, RoomCompletion.RoomCompletionConditions completionConditions, RoomCompletion.RoomCompletionConditions unlockConditions, bool isStartRoom)
     {
         _floorEditor = floorEditor;
         _visualManager = floorEditor.visualEditorManager;
         this.roomSettings = roomSettings;
         this.roomPosition = roomPosition;
+        roomCompletion = completionConditions;
+        roomUnlock = unlockConditions;
         this.isStartRoom = isStartRoom;
         roomState = newRoomState;
         name = $"Room {roomPosition}";

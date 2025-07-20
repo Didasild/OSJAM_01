@@ -59,7 +59,7 @@ public class FloorEditor : MonoBehaviour
     }
     private void InstantiateRoomFromSettings(List<FloorSettings.LoadedRoomData> roomDatas, int i)
     {
-        GenerateRoom(roomDatas[i].roomPosition, InitRoomPosition(roomDatas[i].roomPosition), roomDatas[i].initRoomSettings, roomDatas[i].initRoomState, roomDatas[i].startRoom);
+        GenerateRoom(roomDatas[i].roomPosition, InitRoomPosition(roomDatas[i].roomPosition), roomDatas[i].initRoomSettings, roomDatas[i].initRoomState, roomDatas[i].roomCompletion, roomDatas[i].roomUnlock, roomDatas[i].startRoom);
     }
     #endregion LOAD FLOOR
 
@@ -67,7 +67,7 @@ public class FloorEditor : MonoBehaviour
     public void GenerateFirstRoom()
     {
         ClearFloor();
-        GenerateRoom(Vector2Int.zero, Vector3.zero, roomSettingsToLoad, roomStateToLoad, isStartRoom);
+        GenerateRoom(Vector2Int.zero, Vector3.zero, roomSettingsToLoad, roomStateToLoad, RoomCompletion.RoomCompletionConditions.Default, RoomCompletion.RoomCompletionConditions.Default, isStartRoom);
     }
 
     public void GenerateNeighborRoom(string direction)
@@ -91,7 +91,7 @@ public class FloorEditor : MonoBehaviour
 
         foreach (RoomEditorObject selectedRoomObject in selectedRoomEditorObjects)
         {
-            GenerateRoom(selectedRoomObject.roomPosition + roomNeighborOffset, InitRoomPosition(selectedRoomObject.roomPosition + roomNeighborOffset), roomSettingsToLoad, roomStateToLoad, isStartRoom);
+            GenerateRoom(selectedRoomObject.roomPosition + roomNeighborOffset, InitRoomPosition(selectedRoomObject.roomPosition + roomNeighborOffset), roomSettingsToLoad, roomStateToLoad, RoomCompletion.RoomCompletionConditions.Default, RoomCompletion.RoomCompletionConditions.Default, isStartRoom);
         }
 
         roomSettingsToLoad = null;
@@ -158,7 +158,7 @@ public class FloorEditor : MonoBehaviour
     #endregion SAVE FUNCTIONS
 
     #region METHODS
-    private void GenerateRoom(Vector2Int roomGridPosition, Vector3 roomWorldPosition, RoomSettings roomSettings, RoomState roomState, bool isStartRoom = false)
+    private void GenerateRoom(Vector2Int roomGridPosition, Vector3 roomWorldPosition, RoomSettings roomSettings, RoomState roomState, RoomCompletion.RoomCompletionConditions completionConditions, RoomCompletion.RoomCompletionConditions unlockConditions , bool isStartRoom = false)
     {
         if (!CheckIfPositionIsAvailable(roomGridPosition))
         {
@@ -167,7 +167,7 @@ public class FloorEditor : MonoBehaviour
         }
         
         RoomEditorObject roomObject = Instantiate(roomEditorObjectPrefab, roomWorldPosition , Quaternion.identity, transform);
-        roomObject.Init(this, roomSettings, roomGridPosition, roomState, isStartRoom);
+        roomObject.Init(this, roomSettings, roomGridPosition, roomState, completionConditions, unlockConditions, isStartRoom);
         roomEditorObjects.Add(roomObject);
         
         selectedRoomEditorObjects = new List<RoomEditorObject>();

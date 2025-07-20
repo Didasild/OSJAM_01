@@ -15,7 +15,7 @@ MonoBehaviour:
   proceduralRoom: 0
   mandatory: 1
   isFoW: 0
-  roomType: 0
+  roomType: 6
   roomVolumeProfile: {fileID: 11400000, guid: d252c52afd5c5ff47984d4f563ce4ade, type: 2}
   roomIDString: 0_0_In_No_No|0_1_In_No_No|0_2_In_No_No|0_3_Re_Em_No|0_4_Re_Em_No|1_0_In_No_No|1_1_In_No_No|1_2_In_No_No|1_3_Re_Em_No|1_4_Re_Em_No|2_0_Re_Em_No|2_1_Re_Em_No|2_2_Re_Em_No|2_3_Re_Hi_No|2_4_Re_Hi_No|3_0_Re_Em_No|3_1_Re_Np_0|3_2_Re_Em_No|3_3_Re_Hi_No|3_4_Co_Mi_No|4_0_Re_Em_No|4_1_Re_Em_No|4_2_Re_Em_No|4_3_Re_Hi_No|4_4_Re_Hi_No|5_0_In_No_No|5_1_In_No_No|5_2_In_No_No|5_3_Re_Em_No|5_4_Re_Em_No|0_5_Re_Em_No|1_5_Re_Em_No|2_5_Re_Hi_No|3_5_Re_Hi_No|4_5_Re_Hi_No|5_5_Re_Em_No|0_6_In_No_No|1_6_In_No_No|2_6_Re_Em_No|3_6_Re_Em_No|4_6_Re_Em_No|5_6_In_No_No
   haveProceduralCells: 0

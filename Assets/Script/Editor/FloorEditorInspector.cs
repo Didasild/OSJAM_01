@@ -39,6 +39,47 @@ public class FloorEditorInspector : Editor
         EditorGUILayout.Space(_smallSpacing);
         EditorGUILayout.LabelField("FLOOR EDITOR", EditorStyles.toolbarButton);
         EditorGUILayout.Space(_smallSpacing*2);
+        
+        GUI.enabled = false;
+        EditorGUILayout.TextField("EDITOR SWITCH", centeredStyle);
+        if (floorEditor.selectedRoomEditorObjects.Count > 0 && floorEditor.selectedRoomEditorObjects[0].roomSettings != null)
+        {
+            EditorGUILayout.TextField(floorEditor.selectedRoomEditorObjects[0].roomSettings.ToString(), centeredStyle);
+        }
+        GUI.enabled = true;
+        if (floorEditor.gameObject.activeInHierarchy && !floorEditor.roomEditor.gameObject.activeInHierarchy)
+        {
+            if (GUILayout.Button("Open in Room Editor"))
+            {
+                floorEditor.SwitchToRoomEditor(floorEditor.selectedRoomEditorObjects[0].roomSettings);
+            }
+        }
+        else
+        {
+            if (GUILayout.Button("Open Floor Editor"))
+            {
+                floorEditor.SwitchToFloorEditor();
+            }
+        }
+            
+        EditorGUILayout.Space(_smallSpacing);
+        CoreEditorUtils.DrawFoldoutEndSplitter();
+        EditorGUILayout.Space(_smallSpacing);
+        
+        GUI.enabled = false;
+        EditorGUILayout.TextField("SAVE CURRENT FLOOR", centeredStyle);
+        GUI.enabled = true;
+        EditorGUILayout.BeginHorizontal();
+        floorEditor.floorToSave = (FloorSettings)EditorGUILayout.ObjectField(floorEditor.floorToSave, typeof(FloorSettings), true);
+        if (GUILayout.Button("Update Existing Room Scriptable"))
+        {
+            floorEditor.UpdateExistingFloorScriptable();
+        }
+        EditorGUILayout.EndHorizontal();
+        
+        EditorGUILayout.Space(_smallSpacing);
+        CoreEditorUtils.DrawSplitter();
+        EditorGUILayout.Space(_smallSpacing);
         #endregion TITLE
         
         #region LOAD FLOOR
@@ -66,34 +107,9 @@ public class FloorEditorInspector : Editor
             {
                 floorEditor.ClearFloor();
             }
+            
             EditorGUILayout.Space(_smallSpacing);
             CoreEditorUtils.DrawFoldoutEndSplitter();
-            EditorGUILayout.Space(_smallSpacing);
-            
-            GUI.enabled = false;
-            EditorGUILayout.TextField("EDITOR SWITCH", centeredStyle);
-            if (floorEditor.selectedRoomEditorObjects.Count > 0 && floorEditor.selectedRoomEditorObjects[0].roomSettings != null)
-            {
-                EditorGUILayout.TextField(floorEditor.selectedRoomEditorObjects[0].roomSettings.ToString(), centeredStyle);
-            }
-            GUI.enabled = true;
-            if (floorEditor.gameObject.activeInHierarchy && !floorEditor.roomEditor.gameObject.activeInHierarchy)
-            {
-                if (GUILayout.Button("Open in Room Editor"))
-                {
-                    floorEditor.SwitchToRoomEditor(floorEditor.selectedRoomEditorObjects[0].roomSettings);
-                }
-            }
-            else
-            {
-                if (GUILayout.Button("Open Floor Editor"))
-                {
-                    floorEditor.SwitchToFloorEditor();
-                }
-            }
-            
-            EditorGUILayout.Space(_smallSpacing);
-            CoreEditorUtils.DrawSplitter();
             EditorGUILayout.Space(_smallSpacing);
         }
         #endregion LOAD FLOOR
@@ -224,11 +240,18 @@ public class FloorEditorInspector : Editor
             CoreEditorUtils.DrawFoldoutEndSplitter();
             EditorGUILayout.Space(_smallSpacing);
             
+            EditorGUILayout.BeginHorizontal();
             GUI.enabled = false;
-            EditorGUILayout.TextField("ROOM COMPLETION CONDITIONS", centeredStyle);
+            EditorGUILayout.TextField("ROOM COMPLETION", centeredStyle);
             GUI.enabled = true;
             floorEditor.roomCompletion = (RoomCompletion.RoomCompletionConditions)EditorGUILayout.EnumFlagsField(floorEditor.roomCompletion);
+            EditorGUILayout.EndHorizontal();
+            EditorGUILayout.BeginHorizontal();
+            GUI.enabled = false;
+            EditorGUILayout.TextField("ROOM UNLOCK", centeredStyle);
+            GUI.enabled = true;
             floorEditor.roomUnlock = (RoomCompletion.RoomCompletionConditions)EditorGUILayout.EnumFlagsField(floorEditor.roomUnlock);
+            EditorGUILayout.EndHorizontal();
             if (GUILayout.Button("ASSIGN ROOM CONDITIONS"))
             {
                 floorEditor.AssigneRoomConditions();
@@ -245,7 +268,7 @@ public class FloorEditorInspector : Editor
         //________SECTION - SAVE
         //Header Foldout - SAVE
         CoreEditorUtils.DrawSplitter(); CoreEditorUtils.DrawSplitter();
-        _saveSection = CoreEditorUtils.DrawHeaderFoldout("SAVE", _saveSection, false, null);
+        _saveSection = CoreEditorUtils.DrawHeaderFoldout("SAVE NEW FLOOR", _saveSection, false, null);
         if (_saveSection)
         {
             EditorGUILayout.Space(_smallSpacing);
@@ -276,18 +299,6 @@ public class FloorEditorInspector : Editor
             {
                 floorEditor.CreateFloorScriptable();
             }
-            
-            EditorGUILayout.Space(_smallSpacing);
-            CoreEditorUtils.DrawSplitter();
-            EditorGUILayout.Space(_smallSpacing);
-            
-            EditorGUILayout.BeginHorizontal();
-            floorEditor.floorToSave = (FloorSettings)EditorGUILayout.ObjectField(floorEditor.floorToSave, typeof(FloorSettings), true);
-            if (GUILayout.Button("Update Existing Room Scriptable"))
-            {
-                floorEditor.UpdateExistingFloorScriptable();
-            }
-            EditorGUILayout.EndHorizontal();
             EditorGUILayout.Space(_smallSpacing);
             CoreEditorUtils.DrawSplitter();
             EditorGUILayout.Space(_smallSpacing);
