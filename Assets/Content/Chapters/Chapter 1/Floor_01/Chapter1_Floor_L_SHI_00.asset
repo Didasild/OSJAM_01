@@ -19,7 +19,7 @@ MonoBehaviour:
   roomSettingsList: []
   loadedRoomDatas:
   - startRoom: 1
-    initRoomSettings: {fileID: 11400000, guid: cb17677fb0e23ee4784c3271ccb598c4, type: 2}
+    initRoomSettings: {fileID: 11400000, guid: 07a308a488b558048b6a59f1e44ecf93, type: 2}
     initRoomState: 0
     roomPosition: {x: 0, y: 1}
     roomCompletion: 3
@@ -40,8 +40,8 @@ MonoBehaviour:
     initRoomSettings: {fileID: 11400000, guid: 55c60f4a6a1016040be79f3f533b3806, type: 2}
     initRoomState: 0
     roomPosition: {x: 2, y: 3}
-    roomCompletion: 1
-    roomUnlock: 1
+    roomCompletion: 3
+    roomUnlock: 2
   - startRoom: 0
     initRoomSettings: {fileID: 11400000, guid: abec6aea9601eb0479f1e1b55aa930bf, type: 2}
     initRoomState: 0

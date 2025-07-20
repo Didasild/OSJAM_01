@@ -44,7 +44,7 @@ public class FloorManager : MonoBehaviour
     public GameObject buttonUp;
     public GameObject buttonDown;
 
-    [Header("DEBUG")] 
+    [Header("DEBUG")] public TMP_Text roomPositionDebugText;
     public TMP_Text roomNameDebugText;
     
     private bool initialized = false;
@@ -413,6 +413,7 @@ public class FloorManager : MonoBehaviour
     #region DEBUG
     private void UpdateRoomDebugName()
     {
+        roomPositionDebugText.text = currentRoom.roomPosition.ToString();
         roomNameDebugText.text = currentRoom.initRoomSettings.name;
     }
     #endregion DEBUG

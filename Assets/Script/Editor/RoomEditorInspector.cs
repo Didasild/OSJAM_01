@@ -17,6 +17,7 @@ public class RoomEditorInspector : Editor
     private bool _debugFoldout;
     private bool _generationSection = true;
     private bool _saveSection;
+    private bool _saveCurrentSection;
     private bool _proceduralSection;
     private bool _debugSection;
     private bool _randomCellFoldout;
@@ -211,11 +212,11 @@ public class RoomEditorInspector : Editor
         }
         #endregion PROCEDURAL FUNCTION
         
-        #region SAVE
-        //________SECTION - SAVE
-        //Header Foldout - SAVE
+        #region SAVE AS NEW
+        //________SECTION - SAVE AS NEW
+        //Header Foldout - SAVE AS NEW
         CoreEditorUtils.DrawSplitter(); CoreEditorUtils.DrawSplitter();
-        _saveSection = CoreEditorUtils.DrawHeaderFoldout("SAVE", _saveSection, false, null);
+        _saveSection = CoreEditorUtils.DrawHeaderFoldout("SAVE AS NEW ROOM", _saveSection, false, null);
         if (_saveSection)
         {
             EditorGUILayout.Space(_smallSpacing);
@@ -227,25 +228,7 @@ public class RoomEditorInspector : Editor
             EditorGUILayout.Space(_smallSpacing);
             CoreEditorUtils.DrawSplitter();
             EditorGUILayout.Space(_smallSpacing);
-            
-            GUI.enabled = false;
-            EditorGUILayout.TextField("ROOM CLEANING", centeredStyle);
-            GUI.enabled = true;
-            EditorGUILayout.BeginHorizontal();
-            if (GUILayout.Button("Generate Hint Cells"))
-            {
-                roomEditor.GenerateHintCells();
-            }
-            if (GUILayout.Button("Clear Cells Data"))
-            {
-                roomEditor.ClearCellsData();
-            }
-            EditorGUILayout.EndHorizontal();
-            
-            EditorGUILayout.Space(_smallSpacing);
-            CoreEditorUtils.DrawSplitter();
-            EditorGUILayout.Space(_smallSpacing);
-            
+ 
             GUI.enabled = false;
             EditorGUILayout.BeginHorizontal();
             EditorGUILayout.TextField("Chapter", centeredStyle);
@@ -275,11 +258,40 @@ public class RoomEditorInspector : Editor
             if (GUILayout.Button("Create New Room Scriptable"))
             {
                 roomEditor.CreateRoomScriptable();
+                _saveCurrentSection = true;
+                _saveSection = false;
             }
             EditorGUILayout.Space(_smallSpacing);
             CoreEditorUtils.DrawSplitter();
             EditorGUILayout.Space(_smallSpacing);
+        }
+        #endregion SAVE
+
+        #region SAVE AS CURRENT
+        CoreEditorUtils.DrawSplitter(); CoreEditorUtils.DrawSplitter();
+        _saveCurrentSection = CoreEditorUtils.DrawHeaderFoldout("SAVE ON CURRENT ROOM", _saveCurrentSection, false, null);
+        if (_saveCurrentSection)
+        {
+            EditorGUILayout.Space(_smallSpacing);
+                   
+            GUI.enabled = false;
+            EditorGUILayout.TextField("ROOM CLEANING", centeredStyle);
+            GUI.enabled = true;
+            EditorGUILayout.BeginHorizontal();
+            if (GUILayout.Button("Generate Hint Cells"))
+            {
+                roomEditor.GenerateHintCells();
+            }
+            if (GUILayout.Button("Clear Cells Data"))
+            {
+                roomEditor.ClearCellsData();
+            }
+            EditorGUILayout.EndHorizontal();
             
+            EditorGUILayout.Space(_smallSpacing);
+            CoreEditorUtils.DrawSplitter();
+            EditorGUILayout.Space(_smallSpacing);
+        
             EditorGUILayout.BeginHorizontal();
             roomEditor.roomSettingsToSave = (RoomSettings)EditorGUILayout.ObjectField(roomEditor.roomSettingsToSave, typeof(RoomSettings), true);
             if (GUILayout.Button("Update Existing Room Scriptable"))
@@ -287,11 +299,13 @@ public class RoomEditorInspector : Editor
                 roomEditor.UpdateExistingRoomScriptable();
             }
             EditorGUILayout.EndHorizontal();
+            
             EditorGUILayout.Space(_smallSpacing);
             CoreEditorUtils.DrawSplitter();
             EditorGUILayout.Space(_smallSpacing);
         }
-        #endregion SAVE
+
+        #endregion SAVE AS CURRENT
         
         // Applique les changements à l'objet
         serializedObject.ApplyModifiedProperties();
