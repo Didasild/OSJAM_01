@@ -80,7 +80,6 @@ public class NPC
 
     public void UpdateDialogSettings(NpcDialogsSettings npcDialogsSettings)
     {
-        Debug.Log("ALLO" + currentDialogSequence);
         NpcDialogsSettings = npcDialogsSettings;
         currentDialogSequence = NpcDialogsSettings.GetDialogSequence(_currentNpcState);
 

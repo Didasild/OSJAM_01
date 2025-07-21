@@ -11,7 +11,7 @@ public class Health : MonoBehaviour
     #region FIELDS
     [Header("HEALTH")]
     [ReadOnly][SerializeField] private int _currentHealth;
-    [ReadOnly][SerializeField] private int maxHealthPoints = 2;
+    [SerializeField] private int maxHealthPoints = 2;
     
     [Header("VISUAL")]
     [SerializeField] private Image healthBar;

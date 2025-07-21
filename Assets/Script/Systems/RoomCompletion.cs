@@ -55,9 +55,9 @@ public class RoomCompletion
     
     private bool CheckCondition(RoomCompletionConditions conditions)
     {
-        if (conditions.HasFlag(RoomCompletionConditions.Default) && !FlaggedAllMineCondition())
+        if (conditions == RoomCompletionConditions.Default)
         {
-            return false;
+            return FlaggedAllMineCondition();
         }
         
         if (conditions.HasFlag(RoomCompletionConditions.FlaggedAllMine) && !FlaggedAllMineCondition())
@@ -74,7 +74,8 @@ public class RoomCompletion
         
         return true;
     }
-    
+
+    #region CONDITIONDS
     private bool NoActiveNpcCondition()
     {
         npcList = _gridManager.GetCellsByType(CellType.Npc);
@@ -107,18 +108,20 @@ public class RoomCompletion
         }
         return true;
     }
+    #endregion
+
+    private void RoomUnlocked()
+    {
+        Debug.Log("RoomUnlock");
+        rooomFirstTimeUnlocked = true;
+        GameManager.Instance.FloorManager.currentRoom.ChangeRoomSate(RoomState.StartedUnlock);
+        GameManager.VisualManager.centralFeedbackController.RoomCompletionFeedback();
+    }
 
     private void RoomCompleted()
     {
         GameManager.Instance.FloorManager.currentRoom.ChangeRoomSate(RoomState.Complete);
         npcList.Clear();
-    }
-
-    private void RoomUnlocked()
-    {
-        rooomFirstTimeUnlocked = true;
-        GameManager.Instance.FloorManager.currentRoom.ChangeRoomSate(RoomState.StartedUnlock);
-        GameManager.VisualManager.centralFeedbackController.RoomCompletionFeedback();
     }
     
 }
