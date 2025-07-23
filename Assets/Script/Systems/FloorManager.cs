@@ -35,8 +35,6 @@ public class FloorManager : MonoBehaviour
     [ReadOnly] public RoomData currentRoom;
     [ReadOnly] public RoomState currentRoomState;
     public List<RoomData> roomList = new List<RoomData> ();
-    
-    private RoomSettings[] _roomSettingsList;
 
     [Header("BUTTONS")]
     public GameObject buttonRight;
@@ -47,6 +45,8 @@ public class FloorManager : MonoBehaviour
     [Header("DEBUG")] public TMP_Text roomPositionDebugText;
     public TMP_Text roomNameDebugText;
     
+    private FloorVisualScriptingUtils _floorVisualScriptingUtils;
+    private RoomSettings[] _roomSettingsList;
     private bool initialized = false;
     private VisualManager _visualManager;
     #endregion
@@ -67,6 +67,9 @@ public class FloorManager : MonoBehaviour
         minimap.Init();
         floorObjectivesController.Init(this);
         initialized = true;
+
+        _floorVisualScriptingUtils = GetComponent<FloorVisualScriptingUtils>();
+        _floorVisualScriptingUtils.Init(this, GameManager.Instance.Player.Health);
     }
     #endregion
 

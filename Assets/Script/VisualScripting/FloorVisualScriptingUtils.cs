@@ -1,0 +1,30 @@
+using UnityEngine;
+
+public class FloorVisualScriptingUtils : MonoBehaviour
+{
+    private FloorManager _floorManager;
+    private Health _health;
+
+    public void Init(FloorManager floorManager, Health health)
+    {
+        _floorManager = floorManager;
+        _health = health;
+    }
+    
+    public void VSIncreaseMaxHealth(int increment)
+    {
+        Debug.Log("IncrementHealth");
+        _health.IncreaseMaxHealth(increment);
+    }
+    
+    public RoomData GetRoomDataFromPosition(Vector2Int roomPosition)
+    {
+        return _floorManager.GetRoomDataFromPosition(roomPosition);
+    }
+
+    public NPC GetNpcFromDialogSettings(RoomData roomData, NpcDialogsSettings npcDialogsSettings)
+    {
+        return roomData.GetNpcFromDialogSettings(npcDialogsSettings);
+    }
+    
+}

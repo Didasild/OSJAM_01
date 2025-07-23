@@ -6305,6 +6305,7 @@ GameObject:
   - component: {fileID: 660007368}
   - component: {fileID: 660007369}
   - component: {fileID: 660007373}
+  - component: {fileID: 660007376}
   - component: {fileID: 660007371}
   - component: {fileID: 660007370}
   - component: {fileID: 660007372}
@@ -6468,6 +6469,18 @@ MonoBehaviour:
   _data:
     _json: '{"declarations":{"Kind":"Object","collection":{"$content":[],"$version":"A"},"$version":"A"}}'
     _objectReferences: []
+--- !u!114 &660007376
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 660007367}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4c04e6f42ddc83f44a5a92cfb6d1ba55, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &679404220
 GameObject:
   m_ObjectHideFlags: 0
