@@ -4,6 +4,8 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 using NaughtyAttributes;
+using UnityEngine.Rendering;
+using UnityEngine.Rendering.Universal;
 
 #region ENUMS
 public enum RoomState
@@ -31,6 +33,7 @@ public class RoomData : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     [ReadOnly] public bool isObjective = false;
     [ReadOnly] public List<NPC> roomNPCs = new List<NPC>();
     [ReadOnly] public Boolean isLocked = false;
+    [ReadOnly] public VolumeProfile currentVolumeProfile;
      
 
     [Header("NEIGHBORS")]
@@ -71,6 +74,10 @@ public class RoomData : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     }
     public void InitializeRoomType()
     {
+        if (initRoomSettings.roomVolumeProfile != null)
+        {
+            currentVolumeProfile = initRoomSettings.roomVolumeProfile;
+        }
         currentRoomType = initRoomSettings.roomType;
         roomTypeVisual.sprite = _visualManager.minimapVisual.GetRoomTypeVisual(RoomType.Base);
         InitNpcs();

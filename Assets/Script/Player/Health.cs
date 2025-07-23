@@ -11,6 +11,7 @@ public class Health : MonoBehaviour
     #region FIELDS
     [Header("HEALTH")]
     [ReadOnly][SerializeField] private int _currentHealth;
+    [SerializeField] private int _baseHealth = 1;
     [SerializeField] private int maxHealthPoints = 2;
     
     [Header("VISUAL")]
@@ -24,16 +25,16 @@ public class Health : MonoBehaviour
     public void Init(Player player, VisualManager visualManager)
     {
         _player = player;
-        _currentHealth = maxHealthPoints;
+        _currentHealth = _baseHealth;
         _visualManager = visualManager;
         _healthBarMaterial = healthBar.material;
         UpdateMaxHealthVisual(maxHealthPoints);
-        UpdateHealthPointVisual(maxHealthPoints);
+        UpdateHealthPointVisual(_currentHealth);
     }
     
     public void ResetHealthPoint()
     {
-        _currentHealth = maxHealthPoints;
+        _currentHealth = _baseHealth;
         UpdateHealthPointVisual(_currentHealth);
         CheckCurrentLifeActions();
     }

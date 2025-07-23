@@ -229,7 +229,7 @@ public class VisualManager : MonoBehaviour
     
     public void UpdateRoomAmbiance(RoomData roomData)
     {
-        roomAmbianceController.TransitionVolume(roomData.initRoomSettings.roomVolumeProfile);
+        roomAmbianceController.TransitionVolume(roomData.currentVolumeProfile);
     }
     
     public void UpdateRoomID(RoomData roomData)

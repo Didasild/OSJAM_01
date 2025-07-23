@@ -1,9 +1,11 @@
 using UnityEngine;
+using UnityEngine.Playables;
 
 public class FloorVisualScriptingUtils : MonoBehaviour
 {
     private FloorManager _floorManager;
     private Health _health;
+    public PlayableDirector playableDirector;
 
     public void Init(FloorManager floorManager, Health health)
     {
@@ -25,6 +27,12 @@ public class FloorVisualScriptingUtils : MonoBehaviour
     public NPC GetNpcFromDialogSettings(RoomData roomData, NpcDialogsSettings npcDialogsSettings)
     {
         return roomData.GetNpcFromDialogSettings(npcDialogsSettings);
+    }
+
+    public void PlayRTC()
+    {
+        playableDirector.Play();
+        
     }
     
 }
