@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.Playables;
+using UnityEngine.Timeline;
 
 public class FloorVisualScriptingUtils : MonoBehaviour
 {
@@ -29,8 +30,9 @@ public class FloorVisualScriptingUtils : MonoBehaviour
         return roomData.GetNpcFromDialogSettings(npcDialogsSettings);
     }
 
-    public void PlayRTC()
+    public void PlayRTC(TimelineAsset timelineAsset)
     {
+        playableDirector.playableAsset = timelineAsset;
         playableDirector.Play();
         
     }
