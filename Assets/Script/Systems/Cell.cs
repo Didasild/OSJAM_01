@@ -107,7 +107,7 @@ public class Cell : MonoBehaviour
     //Update le visual de la cellule
     public void UpdateRegardingNeighbors(bool haveFoWCell = false)
     {
-        if (currentType == CellType.None || currentState == CellState.Inactive)
+        if (currentType == CellType.None) //|| currentState == CellState.Inactive)
         {
             return;
         }
