@@ -25,7 +25,7 @@ Material:
     m_TexEnvs: []
     m_Ints: []
     m_Floats:
-    - _EW_Progression: 0.5
+    - _EW_Progression: 0
     - _NS_Progression: 0
     m_Colors: []
   m_BuildTextureStacks: []
