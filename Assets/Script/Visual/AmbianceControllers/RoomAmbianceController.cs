@@ -53,14 +53,9 @@ public class RoomAmbianceController : MonoBehaviour
         
         _currentWeightTween?.Kill();
         //Texts Volume Transition
-        _currentWeightTween = DOWeight(transitionColorsVolume, 1f, visualTransitionDuration)
+        _currentWeightTween = VisualUtils.DOWeight(transitionColorsVolume, 1f, visualTransitionDuration)
             .SetEase(Ease.Linear)
             .OnComplete(UpdateVolumeProfile);
-    }
-    
-    private static Tweener DOWeight(Volume volume, float endValue, float duration)
-    {
-        return DOTween.To(() => volume.weight, x => volume.weight = x, endValue, duration);
     }
 
     private void UpdateVolumeProfile()

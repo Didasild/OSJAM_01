@@ -121,7 +121,7 @@ public class GameManager : MonoBehaviour
 
     private void InGameState()
     {
-        
+        _visualManager.fullScreenFeedbackController.RebootOpenFeedback();
     }
     
     private void LoseState()

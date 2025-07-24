@@ -11,19 +11,19 @@ public class ShakeCamController : MonoBehaviour
         _originalPosition = transform.position;
     }
 
-    public void littleShakeCamera()
+    public void LittleShakeCamera(float duration = 0.5f)
     {
-        ShakeCamera(0.2f, 0.3f);
+        ShakeCamera(0.2f, duration);
     }
 
-    public void midShakeCamera()
+    public void MidShakeCamera(float duration = 0.5f)
     {
-        ShakeCamera(0.5f, 0.5f);
+        ShakeCamera(0.35f, duration);
     }
     
-    public void BigShakeCamera()
+    public void BigShakeCamera(float duration = 0.5f)
     {
-        ShakeCamera(0.5f, 1f);
+        ShakeCamera(0.5f, duration);
     }
 
     private void ShakeCamera(float intensity, float duration)

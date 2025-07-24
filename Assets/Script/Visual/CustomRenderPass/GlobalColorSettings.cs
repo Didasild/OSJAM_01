@@ -1,7 +1,6 @@
 using System;
 using UnityEngine;
 using UnityEngine.Rendering;
-using UnityEngine.Serialization;
 
 namespace Dida.Rendering
 {
@@ -14,6 +13,7 @@ namespace Dida.Rendering
         public ColorParameter Color4 = new ColorParameter(Color.black, false, false, true);
         public ColorParameter Color5 = new ColorParameter(Color.black, false, false, true);
         public ColorParameter Color6 = new ColorParameter(Color.black, false, false, true);
+        public BoolParameter UseVariantTextIndex = new BoolParameter(false);
         
         public ColorParameter ExterColor = new(Color.black, false, true, true);
     }

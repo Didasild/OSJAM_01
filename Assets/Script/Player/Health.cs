@@ -45,7 +45,7 @@ public class Health : MonoBehaviour
         UpdateHealthPointVisual(_currentHealth, false);
         
         _visualManager.fullScreenFeedbackController.HitFeedback();
-        _visualManager.shakeCamController.littleShakeCamera();
+        _visualManager.shakeCamController.LittleShakeCamera();
         
         CheckCurrentLifeActions();
     }
@@ -99,9 +99,24 @@ public class Health : MonoBehaviour
                 _visualManager.fullScreenFeedbackController.LowLifeFeedback(true);
                 break;
             case <= 0:
-                _visualManager.fullScreenFeedbackController.LowLifeFeedback(false);
-                GameManager.Instance.ChangeGameState(GameState.Lose);
+                DeathSequence();
                 break;
         }
+    }
+
+    private void DeathSequence()
+    {
+        _visualManager.fullScreenFeedbackController.LowLifeFeedback(false);
+        _visualManager.shakeCamController.MidShakeCamera(0.8f);
+        DOVirtual.DelayedCall(0.5f, () =>
+        {
+            _visualManager.fullScreenFeedbackController.DeathCloseScreenFeedback();
+        }).OnComplete(() =>
+        {
+            DOVirtual.DelayedCall(1f,()=>
+            {
+                GameManager.Instance.ChangeGameState(GameState.Lose);
+            });
+        });
     }
 }

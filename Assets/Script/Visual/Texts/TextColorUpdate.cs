@@ -9,6 +9,7 @@ public class TextColorUpdate : MonoBehaviour
     private TMP_Text text;
     private TextController _textController;
     [MinValue(0)][MaxValue(6)] public int colorIndex;
+    [MinValue(0)][MaxValue(6)] public int colorIndexVariant;
 
     public void Init(TextController textController)
     {
@@ -21,10 +22,19 @@ public class TextColorUpdate : MonoBehaviour
     {
         if (!_textController.visualManager.roomAmbianceController.transitionColorsVolume.profile.TryGet<GlobalColorSettings>(out var colorSettings))
             return;
-        
+
         Color targetColor = text.color;
+        int targetColorIndex = new int();
         
-        switch (colorIndex)
+        if (colorSettings.UseVariantTextIndex.value)
+        {
+            targetColorIndex = colorIndexVariant;
+        }
+        else
+        {
+            targetColorIndex = colorIndex;
+        }
+        switch (targetColorIndex)
         {
             case 1: targetColor = colorSettings.Color1.value; break;
             case 2: targetColor = colorSettings.Color2.value; break;

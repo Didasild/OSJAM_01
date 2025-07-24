@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &-7995416508524775528
+--- !u!114 &-6966384726383038506
 MonoBehaviour:
   m_ObjectHideFlags: 3
   m_CorrespondingSourceObject: {fileID: 0}
@@ -9,25 +9,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 899c54efeace73346a0a16faa3afe726, type: 3}
-  m_Name: Vignette
+  m_Script: {fileID: 11500000, guid: 81180773991d8724ab7f2d216912b564, type: 3}
+  m_Name: ChromaticAberration
   m_EditorClassIdentifier: 
   active: 1
-  color:
-    m_OverrideState: 1
-    m_Value: {r: 1, g: 0.8333519, b: 0.3254717, a: 1}
-  center:
-    m_OverrideState: 0
-    m_Value: {x: 0.5, y: 0.5}
   intensity:
     m_OverrideState: 1
-    m_Value: 0.12
-  smoothness:
-    m_OverrideState: 0
-    m_Value: 0.2
-  rounded:
-    m_OverrideState: 0
-    m_Value: 0
+    m_Value: 0.8
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -38,11 +26,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d7fd9488000d3734a9e00ee676215985, type: 3}
-  m_Name: PPP_Colors_BiomeShip
+  m_Name: PPP_Generic_BloomDeath
   m_EditorClassIdentifier: 
   components:
-  - {fileID: 4915069371588200835}
-  - {fileID: -7995416508524775528}
+  - {fileID: 8933000845633666899}
+  - {fileID: -6966384726383038506}
+  - {fileID: 2936375046227443931}
 --- !u!114 &953869944089701943
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -74,13 +63,10 @@ MonoBehaviour:
   Color6:
     m_OverrideState: 0
     m_Value: {r: 0, g: 0, b: 0, a: 1}
-  UseVariantTextIndex:
-    m_OverrideState: 0
-    m_Value: 0
   ExterColor:
     m_OverrideState: 0
     m_Value: {r: 0, g: 0, b: 0, a: 1}
---- !u!114 &4915069371588200835
+--- !u!114 &2936375046227443931
 MonoBehaviour:
   m_ObjectHideFlags: 3
   m_CorrespondingSourceObject: {fileID: 0}
@@ -89,34 +75,25 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0fa9402727b91cd48a6c4a2ce5f671ba, type: 3}
-  m_Name: VisualSettings
+  m_Script: {fileID: 11500000, guid: c5e1dc532bcb41949b58bc4f2abfbb7e, type: 3}
+  m_Name: LensDistortion
   m_EditorClassIdentifier: 
   active: 1
-  Color1:
+  intensity:
     m_OverrideState: 1
-    m_Value: {r: 0.16981131, g: 0.16981131, b: 0.16981131, a: 1}
-  Color2:
-    m_OverrideState: 1
-    m_Value: {r: 0.46226418, g: 0.46226418, b: 0.46226418, a: 1}
-  Color3:
-    m_OverrideState: 1
-    m_Value: {r: 1, g: 0.61149544, b: 0, a: 1}
-  Color4:
-    m_OverrideState: 1
-    m_Value: {r: 1, g: 1, b: 1, a: 1}
-  Color5:
-    m_OverrideState: 1
-    m_Value: {r: 0.8207547, g: 0.8207547, b: 0.8207547, a: 1}
-  Color6:
-    m_OverrideState: 1
-    m_Value: {r: 0.1981132, g: 0.1981132, b: 0.1981132, a: 1}
-  UseVariantTextIndex:
-    m_OverrideState: 1
+    m_Value: -0.6
+  xMultiplier:
+    m_OverrideState: 0
     m_Value: 1
-  ExterColor:
-    m_OverrideState: 1
-    m_Value: {r: 1, g: 1, b: 1, a: 0.34901962}
+  yMultiplier:
+    m_OverrideState: 0
+    m_Value: 1
+  center:
+    m_OverrideState: 0
+    m_Value: {x: 0.5, y: 0.5}
+  scale:
+    m_OverrideState: 0
+    m_Value: 1
 --- !u!114 &8666805865643500176
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -148,3 +125,50 @@ MonoBehaviour:
   Color5:
     m_OverrideState: 1
     m_Value: {r: 1, g: 1, b: 1, a: 1}
+--- !u!114 &8933000845633666899
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0b2db86121404754db890f4c8dfe81b2, type: 3}
+  m_Name: Bloom
+  m_EditorClassIdentifier: 
+  active: 1
+  skipIterations:
+    m_OverrideState: 0
+    m_Value: 1
+  threshold:
+    m_OverrideState: 1
+    m_Value: 0.9
+  intensity:
+    m_OverrideState: 1
+    m_Value: 5
+  scatter:
+    m_OverrideState: 0
+    m_Value: 0.7
+  clamp:
+    m_OverrideState: 0
+    m_Value: 65472
+  tint:
+    m_OverrideState: 0
+    m_Value: {r: 1, g: 1, b: 1, a: 1}
+  highQualityFiltering:
+    m_OverrideState: 0
+    m_Value: 0
+  downscale:
+    m_OverrideState: 0
+    m_Value: 0
+  maxIterations:
+    m_OverrideState: 0
+    m_Value: 6
+  dirtTexture:
+    m_OverrideState: 0
+    m_Value: {fileID: 0}
+    dimension: 1
+  dirtIntensity:
+    m_OverrideState: 0
+    m_Value: 0
