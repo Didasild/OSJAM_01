@@ -38,6 +38,13 @@ public class TooltipController : MonoBehaviour
 
     public void CheckCellTooltip(Cell cellOver)
     {
+        // CHECK ITEM A AMELIORER
+        if (cellOver.currentType == CellType.Item && cellOver.currentItemType == ItemTypeEnum.Potion && cellOver.currentState == CellState.Reveal)
+        {
+            ShowTooltip("HEAL.");
+            return;
+        }
+        
         foreach (CellToolTip tooltip in CellTooltips)
         {
             if (cellOver.currentType == tooltip.cellType && cellOver.currentState == tooltip.cellState)
