@@ -61,12 +61,21 @@ public class FloorObjectivesController : MonoBehaviour
 
     private void UpdateObjectives(List<RoomData> roomDatas)
     {
+        if (roomDatas.Count <= 0)
+        {
+            return;
+        }
         foreach (RoomData roomData in roomDatas)
         {
             roomData.UpdateObjective();
         }
         GameManager.VisualManager.minimapVisual.MinimapAppear();
         _floorManager.minimap.FocusOnSelectedRoom(roomDatas[0]);
+    }
+
+    private void ResetObjectives()
+    {
+        _currentObjectivesIndex = 0;
     }
     #endregion METHODS
 

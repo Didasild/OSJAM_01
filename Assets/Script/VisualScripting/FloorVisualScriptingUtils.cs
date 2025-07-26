@@ -34,7 +34,11 @@ public class FloorVisualScriptingUtils : MonoBehaviour
     {
         playableDirector.playableAsset = timelineAsset;
         playableDirector.Play();
-        
+    }
+
+    public void GoToNextFloor()
+    {
+        GameManager.Instance.GoToNextFloor();
     }
     
 }

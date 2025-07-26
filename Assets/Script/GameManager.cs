@@ -98,7 +98,11 @@ public class GameManager : MonoBehaviour
         if (FloorManager.floorSettingsList.Length >= 1)
         {
             //Génère un floor et une première room
-            FloorManager.currentFloorSetting = FloorManager.floorSettingsList[0];
+            if (FloorManager.currentFloorSetting == null)
+            {
+                FloorManager.currentFloorSetting = FloorManager.floorSettingsList[0];
+            }
+            
             if (FloorManager.currentFloorSetting.proceduralFloor)
             {
                 FloorManager.GenerateProceduralFloor(FloorManager.currentFloorSetting);
@@ -165,7 +169,7 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public void ChangeFloorLevel()
+    public void GoToNextFloor()
     {
         //Update le numéro du floor
         currentFloorLevel += 1;

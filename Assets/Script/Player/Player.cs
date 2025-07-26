@@ -307,7 +307,7 @@ public class Player : MonoBehaviour
 
     private void ClickOnGateCell(Cell cellClicked)
     {
-        GameManager.Instance.ChangeFloorLevel();
+        GameManager.Instance.GoToNextFloor();
         ResetClickCounter();
     }
 

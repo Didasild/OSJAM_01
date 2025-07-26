@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Script.Scriptable.NPC;
 using UnityEngine;
 using UnityEngine.UIElements;
 

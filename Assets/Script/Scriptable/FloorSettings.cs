@@ -20,8 +20,9 @@ public enum FloorType
 public class FloorSettings : ScriptableObject
 {
     #region PARAMETERS
-    [Header("GENERAL")]
-    public bool proceduralFloor = true;
+
+    [Header("GENERAL")] 
+    public bool proceduralFloor;
     public VolumeProfile floorBaseVolumeProfile;
 
     [Header("________PROCEDURAL FLOOR SETTINGS")]

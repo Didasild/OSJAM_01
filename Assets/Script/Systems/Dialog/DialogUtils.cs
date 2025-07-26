@@ -1,4 +1,5 @@
 using NaughtyAttributes;
+using Script.Scriptable.NPC;
 using UnityEngine;
 using UnityEngine.Serialization;
 
@@ -8,7 +9,7 @@ public class DialogUtils
     public struct DialogStates
     {
         NPCState npcState;
-        global::DialogPool _dialogPool;
+        global::Script.Scriptable.NPC.DialogPool _dialogPool;
     }
     
     [System.Serializable]
