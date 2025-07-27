@@ -5,6 +5,7 @@ using NaughtyAttributes;
 using Unity.VisualScripting;
 using UnityEngine.Rendering;
 using UnityEngine.Serialization;
+using UnityEngine.Timeline;
 using Random = UnityEngine.Random;
 
 public enum FloorType
@@ -24,6 +25,7 @@ public class FloorSettings : ScriptableObject
     [Header("GENERAL")] 
     public bool proceduralFloor;
     public VolumeProfile floorBaseVolumeProfile;
+    public TimelineAsset introRTC;
 
     [Header("________PROCEDURAL FLOOR SETTINGS")]
     [Header("FLOOR GRID")]

@@ -125,6 +125,15 @@ public class GameManager : MonoBehaviour
 
     private void InGameState()
     {
+        _visualManager.minimapVisual.CloseMinimap();
+        
+        //A clean et a placer dans le floor manager idealement
+        if (FloorManager.introPlayed == false)
+        {
+            FloorManager.floorVisualScriptingUtils.PlayRTC(FloorManager.currentFloorSetting.introRTC);
+            FloorManager.introPlayed = true;
+        }
+        
         _visualManager.fullScreenFeedbackController.RebootOpenFeedback();
     }
     
@@ -174,6 +183,7 @@ public class GameManager : MonoBehaviour
         //Update le numéro du floor
         currentFloorLevel += 1;
         floorLevelText.text = currentFloorLevel.ToString();
+        FloorManager.introPlayed = false;
 
         // Calculer l'index du floor actuel dans la liste
         int floorIndex = currentFloorLevel % FloorManager.floorSettingsList.Length;

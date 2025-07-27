@@ -122,11 +122,11 @@ public class RoomData : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
                 break;
             case RoomState.StartedUnlock:
                 StartedUnLockRoomState();
-                _visualManager.minimapVisual.MinimapAppear();
+                _visualManager.minimapVisual.OpenMinimap();
                 break;
             case RoomState.Complete:
                 CompleteRoomState();
-                _visualManager.minimapVisual.MinimapAppear();
+                _visualManager.minimapVisual.OpenMinimap();
                 break;
         }
         _floorManager.UpdateButtonStates();
@@ -144,7 +144,7 @@ public class RoomData : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 
     private void StartedLockRoomState()
     {
-        _visualManager.minimapVisual.MinimapDisappear();
+        _visualManager.minimapVisual.CloseMinimap();
         isLocked = true;
     }
     

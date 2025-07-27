@@ -24,7 +24,7 @@ public class FloorManager : MonoBehaviour
     #region PARAMETERS
     [Header("GENERAL SETTINGS")]
     public RoomData roomPrefab;
-    [FormerlySerializedAs("floorObjectives")] public FloorObjectivesController floorObjectivesController;
+    public FloorObjectivesController floorObjectivesController;
 
     [Header("FLOOR SETTINGS")]
     public Minimap minimap;
@@ -45,10 +45,11 @@ public class FloorManager : MonoBehaviour
     [Header("DEBUG")] public TMP_Text roomPositionDebugText;
     public TMP_Text roomNameDebugText;
     
-    private FloorVisualScriptingUtils _floorVisualScriptingUtils;
+    public FloorVisualScriptingUtils floorVisualScriptingUtils;
     private RoomSettings[] _roomSettingsList;
     private bool initialized = false;
     private VisualManager _visualManager;
+    [FormerlySerializedAs("_introPlayed")] [HideInInspector] public bool introPlayed = false;
     #endregion
 
     public void Update()
@@ -68,8 +69,8 @@ public class FloorManager : MonoBehaviour
         floorObjectivesController.Init(this);
         initialized = true;
 
-        _floorVisualScriptingUtils = GetComponent<FloorVisualScriptingUtils>();
-        _floorVisualScriptingUtils.Init(this, GameManager.Instance.Player.Health);
+        floorVisualScriptingUtils = GetComponent<FloorVisualScriptingUtils>();
+        floorVisualScriptingUtils.Init(this, GameManager.Instance.Player.Health);
     }
     #endregion
 

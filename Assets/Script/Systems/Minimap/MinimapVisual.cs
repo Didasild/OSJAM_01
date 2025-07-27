@@ -120,7 +120,7 @@ public class MinimapVisual : MonoBehaviour
         }
     }
     
-    public void MinimapAppear()
+    public void OpenMinimap()
     {
         if (!_isClose)
         {
@@ -135,7 +135,7 @@ public class MinimapVisual : MonoBehaviour
         });
     }
 
-    public void MinimapDisappear()
+    public void CloseMinimap()
     {
         if (_isClose)
         {

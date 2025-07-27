@@ -69,7 +69,7 @@ public class FloorObjectivesController : MonoBehaviour
         {
             roomData.UpdateObjective();
         }
-        GameManager.VisualManager.minimapVisual.MinimapAppear();
+        GameManager.VisualManager.minimapVisual.OpenMinimap();
         _floorManager.minimap.FocusOnSelectedRoom(roomDatas[0]);
     }
 

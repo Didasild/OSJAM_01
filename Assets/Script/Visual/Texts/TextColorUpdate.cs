@@ -8,8 +8,8 @@ public class TextColorUpdate : MonoBehaviour
 {
     private TMP_Text text;
     private TextController _textController;
-    [MinValue(0)][MaxValue(6)] public int colorIndex;
-    [MinValue(0)][MaxValue(6)] public int colorIndexVariant;
+    [MinValue(0)][MaxValue(6)] public int colorIndex = 1;
+    [MinValue(0)][MaxValue(6)] public int colorIndexVariant = 1;
 
     public void Init(TextController textController)
     {
