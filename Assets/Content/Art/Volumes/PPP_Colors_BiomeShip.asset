@@ -104,7 +104,7 @@ MonoBehaviour:
     m_Value: {r: 1, g: 0.7914926, b: 0, a: 1}
   Color4:
     m_OverrideState: 1
-    m_Value: {r: 0.6603774, g: 0.6603774, b: 0.6603774, a: 1}
+    m_Value: {r: 0.7924528, g: 0.7924528, b: 0.7924528, a: 1}
   Color5:
     m_OverrideState: 1
     m_Value: {r: 1, g: 1, b: 1, a: 1}
@@ -116,7 +116,7 @@ MonoBehaviour:
     m_Value: 1
   ExterColor:
     m_OverrideState: 1
-    m_Value: {r: 0.010447654, g: 0.009789954, b: 0.03773582, a: 0.23529412}
+    m_Value: {r: 0.010447654, g: 0.009789954, b: 0.03773582, a: 0.10980392}
 --- !u!114 &8666805865643500176
 MonoBehaviour:
   m_ObjectHideFlags: 3

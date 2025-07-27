@@ -960,10 +960,10 @@
         "m_Expanded": true,
         "m_Position": {
             "serializedVersion": "2",
-            "x": -2643.999755859375,
-            "y": 220.0,
+            "x": -2791.000244140625,
+            "y": 220.00001525878907,
             "width": 119.0,
-            "height": 149.0
+            "height": 148.99998474121095
         }
     },
     "m_Slots": [
@@ -1439,10 +1439,10 @@
         "m_Expanded": true,
         "m_Position": {
             "serializedVersion": "2",
-            "x": -1385.9998779296875,
-            "y": 452.0000305175781,
-            "width": 128.0,
-            "height": 93.99990844726563
+            "x": -1295.0,
+            "y": 448.0,
+            "width": 128.0001220703125,
+            "height": 94.00006103515625
         }
     },
     "m_Slots": [
@@ -2796,10 +2796,10 @@
         "m_Expanded": true,
         "m_Position": {
             "serializedVersion": "2",
-            "x": -1060.0,
-            "y": 517.0,
-            "width": 208.0001220703125,
-            "height": 301.99993896484377
+            "x": -968.9999389648438,
+            "y": 513.0000610351563,
+            "width": 208.0,
+            "height": 302.0
         }
     },
     "m_Slots": [
@@ -3557,10 +3557,10 @@
         "m_Expanded": true,
         "m_Position": {
             "serializedVersion": "2",
-            "x": -1225.9998779296875,
-            "y": 427.9999694824219,
-            "width": 126.0,
-            "height": 117.99996948242188
+            "x": -1134.9998779296875,
+            "y": 424.0000305175781,
+            "width": 125.99993896484375,
+            "height": 118.00003051757813
         }
     },
     "m_Slots": [
@@ -3621,7 +3621,7 @@
     },
     "m_Name": "Inverse Lerp",
     "m_DrawState": {
-        "m_Expanded": false,
+        "m_Expanded": true,
         "m_Position": {
             "serializedVersion": "2",
             "x": -1954.0,
@@ -4266,10 +4266,10 @@
         "m_Expanded": true,
         "m_Position": {
             "serializedVersion": "2",
-            "x": -2865.999755859375,
-            "y": 220.0,
+            "x": -3013.000244140625,
+            "y": 220.00001525878907,
             "width": 208.0,
-            "height": 350.0
+            "height": 350.00006103515627
         }
     },
     "m_Slots": [
