@@ -10,12 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 34b703c7a33a4e14599eae68c269bba3, type: 3}
-  m_Name: DS_F01_GoToPilot
+  m_Name: CH01_F01_SorryWakeUp
   m_EditorClassIdentifier: 
+  notes: 
   npcSettings: {fileID: 11400000, guid: 4791684ff94ddcb4eb806faf9940b8a4, type: 2}
   baseNPCState: 1
   dialogPulls:
   - RelatedNpcState: 1
-    dialogPool: {fileID: 11400000, guid: ff82a4f27e4a95d448bbdc5ec3509c63, type: 2}
+    dialogPool: {fileID: 11400000, guid: 3732f668f4c4ec44c985b2af16584640, type: 2}
   - RelatedNpcState: 2
-    dialogPool: {fileID: 11400000, guid: f85b45dfc701d8442a1fe740cadd2e3f, type: 2}
+    dialogPool: {fileID: 11400000, guid: c2d1e47991f0fc4468e002c30c793584, type: 2}

@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4b61542930edea04bb8ff18f6eb44214, type: 3}
+  m_Name: CH01_F01_WatchYourStepsDanger_Active
+  m_EditorClassIdentifier: 
+  totalWeight: 0
+  dialogPull:
+  - sentences:
+    - STOP!!!!
+    - WHATEVER YOU DO! DO NOT REVEAL THE CELLS SURROUNDED BY NUMBERS.
+    - "THEY\u2019RE LIKELY TO TRIGG\u2014 \xA7#\u20A3\u2206\u20A4\u2598\u259A\u29D7\u27C1\u26D3\u2BC7\u2587\u2026!!!"
+    - "MAKE A RIGHT-CLICK TO \u2598\u259A\u29D7\u27C1\u26D3\u2BC7\u2587\u2026 \u2014
+      IT SHOULD LET YOU CLEAR A PATH."
+    - "I\u2019D RATHER NOT REPLACE YOU ON DAY ONE."
+    weight: 0
