@@ -10,19 +10,16 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4b61542930edea04bb8ff18f6eb44214, type: 3}
-  m_Name: CH01_F01_Welcome_Inactive
+  m_Name: CH01_F01_GoStraightForward_Inactive
   m_EditorClassIdentifier: 
-  totalWeight: 40
+  totalWeight: 30
   dialogPull:
   - sentences:
-    - "#LIFE-SUPPORT\u2019S <font-weight=\"800\">FINE</font-weight>\u2026 PROBABLY.#"
+    - I HOPE WE WILL <font-weight="800">REACH OUR DESTINATION.</font-weight>
     weight: 10
   - sentences:
-    - "#PILOT VITALS\u2026 <font-weight=\"800\">UNKNOWN</font-weight>.#"
+    - CALIBRATING YOUR CHANCES OF SUCCESS... <font-weight="800">LOW.</font-weight>
     weight: 10
   - sentences:
-    - "#AI CORE\u2026 <font-weight=\"800\">STABLE</font-weight> (FOR NOW).#"
-    weight: 10
-  - sentences:
-    - "#COMPANIONSHIP DIRECTIVE\u2026 <font-weight=\"800\">PRIORITIZED</font-weight>.#"
+    - REBOOTING <font-weight="800">OPTIMISM PROTOCOLS.</font-weight>
     weight: 10

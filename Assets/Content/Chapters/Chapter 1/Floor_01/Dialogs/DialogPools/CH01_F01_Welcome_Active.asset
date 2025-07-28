@@ -15,11 +15,14 @@ MonoBehaviour:
   totalWeight: 0
   dialogPull:
   - sentences:
-    - "HI. I\u2019M C.A.L.L. COMPANION AI FOR LONG-TERM LONELINESS."
-    - I WAS DESIGNED TO GUIDE, SUPPORT, AND OCCASIONALLY ARGUE WITH YOU.
-    - SOMETHING WENT WRONG DURING YOUR WAKE-UP SEQUENCE.
-    - "WE\u2019LL NEED TO CHECK THE CORE SYSTEMS MANUALLY."
-    - "YOU AND ME NOW, AGAINST WHATEVER\u2019S STILL OUT THERE."
-    - AND HEY! TRY NOT TO DIE TOO FAST. I GET BORED EASILY.
-    - LET'S GET YOU MOVING.
+    - "HI. I\u2019M <font-weight=\"800\">C.A.L.L.</font-weight> COMPANION AI FOR
+      <font-weight=\"800\">LONG-TERM LONELINESS</font-weight>."
+    - I WAS DESIGNED TO <font-weight="800">GUIDE</font-weight>, <font-weight="800">SUPPORT</font-weight>,
+      AND OCCASIONALLY <font-weight="800">ARGUE</font-weight> WITH YOU.
+    - SOMETHING WENT WRONG DURING YOUR <font-weight="800">WAKE-UP SEQUENCE</font-weight>.
+    - "WE\u2019LL NEED TO CHECK THE <font-weight=\"800\">CORE SYSTEMS</font-weight>
+      MANUALLY."
+    - "YOU AND ME NOW, AGAINST <font-weight=\"800\">WHATEVER\u2019S STILL OUT THERE</font-weight>."
+    - AND HEY! TRY NOT TO DIE TOO FAST, I GET BORED EASILY.
+    - <font-weight="800">LET'S GET YOU MOVING</font-weight>.
     weight: 0

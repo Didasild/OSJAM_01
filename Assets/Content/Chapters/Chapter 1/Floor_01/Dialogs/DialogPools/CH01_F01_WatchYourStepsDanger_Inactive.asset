@@ -12,11 +12,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b61542930edea04bb8ff18f6eb44214, type: 3}
   m_Name: CH01_F01_WatchYourStepsDanger_Inactive
   m_EditorClassIdentifier: 
-  totalWeight: 20
+  totalWeight: 30
   dialogPull:
   - sentences:
-    - "LET\u2019S JUST SAY: STEP CAREFULLY. RIGHT-CLICK ON IT,"
+    - "LET\u2019S JUST SAY: <font-weight=\"800\">STEP CAREFULLY</font-weight>."
     weight: 10
   - sentences:
-    - RIGHT-CLICK ON THIS CELL TO PROGRESS
+    - <font-weight="800">RIGHT-CLICK</font-weight> ON THIS CELL TO <font-weight="800">PROGRESS</font-weight>.
+    weight: 10
+  - sentences:
+    - "<font-weight=\"800\">SERIOUSLY</font-weight>, DON\u2019T REVEAL THOSE THINGS
+      \u2014"
+    - IT WILL HURT YOUR <font-weight="800">SYSTEM INTEGRITY</font-weight>.
     weight: 10

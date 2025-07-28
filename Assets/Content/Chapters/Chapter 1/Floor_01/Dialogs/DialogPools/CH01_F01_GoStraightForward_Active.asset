@@ -10,16 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4b61542930edea04bb8ff18f6eb44214, type: 3}
-  m_Name: CH01_F01_SorryWakeUp_Inactive
+  m_Name: CH01_F01_GoStraightForward_Active
   m_EditorClassIdentifier: 
-  totalWeight: 30
+  totalWeight: 10
   dialogPull:
   - sentences:
-    - "#ARCHIVAL DATA\u2026 <font-weight=\"800\">CORRUPTED</font-weight>.#"
-    weight: 10
-  - sentences:
-    - "#TACTICAL OVERRIDES\u2026 <font-weight=\"800\">SUPPRESSED</font-weight>.#"
-    weight: 10
-  - sentences:
-    - "LUCKILY, YOU\u2019VE GOT <font-weight=\"800\">ME</font-weight>."
+    - "WE\u2019LL NEED TO REACH THE<font-weight=\"800\"> COMMAND CENTER.</font-weight>"
+    - "IT\u2019S LIKELY STILL<font-weight=\"800\"> LOCKED DOWN\u2026 </font-weight>BUT
+      WE WON\u2019T KNOW <font-weight=\"800\">UNTIL WE TRY.</font-weight>"
     weight: 10

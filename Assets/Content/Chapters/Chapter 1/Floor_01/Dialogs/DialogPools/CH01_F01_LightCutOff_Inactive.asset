@@ -15,6 +15,6 @@ MonoBehaviour:
   totalWeight: 0
   dialogPull:
   - sentences:
-    - "SERIOUSLY, DON\u2019T REVEAL THOSE THINGS"
-    - ' IT WILL HURT YOUR SYSTEM INTEGRITY.'
+    - "SERIOUSLY, <font-weight=\"800\">DON\u2019T REVEAL</font-weight> THOSE THINGS"
+    - ' IT WILL <font-weight="800">HURT YOUR SYSTEM INTEGRITY.</font-weight>'
     weight: 0

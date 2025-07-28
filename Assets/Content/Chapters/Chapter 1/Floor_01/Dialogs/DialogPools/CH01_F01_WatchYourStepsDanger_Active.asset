@@ -15,10 +15,11 @@ MonoBehaviour:
   totalWeight: 0
   dialogPull:
   - sentences:
-    - STOP!!!!
-    - WHATEVER YOU DO! DO NOT REVEAL THE CELLS SURROUNDED BY NUMBERS.
-    - "THEY\u2019RE LIKELY TO TRIGG\u2014 \xA7#\u20A3\u2206\u20A4\u2598\u259A\u29D7\u27C1\u26D3\u2BC7\u2587\u2026!!!"
-    - "MAKE A RIGHT-CLICK TO \u2598\u259A\u29D7\u27C1\u26D3\u2BC7\u2587\u2026 \u2014
-      IT SHOULD LET YOU CLEAR A PATH."
-    - "I\u2019D RATHER NOT REPLACE YOU ON DAY ONE."
+    - <font-weight="800">STOP!!!!</font-weight>
+    - WHATEVER YOU DO! <font-weight="800">DO NOT REVEAL THE CELLS SURROUNDED BY NUMBERS</font-weight>.
+    - "THEY\u2019RE LIKELY TO TRIGG\u2014 \xA7#!)\xE8|'\u20A3\u2206\u20A4*\xF9=#\"\u2026!!!"
+    - "MAKE A <font-weight=\"800\">RIGHT-CLICK</font-weight> TO '\u20A3\u2206\u20A4*\xF9\u20A3\u2206\u20A4*\xF9=#\"\u2026
+      \u2014 IT SHOULD LET YOU <font-weight=\"800\">CLEAR A PATH</font-weight>."
+    - "I\u2019D RATHER NOT <font-weight=\"800\">REPLACE YOU</font-weight> ON DAY
+      ONE."
     weight: 0

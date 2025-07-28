@@ -5081,8 +5081,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: LOREM IPSUM DOLOR SIT AMET, CONSECTETUER ADIPISCING ELIT. SED NON RISUS.
-    SUSPENDISSE LECTUS TORTOR, DIGNISSIM SIT AMET, ADIPISCING
+  m_text: "MAKE A <font-weight=\"800\">RIGHT-CLICK</font-weight> TO '\u20A3\u2206\u20A4*\xF9\u20A3\u2206\u20A4*\xF9=#\"\u2026
+    \u2014 IT SHOULD LET YOU CLEAR A PATH."
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 0e182ac2fc51c2f4fb9f8dc5bc1d89b7, type: 2}
   m_sharedMaterial: {fileID: -8865066032074193363, guid: 0e182ac2fc51c2f4fb9f8dc5bc1d89b7, type: 2}
@@ -5091,8 +5091,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+    rgba: 4280226577
+  m_fontColor: {r: 0.06666667, g: 0.07450981, b: 0.121568635, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -5115,7 +5115,7 @@ MonoBehaviour:
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
-  m_fontStyle: 1
+  m_fontStyle: 0
   m_HorizontalAlignment: 1
   m_VerticalAlignment: 512
   m_textAlignment: 65535
