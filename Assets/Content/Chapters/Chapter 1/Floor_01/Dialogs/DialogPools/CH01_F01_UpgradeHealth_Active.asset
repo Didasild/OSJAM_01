@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4b61542930edea04bb8ff18f6eb44214, type: 3}
+  m_Name: CH01_F01_UpgradeHealth_Active
+  m_EditorClassIdentifier: 
+  totalWeight: 0
+  dialogPull:
+  - sentences:
+    - OKAY, LET ME TWEAK A FEW THINGS.
+    - "YOU\u2019VE <font-weight=\"800\">TAKEN SOME DAMAGE</font-weight> DURING THE
+      COLLISIONS"
+    - GRAB THE <font-weight="800">REPAIR KITS</font-weight> IN THIS ROOM.
+    - THAT'S IT ! <font-weight="800">YOU CAN KNOW TAKE 3 HITS </font-weight>BEFORE...
+      YOU KNOW...
+    weight: 0

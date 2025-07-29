@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4b61542930edea04bb8ff18f6eb44214, type: 3}
+  m_Name: CH01_F01_WatchYourStepsInDark_Inactive
+  m_EditorClassIdentifier: 
+  totalWeight: 40
+  dialogPull:
+  - sentences:
+    - "THE<font-weight=\"800\"> NUMBERS AREN\u2019T DECORATION.</font-weight> FOLLOW
+      THEM."
+    weight: 10
+  - sentences:
+    - "WE\u2019LL NEED TO REACH THE<font-weight=\"800\"> COMMAND CENTER.</font-weight>"
+    weight: 10
+  - sentences:
+    - "IT\u2019S LIKELY STILL<font-weight=\"800\"> LOCKED DOWN\u2026 </font-weight>BUT
+      WE WON\u2019T KNOW <font-weight=\"800\">UNTIL WE TRY.</font-weight>"
+    weight: 10
+  - sentences:
+    - I HOPE WE WILL <font-weight="800">REACH OUR DESTINATION.</font-weight>
+    weight: 10
