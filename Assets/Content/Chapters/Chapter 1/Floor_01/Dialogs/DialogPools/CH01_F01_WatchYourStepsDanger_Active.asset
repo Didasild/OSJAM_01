@@ -13,14 +13,15 @@ MonoBehaviour:
   m_Name: CH01_F01_WatchYourStepsDanger_Active
   m_EditorClassIdentifier: 
   totalWeight: 0
-  dialogPull:
+  dialogPool:
   - sentences:
     - <font-weight="800">STOP!!!!</font-weight>
-    - WHATEVER YOU DO! <font-weight="800">DO NOT REVEAL THE CELLS SURROUNDED BY NUMBERS</font-weight>.
+    - WHATEVER YOU DO! <font-weight="800">DO NOT REVEAL THE CELLS</font-weight> <font-weight="800">SURROUNDED
+      BY NUMBERS.</font-weight>
     - "THEY\u2019RE LIKELY TO <font-weight=\"800\">TRIGG\u2014</font-weight> \xA7#!)\xE8|'\u20A3\u2206\u20A4*\xF9=#\"\u2026!!!
       AND AFFECT YOUR <font-weight=\"800\">SYSTEM INTEGRITY!</font-weight>"
-    - "MAKE A <font-weight=\"800\">RIGHT-CLICK</font-weight> TO '\u20A3\u2206\u20A4*\xF9\u20A3\u2206\u20A4*\xF9=#\"\u2026
-      \u2014 IT SHOULD LET YOU <font-weight=\"800\">CLEAR A PATH</font-weight>."
-    - "I\u2019D RATHER NOT <font-weight=\"800\">REPLACE YOU</font-weight> ON DAY
-      ONE."
+    - "MAKE A <font-weight=\"800\">RIGHT-CLICK </font-weight>TO '\u20A3\u2206\u20A4*\xF9\u20A3\u2206\u20A4*\xF9=#\"\u2026
+      \u2014 IT SHOULD LET YOU <font-weight=\"800\">CLEAR A PATH.</font-weight>"
+    - "I\u2019D RATHER <font-weight=\"800\">NOT REPLACE</font-weight> <font-weight=\"800\">YOU</font-weight>
+      ON DAY ONE."
     weight: 0

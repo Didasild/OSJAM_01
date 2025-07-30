@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using DG.Tweening;
 using Febucci.UI;
+using Script.Scriptable.NPC;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
@@ -12,7 +13,7 @@ public class Dialog : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, 
     private RoomSettings _currentRoomSettings;
     private List<string> _currentDialogSequence;
     private int currentSequenceIndex;
-    private bool dialogStarted;
+    private bool _dialogStarted;
     private NPC _currentNPC;
     public TextAnimatorPlayer _textAnimatorPlayer;
     
@@ -32,38 +33,69 @@ public class Dialog : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, 
         _dialogVisual.ClearDialogBox();
     }
 
-    #region METHODS
-    public void StartDialogSequence(NPC npc)
+    #region NPC METHODS
+    public void StartNpcDialogSequence(NPC npc)
     {
+        if (_dialogStarted)
+        {
+            return;
+        }
+        _dialogStarted = true;
         _currentNPC = npc;
         
         _dialogVisual.ClearDialogBox();
         
         _dialogVisual.dialogContainer.SetActive(true);
         _dialogVisual.DialogApparition(npc.NpcDialogsSettings.npcSettings.npcImage);
-
+        
         DOVirtual.DelayedCall(_dialogVisual.uiDialogBoxTransition.transitionDuration/1.5f, () =>
         {
-            DisplayDialogSequence(npc);
+            DisplayNpcDialogSequence(npc);
         });
     }
 
-    private void DisplayDialogSequence(NPC npc)
+    public void StartEventDialogSequence(NpcDialogsSettings eventDialogsSettings)
     {
-        _currentDialogSequence = npc.currentDialogSequence;
-        NpcDialogsSettings npcDialogsSettings = npc.NpcDialogsSettings;
+        _dialogStarted = true;
         
-        _dialogVisual.UpdateCharacterName(npcDialogsSettings.npcSettings.npcName);
+        _dialogVisual.ClearDialogBox();
+        
+        _dialogVisual.dialogContainer.SetActive(true);
+        _dialogVisual.DialogApparition(eventDialogsSettings.npcSettings.npcImage);
+        
+        DOVirtual.DelayedCall(_dialogVisual.uiDialogBoxTransition.transitionDuration/1.5f, () =>
+        {
+            DisplayEventDialogSequence(eventDialogsSettings);
+        });
+    }
+
+    private void DisplayNpcDialogSequence(NPC npc)
+    {
+        NpcDialogsSettings npcDialogsSettings = npc.NpcDialogsSettings;
+        _currentDialogSequence = npc.currentDialogSequence;
+        DisplayDialogSequenceInternal(npcDialogsSettings);
+    }
+    
+    private void DisplayEventDialogSequence(NpcDialogsSettings eventDialogsSettings)
+    {
+        _currentDialogSequence = eventDialogsSettings.GetDialogSequence(DialogUtils.NPCState.Active);
+        DisplayDialogSequenceInternal(eventDialogsSettings);
+    }
+
+    private void DisplayDialogSequenceInternal(NpcDialogsSettings dialogsSettings)
+    {
+        _dialogVisual.UpdateCharacterName(dialogsSettings.npcSettings.npcName);
         
         if (_currentDialogSequence.Count > 0)
         {
             currentSequenceIndex = 0;
-            dialogStarted = true;
+
             _dialogVisual.UpdateDialogText(_currentDialogSequence[0]);
         }
         else
         {
-            Debug.LogError("No sentences in the DialogPull:" );
+            _dialogStarted = false;
+            Debug.LogError("No sentences in the DialogPool: " + _currentDialogSequence);
         }
     }
 
@@ -85,25 +117,29 @@ public class Dialog : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, 
         else
         {
             _dialogVisual.ClearDialogBox();
-            Debug.Log("DialogPull is null");
+            Debug.Log("DialogPool is null");
         }
     }
 
     private void EndDialog()
     {
-        dialogStarted = false;
+        _dialogStarted = false;
         currentSequenceIndex = 0;
         
         //A DEVELOPPER QUAND NECESSAIRE ET PLACE AILLEURS POTENTIELLEMENT
-        _currentNPC.ChangeNpcState(DialogUtils.NPCState.Inactive);
+        if (_currentNPC._currentNpcState != DialogUtils.NPCState.Inactive)
+        {
+            _currentNPC.ChangeNpcState(DialogUtils.NPCState.Inactive);
+        }
+        
         _dialogVisual.DialogDisparition();
     }
-    #endregion METHODS
+    #endregion NPC METHODS
     
     #region POINTER
     public void OnPointerEnter(PointerEventData eventData)
     {
-        if (dialogStarted)
+        if (_dialogStarted)
         {
             TooltipController.ShowTooltip("NEXT.");
         }
@@ -120,7 +156,7 @@ public class Dialog : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, 
         {
             _textAnimatorPlayer.SkipTypewriter();
         }
-        else if (dialogStarted)
+        else if (_dialogStarted)
         {
             GoToNextSentence();
         }

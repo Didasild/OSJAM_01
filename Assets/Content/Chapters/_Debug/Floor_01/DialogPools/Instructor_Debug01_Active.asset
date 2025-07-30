@@ -12,10 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b61542930edea04bb8ff18f6eb44214, type: 3}
   m_Name: Instructor_Debug01_Active
   m_EditorClassIdentifier: 
-  totalWeight: 10
-  dialogPull:
-  - sentences:
-    - HELLO IM YOUR INSTRUCTOR.
-    - NICE TO MEET YOU.
-    - SEE YOU LATER.
-    weight: 10
+  totalWeight: 0
+  dialogPool: []

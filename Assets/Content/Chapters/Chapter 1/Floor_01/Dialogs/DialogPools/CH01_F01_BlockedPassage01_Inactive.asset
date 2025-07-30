@@ -13,10 +13,10 @@ MonoBehaviour:
   m_Name: CH01_F01_BlockedPassage01_Inactive
   m_EditorClassIdentifier: 
   totalWeight: 20
-  dialogPull:
-  - sentences:
-    - REJOIN ME IN THE <font-weight="800">MAIN WAKE-UP CHAMBER.</font-weight>
-    weight: 10
+  dialogPool:
   - sentences:
     - I'M SERIOUS <font-weight="800">DON'T TRY TO FORCE IT</font-weight> RIGHT KNOW
+    weight: 10
+  - sentences:
+    - JOIN ME IN THE <font-weight="800">MAIN WAKE-UP CHAMBER.</font-weight>
     weight: 10

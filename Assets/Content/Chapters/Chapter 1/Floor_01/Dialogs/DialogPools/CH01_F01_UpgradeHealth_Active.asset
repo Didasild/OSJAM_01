@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: CH01_F01_UpgradeHealth_Active
   m_EditorClassIdentifier: 
   totalWeight: 0
-  dialogPull:
+  dialogPool:
   - sentences:
     - OKAY, LET ME TWEAK A FEW THINGS.
     - "YOU\u2019VE <font-weight=\"800\">TAKEN SOME DAMAGE</font-weight> DURING THE

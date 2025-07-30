@@ -12,10 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b61542930edea04bb8ff18f6eb44214, type: 3}
   m_Name: CH01_F01_NearCommandCenter_Active
   m_EditorClassIdentifier: 
-  totalWeight: 10
-  dialogPull:
+  totalWeight: 0
+  dialogPool:
   - sentences:
     - "<font-weight=\"800\">DON\u2019T STOP NOW.</font-weight> THE COMMAND CENTER
       IS WITHIN REACH."
     - ALMOST THERE. <font-weight="800">JUST A LITTLE MORE.</font-weight>
-    weight: 10
+    weight: 0

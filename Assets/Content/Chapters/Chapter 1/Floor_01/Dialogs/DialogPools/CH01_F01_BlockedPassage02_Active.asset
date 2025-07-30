@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: CH01_F01_BlockedPassage02_Active
   m_EditorClassIdentifier: 
   totalWeight: 0
-  dialogPull:
+  dialogPool:
   - sentences:
     - YOU SHOULD BE ABLE TO HANDLE <font-weight="800">SMALL DAMAGES</font-weight>
       NOW.

@@ -13,15 +13,16 @@ MonoBehaviour:
   m_Name: CH01_F01_WatchYourStepsDanger_Inactive
   m_EditorClassIdentifier: 
   totalWeight: 30
-  dialogPull:
+  dialogPool:
   - sentences:
-    - "LET\u2019S JUST SAY: <font-weight=\"800\">STEP CAREFULLY</font-weight>."
+    - "LET\u2019S JUST SAY: STEP CAREFULLY.<font-weight=\"800\"> RIGHT-CLICK ON IT,</font-weight>"
     weight: 10
   - sentences:
-    - <font-weight="800">RIGHT-CLICK</font-weight> ON THIS CELL TO <font-weight="800">PROGRESS</font-weight>.
+    - <font-weight="800">RIGHT-CLICK </font-weight>ON THIS <font-weight="800">CELL</font-weight>
+      TO PROGRESS
     weight: 10
   - sentences:
-    - "<font-weight=\"800\">SERIOUSLY</font-weight>, DON\u2019T REVEAL THOSE THINGS
-      \u2014"
-    - IT WILL HURT YOUR <font-weight="800">SYSTEM INTEGRITY</font-weight>.
+    - "SERIOUSLY,<font-weight=\"800\"> DON\u2019T REVEAL </font-weight>THOSE THINGS"
+    - ' IT WILL <font-weight="800">HURT</font-weight> YOUR <font-weight="800">SYSTEM
+      INTEGRITY.</font-weight>'
     weight: 10

@@ -13,18 +13,18 @@ MonoBehaviour:
   m_Name: CH01_F01_WatchYourStepsInDark_Inactive
   m_EditorClassIdentifier: 
   totalWeight: 40
-  dialogPull:
+  dialogPool:
   - sentences:
     - "THE<font-weight=\"800\"> NUMBERS AREN\u2019T DECORATION.</font-weight> FOLLOW
       THEM."
     weight: 10
   - sentences:
-    - "WE\u2019LL NEED TO REACH THE<font-weight=\"800\"> COMMAND CENTER.</font-weight>"
+    - WHEN IN DOUBT, <font-weight="800">TRUST THE MATH.</font-weight>
     weight: 10
   - sentences:
-    - "IT\u2019S LIKELY STILL<font-weight=\"800\"> LOCKED DOWN\u2026 </font-weight>BUT
-      WE WON\u2019T KNOW <font-weight=\"800\">UNTIL WE TRY.</font-weight>"
+    - "DON\u2019T JUST CLICK WILDLY. <font-weight=\"800\">THINK.</font-weight>"
     weight: 10
   - sentences:
-    - I HOPE WE WILL <font-weight="800">REACH OUR DESTINATION.</font-weight>
+    - <font-weight="800">PATTERNS.</font-weight> <font-weight="800">LOGIC</font-weight>.
+      YOU KNOW... BASIC SURVIVAL.
     weight: 10

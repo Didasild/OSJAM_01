@@ -12,11 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b61542930edea04bb8ff18f6eb44214, type: 3}
   m_Name: CH01_F01_GenericNumbers_02_Inactive
   m_EditorClassIdentifier: 
-  totalWeight: 40
-  dialogPull:
-  - sentences:
-    - "IF YOU IGNORE THE NUMBERS, YOU\u2019LL REGRET IT."
-    weight: 10
+  totalWeight: 30
+  dialogPool:
   - sentences:
     - <font-weight="800">GUESSING</font-weight> IS FINE. GUESSING WRONG IS PAINFUL.
     weight: 10

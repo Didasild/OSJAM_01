@@ -13,8 +13,9 @@ MonoBehaviour:
   m_Name: CH01_F01_LightCutOff_Inactive
   m_EditorClassIdentifier: 
   totalWeight: 0
-  dialogPull:
+  dialogPool:
   - sentences:
     - "SERIOUSLY, <font-weight=\"800\">DON\u2019T REVEAL</font-weight> THOSE THINGS"
-    - ' IT WILL <font-weight="800">HURT YOUR SYSTEM INTEGRITY.</font-weight>'
+    - ' IT WILL <font-weight="800">HURT</font-weight> YOUR <font-weight="800">SYSTEM
+      INTEGRITY.</font-weight>'
     weight: 0

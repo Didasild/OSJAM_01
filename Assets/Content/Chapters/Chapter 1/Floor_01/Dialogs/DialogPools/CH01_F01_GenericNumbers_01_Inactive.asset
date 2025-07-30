@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: CH01_F01_GenericNumbers_01_Inactive
   m_EditorClassIdentifier: 
   totalWeight: 30
-  dialogPull:
+  dialogPool:
   - sentences:
     - WHEN IN DOUBT, <font-weight="800">TRUST THE MATH.</font-weight>
     weight: 10

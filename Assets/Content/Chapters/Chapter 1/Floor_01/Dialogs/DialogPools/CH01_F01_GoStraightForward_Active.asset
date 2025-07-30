@@ -12,10 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b61542930edea04bb8ff18f6eb44214, type: 3}
   m_Name: CH01_F01_GoStraightForward_Active
   m_EditorClassIdentifier: 
-  totalWeight: 10
-  dialogPull:
+  totalWeight: 0
+  dialogPool:
   - sentences:
     - "WE\u2019LL NEED TO REACH THE<font-weight=\"800\"> COMMAND CENTER.</font-weight>"
     - "IT\u2019S LIKELY STILL<font-weight=\"800\"> LOCKED DOWN\u2026 </font-weight>BUT
       WE WON\u2019T KNOW <font-weight=\"800\">UNTIL WE TRY.</font-weight>"
-    weight: 10
+    weight: 0

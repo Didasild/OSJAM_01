@@ -6,11 +6,13 @@ public class FloorVisualScriptingUtils : MonoBehaviour
 {
     private FloorManager _floorManager;
     private Health _health;
+    private Dialog _dialog;
     public PlayableDirector playableDirector;
 
     public void Init(FloorManager floorManager, Health health)
     {
         _floorManager = floorManager;
+        _dialog = GameManager.Instance.Dialog;
         _health = health;
     }
     
@@ -39,6 +41,11 @@ public class FloorVisualScriptingUtils : MonoBehaviour
     public void GoToNextFloor()
     {
         GameManager.Instance.GoToNextFloor();
+    }
+
+    public void StartDialogSequence(NpcDialogsSettings npcDialogsSettings)
+    {
+        _dialog.StartEventDialogSequence(npcDialogsSettings);
     }
     
 }

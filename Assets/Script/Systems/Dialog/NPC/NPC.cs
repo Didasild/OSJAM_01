@@ -78,10 +78,12 @@ public class NPC
     }
     #endregion CELL
 
+    #region UTILS
     public void UpdateDialogSettings(NpcDialogsSettings npcDialogsSettings)
     {
         NpcDialogsSettings = npcDialogsSettings;
         currentDialogSequence = NpcDialogsSettings.GetDialogSequence(_currentNpcState);
-
     }
+    #endregion
+
 }

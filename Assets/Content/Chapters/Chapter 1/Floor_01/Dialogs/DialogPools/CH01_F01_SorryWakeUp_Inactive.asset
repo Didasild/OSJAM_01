@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: CH01_F01_SorryWakeUp_Inactive
   m_EditorClassIdentifier: 
   totalWeight: 30
-  dialogPull:
+  dialogPool:
   - sentences:
-    - "#ARCHIVAL DATA\u2026 <font-weight=\"800\">CORRUPTED</font-weight>.#"
+    - "LUCKILY, YOU\u2019VE GOT <font-weight=\"800\">ME.</font-weight>"
     weight: 10
   - sentences:
-    - "#TACTICAL OVERRIDES\u2026 <font-weight=\"800\">SUPPRESSED</font-weight>.#"
+    - "#ARCHIVAL DATA\u2026<font-weight=\"800\"> CORRUPTED.</font-weight>#"
     weight: 10
   - sentences:
-    - "LUCKILY, YOU\u2019VE GOT <font-weight=\"800\">ME</font-weight>."
+    - "#TACTICAL <font-weight=\"800\">OVERRIDES</font-weight>\u2026 SUPPRESSED.#"
     weight: 10

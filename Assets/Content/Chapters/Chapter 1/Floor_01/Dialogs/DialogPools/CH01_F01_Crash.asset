@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: CH01_F01_Crash
   m_EditorClassIdentifier: 
   totalWeight: 0
-  dialogPull:
+  dialogPool:
   - sentences:
     - THE DAMAGE IS <font-weight="800">FAR WORSE</font-weight> THAN I ANTICIPATED.
     - THE SHIP'S <font-weight="800">GRAVITY </font-weight>SYSTEM IS<font-weight="800">

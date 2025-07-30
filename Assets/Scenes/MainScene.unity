@@ -14164,7 +14164,7 @@ PlayableDirector:
   m_GameObject: {fileID: 1511401539}
   m_Enabled: 1
   serializedVersion: 3
-  m_PlayableAsset: {fileID: 11400000, guid: 19585470e74c4bf4a9c2651d95a0771d, type: 2}
+  m_PlayableAsset: {fileID: 11400000, guid: a1e5e859fd68bfa4fa1cd9bba1fa938a, type: 2}
   m_InitialState: 0
   m_WrapMode: 2
   m_DirectorUpdateMode: 1
@@ -14238,6 +14238,7 @@ MonoBehaviour:
     - {fileID: 11400000, guid: 8ed2fcd737190834896a3c121eefc96a, type: 2}
     - {fileID: 11400000, guid: 657f9b8506ad7c441899de957a51c57c, type: 2}
     - {fileID: 11400000, guid: e435c1cfce5249042800bc6dd68096ef, type: 2}
+    - {fileID: 11400000, guid: 867f88188bae8614392718287748683a, type: 2}
     m_Events:
     - m_PersistentCalls:
         m_Calls:
@@ -14321,6 +14322,20 @@ MonoBehaviour:
             m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
             m_IntArgument: 0
             m_FloatArgument: 0.3
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+    - m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 660007376}
+          m_TargetAssemblyTypeName: FloorVisualScriptingUtils, Assembly-CSharp
+          m_MethodName: StartDialogSequence
+          m_Mode: 2
+          m_Arguments:
+            m_ObjectArgument: {fileID: 11400000, guid: 9a2a370b40446914cad015ee47105ac0, type: 2}
+            m_ObjectArgumentAssemblyTypeName: NpcDialogsSettings, Assembly-CSharp
+            m_IntArgument: 0
+            m_FloatArgument: 0
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
@@ -14533,7 +14548,7 @@ MonoBehaviour:
   priority: 5
   blendDistance: 0
   weight: 0
-  sharedProfile: {fileID: 11400000, guid: f960d3a2b6cb45e49beca222d62f765f, type: 2}
+  sharedProfile: {fileID: 11400000, guid: 2c1a39d651690ce4fb0d84cd0a7c8ee8, type: 2}
 --- !u!95 &1527443216
 Animator:
   serializedVersion: 7

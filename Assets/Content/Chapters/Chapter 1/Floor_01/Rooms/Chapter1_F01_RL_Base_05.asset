@@ -25,6 +25,4 @@ MonoBehaviour:
   roomPourcentageOfNone: 5
   haveStair: 0
   itemRanges: []
-  npcDatas:
-  - npcPosition: {x: 5, y: 3}
-    npcDialogsSettings: {fileID: 11400000, guid: 2217f2eb8199e91428a518dfcdc6c4c6, type: 2}
+  npcDatas: []

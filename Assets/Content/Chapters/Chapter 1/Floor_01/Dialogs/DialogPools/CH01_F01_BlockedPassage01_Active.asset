@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: CH01_F01_BlockedPassage01_Active
   m_EditorClassIdentifier: 
   totalWeight: 0
-  dialogPull:
+  dialogPool:
   - sentences:
     - "NO OTHER WAY THROUGH. YOU\u2019LL HAVE TO <font-weight=\"800\">FORCE IT.</font-weight>"
     - "BUT YOUR SYSTEM <font-weight=\"800\">CAN\u2019T TAKE THAT KIND OF HIT.</font-weight>"

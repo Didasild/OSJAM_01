@@ -15,7 +15,7 @@ MonoBehaviour:
   notes: 
   npcSettings: {fileID: 11400000, guid: 4791684ff94ddcb4eb806faf9940b8a4, type: 2}
   baseNPCState: 1
-  dialogPulls:
+  dialogPools:
   - RelatedNpcState: 1
     dialogPool: {fileID: 11400000, guid: 7e83d46dc758a874ca7b5277508b7730, type: 2}
   - RelatedNpcState: 2

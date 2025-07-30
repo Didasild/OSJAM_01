@@ -13,16 +13,16 @@ MonoBehaviour:
   m_Name: CH01_F01_Welcome_Inactive
   m_EditorClassIdentifier: 
   totalWeight: 40
-  dialogPull:
+  dialogPool:
   - sentences:
-    - "#LIFE-SUPPORT\u2019S <font-weight=\"800\">FINE</font-weight>\u2026 PROBABLY.#"
+    - "#LIFE-SUPPORT\u2019S<font-weight=\"800\"> FINE\u2026 </font-weight>PROBABLY.#"
     weight: 10
   - sentences:
-    - "#PILOT VITALS\u2026 <font-weight=\"800\">UNKNOWN</font-weight>.#"
+    - "#PILOT VITALS\u2026 <font-weight=\"800\">UNKNOWN.</font-weight>#"
     weight: 10
   - sentences:
     - "#AI CORE\u2026 <font-weight=\"800\">STABLE</font-weight> (FOR NOW).#"
     weight: 10
   - sentences:
-    - "#COMPANIONSHIP DIRECTIVE\u2026 <font-weight=\"800\">PRIORITIZED</font-weight>.#"
+    - "#COMPANIONSHIP DIRECTIVE\u2026 <font-weight=\"800\">PRIORITIZED.</font-weight>#"
     weight: 10

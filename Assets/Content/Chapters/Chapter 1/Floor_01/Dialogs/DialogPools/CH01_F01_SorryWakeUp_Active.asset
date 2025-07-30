@@ -13,16 +13,17 @@ MonoBehaviour:
   m_Name: CH01_F01_SorryWakeUp_Active
   m_EditorClassIdentifier: 
   totalWeight: 0
-  dialogPull:
+  dialogPool:
   - sentences:
     - SORRY ABOUT THE <font-weight="800">WAKE-UP</font-weight>. NOT EXACTLY THE GENTLE
       KIND.
-    - "THE POD MALFUNCTIONED. YOUR SYSTEMS\u2026 AND <font-weight=\"800\">MEMORY
+    - "THE POD MALFUNCTIONED. YOUR SYSTEMS\u2026 AND<font-weight=\"800\"> MEMORY
       TOOK A HIT.</font-weight>"
-    - YOU MIGHT FEEL A LITTLE <font-weight="800">LOST</font-weight>.
-    - "LUCKILY, YOU\u2019VE GOT <font-weight=\"800\">ME</font-weight>. I\u2019LL
-      GUIDE YOU THROUGH WHATEVER\u2019S STILL WORKING."
-    - "TO START, YOU\u2019LL NEED TO USE THE <font-weight=\"800\">INTERFACE</font-weight>
-      TO MOVE THROUGH THE <font-weight=\"800\">SHIP</font-weight>."
-    - "I\u2019LL BE HERE \u2014 MOSTLY WATCHING, OCCASIONALLY JUDGING."
+    - YOU MIGHT FEEL A LITTLE <font-weight="800">LOST.</font-weight>
+    - "LUCKILY, YOU\u2019VE GOT ME. I\u2019LL GUIDE YOU THROUGH <font-weight=\"800\">WHATEVER\u2019S
+      STILL WORKING.</font-weight>"
+    - "TO START, YOU\u2019LL NEED TO USE THE<font-weight=\"800\"> INTERFACE</font-weight>
+      TO MOVE THROUGH THE <font-weight=\"800\">SHIP</font-weight>"
+    - "I\u2019LL BE HERE \u2014 MOSTLY WATCHING, OCCASIONALLY<font-weight=\"800\">
+      JUDGING.</font-weight>"
     weight: 0

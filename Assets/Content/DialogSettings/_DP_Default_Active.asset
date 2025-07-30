@@ -12,13 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b61542930edea04bb8ff18f6eb44214, type: 3}
   m_Name: _DP_Default_Active
   m_EditorClassIdentifier: 
-  totalWeight: 2
-  dialogPull:
-  - sentences:
-    - HI ! I'M A PLACEHOLDER ACTIVE LINE.
-    - PLEASE DO YOUR JOB AND GO WRITE SOME DIALOGS
-    weight: 1
-  - sentences:
-    - HI ! I'M A PLACEHOLDER ACTIVE LINE.
-    - YOU NEED TO WRITE SOME DIALOGS
-    weight: 1
+  totalWeight: 0
+  dialogPool: []

@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: CH01_F01_LightCutOff_Active
   m_EditorClassIdentifier: 
   totalWeight: 0
-  dialogPull:
+  dialogPool:
   - sentences:
-    - "<font-weight=\"800\">ALRIGHT\u2026 THAT WAS A COLLISION.</font-weight>"
-    - YOU MAY HAVE TO PROGRESS IN THE <font-weight="800">DARK</font-weight>.
-    - LUCKILY, <font-weight="800">FEAR</font-weight> IS A GREAT MOTIVATOR.
+    - "ALRIGHT\u2026 <font-weight=\"800\">THAT WAS ANOTHER COLLISION.</font-weight>"
+    - YOU MAY HAVE TO PROGRESS IN THE<font-weight="800"> DARK.</font-weight>
+    - LUCKILY, FEAR IS A <font-weight="800">GREAT MOTIVATOR.</font-weight>
     weight: 0

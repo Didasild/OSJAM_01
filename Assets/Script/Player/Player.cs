@@ -329,13 +329,13 @@ public class Player : MonoBehaviour
 
     private void ClickOnNPCCell(Cell cellClicked)
     {
-        GameManager.Instance.Dialog.StartDialogSequence(cellClicked.npc);
+        GameManager.Instance.Dialog.StartNpcDialogSequence(cellClicked.npc);
         /// A SUPPRIMER SI VALIDER
         // foreach (RoomSettings.NpcData npcData in GameManager.Instance.currentRoomSettings.npcDatas)
         // {
         //     if (npcData.npcPosition == cellClicked._cellPosition)
         //     {
-        //         GameManager.Instance.Dialog.StartDialogSequence(npcData.npcDialogsSettings);
+        //         GameManager.Instance.Dialog.StartNpcDialogSequence(npcData.npcDialogsSettings);
         //         return;
         //     }
         // }

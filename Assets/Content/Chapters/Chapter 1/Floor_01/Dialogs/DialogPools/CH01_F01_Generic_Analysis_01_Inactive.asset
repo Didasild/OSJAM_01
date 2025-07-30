@@ -13,13 +13,15 @@ MonoBehaviour:
   m_Name: CH01_F01_Generic_Analysis_01_Inactive
   m_EditorClassIdentifier: 
   totalWeight: 30
-  dialogPull:
+  dialogPool:
   - sentences:
-    - '#NEXT COMMAND AWAITING MENTAL VALIDATION.#'
+    - <font-weight="800">#</font-weight>NEXT COMMAND <font-weight="800">AWAITING
+      MENTAL VALIDATION.#</font-weight>
     weight: 10
   - sentences:
-    - '#NO CRITICAL DEVIATIONS DETECTED AT THIS TIME.#'
+    - <font-weight="800">#NO CRITICAL DEVIATIONS </font-weight>DETECTED AT THIS TIME<font-weight="800">.#</font-weight>
     weight: 10
   - sentences:
-    - '#MINIMAL VARIATION IN REACTIONS. CONTINUING MONITORING.#'
+    - <font-weight="800">#</font-weight>MINIMAL VARIATION IN REACTIONS.<font-weight="800">
+      CONTINUING MONITORING.#</font-weight>
     weight: 10

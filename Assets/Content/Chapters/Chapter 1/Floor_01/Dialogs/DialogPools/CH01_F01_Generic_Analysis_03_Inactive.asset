@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: CH01_F01_Generic_Analysis_03_Inactive
   m_EditorClassIdentifier: 
   totalWeight: 30
-  dialogPull:
+  dialogPool:
   - sentences:
     - <font-weight="800">#RESPONSE PATTERN</font-weight> IDENTIFIED, COMPLIANCE LEVEL:<font-weight="800">
       MODERATE.#</font-weight>

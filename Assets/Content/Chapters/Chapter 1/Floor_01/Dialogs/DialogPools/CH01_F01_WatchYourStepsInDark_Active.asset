@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: CH01_F01_WatchYourStepsInDark_Active
   m_EditorClassIdentifier: 
   totalWeight: 0
-  dialogPull:
+  dialogPool:
   - sentences:
     - "THIS IS WHAT I WAS AFRAID OF... THE SHIP\u2019S <font-weight=\"800\">LOST
       PRIMARY POWER.</font-weight>"

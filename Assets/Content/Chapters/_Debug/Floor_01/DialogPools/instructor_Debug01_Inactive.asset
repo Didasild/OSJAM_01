@@ -12,13 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b61542930edea04bb8ff18f6eb44214, type: 3}
   m_Name: instructor_Debug01_Inactive
   m_EditorClassIdentifier: 
-  totalWeight: 20
-  dialogPull:
-  - sentences:
-    - WHAT AGAIN?
-    - YOU WANT MY PICTURE?
-    weight: 10
-  - sentences:
-    - SEE YOU LATER!
-    - ...
-    weight: 10
+  totalWeight: 0
+  dialogPool: []
