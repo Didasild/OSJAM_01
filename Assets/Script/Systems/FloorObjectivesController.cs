@@ -49,8 +49,9 @@ public class FloorObjectivesController : MonoBehaviour
         _currentObjectivesIndex += 1;
 
         //Send a message to subscribers that the index change
-        OnObjectiveIndexChanged?.Invoke(_currentObjectivesIndex);
+        //OnObjectiveIndexChanged?.Invoke(_currentObjectivesIndex);
         
+        //Debug.Log("OBJECTIVE COMPLETE");
         // Déclenche un event Visual Scripting (nom libre, ici "ObjectiveAdvanced")
         CustomEvent.Trigger(gameObject, "ObjectiveIncrement", _currentObjectivesIndex);
 

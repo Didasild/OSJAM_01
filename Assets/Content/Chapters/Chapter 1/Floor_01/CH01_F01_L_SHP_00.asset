@@ -77,8 +77,8 @@ MonoBehaviour:
     initRoomSettings: {fileID: 11400000, guid: 5ba2b5b033f0f29469a54bd0a8ab64a0, type: 2}
     initRoomState: 1
     roomPosition: {x: 2, y: 4}
-    roomCompletion: 3
-    roomUnlock: 3
+    roomCompletion: 2
+    roomUnlock: 2
   - startRoom: 0
     initRoomSettings: {fileID: 11400000, guid: a12d77abad7544c4bae7b8b1ba866437, type: 2}
     initRoomState: 1

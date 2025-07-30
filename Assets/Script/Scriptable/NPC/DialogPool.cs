@@ -32,7 +32,7 @@ namespace Script.Scriptable.NPC
                 }
             }
 
-            Debug.Log("No sentences found");
+            //Debug.Log("No sentences found");
             return dialogPull[0].sentences;
         }
     

@@ -17,7 +17,8 @@ MonoBehaviour:
   - sentences:
     - <font-weight="800">STOP!!!!</font-weight>
     - WHATEVER YOU DO! <font-weight="800">DO NOT REVEAL THE CELLS SURROUNDED BY NUMBERS</font-weight>.
-    - "THEY\u2019RE LIKELY TO TRIGG\u2014 \xA7#!)\xE8|'\u20A3\u2206\u20A4*\xF9=#\"\u2026!!!"
+    - "THEY\u2019RE LIKELY TO <font-weight=\"800\">TRIGG\u2014</font-weight> \xA7#!)\xE8|'\u20A3\u2206\u20A4*\xF9=#\"\u2026!!!
+      AND AFFECT YOUR <font-weight=\"800\">SYSTEM INTEGRITY!</font-weight>"
     - "MAKE A <font-weight=\"800\">RIGHT-CLICK</font-weight> TO '\u20A3\u2206\u20A4*\xF9\u20A3\u2206\u20A4*\xF9=#\"\u2026
       \u2014 IT SHOULD LET YOU <font-weight=\"800\">CLEAR A PATH</font-weight>."
     - "I\u2019D RATHER NOT <font-weight=\"800\">REPLACE YOU</font-weight> ON DAY

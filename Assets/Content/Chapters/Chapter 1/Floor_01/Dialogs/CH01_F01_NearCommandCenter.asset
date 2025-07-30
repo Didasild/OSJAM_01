@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 34b703c7a33a4e14599eae68c269bba3, type: 3}
+  m_Name: CH01_F01_NearCommandCenter
+  m_EditorClassIdentifier: 
+  notes: 
+  npcSettings: {fileID: 11400000, guid: 4791684ff94ddcb4eb806faf9940b8a4, type: 2}
+  baseNPCState: 1
+  dialogPulls:
+  - RelatedNpcState: 1
+    dialogPool: {fileID: 11400000, guid: 8f10835c6097d7c4cbf7c0bae3d99fd0, type: 2}
+  - RelatedNpcState: 2
+    dialogPool: {fileID: 11400000, guid: 5837532e232a5a341a3c39b3a66e58b3, type: 2}
