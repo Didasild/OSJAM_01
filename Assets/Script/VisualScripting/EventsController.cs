@@ -24,7 +24,6 @@ public class EventsController : MonoBehaviour
     
     public void VSIncreaseMaxHealth(int increment)
     {
-        Debug.Log("IncrementHealth");
         _health.IncreaseMaxHealth(increment);
     }
     
@@ -49,6 +48,7 @@ public class EventsController : MonoBehaviour
         _gameManager.GoToNextFloor();
     }
 
+    #region RTC SIGNALS FUNCTIONS
     public void StartDialogSequence(NpcDialogsSettings npcDialogsSettings)
     {
         _dialog.StartEventDialogSequence(npcDialogsSettings);
@@ -77,5 +77,11 @@ public class EventsController : MonoBehaviour
                 break;
         }
     }
+    
+    public void ChangeListOfCellType(int cellNumber, CellType cellType)
+    {
+        
+    }
+    #endregion RTC SIGNALS FUNCTIONS
     
 }
