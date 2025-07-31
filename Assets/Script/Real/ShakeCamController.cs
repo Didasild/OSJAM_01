@@ -2,6 +2,13 @@ using DG.Tweening;
 using NaughtyAttributes;
 using UnityEngine;
 
+public enum ShakeType
+{
+    little,
+    medium,
+    big,
+}
+
 public class ShakeCamController : MonoBehaviour
 {
     private Vector3 _originalPosition;

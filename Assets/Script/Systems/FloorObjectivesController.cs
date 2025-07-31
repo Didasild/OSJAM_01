@@ -8,7 +8,7 @@ public class FloorObjectivesController : MonoBehaviour
     private FloorManager _floorManager;
     private List<RoomData> _currentObjectivesRooms;
     private List<Vector2Int> _currentObjectivesRoomPositions;
-    public int _currentObjectivesIndex;
+    [HideInInspector] public int _currentObjectivesIndex;
     private ScriptMachine _scriptMachine;
     
     public event Action<int> OnObjectiveIndexChanged;

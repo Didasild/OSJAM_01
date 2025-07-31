@@ -3742,7 +3742,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 705795834}
   m_Direction: 0
   m_Value: 1
-  m_Size: 0.21484375
+  m_Size: 0.4296875
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -7402,7 +7402,7 @@ MonoBehaviour:
   buttonDown: {fileID: 1268749828}
   roomPositionDebugText: {fileID: 1167248910}
   roomNameDebugText: {fileID: 337247838}
-  floorVisualScriptingUtils: {fileID: 0}
+  eventsController: {fileID: 0}
   introPlayed: 0
 --- !u!114 &660007370
 MonoBehaviour:
@@ -7522,6 +7522,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4c04e6f42ddc83f44a5a92cfb6d1ba55, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _rtcReceiver: {fileID: 1511401543}
   playableDirector: {fileID: 1511401540}
 --- !u!1 &666004282
 GameObject:
@@ -9302,7 +9303,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 185661100}
   m_Direction: 2
   m_Value: 0
-  m_Size: 0.08984375
+  m_Size: 0.1796875
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -14148,6 +14149,7 @@ GameObject:
   - component: {fileID: 1511401541}
   - component: {fileID: 1511401540}
   - component: {fileID: 1511401542}
+  - component: {fileID: 1511401543}
   m_Layer: 0
   m_Name: REAL
   m_TagString: Untagged
@@ -14233,12 +14235,10 @@ MonoBehaviour:
   m_Events:
     m_Signals:
     - {fileID: 11400000, guid: e49cb9b1fc43ec5418f635e9b77edce7, type: 2}
-    - {fileID: 11400000, guid: 7593856f42b20cf48beda250db2e2704, type: 2}
     - {fileID: 11400000, guid: 6dd4207e00ae0f940a15339bb405e45e, type: 2}
     - {fileID: 11400000, guid: 8ed2fcd737190834896a3c121eefc96a, type: 2}
     - {fileID: 11400000, guid: 657f9b8506ad7c441899de957a51c57c, type: 2}
     - {fileID: 11400000, guid: e435c1cfce5249042800bc6dd68096ef, type: 2}
-    - {fileID: 11400000, guid: 867f88188bae8614392718287748683a, type: 2}
     m_Events:
     - m_PersistentCalls:
         m_Calls:
@@ -14251,21 +14251,6 @@ MonoBehaviour:
             m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
             m_IntArgument: 0
             m_FloatArgument: 0.5
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-    - m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 325545207}
-          m_TargetAssemblyTypeName: RoomAmbianceController, Assembly-CSharp
-          m_MethodName: TransitionVolume
-          m_Mode: 2
-          m_Arguments:
-            m_ObjectArgument: {fileID: 11400000, guid: de15eaa4853062b43944eabdef48ec33, type: 2}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Rendering.VolumeProfile,
-              Unity.RenderPipelines.Core.Runtime
-            m_IntArgument: 0
-            m_FloatArgument: 0
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
@@ -14325,20 +14310,18 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
-    - m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 660007376}
-          m_TargetAssemblyTypeName: FloorVisualScriptingUtils, Assembly-CSharp
-          m_MethodName: StartDialogSequence
-          m_Mode: 2
-          m_Arguments:
-            m_ObjectArgument: {fileID: 11400000, guid: 9a2a370b40446914cad015ee47105ac0, type: 2}
-            m_ObjectArgumentAssemblyTypeName: NpcDialogsSettings, Assembly-CSharp
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
+--- !u!114 &1511401543
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1511401539}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5cf6ab9fad7337048ae8ba259b4391d3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1515979097
 GameObject:
   m_ObjectHideFlags: 0

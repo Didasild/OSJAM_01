@@ -45,7 +45,7 @@ public class FloorManager : MonoBehaviour
     [Header("DEBUG")] public TMP_Text roomPositionDebugText;
     public TMP_Text roomNameDebugText;
     
-    public FloorVisualScriptingUtils floorVisualScriptingUtils;
+    [FormerlySerializedAs("eventsUtils")] [FormerlySerializedAs("floorVisualScriptingUtils")] public EventsController eventsController;
     private RoomSettings[] _roomSettingsList;
     private bool initialized = false;
     private VisualManager _visualManager;
@@ -69,8 +69,8 @@ public class FloorManager : MonoBehaviour
         floorObjectivesController.Init(this);
         initialized = true;
 
-        floorVisualScriptingUtils = GetComponent<FloorVisualScriptingUtils>();
-        floorVisualScriptingUtils.Init(this, GameManager.Instance.Player.Health);
+        eventsController = GetComponent<EventsController>();
+        eventsController.Init(this, GameManager.Instance.Player.Health);
     }
     #endregion
 

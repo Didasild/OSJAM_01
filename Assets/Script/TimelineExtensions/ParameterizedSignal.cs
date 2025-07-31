@@ -1,0 +1,26 @@
+using UnityEngine;
+using UnityEngine.Playables;
+using UnityEngine.Rendering;
+using UnityEngine.Timeline;
+
+[System.Serializable]
+public class StartDialogSignal : Marker, INotification
+{
+    public PropertyName id => new PropertyName();
+    public NpcDialogsSettings dialogSettings;
+}
+
+[System.Serializable]
+public class RoomAmbianceTransition : Marker, INotification
+{
+    public PropertyName id => new PropertyName();
+    public VolumeProfile newVolumeProfile;
+}
+
+[System.Serializable]
+public class ShakeCamera : Marker, INotification
+{
+    public PropertyName id => new PropertyName();
+    public float shakeDuration = 0.5f;
+    public ShakeType shakeType;
+}
