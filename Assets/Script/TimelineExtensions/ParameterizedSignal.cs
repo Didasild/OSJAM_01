@@ -24,3 +24,12 @@ public class ShakeCamera : Marker, INotification
     public float shakeDuration = 0.5f;
     public ShakeType shakeType;
 }
+
+[System.Serializable]
+public class DestroyCells : Marker, INotification
+{
+    public PropertyName id => new PropertyName();
+    public int numberOfCellsToDelete = 5;
+    public CellState cellState = CellState.Reveal;
+    public CellType cellType = CellType.Empty;
+}

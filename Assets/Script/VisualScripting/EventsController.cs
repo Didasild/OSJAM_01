@@ -39,7 +39,7 @@ public class EventsController : MonoBehaviour
         return roomData.GetNpcFromDialogSettings(npcDialogsSettings);
     }
 
-    public void PlayRTC(TimelineAsset timelineAsset)
+    public void PlayRtc(TimelineAsset timelineAsset)
     {
         _playableDirector.playableAsset = timelineAsset;
         _playableDirector.Play();
@@ -80,9 +80,9 @@ public class EventsController : MonoBehaviour
         }
     }
     
-    public void ChangeListOfCellType(int cellNumber, CellType cellType)
+    public void DestroyNbOfCellType(int cellNumber, CellType cellType, CellState cellState)
     {
-        
+        _gameManager.GridManager.DestroyNbOfCellType(cellNumber, cellType, cellState);
     }
     #endregion RTC SIGNALS FUNCTIONS
     

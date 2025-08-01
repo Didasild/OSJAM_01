@@ -7989,8 +7989,6 @@ MonoBehaviour:
   cellProceduralList: []
   isGeneratingRoom: 0
   theoricalMineLeftText: {fileID: 2143294031}
-  numberOfMineLeft: 0
-  theoricalMineLeft: 0
 --- !u!114 &712061425
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15261,7 +15259,7 @@ MonoBehaviour:
   priority: 1
   blendDistance: 0
   weight: 1
-  sharedProfile: {fileID: 11400000, guid: d252c52afd5c5ff47984d4f563ce4ade, type: 2}
+  sharedProfile: {fileID: 11400000, guid: de15eaa4853062b43944eabdef48ec33, type: 2}
 --- !u!95 &1687622999
 Animator:
   serializedVersion: 7

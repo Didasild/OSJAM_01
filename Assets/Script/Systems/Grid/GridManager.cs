@@ -4,6 +4,7 @@ using TMPro;
 using Unity.Collections;
 using Unity.VisualScripting;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class GridManager : MonoBehaviour
 {
@@ -440,6 +441,35 @@ public class GridManager : MonoBehaviour
             firstClickProcedural = true;
         }
         return firstClickProcedural;
+    }
+    
+    public void DestroyNbOfCellType(int cellNumber, CellType cellType, CellState cellState)
+    {
+        List<Cell> selectedCells = _gridInfos.GetCellsByState(cellState);
+        List<Cell> sortedCells = new List<Cell>();
+        foreach (Cell selectedCell in selectedCells)
+        {
+            if (selectedCell.currentType == cellType)
+            {
+                sortedCells.Add(selectedCell);
+            }
+        }
+        
+        int numberToRemove = Mathf.Min(cellNumber, sortedCells.Count);
+        
+        List<Cell> cellsToRemove = new List<Cell>();
+        while (cellsToRemove.Count < numberToRemove)
+        {
+            int index = Random.Range(0, sortedCells.Count);
+            cellsToRemove.Add(sortedCells[index]);
+            sortedCells.RemoveAt(index); // Pour éviter les doublons
+        }
+        
+        foreach (Cell cell in cellsToRemove)
+        {
+            cellList.Remove(cell);
+            Destroy(cell.gameObject);
+        }
     }
     #endregion GRID MODIF METHODS
     

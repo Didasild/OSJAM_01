@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.Playables;
+using UnityEngine.Timeline;
 
 public class RtcCustomSignalReceiver : MonoBehaviour, INotificationReceiver
 {
@@ -25,6 +26,13 @@ public class RtcCustomSignalReceiver : MonoBehaviour, INotificationReceiver
             
             case ShakeCamera shakeCamera:
                 _events.ShakeCamera(shakeCamera.shakeDuration, shakeCamera.shakeType );
+                break;
+            
+            case DestroyCells deleteCells:
+                _events.DestroyNbOfCellType(deleteCells.numberOfCellsToDelete, deleteCells.cellType, deleteCells.cellState);
+                break;
+            
+            case SignalEmitter:
                 break;
             
             default:
