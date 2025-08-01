@@ -7523,7 +7523,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _rtcReceiver: {fileID: 1511401543}
-  playableDirector: {fileID: 1511401540}
+  _playableDirector: {fileID: 1511401540}
 --- !u!1 &666004282
 GameObject:
   m_ObjectHideFlags: 0
@@ -14151,7 +14151,7 @@ GameObject:
   - component: {fileID: 1511401542}
   - component: {fileID: 1511401543}
   m_Layer: 0
-  m_Name: REAL
+  m_Name: RTC
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -14166,7 +14166,7 @@ PlayableDirector:
   m_GameObject: {fileID: 1511401539}
   m_Enabled: 1
   serializedVersion: 3
-  m_PlayableAsset: {fileID: 11400000, guid: a1e5e859fd68bfa4fa1cd9bba1fa938a, type: 2}
+  m_PlayableAsset: {fileID: 11400000, guid: 19585470e74c4bf4a9c2651d95a0771d, type: 2}
   m_InitialState: 0
   m_WrapMode: 2
   m_DirectorUpdateMode: 1

@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.Playables;
 using UnityEngine.Rendering;
+using UnityEngine.Serialization;
 using UnityEngine.Timeline;
 
 public class EventsController : MonoBehaviour
@@ -10,8 +11,9 @@ public class EventsController : MonoBehaviour
     private Health _health;
     private Dialog _dialog;
     
+    [Header("RTC COMPONENTS")]
     [SerializeField] private RtcCustomSignalReceiver _rtcReceiver;
-    [SerializeField] private PlayableDirector playableDirector;
+    [SerializeField] private PlayableDirector _playableDirector;
 
     public void Init(FloorManager floorManager, Health health)
     {
@@ -39,8 +41,8 @@ public class EventsController : MonoBehaviour
 
     public void PlayRTC(TimelineAsset timelineAsset)
     {
-        playableDirector.playableAsset = timelineAsset;
-        playableDirector.Play();
+        _playableDirector.playableAsset = timelineAsset;
+        _playableDirector.Play();
     }
 
     public void GoToNextFloor()

@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using TMPro;
 using Unity.Collections;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class GridManager : MonoBehaviour
@@ -20,13 +21,11 @@ public class GridManager : MonoBehaviour
 
     [Header("MINE LEFT")]
     public TMP_Text theoricalMineLeftText;
-    [ReadOnly]
-    public int numberOfMineLeft;
-    [ReadOnly]
-    public int theoricalMineLeft;
     
     private RoomCompletion _roomCompletion;
-
+    private GridInfos _gridInfos;
+    
+    public GridInfos GridInfos => _gridInfos;
     public RoomCompletion RoomCompletion => _roomCompletion;
     #endregion PARAMETERS
 
@@ -34,6 +33,8 @@ public class GridManager : MonoBehaviour
     {
         _roomCompletion = new RoomCompletion();
         _roomCompletion.Init(this);
+        _gridInfos = new GridInfos();
+        _gridInfos.Init(this);
     }
     
     #region PROCEDURAL GRID GENERATION
@@ -133,19 +134,19 @@ public class GridManager : MonoBehaviour
     public void SetItemsType(CellType cellType, int numberOfItem, List<Cell> cellList, ItemTypeEnum itemType = ItemTypeEnum.None)
     {
         // Crée la liste des cellules vides + hint
-        List<Cell> emptyCellsList = GetCoverCellsByType(CellType.Empty, cellList);
+        List<Cell> emptyCellsList = _gridInfos.GetCoverCellsByType(CellType.Empty, cellList);
         if (cellType != CellType.Gate)
         {
-            emptyCellsList.AddRange(GetCoverCellsByType(CellType.Hint, cellList));
+            emptyCellsList.AddRange(_gridInfos.GetCoverCellsByType(CellType.Hint, cellList));
         }
 
         // Si aucune cellule dans la liste des "cover cells", utiliser la liste générale
         if (emptyCellsList.Count == 0)
         {
-            emptyCellsList = GetCellsByType(CellType.Empty);
+            emptyCellsList = _gridInfos.GetCellsByType(CellType.Empty);
             if (cellType != CellType.Gate)
             {
-                emptyCellsList.AddRange(GetCellsByType(CellType.Hint));
+                emptyCellsList.AddRange(_gridInfos.GetCellsByType(CellType.Hint));
             }
         }
 
@@ -196,7 +197,7 @@ public class GridManager : MonoBehaviour
     public void SetNoneState()
     {
         List<Cell> cellsNone = new List<Cell>(cellList);
-        cellsNone = GetCellsByType(CellType.None);
+        cellsNone = _gridInfos.GetCellsByType(CellType.None);
         foreach (Cell cell in cellsNone)
         {
             cell.currentState = CellState.Reveal;
@@ -292,7 +293,7 @@ public class GridManager : MonoBehaviour
         {
             cell.GenerateNeighborsList(this);
         }
-        cellMineList = GetCellsByType(CellType.Mine);
+        cellMineList = _gridInfos.GetCellsByType(CellType.Mine);
         SetCellsVisuals();
         GameManager.VisualManager.ActiveListOfCells(timeBetweenApparition, GameManager.Instance.FloorManager.currentRoom.currentRoomState);
     }
@@ -428,84 +429,11 @@ public class GridManager : MonoBehaviour
     }
     #endregion COMMON GENERATION FONCTIONS
     
-    #region GET GRID INFORMATIONS
-    public List<Cell> GetCellsByType(CellType typeOfCellWanted)
-    {
-        List<Cell> emptyCells = new List<Cell>();
-        foreach (Cell cell in cellList)
-        {
-            if (cell.currentType == typeOfCellWanted)
-            {
-                emptyCells.Add(cell);
-            }
-        }
-        return emptyCells;
-    }
-    public List<Cell> GetCellsByState(CellState stateOfCellWanted)
-    {
-        List<Cell> emptyCells = new List<Cell>();
-        foreach (Cell cell in cellList)
-        {
-            if (cell.currentState == stateOfCellWanted)
-            {
-                emptyCells.Add(cell);
-            }
-        }
-        return emptyCells;
-    }
-    private List<Cell> GetCoverCellsByType(CellType typeOfCellWanted, List<Cell> cellList)
-    {
-        List<Cell> emptyCoverCells = new List<Cell>();
-        foreach (Cell cell in cellList)
-        {
-            if (cell.currentType == typeOfCellWanted && cell.currentState == CellState.Cover)
-            {
-                emptyCoverCells.Add(cell);
-            }
-        }
-        return emptyCoverCells;
-    }
-
-    private int GetTheoricalMineLeft()
-    {
-        int nbRealOfMine = GetCellsByType(CellType.Mine).Count;
-        int nbOfFlagged = GetCellsByState(CellState.Flag).Count;
-        numberOfMineLeft = nbRealOfMine - nbOfFlagged;
-        return numberOfMineLeft;
-    }
-    public List<Cell> GetNeighbors(Vector2Int cellPosition)
-    {
-        List<Cell> neighbors = new List<Cell>();
-
-        // D�finir les offsets pour les 8 directions autour d'une cellule
-        int[,] directions = new int[,]
-        {
-            { -1, -1 }, { -1, 0 }, { -1, 1 }, // Haut-gauche, Haut, Haut-droite
-            {  0, -1 },            {  0, 1 }, // Gauche, Droite
-            {  1, -1 }, {  1, 0 }, {  1, 1 }  // Bas-gauche, Bas, Bas-droite
-        };
-
-        for (int i = 0; i < directions.GetLength(0); i++)
-        {
-            int newRow = cellPosition.x + directions[i, 0];
-            int newCol = cellPosition.y + directions[i, 1];
-            Vector2Int neighborPosition = new Vector2Int(newRow, newCol);
-
-            //Recherche dans la liste
-            Cell neighbor = cellList.Find(cell => cell._cellPosition == neighborPosition);
-
-            if (neighbor != null)
-            {
-                neighbors.Add(neighbor); // Ajoute le voisin � la liste
-            }
-        }
-        return neighbors;
-    }
-
+    #region GRID MODIF METHODS
     public bool CheckFirstClickOnProcedural()
     {
         bool firstClickProcedural = false;
-        int nbOfCellsCover = cellList.Count - GetCellsByState(CellState.Reveal).Count;
+        int nbOfCellsCover = cellList.Count - _gridInfos.GetCellsByState(CellState.Reveal).Count;
         int nbOfCells = cellList.Count;
         if (nbOfCells == nbOfCellsCover && GameManager.Instance.currentRoomSettings.proceduralRoom)
         {
@@ -513,13 +441,13 @@ public class GridManager : MonoBehaviour
         }
         return firstClickProcedural;
     }
-    #endregion GET GRID INFORMATIONS
+    #endregion GRID MODIF METHODS
     
     #region MINE COUNTER // A DÉPLACER DANS PLAYER OU AUTRE PLUS PERTINENT
     public void UpdateMineCounter()
     {
-        theoricalMineLeft = GetTheoricalMineLeft();
-        theoricalMineLeftText.text = theoricalMineLeft.ToString();
+        _gridInfos.theoricalMineLeft = _gridInfos.GetTheoricalMineLeft();
+        theoricalMineLeftText.text = _gridInfos.theoricalMineLeft.ToString();
     }
     #endregion
 }

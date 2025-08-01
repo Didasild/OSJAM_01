@@ -270,7 +270,7 @@ public class VisualManager : MonoBehaviour
         // Grouper les cellules par distance diagonale
         Dictionary<int, List<Cell>> diagonalGroups = new Dictionary<int, List<Cell>>();
 
-        List<Cell> inactiveCells = new List<Cell>(_gridManager.GetCellsByState(CellState.Inactive));
+        List<Cell> inactiveCells = new List<Cell>(_gridManager.GridInfos.GetCellsByState(CellState.Inactive));
         List<Cell> activeCells = new List<Cell>(_gridManager.cellList);
         activeCells.RemoveAll(cell => inactiveCells.Contains(cell));
         

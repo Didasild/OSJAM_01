@@ -567,7 +567,7 @@ public class Cell : MonoBehaviour
     #region NEIGHBORS MANAGEMENT
     public void GenerateNeighborsList(GridManager gridManager)
     {
-        neighborsCellList = gridManager.GetNeighbors(_cellPosition);
+        neighborsCellList = gridManager.GridInfos.GetNeighbors(_cellPosition);
     }
 
     public void ChangeNeighborStates()

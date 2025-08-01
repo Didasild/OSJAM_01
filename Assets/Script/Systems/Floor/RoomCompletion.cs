@@ -78,7 +78,7 @@ public class RoomCompletion
     #region CONDITIONDS
     private bool NoActiveNpcCondition()
     {
-        npcList = _gridManager.GetCellsByType(CellType.Npc);
+        npcList = _gridManager.GridInfos.GetCellsByType(CellType.Npc);
         foreach (Cell cell in npcList)
         {
             if (cell == null || cell.npc == null)
@@ -95,11 +95,11 @@ public class RoomCompletion
 
     private bool FlaggedAllMineCondition()
     {
-        if (_gridManager.GetCellsByState(CellState.Flag).Count != _gridManager.GetCellsByType(CellType.Mine).Count || _gridManager.GetCellsByState(CellState.Cover).Count != 0)
+        if (_gridManager.GridInfos.GetCellsByState(CellState.Flag).Count != _gridManager.GridInfos.GetCellsByType(CellType.Mine).Count || _gridManager.GridInfos.GetCellsByState(CellState.Cover).Count != 0)
         {
             return false;
         }
-        foreach (Cell mineCell in _gridManager.GetCellsByType(CellType.Mine))
+        foreach (Cell mineCell in _gridManager.GridInfos.GetCellsByType(CellType.Mine))
         {
             if (mineCell.currentState != CellState.Flag)
             {
