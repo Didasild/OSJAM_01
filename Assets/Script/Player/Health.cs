@@ -106,6 +106,7 @@ public class Health : MonoBehaviour
 
     private void DeathSequence()
     {
+        GameManager.Instance.FloorManager.eventsController.StopRtc();
         _visualManager.fullScreenFeedbackController.LowLifeFeedback(false);
         _visualManager.shakeCamController.MidShakeCamera(0.8f);
         DOVirtual.DelayedCall(0.5f, () =>

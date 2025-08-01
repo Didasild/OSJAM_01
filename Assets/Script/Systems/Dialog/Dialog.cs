@@ -4,6 +4,7 @@ using Febucci.UI;
 using Script.Scriptable.NPC;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.Serialization;
 
 public class Dialog : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerClickHandler
 {
@@ -13,7 +14,7 @@ public class Dialog : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, 
     private RoomSettings _currentRoomSettings;
     private List<string> _currentDialogSequence;
     private int currentSequenceIndex;
-    private bool _dialogStarted;
+    [HideInInspector] public bool dialogStarted;
     private NPC _currentNPC;
     public TextAnimatorPlayer _textAnimatorPlayer;
     
@@ -36,11 +37,11 @@ public class Dialog : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, 
     #region NPC METHODS
     public void StartNpcDialogSequence(NPC npc)
     {
-        if (_dialogStarted)
+        if (dialogStarted)
         {
             return;
         }
-        _dialogStarted = true;
+        dialogStarted = true;
         _currentNPC = npc;
         
         _dialogVisual.ClearDialogBox();
@@ -56,7 +57,7 @@ public class Dialog : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, 
 
     public void StartEventDialogSequence(NpcDialogsSettings eventDialogsSettings)
     {
-        _dialogStarted = true;
+        dialogStarted = true;
         
         _dialogVisual.ClearDialogBox();
         
@@ -72,7 +73,7 @@ public class Dialog : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, 
     private void DisplayNpcDialogSequence(NPC npc)
     {
         NpcDialogsSettings npcDialogsSettings = npc.NpcDialogsSettings;
-        _currentDialogSequence = npc.currentDialogSequence;
+        _currentDialogSequence = npc.NpcDialogsSettings.GetDialogSequence(npc._currentNpcState);
         DisplayDialogSequenceInternal(npcDialogsSettings);
     }
     
@@ -94,7 +95,7 @@ public class Dialog : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, 
         }
         else
         {
-            _dialogStarted = false;
+            dialogStarted = false;
             Debug.LogError("No sentences in the DialogPool: " + _currentDialogSequence);
         }
     }
@@ -123,7 +124,7 @@ public class Dialog : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, 
 
     private void EndDialog()
     {
-        _dialogStarted = false;
+        dialogStarted = false;
         currentSequenceIndex = 0;
         
         //A DEVELOPPER QUAND NECESSAIRE ET PLACE AILLEURS POTENTIELLEMENT
@@ -139,7 +140,7 @@ public class Dialog : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, 
     #region POINTER
     public void OnPointerEnter(PointerEventData eventData)
     {
-        if (_dialogStarted)
+        if (dialogStarted)
         {
             TooltipController.ShowTooltip("NEXT.");
         }
@@ -156,7 +157,7 @@ public class Dialog : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, 
         {
             _textAnimatorPlayer.SkipTypewriter();
         }
-        else if (_dialogStarted)
+        else if (dialogStarted)
         {
             GoToNextSentence();
         }

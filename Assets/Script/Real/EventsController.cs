@@ -47,6 +47,17 @@ public class EventsController : MonoBehaviour
         _playableDirector.Play();
     }
 
+    public void StopRtc()
+    {
+        _playableDirector.Stop();
+    }
+
+    public void SkipRtc()
+    {
+        _playableDirector.time = _playableDirector.duration;
+        _playableDirector.Evaluate();
+    }
+
     public void GoToNextFloor()
     {
         _gameManager.GoToNextFloor();

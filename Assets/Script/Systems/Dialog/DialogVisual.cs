@@ -55,6 +55,7 @@ public class DialogVisual : MonoBehaviour
 
     public void DialogDisparition()
     {
+        _dialog.dialogStarted = false;
         if (_isClose)
         {
             return;

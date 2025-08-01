@@ -3742,7 +3742,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 705795834}
   m_Direction: 0
   m_Value: 1
-  m_Size: 0.4296875
+  m_Size: 0.21484375
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -4964,6 +4964,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _dialogVisual: {fileID: 494901399}
+  dialogStarted: 0
   _textAnimatorPlayer: {fileID: 503166842}
 --- !u!114 &494901399
 MonoBehaviour:
@@ -7402,7 +7403,7 @@ MonoBehaviour:
   buttonDown: {fileID: 1268749828}
   roomPositionDebugText: {fileID: 1167248910}
   roomNameDebugText: {fileID: 337247838}
-  eventsController: {fileID: 0}
+  eventsController: {fileID: 660007376}
   introPlayed: 0
 --- !u!114 &660007370
 MonoBehaviour:
@@ -9303,7 +9304,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 185661100}
   m_Direction: 2
   m_Value: 0
-  m_Size: 0.1796875
+  m_Size: 0.08984375
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:

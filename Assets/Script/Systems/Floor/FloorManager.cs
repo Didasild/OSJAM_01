@@ -45,11 +45,11 @@ public class FloorManager : MonoBehaviour
     [Header("DEBUG")] public TMP_Text roomPositionDebugText;
     public TMP_Text roomNameDebugText;
     
-    [FormerlySerializedAs("eventsUtils")] [FormerlySerializedAs("floorVisualScriptingUtils")] public EventsController eventsController;
+    public EventsController eventsController;
     private RoomSettings[] _roomSettingsList;
     private bool initialized = false;
     private VisualManager _visualManager;
-    [FormerlySerializedAs("_introPlayed")] [HideInInspector] public bool introPlayed = false;
+    [HideInInspector] public bool introPlayed = false;
     #endregion
 
     public void Update()
@@ -320,7 +320,9 @@ public class FloorManager : MonoBehaviour
     public void ChangeRoomIn()
     {
         SaveRoomData();
+        
         GameManager.Instance.Dialog.DialogVisual.DialogDisparition();
+        
         _visualManager.minimapVisual.ActiveSelectedVisual(currentRoom, false);
         DisableButtons();
     }

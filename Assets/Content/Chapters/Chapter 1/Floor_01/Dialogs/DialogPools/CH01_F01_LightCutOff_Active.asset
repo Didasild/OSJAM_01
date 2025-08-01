@@ -15,7 +15,8 @@ MonoBehaviour:
   totalWeight: 0
   dialogPool:
   - sentences:
-    - "ALRIGHT\u2026 <font-weight=\"800\">THAT WAS ANOTHER COLLISION.</font-weight>"
+    - "ALRIGHT\u2026 <font-weight=\"800\">THE SHIP JUST HIT SOMETHING.</font-weight>
+      AGAIN."
     - YOU MAY HAVE TO PROGRESS IN THE<font-weight="800"> DARK.</font-weight>
     - LUCKILY, FEAR IS A <font-weight="800">GREAT MOTIVATOR.</font-weight>
     weight: 0
