@@ -26,6 +26,8 @@ MonoBehaviour:
     - {fileID: 8036009095685363930}
     - {fileID: -2863797611738724051}
     - {fileID: 7475191751430841602}
+    - {fileID: -96207674016031253}
+    - {fileID: -2795697455071610077}
 --- !u!114 &-6115962946188519771
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -199,6 +201,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::RoomAmbianceTransition
   m_Time: 1.1166666666666667
   newVolumeProfile: {fileID: 11400000, guid: de15eaa4853062b43944eabdef48ec33, type: 2}
+--- !u!114 &-2795697455071610077
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 0}
+  m_Name: Loose Hp
+  m_EditorClassIdentifier: Assembly-CSharp::LooseHp
+  m_Time: 0.4666666666666667
+  hpLoose: 1
 --- !u!74 &-854730699120195011
 AnimationClip:
   m_ObjectHideFlags: 0
@@ -427,6 +443,22 @@ AnimationClip:
   m_HasGenericRootTransform: 0
   m_HasMotionFloatCurves: 0
   m_Events: []
+--- !u!114 &-96207674016031253
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 0}
+  m_Name: Destroy Cells
+  m_EditorClassIdentifier: Assembly-CSharp::DestroyCells
+  m_Time: 0.45
+  numberOfCellsToDelete: 5
+  cellState: 1
+  cellType: 0
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0

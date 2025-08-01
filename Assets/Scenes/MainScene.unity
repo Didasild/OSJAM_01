@@ -8250,6 +8250,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 990536508}
   - {fileID: 470653526}
   m_Father: {fileID: 936060483}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -8265,9 +8266,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e96b5888e060c4d44be7862df7c99ac6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fullScreenObject: {fileID: 390752922}
-  fullScreenUIObject: {fileID: 515027798}
-  deathFeedbackVolume: {fileID: 470653527}
+  _fullScreenObject: {fileID: 390752922}
+  _fullScreenUIObject: {fileID: 515027798}
+  _fullScreenGlitchVolume: {fileID: 990536510}
+  _deathFeedbackVolume: {fileID: 470653527}
 --- !u!1 &784323922
 GameObject:
   m_ObjectHideFlags: 0
@@ -10570,6 +10572,78 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 946316663}
   m_CullTransparentMesh: 1
+--- !u!1 &990536507
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 990536508}
+  - component: {fileID: 990536510}
+  - component: {fileID: 990536509}
+  m_Layer: 0
+  m_Name: PPP_Glitch
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &990536508
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 990536507}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -0.92983556, y: 1.5238163, z: -0.019412179}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 749521841}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!95 &990536509
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 990536507}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 0}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &990536510
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 990536507}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 172515602e62fb746b5d573b38a5fe58, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_IsGlobal: 1
+  priority: 20
+  blendDistance: 0
+  weight: 0
+  sharedProfile: {fileID: 11400000, guid: bbead3ee12909db4b99964a0b91589a7, type: 2}
 --- !u!1001 &1002148769
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -14164,7 +14238,7 @@ PlayableDirector:
   m_GameObject: {fileID: 1511401539}
   m_Enabled: 1
   serializedVersion: 3
-  m_PlayableAsset: {fileID: 11400000, guid: 19585470e74c4bf4a9c2651d95a0771d, type: 2}
+  m_PlayableAsset: {fileID: 11400000, guid: a1e5e859fd68bfa4fa1cd9bba1fa938a, type: 2}
   m_InitialState: 0
   m_WrapMode: 2
   m_DirectorUpdateMode: 1
@@ -15259,7 +15333,7 @@ MonoBehaviour:
   priority: 1
   blendDistance: 0
   weight: 1
-  sharedProfile: {fileID: 11400000, guid: de15eaa4853062b43944eabdef48ec33, type: 2}
+  sharedProfile: {fileID: 11400000, guid: d252c52afd5c5ff47984d4f563ce4ade, type: 2}
 --- !u!95 &1687622999
 Animator:
   serializedVersion: 7
@@ -19303,6 +19377,10 @@ PrefabInstance:
       propertyPath: healthBar
       value: 
       objectReference: {fileID: 866270814}
+    - target: {fileID: 6725237203591593263, guid: 31c80b8bee880194bb404e2a7b74ae7c, type: 3}
+      propertyPath: _baseHealth
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 7437712420536979218, guid: 31c80b8bee880194bb404e2a7b74ae7c, type: 3}
       propertyPath: manaPointText
       value: 

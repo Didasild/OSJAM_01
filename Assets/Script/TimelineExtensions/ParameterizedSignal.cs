@@ -33,3 +33,16 @@ public class DestroyCells : Marker, INotification
     public CellState cellState = CellState.Reveal;
     public CellType cellType = CellType.Empty;
 }
+
+[System.Serializable]
+public class HitFeedback : Marker, INotification
+{
+    public PropertyName id => new PropertyName();
+}
+
+[System.Serializable]
+public class LooseHp : Marker, INotification
+{
+    public PropertyName id => new PropertyName();
+    public int hpLoose = 1;
+}

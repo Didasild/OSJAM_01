@@ -65,7 +65,7 @@ public class Health : MonoBehaviour
     public void IncreaseMaxHealth(int newPoints)
     {
         maxHealthPoints += newPoints;
-        _currentHealth += newPoints;
+        IncreaseHealth(newPoints);
         UpdateHealthPointVisual(_currentHealth);
         UpdateMaxHealthVisual(maxHealthPoints);
     }

@@ -7,6 +7,7 @@ using UnityEngine.Timeline;
 public class EventsController : MonoBehaviour
 {
     private GameManager _gameManager;
+    private VisualManager _visualManager;
     private FloorManager _floorManager;
     private Health _health;
     private Dialog _dialog;
@@ -18,6 +19,7 @@ public class EventsController : MonoBehaviour
     public void Init(FloorManager floorManager, Health health)
     {
         _gameManager = GameManager.Instance;
+        _visualManager = GameManager.VisualManager;
         _floorManager = floorManager;
         _dialog = GameManager.Instance.Dialog;
         _health = health;
@@ -56,9 +58,14 @@ public class EventsController : MonoBehaviour
         _dialog.StartEventDialogSequence(npcDialogsSettings);
     }
 
+    public void LooseHp(int hpLoose)
+    {
+        _health.DecreaseHealth(hpLoose);
+    }
+
     public void TransitionVolume(VolumeProfile newVolumeProfile)
     {
-        GameManager.VisualManager.roomAmbianceController.TransitionVolume(newVolumeProfile);
+        _visualManager.roomAmbianceController.TransitionVolume(newVolumeProfile);
     }
 
     public void ShakeCamera(float duration, ShakeType shakeType = ShakeType.little)
@@ -66,18 +73,23 @@ public class EventsController : MonoBehaviour
         switch (shakeType)
         {
             case ShakeType.little:
-                GameManager.VisualManager.shakeCamController.LittleShakeCamera(duration);
+                _visualManager.shakeCamController.LittleShakeCamera(duration);
                 break;
             case ShakeType.medium:
-                GameManager.VisualManager.shakeCamController.MidShakeCamera(duration);
+                _visualManager.shakeCamController.MidShakeCamera(duration);
                 break;
             case ShakeType.big:
-                GameManager.VisualManager.shakeCamController.BigShakeCamera(duration);
+                _visualManager.shakeCamController.BigShakeCamera(duration);
                 break;
             default:
                 Debug.LogWarning($"Unhandled shake type: {shakeType}");
                 break;
         }
+    }
+
+    public void HitFeedback()
+    {
+        _visualManager.fullScreenFeedbackController.HitFeedback();
     }
     
     public void DestroyNbOfCellType(int cellNumber, CellType cellType, CellState cellState)

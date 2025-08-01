@@ -14,7 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   components:
   - {fileID: 106725441321269248}
-  - {fileID: 6183458379739306226}
 --- !u!114 &106725441321269248
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -74,28 +73,12 @@ MonoBehaviour:
   Color6:
     m_OverrideState: 0
     m_Value: {r: 0, g: 0, b: 0, a: 1}
+  UseVariantTextIndex:
+    m_OverrideState: 0
+    m_Value: 0
   ExterColor:
     m_OverrideState: 0
     m_Value: {r: 0, g: 0, b: 0, a: 1}
---- !u!114 &6183458379739306226
-MonoBehaviour:
-  m_ObjectHideFlags: 3
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 82efc21f1ea5dcf4d820501583c86e78, type: 3}
-  m_Name: GridAmbianceSettings
-  m_EditorClassIdentifier: 
-  active: 1
-  GridDistortion:
-    m_OverrideState: 0
-    m_Value: 0
-  GridGlitch:
-    m_OverrideState: 0
-    m_Value: 0
 --- !u!114 &8666805865643500176
 MonoBehaviour:
   m_ObjectHideFlags: 3

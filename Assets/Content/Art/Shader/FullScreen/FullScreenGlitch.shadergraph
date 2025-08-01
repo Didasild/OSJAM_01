@@ -112,7 +112,11 @@
             "m_Id": "78e0620b460a4e368c880e205c7cc38b"
         }
     ],
-    "m_GroupDatas": [],
+    "m_GroupDatas": [
+        {
+            "m_Id": "a8d349f29a40460aaa9e757105e51d85"
+        }
+    ],
     "m_StickyNoteDatas": [],
     "m_Edges": [
         {
@@ -764,16 +768,16 @@
     "m_Type": "UnityEditor.ShaderGraph.ScreenPositionNode",
     "m_ObjectId": "0cd63889fba849769c51fa67564c9c5a",
     "m_Group": {
-        "m_Id": ""
+        "m_Id": "a8d349f29a40460aaa9e757105e51d85"
     },
     "m_Name": "Screen Position",
     "m_DrawState": {
         "m_Expanded": true,
         "m_Position": {
             "serializedVersion": "2",
-            "x": -1082.0001220703125,
-            "y": -877.0000610351563,
-            "width": 145.0,
+            "x": -1090.0001220703125,
+            "y": -728.0,
+            "width": 145.00006103515626,
             "height": 129.00006103515626
         }
     },
@@ -1163,7 +1167,7 @@
     "m_Type": "UnityEditor.ShaderGraph.SplitNode",
     "m_ObjectId": "349b41d8cd0d4cb5b1f90c36ae4033fb",
     "m_Group": {
-        "m_Id": ""
+        "m_Id": "a8d349f29a40460aaa9e757105e51d85"
     },
     "m_Name": "Split",
     "m_DrawState": {
@@ -1415,7 +1419,7 @@
     "m_Type": "UnityEditor.ShaderGraph.Vector1MaterialSlot",
     "m_ObjectId": "3fdf032b779a43c58bc4bb2eafe83a48",
     "m_Id": 0,
-    "m_DisplayName": "GlitchFrequence",
+    "m_DisplayName": "GlitchIntensity",
     "m_SlotType": 1,
     "m_Hidden": false,
     "m_ShaderOutputName": "Out",
@@ -1512,7 +1516,7 @@
     "m_Type": "UnityEditor.ShaderGraph.AddNode",
     "m_ObjectId": "4267dbff0a30417181549e678213e183",
     "m_Group": {
-        "m_Id": ""
+        "m_Id": "a8d349f29a40460aaa9e757105e51d85"
     },
     "m_Name": "Add",
     "m_DrawState": {
@@ -1706,7 +1710,7 @@
     "m_Type": "UnityEditor.Rendering.Universal.UniversalSampleBufferNode",
     "m_ObjectId": "4e17c3a850be4cecb787596248fedeb3",
     "m_Group": {
-        "m_Id": ""
+        "m_Id": "a8d349f29a40460aaa9e757105e51d85"
     },
     "m_Name": "URP Sample Buffer",
     "m_DrawState": {
@@ -1851,10 +1855,10 @@
         "m_Expanded": true,
         "m_Position": {
             "serializedVersion": "2",
-            "x": -29.99996566772461,
-            "y": 14.000016212463379,
-            "width": 207.99996948242188,
-            "height": 326.0
+            "x": 45.00001907348633,
+            "y": 4.000018119812012,
+            "width": 129.9999542236328,
+            "height": 142.00001525878907
         }
     },
     "m_Slots": [
@@ -2109,7 +2113,7 @@
     "m_Type": "UnityEditor.Rendering.Universal.UniversalSampleBufferNode",
     "m_ObjectId": "630e52ea73ed4d2c905d2deb98c5cbe8",
     "m_Group": {
-        "m_Id": ""
+        "m_Id": "a8d349f29a40460aaa9e757105e51d85"
     },
     "m_Name": "URP Sample Buffer",
     "m_DrawState": {
@@ -2243,7 +2247,7 @@
     "m_ShaderOutputName": "A",
     "m_StageCapability": 3,
     "m_Value": {
-        "e00": 3.0,
+        "e00": 1.0,
         "e01": 0.0,
         "e02": 0.0,
         "e03": 0.0,
@@ -2287,20 +2291,20 @@
     "m_Guid": {
         "m_GuidSerialized": "f7635374-499e-4308-a1d9-5480936bb107"
     },
-    "m_Name": "GlitchFrequence",
+    "m_Name": "GlitchIntensity",
     "m_DefaultRefNameVersion": 1,
-    "m_RefNameGeneratedByDisplayName": "GlitchFrequence",
-    "m_DefaultReferenceName": "_GlitchFrequence",
-    "m_OverrideReferenceName": "",
-    "m_GeneratePropertyBlock": true,
+    "m_RefNameGeneratedByDisplayName": "GlitchIntensity",
+    "m_DefaultReferenceName": "_GlitchIntensity",
+    "m_OverrideReferenceName": "_GlitchIntensity",
+    "m_GeneratePropertyBlock": false,
     "m_UseCustomSlotLabel": false,
     "m_CustomSlotLabel": "",
     "m_DismissedVersion": 0,
     "m_Precision": 0,
-    "overrideHLSLDeclaration": false,
-    "hlslDeclarationOverride": 0,
+    "overrideHLSLDeclaration": true,
+    "hlslDeclarationOverride": 1,
     "m_Hidden": false,
-    "m_Value": 0.20000000298023225,
+    "m_Value": 0.0,
     "m_FloatType": 1,
     "m_RangeValues": {
         "x": 0.0,
@@ -3413,6 +3417,17 @@
 
 {
     "m_SGVersion": 0,
+    "m_Type": "UnityEditor.ShaderGraph.GroupData",
+    "m_ObjectId": "a8d349f29a40460aaa9e757105e51d85",
+    "m_Title": "A clean",
+    "m_Position": {
+        "x": -1115.0,
+        "y": -936.0
+    }
+}
+
+{
+    "m_SGVersion": 0,
     "m_Type": "UnityEditor.ShaderGraph.DynamicValueMaterialSlot",
     "m_ObjectId": "aa139fa061704559a7a4bc1f93edbe1c",
     "m_Id": 1,
@@ -3769,7 +3784,7 @@
     "m_Type": "UnityEditor.ShaderGraph.AddNode",
     "m_ObjectId": "bb16171047394dbd919eca387959fb08",
     "m_Group": {
-        "m_Id": ""
+        "m_Id": "a8d349f29a40460aaa9e757105e51d85"
     },
     "m_Name": "Add",
     "m_DrawState": {
@@ -3901,10 +3916,10 @@
         "m_Expanded": true,
         "m_Position": {
             "serializedVersion": "2",
-            "x": -637.0000610351563,
-            "y": 677.0000610351563,
-            "width": 208.00003051757813,
-            "height": 302.0
+            "x": -475.0,
+            "y": 677.0,
+            "width": 130.00003051757813,
+            "height": 118.0
         }
     },
     "m_Slots": [
@@ -3925,7 +3940,7 @@
         "take away"
     ],
     "m_Precision": 0,
-    "m_PreviewExpanded": true,
+    "m_PreviewExpanded": false,
     "m_DismissedVersion": 0,
     "m_PreviewMode": 0,
     "m_CustomColors": {
@@ -4046,17 +4061,17 @@
     "m_Type": "UnityEditor.ShaderGraph.SplitNode",
     "m_ObjectId": "d875a573004042f682e7d49665dfb1d5",
     "m_Group": {
-        "m_Id": ""
+        "m_Id": "a8d349f29a40460aaa9e757105e51d85"
     },
     "m_Name": "Split",
     "m_DrawState": {
         "m_Expanded": true,
         "m_Position": {
             "serializedVersion": "2",
-            "x": -372.0,
-            "y": -524.0,
-            "width": 120.0,
-            "height": 149.0
+            "x": -355.0000305175781,
+            "y": -524.0000610351563,
+            "width": 119.99998474121094,
+            "height": 149.00003051757813
         }
     },
     "m_Slots": [
@@ -4352,7 +4367,7 @@
     "m_Type": "UnityEditor.ShaderGraph.Vector3Node",
     "m_ObjectId": "f42b1558cf594f09b20439c744d2a74d",
     "m_Group": {
-        "m_Id": ""
+        "m_Id": "a8d349f29a40460aaa9e757105e51d85"
     },
     "m_Name": "Vector 3",
     "m_DrawState": {
@@ -4411,10 +4426,10 @@
         "m_Expanded": true,
         "m_Position": {
             "serializedVersion": "2",
-            "x": -414.00006103515627,
-            "y": 677.0000610351563,
-            "width": 208.00006103515626,
-            "height": 278.00006103515627
+            "x": -315.0,
+            "y": 677.0,
+            "width": 130.99998474121095,
+            "height": 94.0
         }
     },
     "m_Slots": [
@@ -4429,7 +4444,7 @@
         "remainder"
     ],
     "m_Precision": 0,
-    "m_PreviewExpanded": true,
+    "m_PreviewExpanded": false,
     "m_DismissedVersion": 0,
     "m_PreviewMode": 0,
     "m_CustomColors": {
@@ -4442,16 +4457,16 @@
     "m_Type": "UnityEditor.ShaderGraph.SplitNode",
     "m_ObjectId": "fdd7aee672374edb962f4052516994e0",
     "m_Group": {
-        "m_Id": ""
+        "m_Id": "a8d349f29a40460aaa9e757105e51d85"
     },
     "m_Name": "Split",
     "m_DrawState": {
         "m_Expanded": true,
         "m_Position": {
             "serializedVersion": "2",
-            "x": -355.0,
+            "x": -355.0000305175781,
             "y": -877.0,
-            "width": 120.0,
+            "width": 119.99998474121094,
             "height": 149.0
         }
     },

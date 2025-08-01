@@ -32,6 +32,14 @@ public class RtcCustomSignalReceiver : MonoBehaviour, INotificationReceiver
                 _events.DestroyNbOfCellType(deleteCells.numberOfCellsToDelete, deleteCells.cellType, deleteCells.cellState);
                 break;
             
+            case HitFeedback hitFeedback:
+                _events.HitFeedback();
+                break;
+            
+            case LooseHp looseHp:
+                _events.LooseHp(looseHp.hpLoose);
+                break;
+            
             case SignalEmitter:
                 break;
             
