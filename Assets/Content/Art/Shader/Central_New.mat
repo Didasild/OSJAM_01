@@ -39,9 +39,8 @@ Material:
     m_Ints: []
     m_Floats:
     - _CentralCell: 2.72
-    - _EdgeSize: 0.086
     - _GlobalAlpha: 1
-    - _RadialLine: 0
+    - _GlowIntensity: 1
     - _ShadowDrop: 1
     - _SineQuantity: 60.63
     - _SquareFill: -0.22

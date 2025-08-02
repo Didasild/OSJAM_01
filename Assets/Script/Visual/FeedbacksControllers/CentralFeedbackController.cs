@@ -48,15 +48,15 @@ public class CentralFeedbackController : MonoBehaviour
         _visualManager.FadeProperty(_mainScreenMaterial, _edgeSize,_baseEdgeSize, 0.5f);
     }
     
-    public void RooUnlockFeedback(bool right, bool left, bool up, bool down)
+    public void RooUnlockFeedback(RoomData currentRoom)
     {
         ResetCentralSquare();
-        _visualManager.FadeProperty(_mainScreenMaterial, _rightBool, right ? 1 : 0, 0);
-        _visualManager.FadeProperty(_mainScreenMaterial, _leftBool, left ? 1 : 0, 0);
-        _visualManager.FadeProperty(_mainScreenMaterial, _upBool, up ? 1 : 0, 0);
-        _visualManager.FadeProperty(_mainScreenMaterial, _downBool, down ? 1 : 0, 0);
-        _visualManager.FadeProperty(_mainScreenMaterial, _glowIntensity, 1f, 0.2f);
-        _visualManager.FadeProperty(_mainScreenMaterial, _glowIntensity, 0f, 1.2f, 0.4f);
+        _visualManager.FadeProperty(_mainScreenMaterial, _rightBool, GameManager.Instance.FloorManager.CheckNeighborState(currentRoom.roomRight) ? 1 : 0, 0);
+        _visualManager.FadeProperty(_mainScreenMaterial, _leftBool, GameManager.Instance.FloorManager.CheckNeighborState(currentRoom.roomLeft) ? 1 : 0, 0);
+        _visualManager.FadeProperty(_mainScreenMaterial, _upBool, GameManager.Instance.FloorManager.CheckNeighborState(currentRoom.roomUp) ? 1 : 0, 0);
+        _visualManager.FadeProperty(_mainScreenMaterial, _downBool, GameManager.Instance.FloorManager.CheckNeighborState(currentRoom.roomDown) ? 1 : 0, 0);
+        _visualManager.FadeProperty(_mainScreenMaterial, _glowIntensity, 1f, 0.1f);
+        _visualManager.FadeProperty(_mainScreenMaterial, _glowIntensity, 0f, 1f, 0.4f);
     }
 
     private void ResetAllProperties()

@@ -333,8 +333,13 @@ public class FloorManager : MonoBehaviour
         GameManager.Instance.ChangeRoom(nextRoom);
         
         _visualManager.minimapVisual.ActiveSelectedVisual(currentRoom, true);
+
+        if (currentRoom.isLocked == false)
+        {
+            _visualManager.centralFeedbackController.RooUnlockFeedback(currentRoom);
+            UpdateButtonStates();
+        }
         
-        UpdateButtonStates();
         UpdateRoomDebugName();
     }
 

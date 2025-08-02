@@ -105,7 +105,6 @@ public class RoomData : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     {
         currentRoomState = newRoomState;
         //Update le visuel de la room
-        Debug.Log("Change Room State "+ currentRoomState + "position : " +roomPosition);
         roomStateVisual.sprite = GameManager.VisualManager.minimapVisual.GetRoomStateVisual(currentRoomState);
         SetColor(currentRoomState);
         gameObject.transform.SetParent(GameManager.VisualManager.minimapVisual.GetRoomNewParent(currentRoomState));
@@ -248,7 +247,7 @@ public class RoomData : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     //Click sur la minimap
     public void OnPointerEnter(PointerEventData eventData)
     {
-        if (currentRoomState == RoomState.FogOfWar || _floorManager.currentRoom == this || _floorManager.currentRoom.currentRoomState == RoomState.StartedLock)
+        if (currentRoomState == RoomState.FogOfWar || _floorManager.currentRoom == this || _floorManager.currentRoom.currentRoomState == RoomState.StartedLock || currentRoomState == RoomState.Hide)
         {
             return;
         }
@@ -265,7 +264,7 @@ public class RoomData : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 
     public void OnPointerClick(PointerEventData eventData)
     {
-        if (currentRoomState == RoomState.FogOfWar || _floorManager.currentRoom == this || _floorManager.currentRoom.currentRoomState == RoomState.StartedLock)
+        if (currentRoomState == RoomState.FogOfWar || _floorManager.currentRoom == this || _floorManager.currentRoom.currentRoomState == RoomState.StartedLock || currentRoomState == RoomState.Hide)
         {
             return;
         }

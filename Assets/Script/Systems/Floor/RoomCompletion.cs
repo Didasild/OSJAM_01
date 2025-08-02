@@ -16,9 +16,11 @@ public class RoomCompletion
     private bool rooomFirstTimeUnlocked;
     
     private GridManager _gridManager;
+    private FloorManager _floorManager;
     
     public void Init(GridManager gridManager)
     {
+        _floorManager = GameManager.Instance.FloorManager;
         _gridManager = gridManager;
         npcList = new List<Cell>();
     }
@@ -40,24 +42,18 @@ public class RoomCompletion
             rooomFirstTimeUnlocked = false;
             return;
         }
+
+        if (_floorManager.currentRoom.currentRoomState != RoomState.Complete)
+        {
+            if (CheckCondition(roomConditions))
+            {
+                RoomCompleted();
+            }
+        }
         
         if (rooomFirstTimeUnlocked == false)
         {
-            if (CheckCondition(roomConditions))
-            {
-                RoomCompleted();
-            }
-            else
-            {
-                RoomUnlocked();
-            }
-        }
-        else
-        {
-            if (CheckCondition(roomConditions))
-            {
-                RoomCompleted();
-            }
+            RoomUnlocked();
         }
     }
     
@@ -125,16 +121,14 @@ public class RoomCompletion
         {
             GameManager.Instance.FloorManager.currentRoom.ChangeRoomSate(RoomState.StartedUnlock);
         }
-        GameManager.VisualManager.centralFeedbackController.RooUnlockFeedback(
-            GameManager.Instance.FloorManager.CheckNeighborState(GameManager.Instance.FloorManager.currentRoom.roomRight),
-            GameManager.Instance.FloorManager.CheckNeighborState(GameManager.Instance.FloorManager.currentRoom.roomLeft),
-            GameManager.Instance.FloorManager.CheckNeighborState(GameManager.Instance.FloorManager.currentRoom.roomUp),
-            GameManager.Instance.FloorManager.CheckNeighborState(GameManager.Instance.FloorManager.currentRoom.roomDown));
+
+        GameManager.VisualManager.centralFeedbackController.RooUnlockFeedback(GameManager.Instance.FloorManager
+            .currentRoom);
     }
 
     private void RoomCompleted()
     {
-        GameManager.Instance.FloorManager.currentRoom.ChangeRoomSate(RoomState.Complete);
+        _floorManager.currentRoom.ChangeRoomSate(RoomState.Complete);
         npcList.Clear();
         RoomUnlocked();
     }
