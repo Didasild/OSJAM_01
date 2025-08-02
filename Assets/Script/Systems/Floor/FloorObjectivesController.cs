@@ -45,7 +45,7 @@ public class FloorObjectivesController : MonoBehaviour
                 return;
             }
         }
-
+        
         _currentObjectivesIndex += 1;
 
         //Send a message to subscribers that the index change

@@ -105,6 +105,7 @@ public class RoomData : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     {
         currentRoomState = newRoomState;
         //Update le visuel de la room
+        Debug.Log("Change Room State "+ currentRoomState + "position : " +roomPosition);
         roomStateVisual.sprite = GameManager.VisualManager.minimapVisual.GetRoomStateVisual(currentRoomState);
         SetColor(currentRoomState);
         gameObject.transform.SetParent(GameManager.VisualManager.minimapVisual.GetRoomNewParent(currentRoomState));

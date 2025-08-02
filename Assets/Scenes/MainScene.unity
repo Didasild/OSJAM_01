@@ -829,8 +829,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+    rgba: 4280226833
+  m_fontColor: {r: 0.06666667, g: 0.078431375, b: 0.121568635, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -4729,6 +4729,7 @@ MonoBehaviour:
   - {fileID: 679404222}
   secondaryShaderImages:
   - {fileID: 461147705}
+  uiTexts: []
 --- !u!1 &469036627
 GameObject:
   m_ObjectHideFlags: 0
@@ -5022,6 +5023,9 @@ MonoBehaviour:
   secondaryShaderImages:
   - {fileID: 289532308}
   - {fileID: 95813414}
+  uiTexts:
+  - {fileID: 503166841}
+  - {fileID: 606272047}
 --- !u!1 &503166837
 GameObject:
   m_ObjectHideFlags: 0
@@ -6004,56 +6008,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 534384497}
   m_CullTransparentMesh: 1
---- !u!21 &558381417
-Material:
-  serializedVersion: 8
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: RadialEffect (Instance)
-  m_Shader: {fileID: -6465566751694194690, guid: 4ca9902709424644d9e730a6971ed6dd, type: 3}
-  m_Parent: {fileID: 0}
-  m_ModifiedSerializedProperties: 0
-  m_ValidKeywords: []
-  m_InvalidKeywords: []
-  m_LightmapFlags: 4
-  m_EnableInstancingVariants: 0
-  m_DoubleSidedGI: 0
-  m_CustomRenderQueue: -1
-  stringTagMap: {}
-  disabledShaderPasses: []
-  m_LockedProperties: 
-  m_SavedProperties:
-    serializedVersion: 3
-    m_TexEnvs:
-    - unity_Lightmaps:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - unity_LightmapsInd:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - unity_ShadowMasks:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    m_Ints: []
-    m_Floats:
-    - _CellAnimation: 0.25
-    - _CentralCell: 1
-    - _EdgeSize: 0
-    - _GlobalAlpha: 1
-    - _HaloFill: -0.839
-    - _RadialAnimation: 0
-    - _RadialLine: 1
-    - _ShadowDrop: 1
-    - _SineQuantity: 0
-    - _SquareFill: -0.43
-    m_Colors: []
-  m_BuildTextureStacks: []
-  m_AllowLocking: 1
 --- !u!1001 &566764259
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6511,7 +6465,7 @@ GameObject:
   - component: {fileID: 606272050}
   - component: {fileID: 606272051}
   m_Layer: 0
-  m_Name: CharacterName
+  m_Name: CharacterNameText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -9935,7 +9889,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 558381417}
+  - {fileID: 2100000, guid: 00d419d508b1e66438ce571afe5b3b93, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -12934,6 +12888,7 @@ MonoBehaviour:
   - {fileID: 1388075607}
   secondaryShaderImages:
   - {fileID: 1642409246}
+  uiTexts: []
 --- !u!1 &1241197190
 GameObject:
   m_ObjectHideFlags: 0
@@ -15462,6 +15417,8 @@ MonoBehaviour:
   - {fileID: 705795835}
   - {fileID: 828548918}
   - {fileID: 185661101}
+  uiTexts:
+  - {fileID: 104099538}
 --- !u!1 &1758659917
 GameObject:
   m_ObjectHideFlags: 0

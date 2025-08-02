@@ -391,7 +391,7 @@ public class FloorManager : MonoBehaviour
     }
     
     
-    private Boolean CheckNeighborState(RoomData neighborRoom)
+    public Boolean CheckNeighborState(RoomData neighborRoom)
     {
         if (neighborRoom != null && neighborRoom.currentRoomState != RoomState.Hide)
         {
