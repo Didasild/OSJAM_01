@@ -57,10 +57,13 @@ public class Dialog : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, 
 
     public void StartEventDialogSequence(NpcDialogsSettings eventDialogsSettings)
     {
+        if (dialogStarted)
+        {
+            _dialogVisual.ClearDialogBox();
+            dialogStarted = false;
+            currentSequenceIndex = 0;
+        }
         dialogStarted = true;
-        
-        _dialogVisual.ClearDialogBox();
-        
         _dialogVisual.dialogContainer.SetActive(true);
         _dialogVisual.DialogApparition(eventDialogsSettings.npcSettings.npcImage);
         
@@ -86,6 +89,7 @@ public class Dialog : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, 
     private void DisplayDialogSequenceInternal(NpcDialogsSettings dialogsSettings)
     {
         _dialogVisual.UpdateCharacterName(dialogsSettings.npcSettings.npcName);
+        _dialogVisual.UpdateDialogFont(dialogsSettings.dialogFont);
         
         if (_currentDialogSequence.Count > 0)
         {
@@ -128,9 +132,12 @@ public class Dialog : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, 
         currentSequenceIndex = 0;
         
         //A DEVELOPPER QUAND NECESSAIRE ET PLACE AILLEURS POTENTIELLEMENT
-        if (_currentNPC._currentNpcState != DialogUtils.NPCState.Inactive)
+        if (_currentNPC != null)
         {
-            _currentNPC.ChangeNpcState(DialogUtils.NPCState.Inactive);
+            if (_currentNPC._currentNpcState != DialogUtils.NPCState.Inactive)
+            {
+                _currentNPC.ChangeNpcState(DialogUtils.NPCState.Inactive);
+            }
         }
         
         _dialogVisual.DialogDisparition();

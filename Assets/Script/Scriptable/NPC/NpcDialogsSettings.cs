@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Script.Scriptable.NPC;
+using TMPro;
 using UnityEngine;
 using UnityEngine.Serialization;
 using UnityEngine.UIElements;
@@ -12,6 +13,7 @@ public class NpcDialogsSettings : ScriptableObject
     public NpcSettings npcSettings;
     public DialogUtils.NPCState baseNPCState;
     public List<DialogUtils.DialogPullStates> dialogPools;
+    [FormerlySerializedAs("npcFont")] public TMP_FontAsset dialogFont;
     
     private DialogPool _selectedPool;
 

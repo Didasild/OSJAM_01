@@ -130,7 +130,7 @@ public class GameManager : MonoBehaviour
         //A clean et a placer dans le floor manager idealement
         if (FloorManager.introPlayed == false)
         {
-            FloorManager.eventsController.PlayRtc(FloorManager.currentFloorSetting.introRTC);
+            FloorManager.eventsController.RtcManager.PlayRtc(FloorManager.currentFloorSetting.introRTC);
             FloorManager.introPlayed = true;
         }
         

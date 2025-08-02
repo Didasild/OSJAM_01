@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 34b703c7a33a4e14599eae68c269bba3, type: 3}
+  m_Name: CH01_F01_Crash_03
+  m_EditorClassIdentifier: 
+  notes: 
+  npcSettings: {fileID: 11400000, guid: 4791684ff94ddcb4eb806faf9940b8a4, type: 2}
+  baseNPCState: 1
+  dialogPools:
+  - RelatedNpcState: 1
+    dialogPool: {fileID: 11400000, guid: acccca75f54e6b14aaefd097e41761f4, type: 2}
+  dialogFont: {fileID: 11400000, guid: 0e182ac2fc51c2f4fb9f8dc5bc1d89b7, type: 2}

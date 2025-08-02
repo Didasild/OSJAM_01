@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.Playables;
 using UnityEngine.Rendering;
@@ -11,10 +12,9 @@ public class EventsController : MonoBehaviour
     private FloorManager _floorManager;
     private Health _health;
     private Dialog _dialog;
-    
-    [Header("RTC COMPONENTS")]
-    [SerializeField] private RtcCustomSignalReceiver _rtcReceiver;
-    [SerializeField] private PlayableDirector _playableDirector;
+
+    [SerializeField] private RtcManager _rtcManager;
+    public RtcManager RtcManager => _rtcManager;
 
     public void Init(FloorManager floorManager, Health health)
     {
@@ -23,9 +23,18 @@ public class EventsController : MonoBehaviour
         _floorManager = floorManager;
         _dialog = GameManager.Instance.Dialog;
         _health = health;
-        _rtcReceiver.Init(this);
+        _rtcManager.Init(this);
     }
+
+    #region COMMON FUNCTIONS
+    public void GoToNextFloor()
+    {
+        _gameManager.GoToNextFloor();
+    }
+    #endregion COMMON FUNCTIONS
+   
     
+    #region VISUAL SCRIPTING FUNCTIONS
     public void VSIncreaseMaxHealth(int increment)
     {
         _health.IncreaseMaxHealth(increment);
@@ -40,33 +49,23 @@ public class EventsController : MonoBehaviour
     {
         return roomData.GetNpcFromDialogSettings(npcDialogsSettings);
     }
+    #endregion VISUAL SCRIPTING FUNCTIONS
 
-    public void PlayRtc(TimelineAsset timelineAsset)
-    {
-        _playableDirector.playableAsset = timelineAsset;
-        _playableDirector.Play();
-    }
-
-    public void StopRtc()
-    {
-        _playableDirector.Stop();
-    }
-
-    public void SkipRtc()
-    {
-        _playableDirector.time = _playableDirector.duration;
-        _playableDirector.Evaluate();
-    }
-
-    public void GoToNextFloor()
-    {
-        _gameManager.GoToNextFloor();
-    }
-
+    
     #region RTC SIGNALS FUNCTIONS
     public void StartDialogSequence(NpcDialogsSettings npcDialogsSettings)
     {
         _dialog.StartEventDialogSequence(npcDialogsSettings);
+    }
+
+    public void CloseDialogBox()
+    {
+        _dialog.DialogVisual.DialogDisparition();
+    }
+
+    public void PlayRtc(TimelineAsset timelineAsset)
+    {
+        _rtcManager.PlayRtc(timelineAsset);
     }
 
     public void LooseHp(int hpLoose)
@@ -74,11 +73,16 @@ public class EventsController : MonoBehaviour
         _health.DecreaseHealth(hpLoose);
     }
 
+    public void SetCurrentHp(int currentHp)
+    {
+        _health.SetCurrentHealth(currentHp);
+    }
+
     public void TransitionVolume(VolumeProfile newVolumeProfile)
     {
         _visualManager.roomAmbianceController.TransitionVolume(newVolumeProfile);
     }
-
+    
     public void ShakeCamera(float duration, ShakeType shakeType = ShakeType.little)
     {
         switch (shakeType)

@@ -87,6 +87,11 @@ public class DialogVisual : MonoBehaviour
     {
         characterName.text = newName;
     }
+
+    public void UpdateDialogFont(TMP_FontAsset newFont)
+    {
+        dialogText.font = newFont;
+    }
     
     public void UpdateDialogText(string newText)
     {

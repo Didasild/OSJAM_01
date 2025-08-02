@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4b61542930edea04bb8ff18f6eb44214, type: 3}
+  m_Name: CH01_F01_Crash_02_RTC
+  m_EditorClassIdentifier: 
+  totalWeight: 0
+  dialogPool:
+  - sentences:
+    - WE NEED TO <font-weight="800">HOLD TOGETHER.</font-weight> THIS IS NOT THE
+      TIME TO <font-weight="800">LOSE CONTROL.</font-weight>
+    weight: 0

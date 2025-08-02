@@ -20,3 +20,4 @@ MonoBehaviour:
     dialogPool: {fileID: 11400000, guid: 835f35f61d4101f4b801244445aa6a4c, type: 2}
   - RelatedNpcState: 2
     dialogPool: {fileID: 11400000, guid: 5ed4d57e3c21d43439a1f39e146f62d1, type: 2}
+  dialogFont: {fileID: 11400000, guid: 0e182ac2fc51c2f4fb9f8dc5bc1d89b7, type: 2}

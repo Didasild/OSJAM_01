@@ -39,6 +39,13 @@ public class Health : MonoBehaviour
         CheckCurrentLifeActions();
     }
 
+    public void SetCurrentHealth(int healthPoints)
+    {
+        _currentHealth = healthPoints;
+        UpdateHealthPointVisual(_currentHealth);
+        CheckCurrentLifeActions();
+    }
+
     public void DecreaseHealth(int damage)
     {
         _currentHealth -= damage;
@@ -106,7 +113,7 @@ public class Health : MonoBehaviour
 
     private void DeathSequence()
     {
-        GameManager.Instance.FloorManager.eventsController.StopRtc();
+        GameManager.Instance.FloorManager.eventsController.RtcManager.StopRtc();
         _visualManager.fullScreenFeedbackController.LowLifeFeedback(false);
         _visualManager.shakeCamController.MidShakeCamera(0.8f);
         DOVirtual.DelayedCall(0.5f, () =>
