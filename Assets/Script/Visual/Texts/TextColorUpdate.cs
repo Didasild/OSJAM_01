@@ -46,4 +46,10 @@ public class TextColorUpdate : MonoBehaviour
         text.DOKill();
         text.DOColor(targetColor, transitionDuration);
     }
+
+    public void UpdateTextFade(float transitionDuration, float targetAlpha)
+    {
+        text.DOKill();
+        text.DOFade(targetAlpha, transitionDuration);
+    }
 }

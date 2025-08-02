@@ -775,7 +775,7 @@ GameObject:
   - component: {fileID: 104099538}
   - component: {fileID: 104099536}
   m_Layer: 5
-  m_Name: MinimapTitle
+  m_Name: MinimapTitleText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -9981,7 +9981,7 @@ GameObject:
   - component: {fileID: 883854817}
   - component: {fileID: 883854820}
   m_Layer: 0
-  m_Name: SystemIntegrity
+  m_Name: SystemIntegrityText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

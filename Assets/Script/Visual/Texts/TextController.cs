@@ -22,7 +22,6 @@ public class TextController : MonoBehaviour
             curvedTextScript.Init(this);
         }
     }
-
     
     public void UpdateTextColors(float transitionDuration)
     {

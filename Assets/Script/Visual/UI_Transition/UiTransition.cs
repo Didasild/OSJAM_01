@@ -3,6 +3,7 @@ using DG.Tweening;
 using UnityEngine;
 using UnityEngine.UI;
 using NaughtyAttributes;
+using TMPro;
 
 public class UiTransition : MonoBehaviour
 {
@@ -20,8 +21,10 @@ public class UiTransition : MonoBehaviour
     [SerializeField] private Material secondaryAnimatedMaterial;
     
     [Header("LISTE UI ELEMENTS")]
-    public List<Image> mainShaderImages;
-    public List<Image> secondaryShaderImages;
+    [SerializeField] private List<Image> mainShaderImages;
+    [SerializeField] private List<Image> secondaryShaderImages;
+    [SerializeField] private List<TextColorUpdate> uiTexts;
+    
     
     public void StartTransition(bool isAppear = true)
     {
@@ -37,6 +40,8 @@ public class UiTransition : MonoBehaviour
     }
     private void AnimateTransition(Image image, Material baseMaterial, Material animatedMaterial, bool isAppear = true)
     {
+        FadeTexts(isAppear);
+        
         float startpoint = 0;
         float endpoint = 0;
         if (isAppear)
@@ -61,5 +66,15 @@ public class UiTransition : MonoBehaviour
                 // Restore base material
                 image.material = baseMaterial;
             });
+    }
+
+    private void FadeTexts(bool isAppear)
+    {
+        float endpoint = isAppear? 1f : 0f;
+
+        foreach (TextColorUpdate uiText in uiTexts)
+        {
+            uiText.UpdateTextFade(transitionDuration, endpoint);
+        }
     }
 }
