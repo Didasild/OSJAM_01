@@ -12954,7 +12954,7 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4281542951
+    rgba: 4294967295
   m_fontColor: {r: 0.1529412, g: 0.1607843, b: 0.2, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
@@ -14583,7 +14583,7 @@ PlayableDirector:
   m_GameObject: {fileID: 1511401539}
   m_Enabled: 1
   serializedVersion: 3
-  m_PlayableAsset: {fileID: 11400000, guid: 19585470e74c4bf4a9c2651d95a0771d, type: 2}
+  m_PlayableAsset: {fileID: 11400000, guid: 5f0a0b1ea75563548b95852cadf67a03, type: 2}
   m_InitialState: 0
   m_WrapMode: 2
   m_DirectorUpdateMode: 1
@@ -14653,6 +14653,10 @@ PlayableDirector:
     value: {fileID: 1166452528}
   - key: {fileID: 1635145797900879323, guid: 5f0a0b1ea75563548b95852cadf67a03, type: 2}
     value: {fileID: 1511401542}
+  - key: {fileID: -8517517897223429875, guid: 19585470e74c4bf4a9c2651d95a0771d, type: 2}
+    value: {fileID: 929811202}
+  - key: {fileID: -3186265380084792472, guid: 19585470e74c4bf4a9c2651d95a0771d, type: 2}
+    value: {fileID: 929811204}
   m_ExposedReferences:
     m_References: []
 --- !u!4 &1511401541
@@ -19776,10 +19780,6 @@ PrefabInstance:
       propertyPath: healthBar
       value: 
       objectReference: {fileID: 866270814}
-    - target: {fileID: 6725237203591593263, guid: 31c80b8bee880194bb404e2a7b74ae7c, type: 3}
-      propertyPath: _baseHealth
-      value: 2
-      objectReference: {fileID: 0}
     - target: {fileID: 7437712420536979218, guid: 31c80b8bee880194bb404e2a7b74ae7c, type: 3}
       propertyPath: manaPointText
       value: 

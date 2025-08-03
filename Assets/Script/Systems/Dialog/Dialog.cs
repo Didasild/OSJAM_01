@@ -89,7 +89,6 @@ public class Dialog : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, 
     private void DisplayDialogSequenceInternal(NpcDialogsSettings dialogsSettings)
     {
         _dialogVisual.UpdateCharacterName(dialogsSettings.npcSettings.npcName);
-        _dialogVisual.UpdateDialogFont(dialogsSettings.dialogFont);
         
         if (_currentDialogSequence.Count > 0)
         {

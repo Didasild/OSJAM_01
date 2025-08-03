@@ -10,13 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4b61542930edea04bb8ff18f6eb44214, type: 3}
-  m_Name: CH01_F01_BlockedPassage01_Active
+  m_Name: GoOutside_Active
   m_EditorClassIdentifier: 
   totalWeight: 0
   dialogPool:
   - sentences:
-    - "NO OTHER WAY THROUGH. YOU\u2019LL HAVE TO <font-weight=\"800\">FORCE IT.</font-weight>"
-    - "BUT YOUR SYSTEM <font-weight=\"800\">CAN\u2019T TAKE THAT AMOUNT OF HIT.</font-weight>"
-    - REJOIN ME IN THE <font-weight="800">MAIN WAKE-UP CHAMBER.</font-weight>
-    - I <font-weight="800">MIGHT BE ABLE TO DO SOMETHING</font-weight> FOR YOU.
+    - 
     weight: 0

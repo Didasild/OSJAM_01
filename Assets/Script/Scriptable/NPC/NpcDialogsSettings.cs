@@ -11,9 +11,8 @@ public class NpcDialogsSettings : ScriptableObject
     public string notes;
     List<DialogUtils.DialogStates> dialogStates;
     public NpcSettings npcSettings;
-    public DialogUtils.NPCState baseNPCState;
+    public DialogUtils.NPCState baseNPCState = DialogUtils.NPCState.Active;
     public List<DialogUtils.DialogPullStates> dialogPools;
-    [FormerlySerializedAs("npcFont")] public TMP_FontAsset dialogFont;
     
     private DialogPool _selectedPool;
 
