@@ -12,5 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b61542930edea04bb8ff18f6eb44214, type: 3}
   m_Name: _DP_Default_Inactive
   m_EditorClassIdentifier: 
-  totalWeight: 0
-  dialogPool: []
+  totalWeight: 10
+  dialogPool:
+  - sentences:
+    - 'GO WRITE SOME INACTIVE DIALOGS '
+    weight: 10

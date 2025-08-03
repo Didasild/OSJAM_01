@@ -22,26 +22,56 @@ MonoBehaviour:
   - startRoom: 1
     initRoomSettings: {fileID: 11400000, guid: f1c7c495cb59faf4dae308b44af74bde, type: 2}
     initRoomState: 0
-    roomPosition: {x: 0, y: 0}
-    roomCompletion: 2
-    roomUnlock: 2
+    roomPosition: {x: 0, y: 2}
+    roomCompletion: 3
+    roomUnlock: 3
   - startRoom: 0
     initRoomSettings: {fileID: 11400000, guid: ab08798597565784696708e96931c784, type: 2}
     initRoomState: 0
-    roomPosition: {x: 1, y: 0}
+    roomPosition: {x: 1, y: 2}
     roomCompletion: 1
     roomUnlock: 1
   - startRoom: 0
     initRoomSettings: {fileID: 11400000, guid: 779e7a3a004e68246b6ed0b64cd4ec4b, type: 2}
     initRoomState: 0
-    roomPosition: {x: 2, y: 0}
-    roomCompletion: 0
-    roomUnlock: 0
+    roomPosition: {x: 2, y: 2}
+    roomCompletion: 3
+    roomUnlock: 2
   - startRoom: 0
     initRoomSettings: {fileID: 11400000, guid: 9193d2e378d72aa41903906952f80f2c, type: 2}
-    initRoomState: 0
-    roomPosition: {x: 3, y: 0}
-    roomCompletion: 0
-    roomUnlock: 0
+    initRoomState: 1
+    roomPosition: {x: 3, y: 2}
+    roomCompletion: 1
+    roomUnlock: 1
+  - startRoom: 0
+    initRoomSettings: {fileID: 11400000, guid: c4b6c86252e68fc4ca6f6760ac5b0331, type: 2}
+    initRoomState: 1
+    roomPosition: {x: 3, y: 3}
+    roomCompletion: 1
+    roomUnlock: 1
+  - startRoom: 0
+    initRoomSettings: {fileID: 11400000, guid: a719410b152d8254c9bfcdcb33ca8a1f, type: 2}
+    initRoomState: 1
+    roomPosition: {x: 4, y: 4}
+    roomCompletion: 3
+    roomUnlock: 3
+  - startRoom: 0
+    initRoomSettings: {fileID: 11400000, guid: f3f048f59934bed498011fd2ecbe9730, type: 2}
+    initRoomState: 1
+    roomPosition: {x: 4, y: 3}
+    roomCompletion: 1
+    roomUnlock: 1
+  - startRoom: 0
+    initRoomSettings: {fileID: 11400000, guid: 9fe9b61b0da131e44be1bc1e9118d2ab, type: 2}
+    initRoomState: 1
+    roomPosition: {x: 3, y: 4}
+    roomCompletion: 1
+    roomUnlock: 1
   objectiveGraph: {fileID: 11400000, guid: a31ae947b34d3244da052a9545247584, type: 2}
-  floorObjectivesList: []
+  floorObjectivesList:
+  - objectivesPositions:
+    - {x: 0, y: 2}
+  - objectivesPositions:
+    - {x: 2, y: 2}
+  - objectivesPositions:
+    - {x: 4, y: 4}
