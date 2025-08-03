@@ -1,10 +1,7 @@
 using UnityEngine;
 using UnityEngine.Playables;
 using UnityEngine.Rendering;
-using UnityEngine.Scripting;
 using UnityEngine.Timeline;
-
-
 
 [System.Serializable]
 public class StartDialogSignal : Marker, INotification

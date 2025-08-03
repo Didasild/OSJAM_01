@@ -2316,7 +2316,7 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4281542951
+    rgba: 4285293924
   m_fontColor: {r: 0.1529412, g: 0.1607843, b: 0.2, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
@@ -15031,7 +15031,7 @@ MonoBehaviour:
   priority: 5
   blendDistance: 0
   weight: 0
-  sharedProfile: {fileID: 11400000, guid: de15eaa4853062b43944eabdef48ec33, type: 2}
+  sharedProfile: {fileID: 11400000, guid: 3dd108e5cac4e864daa7c2e4e4f26ef0, type: 2}
 --- !u!95 &1527443216
 Animator:
   serializedVersion: 7
@@ -15761,7 +15761,7 @@ MonoBehaviour:
   priority: 1
   blendDistance: 0
   weight: 1
-  sharedProfile: {fileID: 11400000, guid: d252c52afd5c5ff47984d4f563ce4ade, type: 2}
+  sharedProfile: {fileID: 11400000, guid: 30efc7cf415405348a435a3b353f0857, type: 2}
 --- !u!95 &1687622999
 Animator:
   serializedVersion: 7
