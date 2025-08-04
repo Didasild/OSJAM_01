@@ -1033,6 +1033,10 @@ MonoBehaviour:
     - {fileID: 3180234576445321782}
     - {fileID: -4341152859082289936}
     - {fileID: -8465849134878395334}
+    - {fileID: 7645630826380665162}
+    - {fileID: 1446917615454117746}
+    - {fileID: 327849728348659747}
+    - {fileID: 7773974891839124487}
 --- !u!114 &-1164479563178195015
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1258,6 +1262,20 @@ MonoBehaviour:
     - {fileID: -8712566114051971536}
     - {fileID: 4247178219391616096}
     - {fileID: -8413311969413976171}
+--- !u!114 &327849728348659747
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d61c8f3c37864e8b81532a2ceecf6c6f, type: 3}
+  m_Name: Start Dialog Signal
+  m_EditorClassIdentifier: 
+  m_Time: 11.133333333333333
+  dialogSettings: {fileID: 11400000, guid: 5d8f3d2a42be96d43a64ff7b7d2876e1, type: 2}
 --- !u!114 &1232988195503879268
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1310,6 +1328,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Time: 1.5833333730697632
   dialogSettings: {fileID: 11400000, guid: cbb3b2918cd29b84187b2da8ebc21de1, type: 2}
+--- !u!114 &1446917615454117746
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d61c8f3c37864e8b81532a2ceecf6c6f, type: 3}
+  m_Name: Start Dialog Signal
+  m_EditorClassIdentifier: 
+  m_Time: 7.2
+  dialogSettings: {fileID: 11400000, guid: 87a1a199db56e0e428e42bb4ac664001, type: 2}
 --- !u!114 &1635145797900879323
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3000,6 +3032,34 @@ MonoBehaviour:
   m_Markers:
     m_Objects: []
   m_PostPlaybackState: 1
+--- !u!114 &7645630826380665162
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d61c8f3c37864e8b81532a2ceecf6c6f, type: 3}
+  m_Name: Start Dialog Signal
+  m_EditorClassIdentifier: 
+  m_Time: 1.5166432936675847
+  dialogSettings: {fileID: 11400000, guid: cbb3b2918cd29b84187b2da8ebc21de1, type: 2}
+--- !u!114 &7773974891839124487
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d61c8f3c37864e8b81532a2ceecf6c6f, type: 3}
+  m_Name: Start Dialog Signal
+  m_EditorClassIdentifier: 
+  m_Time: 15.85
+  dialogSettings: {fileID: 11400000, guid: 572ce4ff7295f3641bf33875adc49a01, type: 2}
 --- !u!74 &7881133919813569318
 AnimationClip:
   m_ObjectHideFlags: 0
