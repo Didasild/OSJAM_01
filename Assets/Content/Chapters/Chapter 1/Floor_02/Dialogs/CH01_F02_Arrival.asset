@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 34b703c7a33a4e14599eae68c269bba3, type: 3}
+  m_Name: CH01_F02_Arrival
+  m_EditorClassIdentifier: 
+  notes: "Premier NPC Rencontr\xE9 d\xE9finir"
+  npcSettings: {fileID: 11400000, guid: 5867982452524ec4b94bbab11ee4f58d, type: 2}
+  baseNPCState: 1
+  dialogPools:
+  - RelatedNpcState: 1
+    dialogPool: {fileID: 11400000, guid: 263c3da06f863024d9fd4132373611d9, type: 2}
+  - RelatedNpcState: 2
+    dialogPool: {fileID: 11400000, guid: df94485f971f29d46b1b96bf526b0ec6, type: 2}

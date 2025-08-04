@@ -3742,7 +3742,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 705795834}
   m_Direction: 0
   m_Value: 1
-  m_Size: 0.4296875
+  m_Size: 0.21484375
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -5946,7 +5946,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &534384498
 RectTransform:
   m_ObjectHideFlags: 0
@@ -6524,7 +6524,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Character Name
+  m_text: Character <i>arrival</i>
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: b73111e90464b4448b0c23e6cb54ad61, type: 2}
   m_sharedMaterial: {fileID: 6342534701799547323, guid: b73111e90464b4448b0c23e6cb54ad61, type: 2}
@@ -9257,7 +9257,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 185661100}
   m_Direction: 2
   m_Value: 0
-  m_Size: 0.1796875
+  m_Size: 0.08984375
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -10197,7 +10197,7 @@ MonoBehaviour:
   m_IsGlobal: 1
   priority: 15
   blendDistance: 0
-  weight: 0
+  weight: 1
   sharedProfile: {fileID: 11400000, guid: bbead3ee12909db4b99964a0b91589a7, type: 2}
 --- !u!1 &933600641
 GameObject:
@@ -12954,7 +12954,7 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
+    rgba: 4281542951
   m_fontColor: {r: 0.1529412, g: 0.1607843, b: 0.2, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
@@ -14686,6 +14686,30 @@ PlayableDirector:
     value: {fileID: 1335823530}
   - key: {fileID: 7468168167101383400, guid: 19585470e74c4bf4a9c2651d95a0771d, type: 2}
     value: {fileID: 1511401543}
+  - key: {fileID: 4367341814147699886, guid: ec9439b7f2f48d6408187ba24a8f19fc, type: 2}
+    value: {fileID: 579869563}
+  - key: {fileID: -975727389836257767, guid: ec9439b7f2f48d6408187ba24a8f19fc, type: 2}
+    value: {fileID: 579869564}
+  - key: {fileID: 5860097257658968280, guid: ec9439b7f2f48d6408187ba24a8f19fc, type: 2}
+    value: {fileID: 2089397527}
+  - key: {fileID: 2782387938657217501, guid: ec9439b7f2f48d6408187ba24a8f19fc, type: 2}
+    value: {fileID: 2089397530}
+  - key: {fileID: -2330348177504520871, guid: ec9439b7f2f48d6408187ba24a8f19fc, type: 2}
+    value: {fileID: 929811202}
+  - key: {fileID: -4263113394887981949, guid: ec9439b7f2f48d6408187ba24a8f19fc, type: 2}
+    value: {fileID: 929811204}
+  - key: {fileID: 7499793673522080164, guid: ec9439b7f2f48d6408187ba24a8f19fc, type: 2}
+    value: {fileID: 1558858908}
+  - key: {fileID: -5744027698074980448, guid: ec9439b7f2f48d6408187ba24a8f19fc, type: 2}
+    value: {fileID: 1511401542}
+  - key: {fileID: -1677029316476102706, guid: ec9439b7f2f48d6408187ba24a8f19fc, type: 2}
+    value: {fileID: 1511401542}
+  - key: {fileID: -148224831646703527, guid: ec9439b7f2f48d6408187ba24a8f19fc, type: 2}
+    value: {fileID: 1166452528}
+  - key: {fileID: 3249109325525296446, guid: ec9439b7f2f48d6408187ba24a8f19fc, type: 2}
+    value: {fileID: 276269720}
+  - key: {fileID: -8496748378999076113, guid: ec9439b7f2f48d6408187ba24a8f19fc, type: 2}
+    value: {fileID: 1180506670}
   m_ExposedReferences:
     m_References: []
 --- !u!4 &1511401541
@@ -15763,7 +15787,7 @@ MonoBehaviour:
   priority: 1
   blendDistance: 0
   weight: 1
-  sharedProfile: {fileID: 11400000, guid: 30efc7cf415405348a435a3b353f0857, type: 2}
+  sharedProfile: {fileID: 11400000, guid: 884b6e287d53289468f060da52a83dfc, type: 2}
 --- !u!95 &1687622999
 Animator:
   serializedVersion: 7
@@ -17146,7 +17170,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 7, y: 7, z: 7}
-  m_ConstrainProportionsScale: 0
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 1166452527}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

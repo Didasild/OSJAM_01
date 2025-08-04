@@ -67,6 +67,24 @@ MonoBehaviour:
     roomPosition: {x: 3, y: 4}
     roomCompletion: 1
     roomUnlock: 1
+  - startRoom: 0
+    initRoomSettings: {fileID: 11400000, guid: a3f403eb379b6ba498d6284fb2c71713, type: 2}
+    initRoomState: 1
+    roomPosition: {x: 5, y: 4}
+    roomCompletion: 1
+    roomUnlock: 1
+  - startRoom: 0
+    initRoomSettings: {fileID: 11400000, guid: 35de3971f50079d42aee6be592c13489, type: 2}
+    initRoomState: 1
+    roomPosition: {x: 6, y: 4}
+    roomCompletion: 1
+    roomUnlock: 1
+  - startRoom: 0
+    initRoomSettings: {fileID: 11400000, guid: c677804752daed1488284bec0aa45cfd, type: 2}
+    initRoomState: 1
+    roomPosition: {x: 6, y: 5}
+    roomCompletion: 2
+    roomUnlock: 2
   objectiveGraph: {fileID: 11400000, guid: a31ae947b34d3244da052a9545247584, type: 2}
   floorObjectivesList:
   - objectivesPositions:
@@ -75,3 +93,5 @@ MonoBehaviour:
     - {x: 2, y: 2}
   - objectivesPositions:
     - {x: 4, y: 4}
+  - objectivesPositions:
+    - {x: 6, y: 5}

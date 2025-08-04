@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4b61542930edea04bb8ff18f6eb44214, type: 3}
+  m_Name: CH01_F02_AfterCrashWakeUp_Inactive
+  m_EditorClassIdentifier: 
+  totalWeight: 20
+  dialogPool:
+  - sentences:
+    - "STILL CHECKING WHAT\u2019S LEFT OF THE SYSTEMS..."
+    - SO FAR? <font-weight="800">NOTHING USEFUL.</font-weight>
+    weight: 10
+  - sentences:
+    - <font-weight="800">NO NAVIGATION</font-weight>, NO STATUS FEED, NOT EVEN A
+      PROPER ERROR CODE.
+    - EVERYTHING'S EITHER<font-weight="800"> OFFLINE</font-weight>, <font-weight="800">MELTED</font-weight>,
+      OR <font-weight="800">GONE.</font-weight>
+    weight: 10

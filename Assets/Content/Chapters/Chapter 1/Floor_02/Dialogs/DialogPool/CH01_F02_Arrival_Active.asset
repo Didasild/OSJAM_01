@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4b61542930edea04bb8ff18f6eb44214, type: 3}
+  m_Name: CH01_F02_Arrival_Active
+  m_EditorClassIdentifier: 
+  totalWeight: 0
+  dialogPool:
+  - sentences:
+    - '<i>bonjour ceci est un test de phrase</i> '
+    - "<i>je ne sais pas quoi \xE9crire en premier dialogue pour le npc</i>"
+    - <i>j'espere que c'est cool a lire</i>
+    weight: 0

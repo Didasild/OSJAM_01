@@ -15,6 +15,7 @@ MonoBehaviour:
   components:
   - {fileID: 4915069371588200835}
   - {fileID: 8498022337032358586}
+  - {fileID: 4293950243348467468}
 --- !u!114 &953869944089701943
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -71,6 +72,22 @@ MonoBehaviour:
   GridGlitch:
     m_OverrideState: 1
     m_Value: 2
+--- !u!114 &4293950243348467468
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 577ba506875fcac419658cc06e979e17, type: 3}
+  m_Name: FullScreenTreeShadowSettings
+  m_EditorClassIdentifier: 
+  active: 1
+  shadowIntensity:
+    m_OverrideState: 1
+    m_Value: 0.75
 --- !u!114 &4915069371588200835
 MonoBehaviour:
   m_ObjectHideFlags: 3

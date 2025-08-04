@@ -12,7 +12,8 @@ namespace Dida.Rendering
             _passes = new List<ScriptableRenderPass>();
             _passes.Add(new GlobalColorRenderPass());
             _passes.Add(new GridRenderPass());
-            _passes.Add(new FullScreenRenderPass());
+            _passes.Add(new FullScreenGlitchPass());
+            _passes.Add(new FullScreenTreeShadowPass());
         }
 
         public override void AddRenderPasses(ScriptableRenderer renderer, ref RenderingData renderingData)

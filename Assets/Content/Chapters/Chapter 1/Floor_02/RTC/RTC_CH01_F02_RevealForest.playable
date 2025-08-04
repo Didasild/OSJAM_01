@@ -1,5 +1,19 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-8576186987140382219
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d61c8f3c37864e8b81532a2ceecf6c6f, type: 3}
+  m_Name: Start Dialog Signal
+  m_EditorClassIdentifier: 
+  m_Time: 5.116666666666666
+  dialogSettings: {fileID: 11400000, guid: 35c19165d001f094dbb0ce005f3ca4da, type: 2}
 --- !u!114 &-6671211831814736616
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -828,7 +842,8 @@ MonoBehaviour:
   m_Children: []
   m_Clips: []
   m_Markers:
-    m_Objects: []
+    m_Objects:
+    - {fileID: -8576186987140382219}
 --- !u!114 &2782387938657217501
 MonoBehaviour:
   m_ObjectHideFlags: 1

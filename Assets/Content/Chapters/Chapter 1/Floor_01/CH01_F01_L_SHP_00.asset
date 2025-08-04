@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   proceduralFloor: 0
   floorBaseVolumeProfile: {fileID: 11400000, guid: d252c52afd5c5ff47984d4f563ce4ade, type: 2}
-  introRTC: {fileID: 11400000, guid: 33a2ccb5b2bdd3b44aab55a780ceccbe, type: 2}
+  introRTC: {fileID: 11400000, guid: 19585470e74c4bf4a9c2651d95a0771d, type: 2}
   minGridSize: {x: 2, y: 2}
   maxGridSize: {x: 4, y: 4}
   roomSettingsList: []

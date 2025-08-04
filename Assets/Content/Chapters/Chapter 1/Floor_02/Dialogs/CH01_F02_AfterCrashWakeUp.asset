@@ -17,6 +17,6 @@ MonoBehaviour:
   baseNPCState: 1
   dialogPools:
   - RelatedNpcState: 1
-    dialogPool: {fileID: 11400000, guid: ff82a4f27e4a95d448bbdc5ec3509c63, type: 2}
+    dialogPool: {fileID: 11400000, guid: 1beb735b9cf8c3b4aa352a84c9096b82, type: 2}
   - RelatedNpcState: 2
-    dialogPool: {fileID: 11400000, guid: f85b45dfc701d8442a1fe740cadd2e3f, type: 2}
+    dialogPool: {fileID: 11400000, guid: c1277836f9a5fea4bad6a0879bfe0ebb, type: 2}
