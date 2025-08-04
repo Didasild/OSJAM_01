@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 0}
   m_Name: Update Rtc Volume
   m_EditorClassIdentifier: Assembly-CSharp::UpdateRtcVolume
-  m_Time: 0
+  m_Time: 0.13333333333333333
   volumeType: 0
   newVolumeProfile: {fileID: 11400000, guid: de15eaa4853062b43944eabdef48ec33, type: 2}
 --- !u!114 &-9094663367232602299
@@ -30,7 +30,7 @@ MonoBehaviour:
   m_Version: 3
   m_AnimClip: {fileID: 0}
   m_Locked: 0
-  m_Muted: 0
+  m_Muted: 1
   m_CustomPlayableFullTypename: 
   m_Curves: {fileID: 0}
   m_Parent: {fileID: -6929701345011709216}
@@ -41,7 +41,6 @@ MonoBehaviour:
     - {fileID: 7900241459320943137}
     - {fileID: -5470587871699420540}
     - {fileID: 4233299141763317686}
-    - {fileID: 5045141841580519916}
 --- !u!114 &-8526974631975231953
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -433,7 +432,7 @@ MonoBehaviour:
   m_Version: 3
   m_AnimClip: {fileID: 0}
   m_Locked: 0
-  m_Muted: 0
+  m_Muted: 1
   m_CustomPlayableFullTypename: 
   m_Curves: {fileID: 0}
   m_Parent: {fileID: -2131156625366435943}
@@ -2234,20 +2233,6 @@ MonoBehaviour:
   m_Time: 0
   volumeType: 1
   newVolumeProfile: {fileID: 11400000, guid: f6bee8f25b772bb48b968f5a1d6cb01c, type: 2}
---- !u!114 &5045141841580519916
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 0}
-  m_Name: Room Ambiance Transition
-  m_EditorClassIdentifier: Assembly-CSharp::RoomAmbianceTransition
-  m_Time: 26.1
-  newVolumeProfile: {fileID: 11400000, guid: d252c52afd5c5ff47984d4f563ce4ade, type: 2}
 --- !u!114 &5321064737060964607
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2304,6 +2289,20 @@ MonoBehaviour:
   m_Markers:
     m_Objects: []
   m_PostPlaybackState: 0
+--- !u!114 &6388640491500176611
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 0}
+  m_Name: Room Ambiance Transition
+  m_EditorClassIdentifier: Assembly-CSharp::RoomAmbianceTransition
+  m_Time: 26.1
+  newVolumeProfile: {fileID: 11400000, guid: d252c52afd5c5ff47984d4f563ce4ade, type: 2}
 --- !u!114 &6563066398638871528
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2673,6 +2672,7 @@ MonoBehaviour:
   m_Markers:
     m_Objects:
     - {fileID: -9194469263057481990}
+    - {fileID: 6388640491500176611}
 --- !u!114 &7900241459320943137
 MonoBehaviour:
   m_ObjectHideFlags: 1

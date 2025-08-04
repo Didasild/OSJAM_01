@@ -31,7 +31,6 @@ public class RtcManager : MonoBehaviour
     public void PlayRtc(TimelineAsset timelineAsset)
     {
         _playableDirector.playableAsset = timelineAsset;
-        _rtcReceiver.RegisterReceiver();
         _playableDirector.Play();
     }
 
