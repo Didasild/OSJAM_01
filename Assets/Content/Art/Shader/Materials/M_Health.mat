@@ -26,7 +26,7 @@ Material:
     m_Ints: []
     m_Floats:
     - _CurrentHealth: 1
-    - _MaxHealth: 3
+    - _MaxHealth: 2
     m_Colors: []
   m_BuildTextureStacks: []
   m_AllowLocking: 1

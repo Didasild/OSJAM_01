@@ -5,9 +5,23 @@ using UnityEngine.Timeline;
 public class RtcCustomSignalReceiver : MonoBehaviour, INotificationReceiver
 {
     private EventsController _events;
+    private PlayableDirector _director;
     public void Init(EventsController events)
     {
         _events = events;
+        _director = _events.RtcManager.PlayableDirector;
+
+        if (_director != null)
+        {
+            _director.RebuildGraph();
+            int outputCount = _director.playableGraph.GetOutputCount();
+
+            for (int i = 0; i < outputCount; i++)
+            {
+                PlayableOutput output = _director.playableGraph.GetOutput(i);
+                output.AddNotificationReceiver(this);
+            }
+        }
     }
     
     public void OnNotify(Playable origin, INotification notification, object context)
@@ -58,6 +72,22 @@ public class RtcCustomSignalReceiver : MonoBehaviour, INotificationReceiver
             default:
                 Debug.Log($"Unhandled signal type: {notification.GetType().Name}");
                 break;
+        }
+    }
+    
+    public void RegisterReceiver()
+    {
+        if (_director != null)
+        {
+            PlayableGraph graph = _director.playableGraph;
+            if (graph.IsValid())
+            {
+                for (int i = 0; i < graph.GetOutputCount(); i++)
+                {
+                    PlayableOutput output = graph.GetOutput(i);
+                    output.AddNotificationReceiver(this);
+                }
+            }
         }
     }
 }

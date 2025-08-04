@@ -1,4 +1,3 @@
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Playables;
 using UnityEngine.Rendering;
@@ -9,7 +8,6 @@ public enum VolumeType
     ambianceVolume,
     effectVolume01,
     effectVolume02,
-    
 }
 public class RtcManager : MonoBehaviour
 {
@@ -19,6 +17,8 @@ public class RtcManager : MonoBehaviour
     [SerializeField] private Volume _rtcEffectVolume2;
     private PlayableDirector _playableDirector;
     private RtcCustomSignalReceiver _rtcReceiver;
+    
+    public PlayableDirector PlayableDirector => _playableDirector;
     
     public void Init(EventsController eventsController)
     {
@@ -31,6 +31,7 @@ public class RtcManager : MonoBehaviour
     public void PlayRtc(TimelineAsset timelineAsset)
     {
         _playableDirector.playableAsset = timelineAsset;
+        _rtcReceiver.RegisterReceiver();
         _playableDirector.Play();
     }
 
