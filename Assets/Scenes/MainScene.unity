@@ -15057,7 +15057,7 @@ MonoBehaviour:
   priority: 5
   blendDistance: 0
   weight: 0
-  sharedProfile: {fileID: 11400000, guid: 3dd108e5cac4e864daa7c2e4e4f26ef0, type: 2}
+  sharedProfile: {fileID: 11400000, guid: de15eaa4853062b43944eabdef48ec33, type: 2}
 --- !u!95 &1527443216
 Animator:
   serializedVersion: 7
@@ -15787,7 +15787,7 @@ MonoBehaviour:
   priority: 1
   blendDistance: 0
   weight: 1
-  sharedProfile: {fileID: 11400000, guid: 884b6e287d53289468f060da52a83dfc, type: 2}
+  sharedProfile: {fileID: 11400000, guid: d252c52afd5c5ff47984d4f563ce4ade, type: 2}
 --- !u!95 &1687622999
 Animator:
   serializedVersion: 7
