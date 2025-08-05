@@ -1,10 +1,11 @@
 using UnityEngine;
 using UnityEngine.Playables;
+using UnityEngine.Rendering;
 using UnityEngine.Timeline;
 
 [System.Serializable]
-public class StartDialogSignal : Marker, INotification
+public class MarkerRoomAmbianceTransition : Marker, INotification
 {
     public PropertyName id => new PropertyName();
-    public NpcDialogsSettings dialogSettings;
+    public VolumeProfile newVolumeProfile;
 }

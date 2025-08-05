@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &-8576186987140382219
+--- !u!114 &-8155898066561087448
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
@@ -9,11 +9,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d61c8f3c37864e8b81532a2ceecf6c6f, type: 3}
-  m_Name: Start Dialog Signal
+  m_Script: {fileID: 11500000, guid: 573f33fafe104945ae5f97b504cdf0a3, type: 3}
+  m_Name: Marker Room Ambiance Transition
   m_EditorClassIdentifier: 
   m_Time: 5.116666666666666
-  dialogSettings: {fileID: 11400000, guid: 35c19165d001f094dbb0ce005f3ca4da, type: 2}
+  newVolumeProfile: {fileID: 11400000, guid: 30efc7cf415405348a435a3b353f0857, type: 2}
 --- !u!114 &-6671211831814736616
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -26,30 +26,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fde0d25a170598d46a0b9dc16b4527a5, type: 3}
   m_Name: ActivationPlayableAsset
   m_EditorClassIdentifier: 
---- !u!114 &-6521298749753214065
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b46e36075dd1c124a8422c228e75e1fb, type: 3}
-  m_Name: Signal Track
-  m_EditorClassIdentifier: 
-  m_Version: 3
-  m_AnimClip: {fileID: 0}
-  m_Locked: 0
-  m_Muted: 0
-  m_CustomPlayableFullTypename: 
-  m_Curves: {fileID: 0}
-  m_Parent: {fileID: 8209133633960065686}
-  m_Children: []
-  m_Clips: []
-  m_Markers:
-    m_Objects:
-    - {fileID: -2434554690171851122}
 --- !u!74 &-5922865006432530500
 AnimationClip:
   m_ObjectHideFlags: 0
@@ -152,33 +128,6 @@ AnimationClip:
   m_HasGenericRootTransform: 0
   m_HasMotionFloatCurves: 0
   m_Events: []
---- !u!114 &-5744027698074980448
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b46e36075dd1c124a8422c228e75e1fb, type: 3}
-  m_Name: Signal Track
-  m_EditorClassIdentifier: 
-  m_Version: 3
-  m_AnimClip: {fileID: 0}
-  m_Locked: 0
-  m_Muted: 0
-  m_CustomPlayableFullTypename: 
-  m_Curves: {fileID: 0}
-  m_Parent: {fileID: 7287104125867736609}
-  m_Children: []
-  m_Clips: []
-  m_Markers:
-    m_Objects:
-    - {fileID: -1506557568312582390}
-    - {fileID: -3910266413322368703}
-    - {fileID: 1172386040358040542}
-    - {fileID: 554327369680485576}
 --- !u!114 &-5717979591117093099
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -203,6 +152,21 @@ MonoBehaviour:
   m_Clips: []
   m_Markers:
     m_Objects: []
+--- !u!114 &-5188433235616412938
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d1d89e53e5c94d9db642b7e9860767c8, type: 3}
+  m_Name: Marker Update Rtc Volume
+  m_EditorClassIdentifier: 
+  m_Time: 0.25
+  volumeType: 0
+  newVolumeProfile: {fileID: 11400000, guid: 30efc7cf415405348a435a3b353f0857, type: 2}
 --- !u!114 &-4263113394887981949
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -639,29 +603,6 @@ MonoBehaviour:
   m_Markers:
     m_Objects: []
   m_PostPlaybackState: 0
---- !u!114 &-1677029316476102706
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b46e36075dd1c124a8422c228e75e1fb, type: 3}
-  m_Name: Signal Track
-  m_EditorClassIdentifier: 
-  m_Version: 3
-  m_AnimClip: {fileID: 0}
-  m_Locked: 0
-  m_Muted: 0
-  m_CustomPlayableFullTypename: 
-  m_Curves: {fileID: 0}
-  m_Parent: {fileID: 6190351165472009528}
-  m_Children: []
-  m_Clips: []
-  m_Markers:
-    m_Objects: []
 --- !u!114 &-1506557568312582390
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -677,6 +618,29 @@ MonoBehaviour:
   m_Time: 0
   volumeType: 0
   newVolumeProfile: {fileID: 11400000, guid: 30efc7cf415405348a435a3b353f0857, type: 2}
+--- !u!114 &-1286835841171894048
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c3ac1231439240b4f9aeb9d7d66ff03a, type: 3}
+  m_Name: Custom Marker Receiver Track
+  m_EditorClassIdentifier: 
+  m_Version: 3
+  m_AnimClip: {fileID: 0}
+  m_Locked: 0
+  m_Muted: 0
+  m_CustomPlayableFullTypename: 
+  m_Curves: {fileID: 0}
+  m_Parent: {fileID: 6190351165472009528}
+  m_Children: []
+  m_Clips: []
+  m_Markers:
+    m_Objects: []
 --- !u!114 &-975727389836257767
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -842,8 +806,7 @@ MonoBehaviour:
   m_Children: []
   m_Clips: []
   m_Markers:
-    m_Objects:
-    - {fileID: -8576186987140382219}
+    m_Objects: []
 --- !u!114 &2782387938657217501
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -897,6 +860,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fde0d25a170598d46a0b9dc16b4527a5, type: 3}
   m_Name: ActivationPlayableAsset
   m_EditorClassIdentifier: 
+--- !u!114 &4182255365193756109
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d1d89e53e5c94d9db642b7e9860767c8, type: 3}
+  m_Name: Marker Update Rtc Volume
+  m_EditorClassIdentifier: 
+  m_Time: 0.25
+  volumeType: 1
+  newVolumeProfile: {fileID: 11400000, guid: 5f368e24e0fbd7c4fbdd17d19dd4a650, type: 2}
 --- !u!114 &4367341814147699886
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -990,6 +968,30 @@ MonoBehaviour:
   m_Markers:
     m_Objects: []
   m_PostPlaybackState: 1
+--- !u!114 &4645737334227010073
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c3ac1231439240b4f9aeb9d7d66ff03a, type: 3}
+  m_Name: Custom Marker Receiver Track
+  m_EditorClassIdentifier: 
+  m_Version: 3
+  m_AnimClip: {fileID: 0}
+  m_Locked: 0
+  m_Muted: 0
+  m_CustomPlayableFullTypename: 
+  m_Curves: {fileID: 0}
+  m_Parent: {fileID: 8209133633960065686}
+  m_Children: []
+  m_Clips: []
+  m_Markers:
+    m_Objects:
+    - {fileID: 7745297608088142224}
 --- !u!114 &5860097257658968280
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1103,7 +1105,7 @@ MonoBehaviour:
   m_Curves: {fileID: 0}
   m_Parent: {fileID: 1254373631737001624}
   m_Children:
-  - {fileID: -1677029316476102706}
+  - {fileID: -1286835841171894048}
   m_Clips: []
   m_Markers:
     m_Objects: []
@@ -1127,7 +1129,7 @@ MonoBehaviour:
   m_Curves: {fileID: 0}
   m_Parent: {fileID: 11400000}
   m_Children:
-  - {fileID: -5744027698074980448}
+  - {fileID: 7359217118393472562}
   - {fileID: 4367341814147699886}
   - {fileID: -975727389836257767}
   - {fileID: 5860097257658968280}
@@ -1137,6 +1139,32 @@ MonoBehaviour:
   m_Clips: []
   m_Markers:
     m_Objects: []
+--- !u!114 &7359217118393472562
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c3ac1231439240b4f9aeb9d7d66ff03a, type: 3}
+  m_Name: Custom Marker Receiver Track
+  m_EditorClassIdentifier: 
+  m_Version: 3
+  m_AnimClip: {fileID: 0}
+  m_Locked: 0
+  m_Muted: 0
+  m_CustomPlayableFullTypename: 
+  m_Curves: {fileID: 0}
+  m_Parent: {fileID: 7287104125867736609}
+  m_Children: []
+  m_Clips: []
+  m_Markers:
+    m_Objects:
+    - {fileID: -5188433235616412938}
+    - {fileID: 4182255365193756109}
+    - {fileID: -8155898066561087448}
 --- !u!114 &7499793673522080164
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1161,6 +1189,20 @@ MonoBehaviour:
   m_Markers:
     m_Objects: []
   m_PostPlaybackState: 1
+--- !u!114 &7745297608088142224
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d61c8f3c37864e8b81532a2ceecf6c6f, type: 3}
+  m_Name: Marker Start Dialog Signal
+  m_EditorClassIdentifier: 
+  m_Time: 5.566666666666666
+  dialogSettings: {fileID: 11400000, guid: 35c19165d001f094dbb0ce005f3ca4da, type: 2}
 --- !u!114 &8209133633960065686
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1181,7 +1223,7 @@ MonoBehaviour:
   m_Curves: {fileID: 0}
   m_Parent: {fileID: 1254373631737001624}
   m_Children:
-  - {fileID: -6521298749753214065}
+  - {fileID: 4645737334227010073}
   m_Clips: []
   m_Markers:
     m_Objects: []

@@ -53,12 +53,12 @@ public class EventsController : MonoBehaviour
 
     
     #region RTC SIGNALS FUNCTIONS
-    public void StartDialogSequence(NpcDialogsSettings npcDialogsSettings)
+    public void StartDialogSequenceEvent(NpcDialogsSettings npcDialogsSettings)
     {
         _dialog.StartEventDialogSequence(npcDialogsSettings);
     }
 
-    public void CloseDialogBox()
+    public void CloseDialogBoxEvent()
     {
         _dialog.DialogVisual.DialogDisparition();
     }
@@ -68,22 +68,22 @@ public class EventsController : MonoBehaviour
         _rtcManager.PlayRtc(timelineAsset);
     }
 
-    public void LooseHp(int hpLoose)
+    public void LooseHpEvent(int hpLoose)
     {
         _health.DecreaseHealth(hpLoose);
     }
 
-    public void SetCurrentHp(int currentHp)
+    public void SetCurrentHpEvent(int currentHp)
     {
         _health.SetCurrentHealth(currentHp);
     }
 
-    public void TransitionVolume(VolumeProfile newVolumeProfile)
+    public void TransitionVolumeEvent(VolumeProfile newVolumeProfile)
     {
         _visualManager.roomAmbianceController.TransitionVolume(newVolumeProfile);
     }
     
-    public void ShakeCamera(float duration, ShakeType shakeType = ShakeType.little)
+    public void ShakeCameraEvent(float duration, ShakeType shakeType = ShakeType.little)
     {
         switch (shakeType)
         {
@@ -102,7 +102,7 @@ public class EventsController : MonoBehaviour
         }
     }
 
-    public void HitFeedback()
+    public void HitFeedbackEvent()
     {
         _visualManager.fullScreenFeedbackController.HitFeedback();
     }

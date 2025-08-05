@@ -16,41 +16,41 @@ public class RtcCustomSignalReceiver : MonoBehaviour, INotificationReceiver
     {
         switch (notification)
         {
-            case StartDialogSignal dialogSignal:
+            case MarkerStartDialogSignal dialogSignal:
                 if (dialogSignal.dialogSettings != null)
-                    _events.StartDialogSequence(dialogSignal.dialogSettings);
+                    _events.StartDialogSequenceEvent(dialogSignal.dialogSettings);
                 break;
             
-            case CloseDialogBox closeDialogBox:
-                _events.CloseDialogBox();
+            case MarkerCloseDialogBox closeDialogBox:
+                _events.CloseDialogBoxEvent();
                 break;
             
-            case RoomAmbianceTransition ambianceSignal:
+            case MarkerRoomAmbianceTransition ambianceSignal:
                 if (ambianceSignal.newVolumeProfile != null)
-                    _events.TransitionVolume(ambianceSignal.newVolumeProfile);
+                    _events.TransitionVolumeEvent(ambianceSignal.newVolumeProfile);
                 break;
             
-            case ShakeCamera shakeCamera:
-                _events.ShakeCamera(shakeCamera.shakeDuration, shakeCamera.shakeType );
+            case MarkerShakeCamera shakeCamera:
+                _events.ShakeCameraEvent(shakeCamera.shakeDuration, shakeCamera.shakeType );
                 break;
             
-            case DestroyCells deleteCells:
+            case MarkerDestroyCells deleteCells:
                 _events.DestroyNbOfCellType(deleteCells.numberOfCellsToDelete, deleteCells.cellType, deleteCells.cellState);
                 break;
             
-            case HitFeedback hitFeedback:
-                _events.HitFeedback();
+            case MarkerHitFeedback hitFeedback:
+                _events.HitFeedbackEvent();
                 break;
             
-            case LooseHp looseHp:
-                _events.LooseHp(looseHp.hpLoose);
+            case MarkerLooseHp looseHp:
+                _events.LooseHpEvent(looseHp.hpLoose);
                 break;
             
-            case SetCurrentHp setCurrentHp:
-                _events.SetCurrentHp(setCurrentHp.currentHp);
+            case MarkerSetCurrentHp setCurrentHp:
+                _events.SetCurrentHpEvent(setCurrentHp.currentHp);
                 break;
             
-            case UpdateRtcVolume updateRtcVolume:
+            case MarkerUpdateRtcVolume updateRtcVolume:
                 _events.RtcManager.UpdateVolume(updateRtcVolume.volumeType, updateRtcVolume.newVolumeProfile);
                 break;
             

@@ -3,7 +3,7 @@ using UnityEngine.Playables;
 using UnityEngine.Timeline;
 
 [System.Serializable]
-public class DestroyCells : Marker, INotification
+public class MarkerDestroyCells : Marker, INotification
 {
     public PropertyName id => new PropertyName();
     public int numberOfCellsToDelete = 5;

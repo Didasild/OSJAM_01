@@ -3,8 +3,8 @@ using UnityEngine.Playables;
 using UnityEngine.Timeline;
 
 [System.Serializable]
-public class SetCurrentHp : Marker, INotification
+public class MarkerLooseHp : Marker, INotification
 {
     public PropertyName id => new PropertyName();
-    public int currentHp = 1;
+    public int hpLoose = 1;
 }

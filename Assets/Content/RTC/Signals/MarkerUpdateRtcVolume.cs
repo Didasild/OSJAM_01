@@ -4,7 +4,7 @@ using UnityEngine.Rendering;
 using UnityEngine.Timeline;
 
 [System.Serializable]
-public class UpdateRtcVolume : Marker, INotification
+public class MarkerUpdateRtcVolume : Marker, INotification
 {
     public PropertyName id => new PropertyName();
     public VolumeType volumeType;
