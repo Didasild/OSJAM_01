@@ -3742,7 +3742,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 705795834}
   m_Direction: 0
   m_Value: 1
-  m_Size: 0.4296875
+  m_Size: 0.21484375
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -9257,7 +9257,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 185661100}
   m_Direction: 2
   m_Value: 0
-  m_Size: 0.1796875
+  m_Size: 0.08984375
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -14588,7 +14588,7 @@ PlayableDirector:
   m_GameObject: {fileID: 1511401539}
   m_Enabled: 1
   serializedVersion: 3
-  m_PlayableAsset: {fileID: 11400000, guid: ec9439b7f2f48d6408187ba24a8f19fc, type: 2}
+  m_PlayableAsset: {fileID: 11400000, guid: 413e599016797c844bc6d87459f9342e, type: 2}
   m_InitialState: 0
   m_WrapMode: 2
   m_DirectorUpdateMode: 1

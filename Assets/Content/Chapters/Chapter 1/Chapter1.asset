@@ -15,5 +15,5 @@ MonoBehaviour:
   chapter: 1
   chapterDefaultColorsVolume: {fileID: 11400000, guid: d252c52afd5c5ff47984d4f563ce4ade, type: 2}
   floorSettings:
-  - {fileID: 11400000, guid: 3858fbc341f35a14d8a775214e8c5f14, type: 2}
   - {fileID: 11400000, guid: 1a3e74e23bcb3f84db119b52e9b9b737, type: 2}
+  - {fileID: 11400000, guid: 3858fbc341f35a14d8a775214e8c5f14, type: 2}

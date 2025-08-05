@@ -12,8 +12,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 573f33fafe104945ae5f97b504cdf0a3, type: 3}
   m_Name: Marker Room Ambiance Transition
   m_EditorClassIdentifier: 
-  m_Time: 5.116666666666666
+  m_Time: 7
   newVolumeProfile: {fileID: 11400000, guid: 30efc7cf415405348a435a3b353f0857, type: 2}
+--- !u!114 &-7413516441639148391
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d1d89e53e5c94d9db642b7e9860767c8, type: 3}
+  m_Name: Marker Update Rtc Volume
+  m_EditorClassIdentifier: 
+  m_Time: 0.25
+  volumeType: 2
+  newVolumeProfile: {fileID: 11400000, guid: bbead3ee12909db4b99964a0b91589a7, type: 2}
 --- !u!114 &-6671211831814736616
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -535,7 +550,7 @@ MonoBehaviour:
     m_Start: 2.7333333333333334
     m_ClipIn: 0
     m_Asset: {fileID: 1292132592291366918}
-    m_Duration: 7.394833804666991
+    m_Duration: 7.261500471333663
     m_TimeScale: 1
     m_ParentTrack: {fileID: -1780944448968235961}
     m_EaseInDuration: 0
@@ -1165,6 +1180,7 @@ MonoBehaviour:
     - {fileID: -5188433235616412938}
     - {fileID: 4182255365193756109}
     - {fileID: -8155898066561087448}
+    - {fileID: -7413516441639148391}
 --- !u!114 &7499793673522080164
 MonoBehaviour:
   m_ObjectHideFlags: 1
