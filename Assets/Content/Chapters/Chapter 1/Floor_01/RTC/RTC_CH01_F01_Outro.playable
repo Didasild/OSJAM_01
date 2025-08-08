@@ -76,20 +76,6 @@ MonoBehaviour:
   m_Time: 0.2833333333333333
   volumeType: 0
   newVolumeProfile: {fileID: 11400000, guid: 2c1a39d651690ce4fb0d84cd0a7c8ee8, type: 2}
---- !u!114 &-8063087404213151345
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1f4d6f8af69643f489e94a27fe0a5345, type: 3}
-  m_Name: Marker Loose Hp
-  m_EditorClassIdentifier: 
-  m_Time: 7.1833567063324155
-  hpLoose: 1
 --- !u!74 &-7949811858210564810
 AnimationClip:
   m_ObjectHideFlags: 0
@@ -865,6 +851,20 @@ AnimationClip:
   m_HasGenericRootTransform: 0
   m_HasMotionFloatCurves: 0
   m_Events: []
+--- !u!114 &-3700118442861519500
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 81f1ed9e8cc04a189c7598f65a7f4c8a, type: 3}
+  m_Name: Marker Set Current Hp
+  m_EditorClassIdentifier: 
+  m_Time: 7.216666666666667
+  currentHp: 1
 --- !u!114 &-3676697159296592830
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -961,6 +961,19 @@ MonoBehaviour:
     - {fileID: -8090214520145588189}
     - {fileID: -5119019464973162742}
     - {fileID: -3550557944196022336}
+--- !u!114 &-2941014122403872586
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5cb063c164c44c5f8fd1155c2ac37d17, type: 3}
+  m_Name: Marker Close Dialog Box
+  m_EditorClassIdentifier: 
+  m_Time: 4.683333333333334
 --- !u!114 &-2842554597511553718
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1342,6 +1355,19 @@ MonoBehaviour:
     m_ScenePreview: 1
   m_DurationMode: 0
   m_MarkerTrack: {fileID: 1790693008476059541}
+--- !u!114 &127148334585867030
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5cb063c164c44c5f8fd1155c2ac37d17, type: 3}
+  m_Name: Marker Close Dialog Box
+  m_EditorClassIdentifier: 
+  m_Time: 10.116666666666665
 --- !u!114 &327849728348659747
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1647,6 +1673,19 @@ MonoBehaviour:
   m_Time: 11.8
   shakeDuration: 5
   shakeType: 2
+--- !u!114 &3042264328967444870
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5cb063c164c44c5f8fd1155c2ac37d17, type: 3}
+  m_Name: Marker Close Dialog Box
+  m_EditorClassIdentifier: 
+  m_Time: 14.3
 --- !u!114 &3070031228416814956
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2034,7 +2073,7 @@ MonoBehaviour:
   m_Clips: []
   m_Markers:
     m_Objects:
-    - {fileID: -8063087404213151345}
+    - {fileID: -3700118442861519500}
 --- !u!114 &4003752290898218469
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2209,6 +2248,9 @@ MonoBehaviour:
     - {fileID: 7441867572011775316}
     - {fileID: 5641032809605241730}
     - {fileID: 771440892032833417}
+    - {fileID: -2941014122403872586}
+    - {fileID: 127148334585867030}
+    - {fileID: 3042264328967444870}
 --- !u!114 &5113818680564714786
 MonoBehaviour:
   m_ObjectHideFlags: 1

@@ -74,7 +74,7 @@ public class NPC
         {
             currentCell = associatedCell;
         }
-        associatedCell.typeVisual.sprite = GameManager.VisualManager.GetNpcStateVisual(_currentNpcState);
+        associatedCell.typeVisual.sprite = GameManager.VisualManager.cellVisual.GetNpcStateVisual(_currentNpcState);
     }
     #endregion CELL
 

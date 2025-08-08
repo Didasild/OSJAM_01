@@ -258,6 +258,7 @@ public class Player : MonoBehaviour
                 }
             }
             OverOffNeighborsCells(cellClicked);
+            cellClicked.UpdateHintVisual();
         }
         
         //Passe en state Clicked les cellules couvertes

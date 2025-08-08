@@ -1,16 +1,18 @@
 using System;
 using NaughtyAttributes;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class TextController : MonoBehaviour
 {
     [ReadOnly] public TextColorUpdate[] tmpColoredTexts;
     [ReadOnly] public CurvedText[] tmpCurvedTexts;
-    [HideInInspector] public VisualManager visualManager;
+    private VisualManager _visualManager;
+    public VisualManager VisualManager => _visualManager;
     
     public void Init(VisualManager manager)
     {
-        visualManager = manager;
+        _visualManager = manager;
         tmpColoredTexts = FindObjectsByType<TextColorUpdate>(FindObjectsSortMode.None);
         tmpCurvedTexts = FindObjectsByType<CurvedText>(FindObjectsSortMode.None);
         foreach (TextColorUpdate textColorScript in tmpColoredTexts)

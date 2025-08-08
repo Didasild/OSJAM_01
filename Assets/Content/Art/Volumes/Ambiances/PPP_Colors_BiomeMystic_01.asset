@@ -141,7 +141,7 @@ MonoBehaviour:
     m_Value: {r: 0.58360666, g: 0.46297613, b: 0.6415094, a: 1}
   Color3:
     m_OverrideState: 1
-    m_Value: {r: 0.1544589, g: 0.56090176, b: 0.8396226, a: 1}
+    m_Value: {r: 0, g: 0.33924285, b: 0.8679245, a: 1}
   Color4:
     m_OverrideState: 1
     m_Value: {r: 0.98210895, g: 0.9386792, b: 1, a: 1}

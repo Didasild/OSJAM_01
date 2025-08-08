@@ -25,8 +25,8 @@ Material:
     m_TexEnvs: []
     m_Ints: []
     m_Floats:
-    - _CurrentHealth: 2
-    - _MaxHealth: 2
+    - _CurrentHealth: 1
+    - _MaxHealth: 3
     m_Colors: []
   m_BuildTextureStacks: []
   m_AllowLocking: 1

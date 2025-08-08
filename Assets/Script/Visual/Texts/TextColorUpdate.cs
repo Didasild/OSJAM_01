@@ -20,7 +20,7 @@ public class TextColorUpdate : MonoBehaviour
     
     public void UpdateTextColor(float transitionDuration)
     {
-        if (!_textController.visualManager.roomAmbianceController.transitionColorsVolume.profile.TryGet<GlobalColorSettings>(out var colorSettings))
+        if (!_textController.VisualManager.roomAmbianceController.transitionColorsVolume.profile.TryGet<GlobalColorSettings>(out var colorSettings))
             return;
 
         Color targetColor = text.color;

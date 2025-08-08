@@ -127,8 +127,6 @@ public class Cell : MonoBehaviour
         }
         else if (numberOfNeighborsMine >= 1)
         {
-            numberVisual.sprite = _visualManager.GetSprite(numberOfNeighborsMine.ToString());
-            
             ChangeType(CellType.Hint);
         }
         else
@@ -161,12 +159,10 @@ public class Cell : MonoBehaviour
             cellCover.SetActive(false);
         }
         
-        stateVisual.sprite = _visualManager.GetCellStateVisual(currentState);
-        typeVisual.sprite = _visualManager.GetCellTypeVisual(this);
-        itemVisual.sprite = _visualManager.GetCellItemVisuel(currentItemType);
+        stateVisual.sprite = _visualManager.cellVisual.GetCellStateVisual(currentState);
+        typeVisual.sprite = _visualManager.cellVisual.GetCellTypeVisual(this);
+        itemVisual.sprite = _visualManager.cellVisual.GetCellItemVisuel(currentItemType);
     }
-
-
     #endregion
 
     #region CELL STATE
@@ -206,7 +202,7 @@ public class Cell : MonoBehaviour
 
     private void InactiveState()
     {
-        stateVisual.sprite = _visualManager.GetCellStateVisual(currentState);
+        stateVisual.sprite = _visualManager.cellVisual.GetCellStateVisual(currentState);
         cellCover.SetActive(false);
         cellEmpty.SetActive(false);
         cellOutline.SetActive(false);
@@ -215,16 +211,20 @@ public class Cell : MonoBehaviour
 
     private void CoverState()
     {
-        stateVisual.sprite = _visualManager.GetCellStateVisual(currentState);
+        stateVisual.sprite = _visualManager.cellVisual.GetCellStateVisual(currentState);
         cellCover.SetActive(true);
         cellOutline.SetActive(true);
         visualParent.SetActive(true);
+        foreach (Cell cell in neighborsCellList)
+        {
+            cell.UpdateHintVisual();
+        }
     }
 
     private void ClickedState()
     {
         visualParent.SetActive(true);
-        stateVisual.sprite = _visualManager.GetCellStateVisual(currentState);
+        stateVisual.sprite = _visualManager.cellVisual.GetCellStateVisual(currentState);
     }
 
     #region REVEAL
@@ -240,6 +240,7 @@ public class Cell : MonoBehaviour
             {
                 cell.ChangeState(CellState.Cover);
             }
+            cell.UpdateHintVisual();
         }
 
         //Reveal les cellules autour si il n'y a pas de mines
@@ -250,7 +251,7 @@ public class Cell : MonoBehaviour
         }
         
         RevealAndDisableCover();
-        stateVisual.sprite = _visualManager.GetCellStateVisual(currentState);
+        stateVisual.sprite = _visualManager.cellVisual.GetCellStateVisual(currentState);
         _visualManager.centralFeedbackController.CellRevealFeedbackIn();
 
         _player.IncreaseMana();
@@ -293,13 +294,17 @@ public class Cell : MonoBehaviour
 
     private void FlagState()
     {
-        stateVisual.sprite = _visualManager.GetCellStateVisual(currentState);
+        stateVisual.sprite = _visualManager.cellVisual.GetCellStateVisual(currentState);
         visualParent.SetActive(true);
+        foreach (Cell cell in neighborsCellList)
+        {
+            cell.UpdateHintVisual();
+        }
     }
 
     private void SwordPlantedState()
     {
-        stateVisual.sprite = _visualManager.GetCellStateVisual(currentState);
+        stateVisual.sprite = _visualManager.cellVisual.GetCellStateVisual(currentState);
         visualParent.SetActive(true);
     }
 
@@ -356,7 +361,7 @@ public class Cell : MonoBehaviour
         if (updateVisual)
         {
             cellEmpty.SetActive(true);
-            typeVisual.sprite = _visualManager.GetCellTypeVisual(this);
+            typeVisual.sprite = _visualManager.cellVisual.GetCellTypeVisual(this);
         }
     }
     private void NoneType()
@@ -375,24 +380,25 @@ public class Cell : MonoBehaviour
     }
     private void MineType()
     {
-        typeVisual.sprite = _visualManager.GetCellTypeVisual(this);
+        typeVisual.sprite = _visualManager.cellVisual.GetCellTypeVisual(this);
     }
     private void HintType()
     {
         cellEmpty.SetActive(true);
-        typeVisual.sprite = _visualManager.GetCellTypeVisual(this);
+        typeVisual.sprite = _visualManager.cellVisual.GetCellTypeVisual(this);
+        UpdateHintVisual();
     }
 
     private void GateType()
     {
         cellEmpty.SetActive(false);
-        typeVisual.sprite = _visualManager.GetCellTypeVisual(this);
+        typeVisual.sprite = _visualManager.cellVisual.GetCellTypeVisual(this);
     }
 
     private void ItemType()
     {
         cellEmpty.SetActive(true);
-        typeVisual.sprite = _visualManager.GetCellTypeVisual(this);
+        typeVisual.sprite = _visualManager.cellVisual.GetCellTypeVisual(this);
     }
 
     private void NpcType()
@@ -427,21 +433,22 @@ public class Cell : MonoBehaviour
     }
     private void NoneItemType()
     {
-        itemVisual.sprite = _visualManager.GetCellItemVisuel(currentItemType);
+        itemVisual.sprite = _visualManager.cellVisual.GetCellItemVisuel(currentItemType);
     }
 
     private void PotionType()
     {
-        itemVisual.sprite = _visualManager.GetCellItemVisuel(currentItemType);
+        itemVisual.sprite = _visualManager.cellVisual.GetCellItemVisuel(currentItemType);
     }
 
     private void SwordType()
     {
-        itemVisual.sprite = _visualManager.GetCellItemVisuel(currentItemType);
+        itemVisual.sprite = _visualManager.cellVisual.GetCellItemVisuel(currentItemType);
     }
 
     #endregion ITEM TYPE
     
+    //A BOUGER DANS CELLE VISUAL
     #region ANIMATIONS
     private void InstantiateAnimation(GameObject animPrefab)
     {
@@ -453,11 +460,7 @@ public class Cell : MonoBehaviour
 
             // Instancie le prefab
             GameObject instance = Instantiate(animPrefab, animParent.transform);
-
-            // Optionnel : Réinitialise la position locale
             instance.transform.localPosition = Vector3.zero;
-
-            // Optionnel : Réinitialise l'échelle locale
             instance.transform.localScale = Vector3.one;
         }
     }
@@ -562,40 +565,54 @@ public class Cell : MonoBehaviour
         ChangeState(cellNewState);
         _gameManager.GridManager.RoomCompletion.CheckRoomCompletion(GameManager.Instance.FloorManager.currentRoom.roomConditions, _gameManager.FloorManager.currentRoom.roomUnlockConditions);
     }
-    #endregion
+
+    public void UpdateHintVisual()
+    {
+        if (currentType != CellType.Hint)
+        {
+            return;
+        }
+        
+        if (GetNeighborsState(CellState.Flag) == 0)
+        {
+            numberVisual.sprite = _visualManager.GetSprite(numberOfNeighborsMine.ToString());
+            numberVisual.color = new Color32(255, 255, 255, 255);
+            return;
+        }
+
+        if (numberOfNeighborsMine == GetNeighborsState(CellState.Flag))
+        {
+            if (GetNeighborsState(CellState.Cover) > 0)
+            {
+                numberVisual.sprite = _visualManager.GetSprite(numberOfNeighborsMine+"b");
+                numberVisual.color = new Color32(255, 255, 255, 255);
+            }
+            else
+            {
+                numberVisual.color = Color.clear;
+            }
+            return;
+        }
+        
+        if (GetNeighborsState(CellState.Flag) > numberOfNeighborsMine)
+        {
+            numberVisual.sprite = _visualManager.GetSprite(numberOfNeighborsMine.ToString());
+            numberVisual.color = new Color32(255, 255, 255, 85);
+        }
+        else
+        {
+            numberVisual.sprite = _visualManager.GetSprite(numberOfNeighborsMine.ToString());
+            numberVisual.color = new Color32(255, 255, 255, 255);
+        }
+    }
+    #endregion CELL MODIFICATIONS METHODS
 
     #region NEIGHBORS MANAGEMENT
     public void GenerateNeighborsList(GridManager gridManager)
     {
         neighborsCellList = gridManager.GridInfos.GetNeighbors(_cellPosition);
     }
-
-    public void ChangeNeighborStates()
-    {
-        int numberOfFlagNeighbors = 0;
-        foreach (Cell neighborsCell in neighborsCellList)
-        {
-            if (neighborsCell.currentState == CellState.Flag)
-            {
-                numberOfFlagNeighbors += 1;
-            }
-            else if (neighborsCell.currentType == CellType.Mine && neighborsCell.currentState == CellState.Reveal)
-            {
-                numberOfFlagNeighbors += 1;
-            }
-        }
-
-        if (numberOfFlagNeighbors == numberOfNeighborsMine)
-        {
-            foreach (Cell neighbor in neighborsCellList)
-            {
-                if (neighbor.currentState == CellState.Cover)
-                {
-                    neighbor.ChangeState(CellState.Reveal);
-                }
-            }
-        }
-    }
+    
 
     public void RemoveNeighborsMine()
     {
